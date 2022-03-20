@@ -2569,7 +2569,7 @@ bool8 FldEff_FieldMoveShowMon(void)
 #define SHOW_MON_CRY_NO_DUCKING (1 << 31)
 
 bool8 FldEff_FieldMoveShowMonInit(void)
-{
+{/*
     struct Pokemon *pokemon;
     bool32 noDucking = gFieldEffectArguments[0] & SHOW_MON_CRY_NO_DUCKING;
     pokemon = &gPlayerParty[(u8)gFieldEffectArguments[0]];
@@ -2577,7 +2577,7 @@ bool8 FldEff_FieldMoveShowMonInit(void)
     gFieldEffectArguments[1] = GetMonData(pokemon, MON_DATA_OT_ID);
     gFieldEffectArguments[2] = GetMonData(pokemon, MON_DATA_PERSONALITY);
     gFieldEffectArguments[0] |= noDucking;
-    FieldEffectStart(FLDEFF_FIELD_MOVE_SHOW_MON);
+    FieldEffectStart(FLDEFF_FIELD_MOVE_SHOW_MON);*/
     FieldEffectActiveListRemove(FLDEFF_FIELD_MOVE_SHOW_MON_INIT);
     return FALSE;
 }

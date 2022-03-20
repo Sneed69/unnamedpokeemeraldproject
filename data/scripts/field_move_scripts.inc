@@ -88,8 +88,6 @@ EventScript_StrengthBoulder::
 	lockall
 	goto_if_unset FLAG_BADGE04_GET, EventScript_CantStrength
 	goto_if_set FLAG_SYS_USE_STRENGTH, EventScript_CheckActivatedBoulder
-	dofieldeffect FLDEFF_USE_STRENGTH
-	waitstate
 	goto EventScript_ActivateStrength
 	end
 

@@ -126,27 +126,26 @@ static const struct BikeHistoryInputInfo sAcroBikeTricksList[] =
 // code
 void MovePlayerOnBike(u8 direction, u16 newKeys, u16 heldKeys)
 {
+	u16 heldB = heldKeys & B_BUTTON;
+	u16 heldR = heldKeys & R_BUTTON;
+	if (heldR && gPlayerAvatar.flags & PLAYER_AVATAR_FLAG_ACRO_BIKE && !(heldB))
+	{
+		gPlayerAvatar.flags -= PLAYER_AVATAR_FLAG_ACRO_BIKE;
+		gPlayerAvatar.flags += PLAYER_AVATAR_FLAG_MACH_BIKE;
+		SetPlayerAvatarTransitionFlags(PLAYER_AVATAR_FLAG_MACH_BIKE);
+		PlaySE(SE_BIKE_BELL);
+	}
+	else if (heldB && gPlayerAvatar.flags & PLAYER_AVATAR_FLAG_MACH_BIKE && !(heldR))
+	{
+		gPlayerAvatar.flags -= PLAYER_AVATAR_FLAG_MACH_BIKE;
+		gPlayerAvatar.flags += PLAYER_AVATAR_FLAG_ACRO_BIKE;
+		SetPlayerAvatarTransitionFlags(PLAYER_AVATAR_FLAG_ACRO_BIKE);
+		PlaySE(SE_BIKE_HOP);
+	}
     if (gPlayerAvatar.flags & PLAYER_AVATAR_FLAG_MACH_BIKE)
         MovePlayerOnMachBike(direction, newKeys, heldKeys);
     else
         MovePlayerOnAcroBike(direction, newKeys, heldKeys);
-
-    if (heldKeys & R_BUTTON)
-    {
-        if (gPlayerAvatar.flags & PLAYER_AVATAR_FLAG_MACH_BIKE)
-        {
-            gPlayerAvatar.flags -= PLAYER_AVATAR_FLAG_MACH_BIKE;
-            gPlayerAvatar.flags += PLAYER_AVATAR_FLAG_ACRO_BIKE;
-            SetPlayerAvatarTransitionFlags(PLAYER_AVATAR_FLAG_ACRO_BIKE);
-        }
-        else
-        {
-            gPlayerAvatar.flags -= PLAYER_AVATAR_FLAG_ACRO_BIKE;
-            gPlayerAvatar.flags += PLAYER_AVATAR_FLAG_MACH_BIKE;
-            SetPlayerAvatarTransitionFlags(PLAYER_AVATAR_FLAG_MACH_BIKE);
-        }
-        PlaySE(SE_BIKE_HOP);
-    }
 }
 
 static void MovePlayerOnMachBike(u8 direction, u16 newKeys, u16 heldKeys)
