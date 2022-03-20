@@ -1035,12 +1035,9 @@ Route104_Text_LikeFillingMouthWithSeedsTakeThis:
 	.string "Use it on a POKéMON, and it will learn\n"
 	.string "a move for firing seeds rapidly.$"
 
-Route104_Text_TMsAreOneTimeUse:
-	.string "A word of advice!\p"
-	.string "A TM, TECHNICAL MACHINE, is good only\n"
-	.string "for one-time use.\p"
-	.string "Once you use it, it's gone.\n"
-	.string "Think twice before using it!$"
+Route104_Text_TMsAreOneTimeUse:	
+	.string "By the way, a TM, Technical Machine,\n"
+	.string "can be used as many times as you want!$"
 
 Route104_Text_DontNeedThisTakeIt:
 	.string "This FLOWER SHOP started selling\n"
