@@ -260,17 +260,13 @@ struct PokedexView
     u16 monSpriteIds[MAX_MONS_ON_SCREEN];
     u8 typeIconSpriteIds[2]; //HGSS_Ui
     u16 moveSelected; //HGSS_Ui
-    u8 movesTotal; //HGSS_Ui
     u8 statBarsSpriteId; //HGSS_Ui
     u8 statBarsBgSpriteId; //HGSS_Ui
     bool8 justScrolled; //HGSS_Ui
     #ifdef BATTLE_ENGINE
     u8 splitIconSpriteId;  //HGSS_Ui Physical/Special Split from BE
     #endif
-    u8 numEggMoves; //HGSS_Ui
     u8 numLevelUpMoves; //HGSS_Ui
-    u8 numTMHMMoves; //HGSS_Ui
-    u8 numTutorMoves; //HGSS_Ui
     u8 numPreEvolutions; //HGSS_Ui
     struct PokemonStats sPokemonStats; //HGSS_Ui
     struct EvoScreenData sEvoScreenData; //HGSS_Ui
@@ -6514,10 +6510,7 @@ static void Task_LoadStatsScreen(u8 taskId)
     case 4:
         SaveMonDataInStruct();
         sPokedexView->moveSelected = 0;
-        sPokedexView->movesTotal = 0;
-        sPokedexView->numEggMoves = 0;
         sPokedexView->numLevelUpMoves = 0;
-        sPokedexView->numTMHMMoves = 0;
         if(CalculateMoves())
             gMain.state++;
         break;
@@ -6658,7 +6651,7 @@ static void Task_HandleStatsScreenInput(u8 taskId)
         FillWindowPixelRect(WIN_STATS_MOVES_BOTTOM, PIXEL_FILL(0), 120, 0, 20, 16);
         PrintStatsScreen_Moves_Bottom(taskId);
     }
-    if (JOY_REPEAT(DPAD_DOWN) && sPokedexView->moveSelected < sPokedexView->movesTotal -1 )
+    if (JOY_REPEAT(DPAD_DOWN) && sPokedexView->moveSelected < sPokedexView->numLevelUpMoves -1 )
     {
         sPokedexView->moveSelected = sPokedexView->moveSelected + 1;
         PlaySE(SE_SELECT);
@@ -6709,70 +6702,24 @@ static bool8 CalculateMoves(void)
 {
     u16 species = NationalPokedexNumToSpeciesHGSS(sPokedexListItem->dexNum);
 
-    u16 statsMovesEgg[EGG_MOVES_ARRAY_COUNT] = {0};
     u16 statsMovesLevelUp[MAX_LEVEL_UP_MOVES] = {0};
-    u16 statsMovesTMHM[NUM_TECHNICAL_MACHINES + NUM_HIDDEN_MACHINES] = {0};
-    u16 statsMovesTutor[TUTOR_MOVE_COUNT] = {0};
 
-    u8 numEggMoves = 0;//GetEggMovesSpecies(species, statsMovesEgg);
     u8 numLevelUpMoves = GetLevelUpMovesBySpecies(species, statsMovesLevelUp);
-    u8 numTMHMMoves = 0;
-    u8 numTutorMoves = 0;
-    u16 movesTotal = 0;
     u8 i,j;
 
     //Level up moves
     for (i=0; i < numLevelUpMoves; i++)
     {
-        sStatsMoves[movesTotal] = statsMovesLevelUp[i];
-        movesTotal++;
+        sStatsMoves[numLevelUpMoves] = statsMovesLevelUp[i];
     }
 
-    /*/Egg moves
-    for (i=0; i < numEggMoves; i++)
-    {
-        sStatsMoves[movesTotal] = statsMovesEgg[i];
-        movesTotal++;
-    }
-
-    //TMHM moves
-    for (j = 0; j < NUM_TECHNICAL_MACHINES + NUM_HIDDEN_MACHINES; j++)
-    {
-        if(CanSpeciesLearnTMHM(species, j))
-        {
-            sStatsMoves[movesTotal] = ItemIdToBattleMoveId(ITEM_TM01_FOCUS_PUNCH + j);
-            movesTotal++;
-            sStatsMovesTMHM_ID[numTMHMMoves] = (ITEM_TM01_FOCUS_PUNCH + j);
-            numTMHMMoves++;
-        }
-    }
-
-    //Tutor moves
-    for (i=0; i < TUTOR_MOVE_COUNT; i++)
-    {
-        if (CanLearnTutorMove(species, i)) //if (sTutorLearnsets[species] & (1 << i))
-        {
-            sStatsMoves[movesTotal] = gTutorMoves[i];
-            numTutorMoves++;
-            movesTotal++;
-        }
-    }*/
-
-    sPokedexView->numEggMoves = numEggMoves;
     sPokedexView->numLevelUpMoves = numLevelUpMoves;
-    sPokedexView->numTMHMMoves = numTMHMMoves;
-    sPokedexView->numTutorMoves = numTutorMoves;
-    sPokedexView->movesTotal = movesTotal;
 
     return TRUE;
 }
 static void PrintStatsScreen_Moves_Top(u8 taskId)
 {
-    u8 numEggMoves      = sPokedexView->numEggMoves;
     u8 numLevelUpMoves  = sPokedexView->numLevelUpMoves;
-    u8 numTMHMMoves     = sPokedexView->numTMHMMoves;
-    u8 numTutorMoves    = sPokedexView->numTutorMoves;
-    u8 movesTotal       = sPokedexView->movesTotal;
     u8 selected         = sPokedexView->moveSelected;
     u8 level;
     u8 moves_x = 5;
@@ -6787,7 +6734,7 @@ static void PrintStatsScreen_Moves_Top(u8 taskId)
 
     //Moves selected from move max
     ConvertIntToDecimalStringN(gStringVar1, (selected+1), STR_CONV_MODE_RIGHT_ALIGN, 3);
-    ConvertIntToDecimalStringN(gStringVar2, movesTotal, STR_CONV_MODE_RIGHT_ALIGN, 3);
+    ConvertIntToDecimalStringN(gStringVar2, numLevelUpMoves, STR_CONV_MODE_RIGHT_ALIGN, 3);
     StringExpandPlaceholders(gStringVar1, gText_Stats_MoveSelectedMax);
     PrintStatsScreenTextSmallWhite(WIN_STATS_MOVES_TOP, gStringVar1, moves_x-1, moves_y+1);
 
@@ -6809,21 +6756,16 @@ static void PrintStatsScreen_Moves_Top(u8 taskId)
     }
 
     //Calculate and retrieve correct move from the arrays
-    if (selected < numEggMoves)
-    {
-        PrintStatsScreenTextSmall(WIN_STATS_MOVES_TOP, gText_ThreeDashes, moves_x + 113, moves_y + 9);
-        item = ITEM_LUCKY_EGG;
-    }
-    else if (selected < (numEggMoves + numLevelUpMoves))
+    if (selected < (numLevelUpMoves))
     {        
         #if defined (BATTLE_ENGINE) || defined (POKEMON_EXPANSION)
-            level = gLevelUpLearnsets[species][(selected-numEggMoves)].level;
+            level = gLevelUpLearnsets[species][(selected)].level;
         #else
             //Calculate level of the move
-            while (((gLevelUpLearnsets[species][(selected-numEggMoves)] & LEVEL_UP_MOVE_LV) != (level << 9)) && level < 0xFF)
+            while (((gLevelUpLearnsets[species][(selected)] & LEVEL_UP_MOVE_LV) != (level << 9)) && level < 0xFF)
             {
                 level++;
-                if (gLevelUpLearnsets[species][(selected-numEggMoves)] == LEVEL_UP_END)
+                if (gLevelUpLearnsets[species][(selected)] == LEVEL_UP_END)
                     level = 0xFF;
             }
         #endif
@@ -6831,17 +6773,6 @@ static void PrintStatsScreen_Moves_Top(u8 taskId)
         PrintStatsScreenTextSmall(WIN_STATS_MOVES_TOP, gText_Stats_MoveLevel, moves_x + 113, moves_y + 3); //Level text
         PrintStatsScreenTextSmall(WIN_STATS_MOVES_TOP, gStringVar1, moves_x + 113, moves_y + 14); //Print level
         item = ITEM_EXP_SHARE;
-    }
-    else if (selected < (numEggMoves + numLevelUpMoves + numTMHMMoves))
-    {
-        CopyItemName(sStatsMovesTMHM_ID[(selected-numEggMoves-numLevelUpMoves)], gStringVar1); //TM name
-        PrintStatsScreenTextSmall(WIN_STATS_MOVES_TOP, gStringVar1, moves_x + 113, moves_y + 9);
-        item = sStatsMovesTMHM_ID[(selected-numEggMoves-numLevelUpMoves)];
-    }
-    else if (selected < (numEggMoves + numLevelUpMoves + numTMHMMoves + numTutorMoves))
-    {
-        PrintStatsScreenTextSmall(WIN_STATS_MOVES_TOP, gText_ThreeDashes, moves_x + 113, moves_y + 9);
-        item = ITEM_TEACHY_TV;
     }
     else
     {
