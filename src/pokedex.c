@@ -6702,19 +6702,21 @@ static bool8 CalculateMoves(void)
 {
     u16 species = NationalPokedexNumToSpeciesHGSS(sPokedexListItem->dexNum);
 
+    u16 statsMovesEgg[EGG_MOVES_ARRAY_COUNT] = {0};
     u16 statsMovesLevelUp[MAX_LEVEL_UP_MOVES] = {0};
+    u16 statsMovesTMHM[NUM_TECHNICAL_MACHINES + NUM_HIDDEN_MACHINES] = {0};
+    u16 statsMovesTutor[TUTOR_MOVE_COUNT] = {0};
 
     u8 numLevelUpMoves = GetLevelUpMovesBySpecies(species, statsMovesLevelUp);
-    u8 i,j;
+    u8 i;
 
     //Level up moves
     for (i=0; i < numLevelUpMoves; i++)
     {
-        sStatsMoves[numLevelUpMoves] = statsMovesLevelUp[i];
+        sStatsMoves[i] = statsMovesLevelUp[i];
     }
 
     sPokedexView->numLevelUpMoves = numLevelUpMoves;
-
     return TRUE;
 }
 static void PrintStatsScreen_Moves_Top(u8 taskId)
@@ -6769,10 +6771,19 @@ static void PrintStatsScreen_Moves_Top(u8 taskId)
                     level = 0xFF;
             }
         #endif
-        ConvertIntToDecimalStringN(gStringVar1, level, STR_CONV_MODE_LEFT_ALIGN, 3); //Move learn lvl
-        PrintStatsScreenTextSmall(WIN_STATS_MOVES_TOP, gText_Stats_MoveLevel, moves_x + 113, moves_y + 3); //Level text
-        PrintStatsScreenTextSmall(WIN_STATS_MOVES_TOP, gStringVar1, moves_x + 113, moves_y + 14); //Print level
-        item = ITEM_EXP_SHARE;
+        if (level > 0)
+		{
+			ConvertIntToDecimalStringN(gStringVar1, level, STR_CONV_MODE_RIGHT_ALIGN, 3); //Move learn lvl
+			PrintStatsScreenTextSmall(WIN_STATS_MOVES_TOP, gText_Stats_MoveLevel, moves_x + 113, moves_y + 3); //Level text
+			PrintStatsScreenTextSmall(WIN_STATS_MOVES_TOP, gStringVar1, moves_x + 113, moves_y + 14); //Print level
+			item = ITEM_RARE_CANDY;
+		}
+		else
+		{
+			PrintStatsScreenTextSmall(WIN_STATS_MOVES_TOP, gText_Stats_On, moves_x + 113, moves_y + 3); //Print On
+			PrintStatsScreenTextSmall(WIN_STATS_MOVES_TOP, gText_Stats_Evo, moves_x + 113, moves_y + 14); //Print Evo
+			item = ITEM_EVIOLITE;
+		}
     }
     else
     {

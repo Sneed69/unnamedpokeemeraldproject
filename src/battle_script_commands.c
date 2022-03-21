@@ -1320,6 +1320,13 @@ static const u8 sBattlePalaceNatureToFlavorTextId[NUM_NATURES] =
     [NATURE_QUIRKY]  = B_MSG_EAGER_FOR_MORE,
 };
 
+static const u16 sBadgeFlags[8] = {
+    FLAG_BADGE01_GET, FLAG_BADGE02_GET, FLAG_BADGE03_GET, FLAG_BADGE04_GET,
+    FLAG_BADGE05_GET, FLAG_BADGE06_GET, FLAG_BADGE07_GET, FLAG_BADGE08_GET,
+};
+
+static const u16 sWhiteOutBadgeMoney[9] = { 8, 16, 24, 36, 48, 64, 80, 100, 120 };
+
 static bool32 NoTargetPresent(u32 move)
 {
     if (!IsBattlerAlive(gBattlerTarget))
@@ -6613,14 +6620,39 @@ static u32 GetTrainerMoneyToGive(u16 trainerId)
 
 static void Cmd_getmoneyreward(void)
 {
-    u32 moneyReward = GetTrainerMoneyToGive(gTrainerBattleOpponent_A);
-    if (gBattleTypeFlags & BATTLE_TYPE_TWO_OPPONENTS)
-        moneyReward += GetTrainerMoneyToGive(gTrainerBattleOpponent_B);
+	u32 money;
+	u8 sPartyLevel = 0;
+	u8 sPartyCount = 0;
 
-    AddMoney(&gSaveBlock1Ptr->money, moneyReward);
-    PREPARE_WORD_NUMBER_BUFFER(gBattleTextBuff1, 5, moneyReward);
+	if (gBattleOutcome == B_OUTCOME_WON)
+	{
+		money = GetTrainerMoneyToGive(gTrainerBattleOpponent_A);
+		if (gBattleTypeFlags & BATTLE_TYPE_TWO_OPPONENTS)
+			money += GetTrainerMoneyToGive(gTrainerBattleOpponent_B);
+		AddMoney(&gSaveBlock1Ptr->money, money);
+	}
+	else
+	{
+		s32 i, count;
+		for (i = 0; i < PARTY_SIZE; i++)
+		{
+			if (GetMonData(&gPlayerParty[i], MON_DATA_SPECIES2) != SPECIES_NONE && GetMonData(&gPlayerParty[i], MON_DATA_SPECIES2) != SPECIES_EGG)
+			{
+				sPartyLevel += GetMonData(&gPlayerParty[i], MON_DATA_LEVEL);
+				sPartyCount++;
+			}
+		}
+		for (count = 0, i = 0; i < ARRAY_COUNT(sBadgeFlags); i++)
+		{
+			if (FlagGet(sBadgeFlags[i]) == TRUE)
+				++count;
+		}
+		money = sWhiteOutBadgeMoney[count] * sPartyLevel / sPartyCount;
+		RemoveMoney(&gSaveBlock1Ptr->money, money);
+	}
 
-    gBattlescriptCurrInstr++;
+	PREPARE_WORD_NUMBER_BUFFER(gBattleTextBuff1, 5, money);
+	gBattlescriptCurrInstr++;
 }
 
 // Command is never used
