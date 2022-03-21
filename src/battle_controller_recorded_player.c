@@ -233,9 +233,6 @@ static void Intro_WaitForShinyAnimAndHealthbox(void)
             FreeSpriteTilesByTag(ANIM_TAG_GOLD_STARS);
             FreeSpritePaletteByTag(ANIM_TAG_GOLD_STARS);
 
-            HandleLowHpMusicChange(&gPlayerParty[gBattlerPartyIndexes[gActiveBattler]], gActiveBattler);
-            if (IsDoubleBattle())
-                HandleLowHpMusicChange(&gPlayerParty[gBattlerPartyIndexes[gActiveBattler ^ BIT_FLANK]], gActiveBattler ^ BIT_FLANK);
 
             gBattleSpritesDataPtr->healthBoxesData[gActiveBattler].introEndDelay = 3;
             gBattlerControllerFuncs[gActiveBattler] = Intro_DelayAndEnd;
@@ -355,7 +352,6 @@ static void CompleteOnHealthbarDone(void)
     }
     else
     {
-        HandleLowHpMusicChange(&gPlayerParty[gBattlerPartyIndexes[gActiveBattler]], gActiveBattler);
         RecordedPlayerBufferExecCompleted();
     }
 }
@@ -442,7 +438,6 @@ static void SwitchIn_ShowHealthbox(void)
         FreeSpritePaletteByTag(ANIM_TAG_GOLD_STARS);
 
         CreateTask(Task_PlayerController_RestoreBgmAfterCry, 10);
-        HandleLowHpMusicChange(&gPlayerParty[gBattlerPartyIndexes[gActiveBattler]], gActiveBattler);
         StartSpriteAnim(&gSprites[gBattlerSpriteIds[gActiveBattler]], 0);
         UpdateHealthboxAttribute(gHealthboxSpriteIds[gActiveBattler], &gPlayerParty[gBattlerPartyIndexes[gActiveBattler]], HEALTHBOX_ALL);
         StartHealthboxSlideIn(gActiveBattler);
@@ -1067,8 +1062,6 @@ static void SetRecordedPlayerMonData(u8 monId)
         SetMonData(&gPlayerParty[monId], MON_DATA_TOUGH_RIBBON, &gBattleResources->bufferA[gActiveBattler][3]);
         break;
     }
-
-    HandleLowHpMusicChange(&gPlayerParty[gBattlerPartyIndexes[gActiveBattler]], gActiveBattler);
 }
 
 static void RecordedPlayerHandleSetRawMonData(void)
@@ -1285,7 +1278,6 @@ static void RecordedPlayerHandleFaintAnimation(void)
         if (!gBattleSpritesDataPtr->healthBoxesData[gActiveBattler].specialAnimActive)
         {
             gBattleSpritesDataPtr->healthBoxesData[gActiveBattler].animationState = 0;
-            HandleLowHpMusicChange(&gPlayerParty[gBattlerPartyIndexes[gActiveBattler]], gActiveBattler);
             PlaySE12WithPanning(SE_FAINT, -64);
             gSprites[gBattlerSpriteIds[gActiveBattler]].sSpeedX = 0;
             gSprites[gBattlerSpriteIds[gActiveBattler]].sSpeedY = 5;

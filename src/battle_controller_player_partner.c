@@ -294,7 +294,6 @@ static void CompleteOnHealthbarDone(void)
     }
     else
     {
-        HandleLowHpMusicChange(&gPlayerParty[gBattlerPartyIndexes[gActiveBattler]], gActiveBattler);
         PlayerPartnerBufferExecCompleted();
     }
 }
@@ -553,7 +552,6 @@ static void SwitchIn_ShowHealthbox(void)
         FreeSpritePaletteByTag(ANIM_TAG_GOLD_STARS);
 
         CreateTask(Task_PlayerController_RestoreBgmAfterCry, 10);
-        HandleLowHpMusicChange(&gPlayerParty[gBattlerPartyIndexes[gActiveBattler]], gActiveBattler);
         StartSpriteAnim(&gSprites[gBattlerSpriteIds[gActiveBattler]], 0);
         UpdateHealthboxAttribute(gHealthboxSpriteIds[gActiveBattler], &gPlayerParty[gBattlerPartyIndexes[gActiveBattler]], HEALTHBOX_ALL);
         StartHealthboxSlideIn(gActiveBattler);
@@ -1178,8 +1176,6 @@ static void SetPlayerPartnerMonData(u8 monId)
         SetMonData(&gPlayerParty[monId], MON_DATA_TOUGH_RIBBON, &gBattleResources->bufferA[gActiveBattler][3]);
         break;
     }
-
-    HandleLowHpMusicChange(&gPlayerParty[gBattlerPartyIndexes[gActiveBattler]], gActiveBattler);
 }
 
 static void PlayerPartnerHandleSetRawMonData(void)
@@ -1382,7 +1378,6 @@ static void PlayerPartnerHandleFaintAnimation(void)
         if (!gBattleSpritesDataPtr->healthBoxesData[gActiveBattler].specialAnimActive)
         {
             gBattleSpritesDataPtr->healthBoxesData[gActiveBattler].animationState = 0;
-            HandleLowHpMusicChange(&gPlayerParty[gBattlerPartyIndexes[gActiveBattler]], gActiveBattler);
             PlaySE12WithPanning(SE_FAINT, SOUND_PAN_ATTACKER);
             gSprites[gBattlerSpriteIds[gActiveBattler]].sSpeedX = 0;
             gSprites[gBattlerSpriteIds[gActiveBattler]].sSpeedY = 5;

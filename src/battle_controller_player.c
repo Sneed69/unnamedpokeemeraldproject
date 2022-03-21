@@ -1134,11 +1134,6 @@ static void Intro_WaitForShinyAnimAndHealthbox(void)
         FreeSpriteTilesByTag(ANIM_TAG_GOLD_STARS);
         FreeSpritePaletteByTag(ANIM_TAG_GOLD_STARS);
 
-        HandleLowHpMusicChange(&gPlayerParty[gBattlerPartyIndexes[gActiveBattler]], gActiveBattler);
-
-        if (TwoIntroMons(gActiveBattler))
-            HandleLowHpMusicChange(&gPlayerParty[gBattlerPartyIndexes[gActiveBattler ^ BIT_FLANK]], gActiveBattler ^ BIT_FLANK);
-
         gBattleSpritesDataPtr->healthBoxesData[gActiveBattler].introEndDelay = 3;
         gBattlerControllerFuncs[gActiveBattler] = Intro_DelayAndEnd;
     }
@@ -1258,7 +1253,6 @@ static void SwitchIn_HandleSoundAndEnd(void)
         && !IsCryPlayingOrClearCrySongs())
     {
         m4aMPlayVolumeControl(&gMPlayInfo_BGM, TRACKS_ALL, 0x100);
-        HandleLowHpMusicChange(&gPlayerParty[gBattlerPartyIndexes[gActiveBattler]], gActiveBattler);
         PlayerBufferExecCompleted();
     }
 }
@@ -1303,7 +1297,6 @@ static void CompleteOnHealthbarDone(void)
     }
     else
     {
-        HandleLowHpMusicChange(&gPlayerParty[gBattlerPartyIndexes[gActiveBattler]], gActiveBattler);
         PlayerBufferExecCompleted();
     }
 }
@@ -2333,8 +2326,6 @@ static void SetPlayerMonData(u8 monId)
         SetMonData(&gPlayerParty[monId], MON_DATA_TOUGH_RIBBON, &gBattleResources->bufferA[gActiveBattler][3]);
         break;
     }
-
-    HandleLowHpMusicChange(&gPlayerParty[gBattlerPartyIndexes[gActiveBattler]], gActiveBattler);
 }
 
 static void PlayerHandleSetRawMonData(void)
@@ -2591,7 +2582,6 @@ static void PlayerHandleFaintAnimation(void)
         if (!gBattleSpritesDataPtr->healthBoxesData[gActiveBattler].specialAnimActive)
         {
             gBattleSpritesDataPtr->healthBoxesData[gActiveBattler].animationState = 0;
-            HandleLowHpMusicChange(&gPlayerParty[gBattlerPartyIndexes[gActiveBattler]], gActiveBattler);
             PlaySE12WithPanning(SE_FAINT, SOUND_PAN_ATTACKER);
             gSprites[gBattlerSpriteIds[gActiveBattler]].sSpeedX = 0;
             gSprites[gBattlerSpriteIds[gActiveBattler]].sSpeedY = 5;

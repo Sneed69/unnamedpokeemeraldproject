@@ -1008,36 +1008,6 @@ void ClearBehindSubstituteBit(u8 battlerId)
     gBattleSpritesDataPtr->battlerData[battlerId].behindSubstitute = 0;
 }
 
-void HandleLowHpMusicChange(struct Pokemon *mon, u8 battlerId)
-{
-    u16 hp = GetMonData(mon, MON_DATA_HP);
-    u16 maxHP = GetMonData(mon, MON_DATA_MAX_HP);
-
-    if (GetHPBarLevel(hp, maxHP) == HP_BAR_RED)
-    {
-        if (!gBattleSpritesDataPtr->battlerData[battlerId].lowHpSong)
-        {
-            if (!gBattleSpritesDataPtr->battlerData[battlerId ^ BIT_FLANK].lowHpSong)
-                PlaySE(SE_LOW_HEALTH);
-            gBattleSpritesDataPtr->battlerData[battlerId].lowHpSong = 1;
-        }
-    }
-    else
-    {
-        gBattleSpritesDataPtr->battlerData[battlerId].lowHpSong = 0;
-        if (!IsDoubleBattle())
-        {
-            m4aSongNumStop(SE_LOW_HEALTH);
-            return;
-        }
-        if (IsDoubleBattle() && !gBattleSpritesDataPtr->battlerData[battlerId ^ BIT_FLANK].lowHpSong)
-        {
-            m4aSongNumStop(SE_LOW_HEALTH);
-            return;
-        }
-    }
-}
-
 void BattleStopLowHpSound(void)
 {
     u8 playerBattler = GetBattlerAtPosition(B_POSITION_PLAYER_LEFT);
@@ -1055,22 +1025,6 @@ u8 GetMonHPBarLevel(struct Pokemon *mon)
     u16 maxHP = GetMonData(mon, MON_DATA_MAX_HP);
 
     return GetHPBarLevel(hp, maxHP);
-}
-
-void HandleBattleLowHpMusicChange(void)
-{
-    if (gMain.inBattle)
-    {
-        u8 playerBattler1 = GetBattlerAtPosition(B_POSITION_PLAYER_LEFT);
-        u8 playerBattler2 = GetBattlerAtPosition(B_POSITION_PLAYER_RIGHT);
-        u8 battler1PartyId = GetPartyIdFromBattlePartyId(gBattlerPartyIndexes[playerBattler1]);
-        u8 battler2PartyId = GetPartyIdFromBattlePartyId(gBattlerPartyIndexes[playerBattler2]);
-
-        if (GetMonData(&gPlayerParty[battler1PartyId], MON_DATA_HP) != 0)
-            HandleLowHpMusicChange(&gPlayerParty[battler1PartyId], playerBattler1);
-        if (IsDoubleBattle() && GetMonData(&gPlayerParty[battler2PartyId], MON_DATA_HP) != 0)
-            HandleLowHpMusicChange(&gPlayerParty[battler2PartyId], playerBattler2);
-    }
 }
 
 void SetBattlerSpriteAffineMode(u8 affineMode)

@@ -3647,7 +3647,7 @@ static void CursorCb_FieldMove(u8 taskId)
     else
     {
         // All field moves before WATERFALL are HMs.
-        if (fieldMove <= FIELD_MOVE_WATERFALL && FlagGet(FLAG_BADGE01_GET + fieldMove) != TRUE)
+        if (fieldMove <= FIELD_MOVE_FLY && FlagGet(FLAG_BADGE01_GET + fieldMove) != TRUE)
         {
             DisplayPartyMenuMessage(gText_CantUseUntilNewBadge, TRUE);
             gTasks[taskId].func = Task_ReturnToChooseMonAfterText;
@@ -3689,9 +3689,6 @@ static void CursorCb_FieldMove(u8 taskId)
         {
             switch (fieldMove)
             {
-            case FIELD_MOVE_SURF:
-                DisplayCantUseSurfMessage();
-                break;
             case FIELD_MOVE_FLASH:
                 DisplayCantUseFlashMessage();
                 break;
@@ -4498,7 +4495,6 @@ static void Task_DisplayHPRestoredMessage(u8 taskId)
     StringExpandPlaceholders(gStringVar4, gText_PkmnHPRestoredByVar2);
     DisplayPartyMenuMessage(gStringVar4, FALSE);
     ScheduleBgCopyTilemapToVram(2);
-    HandleBattleLowHpMusicChange();
 	if (gPartyMenu.menuType == PARTY_MENU_TYPE_FIELD && CheckBagHasItem(gSpecialVar_ItemId, 1))
 		gTasks[taskId].func = Task_ReturnToChooseMonAfterText;
     else

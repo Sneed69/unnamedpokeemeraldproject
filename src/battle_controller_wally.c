@@ -338,7 +338,6 @@ static void Intro_WaitForShinyAnimAndHealthbox(void)
         FreeSpritePaletteByTag(ANIM_TAG_GOLD_STARS);
 
         CreateTask(Task_PlayerController_RestoreBgmAfterCry, 10);
-        HandleLowHpMusicChange(&gPlayerParty[gBattlerPartyIndexes[gActiveBattler]], gActiveBattler);
 
         WallyBufferExecCompleted();
     }
@@ -356,7 +355,6 @@ static void CompleteOnHealthbarDone(void)
     }
     else
     {
-        HandleLowHpMusicChange(&gPlayerParty[gBattlerPartyIndexes[gActiveBattler]], gActiveBattler);
         WallyBufferExecCompleted();
     }
 }
@@ -996,8 +994,6 @@ static void SetWallyMonData(u8 monId)
         SetMonData(&gPlayerParty[monId], MON_DATA_TOUGH_RIBBON, &gBattleResources->bufferA[gActiveBattler][3]);
         break;
     }
-
-    HandleLowHpMusicChange(&gPlayerParty[gBattlerPartyIndexes[gActiveBattler]], gActiveBattler);
 }
 
 static void WallyHandleSetRawMonData(void)
