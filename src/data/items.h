@@ -8513,7 +8513,7 @@ const struct Item gItems[] =
 
     [ITEM_HM01_CUT] =
     {
-        .name = _("HM01"),
+        .name = _("TM101"),
         .itemId = ITEM_HM01_CUT,
         .price = 0,
         .description = sHM01Desc,

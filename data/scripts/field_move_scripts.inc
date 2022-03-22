@@ -19,6 +19,9 @@ EventScript_CutTreeDown::
 	applymovement VAR_LAST_TALKED, Movement_CutTreeDown
 	waitmovement 0
 	removeobject VAR_LAST_TALKED
+	special CutWildEncounter
+	goto_if_eq VAR_RESULT, FALSE, EventScript_EndSmash
+	waitstate
 	releaseall
 	end
 

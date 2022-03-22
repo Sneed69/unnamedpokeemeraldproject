@@ -295,19 +295,17 @@ static const u8 sContextMenuItems_KeyItemsPocket[] = {
 };
 
 static const u8 sContextMenuItems_BallsPocket[] = {
-    ACTION_GIVE,        ACTION_DUMMY,
     ACTION_TOSS,        ACTION_CANCEL
 };
 
 static const u8 sContextMenuItems_TmHmPocket[] = {
-    ACTION_USE,         ACTION_GIVE,
-    ACTION_DUMMY,       ACTION_CANCEL
+    ACTION_USE,         ACTION_CANCEL
 };
 
 static const u8 sContextMenuItems_BerriesPocket[] = {
-    ACTION_CHECK_TAG,   ACTION_DUMMY,
-    ACTION_USE,         ACTION_GIVE,
-    ACTION_TOSS,        ACTION_CANCEL
+    ACTION_USE,   ACTION_GIVE,
+    ACTION_CHECK_TAG,    ACTION_TOSS,
+	ACTION_CANCEL,         ACTION_DUMMY
 };
 
 static const u8 sContextMenuItems_BattleUse[] = {
@@ -896,32 +894,20 @@ static void LoadBagItemListBuffers(u8 pocketId)
 
 static void GetItemName(s8 *dest, u16 itemId)
 {
-    switch (gBagPosition.pocket)
+	u8 number;
+    if (gBagPosition.pocket == TMHM_POCKET)
     {
-    case TMHM_POCKET:
         StringCopy(gStringVar2, gMoveNames[ItemIdToBattleMoveId(itemId)]);
-        if (itemId >= ITEM_HM01)
-        {
-            // Get HM number
-            ConvertIntToDecimalStringN(gStringVar1, itemId - ITEM_HM01 + 1, STR_CONV_MODE_LEADING_ZEROS, 1);
-            StringExpandPlaceholders(dest, gText_NumberItem_HM);
-        }
-        else
-        {
-            // Get TM number
+        // Get TM number
+		number = itemId - ITEM_TM01 + 1;
+		if (number > 99)
+            ConvertIntToDecimalStringN(gStringVar1, itemId - ITEM_TM01 + 1, STR_CONV_MODE_LEADING_ZEROS, 3);
+		else
             ConvertIntToDecimalStringN(gStringVar1, itemId - ITEM_TM01 + 1, STR_CONV_MODE_LEADING_ZEROS, 2);
-            StringExpandPlaceholders(dest, gText_NumberItem_TMBerry);
-        }
-        break;
-    case BERRIES_POCKET:
-        ConvertIntToDecimalStringN(gStringVar1, itemId - FIRST_BERRY_INDEX + 1, STR_CONV_MODE_LEADING_ZEROS, 2);
-        CopyItemName(itemId, gStringVar2);
-        StringExpandPlaceholders(dest, gText_NumberItem_TMBerry);
-        break;
-    default:
+		StringExpandPlaceholders(dest, gText_NumberItem_TM);
+	}
+    else
         CopyItemName(itemId, dest);
-        break;
-    }
 }
 
 static void BagMenu_MoveCursorCallback(s32 itemIndex, bool8 onInit, struct ListMenu *list)
@@ -964,9 +950,9 @@ static void BagMenu_ItemPrintCallback(u8 windowId, u32 itemIndex, u8 y)
         itemId = BagGetItemIdByPocketPosition(gBagPosition.pocket + 1, itemIndex);
         itemQuantity = BagGetQuantityByPocketPosition(gBagPosition.pocket + 1, itemIndex);
 
-        // Draw HM icon
+        /*/ Draw HM icon
         if (itemId >= ITEM_HM01 && itemId <= ITEM_HM08)
-            BlitBitmapToWindow(windowId, gBagMenuHMIcon_Gfx, 8, y - 1, 16, 16);
+            BlitBitmapToWindow(windowId, gBagMenuHMIcon_Gfx, 8, y - 1, 16, 16);*/
 
         if (gBagPosition.pocket == BERRIES_POCKET)
         {

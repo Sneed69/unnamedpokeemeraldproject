@@ -674,7 +674,7 @@
       "elevation": 3,
       "var": "0",
       "var_value": "0",
-      "script": "Route111_EventScript_SandstormTrigger"
+      "script": ""
     },
     {
       "type": "trigger",

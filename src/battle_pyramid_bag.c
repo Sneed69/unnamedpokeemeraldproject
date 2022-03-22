@@ -624,7 +624,7 @@ static void CopyBagItemName(u8 *dst, u16 itemId)
     {
         ConvertIntToDecimalStringN(gStringVar1, ITEM_TO_BERRY(itemId), STR_CONV_MODE_LEADING_ZEROS, 2);
         CopyItemName(itemId, gStringVar2);
-        StringExpandPlaceholders(dst, gText_NumberItem_TMBerry);
+        StringExpandPlaceholders(dst, gText_NumberItem_TM);
     }
     else
     {

@@ -42,6 +42,7 @@ enum {
     WILD_AREA_WATER,
     WILD_AREA_ROCKS,
     WILD_AREA_FISHING,
+    WILD_AREA_TREES,
 };
 
 #define WILD_CHECK_REPEL    (1 << 0)
@@ -132,8 +133,8 @@ static bool8 CheckFeebas(void)
             route119Section = 2;
 
         // 50% chance of encountering Feebas (assuming this is a Feebas spot)
-        if (Random() % 100 > 49)
-            return FALSE;
+        //if (Random() % 100 > 49)
+            //return FALSE;
 
         FeebasSeedRng(gSaveBlock1Ptr->dewfordTrends[0].rand);
 
@@ -206,7 +207,7 @@ static u8 ChooseWildMonIndex_Land(void)
         return 11;
 }
 
-static u8 ChooseWildMonIndex_WaterRock(void)
+static u8 ChooseWildMonIndex_Water(void)
 {
     u8 rand = Random() % ENCOUNTER_CHANCE_WATER_MONS_TOTAL;
 
@@ -218,8 +219,82 @@ static u8 ChooseWildMonIndex_WaterRock(void)
         return 2;
     else if (rand >= ENCOUNTER_CHANCE_WATER_MONS_SLOT_2 && rand < ENCOUNTER_CHANCE_WATER_MONS_SLOT_3)
         return 3;
-    else
+    else if (rand >= ENCOUNTER_CHANCE_WATER_MONS_SLOT_3 && rand < ENCOUNTER_CHANCE_WATER_MONS_SLOT_4)
         return 4;
+    else if (rand >= ENCOUNTER_CHANCE_WATER_MONS_SLOT_4 && rand < ENCOUNTER_CHANCE_WATER_MONS_SLOT_5)
+        return 5;
+    else if (rand >= ENCOUNTER_CHANCE_WATER_MONS_SLOT_5 && rand < ENCOUNTER_CHANCE_WATER_MONS_SLOT_6)
+        return 6;
+    else if (rand >= ENCOUNTER_CHANCE_WATER_MONS_SLOT_6 && rand < ENCOUNTER_CHANCE_WATER_MONS_SLOT_7)
+        return 7;
+    else if (rand >= ENCOUNTER_CHANCE_WATER_MONS_SLOT_7 && rand < ENCOUNTER_CHANCE_WATER_MONS_SLOT_8)
+        return 8;
+    else if (rand >= ENCOUNTER_CHANCE_WATER_MONS_SLOT_8 && rand < ENCOUNTER_CHANCE_WATER_MONS_SLOT_9)
+        return 9;
+    else if (rand >= ENCOUNTER_CHANCE_WATER_MONS_SLOT_9 && rand < ENCOUNTER_CHANCE_WATER_MONS_SLOT_10)
+        return 10;
+    else
+        return 11;
+}
+
+static u8 ChooseWildMonIndex_Rock(void)
+{
+    u8 rand = Random() % ENCOUNTER_CHANCE_ROCK_SMASH_MONS_TOTAL;
+
+    if (rand < ENCOUNTER_CHANCE_ROCK_SMASH_MONS_SLOT_0)
+        return 0;
+    else if (rand >= ENCOUNTER_CHANCE_ROCK_SMASH_MONS_SLOT_0 && rand < ENCOUNTER_CHANCE_ROCK_SMASH_MONS_SLOT_1)
+        return 1;
+    else if (rand >= ENCOUNTER_CHANCE_ROCK_SMASH_MONS_SLOT_1 && rand < ENCOUNTER_CHANCE_ROCK_SMASH_MONS_SLOT_2)
+        return 2;
+    else if (rand >= ENCOUNTER_CHANCE_ROCK_SMASH_MONS_SLOT_2 && rand < ENCOUNTER_CHANCE_ROCK_SMASH_MONS_SLOT_3)
+        return 3;
+    else if (rand >= ENCOUNTER_CHANCE_ROCK_SMASH_MONS_SLOT_3 && rand < ENCOUNTER_CHANCE_ROCK_SMASH_MONS_SLOT_4)
+        return 4;
+    else if (rand >= ENCOUNTER_CHANCE_ROCK_SMASH_MONS_SLOT_4 && rand < ENCOUNTER_CHANCE_ROCK_SMASH_MONS_SLOT_5)
+        return 5;
+    else if (rand >= ENCOUNTER_CHANCE_ROCK_SMASH_MONS_SLOT_5 && rand < ENCOUNTER_CHANCE_ROCK_SMASH_MONS_SLOT_6)
+        return 6;
+    else if (rand >= ENCOUNTER_CHANCE_ROCK_SMASH_MONS_SLOT_6 && rand < ENCOUNTER_CHANCE_ROCK_SMASH_MONS_SLOT_7)
+        return 7;
+    else if (rand >= ENCOUNTER_CHANCE_ROCK_SMASH_MONS_SLOT_7 && rand < ENCOUNTER_CHANCE_ROCK_SMASH_MONS_SLOT_8)
+        return 8;
+    else if (rand >= ENCOUNTER_CHANCE_ROCK_SMASH_MONS_SLOT_8 && rand < ENCOUNTER_CHANCE_ROCK_SMASH_MONS_SLOT_9)
+        return 9;
+    else if (rand >= ENCOUNTER_CHANCE_ROCK_SMASH_MONS_SLOT_9 && rand < ENCOUNTER_CHANCE_ROCK_SMASH_MONS_SLOT_10)
+        return 10;
+    else
+        return 11;
+}
+
+static u8 ChooseWildMonIndex_Cut(void)
+{
+    u8 rand = Random() % ENCOUNTER_CHANCE_ROCK_SMASH_MONS_TOTAL;
+
+    if (rand < ENCOUNTER_CHANCE_CUT_MONS_SLOT_0)
+        return 0;
+    else if (rand >= ENCOUNTER_CHANCE_CUT_MONS_SLOT_0 && rand < ENCOUNTER_CHANCE_CUT_MONS_SLOT_1)
+        return 1;
+    else if (rand >= ENCOUNTER_CHANCE_CUT_MONS_SLOT_1 && rand < ENCOUNTER_CHANCE_CUT_MONS_SLOT_2)
+        return 2;
+    else if (rand >= ENCOUNTER_CHANCE_CUT_MONS_SLOT_2 && rand < ENCOUNTER_CHANCE_CUT_MONS_SLOT_3)
+        return 3;
+    else if (rand >= ENCOUNTER_CHANCE_CUT_MONS_SLOT_3 && rand < ENCOUNTER_CHANCE_CUT_MONS_SLOT_4)
+        return 4;
+    else if (rand >= ENCOUNTER_CHANCE_CUT_MONS_SLOT_4 && rand < ENCOUNTER_CHANCE_CUT_MONS_SLOT_5)
+        return 5;
+    else if (rand >= ENCOUNTER_CHANCE_CUT_MONS_SLOT_5 && rand < ENCOUNTER_CHANCE_CUT_MONS_SLOT_6)
+        return 6;
+    else if (rand >= ENCOUNTER_CHANCE_CUT_MONS_SLOT_6 && rand < ENCOUNTER_CHANCE_CUT_MONS_SLOT_7)
+        return 7;
+    else if (rand >= ENCOUNTER_CHANCE_CUT_MONS_SLOT_7 && rand < ENCOUNTER_CHANCE_CUT_MONS_SLOT_8)
+        return 8;
+    else if (rand >= ENCOUNTER_CHANCE_CUT_MONS_SLOT_8 && rand < ENCOUNTER_CHANCE_CUT_MONS_SLOT_9)
+        return 9;
+    else if (rand >= ENCOUNTER_CHANCE_CUT_MONS_SLOT_9 && rand < ENCOUNTER_CHANCE_CUT_MONS_SLOT_10)
+        return 10;
+    else
+        return 11;
 }
 
 static u8 ChooseWildMonIndex_Fishing(u8 rod)
@@ -450,10 +525,13 @@ static bool8 TryGenerateWildMon(const struct WildPokemonInfo *wildMonInfo, u8 ar
         if (TryGetAbilityInfluencedWildMonIndex(wildMonInfo->wildPokemon, TYPE_WATER, ABILITY_STORM_DRAIN, &wildMonIndex))
             break;
 
-        wildMonIndex = ChooseWildMonIndex_WaterRock();
+        wildMonIndex = ChooseWildMonIndex_Water();
         break;
     case WILD_AREA_ROCKS:
-        wildMonIndex = ChooseWildMonIndex_WaterRock();
+        wildMonIndex = ChooseWildMonIndex_Rock();
+        break;
+    case WILD_AREA_TREES:
+        wildMonIndex = ChooseWildMonIndex_Cut();
         break;
     }
 
@@ -732,6 +810,35 @@ void RockSmashWildEncounter(void)
     }
 }
 
+void CutWildEncounter(void)
+{
+    u16 headerId = GetCurrentMapWildMonHeaderId();
+
+    if (headerId != 0xFFFF)
+    {
+        const struct WildPokemonInfo *wildPokemonInfo = gWildMonHeaders[headerId].cutMonsInfo;
+
+        if (wildPokemonInfo == NULL)
+        {
+            gSpecialVar_Result = FALSE;
+        }
+        else if (DoWildEncounterRateTest(wildPokemonInfo->encounterRate, 1) == TRUE
+         && TryGenerateWildMon(wildPokemonInfo, WILD_AREA_ROCKS, WILD_CHECK_REPEL | WILD_CHECK_KEEN_EYE) == TRUE)
+        {
+            BattleSetup_StartWildBattle();
+            gSpecialVar_Result = TRUE;
+        }
+        else
+        {
+            gSpecialVar_Result = FALSE;
+        }
+    }
+    else
+    {
+        gSpecialVar_Result = FALSE;
+    }
+}
+
 bool8 SweetScentWildEncounter(void)
 {
     s16 x, y;
@@ -858,7 +965,7 @@ u16 GetLocalWildMon(bool8 *isWaterMon)
     else if (landMonsInfo == NULL && waterMonsInfo != NULL)
     {
         *isWaterMon = TRUE;
-        return waterMonsInfo->wildPokemon[ChooseWildMonIndex_WaterRock()].species;
+        return waterMonsInfo->wildPokemon[ChooseWildMonIndex_Water()].species;
     }
     // Either land or water Pokemon
     if ((Random() % 100) < 80)
@@ -868,7 +975,7 @@ u16 GetLocalWildMon(bool8 *isWaterMon)
     else
     {
         *isWaterMon = TRUE;
-        return waterMonsInfo->wildPokemon[ChooseWildMonIndex_WaterRock()].species;
+        return waterMonsInfo->wildPokemon[ChooseWildMonIndex_Water()].species;
     }
 }
 
@@ -881,7 +988,7 @@ u16 GetLocalWaterMon(void)
         const struct WildPokemonInfo *waterMonsInfo = gWildMonHeaders[headerId].waterMonsInfo;
 
         if (waterMonsInfo)
-            return waterMonsInfo->wildPokemon[ChooseWildMonIndex_WaterRock()].species;
+            return waterMonsInfo->wildPokemon[ChooseWildMonIndex_Water()].species;
     }
     return SPECIES_NONE;
 }

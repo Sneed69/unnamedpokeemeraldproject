@@ -183,6 +183,7 @@ gSpecials::
 	def_special UpdateTrainerFanClubGameClear
 	def_special Script_TryGainNewFanFromCounter
 	def_special RockSmashWildEncounter
+	def_special CutWildEncounter
 	def_special GabbyAndTyGetBattleNum
 	def_special GabbyAndTyAfterInterview
 	def_special GabbyAndTyBeforeInterview
