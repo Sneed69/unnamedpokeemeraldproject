@@ -1800,7 +1800,7 @@ static s8 AdvanceMonIndex(s8 delta)
 
     if (sMonSummaryScreen->currPageIndex != PSS_PAGE_INFO)
     {
-        while (GetMonData(&mon[index], MON_DATA_IS_EGG));
+        while (GetMonData(&mon[index], MON_DATA_IS_EGG))
             index = (index + delta) % numMons;
     }
 	if (index == sMonSummaryScreen->curMonIndex)
