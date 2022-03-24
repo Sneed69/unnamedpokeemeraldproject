@@ -8415,20 +8415,64 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
             MulModifier(&modifier, UQ_4_12(1.5));
         break;
     case ABILITY_SWARM:
-        if (moveType == TYPE_BUG && gBattleMons[battlerAtk].hp <= (gBattleMons[battlerAtk].maxHP / 3))
-            MulModifier(&modifier, UQ_4_12(1.5));
+        if (moveType == TYPE_BUG)
+		{
+			if (gBattleMons[battlerAtk].hp <= (gBattleMons[battlerAtk].maxHP / 3))
+				MulModifier(&modifier, UQ_4_12(1.5));
+			else if (gBattleMons[battlerAtk].hp <= (gBattleMons[battlerAtk].maxHP * 7/15))
+				MulModifier(&modifier, UQ_4_12(1.4));
+			else if (gBattleMons[battlerAtk].hp <= (gBattleMons[battlerAtk].maxHP * 9/15))
+				MulModifier(&modifier, UQ_4_12(1.3)); 
+			else if (gBattleMons[battlerAtk].hp <= (gBattleMons[battlerAtk].maxHP * 11/15))
+				MulModifier(&modifier, UQ_4_12(1.2)); 
+			else if (gBattleMons[battlerAtk].hp <= (gBattleMons[battlerAtk].maxHP * 13/15))
+				MulModifier(&modifier, UQ_4_12(1.1));
+		}
         break;
     case ABILITY_TORRENT:
-        if (moveType == TYPE_WATER && gBattleMons[battlerAtk].hp <= (gBattleMons[battlerAtk].maxHP / 3))
-            MulModifier(&modifier, UQ_4_12(1.5));
+        if (moveType == TYPE_WATER)
+		{
+			if (gBattleMons[battlerAtk].hp <= (gBattleMons[battlerAtk].maxHP / 3))
+				MulModifier(&modifier, UQ_4_12(1.5));
+			else if (gBattleMons[battlerAtk].hp <= (gBattleMons[battlerAtk].maxHP * 7/15))
+				MulModifier(&modifier, UQ_4_12(1.4));
+			else if (gBattleMons[battlerAtk].hp <= (gBattleMons[battlerAtk].maxHP * 9/15))
+				MulModifier(&modifier, UQ_4_12(1.3)); 
+			else if (gBattleMons[battlerAtk].hp <= (gBattleMons[battlerAtk].maxHP * 11/15))
+				MulModifier(&modifier, UQ_4_12(1.2)); 
+			else if (gBattleMons[battlerAtk].hp <= (gBattleMons[battlerAtk].maxHP * 13/15))
+				MulModifier(&modifier, UQ_4_12(1.1));
+		}
         break;
     case ABILITY_BLAZE:
-        if (moveType == TYPE_FIRE && gBattleMons[battlerAtk].hp <= (gBattleMons[battlerAtk].maxHP / 3))
-            MulModifier(&modifier, UQ_4_12(1.5));
+        if (moveType == TYPE_FIRE)
+		{
+			if (gBattleMons[battlerAtk].hp <= (gBattleMons[battlerAtk].maxHP / 3))
+				MulModifier(&modifier, UQ_4_12(1.5));
+			else if (gBattleMons[battlerAtk].hp <= (gBattleMons[battlerAtk].maxHP * 7/15))
+				MulModifier(&modifier, UQ_4_12(1.4));
+			else if (gBattleMons[battlerAtk].hp <= (gBattleMons[battlerAtk].maxHP * 9/15))
+				MulModifier(&modifier, UQ_4_12(1.3)); 
+			else if (gBattleMons[battlerAtk].hp <= (gBattleMons[battlerAtk].maxHP * 11/15))
+				MulModifier(&modifier, UQ_4_12(1.2)); 
+			else if (gBattleMons[battlerAtk].hp <= (gBattleMons[battlerAtk].maxHP * 13/15))
+				MulModifier(&modifier, UQ_4_12(1.1));
+		}
         break;
     case ABILITY_OVERGROW:
-        if (moveType == TYPE_GRASS && gBattleMons[battlerAtk].hp <= (gBattleMons[battlerAtk].maxHP / 3))
-            MulModifier(&modifier, UQ_4_12(1.5));
+        if (moveType == TYPE_GRASS)
+		{
+			if (gBattleMons[battlerAtk].hp <= (gBattleMons[battlerAtk].maxHP / 3))
+				MulModifier(&modifier, UQ_4_12(1.5));
+			else if (gBattleMons[battlerAtk].hp <= (gBattleMons[battlerAtk].maxHP * 7/15))
+				MulModifier(&modifier, UQ_4_12(1.4));
+			else if (gBattleMons[battlerAtk].hp <= (gBattleMons[battlerAtk].maxHP * 9/15))
+				MulModifier(&modifier, UQ_4_12(1.3)); 
+			else if (gBattleMons[battlerAtk].hp <= (gBattleMons[battlerAtk].maxHP * 11/15))
+				MulModifier(&modifier, UQ_4_12(1.2)); 
+			else if (gBattleMons[battlerAtk].hp <= (gBattleMons[battlerAtk].maxHP * 13/15))
+				MulModifier(&modifier, UQ_4_12(1.1));
+		}
         break;
     case ABILITY_PLUS:
     case ABILITY_MINUS:
