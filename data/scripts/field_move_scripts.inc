@@ -118,7 +118,7 @@ EventScript_CheckActivatedBoulder::
 	end
 
 Text_CantStrength:
-	.string "It's a big boulder, but a POKéMON\n"
+	.string "It's a big boulder, but a Pokémon\n"
 	.string "may be able to push it aside.$"
 
 Text_StrengthActivated:
