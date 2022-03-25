@@ -383,67 +383,109 @@ static const u8 sAbilityPatchDesc[] = _( // Todo
 
 // Mints
 static const u8 sLonelyMintDesc[] = _( // Todo
-    "?????");
+    "Pokémon that smell\n"
+    "this mint trade\n"
+    "Defense for Attack.");
 
 static const u8 sAdamantMintDesc[] = _( // Todo
-    "?????");
+    "Pokémon that smell\n"
+    "this mint trade\n"
+    "Sp. Atk. for Attack.");
 
 static const u8 sNaughtyMintDesc[] = _( // Todo
-    "?????");
+    "Pokémon that smell\n"
+    "this mint trade\n"
+    "Sp. Def. for Attack.");
 
 static const u8 sBraveMintDesc[] = _( // Todo
-    "?????");
+    "Pokémon that smell\n"
+    "this mint trade\n"
+    "Speed for Attack.");
 
 static const u8 sBoldMintDesc[] = _( // Todo
-    "?????");
+    "Pokémon that smell\n"
+    "this mint trade\n"
+    "Attack for Defense.");
 
 static const u8 sImpishMintDesc[] = _( // Todo
-    "?????");
+    "Pokémon that smell\n"
+    "this mint trade\n"
+    "Sp. Atk. for Defense.");
 
 static const u8 sLaxMintDesc[] = _( // Todo
-    "?????");
+    "Pokémon that smell\n"
+    "this mint trade\n"
+    "Sp. Def. for Defense.");
 
 static const u8 sRelaxedMintDesc[] = _( // Todo
-    "?????");
+    "Pokémon that smell\n"
+    "this mint trade\n"
+    "Speed for Defense.");
 
 static const u8 sModestMintDesc[] = _( // Todo
-    "?????");
+    "Pokémon that smell\n"
+    "this mint trade\n"
+    "Attack for Sp. Atk.");
 
 static const u8 sMildMintDesc[] = _( // Todo
-    "?????");
+    "Pokémon that smell\n"
+    "this mint trade\n"
+    "Defense for Sp. Atk.");
 
 static const u8 sRashMintDesc[] = _( // Todo
-    "?????");
+    "Pokémon that smell\n"
+    "this mint trade\n"
+    "Sp. Def for Sp. Atk.");
 
 static const u8 sQuietMintDesc[] = _( // Todo
-    "?????");
+    "Pokémon that smell\n"
+    "this mint trade\n"
+    "Speed for Sp. Atk.");
 
 static const u8 sCalmMintDesc[] = _( // Todo
-    "?????");
+    "Pokémon that smell\n"
+    "this mint trade\n"
+    "Attack for Sp. Def.");
 
 static const u8 sGentleMintDesc[] = _( // Todo
-    "?????");
+    "Pokémon that smell\n"
+    "this mint trade\n"
+    "Defense for Sp. Def.");
 
 static const u8 sCarefulMintDesc[] = _( // Todo
-    "?????");
+    "Pokémon that smell\n"
+    "this mint trade\n"
+    "Sp. Atk. for Sp. Def.");
 
 static const u8 sSassyMintDesc[] = _( // Todo
-    "?????");
+    "Pokémon that smell\n"
+    "this mint trade\n"
+    "Speed for Sp. Def.");
 
 static const u8 sTimidMintDesc[] = _( // Todo
-    "?????");
+    "Pokémon that smell\n"
+    "this mint trade\n"
+    "Attack for Speed.");
 
 static const u8 sHastyMintDesc[] = _( // Todo
-    "?????");
+    "Pokémon that smell\n"
+    "this mint trade\n"
+    "Defence for Speed.");
 
 static const u8 sJollyMintDesc[] = _( // Todo
-    "?????");
+    "Pokémon that smell\n"
+    "this mint trade\n"
+    "Sp. Atk. for Speed.");
 
 static const u8 sNaiveMintDesc[] = _( // Todo
-    "?????");
+    "Pokémon that smell\n"
+    "this mint trade\n"
+    "Sp. Def. for Speed.");
 
 static const u8 sSeriousMintDesc[] = _( // Todo
-    "?????");
+    "Smelling this mint\n"
+    "neutralizes the\n"
+    "user's Nature.");
 
 // Candy
 static const u8 sRareCandyDesc[] = _(
@@ -1938,13 +1980,13 @@ static const u8 sPowerWeightDesc[] = _(
     "but reduces Speed.");
 
 static const u8 sPowerBracerDesc[] = _(
-    "A hold item that\n"
-    "promotes Atk gain,\n"
+    "Hold item that pro-\n"
+    "motes Attack gain,\n"
     "but reduces Speed.");
 
 static const u8 sPowerBeltDesc[] = _(
-    "A hold item that\n"
-    "promotes Def gain,\n"
+    "Hold item that pro-\n"
+    "motes Defense gain,\n"
     "but reduces Speed.");
 
 static const u8 sPowerLensDesc[] = _(
@@ -1958,8 +2000,8 @@ static const u8 sPowerBandDesc[] = _(
     "but reduces Speed.");
 
 static const u8 sPowerAnkletDesc[] = _(
-    "A hold item that\n"
-    "promotes Spd gain,\n"
+    "Hold item that pro-\n"
+    "motes Speed gain,\n"
     "but reduces Speed.");
 
 // Type-boosting Held Items

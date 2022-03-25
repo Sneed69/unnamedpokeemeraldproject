@@ -87,28 +87,6 @@ const u32 *const gItemIconTable[][2] =
     // Ability Modifiers
     [ITEM_ABILITY_CAPSULE] = {gItemIcon_AbilityCapsule, gItemIconPalette_AbilityCapsule},
     [ITEM_ABILITY_PATCH] = {gItemIcon_QuestionMark, gItemIconPalette_QuestionMark}, // Todo
-    // Mints
-    [ITEM_LONELY_MINT] = {gItemIcon_QuestionMark, gItemIconPalette_QuestionMark}, // Todo
-    [ITEM_ADAMANT_MINT] = {gItemIcon_QuestionMark, gItemIconPalette_QuestionMark}, // Todo
-    [ITEM_NAUGHTY_MINT] = {gItemIcon_QuestionMark, gItemIconPalette_QuestionMark}, // Todo
-    [ITEM_BRAVE_MINT] = {gItemIcon_QuestionMark, gItemIconPalette_QuestionMark}, // Todo
-    [ITEM_BOLD_MINT] = {gItemIcon_QuestionMark, gItemIconPalette_QuestionMark}, // Todo
-    [ITEM_IMPISH_MINT] = {gItemIcon_QuestionMark, gItemIconPalette_QuestionMark}, // Todo
-    [ITEM_LAX_MINT] = {gItemIcon_QuestionMark, gItemIconPalette_QuestionMark}, // Todo
-    [ITEM_RELAXED_MINT] = {gItemIcon_QuestionMark, gItemIconPalette_QuestionMark}, // Todo
-    [ITEM_MODEST_MINT] = {gItemIcon_QuestionMark, gItemIconPalette_QuestionMark}, // Todo
-    [ITEM_MILD_MINT] = {gItemIcon_QuestionMark, gItemIconPalette_QuestionMark}, // Todo
-    [ITEM_RASH_MINT] = {gItemIcon_QuestionMark, gItemIconPalette_QuestionMark}, // Todo
-    [ITEM_QUIET_MINT] = {gItemIcon_QuestionMark, gItemIconPalette_QuestionMark}, // Todo
-    [ITEM_CALM_MINT] = {gItemIcon_QuestionMark, gItemIconPalette_QuestionMark}, // Todo
-    [ITEM_GENTLE_MINT] = {gItemIcon_QuestionMark, gItemIconPalette_QuestionMark}, // Todo
-    [ITEM_CAREFUL_MINT] = {gItemIcon_QuestionMark, gItemIconPalette_QuestionMark}, // Todo
-    [ITEM_SASSY_MINT] = {gItemIcon_QuestionMark, gItemIconPalette_QuestionMark}, // Todo
-    [ITEM_TIMID_MINT] = {gItemIcon_QuestionMark, gItemIconPalette_QuestionMark}, // Todo
-    [ITEM_HASTY_MINT] = {gItemIcon_QuestionMark, gItemIconPalette_QuestionMark}, // Todo
-    [ITEM_JOLLY_MINT] = {gItemIcon_QuestionMark, gItemIconPalette_QuestionMark}, // Todo
-    [ITEM_NAIVE_MINT] = {gItemIcon_QuestionMark, gItemIconPalette_QuestionMark}, // Todo
-    [ITEM_SERIOUS_MINT] = {gItemIcon_QuestionMark, gItemIconPalette_QuestionMark}, // Todo
     // Candy
     [ITEM_RARE_CANDY] = {gItemIcon_RareCandy, gItemIconPalette_RareCandy},
     [ITEM_EXP_CANDY_XS] = {gItemIcon_QuestionMark, gItemIconPalette_QuestionMark}, // Todo
@@ -807,6 +785,28 @@ const u32 *const gItemIconTable[][2] =
     [ITEM_TEA] = {gItemIcon_Tea, gItemIconPalette_Tea},
     [ITEM_RUBY] = {gItemIcon_Gem, gItemIconPalette_Ruby},
     [ITEM_SAPPHIRE] = {gItemIcon_Gem, gItemIconPalette_Sapphire},
+    // mints
+    [ITEM_ADAMANT_MINT] = {gItemIcon_Mint, gItemIconPalette_RedMint},
+    [ITEM_BOLD_MINT] = {gItemIcon_Mint, gItemIconPalette_BlueMint},
+    [ITEM_BRAVE_MINT] = {gItemIcon_Mint, gItemIconPalette_RedMint},
+    [ITEM_CALM_MINT] = {gItemIcon_Mint, gItemIconPalette_PinkMint},
+    [ITEM_CAREFUL_MINT] = {gItemIcon_Mint, gItemIconPalette_PinkMint},
+    [ITEM_GENTLE_MINT] = {gItemIcon_Mint, gItemIconPalette_PinkMint},
+    [ITEM_HASTY_MINT] = {gItemIcon_Mint, gItemIconPalette_GreenMint},
+    [ITEM_IMPISH_MINT] = {gItemIcon_Mint, gItemIconPalette_BlueMint},
+    [ITEM_JOLLY_MINT] = {gItemIcon_Mint, gItemIconPalette_GreenMint},
+    [ITEM_LAX_MINT] = {gItemIcon_Mint, gItemIconPalette_BlueMint},
+    [ITEM_LONELY_MINT] = {gItemIcon_Mint, gItemIconPalette_RedMint},
+    [ITEM_MILD_MINT] = {gItemIcon_Mint, gItemIconPalette_LightBlueMint},
+    [ITEM_MODEST_MINT] = {gItemIcon_Mint, gItemIconPalette_LightBlueMint},
+    [ITEM_NAIVE_MINT] = {gItemIcon_Mint, gItemIconPalette_GreenMint},
+    [ITEM_NAUGHTY_MINT] = {gItemIcon_Mint, gItemIconPalette_RedMint},
+    [ITEM_QUIET_MINT] = {gItemIcon_Mint, gItemIconPalette_LightBlueMint},
+    [ITEM_RASH_MINT] = {gItemIcon_Mint, gItemIconPalette_LightBlueMint},
+    [ITEM_RELAXED_MINT] = {gItemIcon_Mint, gItemIconPalette_BlueMint},
+    [ITEM_SASSY_MINT] = {gItemIcon_Mint, gItemIconPalette_PinkMint},
+    [ITEM_SERIOUS_MINT] = {gItemIcon_Mint, gItemIconPalette_YellowMint},
+    [ITEM_TIMID_MINT] = {gItemIcon_Mint, gItemIconPalette_GreenMint},
     // Return to field arrow
     [ITEM_FIELD_ARROW] = {gItemIcon_ReturnToFieldArrow, gItemIconPalette_ReturnToFieldArrow},
 };
