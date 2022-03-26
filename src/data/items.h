@@ -8513,10 +8513,10 @@ const struct Item gItems[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_HM01_CUT] =
+    [ITEM_TM101_CUT] =
     {
         .name = _("TM101"),
-        .itemId = ITEM_HM01_CUT,
+        .itemId = ITEM_TM101_CUT,
         .price = 0,
         .description = sHM01Desc,
         .importance = 1,
@@ -8525,10 +8525,10 @@ const struct Item gItems[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_HM02_FLY] =
+    [ITEM_TM102_FLY] =
     {
-        .name = _("HM02"),
-        .itemId = ITEM_HM02_FLY,
+        .name = _("TM102"),
+        .itemId = ITEM_TM102_FLY,
         .price = 0,
         .description = sHM02Desc,
         .importance = 1,
@@ -8537,10 +8537,10 @@ const struct Item gItems[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_HM03_SURF] =
+    [ITEM_TM103_SURF] =
     {
-        .name = _("HM03"),
-        .itemId = ITEM_HM03_SURF,
+        .name = _("TM103"),
+        .itemId = ITEM_TM103_SURF,
         .price = 0,
         .description = sHM03Desc,
         .importance = 1,
@@ -8549,10 +8549,10 @@ const struct Item gItems[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_HM04_STRENGTH] =
+    [ITEM_TM104_STRENGTH] =
     {
-        .name = _("HM04"),
-        .itemId = ITEM_HM04_STRENGTH,
+        .name = _("TM104"),
+        .itemId = ITEM_TM104_STRENGTH,
         .price = 0,
         .description = sHM04Desc,
         .importance = 1,
@@ -8561,10 +8561,10 @@ const struct Item gItems[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_HM05_FLASH] =
+    [ITEM_TM105_FLASH] =
     {
-        .name = _("HM05"),
-        .itemId = ITEM_HM05_FLASH,
+        .name = _("TM105"),
+        .itemId = ITEM_TM105_FLASH,
         .price = 0,
         .description = sHM05Desc,
         .importance = 1,
@@ -8573,10 +8573,10 @@ const struct Item gItems[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_HM06_ROCK_SMASH] =
+    [ITEM_TM106_ROCK_SMASH] =
     {
-        .name = _("HM06"),
-        .itemId = ITEM_HM06_ROCK_SMASH,
+        .name = _("TM106"),
+        .itemId = ITEM_TM106_ROCK_SMASH,
         .price = 0,
         .description = sHM06Desc,
         .importance = 1,
@@ -8585,10 +8585,10 @@ const struct Item gItems[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_HM07_WATERFALL] =
+    [ITEM_TM107_WATERFALL] =
     {
-        .name = _("HM07"),
-        .itemId = ITEM_HM07_WATERFALL,
+        .name = _("TM107"),
+        .itemId = ITEM_TM107_WATERFALL,
         .price = 0,
         .description = sHM07Desc,
         .importance = 1,
@@ -8597,10 +8597,10 @@ const struct Item gItems[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_HM08_DIVE] =
+    [ITEM_TM108_DIVE] =
     {
-        .name = _("HM08"),
-        .itemId = ITEM_HM08_DIVE,
+        .name = _("TM108"),
+        .itemId = ITEM_TM108_DIVE,
         .price = 0,
         .description = sHM08Desc,
         .importance = 1,
