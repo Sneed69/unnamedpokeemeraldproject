@@ -2629,6 +2629,44 @@ static void SetPartyMonSelectionActions(struct Pokemon *mons, u8 slotId, u8 acti
     }
 }
 
+static bool8 CanMonFly(struct Pokemon *mon)
+{
+	u16 eggGroup[EGG_GROUPS_PER_MON];
+	u16 species = GetBoxMonData(mon, MON_DATA_SPECIES);
+	
+	if (!FlagGet(FLAG_BADGE05_GET))
+		return FALSE;
+	
+	switch (species)
+	{
+		case SPECIES_RAYQUAZA:
+		case SPECIES_LATIAS:
+		case SPECIES_LATIOS:
+		case SPECIES_CHARIZARD:
+		case SPECIES_HYDREIGON:
+		case SPECIES_VOLCARONA:
+		case SPECIES_ARTICUNO:
+		case SPECIES_MOLTRES:
+		case SPECIES_ZAPDOS:
+		case SPECIES_DRAGONITE:
+		case SPECIES_DRAGONAIR:
+		case SPECIES_LUGIA:
+		case SPECIES_HO_OH:
+		case SPECIES_TROPIUS:
+		case SPECIES_FLYGON:
+		case SPECIES_VIBRAVA:
+		case SPECIES_SALAMENCE:
+		case SPECIES_DRIFBLIM:
+			return TRUE;
+	}
+	eggGroup[0] = gBaseStats[species].eggGroup1;
+	eggGroup[1] = gBaseStats[species].eggGroup2;
+	if (eggGroup[0] == EGG_GROUP_FLYING || eggGroup[1] == EGG_GROUP_FLYING)
+		return TRUE;
+	return FALSE;
+}
+
+
 static void SetPartyMonFieldSelectionActions(struct Pokemon *mons, u8 slotId)
 {
     u8 i, j;
@@ -2639,7 +2677,7 @@ static void SetPartyMonFieldSelectionActions(struct Pokemon *mons, u8 slotId)
     // Add field moves to action list
     for (i = 0; i < MAX_MON_MOVES; i++)
     {
-        for (j = 2; sFieldMoves[j] != FIELD_MOVE_TERMINATOR; j++)
+        for (j = 1; sFieldMoves[j] != FIELD_MOVE_TERMINATOR; j++)
         {
             if (GetMonData(&mons[slotId], i + MON_DATA_MOVE1) == sFieldMoves[j])
             {
@@ -2649,10 +2687,8 @@ static void SetPartyMonFieldSelectionActions(struct Pokemon *mons, u8 slotId)
         }
     }
 	
-	if (sPartyMenuInternal->numActions < 5 && CanMonLearnTMTutor(&mons[slotId], ITEM_HM02_FLY, 0) != CANNOT_LEARN_MOVE)
+	if (sPartyMenuInternal->numActions < 5 && CanMonFly(&mons[slotId]))						//CanMonLearnTMTutor(&mons[slotId], ITEM_OVAL_CHARM, 0) != CANNOT_LEARN_MOVE)
         AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, FIELD_MOVE_FLY + MENU_FIELD_MOVES);
-	if (sPartyMenuInternal->numActions < 5 && CanMonLearnTMTutor(&mons[slotId], ITEM_HM05_FLASH, 0) != CANNOT_LEARN_MOVE)
-        AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, FIELD_MOVE_FLASH + MENU_FIELD_MOVES);
     if (!InBattlePike())
     {
         if (GetMonData(&mons[1], MON_DATA_SPECIES) != SPECIES_NONE)
@@ -3762,7 +3798,7 @@ static void CursorCb_FieldMove(u8 taskId)
     else
     {
         /* All field moves before WATERFALL are HMs.
-        if (fieldMove <= FIELD_MOVE_FLY && FlagGet(FLAG_BADGE01_GET + fieldMove) != TRUE)
+        if (fieldMove <= FIELD_MOVE_WATERFALL && FlagGet(FLAG_BADGE01_GET + fieldMove) != TRUE)
         {
             DisplayPartyMenuMessage(gText_CantUseUntilNewBadge, TRUE);
             gTasks[taskId].func = Task_ReturnToChooseMonAfterText;
@@ -3805,9 +3841,6 @@ static void CursorCb_FieldMove(u8 taskId)
         {
             switch (fieldMove)
             {
-            case FIELD_MOVE_FLASH:
-                DisplayCantUseFlashMessage();
-                break;
             default:
                 DisplayPartyMenuStdMessage(sFieldMoveCursorCallbacks[fieldMove].msgId);
                 break;

@@ -836,7 +836,6 @@ enum
 
 enum
 {
-    FIELD_MOVE_FLASH,
     FIELD_MOVE_FLY,
     FIELD_MOVE_TELEPORT,
     FIELD_MOVE_DIG,
@@ -873,7 +872,6 @@ struct
     [MENU_TRADE1] = {gText_Trade4, CursorCb_Trade1},
     [MENU_TRADE2] = {gText_Trade4, CursorCb_Trade2},
     [MENU_TOSS] = {gMenuText_Toss, CursorCb_Toss},
-    [MENU_FIELD_MOVES + FIELD_MOVE_FLASH] = {gMoveNames[MOVE_FLASH], CursorCb_FieldMove},
     [MENU_FIELD_MOVES + FIELD_MOVE_FLY] = {gMoveNames[MOVE_FLY], CursorCb_FieldMove},
     [MENU_FIELD_MOVES + FIELD_MOVE_TELEPORT] = {gMoveNames[MOVE_TELEPORT], CursorCb_FieldMove},
     [MENU_FIELD_MOVES + FIELD_MOVE_DIG] = {gMoveNames[MOVE_DIG], CursorCb_FieldMove},
@@ -953,7 +951,7 @@ static const u8 sPartyMenuActionCounts[] =
 
 static const u16 sFieldMoves[] =
 {
-    MOVE_FLASH, MOVE_FLY,MOVE_TELEPORT,
+    MOVE_FLY,MOVE_TELEPORT,
     MOVE_DIG, MOVE_MILK_DRINK, MOVE_SOFT_BOILED, MOVE_SWEET_SCENT, FIELD_MOVE_TERMINATOR
 };
 
@@ -963,7 +961,6 @@ struct
     u8 msgId;
 } static const sFieldMoveCursorCallbacks[] =
 {
-    [FIELD_MOVE_FLASH]        = {SetUpFieldMove_Flash,       PARTY_MSG_CANT_USE_HERE},
     [FIELD_MOVE_FLY]          = {SetUpFieldMove_Fly,         PARTY_MSG_CANT_USE_HERE},
     [FIELD_MOVE_TELEPORT]     = {SetUpFieldMove_Teleport,    PARTY_MSG_CANT_USE_HERE},
     [FIELD_MOVE_DIG]          = {SetUpFieldMove_Dig,         PARTY_MSG_CANT_USE_HERE},
@@ -1343,7 +1340,7 @@ static const u16 sTMHMMoves[] =
     [ITEM_TM49 - ITEM_TM01] = MOVE_SNATCH,
     [ITEM_TM50 - ITEM_TM01] = MOVE_OVERHEAT,
     [ITEM_TM51 - ITEM_TM01] = MOVE_NONE, // Todo
-    [ITEM_TM52 - ITEM_TM01] = MOVE_NONE, // Todo
+    [ITEM_TM52 - ITEM_TM01] = MOVE_FOCUS_BLAST, // Todo
     [ITEM_TM53 - ITEM_TM01] = MOVE_NONE, // Todo
     [ITEM_TM54 - ITEM_TM01] = MOVE_NONE, // Todo
     [ITEM_TM55 - ITEM_TM01] = MOVE_NONE, // Todo
