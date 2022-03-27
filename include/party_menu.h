@@ -3,6 +3,7 @@
 
 #include "main.h"
 #include "task.h"
+#include "constants/items.h"
 
 // seems like the last two fields may have been left as all-purpose vars
 // and the second of the two just happens to only be used in one case
@@ -20,6 +21,8 @@ struct PartyMenu
     s16 learnMoveState;  // data2, used only as a learn move state
 };
 
+#define TMHM_COUNT LAST_TM - ITEM_TM01 + 1
+extern const u16 gTMHMMoves[TMHM_COUNT];
 extern struct PartyMenu gPartyMenu;
 extern bool8 gPartyMenuUseExitCallback;
 extern u8 gSelectedMonPartyId;

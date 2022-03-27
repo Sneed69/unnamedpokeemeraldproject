@@ -2471,6 +2471,7 @@
 
 #define HOENN_DEX_COUNT 212
 
+#define SPECIES_MIMEJR SPECIES_MIME_JR
 // species flags
 #define F_ULTRA_BEAST   (1 << 0)
 #define F_ALOLAN_FORM   (1 << 1)
