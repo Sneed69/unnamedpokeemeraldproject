@@ -1535,7 +1535,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
     {
         .effect = EFFECT_SPEED_UP_2,
         .power = 0,
-        .type = TYPE_PSYCHIC,
+        .type = TYPE_FLYING,
         .accuracy = 0,
         .pp = 30,
         .secondaryEffectChance = 0,
@@ -11650,5 +11650,19 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
         .priority = 0,
         .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED | FLAG_SHEER_FORCE_BOOST | FLAG_SOUND,
         .split = SPLIT_SPECIAL,
+    },
+
+    [MOVE_MYSTIC_BLADE] =
+    {
+        .effect = EFFECT_PSYSHOCK,
+        .power = 80,
+        .type = TYPE_FAIRY,
+        .accuracy = 100,
+        .pp = 10,
+        .secondaryEffectChance = 0,
+        .target = MOVE_TARGET_SELECTED,
+        .priority = 0,
+        .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED,
+        .split = SPLIT_PHYSICAL,
     },
 };

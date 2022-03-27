@@ -779,6 +779,8 @@ gBattleAnims_Moves::
 	.4byte Move_GLACIAL_LANCE
 	.4byte Move_ASTRAL_BARRAGE
 	.4byte Move_EERIE_SPELL
+@@@@@@@@@@@@ CUSTOM @@@@@@@@@@@@
+	.4byte Move_MYSTIC_BLADE
 	.4byte Move_COUNT @ cannot be reached, because last move is Eerie Spell
 
 	.align 2
@@ -14238,6 +14240,30 @@ Move_ASTRAL_BARRAGE::
 
 Move_EERIE_SPELL::
 	end @to do:
+
+Move_MYSTIC_BLADE:
+	loadspritegfx ANIM_TAG_CUT @Cut
+	loadspritegfx ANIM_TAG_SWORD @Sword
+	setalpha 12, 8
+	playsewithpan SE_M_SWORDS_DANCE, SOUND_PAN_ATTACKER
+	launchtask AnimTask_BlendBattleAnimPal 0xa 0x5 ANIM_PAL_BG 0x0 0x0 0x10 0x6E7D
+	launchtemplate gSwordsDanceBladeSpriteTemplate 0x2 0x2 0x0 0x0
+	delay 0x16
+	launchtask AnimTask_FlashAnimTagWithColor 0x2 0x7 0x2715 0x2 0x2 0x519f 0x10 0x0 0x0
+	waitforvisualfinish
+	clearmonbg ANIM_ATTACKER
+	delay 0x1
+	monbg ANIM_TARGET
+	playsewithpan SE_M_RAZOR_WIND, SOUND_PAN_TARGET
+	createsprite gCuttingSliceSpriteTemplate, ANIM_ATTACKER, 2, 40, -32, 1
+	delay 0x5
+	launchtask AnimTask_ShakeMon 0x2 0x5 0x1 0x0 0x3 0xa 0x1
+	launchtask AnimTask_BlendBattleAnimPal 0xa 0x5 ANIM_PAL_BG 0x0 0x10 0x0 0x6E7D
+	waitforvisualfinish
+	clearmonbg ANIM_TARGET
+	blendoff
+	waitforvisualfinish
+	end
 
 @@@@@@@@@@@@@@@@@@@@@@@ GEN 1-3 @@@@@@@@@@@@@@@@@@@@@@@
 Move_NONE:
