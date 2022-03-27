@@ -9111,27 +9111,27 @@ s32 GetStealthHazardDamage(u8 hazardType, u8 battlerId)
         dmg = 0;
         break;
     case UQ_4_12(0.25):
-        dmg = maxHp / 32;
+        dmg = maxHp / 48;
         if (dmg == 0)
             dmg = 1;
         break;
     case UQ_4_12(0.5):
-        dmg = maxHp / 16;
+        dmg = maxHp / 24;
         if (dmg == 0)
             dmg = 1;
         break;
     case UQ_4_12(1.0):
-        dmg = maxHp / 8;
+        dmg = maxHp / 12;
         if (dmg == 0)
             dmg = 1;
         break;
     case UQ_4_12(2.0):
-        dmg = maxHp / 4;
+        dmg = maxHp / 6;
         if (dmg == 0)
             dmg = 1;
         break;
     case UQ_4_12(4.0):
-        dmg = maxHp / 2;
+        dmg = maxHp / 3;
         if (dmg == 0)
             dmg = 1;
         break;
