@@ -294,7 +294,7 @@ bool8 AddBagItem(u16 itemId, u16 count)
         switch(pocket)
         {
             case BERRIES_POCKET:
-                slotCapacity = BERRIES_POCKET;
+                slotCapacity = MAX_BERRY_CAPACITY;
             break;
             case TMHM_POCKET:
                 slotCapacity = 1;

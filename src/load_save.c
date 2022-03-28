@@ -203,6 +203,7 @@ void CopyPartyAndObjectsFromSave(void)
 {
     LoadPlayerParty();
     LoadObjectEvents();
+    DeserializeTmHmItemSlots();
 }
 
 void LoadPlayerBag(void)
