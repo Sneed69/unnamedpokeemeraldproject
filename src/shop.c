@@ -4,6 +4,7 @@
 #include "decompress.h"
 #include "decoration.h"
 #include "decoration_inventory.h"
+#include "event_data.h"
 #include "event_object_movement.h"
 #include "field_player_avatar.h"
 #include "field_screen_effect.h"
@@ -92,6 +93,171 @@ static void Task_HandleShopMenuBuy(u8 taskId);
 static void Task_HandleShopMenuSell(u8 taskId);
 static void BuyMenuPrintItemDescriptionAndShowItemIcon(s32 item, bool8 onInit, struct ListMenu *list);
 static void BuyMenuPrintPriceInList(u8 windowId, u32 itemId, u8 y);
+static void getCurrentMartStock(void);
+
+static const u16 sShopInventory_Base[] = {
+    ITEM_POKE_BALL,
+    ITEM_POTION,
+    ITEM_ANTIDOTE,
+    ITEM_PARALYZE_HEAL,
+    ITEM_AWAKENING,
+    ITEM_NONE
+};
+
+static const u16 sShopInventory_Rustboro[] = {
+    ITEM_POKE_BALL,
+    ITEM_POTION,
+    ITEM_ANTIDOTE,
+    ITEM_PARALYZE_HEAL,
+    ITEM_AWAKENING,
+    ITEM_REPEL,
+    ITEM_ESCAPE_ROPE,
+    ITEM_NONE
+};
+
+static const u16 sShopInventory_Slateport[] = {
+    ITEM_POKE_BALL,
+    ITEM_GREAT_BALL,
+    ITEM_POTION,
+    ITEM_SUPER_POTION,
+    ITEM_ANTIDOTE,
+    ITEM_PARALYZE_HEAL,
+    ITEM_AWAKENING,
+    ITEM_REPEL,
+    ITEM_ESCAPE_ROPE,
+    ITEM_NONE
+};
+
+static const u16 sShopInventory_Mauville[] = {
+    ITEM_POKE_BALL,
+    ITEM_GREAT_BALL,
+    ITEM_POTION,
+    ITEM_SUPER_POTION,
+    ITEM_ANTIDOTE,
+    ITEM_PARALYZE_HEAL,
+    ITEM_AWAKENING,
+	ITEM_BURN_HEAL,
+	ITEM_ICE_HEAL,
+    ITEM_REPEL,
+    ITEM_ESCAPE_ROPE,
+    ITEM_NONE
+};
+
+static const u16 sShopInventory_Fallarbor[] = {
+    ITEM_POKE_BALL,
+    ITEM_GREAT_BALL,
+    ITEM_POTION,
+    ITEM_SUPER_POTION,
+    ITEM_ANTIDOTE,
+    ITEM_PARALYZE_HEAL,
+    ITEM_AWAKENING,
+	ITEM_BURN_HEAL,
+	ITEM_ICE_HEAL,
+    ITEM_SUPER_REPEL,
+    ITEM_ESCAPE_ROPE,
+    ITEM_NONE
+};
+
+static const u16 sShopInventory_Lavaridge[] = {
+    ITEM_POKE_BALL,
+    ITEM_GREAT_BALL,
+    ITEM_POTION,
+    ITEM_SUPER_POTION,
+    ITEM_ANTIDOTE,
+    ITEM_PARALYZE_HEAL,
+    ITEM_AWAKENING,
+	ITEM_BURN_HEAL,
+	ITEM_ICE_HEAL,
+	ITEM_REVIVE,
+	ITEM_ETHER,
+    ITEM_SUPER_REPEL,
+    ITEM_ESCAPE_ROPE,
+    ITEM_NONE
+};
+
+static const u16 sShopInventory_Fortree[] = {
+    ITEM_POKE_BALL,
+    ITEM_GREAT_BALL,
+    ITEM_ULTRA_BALL,
+    ITEM_POTION,
+    ITEM_SUPER_POTION,
+    ITEM_HYPER_POTION,
+    ITEM_ANTIDOTE,
+    ITEM_PARALYZE_HEAL,
+    ITEM_AWAKENING,
+	ITEM_BURN_HEAL,
+	ITEM_ICE_HEAL,
+	ITEM_REVIVE,
+	ITEM_ETHER,
+    ITEM_SUPER_REPEL,
+    ITEM_ESCAPE_ROPE,
+    ITEM_NONE
+};
+
+static const u16 sShopInventory_Lilycove[] = {
+    ITEM_ULTRA_BALL,
+    ITEM_HYPER_POTION,
+    ITEM_MAX_POTION,
+    ITEM_FULL_HEAL,
+	ITEM_REVIVE,
+	ITEM_ETHER,
+    ITEM_MAX_REPEL,
+    ITEM_ESCAPE_ROPE,
+    ITEM_NONE
+};
+
+static const u16 sShopInventory_Mossdeep[] = {
+    ITEM_ULTRA_BALL,
+    ITEM_HYPER_POTION,
+    ITEM_MAX_POTION,
+    ITEM_FULL_HEAL,
+	ITEM_REVIVE,
+	ITEM_MAX_ETHER,
+	ITEM_ELIXIR,
+    ITEM_MAX_REPEL,
+    ITEM_ESCAPE_ROPE,
+    ITEM_NONE
+};
+
+static const u16 sShopInventory_League[] = {
+    ITEM_ULTRA_BALL,
+    ITEM_HYPER_POTION,
+    ITEM_MAX_POTION,
+    ITEM_FULL_RESTORE,
+    ITEM_FULL_HEAL,	
+	ITEM_MAX_REVIVE,
+	ITEM_MAX_ETHER,
+	ITEM_MAX_ELIXIR,
+    ITEM_MAX_REPEL,
+    ITEM_ESCAPE_ROPE,
+    ITEM_NONE
+};
+
+
+static void getCurrentMartStock(void)
+{
+    if (FlagGet(FLAG_LANDMARK_POKEMON_LEAGUE))
+		sMartInfo.itemList =  sShopInventory_League;
+    else if (FlagGet(FLAG_VISITED_MOSSDEEP_CITY))
+		sMartInfo.itemList =  sShopInventory_Mossdeep;
+	else if (FlagGet(FLAG_VISITED_LILYCOVE_CITY))
+		sMartInfo.itemList =  sShopInventory_Lilycove;
+	else if (FlagGet(FLAG_VISITED_FORTREE_CITY))
+		sMartInfo.itemList =  sShopInventory_Fortree;
+	else if (FlagGet(FLAG_VISITED_LAVARIDGE_TOWN))
+		sMartInfo.itemList =  sShopInventory_Lavaridge;
+	else if (FlagGet(FLAG_VISITED_FALLARBOR_TOWN))
+		sMartInfo.itemList =  sShopInventory_Fallarbor;
+	else if (FlagGet(FLAG_VISITED_MAUVILLE_CITY))
+		sMartInfo.itemList =  sShopInventory_Mauville;
+	else if (FlagGet(FLAG_VISITED_SLATEPORT_CITY))
+		sMartInfo.itemList =  sShopInventory_Slateport;
+	else if (FlagGet(FLAG_VISITED_RUSTBORO_CITY))
+		sMartInfo.itemList =  sShopInventory_Rustboro;
+	else 
+		sMartInfo.itemList =  sShopInventory_Base;
+}
+
 
 static const struct YesNoFuncTable sShopPurchaseYesNoFuncs =
 {
@@ -317,7 +483,11 @@ static void SetShopItemsForSale(const u16 *items)
 {
     u16 i = 0;
 
-    sMartInfo.itemList = items;
+	if (items == NULL)
+		getCurrentMartStock();
+	else
+		sMartInfo.itemList = items;
+	
     sMartInfo.itemCount = 0;
 
     while (sMartInfo.itemList[i])
