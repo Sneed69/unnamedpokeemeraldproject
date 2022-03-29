@@ -233,7 +233,6 @@ static const u16 sShopInventory_League[] = {
     ITEM_NONE
 };
 
-
 static void getCurrentMartStock(void)
 {
     if (FlagGet(FLAG_LANDMARK_POKEMON_LEAGUE))
@@ -257,7 +256,6 @@ static void getCurrentMartStock(void)
 	else 
 		sMartInfo.itemList =  sShopInventory_Base;
 }
-
 
 static const struct YesNoFuncTable sShopPurchaseYesNoFuncs =
 {
