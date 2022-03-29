@@ -227,7 +227,7 @@ static const u16 sShopInventory_League[] = {
     ITEM_FULL_HEAL,	
 	ITEM_MAX_REVIVE,
 	ITEM_MAX_ETHER,
-	ITEM_MAX_ELIXIR,
+	ITEM_ELIXIR,
     ITEM_MAX_REPEL,
     ITEM_ESCAPE_ROPE,
     ITEM_NONE
