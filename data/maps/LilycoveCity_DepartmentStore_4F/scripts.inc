@@ -50,13 +50,13 @@ LilycoveCity_DepartmentStore_4F_EventScript_ClerkRight::
 	.align 2
 LilycoveCity_DepartmentStore_4F_Pokemart_DefenseTMs:
 	.2byte ITEM_TM17  @ Protect
-	.2byte ITEM_TM90  @ Substitute
 	.2byte ITEM_TM33  @ Reflect
 	.2byte ITEM_TM16  @ Light Screen
 	.2byte ITEM_TM56  @ Tailwind
 	.2byte ITEM_TM63  @ Heal Bell
 	.2byte ITEM_TM51  @ Roost
 	.2byte ITEM_TM92  @ Trick Room
+	.2byte ITEM_TM120  @ Defog
 	.2byte ITEM_NONE
 	release
 	end

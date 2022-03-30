@@ -581,7 +581,7 @@ static void InheritIVs(struct Pokemon *egg, struct DayCare *daycare)
 	else
 		inheritedN = INHERITED_IV_COUNT;
 	
-    // Select the 1-3 remaining IVs that will be inherited randomly.
+    // Select the 1-5 remaining IVs that will be inherited randomly.
     for (i = k; i < inheritedN; i++)
     {
         index = Random() % (NUM_STATS - i);

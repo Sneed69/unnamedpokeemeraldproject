@@ -7,6 +7,7 @@ LilycoveCity_House2_EventScript_FatMan::
 	goto_if_set FLAG_RECEIVED_TM44, LilycoveCity_House2_EventScript_ReceivedRest
 	msgbox LilycoveCity_House2_Text_NotAwakeYetHaveThis, MSGBOX_DEFAULT
 	giveitem ITEM_TM44
+	giveitem ITEM_TM82
 	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull
 	setflag FLAG_RECEIVED_TM44
 	msgbox LilycoveCity_House2_Text_SleepIsEssential, MSGBOX_DEFAULT
@@ -21,7 +22,8 @@ LilycoveCity_House2_EventScript_ReceivedRest::
 LilycoveCity_House2_Text_NotAwakeYetHaveThis:
 	.string "Huh? What? What's that?\p"
 	.string "I'm not near awake yet…\n"
-	.string "You can have this…$"
+	.string "I'm talking in my sleep…\l"
+	.string "You can have these…$"
 
 LilycoveCity_House2_Text_SleepIsEssential:
 	.string "Yawn…\p"
