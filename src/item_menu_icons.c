@@ -648,7 +648,7 @@ u8 CreateSpinningBerrySprite(u8 berryId, u8 x, u8 y, bool8 startAffine)
     u8 spriteId;
 
     FreeSpritePaletteByTag(TAG_BERRY_PIC_PAL);
-    LoadBerryGfx(berryId);
+    LoadBerryGfx(berryId+4);
     spriteId = CreateSprite(&gBerryPicRotatingSpriteTemplate, x, y, 0);
     if (startAffine == TRUE)
         StartSpriteAffineAnim(&gSprites[spriteId], 1);
