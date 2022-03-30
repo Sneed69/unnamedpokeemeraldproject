@@ -60,7 +60,6 @@ LilycoveCity_DepartmentStore_5F_Pokemart_Cushions:
 	.2byte DECOR_PIKA_CUSHION
 	.2byte DECOR_ROUND_CUSHION
 	.2byte DECOR_ZIGZAG_CUSHION
-	.2byte DECOR_SPIN_CUSHION
 	.2byte DECOR_DIAMOND_CUSHION
 	.2byte DECOR_BALL_CUSHION
 	.2byte DECOR_GRASS_CUSHION
@@ -153,7 +152,7 @@ LilycoveCity_DepartmentStore_5F_EventScript_LittleGirl::
 	end
 
 LilycoveCity_DepartmentStore_5F_Text_PlaceFullOfCuteDolls:
-	.string "This place is full of cute Dolls.\p"
+	.string "This place is full of cute dolls.\p"
 	.string "I should buy some for me, instead of\n"
 	.string "just for my children.$"
 

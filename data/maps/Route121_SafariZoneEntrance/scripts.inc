@@ -32,8 +32,6 @@ Route121_SafariZoneEntrance_EventScript_WelcomeAttendant::
 Route121_SafariZoneEntrance_EventScript_InfoAttendant::
 	lock
 	faceplayer
-	msgbox Route121_SafariZoneEntrance_Text_WelcomeFirstTime, MSGBOX_YESNO
-	goto_if_eq VAR_RESULT, YES, Route121_SafariZoneEntrance_EventScript_FirstTimeInfo
 	msgbox Route121_SafariZoneEntrance_Text_ComeInAndEnjoy, MSGBOX_DEFAULT
 	release
 	end

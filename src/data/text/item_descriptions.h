@@ -1909,7 +1909,7 @@ static const u8 sLaxIncenseDesc[] = _(
 
 static const u8 sOddIncenseDesc[] = _(
     "A hold item that\n"
-    "boosts Psychic-\n"
+    "boosts Fairy-\n"
     "type moves.");
 
 static const u8 sRockIncenseDesc[] = _(
@@ -2499,33 +2499,33 @@ static const u8 sLumBerryDesc[] = _(
 
 static const u8 sSitrusBerryDesc[] = _(
     "A hold item that\n"
-    "restores 30 HP in\n"
-    "battle.");
+    "restores 25% HP\n"
+    "in battle.");
 
 static const u8 sFigyBerryDesc[] = _(
     "A hold item that\n"
-    "restores HP but\n"
-    "may confuse.");
+    "restores 50% HP\n"
+    "but may confuse.");
 
 static const u8 sWikiBerryDesc[] = _(
     "A hold item that\n"
-    "restores HP but\n"
-    "may confuse.");
+    "restores 50% HP\n"
+    "but may confuse.");
 
 static const u8 sMagoBerryDesc[] = _(
     "A hold item that\n"
-    "restores HP but\n"
-    "may confuse.");
+    "restores 50% HP\n"
+    "but may confuse.");
 
 static const u8 sAguavBerryDesc[] = _(
     "A hold item that\n"
-    "restores HP but\n"
-    "may confuse.");
+    "restores 50% HP\n"
+    "but may confuse.");
 
 static const u8 sIapapaBerryDesc[] = _(
     "A hold item that\n"
-    "restores HP but\n"
-    "may confuse.");
+    "restores 50% HP\n"
+    "but may confuse.");
 
 static const u8 sRazzBerryDesc[] = _(
     "{POKEBLOCK} ingredient.\n"

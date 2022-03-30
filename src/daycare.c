@@ -427,41 +427,16 @@ static s32 GetParentToInheritNature(struct DayCare *daycare)
 {
     u32 species[DAYCARE_MON_COUNT];
     s32 i;
-    s32 dittoCount;
-    s32 parent = -1;
 
-    // search for female gender
+    // search for everstone
     for (i = 0; i < DAYCARE_MON_COUNT; i++)
     {
-        if (GetBoxMonGender(&daycare->mons[i].mon) == MON_FEMALE)
-            parent = i;
-    }
-
-    // search for ditto
-    for (dittoCount = 0, i = 0; i < DAYCARE_MON_COUNT; i++)
-    {
-        species[i] = GetBoxMonData(&daycare->mons[i].mon, MON_DATA_SPECIES);
-        if (species[i] == SPECIES_DITTO)
-            dittoCount++, parent = i;
-    }
-
-    // coin flip on ...two Dittos
-    if (dittoCount == DAYCARE_MON_COUNT)
-    {
-        if (Random() >= USHRT_MAX / 2)
-            parent = 0;
-        else
-            parent = 1;
+        if (GetBoxMonData(&daycare->mons[i].mon, MON_DATA_HELD_ITEM) == ITEM_EVERSTONE)
+            return i;
     }
 
     // Don't inherit nature if not holding Everstone
-    if (GetBoxMonData(&daycare->mons[parent].mon, MON_DATA_HELD_ITEM) != ITEM_EVERSTONE
-        || Random() >= USHRT_MAX / 2)
-    {
-        return -1;
-    }
-
-    return parent;
+	return -1;
 }
 
 static void _TriggerPendingDaycareEgg(struct DayCare *daycare)
@@ -539,11 +514,12 @@ static void RemoveIVIndexFromList(u8 *ivs, u8 selectedIv)
 
 static void InheritIVs(struct Pokemon *egg, struct DayCare *daycare)
 {
-    u8 i;
-    u8 selectedIvs[INHERITED_IV_COUNT];
+    u8 i, j, k, index, inheritedN;
+    u8 selectedIvs[INHERITED_IV_DESTINY_KNOT_COUNT];
     u8 availableIVs[NUM_STATS];
-    u8 whichParents[INHERITED_IV_COUNT];
+    u8 whichParents[INHERITED_IV_DESTINY_KNOT_COUNT];
     u8 iv;
+	bool8 destinyKnot = FALSE;
 
     // Initialize a list of IV indices.
     for (i = 0; i < NUM_STATS; i++)
@@ -551,33 +527,76 @@ static void InheritIVs(struct Pokemon *egg, struct DayCare *daycare)
         availableIVs[i] = i;
     }
 
-    // Select the 3 IVs that will be inherited.
-    for (i = 0; i < INHERITED_IV_COUNT; i++)
+    // search for power items or destiny knot
+	k = 0;
+    for (i = 0; i < DAYCARE_MON_COUNT; i++)
+    { 
+        bool8 powerItem;
+		switch (GetBoxMonData(&daycare->mons[i].mon, MON_DATA_HELD_ITEM))
+		{
+			case ITEM_POWER_WEIGHT:
+				index = 0;
+				powerItem = TRUE;
+				break;
+			case ITEM_POWER_BRACER:
+				index = 1;
+				powerItem = TRUE;
+				break;
+			case ITEM_POWER_BELT:
+				index = 2;
+				powerItem = TRUE;
+				break;
+			case ITEM_POWER_ANKLET:
+				index = 3;
+				powerItem = TRUE;
+				break;
+			case ITEM_POWER_LENS:
+				index = 4;
+				powerItem = TRUE;
+				break;
+			case ITEM_POWER_BAND:
+				index = 5;
+				powerItem = TRUE;
+				break;
+			case ITEM_DESTINY_KNOT:
+				destinyKnot = TRUE;
+			default:
+				powerItem = FALSE;
+		}
+		if (powerItem)
+			for (j = 0; j <= index; j++)
+				if (availableIVs[j] == index)
+				{
+					selectedIvs[k] = index;
+					RemoveIVIndexFromList(availableIVs, index);
+					whichParents[k] = i;
+					k++;
+					break;
+				}
+    }
+	
+	// Apply destiny knot (or not)
+	if (destinyKnot)
+		inheritedN = INHERITED_IV_DESTINY_KNOT_COUNT;
+	else
+		inheritedN = INHERITED_IV_COUNT;
+	
+    // Select the 1-3 remaining IVs that will be inherited randomly.
+    for (i = k; i < inheritedN; i++)
     {
-        // Randomly pick an IV from the available list and stop from being chosen again.
-        // BUG: Instead of removing the IV that was just picked, this
-        // removes position 0 (HP) then position 1 (DEF), then position 2. This is why HP and DEF
-        // have a lower chance to be inherited in Emerald and why the IV picked for inheritance can
-        // be repeated. Amusingly, FRLG and RS also got this wrong. They remove selectedIvs[i], which
-        // is not an index! This means that it can sometimes remove the wrong stat.
-        #ifndef BUGFIX
-        selectedIvs[i] = availableIVs[Random() % (NUM_STATS - i)];
-        RemoveIVIndexFromList(availableIVs, i);
-        #else
-        u8 index = Random() % (NUM_STATS - i);
+        index = Random() % (NUM_STATS - i);
         selectedIvs[i] = availableIVs[index];
         RemoveIVIndexFromList(availableIVs, index);
-        #endif
     }
 
-    // Determine which parent each of the selected IVs should inherit from.
-    for (i = 0; i < INHERITED_IV_COUNT; i++)
+    // Determine which parent each of the random IVs should inherit from.
+    for (i = k; i < inheritedN; i++)
     {
         whichParents[i] = Random() % DAYCARE_MON_COUNT;
     }
 
     // Set each of inherited IVs on the egg mon.
-    for (i = 0; i < INHERITED_IV_COUNT; i++)
+    for (i = 0; i < inheritedN; i++)
     {
         switch (selectedIvs[i])
         {
@@ -898,7 +917,7 @@ static void _GiveEggFromDaycare(struct DayCare *daycare)
     bool8 isEgg;
 
     species = DetermineEggSpeciesAndParentSlots(daycare, parentSlots);
-    AlterEggSpeciesWithIncenseItem(&species, daycare);
+    //AlterEggSpeciesWithIncenseItem(&species, daycare);
     SetInitialEggData(&egg, species, daycare);
     InheritIVs(&egg, daycare);
     BuildEggMoveset(&egg, &daycare->mons[parentSlots[1]].mon, &daycare->mons[parentSlots[0]].mon);

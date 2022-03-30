@@ -370,8 +370,8 @@ JaggedPass_EventScript_ItemBurnHeal::
 	finditem ITEM_BURN_HEAL
 	end
 
-FieryPath_EventScript_ItemFireStone::
-	finditem ITEM_FIRE_STONE
+FieryPath_EventScript_ItemFlameOrb::
+	finditem ITEM_FLAME_ORB
 	end
 
 FieryPath_EventScript_ItemTM06::
@@ -511,7 +511,7 @@ MtPyre_Exterior_EventScript_ItemTM48::
 	end
 
 AquaHideout_B1F_EventScript_ItemMasterBall::
-	finditem ITEM_MASTER_BALL
+	finditem ITEM_TM108 //Foul Play
 	end
 
 AquaHideout_B1F_EventScript_ItemNugget::
