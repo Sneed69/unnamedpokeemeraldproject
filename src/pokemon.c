@@ -8145,3 +8145,51 @@ u16 GetFormChangeTargetSpecies(struct Pokemon *mon, u16 method, u32 arg)
 
     return species != targetSpecies ? targetSpecies : SPECIES_NONE;
 }
+
+u8 GetHiddenPowerType(u32 personality){
+	switch (GetNatureFromPersonality(personality))
+	{
+		case NATURE_HARDY:
+			return TYPE_STEEL;
+		case NATURE_DOCILE:
+			return TYPE_BUG;
+		case NATURE_LONELY:
+			return TYPE_DARK;
+		case NATURE_LAX:
+			return TYPE_DRAGON;
+		case NATURE_HASTY:
+		case NATURE_RASH:
+			return TYPE_ELECTRIC;
+		case NATURE_NAUGHTY:
+		case NATURE_JOLLY:
+			return TYPE_FAIRY;
+		case NATURE_BRAVE:
+		case NATURE_BOLD:
+			return TYPE_FIGHTING;
+		case NATURE_NAIVE:
+		case NATURE_SASSY:
+			return TYPE_FIRE;
+		case NATURE_TIMID:
+			return TYPE_FLYING;
+		case NATURE_BASHFUL:
+			return TYPE_GHOST;
+		case NATURE_MILD:
+		case NATURE_GENTLE:
+			return TYPE_GRASS;
+		case NATURE_CAREFUL:
+		case NATURE_MODEST:
+			return TYPE_GROUND;
+		case NATURE_CALM:
+		case NATURE_RELAXED:
+			return TYPE_ICE;
+		case NATURE_IMPISH:
+			return TYPE_POISON;
+		case NATURE_QUIET:
+			return TYPE_PSYCHIC;
+		case NATURE_ADAMANT:
+		case NATURE_SERIOUS:
+			return TYPE_ROCK;
+		case NATURE_QUIRKY:
+			return TYPE_WATER;
+	}
+}
