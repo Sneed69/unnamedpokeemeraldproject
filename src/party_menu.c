@@ -4513,7 +4513,7 @@ void ItemUseCB_Medicine(u8 taskId, TaskFunc task)
         }
         SetPartyMonAilmentGfx(mon, &sPartyMenuBoxes[gPartyMenu.slotId]);
         //if (gSprites[sPartyMenuBoxes[gPartyMenu.slotId].statusSpriteId].invisible)
-        DisplayPartyPokemonLevelCheck(mon, &sPartyMenuBoxes[gPartyMenu.slotId], 1);
+        //DisplayPartyPokemonLevelCheck(mon, &sPartyMenuBoxes[gPartyMenu.slotId], 1);
         if (canHeal == TRUE)
         {
             if (hp == 0)
