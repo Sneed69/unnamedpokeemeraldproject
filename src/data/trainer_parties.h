@@ -1,3 +1,23 @@
+/*struct TrainerMon
+{
+    u16 iv;
+    u8 nickname[POKEMON_NAME_LENGTH + 1];
+    u8 ivs[NUM_STATS];
+    u8 evs[NUM_STATS];
+    u8 lvl;
+    u16 species;
+    u16 heldItem;
+    u16 moves[MAX_MON_MOVES];
+    u8 ball;
+    u16 ability:2;
+    u16 friendship:2;
+    u16 gender:2;
+    u16 build:3;
+    u16 shiny:1;
+    u16 nature:5;
+    u16 unused:1;
+};*/
+
 static const struct TrainerMon sParty_Sawyer1[] = {
     {
     .iv = 0,
@@ -3370,14 +3390,16 @@ static const struct TrainerMon sParty_Roxanne1[] = {
     .lvl = 12,
     .species = SPECIES_GEODUDE,
     .heldItem = ITEM_NONE,
-    .moves = {MOVE_TACKLE, MOVE_DEFENSE_CURL, MOVE_ROCK_THROW, MOVE_ROCK_TOMB}
+    .moves = {MOVE_TACKLE, MOVE_DEFENSE_CURL, MOVE_ROCK_THROW, MOVE_ROCK_TOMB},
+	.ability = ABILITY_SLOT_2
     },
     {
     .iv = 100,
     .lvl = 12,
     .species = SPECIES_GEODUDE,
     .heldItem = ITEM_NONE,
-    .moves = {MOVE_TACKLE, MOVE_DEFENSE_CURL, MOVE_ROCK_THROW, MOVE_ROCK_TOMB}
+    .moves = {MOVE_TACKLE, MOVE_DEFENSE_CURL, MOVE_ROCK_THROW, MOVE_ROCK_TOMB},
+	.ability = ABILITY_SLOT_2
     },
     {
     .iv = 200,
