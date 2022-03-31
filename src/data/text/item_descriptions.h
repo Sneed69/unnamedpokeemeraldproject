@@ -2324,9 +2324,9 @@ static const u8 sLaggingTailDesc[] = _(
     "move slower.");
 
 static const u8 sDestinyKnotDesc[] = _(
-    "If the holder falls\n"
-    "in love, the foe\n"
-    "does too.");
+    "A held item that\n"
+    "increases offspring\n"
+    "inheritance.");
 
 static const u8 sBlackSludgeDesc[] = _(
     "Gradually restores\n"

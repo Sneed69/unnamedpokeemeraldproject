@@ -47,36 +47,22 @@ const u8 *GetPokedexRatingText(u16 count)
         return gBirchDexRatingText_LessThan110;
     if (count < 120)
         return gBirchDexRatingText_LessThan120;
-    if (count < 130)
-        return gBirchDexRatingText_LessThan130;
     if (count < 140)
-        return gBirchDexRatingText_LessThan140;
-    if (count < 150)
-        return gBirchDexRatingText_LessThan150;
+        return gBirchDexRatingText_LessThan130;
     if (count < 160)
-        return gBirchDexRatingText_LessThan160;
-    if (count < 170)
-        return gBirchDexRatingText_LessThan170;
+        return gBirchDexRatingText_LessThan140;
     if (count < 180)
+        return gBirchDexRatingText_LessThan160;
+    if (count < 210)
+        return gBirchDexRatingText_LessThan150;
+    if (count < 240)
+        return gBirchDexRatingText_LessThan170;
+    if (count < 275)
         return gBirchDexRatingText_LessThan180;
-    if (count < 190)
+    if (count < 400)
         return gBirchDexRatingText_LessThan190;
-    if (count < 200)
+    if (count < 800)
         return gBirchDexRatingText_LessThan200;
-    if (count == 200)
-    {
-        if (GetSetPokedexFlag(SpeciesToNationalPokedexNum(SPECIES_JIRACHI), FLAG_GET_CAUGHT)
-         || GetSetPokedexFlag(SpeciesToNationalPokedexNum(SPECIES_DEOXYS), FLAG_GET_CAUGHT)) // Jirachi or Deoxys is not counted towards the dex completion. If either of these flags are enabled, it means the actual count is less than 200.
-            return gBirchDexRatingText_LessThan200;
-        return gBirchDexRatingText_DexCompleted;
-    }
-    if (count == HOENN_DEX_COUNT - 1)
-    {
-        if (GetSetPokedexFlag(SpeciesToNationalPokedexNum(SPECIES_JIRACHI), FLAG_GET_CAUGHT)
-         && GetSetPokedexFlag(SpeciesToNationalPokedexNum(SPECIES_DEOXYS), FLAG_GET_CAUGHT)) // If both of these flags are enabled, it means the actual count is less than 200.
-            return gBirchDexRatingText_LessThan200;
-        return gBirchDexRatingText_DexCompleted;
-    }
     if (count == HOENN_DEX_COUNT)
         return gBirchDexRatingText_DexCompleted;
     return gBirchDexRatingText_LessThan10;

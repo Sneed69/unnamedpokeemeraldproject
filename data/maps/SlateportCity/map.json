@@ -278,7 +278,7 @@
       "flag": "FLAG_HIDE_SLATEPORT_CITY_TEAM_AQUA"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_MART_EMPLOYEE",
+      "graphics_id": "OBJ_EVENT_GFX_ROOFTOP_SALE_WOMAN",
       "x": 6,
       "y": 38,
       "elevation": 3,
@@ -291,7 +291,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_MART_EMPLOYEE",
+      "graphics_id": "OBJ_EVENT_GFX_ROOFTOP_SALE_WOMAN",
       "x": 5,
       "y": 51,
       "elevation": 3,
@@ -318,10 +318,10 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_WOMAN_5",
-      "x": 4,
-      "y": 47,
+      "x": 3,
+      "y": 48,
       "elevation": 3,
-      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
@@ -461,15 +461,15 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_POKEFAN_F",
-      "x": 11,
-      "y": 37,
+      "x": 4,
+      "y": 47,
       "elevation": 3,
-      "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
       "movement_range_x": 1,
       "movement_range_y": 2,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "SlateportCity_EventScript_BerryPowderClerk",
+      "script": "SlateportCity_EventScript_EnergyGuruWife",
       "flag": "0"
     },
     {
@@ -672,14 +672,6 @@
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "SlateportCity_EventScript_SternsShipyardSign"
-    },
-    {
-      "type": "sign",
-      "x": 10,
-      "y": 36,
-      "elevation": 0,
-      "player_facing_dir": "BG_EVENT_PLAYER_FACING_NORTH",
-      "script": "SlateportCity_EventScript_BerryCrushRankingsSign"
     }
   ]
 }
