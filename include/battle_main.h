@@ -69,6 +69,11 @@ bool8 TryRunFromBattle(u8 battlerId);
 void SpecialStatusesClear(void);
 void SetTypeBeforeUsingMove(u16 move, u8 battlerAtk);
 
+// expanded move names
+void DestroyTypeIcon(void);
+void LoadTypeIcon(u8 type);
+void SetTypeIconPal(u8 typeId, u8 spriteId);
+
 extern struct MultiPartnerMenuPokemon gMultiPartnerParty[MULTI_PARTY_SIZE];
 
 extern const struct SpriteTemplate gUnusedBattleInitSprite;

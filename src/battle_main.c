@@ -12,6 +12,7 @@
 #include "battle_scripts.h"
 #include "battle_setup.h"
 #include "battle_tower.h"
+#include "pokemon_summary_screen.h"
 #include "battle_util.h"
 #include "berry.h"
 #include "bg.h"
@@ -237,6 +238,7 @@ EWRAM_DATA bool8 gHasFetchedBall = FALSE;
 EWRAM_DATA u8 gLastUsedBall = 0;
 EWRAM_DATA u16 gLastThrownBall = 0;
 EWRAM_DATA bool8 gSwapDamageCategory = FALSE; // Photon Geyser, Shell Side Arm, Light That Burns the Sky
+EWRAM_DATA u8 gBattleMoveTypeSpriteId = 0;
 
 void (*gPreBattleCallback1)(void);
 void (*gBattleMainFunc)(void);
@@ -4144,6 +4146,7 @@ static void HandleTurnActionSelectionState(void)
                         }
                         else if (TrySetCantSelectMoveBattleScript())
                         {
+                            DestroyTypeIcon();  // make type icon dissapear with the textboxs
                             RecordedBattle_ClearBattlerAction(gActiveBattler, 1);
                             gBattleCommunication[gActiveBattler] = STATE_SELECTION_SCRIPT;
                             *(gBattleStruct->selectionScriptFinished + gActiveBattler) = FALSE;
@@ -4153,6 +4156,7 @@ static void HandleTurnActionSelectionState(void)
                         }
                         else
                         {
+                            DestroyTypeIcon();  // make type icon dissapear with the textboxs unless a msg plays before the box is removed
                             if (!(gBattleTypeFlags & BATTLE_TYPE_PALACE))
                             {
                                 RecordedBattle_SetBattlerAction(gActiveBattler, gBattleResources->bufferB[gActiveBattler][2]);
@@ -5376,5 +5380,41 @@ void SetTotemBoost(void)
             gTotemBoosts[battlerId].statChanges[i] = *(&gSpecialVar_0x8001 + i);
             gTotemBoosts[battlerId].stats |= 0x80;  // used as a flag for the "totem flared to life" script
         }
+    }
+}
+
+// type icons
+static void SetTypeIconSpriteInvisibility(u8 spriteId, bool8 invisible)
+{
+    gSprites[spriteId].invisible = invisible;
+}
+
+void SetTypeIconPal(u8 typeId, u8 spriteId)
+{
+    struct Sprite *sprite;
+
+    sprite = &gSprites[spriteId];
+    StartSpriteAnim(sprite, typeId);
+    sprite->oam.paletteNum = sMoveTypeToOamPaletteNum[typeId];
+    SetTypeIconSpriteInvisibility(spriteId, FALSE);
+}
+
+void LoadTypeIcon(u8 type)
+{
+    if (gBattleMoveTypeSpriteId == MAX_SPRITES)
+    {
+        LoadCompressedSpriteSheet(&sSpriteSheet_MoveTypes);
+        gBattleMoveTypeSpriteId = CreateSprite(&sSpriteTemplate_MoveTypes, 216, 128, 0);
+        gSprites[gBattleMoveTypeSpriteId].oam.priority = 0;
+        SetTypeIconPal(type, gBattleMoveTypeSpriteId);
+    }
+}
+
+void DestroyTypeIcon(void)
+{
+    if (gBattleMoveTypeSpriteId != MAX_SPRITES)
+    {
+        DestroySpriteAndFreeResources(&gSprites[gBattleMoveTypeSpriteId]);
+        gBattleMoveTypeSpriteId = MAX_SPRITES;
     }
 }
