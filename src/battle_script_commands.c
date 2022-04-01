@@ -13220,8 +13220,27 @@ static void Cmd_handleballthrow(void)
     {
         u32 odds, i;
         u8 catchRate;
-    
+		
         gLastThrownBall = gLastUsedItem;
+		switch (gBattleMons[gBattlerTarget].species)
+		{
+			case SPECIES_RAYQUAZA:
+			case SPECIES_KYOGRE:
+			case SPECIES_GROUDON:
+			case SPECIES_REGIROCK:
+			case SPECIES_REGICE:
+			case SPECIES_REGISTEEL:
+			case SPECIES_REGIELEKI:
+			case SPECIES_REGIDRAGO:
+			case SPECIES_REGIGIGAS:
+				if (gBattleMons[gBattlerTarget].hp * 3 > gBattleMons[gBattlerTarget].maxHP)
+				{
+					BtlController_EmitBallThrowAnim(BUFFER_A, BALL_TRAINER_BLOCK);
+					MarkBattlerForControllerExec(gActiveBattler);
+					gBattlescriptCurrInstr = BattleScript_LegendaryBallBlock;
+					return;
+				}
+		}
         if (gBattleTypeFlags & BATTLE_TYPE_SAFARI)
             catchRate = gBattleStruct->safariCatchFactor * 1275 / 100;
         else
@@ -13366,9 +13385,9 @@ static void Cmd_handleballthrow(void)
                 else if (i < 2000)
                     ballAddition = 0;
                 else if (i < 3000)
-                    ballAddition = 20;
+                    ballMultiplier = 20;
                 else
-                    ballAddition = 30;
+                    ballMultiplier = 30;
             #elif B_HEAVY_BALL_MODIFIER >= GEN_4
                 if (i < 2048)
                     ballAddition = -20;

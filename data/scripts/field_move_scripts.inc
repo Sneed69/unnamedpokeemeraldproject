@@ -122,7 +122,7 @@ Text_CantStrength:
 	.string "may be able to push it aside.$"
 
 Text_StrengthActivated:
-	.string "Your Pokémon's strength made it\n"
+	.string "Your Pokémon's strength makes it\n"
 	.string "possible to push boulders around.$"
 
 EventScript_UseWaterfall::

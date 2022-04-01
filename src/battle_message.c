@@ -453,6 +453,8 @@ static const u8 sText_WallyUsedItem[] = _("Wally used\n{B_LAST_ITEM}!");
 static const u8 sText_Trainer1UsedItem[] = _("{B_TRAINER1_CLASS} {B_TRAINER1_NAME}\nused {B_LAST_ITEM}!");
 static const u8 sText_TrainerBlockedBall[] = _("The Trainer blocked the Ball!");
 static const u8 sText_DontBeAThief[] = _("Don't be a thief!");
+static const u8 sText_LegendaryFendedBallOff[] = _("{B_DEF_NAME} fended the Ball off!");
+static const u8 sText_YouMustWeakenIt[] = _("You must weaken it before\nattempting to catch it!");
 static const u8 sText_ItDodgedBall[] = _("It dodged the thrown Ball!\nThis Pokémon can't be caught!");
 static const u8 sText_YouMissedPkmn[] = _("You missed the Pokémon!");
 static const u8 sText_PkmnBrokeFree[] = _("Oh, no!\nThe Pokémon broke free!");
@@ -673,7 +675,7 @@ static const u8 sText_NoOneWillBeAbleToRun[] = _("No one will be able to run awa
 static const u8 sText_DestinyKnotActivates[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX} fell in love\nfrom the {B_LAST_ITEM}!");
 static const u8 sText_CloakedInAFreezingLight[] = _("{B_ATK_NAME_WITH_PREFIX} became cloaked\nin a freezing light!");
 static const u8 sText_StatWasNotLowered[] = _("{B_DEF_NAME_WITH_PREFIX}'s {B_BUFF1}\nwas not lowered!");
-static const u8 sText_AuraFlaredToLife[] = _("{B_DEF_NAME_WITH_PREFIX}'s aura flared to life!");
+static const u8 sText_AuraFlaredToLife[] = _("{B_DEF_NAME}'s power grows in\nits own territory!");
 static const u8 sText_AirLockActivates[] = _("The effects of weather\ndisappeared.");
 static const u8 sText_PressureActivates[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX} is exerting its\npressure!");
 static const u8 sText_DarkAuraActivates[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX} is radiating\na dark aura!");
@@ -1334,6 +1336,8 @@ const u8 *const gBattleStringsTable[BATTLESTRINGS_COUNT] =
     [STRINGID_PKMNBECAMEWEAKERTOFIRE - 12] = sText_PkmnBecameWeakerToFire,
     [STRINGID_ABOUTTOUSEPOLTERGEIST - 12] = sText_PkmnAboutToBeAttackedByItsItem,
     [STRINGID_CANTESCAPEBECAUSEOFCURRENTMOVE - 12] = sText_CantEscapeBecauseOfCurrentMove,
+    [STRINGID_LEGENDARYFENDEDBALLOFF - 12] = sText_LegendaryFendedBallOff,
+    [STRINGID_YOUMUSTWEAKENIT - 12] = sText_YouMustWeakenIt,
 };
 
 const u16 gMentalHerbCureStringIds[] = 

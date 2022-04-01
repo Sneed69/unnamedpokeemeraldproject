@@ -99,6 +99,14 @@ BattleScript_TrainerBallBlock::
 	printstring STRINGID_DONTBEATHIEF
 	waitmessage B_WAIT_TIME_LONG
 	finishaction
+	
+BattleScript_LegendaryBallBlock::
+	waitmessage B_WAIT_TIME_LONG
+	printstring STRINGID_LEGENDARYFENDEDBALLOFF
+	waitmessage B_WAIT_TIME_LONG
+	printstring STRINGID_YOUMUSTWEAKENIT
+	waitmessage B_WAIT_TIME_LONG
+	finishaction
 
 BattleScript_PlayerUsesItem::
 	moveendcase MOVEEND_MIRROR_MOVE
