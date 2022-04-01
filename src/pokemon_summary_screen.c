@@ -3707,7 +3707,7 @@ static void PrintMoveNameAndPP(u8 moveIndex)
     if (move != 0)
     {
         pp = CalculatePPWithBonus(move, summary->ppBonuses, moveIndex);
-		if (StringLength(gMoveNames[move]) < 14)
+		if (StringLength(gMoveNames[move]) < 13)
 			PrintTextOnWindow(moveNameWindowId, gMoveNames[move], 0, moveIndex * 16 + 1, 0, 1);
 		else
 			PrintNarrowTextOnWindow(moveNameWindowId, gMoveNames[move], 0, moveIndex * 16 + 1, 0, 1);
@@ -3862,6 +3862,7 @@ static void PrintNewMoveDetailsOrCancelText(void)
 {
     u8 windowId1 = AddWindowFromTemplateList(sPageMovesTemplate, PSS_DATA_WINDOW_MOVE_NAMES);
     u8 windowId2 = AddWindowFromTemplateList(sPageMovesTemplate, PSS_DATA_WINDOW_MOVE_PP);
+    u8 color;
 
     if (sMonSummaryScreen->newMove == MOVE_NONE)
     {
@@ -3872,10 +3873,15 @@ static void PrintNewMoveDetailsOrCancelText(void)
         u16 move = sMonSummaryScreen->newMove;
 
         if (sMonSummaryScreen->currPageIndex == PSS_PAGE_BATTLE_MOVES)
-            PrintTextOnWindow(windowId1, gMoveNames[move], 0, 65, 0, 6);
+            color = 6;
         else
-            PrintTextOnWindow(windowId1, gMoveNames[move], 0, 65, 0, 5);
-
+            color = 5;
+		
+		if (StringLength(gMoveNames[move]) < 13)
+			PrintTextOnWindow(windowId1, gMoveNames[move], 0, 65, 0, color);
+		else
+			PrintNarrowTextOnWindow(windowId1, gMoveNames[move], 0, 65, 0, color);
+		
         ConvertIntToDecimalStringN(gStringVar1, gBattleMoves[move].pp, STR_CONV_MODE_RIGHT_ALIGN, 2);
         DynamicPlaceholderTextUtil_Reset();
         DynamicPlaceholderTextUtil_SetPlaceholderPtr(0, gStringVar1);

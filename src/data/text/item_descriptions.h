@@ -3272,7 +3272,7 @@ static const u8 sTM98Desc[] = _(
     "lowers Sp. Atk.");
 
 static const u8 sTM99Desc[] = _(
-    "A dazzling gleam\n"
+    "A flash of light\n"
     "that damages foes.\n");
 
 static const u8 sTM100Desc[] = _(

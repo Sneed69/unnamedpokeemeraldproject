@@ -72,7 +72,7 @@ SpecialItems_Sootopolis:
     .2byte ITEM_FOCUS_SASH
     .2byte ITEM_AIR_BALLOON
     .2byte ITEM_RED_CARD
-    .2byte ITEM_EJECT_BUTTON
+    .2byte ITEM_NORMAL_GEM
     .2byte ITEM_NONE
 	release
 	end
@@ -90,7 +90,7 @@ SpecialItems_Mossdeep:
     .2byte ITEM_FOCUS_SASH
     .2byte ITEM_AIR_BALLOON
     .2byte ITEM_RED_CARD
-    .2byte ITEM_EJECT_BUTTON
+    .2byte ITEM_NORMAL_GEM
     .2byte ITEM_NONE
 	release
 	end
@@ -106,7 +106,7 @@ SpecialItems_Fortree:
     .2byte ITEM_FOCUS_SASH
     .2byte ITEM_AIR_BALLOON
     .2byte ITEM_RED_CARD
-    .2byte ITEM_EJECT_BUTTON
+    .2byte ITEM_NORMAL_GEM
     .2byte ITEM_FLUFFY_TAIL
     .2byte ITEM_NONE
 	release
@@ -121,7 +121,7 @@ SpecialItems_Fallarbor:
     .2byte ITEM_TIMER_BALL
     .2byte ITEM_FOCUS_SASH
     .2byte ITEM_RED_CARD
-    .2byte ITEM_EJECT_BUTTON
+    .2byte ITEM_NORMAL_GEM
     .2byte ITEM_FLUFFY_TAIL
     .2byte ITEM_NONE
 	release
