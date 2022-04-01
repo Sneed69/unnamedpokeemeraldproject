@@ -4754,9 +4754,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
     [MOVE_BLAZE_KICK] =
     {
         .effect = EFFECT_BURN_HIT,
-        .power = 85,
+        .power = 90,
         .type = TYPE_FIRE,
-        .accuracy = 90,
+        .accuracy = 95,
         .pp = 10,
         .secondaryEffectChance = 10,
         .target = MOVE_TARGET_SELECTED,
@@ -5243,14 +5243,10 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
 
     [MOVE_MUDDY_WATER] =
     {
-        #if B_UPDATED_MOVE_DATA >= GEN_6
-            .power = 90,
-        #else
-            .power = 95,
-        #endif
+		.power = 80,
         .effect = EFFECT_ACCURACY_DOWN_HIT,
         .type = TYPE_WATER,
-        .accuracy = 85,
+        .accuracy = 100,
         .pp = 10,
         .secondaryEffectChance = 30,
         .target = MOVE_TARGET_BOTH,

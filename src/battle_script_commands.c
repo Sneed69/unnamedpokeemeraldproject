@@ -13439,9 +13439,9 @@ static void Cmd_handleballthrow(void)
             / (3 * gBattleMons[gBattlerTarget].maxHP);
 
         if (gBattleMons[gBattlerTarget].status1 & (STATUS1_SLEEP | STATUS1_FREEZE))
-            odds *= 2;
+			odds = (odds * 25) / 10;
         if (gBattleMons[gBattlerTarget].status1 & (STATUS1_POISON | STATUS1_BURN | STATUS1_PARALYSIS | STATUS1_TOXIC_POISON))
-            odds = (odds * 15) / 10;
+			odds = (odds * 15) / 10;
 
         if (gBattleResults.catchAttempts[gLastUsedItem - FIRST_BALL] < 255)
             gBattleResults.catchAttempts[gLastUsedItem - FIRST_BALL]++;
