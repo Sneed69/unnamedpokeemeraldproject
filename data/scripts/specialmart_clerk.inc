@@ -68,6 +68,7 @@ SpecialItems_Sootopolis:
     .2byte ITEM_NET_BALL
     .2byte ITEM_DIVE_BALL
     .2byte ITEM_QUICK_BALL
+    .2byte ITEM_DREAM_BALL
     .2byte ITEM_DUSK_BALL
     .2byte ITEM_FOCUS_SASH
     .2byte ITEM_AIR_BALLOON

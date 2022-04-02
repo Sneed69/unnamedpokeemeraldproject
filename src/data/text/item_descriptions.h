@@ -108,9 +108,9 @@ static const u8 sHeavyBallDesc[] = _(
     "Pokémon.");
 
 static const u8 sDreamBallDesc[] = _(
-    "A Poké Ball used in\n"
-    "the Entree Forest.\n"
-    "It doesn't fail.");
+    "A Poké Ball that\n"
+    "works well on\n"
+    "sleeping Pokémon.");
 
 static const u8 sSafariBallDesc[] = _(
     "A special Ball that\n"
