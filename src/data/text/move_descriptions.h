@@ -250,8 +250,8 @@ static const u8 sAuroraBeamDescription[] = _(
     "beam that may lower Attack.");
 
 static const u8 sHyperBeamDescription[] = _(
-    "Powerful, but leaves the\n"
-    "user immobile the next turn.");
+    "Harshly lowers the user's\n"
+    "Defense, Sp. Def. and Speed.");
 
 static const u8 sPeckDescription[] = _(
     "Attacks the foe with a\n"
@@ -1226,12 +1226,12 @@ static const u8 sCrushClawDescription[] = _(
     "claws. May lower Defense.");
 
 static const u8 sBlastBurnDescription[] = _(
-    "Powerful, but leaves the\n"
-    "user immobile the next turn.");
+    "Harshly lowers the user's\n"
+    "Defense, Sp. Def. and Speed.");
 
 static const u8 sHydroCannonDescription[] = _(
-    "Powerful, but leaves the\n"
-    "user immobile the next turn.");
+    "Harshly lowers the user's\n"
+    "Defense, Sp. Def. and Speed.");
 
 static const u8 sMeteorMashDescription[] = _(
     "Fires a meteor-like punch.\n"
@@ -1350,8 +1350,8 @@ static const u8 sDragonClawDescription[] = _(
     "claws.");
 
 static const u8 sFrenzyPlantDescription[] = _(
-    "Powerful, but leaves the\n"
-    "user immobile the next turn.");
+    "Harshly lowers the user's\n"
+    "Defense, Sp. Def. and Speed.");
 
 static const u8 sBulkUpDescription[] = _(
     "Bulks up the body to boost\n"

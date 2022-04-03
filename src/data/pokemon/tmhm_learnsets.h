@@ -8509,6 +8509,7 @@ static const u8 sGrovyleTMHMLearnset[] =
     TMHM(TM109_SEISMIC_TOSS),
     TMHM(TM113_SOLAR_BLADE),
     TMHM(TM116_GRASSY_TERRAIN),
+    TMHM(TM_U_TURN),//change
     0xFF,
 };
 
@@ -8553,6 +8554,7 @@ static const u8 sSceptileTMHMLearnset[] =
     TMHM(TM109_SEISMIC_TOSS),
     TMHM(TM113_SOLAR_BLADE),
     TMHM(TM116_GRASSY_TERRAIN),
+    TMHM(TM_U_TURN),//change
     0xFF,
 };
 
