@@ -28,11 +28,11 @@ LilycoveCity_DepartmentStore_4F_Pokemart_AttackTMs:
 	.2byte ITEM_TM14  @ Blizzard
 	.2byte ITEM_TM25  @ Thunder
 	.2byte ITEM_TM38  @ Fire Blast
+	.2byte ITEM_TM96  @ Hurricane
 	.2byte ITEM_TM52  @ Focus Blast
 	.2byte ITEM_TM71  @ Stone Edge
-	.2byte ITEM_TM96  @ Hurricane
-	.2byte ITEM_TM98  @ Leaf Storm
-	.2byte ITEM_TM100  @ Gunk Shot
+	.2byte ITEM_TM98  @ Giga Impact
+	.2byte ITEM_TM78  @ Hyper Beam
 	.2byte ITEM_NONE
 	release
 	end
@@ -56,7 +56,7 @@ LilycoveCity_DepartmentStore_4F_Pokemart_DefenseTMs:
 	.2byte ITEM_TM63  @ Heal Bell
 	.2byte ITEM_TM51  @ Roost
 	.2byte ITEM_TM92  @ Trick Room
-	.2byte ITEM_TM120  @ Defog
+	.2byte ITEM_TM120 @ Defog
 	.2byte ITEM_NONE
 	release
 	end
@@ -80,7 +80,7 @@ LilycoveCity_DepartmentStore_4F_Pokemart_StatusTMs:
 	.2byte ITEM_TM75  @ Swords Dance
 	.2byte ITEM_TM45  @ Nasty Plot
 	.2byte ITEM_TM67  @ Iron Defense
-	.2byte ITEM_TM111  @ Amnesia
+	.2byte ITEM_TM111 @ Amnesia
 	.2byte ITEM_NONE
 	release
 	end

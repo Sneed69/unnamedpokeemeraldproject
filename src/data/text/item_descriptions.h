@@ -3169,9 +3169,9 @@ static const u8 sTM77Desc[] =  _(
     "who switch in.");
 
 static const u8 sTM78Desc[] = _(
-    "High critical-hit\n"
-    "ratio move using\n"
-    "a drilling horn.");
+    "High special power\n"
+    "but harshly lowers\n"
+    "Defenses & Speed.\n");
 
 static const u8 sTM79Desc[] = _(
     "A horrible aura\n"
@@ -3267,9 +3267,9 @@ static const u8 sTM97Desc[] = _(
     "May lower Attack.");
 
 static const u8 sTM98Desc[] = _(
-    "Enables full-power\n"
-    "attack, but sharply\n"
-    "lowers Sp. Atk.");
+    "High physical power\n"
+    "but harshly lowers\n"
+    "Defenses & Speed.\n");
 
 static const u8 sTM99Desc[] = _(
     "A flash of light\n"
