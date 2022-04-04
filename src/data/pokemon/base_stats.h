@@ -1210,9 +1210,9 @@ const struct BaseStats gBaseStats[] =
         .eggGroup1 = EGG_GROUP_FLYING,
         .eggGroup2 = EGG_GROUP_FLYING,
         #ifdef BATTLE_ENGINE
-            .abilities = {ABILITY_INNER_FOCUS, ABILITY_NONE, ABILITY_INFILTRATOR},
+            .abilities = {ABILITY_INFILTRATOR, ABILITY_NONE, ABILITY_INFILTRATOR},
         #else
-            .abilities = {ABILITY_INNER_FOCUS, ABILITY_NONE},
+            .abilities = {ABILITY_INFILTRATOR, ABILITY_NONE},
         #endif
         .bodyColor = BODY_COLOR_PURPLE,
         .noFlip = FALSE,
@@ -1248,11 +1248,11 @@ const struct BaseStats gBaseStats[] =
 
     [SPECIES_CROBAT] =
     {
-        .baseHP        = 85,
+        .baseHP        = 87,
         .baseAttack    = 90,
         .baseDefense   = 80,
         .baseSpeed     = 130,
-        .baseSpAttack  = 70,
+        .baseSpAttack  = 68,
         .baseSpDefense = 80,
         .type1 = TYPE_POISON,
         .type2 = TYPE_FLYING,
@@ -1266,9 +1266,9 @@ const struct BaseStats gBaseStats[] =
         .eggGroup1 = EGG_GROUP_FLYING,
         .eggGroup2 = EGG_GROUP_FLYING,
         #ifdef BATTLE_ENGINE
-            .abilities = {ABILITY_INNER_FOCUS, ABILITY_NONE, ABILITY_INFILTRATOR},
+            .abilities = {ABILITY_INFILTRATOR, ABILITY_NONE, ABILITY_INFILTRATOR},
         #else
-            .abilities = {ABILITY_INNER_FOCUS, ABILITY_NONE},
+            .abilities = {ABILITY_INFILTRATOR, ABILITY_NONE},
         #endif
         .bodyColor = BODY_COLOR_PURPLE,
         .noFlip = FALSE,
@@ -1287,9 +1287,6 @@ const struct BaseStats gBaseStats[] =
         .catchRate = 255,
         .expYield = 64,
         .evYield_SpAttack  = 1,
-        #ifdef ITEM_EXPANSION
-            .item2 = ITEM_ABSORB_BULB,
-        #endif
         .genderRatio = PERCENT_FEMALE(50),
         .eggCycles = 20,
         .friendship = 70,
@@ -1314,9 +1311,6 @@ const struct BaseStats gBaseStats[] =
         .catchRate = 120,
         .expYield = 138,
         .evYield_SpAttack  = 2,
-        #ifdef ITEM_EXPANSION
-            .item2 = ITEM_ABSORB_BULB,
-        #endif
         .genderRatio = PERCENT_FEMALE(50),
         .eggCycles = 20,
         .friendship = 70,
