@@ -15,6 +15,7 @@
     u16 build:3;
     u16 shiny:1;
     u16 nature:5;
+    u16 hiddenNature:5;
     u16 unused:1;
 };*/
 
@@ -3238,7 +3239,9 @@ static const struct TrainerMon sParty_Sidney[] = {
     .lvl = 46,
     .species = SPECIES_MIGHTYENA,
     .heldItem = ITEM_NONE,
-    .moves = {MOVE_ROAR, MOVE_DOUBLE_EDGE, MOVE_SAND_ATTACK, MOVE_CRUNCH}
+	.nature = NATURE_QUIRKY,
+	.hiddenNature = NATURE_ADAMANT,
+    .moves = {MOVE_HIDDEN_POWER, MOVE_NONE, MOVE_NONE, MOVE_NONE}
     },
     {
     .iv = 250,

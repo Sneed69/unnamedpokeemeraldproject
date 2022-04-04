@@ -42,6 +42,7 @@ struct TrainerMon
     u16 build:3;
     u16 shiny:1;
     u16 nature:5;
+    u8 hiddenNature:5;
     u16 unused:1;
 };
 

@@ -1921,6 +1921,12 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 fir
                 SetMonData(&party[i], MON_DATA_ABILITY_NUM, &ability);
             }
 
+            if (partyData[i].hiddenNature > 0)
+			{
+				u8 hNat = partyData[i].hiddenNature;
+                SetMonData(&party[i], MON_DATA_HIDDEN_NATURE, &hNat);
+			}
+
             if (partyData[i].ball > 0)
                 SetMonData(&party[i], MON_DATA_POKEBALL, &partyData[i].ball);
 
