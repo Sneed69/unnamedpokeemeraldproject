@@ -398,8 +398,8 @@ static const u8 sRageDescription[] = _(
     "every time it is hit.");
 
 static const u8 sTeleportDescription[] = _(
-    "A psychic move for fleeing\n"
-    "from battle instantly.");
+    "Switches the user out or\n"
+    "flees from Wild Pokémon.");
 
 static const u8 sNightShadeDescription[] = _(
     "Inflicts damage identical\n"
