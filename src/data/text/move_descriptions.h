@@ -399,7 +399,7 @@ static const u8 sRageDescription[] = _(
 
 static const u8 sTeleportDescription[] = _(
     "Switches the user out or\n"
-    "flees from Wild Pokémon.");
+    "flees from wild Pokémon.");
 
 static const u8 sNightShadeDescription[] = _(
     "Inflicts damage identical\n"
