@@ -13061,6 +13061,7 @@ static const u8 sGroudonTMHMLearnset[] =
     TMHM(TM98_GIGA_IMPACT),
     TMHM(TM104_STRENGTH),
     TMHM(TM109_SEISMIC_TOSS),
+    TMHM(TM113_SOLAR_BLADE),//change
     TMHM(TM115_STOMPING_TANTRUM),
     0xFF,
 };

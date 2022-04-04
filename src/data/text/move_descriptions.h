@@ -1298,9 +1298,9 @@ static const u8 sSignalBeamDescription[] = _(
     "may confuse the foe.");
 
 static const u8 sShadowPunchDescription[] = _(
-    "An unavoidable punch that\n"
-    "is thrown from shadows.");
-
+    "A surprising punch that\n"
+    "may lower the foe's Def.");
+	
 static const u8 sExtrasensoryDescription[] = _(
     "Attacks with a peculiar\n"
     "power. May cause flinching.");
