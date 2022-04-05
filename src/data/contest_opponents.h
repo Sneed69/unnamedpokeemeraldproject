@@ -150,9 +150,9 @@ const struct ContestWinner gDefaultContestWinners[] =
     [CONTEST_WINNER_HALL_2 - 1] = {
         .personality = 0,
         .trainerId = 0xFFFF,
-        .species = SPECIES_TROPIUS,
+        .species = SPECIES_SCIZOR,
         .contestCategory = CONTEST_CATEGORY_COOL,
-        .monName = _("Tropo"),
+        .monName = _("Slash"),
         .trainerName = _("Allan"),
         .contestRank = CONTEST_RANK_HYPER
     },
@@ -168,9 +168,9 @@ const struct ContestWinner gDefaultContestWinners[] =
     [CONTEST_WINNER_HALL_4 - 1] = {
         .personality = 0,
         .trainerId = 0xFFFF,
-        .species = SPECIES_PLUSLE,
+        .species = SPECIES_SNORLAX,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
-        .monName = _("Pulse"),
+        .monName = _("Belly"),
         .trainerName = _("Baily"),
         .contestRank = CONTEST_RANK_MASTER
     },
@@ -186,9 +186,9 @@ const struct ContestWinner gDefaultContestWinners[] =
     [CONTEST_WINNER_HALL_6 - 1] = {
         .personality = 0,
         .trainerId = 0xFFFF,
-        .species = SPECIES_ZANGOOSE,
+        .species = SPECIES_WEEZING,
         .contestCategory = CONTEST_CATEGORY_COOL,
-        .monName = _("Goozan"),
+        .monName = _("Geezan"),
         .trainerName = _("Hana"),
         .contestRank = CONTEST_RANK_HYPER
     },

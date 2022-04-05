@@ -6,16 +6,23 @@ Route114_FossilManiacsTunnel_MapScripts::
 	.byte 0
 
 Route114_FossilManiacsTunnel_OnTransition:
-	call_if_set FLAG_VISITED_MOSSDEEP_CITY, Route114_FossilManiacsTunnel_EventScript_MoveFossilManiac
-	end
-
-Route114_FossilManiacsTunnel_EventScript_MoveFossilManiac::
+	goto_if_unset FLAG_VISITED_MOSSDEEP_CITY, Route114_FossilManiacsTunnel_DoNothing
+	goto_if_unset FLAG_RECEIVED_REVIVED_FOSSIL_MON, Route114_FossilManiacsTunnel_DoNothing
 	setobjectxyperm LOCALID_FOSSIL_MANIAC, 6, 5
 	setobjectmovementtype LOCALID_FOSSIL_MANIAC, MOVEMENT_TYPE_FACE_DOWN
+	call_if_eq VAR_FOSSIL_MANIAC_STATE, 0, EventScript_SetDesertUnderpassCommentReady
+	end
+	
+EventScript_SetDesertUnderpassCommentReady::
+	setvar VAR_FOSSIL_MANIAC_STATE, 1
 	return
-
+	
+Route114_FossilManiacsTunnel_DoNothing::
+	end
+	
 Route114_FossilManiacsTunnel_OnLoad:
 	call_if_unset FLAG_VISITED_MOSSDEEP_CITY, Route114_FossilManiacsTunnel_EventScript_CloseDesertUnderpass
+	call_if_unset FLAG_RECEIVED_REVIVED_FOSSIL_MON, Route114_FossilManiacsTunnel_EventScript_CloseDesertUnderpass
 	end
 
 Route114_FossilManiacsTunnel_EventScript_CloseDesertUnderpass::
