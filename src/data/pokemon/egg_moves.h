@@ -210,6 +210,7 @@ const u16 gEggMoves[] = {
         MOVE_LEECH_SEED,
         MOVE_ROTOTILLER,
         MOVE_FELL_STINGER,
+        MOVE_CURSE,
         MOVE_GRASSY_TERRAIN),
 
     egg_moves(VENONAT,
