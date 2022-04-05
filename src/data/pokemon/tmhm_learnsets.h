@@ -224,6 +224,7 @@ static const u8 sCharizardTMHMLearnset[] =
     TMHM(TM106_OUTRAGE),
     TMHM(TM109_SEISMIC_TOSS),
     TMHM(TM120_DEFOG),
+    TMHM(TM102_DRACO_METEOR),//change
     0xFF,
 };
 
@@ -4403,6 +4404,7 @@ static const u8 sGyaradosTMHMLearnset[] =
     TMHM(TM104_STRENGTH),
     TMHM(TM106_OUTRAGE),
     TMHM(TM107_WATERFALL),
+    TMHM(TM102_DRACO_METEOR),//change
     0xFF,
 };
 
@@ -15942,6 +15944,8 @@ static const u8 sYanmegaTMHMLearnset[] =
     TMHM(TM95_AIR_SLASH),
     TMHM(TM98_GIGA_IMPACT),
     TMHM(TM120_DEFOG),
+    TMHM(TM102_DRACO_METEOR),//change
+    TMHM(TM_DRAGON_PULSE),//change
     0xFF,
 };
 
@@ -23656,7 +23660,7 @@ static const u8 sAmauraTMHMLearnset[] =
     TMHM(TM66_EARTH_POWER),
     TMHM(TM67_IRON_DEFENSE),
     TMHM(TM68_ENCORE),
-    TMHM(TM69_ROCK_POLISH),
+    //TMHM(TM69_ROCK_POLISH), change
     TMHM(TM70_IRON_HEAD),
     TMHM(TM71_STONE_EDGE),
     TMHM(TM72_AVALANCHE),
@@ -23670,6 +23674,8 @@ static const u8 sAmauraTMHMLearnset[] =
     TMHM(TM90_SUBSTITUTE),
     TMHM(TM91_FLASH_CANNON),
     TMHM(TM106_OUTRAGE),
+    TMHM(TM102_DRACO_METEOR),//change
+    TMHM(TM59_DRAGON_PULSE),
     0xFF,
 };
 
@@ -23699,7 +23705,6 @@ static const u8 sAurorusTMHMLearnset[] =
     TMHM(TM66_EARTH_POWER),
     TMHM(TM67_IRON_DEFENSE),
     TMHM(TM68_ENCORE),
-    TMHM(TM69_ROCK_POLISH),
     TMHM(TM70_IRON_HEAD),
     TMHM(TM71_STONE_EDGE),
     TMHM(TM72_AVALANCHE),
@@ -23714,6 +23719,8 @@ static const u8 sAurorusTMHMLearnset[] =
     TMHM(TM91_FLASH_CANNON),
     TMHM(TM98_GIGA_IMPACT),
     TMHM(TM106_OUTRAGE),
+    TMHM(TM102_DRACO_METEOR),//change
+    TMHM(TM59_DRAGON_PULSE),
     0xFF,
 };
 
