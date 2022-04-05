@@ -1442,7 +1442,7 @@ const struct BaseStats gBaseStats[] =
         .eggGroup1 = EGG_GROUP_BUG,
         .eggGroup2 = EGG_GROUP_BUG,
         #ifdef BATTLE_ENGINE
-            .abilities = {ABILITY_COMPOUND_EYES, ABILITY_TINTED_LENS, ABILITY_RUN_AWAY},
+            .abilities = {ABILITY_TINTED_LENS, ABILITY_TINTED_LENS, ABILITY_RUN_AWAY},
         #else
             .abilities = {ABILITY_COMPOUND_EYES, ABILITY_NONE, ABILITY_RUN_AWAY},
         #endif
@@ -1454,8 +1454,8 @@ const struct BaseStats gBaseStats[] =
     {
         .baseHP        = 70,
         .baseAttack    = 65,
-        .baseDefense   = 60,
-        .baseSpeed     = 90,
+        .baseDefense   = 70,
+        .baseSpeed     = 100,
         .baseSpAttack  = 90,
         .baseSpDefense = 75,
         .type1 = TYPE_BUG,
@@ -1464,9 +1464,6 @@ const struct BaseStats gBaseStats[] =
         .expYield = 158,
         .evYield_Speed     = 1,
         .evYield_SpAttack  = 1,
-        #ifdef ITEM_EXPANSION
-            .item2 = ITEM_SHED_SHELL,
-        #endif
         .genderRatio = PERCENT_FEMALE(50),
         .eggCycles = 20,
         .friendship = 70,
@@ -1474,7 +1471,7 @@ const struct BaseStats gBaseStats[] =
         .eggGroup1 = EGG_GROUP_BUG,
         .eggGroup2 = EGG_GROUP_BUG,
         #ifdef BATTLE_ENGINE
-            .abilities = {ABILITY_SHIELD_DUST, ABILITY_TINTED_LENS, ABILITY_WONDER_SKIN},
+            .abilities = {ABILITY_TINTED_LENS, ABILITY_TINTED_LENS, ABILITY_WONDER_SKIN},
         #else
             .abilities = {ABILITY_SHIELD_DUST, ABILITY_NONE},
         #endif
@@ -1485,7 +1482,7 @@ const struct BaseStats gBaseStats[] =
     [SPECIES_DIGLETT] =
     {
         .baseHP        = 10,
-        .baseAttack    = 55,
+        .baseAttack    = 60,
         .baseDefense   = 25,
         .baseSpeed     = 95,
         .baseSpAttack  = 35,
@@ -1495,7 +1492,6 @@ const struct BaseStats gBaseStats[] =
         .catchRate = 255,
         .expYield = 53,
         .evYield_Speed     = 1,
-        .item2 = ITEM_SOFT_SAND,
         .genderRatio = PERCENT_FEMALE(50),
         .eggCycles = 20,
         .friendship = 70,
@@ -1503,7 +1499,7 @@ const struct BaseStats gBaseStats[] =
         .eggGroup1 = EGG_GROUP_FIELD,
         .eggGroup2 = EGG_GROUP_FIELD,
         #ifdef BATTLE_ENGINE
-            .abilities = {ABILITY_SAND_VEIL, ABILITY_ARENA_TRAP, ABILITY_SAND_FORCE},
+            .abilities = {ABILITY_ARENA_TRAP, ABILITY_ARENA_TRAP, ABILITY_SAND_FORCE},
         #else
             .abilities = {ABILITY_SAND_VEIL, ABILITY_ARENA_TRAP},
         #endif
@@ -1528,7 +1524,6 @@ const struct BaseStats gBaseStats[] =
         .catchRate = 50,
         .expYield = 149,
         .evYield_Speed     = 2,
-        .item2 = ITEM_SOFT_SAND,
         .genderRatio = PERCENT_FEMALE(50),
         .eggCycles = 20,
         .friendship = 70,
@@ -1536,7 +1531,7 @@ const struct BaseStats gBaseStats[] =
         .eggGroup1 = EGG_GROUP_FIELD,
         .eggGroup2 = EGG_GROUP_FIELD,
         #ifdef BATTLE_ENGINE
-            .abilities = {ABILITY_SAND_VEIL, ABILITY_ARENA_TRAP, ABILITY_SAND_FORCE},
+            .abilities = {ABILITY_ARENA_TRAP, ABILITY_ARENA_TRAP, ABILITY_SAND_FORCE},
         #else
             .abilities = {ABILITY_SAND_VEIL, ABILITY_ARENA_TRAP},
         #endif
@@ -1557,7 +1552,6 @@ const struct BaseStats gBaseStats[] =
         .catchRate = 255,
         .expYield = 58,
         .evYield_Speed     = 1,
-        .item2 = ITEM_QUICK_CLAW,
         .genderRatio = PERCENT_FEMALE(50),
         .eggCycles = 20,
         .friendship = 70,
@@ -1586,7 +1580,6 @@ const struct BaseStats gBaseStats[] =
         .catchRate = 90,
         .expYield = 154,
         .evYield_Speed     = 2,
-        .item2 = ITEM_QUICK_CLAW,
         .genderRatio = PERCENT_FEMALE(50),
         .eggCycles = 20,
         .friendship = 70,
