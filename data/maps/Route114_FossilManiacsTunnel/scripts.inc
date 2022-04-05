@@ -48,6 +48,16 @@ Route114_FossilManiacsTunnel_EventScript_FossilManiac::
 	goto_if_eq VAR_RESULT, TRUE, Route114_FossilManiacsTunnel_EventScript_PlayerHasFossil
 	checkitem ITEM_CLAW_FOSSIL
 	goto_if_eq VAR_RESULT, TRUE, Route114_FossilManiacsTunnel_EventScript_PlayerHasFossil
+	checkitem ITEM_HELIX_FOSSIL
+	goto_if_eq VAR_RESULT, TRUE, Route114_FossilManiacsTunnel_EventScript_PlayerHasFossil
+	checkitem ITEM_DOME_FOSSIL
+	goto_if_eq VAR_RESULT, TRUE, Route114_FossilManiacsTunnel_EventScript_PlayerHasFossil
+	checkitem ITEM_OLD_AMBER
+	goto_if_eq VAR_RESULT, TRUE, Route114_FossilManiacsTunnel_EventScript_PlayerHasFossil
+	checkitem ITEM_JAW_FOSSIL
+	goto_if_eq VAR_RESULT, TRUE, Route114_FossilManiacsTunnel_EventScript_PlayerHasFossil
+	checkitem ITEM_SAIL_FOSSIL
+	goto_if_eq VAR_RESULT, TRUE, Route114_FossilManiacsTunnel_EventScript_PlayerHasFossil
 	msgbox Route114_FossilManiacsTunnel_Text_LookInDesertForFossils, MSGBOX_DEFAULT
 	release
 	end
@@ -79,7 +89,7 @@ Route114_FossilManiacsTunnel_Text_DevonCorpRevivingFossils:
 	.string "What are you going to do with that\n"
 	.string "Fossil?\p"
 	.string "From what I've heard, Devon is doing\n"
-	.string "research on reviving POKéMON from\l"
+	.string "research on reviving Pokémon from\l"
 	.string "Fossils…\p"
 	.string "I love my Fossils, so I would never\n"
 	.string "do anything like that…$"
