@@ -308,11 +308,28 @@ static u8 ChooseMoveOrAction_Singles(void)
         // Consider switching if your mon with truant is bodied by Protect spam.
         // Or is using a double turn semi invulnerable move(such as Fly) and is faster.
         if (GetBattlerAbility(sBattler_AI) == ABILITY_TRUANT
-            && IsTruantMonVulnerable(sBattler_AI, gBattlerTarget)
-            && gDisableStructs[sBattler_AI].truantCounter
-            && gBattleMons[sBattler_AI].hp >= gBattleMons[sBattler_AI].maxHP / 2)
+            //&& IsTruantMonVulnerable(sBattler_AI, gBattlerTarget)
+            && gDisableStructs[sBattler_AI].truantCounter)
+            //&& gBattleMons[sBattler_AI].hp >= gBattleMons[sBattler_AI].maxHP / 2)
         {
-            if (GetMostSuitableMonToSwitchInto() != PARTY_SIZE)
+			u16 damage = 0;
+			if (gSideStatuses[GetBattlerSide(sBattler_AI)] & SIDE_STATUS_STEALTH_ROCK)				
+				damage += GetStealthHazardDamage(gBattleMoves[MOVE_STEALTH_ROCK].type, sBattler_AI);
+			if (gSideStatuses[GetBattlerSide(sBattler_AI)] & SIDE_STATUS_SPIKES)
+				switch (gSideTimers[GetBattlerSide(sBattler_AI)].spikesAmount)
+				{
+					case 1:
+						damage += gBattleMons[sBattler_AI].maxHP / 8;
+						break;
+					case 2:
+						damage += gBattleMons[sBattler_AI].maxHP / 6;
+						break;
+					case 3:
+						damage += gBattleMons[sBattler_AI].maxHP / 4;
+						break;
+				}
+			
+            if (damage < gBattleMons[sBattler_AI].hp && GetMostSuitableMonToSwitchInto() != PARTY_SIZE)
             {
                 AI_THINKING_STRUCT->switchMon = TRUE;
                 return AI_CHOICE_SWITCH;

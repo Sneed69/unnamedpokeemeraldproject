@@ -8164,10 +8164,10 @@ const struct BaseStats gBaseStats[] =
     [SPECIES_SHEDINJA] =
     {
         .baseHP        = 1,
-        .baseAttack    = 90,
+        .baseAttack    = 120,
         .baseDefense   = 45,
         .baseSpeed     = 40,
-        .baseSpAttack  = 30,
+        .baseSpAttack  = 120,
         .baseSpDefense = 30,
         .type1 = TYPE_BUG,
         .type2 = TYPE_GHOST,
