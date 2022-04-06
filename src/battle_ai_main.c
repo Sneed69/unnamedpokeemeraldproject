@@ -638,6 +638,15 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
                 case EFFECT_CURSE:
                     if (IS_BATTLER_OF_TYPE(battlerAtk, TYPE_GHOST))
                         score += 5;
+                case EFFECT_HAIL:
+                    if (!IS_BATTLER_OF_TYPE(battlerDef, TYPE_ICE) && AI_DATA->defHoldEffect != HOLD_EFFECT_SAFETY_GOGGLES)
+                        score += 5;
+                case EFFECT_SANDSTORM:
+                    if (!IS_BATTLER_OF_TYPE(battlerDef, TYPE_STEEL)
+						&& !IS_BATTLER_OF_TYPE(battlerDef, TYPE_ROCK)
+						&& !IS_BATTLER_OF_TYPE(battlerDef, TYPE_GROUND)
+						&& AI_DATA->defHoldEffect != HOLD_EFFECT_SAFETY_GOGGLES)
+                        score += 5;
                 }
                 if (effectiveness != AI_EFFECTIVENESS_x2 && effectiveness != AI_EFFECTIVENESS_x4 && !IS_MOVE_STATUS(move))
                     return 0;

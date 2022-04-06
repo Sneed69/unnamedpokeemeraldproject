@@ -14,6 +14,7 @@
 #include "constants/items.h"
 #include "constants/moves.h"
 #include "constants/battle_move_effects.h"
+#include "constants/hold_effects.h"
 
 // this file's functions
 static bool8 HasSuperEffectiveMoveAgainstOpponents(bool8 noRng);
@@ -78,18 +79,21 @@ static bool8 ShouldSwitchIfWonderGuard(void)
     s32 lastId; // + 1
     struct Pokemon *party = NULL;
     u16 move;
+	u32 holdEffect;
 
     if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE)
         return FALSE;
 
     opposingPosition = BATTLE_OPPOSITE(GetBattlerPosition(gActiveBattler));
+	opposingBattler = GetBattlerAtPosition(opposingPosition);
 
-    if (GetBattlerAbility(GetBattlerAtPosition(opposingPosition)) != ABILITY_WONDER_GUARD)
+    if (GetBattlerAbility(opposingBattler) != ABILITY_WONDER_GUARD)
         return FALSE;
 
     // Check if Pokemon has a super effective move.
-    for (opposingBattler = GetBattlerAtPosition(opposingPosition), i = 0; i < MAX_MON_MOVES; i++)
+    for (i = 0; i < MAX_MON_MOVES; i++)
     {
+		holdEffect = GetBattlerHoldEffect(opposingBattler, TRUE);
         move = gBattleMons[gActiveBattler].moves[i];
         if (move != MOVE_NONE)
         {
@@ -111,6 +115,15 @@ static bool8 ShouldSwitchIfWonderGuard(void)
                 case EFFECT_CURSE:
                     if (IS_BATTLER_OF_TYPE(gActiveBattler, TYPE_GHOST))
 						return FALSE;
+				case EFFECT_HAIL:
+					if (!IS_BATTLER_OF_TYPE(opposingBattler, TYPE_ICE) && holdEffect != HOLD_EFFECT_SAFETY_GOGGLES)
+						return FALSE;
+				case EFFECT_SANDSTORM:
+					if (!(IS_BATTLER_OF_TYPE(opposingBattler, TYPE_ROCK)
+						|| IS_BATTLER_OF_TYPE(opposingBattler, TYPE_STEEL)
+						|| IS_BATTLER_OF_TYPE(opposingBattler, TYPE_GROUND))
+						&& holdEffect != HOLD_EFFECT_SAFETY_GOGGLES)
+						return FALSE;
 			}
         }
     }
@@ -123,6 +136,40 @@ static bool8 ShouldSwitchIfWonderGuard(void)
     else
         party = gEnemyParty;
 
+
+	if (holdEffect != HOLD_EFFECT_SAFETY_GOGGLES)
+		for (i = firstId; i < lastId; i++)
+		{
+			u16 ability;
+			
+			if (GetMonData(&party[i], MON_DATA_HP) == 0)
+				continue;
+			if (GetMonData(&party[i], MON_DATA_SPECIES2) == SPECIES_NONE)
+				continue;
+			if (GetMonData(&party[i], MON_DATA_SPECIES2) == SPECIES_EGG)
+				continue;
+			if (i == gBattlerPartyIndexes[gActiveBattler])
+				continue;
+			
+			ability = GetMonAbility(&party[i]);
+			if (ability == ABILITY_SNOW_WARNING && !IS_BATTLER_OF_TYPE(opposingBattler, TYPE_ICE))
+			{
+				// We found a mon.
+				*(gBattleStruct->AI_monToSwitchIntoId + gActiveBattler) = i;
+				BtlController_EmitTwoReturnValues(BUFFER_B, B_ACTION_SWITCH, 0);
+				return TRUE;
+			}
+			if (ability == ABILITY_SAND_STREAM
+				&& !IS_BATTLER_OF_TYPE(opposingBattler, TYPE_ROCK)
+				&& !IS_BATTLER_OF_TYPE(opposingBattler, TYPE_STEEL)
+				&& !IS_BATTLER_OF_TYPE(opposingBattler, TYPE_GROUND))
+			{
+				// We found a mon.
+				*(gBattleStruct->AI_monToSwitchIntoId + gActiveBattler) = i;
+				BtlController_EmitTwoReturnValues(BUFFER_B, B_ACTION_SWITCH, 0);
+				return TRUE;
+			}
+		}
     // Find a Pokemon in the party that has a super effective move.
     for (i = firstId; i < lastId; i++)
     {
@@ -134,9 +181,10 @@ static bool8 ShouldSwitchIfWonderGuard(void)
             continue;
         if (i == gBattlerPartyIndexes[gActiveBattler])
             continue;
-
-        for (opposingBattler = GetBattlerAtPosition(opposingPosition), j = 0; j < MAX_MON_MOVES; j++)
+			
+        for (j = 0; j < MAX_MON_MOVES; j++)
         {
+			holdEffect = GetBattlerHoldEffect(opposingBattler, TRUE);
             move = GetMonData(&party[i], MON_DATA_MOVE1 + j);
             if (move != MOVE_NONE)
             {
@@ -162,6 +210,15 @@ static bool8 ShouldSwitchIfWonderGuard(void)
 						// We found a mon.
 						*(gBattleStruct->AI_monToSwitchIntoId + gActiveBattler) = i;
 						BtlController_EmitTwoReturnValues(BUFFER_B, B_ACTION_SWITCH, 0);
+						return TRUE;
+				case EFFECT_HAIL:
+					if (!IS_BATTLER_OF_TYPE(opposingBattler, TYPE_ICE) && holdEffect != HOLD_EFFECT_SAFETY_GOGGLES)
+						return TRUE;
+				case EFFECT_SANDSTORM:
+					if (!(IS_BATTLER_OF_TYPE(opposingBattler, TYPE_ROCK)
+						|| IS_BATTLER_OF_TYPE(opposingBattler, TYPE_STEEL)
+						|| IS_BATTLER_OF_TYPE(opposingBattler, TYPE_GROUND))
+						&& holdEffect != HOLD_EFFECT_SAFETY_GOGGLES)
 						return TRUE;
 				}
             }
@@ -702,12 +759,30 @@ static u32 GestBestMonOffensive(struct Pokemon *party, int firstId, int lastId, 
 static u32 GetWonderGuardCounter(struct Pokemon *party, int firstId, int lastId, u8 invalidMons, u32 opposingBattler)
 {
     int i, j;
-	
+	u32 holdEffect = GetBattlerHoldEffect(opposingBattler, TRUE);
+	if (holdEffect != HOLD_EFFECT_SAFETY_GOGGLES)
+		for (i = firstId; i < lastId; i++)
+		{
+			u16 ability;
+			
+			if (gBitTable[i] & invalidMons)
+				continue;
+			
+			ability = GetMonAbility(&party[i]);
+			if (ability == ABILITY_SNOW_WARNING && !IS_BATTLER_OF_TYPE(opposingBattler, TYPE_ICE))
+				return i;
+			if (ability == ABILITY_SAND_STREAM
+				&& !IS_BATTLER_OF_TYPE(opposingBattler, TYPE_ROCK)
+				&& !IS_BATTLER_OF_TYPE(opposingBattler, TYPE_STEEL)
+				&& !IS_BATTLER_OF_TYPE(opposingBattler, TYPE_GROUND))
+				return i;
+		}
+		
     for (i = firstId; i < lastId; i++)
-    {
+    {		
         if (gBitTable[i] & invalidMons)
             continue;
-
+		
         for (j = 0; j < MAX_MON_MOVES; j++)
         {
             u32 move = GetMonData(&party[i], MON_DATA_MOVE1 + j);
@@ -736,6 +811,15 @@ static u32 GetWonderGuardCounter(struct Pokemon *party, int firstId, int lastId,
 					type1 = gBaseStats[species].type1;
 					type2 = gBaseStats[species].type2;
 					if (type1 == TYPE_GHOST || type2 == TYPE_GHOST)
+						return i;
+				case EFFECT_HAIL:
+					if (!IS_BATTLER_OF_TYPE(opposingBattler, TYPE_ICE) && holdEffect != HOLD_EFFECT_SAFETY_GOGGLES)
+						return i;
+				case EFFECT_SANDSTORM:
+					if (!(IS_BATTLER_OF_TYPE(opposingBattler, TYPE_ROCK)
+						|| IS_BATTLER_OF_TYPE(opposingBattler, TYPE_STEEL)
+						|| IS_BATTLER_OF_TYPE(opposingBattler, TYPE_GROUND))
+						&& holdEffect != HOLD_EFFECT_SAFETY_GOGGLES)
 						return i;
 			}
         }
