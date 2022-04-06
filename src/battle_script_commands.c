@@ -2623,6 +2623,7 @@ void StealTargetItem(u8 battlerStealer, u8 battlerItem)
     gBattleStruct->choicedMove[battlerItem] = 0;
     
     TrySaveExchangedItem(battlerItem, gLastUsedItem);
+    TrySaveExchangedItem(battlerStealer, ITEM_NONE);
 }
 
 #define INCREMENT_RESET_RETURN                  \
@@ -3162,6 +3163,7 @@ void SetMoveEffect(bool32 primary, u32 certain)
                               | BATTLE_TYPE_FRONTIER
                               | BATTLE_TYPE_LINK
                               | BATTLE_TYPE_RECORDED_LINK
+                              | BATTLE_TYPE_TRAINER
                               | BATTLE_TYPE_SECRET_BASE)))
                     {
                         gBattlescriptCurrInstr++;
