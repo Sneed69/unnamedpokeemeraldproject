@@ -89,11 +89,11 @@ static bool8 ShouldSwitchIfWonderGuard(void)
 
     if (GetBattlerAbility(opposingBattler) != ABILITY_WONDER_GUARD)
         return FALSE;
+	holdEffect = GetBattlerHoldEffect(opposingBattler, TRUE);
 
     // Check if Pokemon has a super effective move.
     for (i = 0; i < MAX_MON_MOVES; i++)
     {
-		holdEffect = GetBattlerHoldEffect(opposingBattler, TRUE);
         move = gBattleMons[gActiveBattler].moves[i];
         if (move != MOVE_NONE)
         {
@@ -184,7 +184,6 @@ static bool8 ShouldSwitchIfWonderGuard(void)
 			
         for (j = 0; j < MAX_MON_MOVES; j++)
         {
-			holdEffect = GetBattlerHoldEffect(opposingBattler, TRUE);
             move = GetMonData(&party[i], MON_DATA_MOVE1 + j);
             if (move != MOVE_NONE)
             {
@@ -213,12 +212,18 @@ static bool8 ShouldSwitchIfWonderGuard(void)
 						return TRUE;
 				case EFFECT_HAIL:
 					if (!IS_BATTLER_OF_TYPE(opposingBattler, TYPE_ICE) && holdEffect != HOLD_EFFECT_SAFETY_GOGGLES)
+						// We found a mon.
+						*(gBattleStruct->AI_monToSwitchIntoId + gActiveBattler) = i;
+						BtlController_EmitTwoReturnValues(BUFFER_B, B_ACTION_SWITCH, 0);
 						return TRUE;
 				case EFFECT_SANDSTORM:
 					if (!(IS_BATTLER_OF_TYPE(opposingBattler, TYPE_ROCK)
 						|| IS_BATTLER_OF_TYPE(opposingBattler, TYPE_STEEL)
 						|| IS_BATTLER_OF_TYPE(opposingBattler, TYPE_GROUND))
 						&& holdEffect != HOLD_EFFECT_SAFETY_GOGGLES)
+						// We found a mon.
+						*(gBattleStruct->AI_monToSwitchIntoId + gActiveBattler) = i;
+						BtlController_EmitTwoReturnValues(BUFFER_B, B_ACTION_SWITCH, 0);
 						return TRUE;
 				}
             }
