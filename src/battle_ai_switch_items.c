@@ -13,6 +13,7 @@
 #include "constants/item_effects.h"
 #include "constants/items.h"
 #include "constants/moves.h"
+#include "constants/battle_move_effects.h"
 
 // this file's functions
 static bool8 HasSuperEffectiveMoveAgainstOpponents(bool8 noRng);
@@ -94,6 +95,23 @@ static bool8 ShouldSwitchIfWonderGuard(void)
         {
             if (AI_GetTypeEffectiveness(move, gActiveBattler, opposingBattler) >= UQ_4_12(2.0))
                 return FALSE;
+			switch (gBattleMoves[move].effect)
+			{
+                case EFFECT_POISON:
+                case EFFECT_TOXIC:
+					if (!AI_CanPoison(gActiveBattler, opposingBattler, gBattleMons[opposingBattler].ability, move, MOVE_NONE))
+						break;
+                case EFFECT_WILL_O_WISP:
+					if (!AI_CanBeBurned(opposingBattler, gBattleMons[opposingBattler].ability))
+						break;
+                case EFFECT_LEECH_SEED:
+					if (gStatuses3[opposingBattler] & STATUS3_LEECHSEED || IS_BATTLER_OF_TYPE(opposingBattler, TYPE_GRASS))
+						break;
+					return FALSE;
+                case EFFECT_CURSE:
+                    if (IS_BATTLER_OF_TYPE(gActiveBattler, TYPE_GHOST))
+						return FALSE;
+			}
         }
     }
 
@@ -129,6 +147,23 @@ static bool8 ShouldSwitchIfWonderGuard(void)
                     BtlController_EmitTwoReturnValues(BUFFER_B, B_ACTION_SWITCH, 0);
                     return TRUE;
                 }
+				switch (gBattleMoves[move].effect)
+				{
+					case EFFECT_POISON:
+					case EFFECT_TOXIC:
+						if (!AI_CanPoison(gActiveBattler, opposingBattler, gBattleMons[opposingBattler].ability, move, MOVE_NONE))
+							break;
+					case EFFECT_WILL_O_WISP:
+						if (!AI_CanBeBurned(opposingBattler, gBattleMons[opposingBattler].ability))
+							break;
+					case EFFECT_LEECH_SEED:
+						if (gStatuses3[opposingBattler] & STATUS3_LEECHSEED || IS_BATTLER_OF_TYPE(opposingBattler, TYPE_GRASS))
+							break;
+						// We found a mon.
+						*(gBattleStruct->AI_monToSwitchIntoId + gActiveBattler) = i;
+						BtlController_EmitTwoReturnValues(BUFFER_B, B_ACTION_SWITCH, 0);
+						return TRUE;
+				}
             }
         }
     }
@@ -664,6 +699,50 @@ static u32 GestBestMonOffensive(struct Pokemon *party, int firstId, int lastId, 
     return PARTY_SIZE;
 }
 
+static u32 GetWonderGuardCounter(struct Pokemon *party, int firstId, int lastId, u8 invalidMons, u32 opposingBattler)
+{
+    int i, j;
+	
+    for (i = firstId; i < lastId; i++)
+    {
+        if (gBitTable[i] & invalidMons)
+            continue;
+
+        for (j = 0; j < MAX_MON_MOVES; j++)
+        {
+            u32 move = GetMonData(&party[i], MON_DATA_MOVE1 + j);
+			u16 species;
+			u8 type1;
+			u8 type2;
+            if (move != MOVE_NONE && gBattleMoves[move].power != 0 && AI_GetTypeEffectiveness(move, gActiveBattler, opposingBattler) >= UQ_4_12(2.0))
+            {
+				return i;
+            }
+			switch (gBattleMoves[move].effect)
+			{
+				case EFFECT_POISON:
+				case EFFECT_TOXIC:
+					if (!AI_CanPoison(gActiveBattler, opposingBattler, gBattleMons[opposingBattler].ability, move, MOVE_NONE))
+						break;
+				case EFFECT_WILL_O_WISP:
+					if (!AI_CanBeBurned(opposingBattler, gBattleMons[opposingBattler].ability))
+						break;
+				case EFFECT_LEECH_SEED:
+					if (gStatuses3[opposingBattler] & STATUS3_LEECHSEED || IS_BATTLER_OF_TYPE(opposingBattler, TYPE_GRASS))
+						break;
+					return i;
+				case EFFECT_CURSE:
+					species = GetMonData(&party[i], MON_DATA_SPECIES);
+					type1 = gBaseStats[species].type1;
+					type2 = gBaseStats[species].type2;
+					if (type1 == TYPE_GHOST || type2 == TYPE_GHOST)
+						return i;
+			}
+        }
+    }
+    return PARTY_SIZE;
+}
+
 static u32 GetBestMonDmg(struct Pokemon *party, int firstId, int lastId, u8 invalidMons, u32 opposingBattler)
 {
     int i, j;
@@ -752,6 +831,13 @@ u8 GetMostSuitableMonToSwitchInto(void)
         else
             aliveCount++;
     }
+
+	if (gBattleMons[opposingBattler].ability == ABILITY_WONDER_GUARD)
+	{
+		bestMonId = GetWonderGuardCounter(party, firstId, lastId, invalidMons, opposingBattler);
+		if (bestMonId != PARTY_SIZE)
+			return bestMonId;
+	}
 
     bestMonId = GetBestMonBatonPass(party, firstId, lastId, invalidMons, aliveCount);
     if (bestMonId != PARTY_SIZE)
