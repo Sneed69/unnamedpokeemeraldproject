@@ -65,7 +65,6 @@
 #include "window.h"
 #include "constants/battle.h"
 #include "constants/battle_frontier.h"
-#include "constants/easy_chat.h"
 #include "constants/field_effects.h"
 #include "constants/item_effects.h"
 #include "constants/items.h"
@@ -98,7 +97,7 @@ enum
 
 struct PartyMenuBoxInfoRects
 {
-    void (*blitFunc)(u8, u8, u8, u8, u8, u8);
+    void (*blitFunc)(u8, u8, u8, u8, u8, bool8);
     u8 dimensions[24];
     u8 descTextLeft;
     u8 descTextTop;
@@ -379,8 +378,8 @@ static void Task_ChooseMonForMoveRelearner(u8);
 static void CB2_ChooseMonForMoveRelearner(void);
 static void Task_BattlePyramidChooseMonHeldItems(u8);
 static void ShiftMoveSlot(struct Pokemon*, u8, u8);
-static void BlitBitmapToPartyWindow_LeftColumn(u8, u8, u8, u8, u8, u8);
-static void BlitBitmapToPartyWindow_RightColumn(u8, u8, u8, u8, u8, u8);
+static void BlitBitmapToPartyWindow_LeftColumn(u8, u8, u8, u8, u8, bool8);
+static void BlitBitmapToPartyWindow_RightColumn(u8, u8, u8, u8, u8, bool8);
 static void BlitBitmapToPartyWindow_Equal(u8, u8, u8, u8, u8, u8); //Custom party menu
 static void CursorCb_Summary(u8);
 static void CursorCb_Switch(u8);
@@ -405,6 +404,7 @@ static bool8 SetUpFieldMove_Surf(void);
 static bool8 SetUpFieldMove_Fly(void);
 static bool8 SetUpFieldMove_Waterfall(void);
 static bool8 SetUpFieldMove_Dive(void);
+void TryItemHoldFormChange(struct Pokemon *mon);
 
 // static const data
 #include "data/pokemon/tutor_learnsets.h"
@@ -1805,6 +1805,7 @@ static void GiveItemToMon(struct Pokemon *mon, u16 item)
     itemBytes[0] = item;
     itemBytes[1] = item >> 8;
     SetMonData(mon, MON_DATA_HELD_ITEM, itemBytes);
+    TryItemHoldFormChange(&gPlayerParty[gPartyMenu.slotId]);
 }
 
 static u8 TryTakeMonItem(struct Pokemon* mon)
@@ -1818,6 +1819,7 @@ static u8 TryTakeMonItem(struct Pokemon* mon)
 
     item = ITEM_NONE;
     SetMonData(mon, MON_DATA_HELD_ITEM, &item);
+    TryItemHoldFormChange(&gPlayerParty[gPartyMenu.slotId]);
     return 2;
 }
 
@@ -2116,7 +2118,7 @@ static void CreateCancelConfirmWindows(bool8 chooseHalf)
             AddTextPrinterParameterized4(confirmWindowId, FONT_SMALL, mainOffset, 1, 0, 0, sFontColorTable[0], TEXT_SKIP_DRAW, gMenuText_Confirm);
             PutWindowTilemap(confirmWindowId);
             CopyWindowToVram(confirmWindowId, COPYWIN_GFX);
-            cancelWindowId = AddWindow(&sMultiCancelButtonWindowTemplate);
+            cancelWindowId = AddWindow(&sMultiCancelButtonWindowTemplate_equal);
             offset = 0;
         }
         else if (gPartyMenu.layout == PARTY_LAYOUT_SINGLE)
@@ -2170,30 +2172,30 @@ static void BlitBitmapToPartyWindow(u8 windowId, const u8 *b, u8 c, u8 x, u8 y, 
     }
 }
 
-static void BlitBitmapToPartyWindow_LeftColumn(u8 windowId, u8 x, u8 y, u8 width, u8 height, u8 isEgg)
+static void BlitBitmapToPartyWindow_LeftColumn(u8 windowId, u8 x, u8 y, u8 width, u8 height, bool8 hideHP)
 {
     if (width == 0 && height == 0)
     {
         width = 10;
         height = 7;
     }
-    if (isEgg == FALSE)
-        BlitBitmapToPartyWindow(windowId, sMainSlotTileNums, 10, x, y, width, height);
+    if (hideHP == FALSE)
+        BlitBitmapToPartyWindow(windowId, sSlotTilemap_Main, 10, x, y, width, height);
     else
-        BlitBitmapToPartyWindow(windowId, sMainSlotTileNums_Egg, 10, x, y, width, height);
+        BlitBitmapToPartyWindow(windowId, sSlotTilemap_MainNoHP, 10, x, y, width, height);
 }
 
-static void BlitBitmapToPartyWindow_RightColumn(u8 windowId, u8 x, u8 y, u8 width, u8 height, u8 isEgg)
+static void BlitBitmapToPartyWindow_RightColumn(u8 windowId, u8 x, u8 y, u8 width, u8 height, bool8 hideHP)
 {
     if (width == 0 && height == 0)
     {
         width = 18;
         height = 3;
     }
-    if (isEgg == FALSE)
-        BlitBitmapToPartyWindow(windowId, sOtherSlotsTileNums, 18, x, y, width, height);
+    if (hideHP == FALSE)
+        BlitBitmapToPartyWindow(windowId, sSlotTilemap_Wide, 18, x, y, width, height);
     else
-        BlitBitmapToPartyWindow(windowId, sOtherSlotsTileNums_Egg, 18, x, y, width, height);
+        BlitBitmapToPartyWindow(windowId, sSlotTilemap_WideNoHP, 18, x, y, width, height);
 }
 
 static void DrawEmptySlot(u8 windowId)
@@ -2201,7 +2203,7 @@ static void DrawEmptySlot(u8 windowId)
     if (gPartyMenu.layout == PARTY_LAYOUT_SINGLE) //Custom party menu
         BlitBitmapToPartyWindow(windowId, sEqualEmptySlotTileNums, 14, 0, 0, 14, 5);//
     else
-        BlitBitmapToPartyWindow(windowId, sEmptySlotTileNums, 18, 0, 0, 18, 3);
+        BlitBitmapToPartyWindow(windowId, sSlotTilemap_WideEmpty, 18, 0, 0, 18, 3);
 }
 
 //Custom party menu
@@ -4883,6 +4885,18 @@ bool8 MonKnowsMove(struct Pokemon *mon, u16 move)
     return FALSE;
 }
 
+bool8 BoxMonKnowsMove(struct BoxPokemon *mon, u16 move)
+{
+    u8 i;
+
+    for (i = 0; i < MAX_MON_MOVES; i++)
+    {
+        if (GetMonData(mon, MON_DATA_MOVE1 + i) == move)
+            return TRUE;
+    }
+    return FALSE;
+}
+
 static void DisplayLearnMoveMessage(const u8 *str)
 {
     StringExpandPlaceholders(gStringVar4, str);
@@ -5560,6 +5574,22 @@ void ItemUseCB_FormChange_ConsumedOnUse(u8 taskId, TaskFunc task)
 {
     if (TryItemUseFormChange(taskId, task))
         RemoveBagItem(gSpecialVar_ItemId, 1);
+}
+void TryItemHoldFormChange(struct Pokemon *mon)
+{
+    u16 species = GetMonData(mon, MON_DATA_SPECIES);
+    u16 targetSpecies = GetFormChangeTargetSpecies(mon, FORM_ITEM_HOLD_ABILITY, 0);
+    if (targetSpecies == SPECIES_NONE)
+        targetSpecies = GetFormChangeTargetSpecies(mon, FORM_ITEM_HOLD, 0);
+    if (targetSpecies != SPECIES_NONE)
+    {
+        PlayCry_NormalNoDucking(targetSpecies, 0, CRY_VOLUME_RS, CRY_VOLUME_RS);
+        SetMonData(mon, MON_DATA_SPECIES, &targetSpecies);
+        FreeAndDestroyMonIconSprite(&gSprites[sPartyMenuBoxes[gPartyMenu.slotId].monSpriteId]);
+        CreatePartyMonIconSpriteParameterized(targetSpecies, GetMonData(mon, MON_DATA_PERSONALITY, NULL), &sPartyMenuBoxes[gPartyMenu.slotId], 1);
+        CalculateMonStats(mon);
+        UpdatePartyMonHeldItemSprite(mon, &sPartyMenuBoxes[gPartyMenu.slotId]);
+    }
 }
 
 #undef tState

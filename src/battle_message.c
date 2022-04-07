@@ -425,6 +425,8 @@ static const u8 sText_ExclamationMark4[] = _("!");
 static const u8 sText_ExclamationMark5[] = _("!");
 static const u8 sText_Accuracy[] = _("accuracy");
 static const u8 sText_Evasiveness[] = _("evasiveness");
+static const u8 sText_PkmnTookTargetHigh[] = _("{B_ATK_NAME_WITH_PREFIX} took {B_DEF_NAME_WITH_PREFIX}\ninto the air!");
+static const u8 sText_TargetTooHeavy[] = _("But the target\nwas too heavy!");
 
 const u8 * const gStatNamesTable[NUM_BATTLE_STATS] =
 {
@@ -509,13 +511,13 @@ static const u8 sText_TwoInGameTrainersDefeated[];
 static const u8 sText_Trainer2LoseText[];
 
 // New battle strings.
-static const s8 sText_EnduredViaSturdy[] = _("{B_DEF_NAME_WITH_PREFIX} ENDURED\nthe hit using {B_DEF_ABILITY}!");
+static const s8 sText_EnduredViaSturdy[] = _("{B_DEF_NAME_WITH_PREFIX} Endured\nthe hit using {B_DEF_ABILITY}!");
 static const s8 sText_PowerHerbActivation[] = _("{B_ATK_NAME_WITH_PREFIX} became fully charged\ndue to its {B_LAST_ITEM}!");
 static const s8 sText_HurtByItem[] = _("{B_ATK_NAME_WITH_PREFIX} was hurt\nby its {B_LAST_ITEM}!");
 static const s8 sText_BadlyPoisonedByItem[] = _("{B_EFF_NAME_WITH_PREFIX} was badly \npoisoned by the {B_LAST_ITEM}!");
 static const s8 sText_BurnedByItem[] = _("{B_EFF_NAME_WITH_PREFIX} was burned\nby the {B_LAST_ITEM}!");
 static const s8 sText_TargetAbilityActivates[] = _("{B_DEF_NAME_WITH_PREFIX}'s {B_DEF_ABILITY} activates!");
-static const u8 sText_GravityIntensified[] = _("GRAVITY intensified!");
+static const u8 sText_GravityIntensified[] = _("Gravity intensified!");
 static const u8 sText_TargetIdentified[] = _("{B_DEF_NAME_WITH_PREFIX} was \nidentified!");
 static const u8 sText_TargetWokeUp[] = _("{B_DEF_NAME_WITH_PREFIX} woke up!");
 static const u8 sText_PkmnStoleAndAteItem[] = _("{B_ATK_NAME_WITH_PREFIX} stole and\nate {B_DEF_NAME_WITH_PREFIX}'s {B_LAST_ITEM}!");
@@ -615,9 +617,9 @@ static const u8 sText_TargetStatWontGoHigher[] = _("{B_DEF_NAME_WITH_PREFIX}'s {
 static const u8 sText_PkmnMoveBouncedViaAbility[] = _("{B_ATK_NAME_WITH_PREFIX}'s {B_CURRENT_MOVE} was\nbounced back by {B_DEF_NAME_WITH_PREFIX}'s\l{B_DEF_ABILITY}!");
 static const u8 sText_ImposterTransform[] = _("{B_ATK_NAME_WITH_PREFIX} transformed into\n{B_DEF_NAME_WITH_PREFIX} using {B_LAST_ABILITY}!");
 static const u8 sText_NotDoneYet[] = _("This move effect is not done yet!\p");
-static const u8 sText_PkmnBlewAwayToxicSpikes[] = _("{B_ATK_NAME_WITH_PREFIX} blew away\nTOXIC SPIKES!");
-static const u8 sText_PkmnBlewAwayStickyWeb[] = _("{B_ATK_NAME_WITH_PREFIX} blew away\nSTICKY WEB!");
-static const u8 sText_PkmnBlewAwayStealthRock[] = _("{B_ATK_NAME_WITH_PREFIX} blew away\nSTEALTH ROCK!");
+static const u8 sText_PkmnBlewAwayToxicSpikes[] = _("{B_ATK_NAME_WITH_PREFIX} blew away\nToxic Spikes!");
+static const u8 sText_PkmnBlewAwayStickyWeb[] = _("{B_ATK_NAME_WITH_PREFIX} blew away\nSticky Web!");
+static const u8 sText_PkmnBlewAwayStealthRock[] = _("{B_ATK_NAME_WITH_PREFIX} blew away\nStealth Rock!");
 static const u8 sText_StickyWebUsed[] = _("A sticky web spreads out on the\nground around {B_DEF_TEAM2} team!");
 static const u8 sText_QuashSuccess[] = _("The opposing {B_ATK_NAME_WITH_PREFIX}'s move was postponed!");
 static const u8 sText_IonDelugeOn[] = _("A deluge of ions showers\nthe battlefield!");
@@ -1338,6 +1340,8 @@ const u8 *const gBattleStringsTable[BATTLESTRINGS_COUNT] =
     [STRINGID_CANTESCAPEBECAUSEOFCURRENTMOVE - 12] = sText_CantEscapeBecauseOfCurrentMove,
     [STRINGID_LEGENDARYFENDEDBALLOFF - 12] = sText_LegendaryFendedBallOff,
     [STRINGID_YOUMUSTWEAKENIT - 12] = sText_YouMustWeakenIt,
+    [STRINGID_PKMNTOOKTARGETHIGH - 12] = sText_PkmnTookTargetHigh,
+    [STRINGID_TARGETTOOHEAVY - 12] = sText_TargetTooHeavy,
 };
 
 const u16 gMentalHerbCureStringIds[] = 
@@ -1552,6 +1556,7 @@ const u16 gFirstTurnOfTwoStringIds[] =
     [B_MSG_TURN1_PHANTOM_FORCE] = STRINGID_VANISHEDINSTANTLY,
     [B_MSG_TURN1_GEOMANCY]      = STRINGID_PKNMABSORBINGPOWER,
     [B_MSG_TURN1_FREEZE_SHOCK]  = STRINGID_CLOAKEDINAFREEZINGLIGHT,
+    [B_MSG_TURN1_SKY_DROP]      = STRINGID_PKMNTOOKTARGETHIGH,
 };
 
 // Index copied from move's index in sTrappingMoves
