@@ -1756,6 +1756,8 @@ static const u8 sPersianTMHMLearnset[] =
     TMHM(TM100_GUNK_SHOT),
     TMHM(TM108_FOUL_PLAY),
     TMHM(TM111_AMNESIA),
+    TMHM(TM_STONE_EDGE),
+    TMHM(TM75_SWORDS_DANCE),
     0xFF,
 };
 

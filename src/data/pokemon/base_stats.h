@@ -1542,14 +1542,14 @@ const struct BaseStats gBaseStats[] =
     [SPECIES_MEOWTH] =
     {
         .baseHP        = 40,
-        .baseAttack    = 45,
-        .baseDefense   = 35,
+        .baseAttack    = 55,
+        .baseDefense   = 45,
         .baseSpeed     = 90,
         .baseSpAttack  = 40,
         .baseSpDefense = 40,
         .type1 = TYPE_NORMAL,
         .type2 = TYPE_NORMAL,
-        .catchRate = 255,
+        .catchRate = 155,
         .expYield = 58,
         .evYield_Speed     = 1,
         .genderRatio = PERCENT_FEMALE(50),
@@ -1558,23 +1558,19 @@ const struct BaseStats gBaseStats[] =
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroup1 = EGG_GROUP_FIELD,
         .eggGroup2 = EGG_GROUP_FIELD,
-        #ifdef BATTLE_ENGINE
-            .abilities = {ABILITY_PICKUP, ABILITY_TECHNICIAN, ABILITY_UNNERVE},
-        #else
-            .abilities = {ABILITY_PICKUP, ABILITY_NONE},
-        #endif
+		.abilities = {ABILITY_SUPER_LUCK, ABILITY_NONE, ABILITY_NONE},
         .bodyColor = BODY_COLOR_YELLOW,
         .noFlip = FALSE,
     },
 
     [SPECIES_PERSIAN] =
     {
-        .baseHP        = 65,
-        .baseAttack    = 70,
-        .baseDefense   = 60,
+        .baseHP        = 75,
+        .baseAttack    = 100,
+        .baseDefense   = 75,
         .baseSpeed     = 115,
         .baseSpAttack  = 65,
-        .baseSpDefense = 65,
+        .baseSpDefense = 70,
         .type1 = TYPE_NORMAL,
         .type2 = TYPE_NORMAL,
         .catchRate = 90,
@@ -1586,16 +1582,12 @@ const struct BaseStats gBaseStats[] =
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroup1 = EGG_GROUP_FIELD,
         .eggGroup2 = EGG_GROUP_FIELD,
-        #ifdef BATTLE_ENGINE
-            .abilities = {ABILITY_LIMBER, ABILITY_TECHNICIAN, ABILITY_UNNERVE},
-        #else
-            .abilities = {ABILITY_LIMBER, ABILITY_NONE},
-        #endif
+		.abilities = {ABILITY_SUPER_LUCK, ABILITY_NONE, ABILITY_NONE},
         .bodyColor = BODY_COLOR_YELLOW,
         .noFlip = FALSE,
     },
 
-    [SPECIES_PSYDUCK] =
+    [SPECIES_PSYDUCK] =//skip
     {
         .baseHP        = 50,
         .baseAttack    = 52,

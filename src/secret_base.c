@@ -1481,7 +1481,7 @@ static u8 TrySaveFriendsSecretBase(struct SecretBase *secretBase, u32 version, u
 
 // Moves the registered secret bases to the beginning of the array, so that
 // they won't be forgotten during record mixing.
-static void SortSecretBasesByRegistryStatus(void)
+/*static void SortSecretBasesByRegistryStatus(void)
 {
     u8 i;
     u8 j;
@@ -1500,7 +1500,7 @@ static void SortSecretBasesByRegistryStatus(void)
             }
         }
     }
-}
+}*/
 
 // Used to save a record mixing friends' bases other than their own
 // registryStatus is so registered bases can be attempted first
@@ -1773,7 +1773,7 @@ void ReceiveSecretBasesData(void *secretBases, size_t recordSize, u8 linkIdx)
             }
         }
 
-        SortSecretBasesByRegistryStatus();
+        //SortSecretBasesByRegistryStatus();
         for (i = 1; i < SECRET_BASES_COUNT; i++)
         {
             // Unmark "new" bases, they've been saved now and are no longer important

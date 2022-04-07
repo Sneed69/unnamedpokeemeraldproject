@@ -102,7 +102,7 @@ static void PlayerPCProcessMenuInput(u8 taskId);
 static void InitItemStorageMenu(u8 taskId, u8 var);
 
 static u8 GetMailboxMailCount(void);
-static void Mailbox_CompactMailList(void);
+//static void Mailbox_CompactMailList(void);
 static void Mailbox_DrawMailboxMenu(u8 taskId);
 static void Mailbox_ProcessInput(u8 taskId);
 static void Mailbox_PrintWhatToDoWithPlayerMailText(u8 taskId);
@@ -462,7 +462,7 @@ static void PlayerPC_Mailbox(u8 taskId)
         gPlayerPCItemPageInfo.cursorPos = 0;
         gPlayerPCItemPageInfo.itemsAbove = 0;
         gPlayerPCItemPageInfo.scrollIndicatorTaskId = TASK_NONE;
-        Mailbox_CompactMailList();
+        //Mailbox_CompactMailList();
         SetPlayerPCListCount(taskId);
         if (MailboxMenu_Alloc(gPlayerPCItemPageInfo.count) == TRUE)
         {
@@ -671,7 +671,7 @@ static u8 GetMailboxMailCount(void)
     return mailInPC;
 }
 
-static void Mailbox_CompactMailList(void)
+/*static void Mailbox_CompactMailList(void)
 {
     struct Mail temp;
     u8 i, j;
@@ -684,7 +684,7 @@ static void Mailbox_CompactMailList(void)
                 SWAP(gSaveBlock1Ptr->mail[i], gSaveBlock1Ptr->mail[j], temp);
         }
     }
-}
+}*/
 
 static void Mailbox_DrawMailboxMenu(u8 taskId)
 {
@@ -858,7 +858,7 @@ static void Mailbox_DoMailMoveToBag(u8 taskId)
     {
         DisplayItemMessageOnField(taskId, gText_MailToBagMessageErased, Mailbox_Cancel);
         ClearMail(mail);
-        Mailbox_CompactMailList();
+        //Mailbox_CompactMailList();
         gPlayerPCItemPageInfo.count--;
         if (gPlayerPCItemPageInfo.count < (gPlayerPCItemPageInfo.pageItems + gPlayerPCItemPageInfo.itemsAbove) && gPlayerPCItemPageInfo.itemsAbove != 0)
             gPlayerPCItemPageInfo.itemsAbove--;
@@ -906,7 +906,7 @@ static void Mailbox_UpdateMailListAfterDeposit(void)
     taskId = CreateTask(Mailbox_HandleReturnToProcessInput, 0);
     prevCount = gPlayerPCItemPageInfo.count;
     gPlayerPCItemPageInfo.count = GetMailboxMailCount();
-    Mailbox_CompactMailList();
+    //Mailbox_CompactMailList();
     if (prevCount != gPlayerPCItemPageInfo.count && (gPlayerPCItemPageInfo.count < (gPlayerPCItemPageInfo.pageItems + gPlayerPCItemPageInfo.itemsAbove))
        && gPlayerPCItemPageInfo.itemsAbove != 0)
         gPlayerPCItemPageInfo.itemsAbove--;

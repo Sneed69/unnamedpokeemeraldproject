@@ -3230,7 +3230,7 @@ const struct PokedexEntry gPokedexEntries[] =
 
     [NATIONAL_DEX_DUSTOX] =
     {
-        .categoryName = _("Poison Moth"),
+        .categoryName = _("Mind Moth"),
         .height = 12,
         .weight = 316,
         .description = gDustoxPokedexText,

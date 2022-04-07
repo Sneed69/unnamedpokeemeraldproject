@@ -614,8 +614,8 @@ static const u8 sExplosionDescription[] = _(
     "makes the user faint.");
 
 static const u8 sFurySwipesDescription[] = _(
-    "Rakes the foe with sharp\n"
-    "claws, etc., 2 to 5 times.");
+    "Rakes the foe 2 to 5 times.\n"
+    "Has a high critical-hit ratio.");
 
 static const u8 sBonemerangDescription[] = _(
     "Throws a bone that strikes\n"
