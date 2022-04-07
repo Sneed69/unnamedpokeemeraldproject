@@ -2619,7 +2619,6 @@ static const u8 sPonytaTMHMLearnset[] =
     TMHM(TM93_WILD_CHARGE),
     TMHM(TM97_PLAY_ROUGH),
     TMHM(TM104_STRENGTH),
-    TMHM(TM113_SOLAR_BLADE),
     0xFF,
 };
 
