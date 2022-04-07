@@ -2422,8 +2422,8 @@ static const u8 sSpiritShackleDescription[] = _(
     "no longer escape.");
 
 static const u8 sDarkestLariatDescription[] = _(
-    "Swings the arms to strike\n"
-    "It ignores stat changes.");
+    "Ignores stat changes to\n"
+    "Defense and evasion.");
 
 static const u8 sSparklingAriaDescription[] = _(
     "Sings with bubbles. Cures\n"
