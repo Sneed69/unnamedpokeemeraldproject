@@ -3845,7 +3845,6 @@ static void Cmd_getexp(void)
     s32 i; // also used as stringId
     u8 holdEffect;
     s32 sentIn;
-    s32 viaExpShare = 0;
     u32 *exp = &gBattleStruct->expValue;
 
     gBattlerFainted = GetBattlerForBattleScript(gBattlescriptCurrInstr[1]);
@@ -3867,6 +3866,7 @@ static void Cmd_getexp(void)
         }
         else
         {
+			VarSet(VAR_TEMP_1, 0);
             gBattleScripting.getexpState++;
             gBattleStruct->givenExpMons |= gBitTable[gBattlerPartyIndexes[gBattlerFainted]];
         }
@@ -3895,32 +3895,11 @@ static void Cmd_getexp(void)
             #else
                 calculatedExp = gBaseStats[gBattleMons[gBattlerFainted].species].expYield * gBattleMons[gBattlerFainted].level / 7;
             #endif
-
-            #if B_SPLIT_EXP < GEN_6
-                if (viaExpShare) // at least one mon is getting exp via exp share
-                {
-                    *exp = SAFE_DIV(calculatedExp / 2, viaSentIn);
-                    if (*exp == 0)
-                        *exp = 1;
-
-                    gExpShareExp = calculatedExp / 2 / viaExpShare;
-                    if (gExpShareExp == 0)
-                        gExpShareExp = 1;
-                }
-                else
-                {
-                    *exp = SAFE_DIV(calculatedExp, viaSentIn);
-                    if (*exp == 0)
-                        *exp = 1;
-                    gExpShareExp = 0;
-                }
-            #else
-                *exp = calculatedExp;
-                gExpShareExp = calculatedExp / 2;
-                if (gExpShareExp == 0)
-                    gExpShareExp = 1;
-            #endif
-
+			*exp = calculatedExp;
+			gExpShareExp = calculatedExp / 2;
+			if (gExpShareExp == 0)
+				gExpShareExp = 1;
+            
             gBattleScripting.getexpState++;
             gBattleStruct->expGetterMonId = 0;
             gBattleStruct->sentInPokes = sentIn;
@@ -4036,8 +4015,11 @@ static void Cmd_getexp(void)
 
 						PrepareStringBattle(STRINGID_PKMNGAINEDEXP, gBattleStruct->expGetterBattlerId);
 					}
-					else
-						viaExpShare++;
+					else if (VarGet(VAR_TEMP_1) == FALSE)
+					{
+						PrepareStringBattle(STRINGID_TEAMGAINEDEXP, gBattleStruct->expGetterBattlerId);
+						VarSet(VAR_TEMP_1, TRUE);
+					}
                     MonGainEVs(&gPlayerParty[gBattleStruct->expGetterMonId], gBattleMons[gBattlerFainted].species);
                 }
                 gBattleStruct->sentInPokes >>= 1;
@@ -4125,8 +4107,6 @@ static void Cmd_getexp(void)
             else
             {
 				gBattleScripting.getexpState = 6; // we're done
-				if (gSaveBlock2Ptr->expShare)
-					PrepareStringBattle(STRINGID_TEAMGAINEDEXP, gBattleStruct->expGetterBattlerId);
 			}
         }
         break;
