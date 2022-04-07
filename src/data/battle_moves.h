@@ -5364,7 +5364,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
         .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED,
-        .split = SPLIT_SPECIAL,
+        .split = SPLIT_PHYSICAL,
     },
 
     [MOVE_BULK_UP] =

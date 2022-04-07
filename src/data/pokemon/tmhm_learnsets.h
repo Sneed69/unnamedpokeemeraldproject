@@ -95,6 +95,8 @@ static const u8 sVenusaurTMHMLearnset[] =
     TMHM(TM111_AMNESIA),
     TMHM(TM115_STOMPING_TANTRUM),
     TMHM(TM116_GRASSY_TERRAIN),
+    TMHM(TM80_ROCK_SLIDE),
+    TMHM(TM39_ROCK_TOMB),
     0xFF,
 };
 
