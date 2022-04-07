@@ -58,7 +58,7 @@ gBirchDexRatingText_LessThan100::
 
 gBirchDexRatingText_LessThan110::
 	.string "You've finally reached\n"
-	.string "the 100-kind mark.\p"
+	.string "the 200-kind mark.\p"
 	.string "This is an impressive Pokédex!$"
 
 gBirchDexRatingText_LessThan120::
@@ -66,7 +66,7 @@ gBirchDexRatingText_LessThan120::
 	.string "found under rocks or in trees.$"
 
 gBirchDexRatingText_LessThan130::
-	.string "You should get some more Pokémon\n"
+	.string "You could get some more Pokémon\n"
 	.string "by trading with others.$"
 
 gBirchDexRatingText_LessThan140::
