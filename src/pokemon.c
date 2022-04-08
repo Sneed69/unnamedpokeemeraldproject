@@ -50,6 +50,8 @@
 #include "constants/trainers.h"
 #include "constants/weather.h"
 #include "constants/battle_config.h"
+#include "printf.h"
+#include "mgba.h"
 
 struct SpeciesItem
 {
@@ -6536,7 +6538,15 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, u8 mode, u16 evolutionItem, u
                     }
                 }
                 break;
-            }
+			case EVO_LEVEL_ABILITY_1:
+                if (gEvolutionTable[species][i].param <= level && GetMonData(mon, MON_DATA_ABILITY_NUM, NULL) == 0)
+					targetSpecies = gEvolutionTable[species][i].targetSpecies;
+				break;
+			case EVO_LEVEL_ABILITY_2:
+                if (gEvolutionTable[species][i].param <= level && GetMonData(mon, MON_DATA_ABILITY_NUM, NULL) == 1)
+					targetSpecies = gEvolutionTable[species][i].targetSpecies;
+				break;
+			}
         }
         break;
     case EVO_MODE_TRADE:

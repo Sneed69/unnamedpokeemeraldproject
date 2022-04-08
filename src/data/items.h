@@ -6789,7 +6789,7 @@ const struct Item gItems[] =
 
     [ITEM_HEAVY_DUTY_BOOTS] =
     {
-        .name = _("Heavy-DtyBts"),
+        .name = _("Heavy Duty Boots"),
         .itemId = ITEM_HEAVY_DUTY_BOOTS,
         .price = 4000,
         .holdEffect = HOLD_EFFECT_HEAVY_DUTY_BOOTS,

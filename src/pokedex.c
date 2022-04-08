@@ -7888,7 +7888,7 @@ static u8 PrintPreEvolutions(u8 taskId, u16 species)
     u8 base_y = 51;
     u8 base_y_offset = 9;
     u8 base_i = 0;
-    u8 depth_x = 16;
+    u8 depth_x = 8;
 
     u16 preEvolutionOne = 0;
     u16 preEvolutionTwo = 0;
@@ -7997,7 +7997,7 @@ static u8 PrintEvolutionTargetSpeciesAndMethod(u8 taskId, u16 species, u8 depth,
     u8 base_y_offset = 9;
     u8 base_i = 0;
     u8 times = 0;
-    u8 depth_x = 16;
+    u8 depth_x = 8;
     bool8 isEevee = FALSE;
 
     #ifdef POKEMON_EXPANSION
@@ -8189,6 +8189,16 @@ static u8 PrintEvolutionTargetSpeciesAndMethod(u8 taskId, u16 species, u8 depth,
                 mapHeader = Overworld_GetMapHeaderByGroupAndId(gEvolutionTable[species][i].param >> 8, gEvolutionTable[species][i].param & 0xFF);
                 GetMapName(gStringVar2, mapHeader->regionMapSectionId, 0);
                 StringExpandPlaceholders(gStringVar4, gText_EVO_SPECIFIC_MAP );
+                break;
+            case EVO_LEVEL_ABILITY_1:
+                ConvertIntToDecimalStringN(gStringVar2, gEvolutionTable[species][i].param, STR_CONV_MODE_LEADING_ZEROS, EVO_SCREEN_LVL_DIGITS); //level
+                StringExpandPlaceholders(gStringVar3, gAbilityNames[GetAbilityBySpecies(species, 0)]);
+                StringExpandPlaceholders(gStringVar4, gText_EVO_ABILITY);
+                break;
+            case EVO_LEVEL_ABILITY_2:
+                ConvertIntToDecimalStringN(gStringVar2, gEvolutionTable[species][i].param, STR_CONV_MODE_LEADING_ZEROS, EVO_SCREEN_LVL_DIGITS); //level
+                StringExpandPlaceholders(gStringVar3, gAbilityNames[GetAbilityBySpecies(species, 1)]);
+                StringExpandPlaceholders(gStringVar4, gText_EVO_ABILITY);
                 break;
         #endif
         default:

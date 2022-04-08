@@ -645,6 +645,7 @@ extern const u8 gText_EVO_SPECIFIC_MON_IN_PARTY[];
 extern const u8 gText_EVO_LEVEL_DARK_TYPE_MON_IN_PARTY[];
 extern const u8 gText_EVO_TRADE_SPECIFIC_MON[];
 extern const u8 gText_EVO_SPECIFIC_MAP[];
+extern const u8 gText_EVO_ABILITY[];
 extern const u8 gText_EVO_UNKNOWN[];
 extern const u8 gText_EVO_NONE[];
 
