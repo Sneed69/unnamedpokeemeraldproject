@@ -5503,7 +5503,7 @@ static void Task_LoadSearchMenu(u8 taskId)
                 DecompressAndLoadBgGfxUsingHeap(3, gPokedexMenuSearch_Gfx, 0x2000, 0, 0);
             else
                 DecompressAndLoadBgGfxUsingHeap(3, gPokedexMenuSearch_DECA_Gfx, 0x2000, 0, 0);
-            if (!IsNationalPokedexEnabled())
+            if (IsNationalPokedexEnabled())
                 CopyToBgTilemapBuffer(3, gPokedexScreenSearchHoenn_Tilemap, 0, 0);
             else
                 CopyToBgTilemapBuffer(3, gPokedexScreenSearchNational_Tilemap, 0, 0);
@@ -5973,7 +5973,7 @@ static void DrawSearchMenuItemBgHighlight(u8 searchBg, bool8 unselected, bool8 d
         SetSearchRectHighlight(highlightFlags, sSearchMenuItems[SEARCH_TYPE_LEFT].titleBgX, sSearchMenuItems[SEARCH_TYPE_LEFT].titleBgY, sSearchMenuItems[SEARCH_TYPE_LEFT].titleBgWidth);
         break;
     case SEARCH_BG_OK:
-        if (!IsNationalPokedexEnabled())
+        if (IsNationalPokedexEnabled())
             SetSearchRectHighlight(highlightFlags, sSearchMenuItems[searchBg - SEARCH_TOPBAR_COUNT].titleBgX, sSearchMenuItems[searchBg - SEARCH_TOPBAR_COUNT].titleBgY - 2, sSearchMenuItems[searchBg - SEARCH_TOPBAR_COUNT].titleBgWidth);
         else
             SetSearchRectHighlight(highlightFlags, sSearchMenuItems[searchBg - SEARCH_TOPBAR_COUNT].titleBgX, sSearchMenuItems[searchBg - SEARCH_TOPBAR_COUNT].titleBgY, sSearchMenuItems[searchBg - SEARCH_TOPBAR_COUNT].titleBgWidth);
