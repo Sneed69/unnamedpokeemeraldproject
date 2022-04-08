@@ -108,6 +108,7 @@ u8 ScriptGiveMonWithIvsAndNature(u16 species, u8 level, u16 item, u8 *IVs, u8 na
     heldItem[0] = item;
     heldItem[1] = item >> 8;
     SetMonData(&mon, MON_DATA_HELD_ITEM, heldItem);
+    SetMonData(&mon, MON_DATA_ABILITY_NUM, 0);
 	for (i = 0; i < NUM_STATS; i++)
 		SetMonData(&mon, MON_DATA_HP_IV + i, &IVs[i]);
     sentToPc = GiveMonToPlayer(&mon);
