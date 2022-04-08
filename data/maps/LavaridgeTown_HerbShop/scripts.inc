@@ -23,36 +23,36 @@ LavaridgeTown_HerbShop_EventScript_ClerkBerry::
 
 	.align 2
 LavaridgeTown_HerbShop_Pokemart:
-	.2byte ITEM_ENERGY_POWDER
-	.2byte ITEM_ENERGY_ROOT
-	.2byte ITEM_HEAL_POWDER
-	.2byte ITEM_REVIVAL_HERB
 	.2byte ITEM_WHITE_HERB
-	.2byte ITEM_MENTAL_HERB
 	.2byte ITEM_POWER_HERB
+	.2byte ITEM_MENTAL_HERB
+	.2byte ITEM_GRASSY_SEED
+	.2byte ITEM_ELECTRIC_SEED
+	.2byte ITEM_PSYCHIC_SEED
+	.2byte ITEM_MISTY_SEED
 	.2byte ITEM_NONE
 	release
 	end
 	
 	.align 2
 LavaridgeTown_HerbShop_Berries:
-	.2byte 551
-	.2byte 552
-	.2byte 553
-	.2byte 554
-	.2byte 555
-	.2byte 556
-	.2byte 557
-	.2byte 558
-	.2byte 559
-	.2byte 560
-	.2byte 561
-	.2byte 562
-	.2byte 563
-	.2byte 564
-	.2byte 565
-	.2byte 566
-	.2byte 567
+	.2byte ITEM_OCCA_BERRY
+	.2byte ITEM_PASSHO_BERRY
+	.2byte ITEM_WACAN_BERRY
+	.2byte ITEM_RINDO_BERRY
+	.2byte ITEM_YACHE_BERRY
+	.2byte ITEM_CHOPLE_BERRY
+	.2byte ITEM_KEBIA_BERRY
+	.2byte ITEM_SHUCA_BERRY
+	.2byte ITEM_COBA_BERRY
+	.2byte ITEM_PAYAPA_BERRY
+	.2byte ITEM_TANGA_BERRY
+	.2byte ITEM_CHARTI_BERRY
+	.2byte ITEM_KASIB_BERRY
+	.2byte ITEM_HABAN_BERRY
+	.2byte ITEM_COLBUR_BERRY
+	.2byte ITEM_BABIRI_BERRY
+	.2byte ITEM_ROSELI_BERRY
 	.2byte ITEM_NONE
 	release
 	end
@@ -96,7 +96,6 @@ LavaridgeTown_HerbShop_Text_ExplainCharcoal:
 	.string "moves.$"
 
 LavaridgeTown_HerbShop_Text_HerbalMedicineWorksButMonWillDislike:
-	.string "Herbal medicine works impressively well.\n"
-	.string "But your Pokémon will dislike you for it.\l"
-	.string "It must be horribly bitter!$"
+	.string "Flannery, the new Gym Leader, uses\n"
+	.string "herbs during battles at the Gym.$"
 
