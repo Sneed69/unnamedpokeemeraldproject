@@ -3945,83 +3945,87 @@ static void Cmd_getexp(void)
                     gBattleStruct->wildVictorySong++;
                 }
 
-                if (GetMonData(&gPlayerParty[gBattleStruct->expGetterMonId], MON_DATA_HP) && !GetMonData(&gPlayerParty[gBattleStruct->expGetterMonId], MON_DATA_IS_EGG))
-                //if (!GetMonData(&gPlayerParty[gBattleStruct->expGetterMonId], MON_DATA_IS_EGG))
+                //if (GetMonData(&gPlayerParty[gBattleStruct->expGetterMonId], MON_DATA_HP) && !GetMonData(&gPlayerParty[gBattleStruct->expGetterMonId], MON_DATA_IS_EGG))
+                if (!GetMonData(&gPlayerParty[gBattleStruct->expGetterMonId], MON_DATA_IS_EGG))
                 {
                     if (gBattleStruct->sentInPokes & 1)
                         gBattleMoveDamage = *exp;
                     else
                         gBattleMoveDamage = 0;
 
-                    // only give exp share bonus in later gens if the mon wasn't sent out
-                    if ((gSaveBlock2Ptr->expShare) && ((gBattleMoveDamage == 0) || (B_SPLIT_EXP < GEN_6)))
-                        gBattleMoveDamage += gExpShareExp;
-                    if (holdEffect == HOLD_EFFECT_LUCKY_EGG)
-                        gBattleMoveDamage = (gBattleMoveDamage * 150) / 100;
-                    if (gBattleTypeFlags & BATTLE_TYPE_TRAINER && B_TRAINER_EXP_MULTIPLIER <= GEN_7)
-                        gBattleMoveDamage = (gBattleMoveDamage * 150) / 100;
-                    #if (B_SCALED_EXP >= GEN_5) && (B_SCALED_EXP != GEN_6)
-                    {
-                        // Note: There is an edge case where if a pokemon receives a large amount of exp, it wouldn't be properly calculated
-                        //       because of multiplying by scaling factor(the value would simply be larger than an u32 can hold). Hence u64 is needed.
-                        u64 value = gBattleMoveDamage;
-                        value *= sExperienceScalingFactors[(gBattleMons[gBattlerFainted].level * 2) + 10];
-                        value /= sExperienceScalingFactors[gBattleMons[gBattlerFainted].level + GetMonData(&gPlayerParty[gBattleStruct->expGetterMonId], MON_DATA_LEVEL) + 10];
-                        gBattleMoveDamage = value + 1;
-                    }
-                    #endif
-
-                    if (IsTradedMon(&gPlayerParty[gBattleStruct->expGetterMonId]))
-                    {
-                        // check if the pokemon doesn't belong to the player
-                        if (gBattleTypeFlags & BATTLE_TYPE_INGAME_PARTNER && gBattleStruct->expGetterMonId >= 3)
-                        {
-                            i = STRINGID_EMPTYSTRING4;
-                        }
-                        else
-                        {
-                            gBattleMoveDamage = (gBattleMoveDamage * 150) / 100;
-                            i = STRINGID_ABOOSTED;
-                        }
-                    }
-                    else
-                    {
-                        i = STRINGID_EMPTYSTRING4;
-                    }
-
-                    // get exp getter battlerId
-                    if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE)
-                    {
-                        if (gBattlerPartyIndexes[2] == gBattleStruct->expGetterMonId && !(gAbsentBattlerFlags & gBitTable[2]))
-                            gBattleStruct->expGetterBattlerId = 2;
-                        else
-                        {
-                            if (!(gAbsentBattlerFlags & gBitTable[0]))
-                                gBattleStruct->expGetterBattlerId = 0;
-                            else
-                                gBattleStruct->expGetterBattlerId = 2;
-                        }
-                    }
-                    else
-                    {
-                        gBattleStruct->expGetterBattlerId = 0;
-                    }
-
-					if (gBattleStruct->sentInPokes & 1)
+					//give xp to fainted participants but dont give shared xp to fainted mons
+					if (GetMonData(&gPlayerParty[gBattleStruct->expGetterMonId], MON_DATA_HP) || gBattleMoveDamage > 0)
 					{
-						PREPARE_MON_NICK_WITH_PREFIX_BUFFER(gBattleTextBuff1, gBattleStruct->expGetterBattlerId, gBattleStruct->expGetterMonId);
-						// buffer 'gained' or 'gained a boosted'
-						PREPARE_STRING_BUFFER(gBattleTextBuff2, i);
-						PREPARE_WORD_NUMBER_BUFFER(gBattleTextBuff3, 6, gBattleMoveDamage);
+						// only give exp share bonus in later gens if the mon wasn't sent out
+						if ((gSaveBlock2Ptr->expShare) && ((gBattleMoveDamage == 0) || (B_SPLIT_EXP < GEN_6)))
+							gBattleMoveDamage += gExpShareExp;
+						if (holdEffect == HOLD_EFFECT_LUCKY_EGG)
+							gBattleMoveDamage = (gBattleMoveDamage * 150) / 100;
+						if (gBattleTypeFlags & BATTLE_TYPE_TRAINER && B_TRAINER_EXP_MULTIPLIER <= GEN_7)
+							gBattleMoveDamage = (gBattleMoveDamage * 150) / 100;
+						#if (B_SCALED_EXP >= GEN_5) && (B_SCALED_EXP != GEN_6)
+						{
+							// Note: There is an edge case where if a pokemon receives a large amount of exp, it wouldn't be properly calculated
+							//       because of multiplying by scaling factor(the value would simply be larger than an u32 can hold). Hence u64 is needed.
+							u64 value = gBattleMoveDamage;
+							value *= sExperienceScalingFactors[(gBattleMons[gBattlerFainted].level * 2) + 10];
+							value /= sExperienceScalingFactors[gBattleMons[gBattlerFainted].level + GetMonData(&gPlayerParty[gBattleStruct->expGetterMonId], MON_DATA_LEVEL) + 10];
+							gBattleMoveDamage = value + 1;
+						}
+						#endif
 
-						PrepareStringBattle(STRINGID_PKMNGAINEDEXP, gBattleStruct->expGetterBattlerId);
+						if (IsTradedMon(&gPlayerParty[gBattleStruct->expGetterMonId]))
+						{
+							// check if the pokemon doesn't belong to the player
+							if (gBattleTypeFlags & BATTLE_TYPE_INGAME_PARTNER && gBattleStruct->expGetterMonId >= 3)
+							{
+								i = STRINGID_EMPTYSTRING4;
+							}
+							else
+							{
+								gBattleMoveDamage = (gBattleMoveDamage * 150) / 100;
+								i = STRINGID_ABOOSTED;
+							}
+						}
+						else
+						{
+							i = STRINGID_EMPTYSTRING4;
+						}
+
+						// get exp getter battlerId
+						if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE)
+						{
+							if (gBattlerPartyIndexes[2] == gBattleStruct->expGetterMonId && !(gAbsentBattlerFlags & gBitTable[2]))
+								gBattleStruct->expGetterBattlerId = 2;
+							else
+							{
+								if (!(gAbsentBattlerFlags & gBitTable[0]))
+									gBattleStruct->expGetterBattlerId = 0;
+								else
+									gBattleStruct->expGetterBattlerId = 2;
+							}
+						}
+						else
+						{
+							gBattleStruct->expGetterBattlerId = 0;
+						}
+
+						if (gBattleStruct->sentInPokes & 1)
+						{
+							PREPARE_MON_NICK_WITH_PREFIX_BUFFER(gBattleTextBuff1, gBattleStruct->expGetterBattlerId, gBattleStruct->expGetterMonId);
+							// buffer 'gained' or 'gained a boosted'
+							PREPARE_STRING_BUFFER(gBattleTextBuff2, i);
+							PREPARE_WORD_NUMBER_BUFFER(gBattleTextBuff3, 6, gBattleMoveDamage);
+
+							PrepareStringBattle(STRINGID_PKMNGAINEDEXP, gBattleStruct->expGetterBattlerId);
+						}
+						else if (VarGet(VAR_TEMP_1) == FALSE)
+						{
+							PrepareStringBattle(STRINGID_TEAMGAINEDEXP, gBattleStruct->expGetterBattlerId);
+							VarSet(VAR_TEMP_1, TRUE);
+						}
+						MonGainEVs(&gPlayerParty[gBattleStruct->expGetterMonId], gBattleMons[gBattlerFainted].species);
 					}
-					else if (VarGet(VAR_TEMP_1) == FALSE)
-					{
-						PrepareStringBattle(STRINGID_TEAMGAINEDEXP, gBattleStruct->expGetterBattlerId);
-						VarSet(VAR_TEMP_1, TRUE);
-					}
-                    MonGainEVs(&gPlayerParty[gBattleStruct->expGetterMonId], gBattleMons[gBattlerFainted].species);
                 }
                 gBattleStruct->sentInPokes >>= 1;
                 gBattleScripting.getexpState++;
@@ -4032,7 +4036,8 @@ static void Cmd_getexp(void)
         if (gBattleControllerExecFlags == 0)
         {
             gBattleResources->bufferB[gBattleStruct->expGetterBattlerId][0] = 0;
-            if (GetMonData(&gPlayerParty[gBattleStruct->expGetterMonId], MON_DATA_HP) && GetMonData(&gPlayerParty[gBattleStruct->expGetterMonId], MON_DATA_LEVEL) != MAX_LEVEL)
+            //if (GetMonData(&gPlayerParty[gBattleStruct->expGetterMonId], MON_DATA_HP) && GetMonData(&gPlayerParty[gBattleStruct->expGetterMonId], MON_DATA_LEVEL) != MAX_LEVEL)
+            if (gBattleMoveDamage > 0 && GetMonData(&gPlayerParty[gBattleStruct->expGetterMonId], MON_DATA_LEVEL) != MAX_LEVEL)
             {
                 gBattleResources->beforeLvlUp->stats[STAT_HP]    = GetMonData(&gPlayerParty[gBattleStruct->expGetterMonId], MON_DATA_MAX_HP);
                 gBattleResources->beforeLvlUp->stats[STAT_ATK]   = GetMonData(&gPlayerParty[gBattleStruct->expGetterMonId], MON_DATA_ATK);
