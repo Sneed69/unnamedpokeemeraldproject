@@ -2020,9 +2020,9 @@ const struct BaseStats gBaseStats[] =
     [SPECIES_VICTREEBEL] =
     {
         .baseHP        = 80,
-        .baseAttack    = 105,
+        .baseAttack    = 100,
         .baseDefense   = 100,
-        .baseSpeed     = 70,
+        .baseSpeed     = 75,
         .baseSpAttack  = 105,
 		.baseSpDefense = 70,
         .type1 = TYPE_GRASS,
@@ -2232,11 +2232,7 @@ const struct BaseStats gBaseStats[] =
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroup1 = EGG_GROUP_MONSTER,
         .eggGroup2 = EGG_GROUP_WATER_1,
-        #ifdef BATTLE_ENGINE
-            .abilities = {ABILITY_OBLIVIOUS, ABILITY_OWN_TEMPO, ABILITY_REGENERATOR},
-        #else
-            .abilities = {ABILITY_OBLIVIOUS, ABILITY_OWN_TEMPO},
-        #endif
+		.abilities = {ABILITY_OBLIVIOUS, ABILITY_NONE, ABILITY_OWN_TEMPO},
         .bodyColor = BODY_COLOR_PINK,
         .noFlip = FALSE,
     },
@@ -2261,11 +2257,32 @@ const struct BaseStats gBaseStats[] =
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroup1 = EGG_GROUP_MONSTER,
         .eggGroup2 = EGG_GROUP_WATER_1,
-        #ifdef BATTLE_ENGINE
-            .abilities = {ABILITY_OBLIVIOUS, ABILITY_OWN_TEMPO, ABILITY_REGENERATOR},
-        #else
-            .abilities = {ABILITY_OBLIVIOUS, ABILITY_OWN_TEMPO},
-        #endif
+		.abilities = {ABILITY_REGENERATOR, ABILITY_NONE, ABILITY_RAIN_DISH},
+        .bodyColor = BODY_COLOR_PINK,
+        .noFlip = FALSE,
+    },
+
+    [SPECIES_SLOWKING] =
+    {
+        .baseHP        = 95,
+        .baseAttack    = 75,
+        .baseDefense   = 80,
+        .baseSpeed     = 30,
+        .baseSpAttack  = 100,
+        .baseSpDefense = 110,
+        .type1 = TYPE_WATER,
+        .type2 = TYPE_PSYCHIC,
+        .catchRate = 70,
+        .expYield = 172,
+        .evYield_SpDefense = 3,
+        .item2 = ITEM_KINGS_ROCK,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 20,
+        .friendship = 70,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroup1 = EGG_GROUP_MONSTER,
+        .eggGroup2 = EGG_GROUP_WATER_1,
+		.abilities = {ABILITY_UNAWARE, ABILITY_NONE, ABILITY_HYDRATION},
         .bodyColor = BODY_COLOR_PINK,
         .noFlip = FALSE,
     },
@@ -5469,35 +5486,6 @@ const struct BaseStats gBaseStats[] =
             .abilities = {ABILITY_INSOMNIA, ABILITY_NONE},
         #endif
         .bodyColor = BODY_COLOR_BLACK,
-        .noFlip = FALSE,
-    },
-
-    [SPECIES_SLOWKING] =
-    {
-        .baseHP        = 95,
-        .baseAttack    = 75,
-        .baseDefense   = 80,
-        .baseSpeed     = 30,
-        .baseSpAttack  = 100,
-        .baseSpDefense = 110,
-        .type1 = TYPE_WATER,
-        .type2 = TYPE_PSYCHIC,
-        .catchRate = 70,
-        .expYield = 172,
-        .evYield_SpDefense = 3,
-        .item2 = ITEM_KINGS_ROCK,
-        .genderRatio = PERCENT_FEMALE(50),
-        .eggCycles = 20,
-        .friendship = 70,
-        .growthRate = GROWTH_MEDIUM_FAST,
-        .eggGroup1 = EGG_GROUP_MONSTER,
-        .eggGroup2 = EGG_GROUP_WATER_1,
-        #ifdef BATTLE_ENGINE
-            .abilities = {ABILITY_OBLIVIOUS, ABILITY_OWN_TEMPO, ABILITY_REGENERATOR},
-        #else
-            .abilities = {ABILITY_OBLIVIOUS, ABILITY_OWN_TEMPO},
-        #endif
-        .bodyColor = BODY_COLOR_PINK,
         .noFlip = FALSE,
     },
 

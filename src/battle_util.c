@@ -8839,6 +8839,20 @@ static u32 CalcDefenseStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, 
             if (updateFlags)
                 RecordAbilityBattle(battlerDef, ABILITY_GRASS_PELT);
         }
+    case ABILITY_SAND_VEIL:
+        if (WEATHER_HAS_EFFECT && gBattleWeather & B_WEATHER_SANDSTORM && usesDefStat)
+        {
+            MulModifier(&modifier, UQ_4_12(1.5));
+            if (updateFlags)
+                RecordAbilityBattle(battlerDef, ABILITY_SAND_VEIL);
+        }
+    case ABILITY_SNOW_CLOAK:
+        if (WEATHER_HAS_EFFECT && gBattleWeather & B_WEATHER_HAIL)
+        {
+            MulModifier(&modifier, UQ_4_12(1.35));
+            if (updateFlags)
+                RecordAbilityBattle(battlerDef, ABILITY_SNOW_CLOAK);
+        }
         break;
     case ABILITY_FLOWER_GIFT:
         if (gBattleMons[battlerDef].species == SPECIES_CHERRIM && IsBattlerWeatherAffected(battlerDef, B_WEATHER_SUN) && !usesDefStat)
@@ -8848,7 +8862,7 @@ static u32 CalcDefenseStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, 
         if (gBattleMoves[move].flags & FLAG_SOUND)
             MulModifier(&modifier, UQ_4_12(2.0));
         break;
-    }
+	}
 
     // ally's abilities
     if (IsBattlerAlive(BATTLE_PARTNER(battlerDef)))
@@ -8894,13 +8908,6 @@ static u32 CalcDefenseStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, 
     // sandstorm sp.def boost for rock types
     if (IS_BATTLER_OF_TYPE(battlerDef, TYPE_ROCK) && WEATHER_HAS_EFFECT && gBattleWeather & B_WEATHER_SANDSTORM && !usesDefStat)
         MulModifier(&modifier, UQ_4_12(1.5));
-
-    // The defensive stats of a Player's Pokémon are boosted by x1.1 (+10%) if they have the 5th badge and 7th badges.
-    // Having the 5th badge boosts physical defense while having the 7th badge boosts special defense.
-    if (ShouldGetStatBadgeBoost(FLAG_BADGE05_GET, battlerDef) && IS_MOVE_PHYSICAL(move))
-        MulModifier(&modifier, UQ_4_12(1.1));
-    if (ShouldGetStatBadgeBoost(FLAG_BADGE07_GET, battlerDef) && IS_MOVE_SPECIAL(move))
-        MulModifier(&modifier, UQ_4_12(1.1));
 
     return ApplyModifier(modifier, defStat);
 }
