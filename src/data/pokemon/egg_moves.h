@@ -1974,6 +1974,7 @@ const u16 gEggMoves[] = {
         MOVE_ENDURE,
         MOVE_IRON_HEAD,
         MOVE_GROWTH,
+        MOVE_SCORCHING_SANDS,
         MOVE_HEAVY_SLAM),
 
     egg_moves(TORKOAL,
