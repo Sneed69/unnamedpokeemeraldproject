@@ -799,6 +799,7 @@ static const u16 sUnusedData[] =
 enum
 {
     MENU_SUMMARY,
+    MENU_NICKNAME,
     MENU_SWITCH,
     MENU_CANCEL1,
     MENU_ITEM,
@@ -840,6 +841,7 @@ struct
 } static const sCursorOptions[] =
 {
     [MENU_SUMMARY] = {gText_Summary5, CursorCb_Summary},
+	[MENU_NICKNAME] = {gText_Nickname, CursorCb_Nickname},
     [MENU_SWITCH] = {gText_Switch2, CursorCb_Switch},
     [MENU_CANCEL1] = {gText_Cancel2, CursorCb_Cancel1},
     [MENU_ITEM] = {gText_Item, CursorCb_Item},
