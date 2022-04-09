@@ -1557,7 +1557,7 @@ static bool32 BerryTreeGrow(struct BerryTree *tree)
     case BERRY_STAGE_TALLER:
         tree->stage++;
         break;
-    case BERRY_STAGE_BERRIES:
+    /*case BERRY_STAGE_BERRIES:
         tree->watered1 = 0;
         tree->watered2 = 0;
         tree->watered3 = 0;
@@ -1566,7 +1566,7 @@ static bool32 BerryTreeGrow(struct BerryTree *tree)
         tree->stage = BERRY_STAGE_SPROUTED;
         if (++tree->regrowthCount == 10)
             *tree = gBlankBerryTree;
-        break;
+        break;*/
     }
     return TRUE;
 }
@@ -1580,31 +1580,24 @@ void BerryTreeTimeUpdate(s32 minutes)
     {
         tree = &gSaveBlock1Ptr->berryTrees[i];
 
-        if (tree->berry && tree->stage && !tree->stopGrowth)
+        if (tree->berry && tree->stage && !tree->stopGrowth && (tree->stage != BERRY_STAGE_BERRIES))
         {
-            if (minutes >= GetStageDurationByBerryType(tree->berry) * 71)
-            {
-                *tree = gBlankBerryTree;
-            }
-            else
-            {
-                s32 time = minutes;
+			s32 time = minutes;
 
-                while (time != 0)
-                {
-                    if (tree->minutesUntilNextStage > time)
-                    {
-                        tree->minutesUntilNextStage -= time;
-                        break;
-                    }
-                    time -= tree->minutesUntilNextStage;
-                    tree->minutesUntilNextStage = GetStageDurationByBerryType(tree->berry);
-                    if (!BerryTreeGrow(tree))
-                        break;
-                    if (tree->stage == BERRY_STAGE_BERRIES)
-                        tree->minutesUntilNextStage *= 4;
-                }
-            }
+			while (time != 0)
+			{
+				if (tree->minutesUntilNextStage > time)
+				{
+					tree->minutesUntilNextStage -= time;
+					break;
+				}
+				time -= tree->minutesUntilNextStage;
+				tree->minutesUntilNextStage = GetStageDurationByBerryType(tree->berry);
+				if (!BerryTreeGrow(tree))
+					break;
+				if (tree->stage == BERRY_STAGE_BERRIES)
+					tree->minutesUntilNextStage *= 4;
+			}
         }
     }
 }
