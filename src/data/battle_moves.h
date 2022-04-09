@@ -3085,7 +3085,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
     {
         .effect = EFFECT_PERISH_SONG,
         .power = 0,
-        .type = TYPE_NORMAL,
+        .type = TYPE_GHOST,
         .accuracy = 0,
         .pp = 8,
         .secondaryEffectChance = 0,
@@ -3864,7 +3864,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
         #endif
         .effect = EFFECT_PSYCH_UP,
         .power = 0,
-        .type = TYPE_NORMAL,
+        .type = TYPE_PSYCHIC,
         .accuracy = 0,
         .pp = 16,
         .secondaryEffectChance = 0,
@@ -4356,7 +4356,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
         #endif
         .effect = EFFECT_WISH,
         .power = 0,
-        .type = TYPE_NORMAL,
+        .type = TYPE_FAIRY,
         .accuracy = 0,
         .pp = 16,
         .secondaryEffectChance = 0,
@@ -5231,7 +5231,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
         .effect = EFFECT_ACCURACY_DOWN_HIT,
         .type = TYPE_WATER,
         .accuracy = 100,
-        .pp = 16,
+        .pp = 24,
         .secondaryEffectChance = 30,
         .target = MOVE_TARGET_BOTH,
         .priority = 0,

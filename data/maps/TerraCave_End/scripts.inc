@@ -34,11 +34,14 @@ TerraCave_End_EventScript_Groudon::
 	playmoncry SPECIES_GROUDON, CRY_MODE_ENCOUNTER
 	delay 40
 	waitmoncry
+	setflag B_SMART_WILD_AI_FLAG
+	settotemboost B_POSITION_OPPONENT_LEFT, 1, 3, 3, 6, 6
 	setvar VAR_LAST_TALKED, LOCALID_GROUDON
-	setwildbattle SPECIES_GROUDON, 70
+	setwildbattle SPECIES_GROUDON, 80
 	setflag FLAG_SYS_CTRL_OBJ_DELETE
 	special BattleSetup_StartLegendaryBattle
 	waitstate
+	clearflag B_SMART_WILD_AI_FLAG
 	clearflag FLAG_SYS_CTRL_OBJ_DELETE
 	setvar VAR_TEMP_1, 0
 	specialvar VAR_RESULT, GetBattleOutcome
