@@ -14205,13 +14205,57 @@ Move_FLIP_TURN::
 	end @to do:
 
 Move_TRIPLE_AXEL::
-	end @to do:
+	loadspritegfx ANIM_TAG_HANDS_AND_FEET
+	loadspritegfx ANIM_TAG_IMPACT
+	loadspritegfx ANIM_TAG_ICE_CRYSTALS
+	monbg ANIM_DEF_PARTNER
+	setalpha 12, 8
+	createvisualtask AnimTask_TranslateMonElliptical, 2, 0, -18, 3, 6, 4
+	playsewithpan SE_M_STRING_SHOT, SOUND_PAN_TARGET
+	createsprite gIceCrystalSpiralInwardSmall, ANIM_ATTACKER, 2, 0
+	createsprite gIceCrystalSpiralInwardSmall, ANIM_ATTACKER, 2, 64
+	createsprite gIceCrystalSpiralInwardSmall, ANIM_ATTACKER, 2, 128
+	createsprite gIceCrystalSpiralInwardSmall, ANIM_ATTACKER, 2, 192
+	delay 5
+	createsprite gIceCrystalSpiralInwardLarge, ANIM_ATTACKER, 2, 32
+	createsprite gIceCrystalSpiralInwardLarge, ANIM_ATTACKER, 2, 96
+	createsprite gIceCrystalSpiralInwardLarge, ANIM_ATTACKER, 2, 160
+	createsprite gIceCrystalSpiralInwardLarge, ANIM_ATTACKER, 2, 224
+	delay 17
+	createsprite gFistFootSpriteTemplate, ANIM_TARGET, 4, 0, 0, 20, 1, 1
+	playsewithpan SE_M_VITAL_THROW2, SOUND_PAN_TARGET
+	createsprite gBasicHitSplatSpriteTemplate, ANIM_TARGET, 3, 0, -8, ANIM_TARGET, 1
+	createvisualtask AnimTask_ShakeMon, 5, ANIM_TARGET, 6, 0, 8, 1
+	delay 2
+	call IceCrystalEffectShort
+	clearmonbg ANIM_DEF_PARTNER
+	blendoff
+	end
 
 Move_DUAL_WINGBEAT::
-	end @to do:
+	goto Move_WING_ATTACK
 
 Move_SCORCHING_SANDS::
-	end @to do:
+	loadspritegfx ANIM_TAG_FLYING_DIRT
+	createvisualtask AnimTask_BlendParticle, 5, ANIM_TAG_FLYING_DIRT, 0, 6, 6, RGB_ORANGERED
+	createvisualtask AnimTask_LoadSandstormBackground, 5, TRUE
+	panse SE_M_HEAT_WAVE, SOUND_PAN_ATTACKER, SOUND_PAN_TARGET, +2, 0
+	createsprite gFlyingSandCrescentSpriteTemplate, ANIM_ATTACKER, 40, 25, 3304, 96, 0
+	delay 10
+	createsprite gFlyingSandCrescentSpriteTemplate, ANIM_ATTACKER, 40, 45, 3448, 96, 0
+	delay 3
+	createvisualtask AnimTask_MoveHeatWaveTargets, 4
+	delay 6
+	createsprite gFlyingSandCrescentSpriteTemplate, ANIM_ATTACKER, 40, 35, 3560, 96, 0
+	delay 8
+	createsprite gFlyingSandCrescentSpriteTemplate, ANIM_ATTACKER, 40, 25, 2304, 96, 0
+	delay 7
+	createsprite gFlyingSandCrescentSpriteTemplate, ANIM_ATTACKER, 40, 50, 3984, 96, 0
+	delay 6
+	createsprite gFlyingSandCrescentSpriteTemplate, ANIM_ATTACKER, 40, 20, 3016, 96, 0
+	delay 5
+	createsprite gFlyingSandCrescentSpriteTemplate, ANIM_ATTACKER, 40, 40, 4100, 96, 0
+	end
 
 Move_JUNGLE_HEALING::
 	goto Move_AROMATHERAPY
