@@ -7734,11 +7734,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
 
     [MOVE_LOW_SWEEP] =
     {
-        #if B_UPDATED_MOVE_DATA >= GEN_6
-            .power = 65,
-        #else
-            .power = 60,
-        #endif
+		.power = 60,
         .effect = EFFECT_SPEED_DOWN_HIT,
         .type = TYPE_FIGHTING,
         .accuracy = 100,
