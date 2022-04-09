@@ -1951,7 +1951,7 @@ const struct BaseStats gBaseStats[] =
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroup1 = EGG_GROUP_MONSTER,
         .eggGroup2 = EGG_GROUP_WATER_1,
-		.abilities = {ABILITY_HYDRATION, ABILITY_UNAWARE},
+		.abilities = {ABILITY_ANALYTIC, ABILITY_UNAWARE},
         .bodyColor = BODY_COLOR_PINK,
         .noFlip = FALSE,
     },

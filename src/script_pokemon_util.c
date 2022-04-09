@@ -102,13 +102,13 @@ u8 ScriptGiveMonWithIvsAndNature(u16 species, u8 level, u16 item, u8 *IVs, u8 na
     int sentToPc;
     u8 heldItem[2];
     struct Pokemon mon;
-	u8 i;
+	u8 i=0;
 	
 	CreateMonWithNature(&mon, species, level, 0, nature);
     heldItem[0] = item;
     heldItem[1] = item >> 8;
     SetMonData(&mon, MON_DATA_HELD_ITEM, heldItem);
-    SetMonData(&mon, MON_DATA_ABILITY_NUM, 0);
+    SetMonData(&mon, MON_DATA_ABILITY_NUM, &i);
 	for (i = 0; i < NUM_STATS; i++)
 		SetMonData(&mon, MON_DATA_HP_IV + i, &IVs[i]);
     sentToPc = GiveMonToPlayer(&mon);

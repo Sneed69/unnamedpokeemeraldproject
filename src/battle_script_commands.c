@@ -3891,7 +3891,12 @@ static void Cmd_getexp(void)
                 calculatedExp = gBaseStats[gBattleMons[gBattlerFainted].species].expYield * gBattleMons[gBattlerFainted].level / 7;
             #endif
 			*exp = calculatedExp;
-			gExpShareExp = calculatedExp / 2;
+			
+			if (FlagGet(FLAG_EXP_SHARE_UPGRADE))
+				gExpShareExp = calculatedExp * 3 / 4;				
+			else
+				gExpShareExp = calculatedExp / 2;
+			
 			if (gExpShareExp == 0)
 				gExpShareExp = 1;
             

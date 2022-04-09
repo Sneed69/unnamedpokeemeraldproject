@@ -217,7 +217,7 @@ struct PokemonStats
     u8  friendship;
     u16 ability0;
     u16 ability1;
-    u16 abilityHidden;
+    //u16 abilityHidden;
 };
 
 struct EvoScreenData
@@ -6459,7 +6459,7 @@ static void SaveMonDataInStruct(void)
     sPokedexView->sPokemonStats.ability0            = GetAbilityBySpecies(species, 0);
     sPokedexView->sPokemonStats.ability1            = GetAbilityBySpecies(species, 1);
     #ifdef POKEMON_EXPANSION  
-    sPokedexView->sPokemonStats.abilityHidden       = GetAbilityBySpecies(species, 2);
+    //sPokedexView->sPokemonStats.abilityHidden       = GetAbilityBySpecies(species, 2);
     #endif
 } 
 #define tMonSpriteId data[4]
@@ -7409,7 +7409,7 @@ static void PrintStatsScreen_Abilities(u8 taskId)
     u8 abilities_y = 3;
     u16 ability0;
     u16 ability1;
-    u16 abilityHidden;
+    //u16 abilityHidden;
 
     //Abilitie(s)
     #ifdef POKEMON_EXPANSION
@@ -7426,15 +7426,15 @@ static void PrintStatsScreen_Abilities(u8 taskId)
             PrintStatsScreenTextSmallWhite(WIN_STATS_ABILITIES, gAbilityNames[ability1], abilities_x, abilities_y + 30);
             PrintStatsScreenTextSmall(WIN_STATS_ABILITIES, gAbilityDescriptionPointers[ability1], abilities_x, abilities_y + 44);
         }
-    #ifdef POKEMON_EXPANSION  
     }
+    /*#ifdef POKEMON_EXPANSION  
     else //Hidden abilities
     {
         abilityHidden = sPokedexView->sPokemonStats.abilityHidden;
         PrintStatsScreenTextSmallWhite(WIN_STATS_ABILITIES, gAbilityNames[abilityHidden], abilities_x, abilities_y);
         PrintStatsScreenTextSmall(WIN_STATS_ABILITIES, gAbilityDescriptionPointers[abilityHidden], abilities_x, abilities_y + 14);
     }
-    #endif
+    #endif*/
 }
 
 static void Task_SwitchScreensFromStatsScreen(u8 taskId)
