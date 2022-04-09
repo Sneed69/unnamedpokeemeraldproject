@@ -59,11 +59,11 @@ FallarborTown_MoveRelearnersHouse_EventScript_ComeBackWithHeartScale::
 	end
 
 FallarborTown_MoveRelearnersHouse_Text_ImTheMoveTutor:
-	.string "I'm the Move Relearner.\p"
+	.string "I'm the Move Reminder.\p"
 	.string "I know all the moves that Pokémon\n"
 	.string "learn--every one of them--and I can\l"
 	.string "teach Pokémon those moves.\p"
-	.string "I can teach a move to a Pokémon\n"
+	.string "I can remind a move to a Pokémon\n"
 	.string "of yours if you'd like.$"
 
 FallarborTown_MoveRelearnersHouse_Text_ThatsAHeartScaleWantMeToTeachMove:
@@ -73,7 +73,7 @@ FallarborTown_MoveRelearnersHouse_Text_TutorWhichMon:
 	.string "Which Pokémon needs tutoring?$"
 
 FallarborTown_MoveRelearnersHouse_Text_TeachWhichMove:
-	.string "Which move should I teach?$"
+	.string "Which move should I remind?$"
 
 FallarborTown_MoveRelearnersHouse_Text_DontHaveMoveToTeachPokemon:
 	.string "Sorry…\p"
