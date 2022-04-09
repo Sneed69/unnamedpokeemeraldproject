@@ -364,6 +364,7 @@ static const u16 sIgnoredPowerfulMoveEffects[] =
     EFFECT_ERUPTION,
     EFFECT_OVERHEAT,
     EFFECT_MIND_BLOWN,
+    EFFECT_METEOR_BEAM,
     IGNORED_MOVES_END
 };
 
@@ -410,16 +411,17 @@ static const u16 sInstructBannedMoves[] =
     MOVE_SKY_DROP,
     MOVE_SOLAR_BEAM,
     MOVE_SOLAR_BLADE,
+    MOVE_METEOR_BEAM,
 };
 
 static const u16 sRechargeMoves[] =
 {
-    MOVE_HYPER_BEAM,
+    /*MOVE_HYPER_BEAM,
     MOVE_BLAST_BURN,
     MOVE_HYDRO_CANNON,
     MOVE_FRENZY_PLANT,
     MOVE_GIGA_IMPACT,
-    MOVE_ROCK_WRECKER,
+    MOVE_ROCK_WRECKER,*/
     MOVE_ROAR_OF_TIME,
     MOVE_PRISMATIC_LASER,
     MOVE_METEOR_ASSAULT,

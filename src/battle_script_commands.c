@@ -11414,6 +11414,7 @@ static bool8 IsTwoTurnsMove(u16 move)
     if (gBattleMoves[move].effect == EFFECT_SKULL_BASH
         || gBattleMoves[move].effect == EFFECT_TWO_TURNS_ATTACK
         || gBattleMoves[move].effect == EFFECT_SOLAR_BEAM
+        || gBattleMoves[move].effect == EFFECT_METEOR_BEAM
         || gBattleMoves[move].effect == EFFECT_SEMI_INVULNERABLE
         || gBattleMoves[move].effect == EFFECT_BIDE)
         return TRUE;
@@ -11431,6 +11432,7 @@ static u8 AttacksThisTurn(u8 battlerId, u16 move) // Note: returns 1 if it's a c
 
     if (gBattleMoves[move].effect == EFFECT_SKULL_BASH
         || gBattleMoves[move].effect == EFFECT_TWO_TURNS_ATTACK
+        || gBattleMoves[move].effect == EFFECT_METEOR_BEAM
         || gBattleMoves[move].effect == EFFECT_SOLAR_BEAM
         || gBattleMoves[move].effect == EFFECT_SEMI_INVULNERABLE
         || gBattleMoves[move].effect == EFFECT_BIDE)

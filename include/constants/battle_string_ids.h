@@ -616,8 +616,9 @@
 #define STRINGID_TEAMGAINEDEXP                 		  612
 #define STRINGID_LEGENDARYFENDEDBALLOFF               613
 #define STRINGID_YOUMUSTWEAKENIT              		  614
+#define STRINGID_OVERFLOWINGSPACEPOWER       		  615
 
-#define BATTLESTRINGS_COUNT                           615
+#define BATTLESTRINGS_COUNT                           616
 
 // The below IDs are all indexes into battle message tables,
 // used to determine which of a set of messages to print.
@@ -669,6 +670,7 @@
 #define B_MSG_TURN1_GEOMANCY       9
 #define B_MSG_TURN1_FREEZE_SHOCK   10
 #define B_MSG_TURN1_SKY_DROP       11
+#define B_MSG_TURN1_METEOR_BEAM    12
 
 // gMoveWeatherChangeStringIds
 #define B_MSG_STARTED_RAIN      0

@@ -14042,8 +14042,74 @@ Move_STEEL_ROLLER::
 Move_SCALE_SHOT::
 	end @to do:
 
-Move_METEOR_BEAM::
-	end @to do:
+Move_METEOR_BEAM:
+	loadspritegfx ANIM_TAG_ORBS
+	fadetobg BG_COSMIC
+	createvisualtask SoundTask_PlaySE2WithPanning, 5, SE_M_COSMIC_POWER, 0
+	playsewithpan SE_M_COSMIC_POWER, 0
+	waitbgfadeout
+	createvisualtask AnimTask_StartSlidingBg, 2, 0, 128, 0, -1
+	waitbgfadein
+	choosetwoturnanim MeteorBeamSetUp, MeteorBeamUnleash
+MeteorBeamEnd:
+	restorebg
+	waitbgfadeout
+	setarg 7, 0xFFFF
+	waitbgfadein
+	waitforvisualfinish
+	end
+MeteorBeamSetUp:
+	monbg ANIM_ATK_PARTNER
+	setalpha 12, 8
+	createvisualtask AnimTask_BlendColorCycle, 2, 2, 1, 4, 0, 11, RGB(31, 31, 11)
+	playsewithpan SE_M_MEGA_KICK, SOUND_PAN_ATTACKER
+	call SolarBeamAbsorbEffect
+	waitforvisualfinish
+	clearmonbg ANIM_ATK_PARTNER
+	blendoff
+	goto MeteorBeamEnd
+MeteorBeamUnleash:
+	waitforvisualfinish
+	delay 10
+	playsewithpan SE_M_HYPER_BEAM, SOUND_PAN_ATTACKER
+	createvisualtask AnimTask_ShakeMon2, 2, ANIM_ATTACKER, 1, 0, 4, 1
+	waitforvisualfinish
+	delay 30
+	createsoundtask SoundTask_LoopSEAdjustPanning, SE_M_HYPER_BEAM2, SOUND_PAN_ATTACKER, SOUND_PAN_TARGET, 1, 15, 0, 5
+	createvisualtask AnimTask_ShakeMon, 2, ANIM_ATTACKER, 0, 4, 50, 1
+	createvisualtask AnimTask_FlashAnimTagWithColor, 2, ANIM_TAG_ORBS, 1, 12, RGB(31, 31, 15), 16, 0, 0
+	call HyperBeamOrbs
+	call HyperBeamOrbs
+	call HyperBeamOrbs
+	call HyperBeamOrbs
+	call HyperBeamOrbs
+	createvisualtask AnimTask_ShakeMon2, 2, ANIM_TARGET, 4, 0, 50, 1
+	createvisualtask AnimTask_BlendBattleAnimPal, 10, 4, 2, 0, 11, RGB(25, 25, 25)
+	call HyperBeamOrbs
+	call HyperBeamOrbs
+	call HyperBeamOrbs
+	call HyperBeamOrbs
+	call HyperBeamOrbs
+	call HyperBeamOrbs
+	call HyperBeamOrbs
+	call HyperBeamOrbs
+	call HyperBeamOrbs
+	call HyperBeamOrbs
+	call HyperBeamOrbs
+	call HyperBeamOrbs
+	call HyperBeamOrbs
+	call HyperBeamOrbs
+	call HyperBeamOrbs
+	call HyperBeamOrbs
+	call HyperBeamOrbs
+	call HyperBeamOrbs
+	call HyperBeamOrbs
+	call HyperBeamOrbs
+	call HyperBeamOrbs
+	createvisualtask AnimTask_BlendBattleAnimPal, 10, 4, 2, 11, 0, RGB(25, 25, 25)
+	waitforvisualfinish
+	goto MeteorBeamEnd
+	end
 
 Move_SHELL_SIDE_ARM::
 	launchtask AnimTask_ShellSideArm 0x5 0x0

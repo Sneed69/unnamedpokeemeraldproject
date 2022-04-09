@@ -34,6 +34,7 @@ const u16 gEggMoves[] = {
         MOVE_COUNTER,
         MOVE_DRAGON_PULSE,
         MOVE_FOCUS_PUNCH,
+        MOVE_SCORCHING_SANDS,
         MOVE_AIR_CUTTER),
 
     egg_moves(SQUIRTLE,
@@ -164,6 +165,7 @@ const u16 gEggMoves[] = {
         MOVE_SECRET_POWER,
         MOVE_HEX,
         MOVE_TAIL_SLAP,
+        MOVE_SCORCHING_SANDS,
         MOVE_CAPTIVATE),
 
     egg_moves(ZUBAT,
@@ -1496,6 +1498,7 @@ const u16 gEggMoves[] = {
         MOVE_IRON_TAIL,
         MOVE_FOCUS_ENERGY,
         MOVE_POWER_SWAP,
+        MOVE_SCORCHING_SANDS,
         MOVE_BELCH),
 
     egg_moves(MILTANK,
@@ -1981,6 +1984,7 @@ const u16 gEggMoves[] = {
         MOVE_SKULL_BASH,
         MOVE_FLAME_BURST,
         MOVE_CLEAR_SMOG,
+        MOVE_SCORCHING_SANDS,
         MOVE_SUPERPOWER),
 
     egg_moves(SPOINK,
@@ -2025,6 +2029,7 @@ const u16 gEggMoves[] = {
         MOVE_ENDURE,
         MOVE_EARTH_POWER,
         MOVE_BUG_BITE,
+        MOVE_SCORCHING_SANDS,
         MOVE_SIGNAL_BEAM),
 
     egg_moves(CACNEA,

@@ -11257,7 +11257,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
 
     [MOVE_METEOR_BEAM] =
     {
-        .effect = EFFECT_PLACEHOLDER,   //TODO
+        .effect = EFFECT_METEOR_BEAM,
         .power = 120,
         .type = TYPE_ROCK,
         .accuracy = 90,
@@ -11473,7 +11473,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
         .accuracy = 100,
         .pp = 16,
         .secondaryEffectChance = 30,
-        .target = MOVE_TARGET_SELECTED,
+        .target = MOVE_TARGET_BOTH,
         .priority = 0,
         .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED | FLAG_SHEER_FORCE_BOOST | FLAG_THAW_USER,
         .split = SPLIT_SPECIAL,

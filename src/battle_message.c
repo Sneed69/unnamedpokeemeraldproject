@@ -427,6 +427,7 @@ static const u8 sText_Accuracy[] = _("accuracy");
 static const u8 sText_Evasiveness[] = _("evasiveness");
 static const u8 sText_PkmnTookTargetHigh[] = _("{B_ATK_NAME_WITH_PREFIX} took {B_DEF_NAME_WITH_PREFIX}\ninto the air!");
 static const u8 sText_TargetTooHeavy[] = _("But the target\nwas too heavy!");
+static const u8 sText_OverflowingSpacePower[] = _("{B_ATK_NAME_WITH_PREFIX} is\noverflowing with space power!");
 
 const u8 * const gStatNamesTable[NUM_BATTLE_STATS] =
 {
@@ -1342,6 +1343,7 @@ const u8 *const gBattleStringsTable[BATTLESTRINGS_COUNT] =
     [STRINGID_YOUMUSTWEAKENIT - 12] = sText_YouMustWeakenIt,
     [STRINGID_PKMNTOOKTARGETHIGH - 12] = sText_PkmnTookTargetHigh,
     [STRINGID_TARGETTOOHEAVY - 12] = sText_TargetTooHeavy,
+    [STRINGID_OVERFLOWINGSPACEPOWER - 12] = sText_OverflowingSpacePower,
 };
 
 const u16 gMentalHerbCureStringIds[] = 
@@ -1557,6 +1559,7 @@ const u16 gFirstTurnOfTwoStringIds[] =
     [B_MSG_TURN1_GEOMANCY]      = STRINGID_PKNMABSORBINGPOWER,
     [B_MSG_TURN1_FREEZE_SHOCK]  = STRINGID_CLOAKEDINAFREEZINGLIGHT,
     [B_MSG_TURN1_SKY_DROP]      = STRINGID_PKMNTOOKTARGETHIGH,
+    [B_MSG_TURN1_METEOR_BEAM]	= STRINGID_OVERFLOWINGSPACEPOWER,
 };
 
 // Index copied from move's index in sTrappingMoves

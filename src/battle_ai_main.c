@@ -4624,6 +4624,7 @@ static s16 AI_CheckViability(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
     case EFFECT_TWO_TURNS_ATTACK:
     case EFFECT_SKULL_BASH:
     case EFFECT_SOLAR_BEAM:
+    case EFFECT_METEOR_BEAM:
         if (AI_DATA->atkHoldEffect == HOLD_EFFECT_POWER_HERB)
             score += 2;
         break;
