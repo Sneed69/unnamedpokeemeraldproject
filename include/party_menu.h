@@ -96,6 +96,7 @@ void BufferMoveDeleterNicknameAndMove(void);
 void GetNumMovesSelectedMonHas(void);
 void MoveDeleterChooseMoveToForget(void);
 void ItemUseCB_Mints(u8 taskId, TaskFunc task);
+void ChooseMonForEggMoveTutor(void);
 
 bool8 CanLearnTutorMove(u16, u8);
 
