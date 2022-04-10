@@ -65,20 +65,20 @@ EggMoveTutor_Text_ImTheMoveTutor:
 	.string "of yours if you wish.$"
 
 EggMoveTutor_Text_WantMeToTeachMove:
-	.string "So what will it be?$"
+	.string "Need a move taught?$"
 
 EggMoveTutor_Text_TutorWhichMon:
 	.string "Which Pokémon seeks tutoring?$"
 
 EggMoveTutor_Text_TeachWhichMove:
-	.string "Which move shall I bestow?$"
+	.string "Which move?$"
 
 EggMoveTutor_Text_DontHaveMoveToTeachPokemon:
 	.string "It doesn't appear as if there is any\n"
 	.string "move I can teach this Pokémon.$"
 
 EggMoveTutor_Text_Farewell:
-	.string "I will be here if you return.$"
+	.string "I'll be here when you return.$"
 
 EggMoveTutor_Text_CantTeachEgg:
 	.string "That is an Egg.$"
