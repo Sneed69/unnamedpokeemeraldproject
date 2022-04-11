@@ -774,7 +774,7 @@ static void BuildEggMoveset(struct Pokemon *egg, struct BoxPokemon *father, stru
             break;
         }
     }
-//Inherit TM/HM moves:
+/*/Inherit TM/HM moves:
     for (i = 0; i < MAX_MON_MOVES; i++)
     {
         if (sHatchedEggFatherMoves[i] != MOVE_NONE)
@@ -799,7 +799,7 @@ static void BuildEggMoveset(struct Pokemon *egg, struct BoxPokemon *father, stru
                 }
             }
         }
-    }
+    }*/
 //Inherit level up moves if both parents know that move?:
     for (i = 0; i < MAX_MON_MOVES; i++)
     {
