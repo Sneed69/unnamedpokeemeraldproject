@@ -16,8 +16,8 @@ struct PokemonSubstruct0
     /*0x04*/ u32 experience;
     /*0x08*/ u8 ppBonuses;
     /*0x09*/ u8 friendship;
-    /*0x0A*/ u16 pokeball:5; //31 balls
-    u8 hiddenNature:5;  // 25 natures
+    /*0x0A*/ u8 pokeball:5; //31 balls
+    /*0x0B*/ u8 hiddenNature:5;  // 25 natures
 }; /* size = 12 */
 
 struct PokemonSubstruct1
@@ -47,10 +47,10 @@ struct PokemonSubstruct3
  /* 0x00 */ u8 pokerus;
  /* 0x01 */ u8 metLocation;
 
- /* 0x02 */ u16 metLevel:7;
- /* 0x02 */ u16 metGame:4;
- /* 0x03 */ u16 unused3_3:4;
- /* 0x03 */ u16 otGender:1;
+ /* 0x02 */ u8 metLevel:7;
+ /* 0x02 */ u8 otGender:1;
+ /* 0x03 */ u8 metGame:4;
+ ///* 0x03 */ u16 unused3_3:4;
 
  /* 0x04 */ u32 hpIV:5;
  /* 0x04 */ u32 attackIV:5;
@@ -109,7 +109,7 @@ struct BoxPokemon
     u8 isBadEgg:1;
     u8 hasSpecies:1;
     u8 isEgg:1;
-    u8 unused:5;
+    //u8 unused:5;
     u8 otName[PLAYER_NAME_LENGTH];
     u8 markings;
     u16 checksum;
