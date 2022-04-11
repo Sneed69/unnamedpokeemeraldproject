@@ -3104,6 +3104,12 @@ static void FillPartnerParty(u16 trainerId)
                 SetMonData(&gPlayerParty[i + 3], MON_DATA_ABILITY_NUM, &ability);
             }
 
+            if (partyData[i].hiddenNature > 0)
+			{
+				u8 hNat = partyData[i].hiddenNature;
+                SetMonData(&gPlayerParty[i + 3], MON_DATA_HIDDEN_NATURE, &hNat);
+			}
+
 // Check if ball was defined for that pokemon.
             if (partyData[i].ball > 0)
                 SetMonData(&gPlayerParty[i + 3], MON_DATA_POKEBALL, &partyData[i].ball);

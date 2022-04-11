@@ -850,6 +850,7 @@ const u16 gEggMoves[] = {
         MOVE_FLARE_BLITZ,
         MOVE_EXTRASENSORY,
         MOVE_NATURE_POWER,
+        MOVE_SCORCHING_SANDS,
         MOVE_FLAME_BURST),
 
     egg_moves(TOTODILE,
@@ -1311,6 +1312,7 @@ const u16 gEggMoves[] = {
 
     egg_moves(SLUGMA,
         MOVE_ACID_ARMOR,
+        MOVE_SCORCHING_SANDS,
         MOVE_HEAT_WAVE,
         MOVE_CURSE,
         MOVE_SMOKESCREEN,
@@ -1669,6 +1671,7 @@ const u16 gEggMoves[] = {
         MOVE_SHADOW_SNEAK,
         MOVE_CONFUSE_RAY,
         MOVE_ENCORE,
+        MOVE_TRIPLE_AXEL,
         MOVE_SYNCHRONOISE,
         MOVE_SKILL_SWAP,
         MOVE_MISTY_TERRAIN,
@@ -2156,6 +2159,7 @@ const u16 gEggMoves[] = {
 
     egg_moves(CASTFORM,
         MOVE_FUTURE_SIGHT,
+        MOVE_SCORCHING_SANDS,
         MOVE_LUCKY_CHANT,
         MOVE_DISABLE,
         MOVE_AMNESIA,
