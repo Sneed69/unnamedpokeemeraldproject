@@ -14041,7 +14041,28 @@ Move_STEEL_ROLLER::
 	goto Move_GYRO_BALL
 
 Move_SCALE_SHOT::
-	end @to do:
+	loadspritegfx ANIM_TAG_ICICLE_SPEAR
+	loadspritegfx ANIM_TAG_IMPACT
+	monbg ANIM_TARGET
+	splitbgprio ANIM_TARGET
+	setalpha 12, 8
+	createsprite gHorizontalLungeSpriteTemplate, ANIM_ATTACKER, 2, 4, 6
+	delay 3
+	playsewithpan SE_M_SWAGGER, SOUND_PAN_ATTACKER
+	createvisualtask AnimTask_BlendParticle, 5, ANIM_TAG_ICICLE_SPEAR, 0, 0xF, 0xD, RGB(25, 25, 23)
+	createsprite gIcicleSpearSpriteTemplate, ANIM_ATTACKER, 2, 20, -8, -8, -8, 20, -16
+	createsprite gIcicleSpearSpriteTemplate, ANIM_ATTACKER, 2, 20, -16, 0, 8, 20, -8
+	createsprite gIcicleSpearSpriteTemplate, ANIM_ATTACKER, 2, 20, -0, 8, 0, 20, -24
+	delay 19
+	playsewithpan SE_M_VITAL_THROW2, SOUND_PAN_TARGET
+	createsprite gBasicHitSplatSpriteTemplate, ANIM_ATTACKER, 3, -8, -8, ANIM_TARGET, 2
+	createsprite gBasicHitSplatSpriteTemplate, ANIM_ATTACKER, 3, 8, 8, ANIM_TARGET, 2
+	createsprite gBasicHitSplatSpriteTemplate, ANIM_ATTACKER, 3, 0, 0, ANIM_TARGET, 2
+	createvisualtask AnimTask_ShakeMon2, 2, ANIM_TARGET, 3, 0, 2, 1
+	waitforvisualfinish
+	clearmonbg ANIM_TARGET
+	blendoff
+	end
 
 Move_METEOR_BEAM:
 	loadspritegfx ANIM_TAG_ORBS
@@ -14324,10 +14345,10 @@ Move_TRIPLE_AXEL::
 	createsprite gIceCrystalSpiralInwardLarge, ANIM_ATTACKER, 2, 224
 	delay 17
 	createsprite gFistFootSpriteTemplate, ANIM_TARGET, 4, 0, 0, 20, 1, 1
-	playsewithpan SE_M_VITAL_THROW2, SOUND_PAN_TARGET
 	createsprite gBasicHitSplatSpriteTemplate, ANIM_TARGET, 3, 0, -8, ANIM_TARGET, 1
 	createvisualtask AnimTask_ShakeMon, 5, ANIM_TARGET, 6, 0, 8, 1
-	delay 2
+	playsewithpan SE_M_VITAL_THROW2, SOUND_PAN_TARGET
+	delay 6
 	call IceCrystalEffectShort
 	clearmonbg ANIM_DEF_PARTNER
 	blendoff
