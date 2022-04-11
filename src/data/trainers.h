@@ -6774,7 +6774,6 @@ const struct Trainer gTrainers[] = {
 
     [TRAINER_BRENDAN_ROUTE_110_MUDKIP] =
     {
-        .partyFlags = 0,
         .trainerClass = TRAINER_CLASS_RIVAL,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
         .trainerPic = TRAINER_PIC_BRENDAN,

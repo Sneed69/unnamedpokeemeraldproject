@@ -382,7 +382,7 @@
 #define TRAINER_MON_FEMALE     1
 #define TRAINER_MON_MALE       2
 
-#define TRAINER_MON_FRIENDLY     1
-#define TRAINER_MON_UNFRIENDLY   2
+/*#define TRAINER_MON_FRIENDLY     1
+#define TRAINER_MON_UNFRIENDLY   2*/
 
 #endif  // GUARD_TRAINERS_H
