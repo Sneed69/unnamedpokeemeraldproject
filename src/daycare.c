@@ -23,6 +23,7 @@
 #include "constants/items.h"
 #include "constants/moves.h"
 #include "constants/region_map_sections.h"
+#include "constants/hold_effects.h"
 
 extern const struct Evolution gEvolutionTable[][EVOS_PER_MON];
 
@@ -514,12 +515,12 @@ static void RemoveIVIndexFromList(u8 *ivs, u8 selectedIv)
 
 static void InheritIVs(struct Pokemon *egg, struct DayCare *daycare)
 {
-    u8 i, j, k, index, inheritedN;
+    u8 i, j, k, index;
     u8 selectedIvs[INHERITED_IV_DESTINY_KNOT_COUNT];
     u8 availableIVs[NUM_STATS];
     u8 whichParents[INHERITED_IV_DESTINY_KNOT_COUNT];
     u8 iv;
-	bool8 destinyKnot = FALSE;
+	u8 inheritedN = INHERITED_IV_COUNT;
 
     // Initialize a list of IV indices.
     for (i = 0; i < NUM_STATS; i++)
@@ -531,39 +532,10 @@ static void InheritIVs(struct Pokemon *egg, struct DayCare *daycare)
 	k = 0;
     for (i = 0; i < DAYCARE_MON_COUNT; i++)
     { 
-        bool8 powerItem;
-		switch (GetBoxMonData(&daycare->mons[i].mon, MON_DATA_HELD_ITEM))
+        u16 item = GetBoxMonData(&daycare->mons[i].mon, MON_DATA_HELD_ITEM);
+		if (gItems[item].holdEffect == HOLD_EFFECT_POWER_ITEM)
 		{
-			case ITEM_POWER_WEIGHT:
-				index = 0;
-				powerItem = TRUE;
-				break;
-			case ITEM_POWER_BRACER:
-				index = 1;
-				powerItem = TRUE;
-				break;
-			case ITEM_POWER_BELT:
-				index = 2;
-				powerItem = TRUE;
-				break;
-			case ITEM_POWER_ANKLET:
-				index = 3;
-				powerItem = TRUE;
-				break;
-			case ITEM_POWER_LENS:
-				index = 4;
-				powerItem = TRUE;
-				break;
-			case ITEM_POWER_BAND:
-				index = 5;
-				powerItem = TRUE;
-				break;
-			case ITEM_DESTINY_KNOT:
-				destinyKnot = TRUE;
-			default:
-				powerItem = FALSE;
-		}
-		if (powerItem)
+			index = gItems[item].secondaryId;
 			for (j = 0; j <= index; j++)
 				if (availableIVs[j] == index)
 				{
@@ -573,13 +545,10 @@ static void InheritIVs(struct Pokemon *egg, struct DayCare *daycare)
 					k++;
 					break;
 				}
+		}
+		else if (gItems[item].holdEffect == HOLD_EFFECT_DESTINY_KNOT)
+			inheritedN = INHERITED_IV_DESTINY_KNOT_COUNT;
     }
-	
-	// Apply destiny knot (or not)
-	if (destinyKnot)
-		inheritedN = INHERITED_IV_DESTINY_KNOT_COUNT;
-	else
-		inheritedN = INHERITED_IV_COUNT;
 	
     // Select the 1-5 remaining IVs that will be inherited randomly.
     for (i = k; i < inheritedN; i++)
