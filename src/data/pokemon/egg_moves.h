@@ -1475,6 +1475,7 @@ const u16 gEggMoves[] = {
 
     egg_moves(TYROGUE,
         MOVE_RAPID_SPIN,
+        MOVE_LOW_SWEEP,
         MOVE_HIGH_JUMP_KICK,
         MOVE_MACH_PUNCH,
         MOVE_MIND_READER,
