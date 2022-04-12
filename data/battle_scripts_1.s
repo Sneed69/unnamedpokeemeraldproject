@@ -4401,7 +4401,7 @@ BattleScript_TripleKickLoop::
 BattleScript_DoTripleKickAttack::
 	jumpifmove MOVE_SURGING_STRIKES, EffectTripleKick_DoDmgCalcs    @ no power boost each hit
 	jumpifmove MOVE_TRIPLE_AXEL, EffectTripleKick_TripleAxelBoost   @ triple axel gets +20 power
-	addbyte sTRIPLE_KICK_POWER, 10                                  @ triple kick gets +10 power
+	addbyte sTRIPLE_KICK_POWER, 14                                  @ triple kick gets +14 power
 	goto EffectTripleKick_DoDmgCalcs
 EffectTripleKick_TripleAxelBoost:
 	addbyte sTRIPLE_KICK_POWER, 20
