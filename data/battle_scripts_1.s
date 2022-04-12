@@ -4392,14 +4392,13 @@ BattleScript_EffectTripleKick::
 	sethword sTRIPLE_KICK_POWER, 0
 	initmultihitstring
 	setmultihit 3
+	goto EffectTripleKick_DoDmgCalcs
 BattleScript_TripleKickLoop::
 	jumpifhasnohp BS_ATTACKER, BattleScript_TripleKickEnd
 	jumpifhasnohp BS_TARGET, BattleScript_TripleKickNoMoreHits
 	jumpifhalfword CMP_EQUAL, gChosenMove, MOVE_SLEEP_TALK, BattleScript_DoTripleKickAttack
 	jumpifstatus BS_ATTACKER, STATUS1_SLEEP, BattleScript_TripleKickNoMoreHits
 BattleScript_DoTripleKickAttack::
-	accuracycheck BattleScript_TripleKickNoMoreHits, ACC_CURR_MOVE
-	movevaluescleanup
 	jumpifmove MOVE_SURGING_STRIKES, EffectTripleKick_DoDmgCalcs    @ no power boost each hit
 	jumpifmove MOVE_TRIPLE_AXEL, EffectTripleKick_TripleAxelBoost   @ triple axel gets +20 power
 	addbyte sTRIPLE_KICK_POWER, 10                                  @ triple kick gets +10 power
@@ -4407,7 +4406,8 @@ BattleScript_DoTripleKickAttack::
 EffectTripleKick_TripleAxelBoost:
 	addbyte sTRIPLE_KICK_POWER, 20
 EffectTripleKick_DoDmgCalcs:
-	addbyte sTRIPLE_KICK_POWER, 10
+	accuracycheck BattleScript_TripleKickNoMoreHits, ACC_CURR_MOVE
+	movevaluescleanup
 	addbyte sMULTIHIT_STRING + 4, 1
 	critcalc
 	damagecalc

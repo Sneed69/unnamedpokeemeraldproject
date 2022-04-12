@@ -661,6 +661,7 @@ const u16 gEggMoves[] = {
         MOVE_ENDEAVOR,
         MOVE_HAMMER_ARM,
         MOVE_FOCUS_PUNCH,
+        MOVE_POWER_UP_PUNCH,
         MOVE_TRUMP_CARD,
         MOVE_UPROAR,
         MOVE_CIRCLE_THROW),
