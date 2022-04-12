@@ -423,18 +423,17 @@ PlayersHouse_1F_Text_LatiEmergencyNewsFlash:
 	.string "We bring you this emergency\n"
 	.string "news flash!\p"
 	.string "In various Hoenn locales, there have\n"
-	.string "been reports of a BZZT…colored\l"
-	.string "Pokémon in flight.\p"
-	.string "The identity of this Pokémon is\n"
-	.string "currently unknown.\p"
+	.string "been reports of a red and a blue\l"
+	.string "colored Pokémon in flight.\p"
+	.string "The identity of these Pokémon is\n"
+	.string "currently unknown, but we managed\l"
+	.string "to get a photo of each pokemon!$"
+	
+PlayersHouse_1F_Text_RegularProgram:
 	.string "We now return you to the regular\n"
 	.string "movie program.$"
 
-PlayersHouse_1F_Text_WhatColorDidTheySay:
-	.string "Mom: {PLAYER}, did you catch that?\p"
-	.string "What color did the announcer say\n"
-	.string "that Pokémon was?$"
-
-PlayersHouse_1F_Text_StillUnknownPokemon:
-	.string "Mom: Well, isn't that something!\n"
-	.string "There are still unknown Pokémon.$"
+PlayersHouse_1F_Text_Thingamajig:
+	.string "Mom: {PLAYER}, did your thingamajig\n"
+	.string "catch that? Your Poké... dex..?\p"
+	.string "Can you find those Pokémon?$"
