@@ -1,4 +1,5 @@
 #include "global.h"
+#include "pokedex.h"
 #include "event_data.h"
 #include "pokemon.h"
 #include "random.h"
@@ -14,9 +15,9 @@ enum
     MAP_NUM, // map number
 };
 
-#define ROAMER (&gSaveBlock1Ptr->roamer)
-EWRAM_DATA static u8 sLocationHistory[3][2] = {0};
-EWRAM_DATA static u8 sRoamerLocation[2] = {0};
+#define ROAMER(x) (&gSaveBlock1Ptr->roamer[x])
+EWRAM_DATA static u8 sLocationHistory[ROAMER_COUNT][3][2] = {0};
+EWRAM_DATA static u8 sRoamerLocation[ROAMER_COUNT][2] = {0};
 
 #define ___ MAP_NUM(UNDEFINED) // For empty spots in the location table
 
@@ -34,9 +35,22 @@ EWRAM_DATA static u8 sRoamerLocation[2] = {0};
 //         from that map when it lands there.
 static const u8 sRoamerLocations[][6] =
 {
-    { MAP_NUM(ROUTE110), MAP_NUM(ROUTE111), MAP_NUM(ROUTE117), MAP_NUM(ROUTE118), MAP_NUM(ROUTE134), ___ },
-    { MAP_NUM(ROUTE111), MAP_NUM(ROUTE110), MAP_NUM(ROUTE117), MAP_NUM(ROUTE118), ___, ___ },
-    { MAP_NUM(ROUTE117), MAP_NUM(ROUTE111), MAP_NUM(ROUTE110), MAP_NUM(ROUTE118), ___, ___ },
+    { MAP_NUM(ROUTE101), MAP_NUM(ROUTE102), MAP_NUM(ROUTE103), ___, ___, ___ },
+    { MAP_NUM(ROUTE102), MAP_NUM(ROUTE101), MAP_NUM(ROUTE103), MAP_NUM(ROUTE104), ___, ___ },
+    { MAP_NUM(ROUTE103), MAP_NUM(ROUTE101), MAP_NUM(ROUTE102), MAP_NUM(ROUTE110), ___, ___ },
+    { MAP_NUM(ROUTE104), MAP_NUM(ROUTE102), MAP_NUM(ROUTE105), MAP_NUM(ROUTE116), MAP_NUM(ROUTE115), ___ },
+    { MAP_NUM(ROUTE105), MAP_NUM(ROUTE104), MAP_NUM(ROUTE106), ___, ___, ___ },
+    { MAP_NUM(ROUTE106), MAP_NUM(ROUTE105), MAP_NUM(ROUTE107), ___, ___, ___ },
+    { MAP_NUM(ROUTE107), MAP_NUM(ROUTE106), MAP_NUM(ROUTE108), ___, ___, ___ },
+    { MAP_NUM(ROUTE108), MAP_NUM(ROUTE107), MAP_NUM(ROUTE109), ___, ___, ___ },
+    { MAP_NUM(ROUTE109), MAP_NUM(ROUTE108), MAP_NUM(ROUTE110), MAP_NUM(ROUTE134), ___, ___ },
+    { MAP_NUM(ROUTE110), MAP_NUM(ROUTE111), MAP_NUM(ROUTE117), MAP_NUM(ROUTE118), MAP_NUM(ROUTE109), MAP_NUM(ROUTE103) },
+    { MAP_NUM(ROUTE111), MAP_NUM(ROUTE110), MAP_NUM(ROUTE117), MAP_NUM(ROUTE118), MAP_NUM(ROUTE113), ___ },
+    { MAP_NUM(ROUTE113), MAP_NUM(ROUTE111), MAP_NUM(ROUTE114), ___, ___, ___ },
+    { MAP_NUM(ROUTE114), MAP_NUM(ROUTE113), MAP_NUM(ROUTE115), ___, ___, ___ },
+    { MAP_NUM(ROUTE115), MAP_NUM(ROUTE114), MAP_NUM(ROUTE116), MAP_NUM(ROUTE104), ___, ___ },
+    { MAP_NUM(ROUTE116), MAP_NUM(ROUTE115), MAP_NUM(ROUTE117), MAP_NUM(ROUTE104), ___, ___ },
+    { MAP_NUM(ROUTE117), MAP_NUM(ROUTE111), MAP_NUM(ROUTE110), MAP_NUM(ROUTE118), MAP_NUM(ROUTE116), ___ },
     { MAP_NUM(ROUTE118), MAP_NUM(ROUTE117), MAP_NUM(ROUTE110), MAP_NUM(ROUTE111), MAP_NUM(ROUTE119), MAP_NUM(ROUTE123) },
     { MAP_NUM(ROUTE119), MAP_NUM(ROUTE118), MAP_NUM(ROUTE120), ___, ___, ___ },
     { MAP_NUM(ROUTE120), MAP_NUM(ROUTE119), MAP_NUM(ROUTE121), ___, ___, ___ },
@@ -53,7 +67,7 @@ static const u8 sRoamerLocations[][6] =
     { MAP_NUM(ROUTE131), MAP_NUM(ROUTE130), MAP_NUM(ROUTE132), ___, ___, ___ },
     { MAP_NUM(ROUTE132), MAP_NUM(ROUTE131), MAP_NUM(ROUTE133), ___, ___, ___ },
     { MAP_NUM(ROUTE133), MAP_NUM(ROUTE132), MAP_NUM(ROUTE134), ___, ___, ___ },
-    { MAP_NUM(ROUTE134), MAP_NUM(ROUTE133), MAP_NUM(ROUTE110), ___, ___, ___ },
+    { MAP_NUM(ROUTE134), MAP_NUM(ROUTE133), MAP_NUM(ROUTE110), MAP_NUM(ROUTE109), ___, ___ },
     { ___, ___, ___, ___, ___, ___ },
 };
 
@@ -63,45 +77,46 @@ static const u8 sRoamerLocations[][6] =
 
 void ClearRoamerData(void)
 {
-    memset(ROAMER, 0, sizeof(*ROAMER));
-    ROAMER->species = SPECIES_LATIAS;
+	u8 i;
+	for (i = 0; i < ROAMER_COUNT; i++)
+		memset(ROAMER(i), 0, sizeof(*ROAMER(i)));
 }
 
 void ClearRoamerLocationData(void)
 {
-    u8 i;
+    u8 i, j;
 
-    for (i = 0; i < ARRAY_COUNT(sLocationHistory); i++)
-    {
-        sLocationHistory[i][MAP_GRP] = 0;
-        sLocationHistory[i][MAP_NUM] = 0;
-    }
+	for (i = 0; i < ROAMER_COUNT; i++)
+	{
+		for (j = 0; j < ARRAY_COUNT(sLocationHistory); j++)
+		{
+			sLocationHistory[i][j][MAP_GRP] = 0;
+			sLocationHistory[i][j][MAP_NUM] = 0;
+		}
 
-    sRoamerLocation[MAP_GRP] = 0;
-    sRoamerLocation[MAP_NUM] = 0;
+		sRoamerLocation[i][MAP_GRP] = 0;
+		sRoamerLocation[i][MAP_NUM] = 0;
+	}
 }
 
-static void CreateInitialRoamerMon(bool16 createLatios)
+static void CreateInitialRoamerMon(u16 species, u8 index)
 {
-    if (!createLatios)
-        ROAMER->species = SPECIES_LATIAS;
-    else
-        ROAMER->species = SPECIES_LATIOS;
-
-    CreateMon(&gEnemyParty[0], ROAMER->species, 70, 31, FALSE, 0, OT_ID_PLAYER_ID, 0);
-    ROAMER->level = 70;
-    ROAMER->status = 0;
-    ROAMER->active = TRUE;
-    ROAMER->ivs = GetMonData(&gEnemyParty[0], MON_DATA_IVS);
-    ROAMER->personality = GetMonData(&gEnemyParty[0], MON_DATA_PERSONALITY);
-    ROAMER->hp = GetMonData(&gEnemyParty[0], MON_DATA_MAX_HP);
-    ROAMER->cool = GetMonData(&gEnemyParty[0], MON_DATA_COOL);
-    ROAMER->beauty = GetMonData(&gEnemyParty[0], MON_DATA_BEAUTY);
-    ROAMER->cute = GetMonData(&gEnemyParty[0], MON_DATA_CUTE);
-    ROAMER->smart = GetMonData(&gEnemyParty[0], MON_DATA_SMART);
-    ROAMER->tough = GetMonData(&gEnemyParty[0], MON_DATA_TOUGH);
-    sRoamerLocation[MAP_GRP] = ROAMER_MAP_GROUP;
-    sRoamerLocation[MAP_NUM] = sRoamerLocations[Random() % NUM_LOCATION_SETS][0];
+    CreateMon(&gEnemyParty[0], species, 70, 31, FALSE, 0, OT_ID_PLAYER_ID, 0);
+    ROAMER(index)->species = species;
+    ROAMER(index)->level = 70;
+    ROAMER(index)->status = 0;
+    ROAMER(index)->active = TRUE;
+    ROAMER(index)->ivs = GetMonData(&gEnemyParty[0], MON_DATA_IVS);
+    ROAMER(index)->personality = GetMonData(&gEnemyParty[0], MON_DATA_PERSONALITY);
+    ROAMER(index)->hp = GetMonData(&gEnemyParty[0], MON_DATA_MAX_HP);
+    ROAMER(index)->cool = GetMonData(&gEnemyParty[0], MON_DATA_COOL);
+    ROAMER(index)->beauty = GetMonData(&gEnemyParty[0], MON_DATA_BEAUTY);
+    ROAMER(index)->cute = GetMonData(&gEnemyParty[0], MON_DATA_CUTE);
+    ROAMER(index)->smart = GetMonData(&gEnemyParty[0], MON_DATA_SMART);
+    ROAMER(index)->tough = GetMonData(&gEnemyParty[0], MON_DATA_TOUGH);
+    sRoamerLocation[index][MAP_GRP] = ROAMER_MAP_GROUP;
+    sRoamerLocation[index][MAP_NUM] = sRoamerLocations[Random() % NUM_LOCATION_SETS][0];
+	GetSetPokedexFlag(SpeciesToNationalPokedexNum(ROAMER(index)->species), FLAG_SET_SEEN);
 }
 
 // gSpecialVar_0x8004 here corresponds to the options in the multichoice MULTI_TV_LATI (0 for 'Red', 1 for 'Blue')
@@ -109,138 +124,142 @@ void InitRoamer(void)
 {
     ClearRoamerData();
     ClearRoamerLocationData();
-    CreateInitialRoamerMon(gSpecialVar_0x8004);
+    CreateInitialRoamerMon(SPECIES_LATIAS, 0);
+    CreateInitialRoamerMon(SPECIES_LATIOS, 1);
 }
 
 void UpdateLocationHistoryForRoamer(void)
 {
-    sLocationHistory[2][MAP_GRP] = sLocationHistory[1][MAP_GRP];
-    sLocationHistory[2][MAP_NUM] = sLocationHistory[1][MAP_NUM];
+	u8 i;
+	for (i = 0; i < ROAMER_COUNT; i++)
+	{
+		sLocationHistory[i][2][MAP_GRP] = sLocationHistory[i][1][MAP_GRP];
+		sLocationHistory[i][2][MAP_NUM] = sLocationHistory[i][1][MAP_NUM];
 
-    sLocationHistory[1][MAP_GRP] = sLocationHistory[0][MAP_GRP];
-    sLocationHistory[1][MAP_NUM] = sLocationHistory[0][MAP_NUM];
+		sLocationHistory[i][1][MAP_GRP] = sLocationHistory[i][0][MAP_GRP];
+		sLocationHistory[i][1][MAP_NUM] = sLocationHistory[i][0][MAP_NUM];
 
-    sLocationHistory[0][MAP_GRP] = gSaveBlock1Ptr->location.mapGroup;
-    sLocationHistory[0][MAP_NUM] = gSaveBlock1Ptr->location.mapNum;
+		sLocationHistory[i][0][MAP_GRP] = gSaveBlock1Ptr->location.mapGroup;
+		sLocationHistory[i][0][MAP_NUM] = gSaveBlock1Ptr->location.mapNum;
+	}
 }
 
-void RoamerMoveToOtherLocationSet(void)
+void RoamerMoveToOtherLocationSet(u8 index)
 {
     u8 mapNum = 0;
-    
-    if (!ROAMER->active)
-        return;
+	if (!ROAMER(index)->active)
+		return;
 
-    sRoamerLocation[MAP_GRP] = ROAMER_MAP_GROUP;
+	sRoamerLocation[index][MAP_GRP] = ROAMER_MAP_GROUP;
 
-    // Choose a location set that starts with a map
-    // different from the roamer's current map
-    while (1)
-    {
-        mapNum = sRoamerLocations[Random() % NUM_LOCATION_SETS][0];
-        if (sRoamerLocation[MAP_NUM] != mapNum)
-        {
-            sRoamerLocation[MAP_NUM] = mapNum;
-            return;
-        }
-    }
+	// Choose a location set that starts with a map
+	// different from the roamer's current map
+	while (1)
+	{
+		mapNum = sRoamerLocations[Random() % NUM_LOCATION_SETS][0];
+		if (sRoamerLocation[index][MAP_NUM] != mapNum)
+		{
+			sRoamerLocation[index][MAP_NUM] = mapNum;
+			return;
+		}
+	}
 }
 
-void RoamerMove(void)
+void RoamerMove(u8 index)
 {
     u8 locSet = 0;
+	if ((Random() % 16) == 0)
+	{
+		RoamerMoveToOtherLocationSet(index);
+	}
+	else
+	{
+		if (!ROAMER(index)->active)
+			return;
 
-    if ((Random() % 16) == 0)
-    {
-        RoamerMoveToOtherLocationSet();
-    }
-    else
-    {
-        if (!ROAMER->active)
-            return;
-
-        while (locSet < NUM_LOCATION_SETS)
-        {
-            // Find the location set that starts with the roamer's current map
-            if (sRoamerLocation[MAP_NUM] == sRoamerLocations[locSet][0])
-            {
-                u8 mapNum;
-                while (1)
-                {
-                    // Choose a new map (excluding the first) within this set
-                    // Also exclude a map if the roamer was there 2 moves ago
-                    mapNum = sRoamerLocations[locSet][(Random() % (NUM_LOCATIONS_PER_SET - 1)) + 1];
-                    if (!(sLocationHistory[2][MAP_GRP] == ROAMER_MAP_GROUP 
-                       && sLocationHistory[2][MAP_NUM] == mapNum) 
-                       && mapNum != MAP_NUM(UNDEFINED))
-                        break;
-                }
-                sRoamerLocation[MAP_NUM] = mapNum;
-                return;
-            }
-            locSet++;
-        }
-    }
+		while (locSet < NUM_LOCATION_SETS)
+		{
+			// Find the location set that starts with the roamer's current map
+			if (sRoamerLocation[index][MAP_NUM] == sRoamerLocations[locSet][0])
+			{
+				u8 mapNum;
+				while (1)
+				{
+					// Choose a new map (excluding the first) within this set
+					// Also exclude a map if the roamer was there 2 moves ago
+					mapNum = sRoamerLocations[locSet][(Random() % (NUM_LOCATIONS_PER_SET - 1)) + 1];
+					if (!(sLocationHistory[index][2][MAP_GRP] == ROAMER_MAP_GROUP 
+					   && sLocationHistory[index][2][MAP_NUM] == mapNum) 
+					   && mapNum != MAP_NUM(UNDEFINED))
+						break;
+				}
+				sRoamerLocation[index][MAP_NUM] = mapNum;
+				return;
+			}
+			locSet++;
+		}
+	}
 }
 
-bool8 IsRoamerAt(u8 mapGroup, u8 mapNum)
+bool8 IsRoamerAt(u8 index, u8 mapGroup, u8 mapNum)
 {
-    if (ROAMER->active && mapGroup == sRoamerLocation[MAP_GRP] && mapNum == sRoamerLocation[MAP_NUM])
+    if (ROAMER(index)->active && mapGroup == sRoamerLocation[index][MAP_GRP] && mapNum == sRoamerLocation[index][MAP_NUM])
         return TRUE;
     else
         return FALSE;
 }
 
-void CreateRoamerMonInstance(void)
+void CreateRoamerMonInstance(u8 index)
 {
     u32 status;
     struct Pokemon *mon = &gEnemyParty[0];
     ZeroEnemyPartyMons();
-    CreateMonWithIVsPersonality(mon, ROAMER->species, ROAMER->level, ROAMER->ivs, ROAMER->personality);
+    CreateMonWithIVsPersonality(mon, ROAMER(index)->species, ROAMER(index)->level, ROAMER(index)->ivs, ROAMER(index)->personality);
 // The roamer's status field is u8, but SetMonData expects status to be u32, so will set the roamer's status
 // using the status field and the following 3 bytes (cool, beauty, and cute).
 #ifdef BUGFIX
-    status = ROAMER->status;
+    status = ROAMER(index)->status;
     SetMonData(mon, MON_DATA_STATUS, &status);
 #else
-    SetMonData(mon, MON_DATA_STATUS, &ROAMER->status);
+    SetMonData(mon, MON_DATA_STATUS, &ROAMER(index)->status);
 #endif
-    SetMonData(mon, MON_DATA_HP, &ROAMER->hp);
-    SetMonData(mon, MON_DATA_COOL, &ROAMER->cool);
-    SetMonData(mon, MON_DATA_BEAUTY, &ROAMER->beauty);
-    SetMonData(mon, MON_DATA_CUTE, &ROAMER->cute);
-    SetMonData(mon, MON_DATA_SMART, &ROAMER->smart);
-    SetMonData(mon, MON_DATA_TOUGH, &ROAMER->tough);
+    SetMonData(mon, MON_DATA_HP, &ROAMER(index)->hp);
+    SetMonData(mon, MON_DATA_COOL, &ROAMER(index)->cool);
+    SetMonData(mon, MON_DATA_BEAUTY, &ROAMER(index)->beauty);
+    SetMonData(mon, MON_DATA_CUTE, &ROAMER(index)->cute);
+    SetMonData(mon, MON_DATA_SMART, &ROAMER(index)->smart);
+    SetMonData(mon, MON_DATA_TOUGH, &ROAMER(index)->tough);
 }
 
-bool8 TryStartRoamerEncounter(void)
+u8 TryStartRoamerEncounter(void)
 {
-    if (IsRoamerAt(gSaveBlock1Ptr->location.mapGroup, gSaveBlock1Ptr->location.mapNum) == TRUE && (Random() % 4) == 0)
+	u8 i;
+	for (i = 0; i < ROAMER_COUNT; i++)
     {
-        CreateRoamerMonInstance();
-        return TRUE;
-    }
-    else
-    {
-        return FALSE;
-    }
+		if (IsRoamerAt(i, gSaveBlock1Ptr->location.mapGroup, gSaveBlock1Ptr->location.mapNum) == TRUE && (Random() % 4) == 0)
+		{
+			CreateRoamerMonInstance(i);
+			return i;
+		}
+	}
+	return ROAMER_COUNT;
 }
 
-void UpdateRoamerHPStatus(struct Pokemon *mon)
+void UpdateRoamerHPStatus(u8 index, struct Pokemon *mon)
 {
-    ROAMER->hp = GetMonData(mon, MON_DATA_HP);
-    ROAMER->status = GetMonData(mon, MON_DATA_STATUS);
+    ROAMER(index)->hp = GetMonData(mon, MON_DATA_HP);
+    ROAMER(index)->status = GetMonData(mon, MON_DATA_STATUS);
 
-    RoamerMoveToOtherLocationSet();
+    RoamerMoveToOtherLocationSet(index);
 }
 
-void SetRoamerInactive(void)
+void SetRoamerInactive(u8 index)
 {
-    ROAMER->active = FALSE;
+    ROAMER(index)->active = FALSE;
 }
 
-void GetRoamerLocation(u8 *mapGroup, u8 *mapNum)
+void GetRoamerLocation(u8 index, u8 *mapGroup, u8 *mapNum)
 {
-    *mapGroup = sRoamerLocation[MAP_GRP];
-    *mapNum = sRoamerLocation[MAP_NUM];
+    *mapGroup = sRoamerLocation[index][MAP_GRP];
+    *mapNum = sRoamerLocation[index][MAP_NUM];
 }
