@@ -307,7 +307,7 @@ LavaridgeTown_Text_MayChallengeDad:
 	.string "See you again!$"
 
 LavaridgeTown_Text_BrendanNiceBadgesTakeThis:
-	.string "Brendan: {PLAYER}, hey, it's been a while.\n"
+	.string "Brendan: {PLAYER}, it's been a while.\n"
 	.string "How's it going?\p"
 	.string "Hmm…\n"
 	.string "That's a decent collection of Badges.\p"
@@ -328,8 +328,8 @@ LavaridgeTown_Text_BrendanChallengeDad:
 	.string "As for me…\n"
 	.string "I'm considering challenging Norman,\l"
 	.string "the Gym Leader of Petalburg.\p"
-	.string "Unlike you, {PLAYER}, your dad looks like\n"
-	.string "he really is tough.\p"
+	.string "Unlike you, {PLAYER}, your dad looks\n"
+	.string "like he really is tough.\p"
 	.string "See you around!$"
 
 LavaridgeTown_Text_HaveEggWillYouTakeIt:
