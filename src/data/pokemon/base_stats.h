@@ -3552,37 +3552,9 @@ const struct BaseStats gBaseStats[] =
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroup1 = EGG_GROUP_FIELD,
         .eggGroup2 = EGG_GROUP_FIELD,
-		.abilities = {ABILITY_MISTY_SURGE, ABILITY_TRACE},
+		.abilities = {ABILITY_MISTY_SURGE, ABILITY_DAZZLING},
         .bodyColor = BODY_COLOR_PINK,
         .noFlip = TRUE,
-    },
-
-    [SPECIES_PORYGON] =
-    {
-        .baseHP        = 65,
-        .baseAttack    = 60,
-        .baseDefense   = 70,
-        .baseSpeed     = 40,
-        .baseSpAttack  = 85,
-        .baseSpDefense = 75,
-        .type1 = TYPE_NORMAL,
-        .type2 = TYPE_NORMAL,
-        .catchRate = 45,
-        .expYield = 79,
-        .evYield_SpAttack  = 1,
-        .genderRatio = MON_GENDERLESS,
-        .eggCycles = 20,
-        .friendship = 70,
-        .growthRate = GROWTH_MEDIUM_FAST,
-        .eggGroup1 = EGG_GROUP_MINERAL,
-        .eggGroup2 = EGG_GROUP_MINERAL,
-        #ifdef BATTLE_ENGINE
-            .abilities = {ABILITY_TRACE, ABILITY_DOWNLOAD, ABILITY_ANALYTIC},
-        #else
-            .abilities = {ABILITY_TRACE, ABILITY_NONE},
-        #endif
-        .bodyColor = BODY_COLOR_PINK,
-        .noFlip = FALSE,
     },
 
     [SPECIES_OMANYTE] =
@@ -33332,6 +33304,34 @@ const struct BaseStats gBaseStats[] =
             .abilities = {ABILITY_SOUNDPROOF, ABILITY_FILTER, ABILITY_TECHNICIAN},
         #else
             .abilities = {ABILITY_SOUNDPROOF, ABILITY_NONE},
+        #endif
+        .bodyColor = BODY_COLOR_PINK,
+        .noFlip = FALSE,
+    },
+
+    [SPECIES_PORYGON] =
+    {
+        .baseHP        = 65,
+        .baseAttack    = 60,
+        .baseDefense   = 70,
+        .baseSpeed     = 40,
+        .baseSpAttack  = 85,
+        .baseSpDefense = 75,
+        .type1 = TYPE_NORMAL,
+        .type2 = TYPE_NORMAL,
+        .catchRate = 45,
+        .expYield = 79,
+        .evYield_SpAttack  = 1,
+        .genderRatio = MON_GENDERLESS,
+        .eggCycles = 20,
+        .friendship = 70,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroup1 = EGG_GROUP_MINERAL,
+        .eggGroup2 = EGG_GROUP_MINERAL,
+        #ifdef BATTLE_ENGINE
+            .abilities = {ABILITY_TRACE, ABILITY_DOWNLOAD, ABILITY_ANALYTIC},
+        #else
+            .abilities = {ABILITY_TRACE, ABILITY_NONE},
         #endif
         .bodyColor = BODY_COLOR_PINK,
         .noFlip = FALSE,
