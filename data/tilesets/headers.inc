@@ -8,7 +8,7 @@ gTileset_General::
 	.4byte gMetatiles_General
 	.4byte gMetatileAttributes_General
 	.4byte InitTilesetAnim_General
-	.4byte gTilesetPalOverrides_General
+	.4byte NULL @ palette overrides
 
 	.align 2
 gTileset_Petalburg::
