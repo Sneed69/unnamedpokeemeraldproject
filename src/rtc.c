@@ -2,6 +2,8 @@
 #include "rtc.h"
 #include "string_util.h"
 #include "text.h"
+#include "printf.h"
+#include "mgba.h"
 
 // iwram bss
 static u16 sErrorStatus;
@@ -131,6 +133,21 @@ void RtcGetInfo(struct SiiRtcInfo *rtc)
         RtcGetRawInfo(rtc);
 }
 
+void RtcGetInfoFast(struct SiiRtcInfo *rtc)
+{
+    if (sErrorStatus & RTC_ERR_FLAG_MASK)
+        *rtc = sRtcDummy;
+    else
+        RtcGetRawInfoFast(rtc);
+}
+
+void RtcGetTime(struct SiiRtcInfo *rtc)
+{
+    RtcDisableInterrupts();
+    SiiRtcGetTime(rtc);
+    RtcRestoreInterrupts();
+}
+
 void RtcGetDateTime(struct SiiRtcInfo *rtc)
 {
     RtcDisableInterrupts();
@@ -149,6 +166,12 @@ void RtcGetRawInfo(struct SiiRtcInfo *rtc)
 {
     RtcGetStatus(rtc);
     RtcGetDateTime(rtc);
+}
+
+void RtcGetRawInfoFast(struct SiiRtcInfo *rtc)
+{
+    RtcGetStatus(rtc);
+    RtcGetTime(rtc);
 }
 
 u16 RtcCheckInfo(struct SiiRtcInfo *rtc)
@@ -262,34 +285,71 @@ void FormatHexDate(u8 *dest, s32 year, s32 month, s32 day)
 
 void RtcCalcTimeDifference(struct SiiRtcInfo *rtc, struct Time *result, struct Time *t)
 {
-    u16 days = RtcGetDayCount(rtc);
-    result->seconds = ConvertBcdToBinary(rtc->second) - t->seconds;
-    result->minutes = ConvertBcdToBinary(rtc->minute) - t->minutes;
-    result->hours = ConvertBcdToBinary(rtc->hour) - t->hours;
-    result->days = days - t->days;
+    u16 rtcDays = RtcGetDayCount(rtc);
+    s16 seconds = TIMESCALE * (ConvertBcdToBinary(rtc->second) - t->seconds);
+    s16 minutes = TIMESCALE * (ConvertBcdToBinary(rtc->minute) - t->minutes);
+    s16 hours = TIMESCALE * (ConvertBcdToBinary(rtc->hour) - t->hours);
+    s16 days = TIMESCALE * (rtcDays - t->days);
 
-    if (result->seconds < 0)
+    if (seconds < 0)
     {
-        result->seconds += 60;
-        --result->minutes;
+		seconds *= -1;
+		minutes -= seconds / 60;
+		seconds = 60 - seconds % 60;
+		if (seconds == 60)
+			seconds = 0;
     }
+	else if (seconds >= 60)
+	{
+		minutes += seconds / 60;
+		seconds %= 60;
+	}
+		
 
-    if (result->minutes < 0)
+    if (minutes < 0)
     {
-        result->minutes += 60;
-        --result->hours;
+		minutes *= -1;
+		hours -= minutes / 60;
+		minutes = 60 - minutes % 60;
+		if (minutes == 60)
+			minutes = 0;
     }
+	else if (minutes >= 60)
+	{
+		hours += minutes / 60;
+		minutes %= 60;
+	}
 
-    if (result->hours < 0)
+    if (hours < 0)
     {
-        result->hours += 24;
-        --result->days;
+		hours *= -1;
+		days -= hours / 24;
+		hours = 24 - hours % 24;
+		if (hours == 24)
+			hours = 0;
     }
+	else if (hours >= 24)
+	{
+		days += hours / 24;
+		hours %= 24;
+	}
+	
+    result->seconds = seconds;
+    result->minutes = minutes;
+    result->hours = hours;
+    result->days = days;
+	mgba_printf(MGBA_LOG_DEBUG, "%d %d:%d:%d", days, hours, minutes, seconds);
 }
 
 void RtcCalcLocalTime(void)
 {
     RtcGetInfo(&sRtc);
+    RtcCalcTimeDifference(&sRtc, &gLocalTime, &gSaveBlock2Ptr->localTimeOffset);
+}
+
+void RtcCalcLocalTimeFast(void)
+{
+    RtcGetInfoFast(&sRtc);
     RtcCalcTimeDifference(&sRtc, &gLocalTime, &gSaveBlock2Ptr->localTimeOffset);
 }
 

@@ -3,7 +3,7 @@
 
 #include "siirtc.h"
 
-#define TIMESCALE 3
+#define TIMESCALE 300
 
 #define RTC_INIT_ERROR         0x0001
 #define RTC_INIT_WARNING       0x0002
@@ -33,6 +33,7 @@ void RtcGetInfo(struct SiiRtcInfo *rtc);
 void RtcGetDateTime(struct SiiRtcInfo *rtc);
 void RtcGetStatus(struct SiiRtcInfo *rtc);
 void RtcGetRawInfo(struct SiiRtcInfo *rtc);
+void RtcGetRawInfoFast(struct SiiRtcInfo *rtc);
 u16 RtcCheckInfo(struct SiiRtcInfo *rtc);
 void RtcReset(void);
 void FormatDecimalTime(u8 *dest, s32 hour, s32 minute, s32 second);
@@ -42,6 +43,7 @@ void FormatDecimalDate(u8 *dest, s32 year, s32 month, s32 day);
 void FormatHexDate(u8 *dest, s32 year, s32 month, s32 day);
 void RtcCalcTimeDifference(struct SiiRtcInfo *rtc, struct Time *result, struct Time *t);
 void RtcCalcLocalTime(void);
+void RtcCalcLocalTimeFast(void);
 void RtcInitLocalTimeOffset(s32 hour, s32 minute);
 void RtcCalcLocalTimeOffset(s32 days, s32 hours, s32 minutes, s32 seconds);
 void CalcTimeDifference(struct Time *result, struct Time *t1, struct Time *t2);
