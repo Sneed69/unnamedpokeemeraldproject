@@ -3,6 +3,8 @@
 
 #include "siirtc.h"
 
+#define TIMESCALE 3
+
 #define RTC_INIT_ERROR         0x0001
 #define RTC_INIT_WARNING       0x0002
 
