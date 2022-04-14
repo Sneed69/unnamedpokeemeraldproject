@@ -2,7 +2,10 @@
 #include "rtc.h"
 #include "string_util.h"
 #include "text.h"
+#include "printf.h"
+#include "mgba.h"
 
+static void RtcCalcTimeDifferenceForOffset(struct SiiRtcInfo *rtc, struct Time *result, struct Time *t);
 // iwram bss
 static u16 sErrorStatus;
 static struct SiiRtcInfo sRtc;
@@ -283,29 +286,17 @@ void FormatHexDate(u8 *dest, s32 year, s32 month, s32 day)
 
 void RtcCalcTimeDifference(struct SiiRtcInfo *rtc, struct Time *result, struct Time *t)
 {
-    u16 days = RtcGetDayCount(rtc);
-    result->seconds = ConvertBcdToBinary(rtc->second) - t->seconds;
-    result->minutes = ConvertBcdToBinary(rtc->minute) - t->minutes;
-    result->hours = ConvertBcdToBinary(rtc->hour) - t->hours;
-    result->days = days - t->days;
+    u32 totalSeconds = (TIME_SCALE * ConvertBcdToBinary(rtc->second) - t->seconds)
+					   + 60 * (TIME_SCALE * ConvertBcdToBinary(rtc->minute) - t->minutes)
+					   + 3600 * (TIME_SCALE * ConvertBcdToBinary(rtc->hour) - t->hours)
+					   + 86400 * (TIME_SCALE * RtcGetDayCount(rtc) - t->days);
+					   
+	result->seconds = totalSeconds % 60;
+	result->minutes = (totalSeconds % 3600) / 60;
+	result->hours = (totalSeconds % 86400) / 3600;
+	result->days = totalSeconds / 86400;
 
-    if (result->seconds < 0)
-    {
-        result->seconds += 60;
-        --result->minutes;
-    }
-
-    if (result->minutes < 0)
-    {
-        result->minutes += 60;
-        --result->hours;
-    }
-
-    if (result->hours < 0)
-    {
-        result->hours += 24;
-        --result->days;
-    }
+	mgba_printf(MGBA_LOG_DEBUG, "RTC %d, %02d:%02d:%02d | Day %0d, %02d:%02d:%02d", RtcGetDayCount(rtc), ConvertBcdToBinary(rtc->hour), ConvertBcdToBinary(rtc->minute), ConvertBcdToBinary(rtc->second), result->days, result->hours, result->minutes, result->seconds);
 }
 
 void RtcCalcLocalTime(void)
