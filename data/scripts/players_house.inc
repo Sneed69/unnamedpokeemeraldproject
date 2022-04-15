@@ -60,8 +60,10 @@ LittlerootTown_MaysHouse_2F_EventScript_WallClock::
 PlayersHouse_2F_EventScript_WallClock::
 	goto_if_set FLAG_SET_WALL_CLOCK, PlayersHouse_2F_EventScript_CheckWallClock
 	msgbox PlayersHouse_2F_Text_ClockIsStopped, MSGBOX_DEFAULT
-	call PlayersHouse_2F_EventScript_SetWallClock
-	delay 30
+	@call PlayersHouse_2F_EventScript_SetWallClock
+	delay 25
+	playfanfare MUS_OBTAIN_ITEM
+	msgbox PlayersHouse_2F_Text_ClockSuccess, MSGBOX_DEFAULT
 	setvar VAR_LITTLEROOT_INTRO_STATE, 6
 	setflag FLAG_SET_WALL_CLOCK
 	setflag FLAG_HIDE_LITTLEROOT_TOWN_PLAYERS_HOUSE_VIGOROTH_1
