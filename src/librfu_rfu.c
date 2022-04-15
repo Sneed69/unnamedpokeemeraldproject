@@ -5,9 +5,9 @@
 // desired, ensure that the name string is limited in size when it's copied from the
 // saveblock to any Rfu-related fields (e.g. in SetHostRfuUsername).
 // If wireless link functionality is not desired ignore or delete this warning.
-#if RFU_USER_NAME_LENGTH < (PLAYER_NAME_LENGTH + 1)
+/*#if RFU_USER_NAME_LENGTH < (PLAYER_NAME_LENGTH + 1)
 #warning "The Wireless Adapter hardware expects a username of no more than 8 bytes."
-#endif
+#endif*/
 
 struct LLSFStruct
 {
@@ -496,7 +496,7 @@ static void rfu_CB_configGameData(u8 reqCommand, u16 reqResult)
         for (i = 0; i < RFU_GAME_NAME_LENGTH; ++i)
             gRfuLinkStatus->my.gname[i] = *gname_uname_p++;
         ++gname_uname_p;
-        for (i = 0; i < PLAYER_NAME_LENGTH + 1; ++i)
+        for (i = 0; i < 8; ++i)
             gRfuLinkStatus->my.uname[i] = *gname_uname_p++;
     }
     rfu_STC_REQ_callback(reqCommand, reqResult);

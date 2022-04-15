@@ -99,7 +99,7 @@ try_erase:
     FLASH_WRITE(0x5555, 0x80);
     FLASH_WRITE(0x5555, 0xAA);
     FLASH_WRITE(0x2AAA, 0x55);
-    *addr = 0x30;
+    *(vu8*)addr = 0x30;
 
     SetReadFlash1(readFlash1Buffer);
 

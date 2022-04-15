@@ -286,17 +286,18 @@ void FormatHexDate(u8 *dest, s32 year, s32 month, s32 day)
 
 void RtcCalcTimeDifference(struct SiiRtcInfo *rtc, struct Time *result, struct Time *t)
 {
-    u32 totalSeconds = (TIME_SCALE * ConvertBcdToBinary(rtc->second) - t->seconds)
-					   + 60 * (TIME_SCALE * ConvertBcdToBinary(rtc->minute) - t->minutes)
-					   + 3600 * (TIME_SCALE * ConvertBcdToBinary(rtc->hour) - t->hours)
-					   + 86400 * (TIME_SCALE * RtcGetDayCount(rtc) - t->days);
-					   
-	result->seconds = totalSeconds % 60;
-	result->minutes = (totalSeconds % 3600) / 60;
-	result->hours = (totalSeconds % 86400) / 3600;
-	result->days = totalSeconds / 86400;
-
-	mgba_printf(MGBA_LOG_DEBUG, "RTC %d, %02d:%02d:%02d | Day %0d, %02d:%02d:%02d", RtcGetDayCount(rtc), ConvertBcdToBinary(rtc->hour), ConvertBcdToBinary(rtc->minute), ConvertBcdToBinary(rtc->second), result->days, result->hours, result->minutes, result->seconds);
+    s32 seconds = (TIME_SCALE * ConvertBcdToBinary(rtc->second) - t->seconds)
+                       + 60 * (TIME_SCALE * ConvertBcdToBinary(rtc->minute) - t->minutes)
+                       + 3600 * (TIME_SCALE * ConvertBcdToBinary(rtc->hour) - t->hours);
+    s32 days = TIME_SCALE * RtcGetDayCount(rtc) - t->days;
+	#define DAYS (86400 * days)
+                       
+    result->seconds = (seconds + DAYS) % 60;
+    result->minutes = ((seconds + DAYS) % 3600) / 60;
+    result->hours = ((seconds + DAYS) % 86400) / 3600;
+    result->days = (DAYS + seconds) / 86400;
+	
+	//mgba_printf(MGBA_LOG_DEBUG, "Day %0d, %02d:%02d:%02d", seconds, days, result->days, result->hours, result->minutes, result->seconds);
 }
 
 void RtcCalcLocalTime(void)
@@ -324,6 +325,7 @@ void RtcCalcLocalTimeOffset(s32 days, s32 hours, s32 minutes, s32 seconds)
     gLocalTime.seconds = seconds;
     RtcGetInfo(&sRtc);
     RtcCalcTimeDifference(&sRtc, &gSaveBlock2Ptr->localTimeOffset, &gLocalTime);
+	//mgba_printf(MGBA_LOG_DEBUG, "Offset %0d, %02d:%02d:%02d", gSaveBlock2Ptr->localTimeOffset.days, gSaveBlock2Ptr->localTimeOffset.hours, gSaveBlock2Ptr->localTimeOffset.minutes, gSaveBlock2Ptr->localTimeOffset.seconds);
 }
 
 void CalcTimeDifference(struct Time *result, struct Time *t1, struct Time *t2)
