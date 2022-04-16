@@ -1478,8 +1478,8 @@ static const u8 sUTurnDescription[] = _(
     "out the user.");
 
 static const u8 sCloseCombatDescription[] = _(
-    "A strong attack but lowers\n"
-    "the defensive stats.");
+    "A strong attack, but lowers\n"
+    "own Defense and Sp. Def.");
 
 static const u8 sPaybackDescription[] = _(
     "An attack that gains power\n"
@@ -3717,4 +3717,5 @@ const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] =
 	//Custom
     [MOVE_MYSTIC_BLADES - 1] = sMysticBladesDescription,
     [MOVE_FAIRY_TAIL - 1] = sFairyTailDescription,
+    [MOVE_HEADLONG_RUSH - 1] = sCloseCombatDescription,
 };

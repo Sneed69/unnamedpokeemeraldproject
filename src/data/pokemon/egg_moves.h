@@ -1673,7 +1673,6 @@ const u16 gEggMoves[] = {
         MOVE_CURSE,
         MOVE_SLEEP_TALK,
         MOVE_HAMMER_ARM,
-        MOVE_ICE_HAMMER,
         MOVE_NIGHT_SLASH,
         MOVE_AFTER_YOU,
         MOVE_TICKLE),
