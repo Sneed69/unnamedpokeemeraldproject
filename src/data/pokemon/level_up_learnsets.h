@@ -83,7 +83,7 @@ static const struct LevelUpMove sCharmeleonLevelUpLearnset[] = {
     LEVEL_UP_MOVE(21, MOVE_SCARY_FACE),
     LEVEL_UP_MOVE(28, MOVE_FIRE_FANG),
     LEVEL_UP_MOVE(32, MOVE_FLAME_BURST),
-    LEVEL_UP_MOVE(39, MOVE_SLASH),
+    LEVEL_UP_MOVE(39, MOVE_DRAGON_BREATH),
     LEVEL_UP_MOVE(43, MOVE_FLAMETHROWER),
     LEVEL_UP_MOVE(50, MOVE_FIRE_SPIN),
     LEVEL_UP_MOVE(54, MOVE_INFERNO),
@@ -92,7 +92,6 @@ static const struct LevelUpMove sCharmeleonLevelUpLearnset[] = {
 
 static const struct LevelUpMove sCharizardLevelUpLearnset[] = {
     LEVEL_UP_MOVE( 0, MOVE_WING_ATTACK),
-    LEVEL_UP_MOVE( 1, MOVE_HEAT_WAVE),
     LEVEL_UP_MOVE( 1, MOVE_SLASH),
     LEVEL_UP_MOVE( 1, MOVE_FIRE_SPIN),
     LEVEL_UP_MOVE( 1, MOVE_SCRATCH),
@@ -127,7 +126,6 @@ static const struct LevelUpMove sSquirtleLevelUpLearnset[] = {
     LEVEL_UP_MOVE(37, MOVE_RAIN_DANCE),
     LEVEL_UP_MOVE(40, MOVE_HYDRO_PUMP),
     LEVEL_UP_MOVE(50, MOVE_SHELL_SMASH),
-    LEVEL_UP_MOVE(63, MOVE_HYDRO_CANNON),
     LEVEL_UP_END
 };
 
@@ -168,8 +166,9 @@ static const struct LevelUpMove sBlastoiseLevelUpLearnset[] = {
     LEVEL_UP_MOVE(33, MOVE_AQUA_TAIL),
     LEVEL_UP_MOVE(40, MOVE_SKULL_BASH),
     LEVEL_UP_MOVE(47, MOVE_IRON_DEFENSE),
-    LEVEL_UP_MOVE(54, MOVE_RAIN_DANCE),
-    LEVEL_UP_MOVE(60, MOVE_HYDRO_PUMP),
+    LEVEL_UP_MOVE(52, MOVE_RAIN_DANCE),
+    LEVEL_UP_MOVE(57, MOVE_HYDRO_PUMP),
+    LEVEL_UP_MOVE(63, MOVE_HYDRO_CANNON),
     LEVEL_UP_MOVE(69, MOVE_SHELL_SMASH),
     LEVEL_UP_END
 };
@@ -5161,7 +5160,7 @@ static const struct LevelUpMove sGrovyleLevelUpLearnset[] = {
 };
 
 static const struct LevelUpMove sSceptileLevelUpLearnset[] = {
-    LEVEL_UP_MOVE( 0, MOVE_DUAL_CHOP),
+    LEVEL_UP_MOVE( 0, MOVE_BREAKING_SWIPE),
     LEVEL_UP_MOVE( 1, MOVE_POUND),
     LEVEL_UP_MOVE( 1, MOVE_LEER),
     LEVEL_UP_MOVE( 7, MOVE_QUICK_ATTACK),
@@ -5371,7 +5370,6 @@ static const struct LevelUpMove sLinooneLevelUpLearnset[] = {
     LEVEL_UP_MOVE(32, MOVE_SLASH),
     LEVEL_UP_MOVE(35, MOVE_DOUBLE_EDGE),
     LEVEL_UP_MOVE(40, MOVE_BELLY_DRUM),
-    LEVEL_UP_MOVE(45, MOVE_EXTREME_SPEED),
     LEVEL_UP_END
 };
 
