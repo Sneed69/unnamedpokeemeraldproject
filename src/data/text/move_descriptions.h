@@ -842,8 +842,8 @@ static const u8 sFuryCutterDescription[] = _(
     "on each successive hit.");
 
 static const u8 sSteelWingDescription[] = _(
-    "Strikes the foe with hard\n"
-    "wings spread wide.");
+    "A wing strike that may\n"
+    "raise the user's Defense.");
 
 static const u8 sMeanLookDescription[] = _(
     "Fixes the foe with a mean\n"
@@ -2946,6 +2946,10 @@ static const u8 sMysticBladesDescription[] = _(
     "Cuts with two long blades\n"
     "that deal special damage.");
 
+static const u8 sFairyTailDescription[] = _(
+    "Attacks with an enchanted\n"
+    "tail. May lower Defense.");
+
 static const u8 sNotDoneYetDescription[] = _(
     "Not done yet.");
 
@@ -3712,4 +3716,5 @@ const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] =
 	
 	//Custom
     [MOVE_MYSTIC_BLADES - 1] = sMysticBladesDescription,
+    [MOVE_FAIRY_TAIL - 1] = sFairyTailDescription,
 };

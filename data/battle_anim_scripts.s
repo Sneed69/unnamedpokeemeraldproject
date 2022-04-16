@@ -781,6 +781,7 @@ gBattleAnims_Moves::
 	.4byte Move_EERIE_SPELL
 @@@@@@@@@@@@ CUSTOM @@@@@@@@@@@@
 	.4byte Move_MYSTIC_BLADES
+	.4byte Move_FAIRY_TAIL
 	.4byte Move_COUNT @ cannot be reached, because last move is Eerie Spell
 
 	.align 2
@@ -14454,6 +14455,49 @@ Move_MYSTIC_BLADES:
 	waitforvisualfinish
 	end
 
+Move_FAIRY_TAIL::
+	loadspritegfx ANIM_TAG_WATER_IMPACT
+	loadspritegfx ANIM_TAG_ELECTRIC_ORBS
+	createvisualtask AnimTask_BlendParticle, 5, ANIM_TAG_WATER_IMPACT, 0, 0xF, 0xD, RGB(31, 3, 19)
+	playsewithpan SE_M_HEAL_BELL, SOUND_PAN_ATTACKER
+	createvisualtask AnimTask_ScaleMonAndRestore, 5, -7, -7, 11, ANIM_ATTACKER, 0
+	waitforvisualfinish
+	delay 30
+	createvisualtask AnimTask_BlendMonInAndOut, 5, ANIM_ATTACKER, RGB(31, 3, 19), 12, 5, 1
+	delay 4
+	createvisualtask AnimTask_ScaleMonAndRestore, 5, -7, -7, 11, ANIM_ATTACKER, 0
+	playsewithpan SE_M_REVERSAL, SOUND_PAN_ATTACKER
+	createsprite gElectricTerrainOrbsTemplate, ANIM_ATTACKER, 2, 26, 0
+	createsprite gElectricTerrainOrbsTemplate, ANIM_ATTACKER, 2, 26, 42
+	createsprite gElectricTerrainOrbsTemplate, ANIM_ATTACKER, 2, 26, 84
+	createsprite gElectricTerrainOrbsTemplate, ANIM_ATTACKER, 2, 26, 126
+	createsprite gElectricTerrainOrbsTemplate, ANIM_ATTACKER, 2, 26, 168
+	createsprite gElectricTerrainOrbsTemplate, ANIM_ATTACKER, 2, 26, 210
+	delay 52
+	setarg 7, 0xFFFF
+	monbg ANIM_DEF_PARTNER
+	setalpha 12, 8
+	loadspritegfx ANIM_TAG_SLAM_HIT_2
+	loadspritegfx ANIM_TAG_IMPACT
+	createsprite gHorizontalLungeSpriteTemplate, 2, 2, 4, 6
+	delay 4
+	playsewithpan SE_M_VITAL_THROW, SOUND_PAN_TARGET
+	createsprite gAquaTailKnockOffSpriteTemplate, 130, 2, -16, -16
+	delay 8
+	createsprite gBasicHitSplatSpriteTemplate, 131, 4, 0, 0, 1, 2
+	playsewithpan SE_M_COMET_PUNCH, SOUND_PAN_TARGET
+	createsprite gSlideMonToOffsetSpriteTemplate, 2, 5, 1, -12, 10, 0, 3
+	createsprite gSlideMonToOriginalPosSpriteTemplate, 2, 3, 0, 0, 5
+	delay 3
+	createvisualtask AnimTask_ShakeMonInPlace, 2, 5, 1, 0, 3, 6, 1
+	delay 5
+	createsprite gSlideMonToOriginalPosSpriteTemplate, 2, 3, 1, 0, 6
+	delay 10
+	waitforvisualfinish
+	clearmonbg ANIM_DEF_PARTNER
+	blendoff
+	end
+	
 @@@@@@@@@@@@@@@@@@@@@@@ GEN 1-3 @@@@@@@@@@@@@@@@@@@@@@@
 Move_NONE:
 Move_MIRROR_MOVE:
