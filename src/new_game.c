@@ -151,7 +151,6 @@ void NewGameInitData(void)
 {
     if (gSaveFileStatus == SAVE_STATUS_EMPTY || gSaveFileStatus == SAVE_STATUS_CORRUPT)
         RtcReset();
-	RtcInitLocalTimeOffset(9, 45);
     gDifferentSaveFile = TRUE;
     gSaveBlock2Ptr->encryptionKey = 0;
     ZeroPlayerPartyMons();
@@ -210,6 +209,12 @@ void NewGameInitData(void)
     gSaveBlock1Ptr->registeredItemSelect = 0;
     gSaveBlock1Ptr->registeredItemL = 0;
     gSaveBlock1Ptr->registeredItemR = 0;
+	
+	RtcInitLocalTimeOffset(9, 45);
+    FlagSet(FLAG_SYS_CLOCK_SET);
+    RtcCalcLocalTime();
+    gSaveBlock2Ptr->lastBerryTreeUpdate = gLocalTime;
+    VarSet(VAR_DAYS, gLocalTime.days);
 }
 
 static void ResetMiniGamesRecords(void)
