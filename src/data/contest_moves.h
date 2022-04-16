@@ -1010,7 +1010,7 @@ const struct ContestMove gContestMoves[MOVES_COUNT] =
         .comboStarterId = 0,
         .comboMoves = {COMBO_STARTER_SUNNY_DAY},
     },
-
+ 
     [MOVE_WATERFALL] =
     {
         .effect = CONTEST_EFFECT_BETTER_IF_LAST,
@@ -5941,6 +5941,14 @@ const struct ContestMove gContestMoves[MOVES_COUNT] =
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .comboStarterId = 0,
         .comboMoves = {0},
+    },
+
+    [MOVE_WAVE_CRASH] =
+    {
+        .effect = CONTEST_EFFECT_BETTER_IF_LAST,
+        .contestCategory = CONTEST_CATEGORY_COOL,
+        .comboStarterId = 0,
+        .comboMoves = {COMBO_STARTER_SURF},
     },
 };
 

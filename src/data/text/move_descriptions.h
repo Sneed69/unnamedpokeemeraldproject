@@ -2949,6 +2949,10 @@ static const u8 sMysticBladesDescription[] = _(
 static const u8 sFairyTailDescription[] = _(
     "Attacks with an enchanted\n"
     "tail. May lower Defense.");
+	
+static const u8 sWaveCrashDescription[] = _(
+    "A charge that raises Speed.\n"
+    "Also hurts the user.");
 
 static const u8 sNotDoneYetDescription[] = _(
     "Not done yet.");
@@ -3718,4 +3722,5 @@ const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] =
     [MOVE_MYSTIC_BLADES - 1] = sMysticBladesDescription,
     [MOVE_FAIRY_TAIL - 1] = sFairyTailDescription,
     [MOVE_HEADLONG_RUSH - 1] = sCloseCombatDescription,
+    [MOVE_WAVE_CRASH - 1] = sWaveCrashDescription,
 };

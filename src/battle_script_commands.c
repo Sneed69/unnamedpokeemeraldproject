@@ -3287,6 +3287,14 @@ void SetMoveEffect(bool32 primary, u32 certain)
                 BattleScriptPush(gBattlescriptCurrInstr + 1);
                 gBattlescriptCurrInstr = BattleScript_MoveEffectRecoilWithStatus;
                 break;
+            case MOVE_EFFECT_RECOIL_33_SPEED_UP: 
+                gBattleScripting.savedDmg = gHpDealt / 3;
+                if (gBattleScripting.savedDmg == 0)
+                    gBattleScripting.savedDmg = 1;
+
+                BattleScriptPush(gBattlescriptCurrInstr + 1);
+                gBattlescriptCurrInstr = BattleScript_MoveEffectRecoilSpeedUp;
+                break;
             case MOVE_EFFECT_RECOIL_HP_25: // Struggle
                 gBattleMoveDamage = (gBattleMons[gEffectBattler].maxHP) / 4;
                 if (gBattleMoveDamage == 0)

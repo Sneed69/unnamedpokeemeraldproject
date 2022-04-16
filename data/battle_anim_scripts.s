@@ -14514,7 +14514,7 @@ Move_HEADLONG_RUSH:
 	delay 11
 	createvisualtask AnimTask_RotateMonSpriteToSide, 2, 8, 256, 0, 0
 	waitforvisualfinish
-	createsprite gSlideMonToOffsetSpriteTemplate, ANIM_ATTACKER, 2, 0, 70, 0, 0, 7
+	createsprite gSlideMonToOffsetSpriteTemplate, ANIM_ATTACKER, 2, 0, 70, 5, 0, 7
 	delay 6
 	createsprite gBasicHitSplatSpriteTemplate, ANIM_ATTACKER, 4, -10, 0, ANIM_TARGET, 0
 	loopsewithpan SE_M_MEGA_KICK2, SOUND_PAN_TARGET, 10, 2

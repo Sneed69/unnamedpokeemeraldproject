@@ -406,6 +406,7 @@ gBattleScriptsForMoveEffects::
 	.4byte BattleScript_EffectSkyDrop                 @ EFFECT_SKY_DROP
 	.4byte BattleScript_EffectMeteorBeam              @ EFFECT_METEOR_BEAM
 	.4byte BattleScript_EffectScaleShot               @ EFFECT_SCALE_SHOT
+	.4byte BattleScript_EffectWaveCrash				  @ EFFECT_RECOIL_33_STAT_UP
 
 BattleScript_EffectScaleShot::
 	attackcanceler
@@ -5763,6 +5764,10 @@ BattleScript_EffectRecoil33Status:
 	setmoveeffect MOVE_EFFECT_RECOIL_33_STATUS | MOVE_EFFECT_AFFECTS_USER | MOVE_EFFECT_CERTAIN
 	goto BattleScript_EffectHit
 
+BattleScript_EffectWaveCrash:
+	setmoveeffect MOVE_EFFECT_RECOIL_33_SPEED_UP | MOVE_EFFECT_AFFECTS_USER | MOVE_EFFECT_CERTAIN
+	goto BattleScript_EffectHit
+
 BattleScript_EffectRecoil50:
 	setmoveeffect MOVE_EFFECT_RECOIL_50 | MOVE_EFFECT_AFFECTS_USER | MOVE_EFFECT_CERTAIN
 	goto BattleScript_EffectHit
@@ -7878,6 +7883,27 @@ BattleScript_MoveEffectConfusion::
 	waitmessage B_WAIT_TIME_LONG
 	return
 
+BattleScript_MoveEffectRecoilSpeedUp::
+	jumpifability BS_ATTACKER, ABILITY_ROCK_HEAD, BattleScript_WaveCrashSpeedUp
+	copyword gBattleMoveDamage, sSAVED_DMG
+	orword gHitMarker, HITMARKER_IGNORE_SUBSTITUTE | HITMARKER_PASSIVE_DAMAGE | HITMARKER_IGNORE_DISGUISE
+	healthbarupdate BS_ATTACKER
+	datahpupdate BS_ATTACKER
+	printstring STRINGID_PKMNHITWITHRECOIL
+	waitmessage B_WAIT_TIME_LONG
+	tryfaintmon BS_ATTACKER
+BattleScript_WaveCrashSpeedUp::
+	setstatchanger STAT_SPEED, 1, FALSE
+	statbuffchange MOVE_EFFECT_AFFECTS_USER | STAT_BUFF_ALLOW_PTR, BattleScript_WaveCrashEnd
+	jumpifbyte CMP_EQUAL, cMULTISTRING_CHOOSER, B_MSG_STAT_WONT_INCREASE, BattleScript_WaveCrashStatUpPrintString
+	setgraphicalstatchangevalues
+	playanimation BS_ATTACKER, B_ANIM_STATS_CHANGE, sB_ANIM_ARG1
+BattleScript_WaveCrashStatUpPrintString::
+	printfromtable gStatUpStringIds
+	waitmessage B_WAIT_TIME_LONG
+BattleScript_WaveCrashEnd::
+	return
+	
 BattleScript_MoveEffectRecoilWithStatus::
 	argumentstatuseffect
 	copyword gBattleMoveDamage, sSAVED_DMG

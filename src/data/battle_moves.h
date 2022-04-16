@@ -11638,7 +11638,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
         .secondaryEffectChance = 0,
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
-        .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED,
+        .flags = FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED,
         .split = SPLIT_PHYSICAL,
     },
 
@@ -11661,6 +11661,20 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
         .effect = EFFECT_CLOSE_COMBAT,
         .power = 120,
         .type = TYPE_GROUND,
+        .accuracy = 100,
+        .pp = 8,
+        .secondaryEffectChance = 100,
+        .target = MOVE_TARGET_SELECTED,
+        .priority = 0,
+        .flags = FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED,
+        .split = SPLIT_PHYSICAL,
+    },
+
+    [MOVE_WAVE_CRASH] =
+    {
+        .effect = EFFECT_RECOIL_33_SPEED_UP,
+        .power = 75,
+        .type = TYPE_WATER,
         .accuracy = 100,
         .pp = 8,
         .secondaryEffectChance = 100,
