@@ -14525,7 +14525,6 @@ Move_HEADLONG_RUSH:
 	waitforvisualfinish
 	delay 10
 	createvisualtask AnimTask_RotateMonSpriteToSide, 2, 8, 0, 0, 1
-	@waitforvisualfinish
 	createsprite gSlideMonToOriginalPosSpriteTemplate, ANIM_ATTACKER, 2, 0, 0, 17
 	delay 5
 	createsprite gSlideMonToOriginalPosSpriteTemplate, ANIM_ATTACKER, 2, 1, 0, 17

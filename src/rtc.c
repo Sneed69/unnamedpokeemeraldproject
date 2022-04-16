@@ -297,7 +297,7 @@ void RtcCalcTimeDifference(struct SiiRtcInfo *rtc, struct Time *result, struct T
     result->hours = ((seconds + DAYS) % 86400) / 3600;
     result->days = (DAYS + seconds) / 86400;
 	
-	//mgba_printf(MGBA_LOG_DEBUG, "Day %0d, %02d:%02d:%02d", seconds, days, result->days, result->hours, result->minutes, result->seconds);
+	//mgba_printf(MGBA_LOG_DEBUG, "Day %0d, %02d:%02d:%02d", result->days, result->hours, result->minutes, result->seconds);
 }
 
 void RtcCalcLocalTime(void)
