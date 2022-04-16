@@ -2942,9 +2942,9 @@ static const u8 sEerieSpellDescription[] = _(
     "Attacks with psychic power.\n"
     "Foe's last move has 3 PP cut.");
 
-static const u8 sMYSTIC_BLADEDescription[] = _(
-    "Cuts with a long blade\n"
-    "that does special damage.");
+static const u8 sMysticBladesDescription[] = _(
+    "Cuts with two long blades\n"
+    "that deal special damage.");
 
 static const u8 sNotDoneYetDescription[] = _(
     "Not done yet.");
@@ -3711,5 +3711,5 @@ const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] =
 	
 	
 	//Custom
-    [MOVE_MYSTIC_BLADE - 1] = sMYSTIC_BLADEDescription,
+    [MOVE_MYSTIC_BLADES - 1] = sMysticBladesDescription,
 };

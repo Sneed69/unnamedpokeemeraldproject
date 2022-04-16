@@ -253,6 +253,18 @@ const struct SpriteTemplate gSwordsDanceBladeSpriteTemplate =
     .callback = AnimSwordsDanceBlade,
 };
 
+//mystic blades
+const struct SpriteTemplate gGalladeBladeSpriteTemplate =
+{
+    .tileTag = ANIM_TAG_SWORD,
+    .paletteTag = ANIM_TAG_GREEN_POISON_BUBBLE,
+    .oam = &gOamData_AffineNormal_ObjBlend_32x64,
+    .anims = gDummySpriteAnimTable,
+    .images = NULL,
+    .affineAnims = gSwordsDanceBladeAffineAnimTable,
+    .callback = AnimSwordsDanceBlade,
+};
+
 const struct SpriteTemplate gSonicBoomSpriteTemplate =
 {
     .tileTag = ANIM_TAG_AIR_WAVE,

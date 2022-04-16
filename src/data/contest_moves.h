@@ -5919,7 +5919,7 @@ const struct ContestMove gContestMoves[MOVES_COUNT] =
         .comboMoves = {0}
     },
 	
-    [MOVE_MYSTIC_BLADE] =
+    [MOVE_MYSTIC_BLADES] =
     {
         .effect = CONTEST_EFFECT_BETTER_IF_SAME_TYPE,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,

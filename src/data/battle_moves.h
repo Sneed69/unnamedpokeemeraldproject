@@ -11628,7 +11628,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
         .split = SPLIT_SPECIAL,
     },
 
-    [MOVE_MYSTIC_BLADE] =
+    [MOVE_MYSTIC_BLADES] =
     {
         .effect = EFFECT_PSYSHOCK,
         .power = 80,

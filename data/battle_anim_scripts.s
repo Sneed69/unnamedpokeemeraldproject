@@ -780,7 +780,7 @@ gBattleAnims_Moves::
 	.4byte Move_ASTRAL_BARRAGE
 	.4byte Move_EERIE_SPELL
 @@@@@@@@@@@@ CUSTOM @@@@@@@@@@@@
-	.4byte Move_MYSTIC_BLADE
+	.4byte Move_MYSTIC_BLADES
 	.4byte Move_COUNT @ cannot be reached, because last move is Eerie Spell
 
 	.align 2
@@ -14362,21 +14362,28 @@ Move_SCORCHING_SANDS::
 	createvisualtask AnimTask_BlendParticle, 5, ANIM_TAG_FLYING_DIRT, 0, 6, 6, RGB_ORANGERED
 	createvisualtask AnimTask_LoadSandstormBackground, 5, TRUE
 	panse SE_M_HEAT_WAVE, SOUND_PAN_ATTACKER, SOUND_PAN_TARGET, +2, 0
-	createsprite gFlyingSandCrescentSpriteTemplate, ANIM_ATTACKER, 40, 25, 3304, 96, 0
+	createsprite gFlyingSandCrescentSpriteTemplate, ANIM_ATTACKER, 40, 25, 2804, 96, 1
+	createsprite gFlyingSandCrescentSpriteTemplate, ANIM_ATTACKER, 40, 0, 3304, 96, 1
 	delay 10
-	createsprite gFlyingSandCrescentSpriteTemplate, ANIM_ATTACKER, 40, 45, 3448, 96, 0
+	createsprite gFlyingSandCrescentSpriteTemplate, ANIM_ATTACKER, 40, 45, 3448, 96, 1
+	createsprite gFlyingSandCrescentSpriteTemplate, ANIM_ATTACKER, 40, 85, 3048, 96, 1
 	delay 3
 	createvisualtask AnimTask_MoveHeatWaveTargets, 4
 	delay 6
-	createsprite gFlyingSandCrescentSpriteTemplate, ANIM_ATTACKER, 40, 35, 3560, 96, 0
+	createsprite gFlyingSandCrescentSpriteTemplate, ANIM_ATTACKER, 40, 35, 3560, 96, 1
+	createsprite gFlyingSandCrescentSpriteTemplate, ANIM_ATTACKER, 40, 70, 3560, 96, 1
 	delay 8
-	createsprite gFlyingSandCrescentSpriteTemplate, ANIM_ATTACKER, 40, 25, 2304, 96, 0
+	createsprite gFlyingSandCrescentSpriteTemplate, ANIM_ATTACKER, 40, 25, 2904, 96, 1
+	createsprite gFlyingSandCrescentSpriteTemplate, ANIM_ATTACKER, 40, 60, 2304, 96, 1
 	delay 7
-	createsprite gFlyingSandCrescentSpriteTemplate, ANIM_ATTACKER, 40, 50, 3984, 96, 0
+	createsprite gFlyingSandCrescentSpriteTemplate, ANIM_ATTACKER, 40, 90, 3984, 96, 1
+	createsprite gFlyingSandCrescentSpriteTemplate, ANIM_ATTACKER, 40, 50, 3484, 96, 1
 	delay 6
-	createsprite gFlyingSandCrescentSpriteTemplate, ANIM_ATTACKER, 40, 20, 3016, 96, 0
+	createsprite gFlyingSandCrescentSpriteTemplate, ANIM_ATTACKER, 40, 20, 2016, 96, 1
+	createsprite gFlyingSandCrescentSpriteTemplate, ANIM_ATTACKER, 40, 60, 3016, 96, 1
 	delay 5
-	createsprite gFlyingSandCrescentSpriteTemplate, ANIM_ATTACKER, 40, 40, 4100, 96, 0
+	createsprite gFlyingSandCrescentSpriteTemplate, ANIM_ATTACKER, 40, 40, 3700, 96, 1
+	createsprite gFlyingSandCrescentSpriteTemplate, ANIM_ATTACKER, 40, 0, 4100, 96, 1
 	end
 
 Move_JUNGLE_HEALING::
@@ -14412,25 +14419,36 @@ Move_ASTRAL_BARRAGE::
 Move_EERIE_SPELL::
 	end @to do:
 
-Move_MYSTIC_BLADE:
+Move_MYSTIC_BLADES:
 	loadspritegfx ANIM_TAG_CUT @Cut
 	loadspritegfx ANIM_TAG_SWORD @Sword
+	loadspritegfx ANIM_TAG_GREEN_POISON_BUBBLE @green color
 	setalpha 12, 8
+	createvisualtask AnimTask_BlendBattleAnimPal, 10, 1, 3, 0, 8, RGB_BLACK
+	waitforvisualfinish
+	monbg ANIM_TARGET
 	playsewithpan SE_M_SWORDS_DANCE, SOUND_PAN_ATTACKER
-	launchtask AnimTask_BlendBattleAnimPal 0xa 0x5 ANIM_PAL_BG 0x0 0x0 0x10 0x6E7D
-	launchtemplate gSwordsDanceBladeSpriteTemplate 0x2 0x2 0x0 0x0
-	delay 0x16
-	launchtask AnimTask_FlashAnimTagWithColor 0x2 0x7 0x2715 0x2 0x2 0x7c12 0x10 0x0 0x0
+	createvisualtask AnimTask_BlendParticle, 5, ANIM_TAG_CUT, 0, 0xF, 0xD, RGB(31, 3, 19)
+	createsprite gGalladeBladeSpriteTemplate, ANIM_ATTACKER, 2, 35, 0
+	createsprite gGalladeBladeSpriteTemplate, ANIM_ATTACKER, 2, -35, 0
+	createvisualtask AnimTask_FlashAnimTagWithColor, 2, ANIM_TAG_GREEN_POISON_BUBBLE, 0, 6, RGB(31, 3, 19), 16, 0, 0
 	waitforvisualfinish
 	clearmonbg ANIM_ATTACKER
-	delay 0x1
+	createsprite gHorizontalLungeSpriteTemplate, ANIM_ATTACKER, 2, 6, 4
+	delay 2
 	monbg ANIM_TARGET
-	playsewithpan SE_M_RAZOR_WIND, SOUND_PAN_TARGET
+	createvisualtask SoundTask_PlaySE1WithPanning, 5, SE_M_RAZOR_WIND, SOUND_PAN_TARGET
+	createsprite gCuttingSliceSpriteTemplate, ANIM_ATTACKER, 2, 40, -32, 0
+	createsprite gShakeMonOrTerrainSpriteTemplate, ANIM_ATTACKER, 2, -4, 1, 10, 3, 1
+	delay 6
+	createsprite gHorizontalLungeSpriteTemplate, ANIM_ATTACKER, 2, 6, 4
+	delay 2
+	createvisualtask SoundTask_PlaySE1WithPanning, 5, SE_M_RAZOR_WIND, SOUND_PAN_TARGET
 	createsprite gCuttingSliceSpriteTemplate, ANIM_ATTACKER, 2, 40, -32, 1
-	delay 0x5
+	delay 5
 	launchtask AnimTask_ShakeMon 0x2 0x5 0x1 0x0 0x3 0xa 0x1
-	launchtask AnimTask_BlendBattleAnimPal 0xa 0x5 ANIM_PAL_BG 0x0 0x10 0x0 0x6E7D
 	waitforvisualfinish
+	createvisualtask AnimTask_BlendBattleAnimPal, 10, 1, 3, 8, 0, RGB_BLACK
 	clearmonbg ANIM_TARGET
 	blendoff
 	waitforvisualfinish
