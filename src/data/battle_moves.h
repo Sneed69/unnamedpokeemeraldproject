@@ -1122,7 +1122,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
             .pp = 32,
         #endif
         .effect = EFFECT_ABSORB,
-        .power = 20,
+        .power = 25,
         .type = TYPE_GRASS,
         .accuracy = 100,
         .secondaryEffectChance = 0,
@@ -1902,7 +1902,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
             .power = 20,
         #endif
         .effect = EFFECT_PARALYZE_HIT,
-        .type = TYPE_GHOST,
+        .type = TYPE_NORMAL,
         .accuracy = 100,
         .pp = 48,
         .secondaryEffectChance = 30,
@@ -1915,7 +1915,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
     [MOVE_SMOG] =
     {
         #if B_UPDATED_MOVE_DATA >= GEN_6
-            .power = 30,
+            .power = 35,
         #else
             .power = 20,
         #endif
@@ -2284,7 +2284,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
 
     [MOVE_BUBBLE] =
     {
-        #if B_UPDATED_MOVE_DATA >= GEN_6
+        #if b_updated_move_data >= GEN_6
             .power = 40,
         #else
             .power = 20,
@@ -6282,11 +6282,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
 
     [MOVE_AURA_SPHERE] =
     {
-        #if B_UPDATED_MOVE_DATA >= GEN_6
-            .power = 80,
-        #else
-            .power = 90,
-        #endif
+		.power = 90,
         .effect = EFFECT_HIT,
         .type = TYPE_FIGHTING,
         .accuracy = 0,
@@ -6438,11 +6434,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
 
     [MOVE_DRAGON_PULSE] =
     {
-        #if B_UPDATED_MOVE_DATA >= GEN_6
-            .power = 85,
-        #else
-            .power = 90,
-        #endif
+		.power = 90,
         .effect = EFFECT_HIT,
         .type = TYPE_DRAGON,
         .accuracy = 100,
