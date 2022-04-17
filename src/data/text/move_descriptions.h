@@ -31,7 +31,7 @@ static const u8 sFirePunchDescription[] = _(
 
 static const u8 sIcePunchDescription[] = _(
     "An icy punch that may\n"
-    "freeze the foe.");
+    "cause frostbite.");
 
 static const u8 sThunderPunchDescription[] = _(
     "An electrified punch that\n"
@@ -230,12 +230,12 @@ static const u8 sSurfDescription[] = _(
     "crashes it down on the foe.");
 
 static const u8 sIceBeamDescription[] = _(
-    "Blasts the foe with an icy\n"
-    "beam that may freeze it.");
+    "An icy beam blast that\n"
+    "may cause frostbite.");
 
 static const u8 sBlizzardDescription[] = _(
-    "Hits the foe with an icy\n"
-    "storm that may freeze it.");
+    "An icy storm that may\n"
+    "leave foes frostbitten.");
 
 static const u8 sPsybeamDescription[] = _(
     "Fires a peculiar ray that\n"
@@ -723,7 +723,7 @@ static const u8 sSpiteDescription[] = _(
 
 static const u8 sPowderSnowDescription[] = _(
     "Blasts the foe with a snowy\n"
-    "gust. May cause freezing.");
+    "gust. May cause frostbite.");
 
 static const u8 sProtectDescription[] = _(
     "Evades attack, but may fail\n"
@@ -1679,7 +1679,7 @@ static const u8 sThunderFangDescription[] = _(
 
 static const u8 sIceFangDescription[] = _(
     "May cause flinching or\n"
-    "leave the foe frozen.");
+    "leave the foe frostbitten.");
 
 static const u8 sFireFangDescription[] = _(
     "May cause flinching or\n"
@@ -2219,7 +2219,7 @@ static const u8 sPetalBlizzardDescription[] = _(
 
 static const u8 sFreezeDryDescription[] = _(
     "Super effective on Water-\n"
-    "types. May cause freezing.");
+    "types. May cause frostbite.");
 
 static const u8 sDisarmingVoiceDescription[] = _(
     "Lets out a charming cry\n"
@@ -2920,7 +2920,7 @@ static const u8 sDragonEnergyDescription[] = _(
 
 static const u8 sFreezingGlareDescription[] = _(
     "Shoots psychic power from\n"
-    "the eyes. May freeze the foe.");
+    "the eyes. May cause frostbite.");
 
 static const u8 sFieryWrathDescription[] = _(
     "An attack fueled by your\n"
