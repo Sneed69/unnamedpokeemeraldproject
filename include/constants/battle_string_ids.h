@@ -617,8 +617,9 @@
 #define STRINGID_LEGENDARYFENDEDBALLOFF               613
 #define STRINGID_YOUMUSTWEAKENIT              		  614
 #define STRINGID_OVERFLOWINGSPACEPOWER       		  615
+#define STRINGID_PKMNHURTBYFROSTBITE                  616
 
-#define BATTLESTRINGS_COUNT                           616
+#define BATTLESTRINGS_COUNT                           617
 
 // The below IDs are all indexes into battle message tables,
 // used to determine which of a set of messages to print.

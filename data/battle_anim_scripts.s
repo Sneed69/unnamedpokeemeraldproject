@@ -24429,13 +24429,13 @@ Status_Paralysis:
 	end
 
 Status_Freeze:
+	loadspritegfx ANIM_TAG_ICE_CRYSTALS
 	playsewithpan SE_M_ICY_WIND, 0
-	loadspritegfx ANIM_TAG_ICE_CUBE
 	monbg ANIM_DEF_PARTNER
-	splitbgprio ANIM_TARGET
-	waitplaysewithpan SE_M_HAIL, SOUND_PAN_TARGET, 17
-	createvisualtask AnimTask_FrozenIceCube, 2
+	createvisualtask AnimTask_BlendBattleAnimPal, 10, 4, 2, 0, 9, RGB(12, 26, 31)
+	call IceCrystalEffectShort
 	waitforvisualfinish
+	createvisualtask AnimTask_BlendBattleAnimPal, 10, 4, 2, 9, 0, RGB(12, 26, 31)
 	clearmonbg ANIM_DEF_PARTNER
 	end
 

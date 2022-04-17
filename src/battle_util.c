@@ -2552,6 +2552,7 @@ enum
     ENDTURN_POISON,
     ENDTURN_BAD_POISON,
     ENDTURN_BURN,
+    ENDTURN_FROSTBITE,
     ENDTURN_NIGHTMARES,
     ENDTURN_CURSE,
     ENDTURN_WRAP,
@@ -2757,6 +2758,20 @@ u8 DoBattlerEndTurnEffects(void)
                 if (gBattleMoveDamage == 0)
                     gBattleMoveDamage = 1;
                 BattleScriptExecute(BattleScript_BurnTurnDmg);
+                effect++;
+            }
+            gBattleStruct->turnEffectsTracker++;
+            break;
+        case ENDTURN_FROSTBITE:  // frostbite
+            if ((gBattleMons[gActiveBattler].status1 & STATUS1_FREEZE)
+                && gBattleMons[gActiveBattler].hp != 0)
+            {
+                MAGIC_GUARD_CHECK;
+
+                gBattleMoveDamage = gBattleMons[gActiveBattler].maxHP / (B_BURN_DAMAGE >= GEN_7 ? 16 : 8);
+                if (gBattleMoveDamage == 0)
+                    gBattleMoveDamage = 1;
+                BattleScriptExecute(BattleScript_FrostbiteTurnDmg);
                 effect++;
             }
             gBattleStruct->turnEffectsTracker++;
@@ -3336,7 +3351,7 @@ enum
     CANCELLER_FLAGS,
     CANCELLER_SKY_DROP,
     CANCELLER_ASLEEP,
-    CANCELLER_FROZEN,
+    //CANCELLER_FROZEN,
     CANCELLER_TRUANT,
     CANCELLER_RECHARGE,
     CANCELLER_FLINCH,
@@ -3349,7 +3364,7 @@ enum
     CANCELLER_PARALYSED,
     CANCELLER_IN_LOVE,
     CANCELLER_BIDE,
-    CANCELLER_THAW,
+    //CANCELLER_THAW,
     CANCELLER_POWDER_MOVE,
     CANCELLER_POWDER_STATUS,
     CANCELLER_THROAT_CHOP,
@@ -3425,7 +3440,7 @@ u8 AtkCanceller_UnableToUseMove(void)
             }
             gBattleStruct->atkCancellerTracker++;
             break;
-        case CANCELLER_FROZEN: // check being frozen
+        /*case CANCELLER_FROZEN: // check being frozen
             if (gBattleMons[gBattlerAttacker].status1 & STATUS1_FREEZE && !(gBattleMoves[gCurrentMove].flags & FLAG_THAW_USER))
             {
                 if (Random() % 5)
@@ -3443,7 +3458,7 @@ u8 AtkCanceller_UnableToUseMove(void)
                 effect = 2;
             }
             gBattleStruct->atkCancellerTracker++;
-            break;
+            break;*/
         case CANCELLER_TRUANT: // truant
             if (GetBattlerAbility(gBattlerAttacker) == ABILITY_TRUANT && gDisableStructs[gBattlerAttacker].truantCounter)
             {
@@ -3630,7 +3645,7 @@ u8 AtkCanceller_UnableToUseMove(void)
             }
             gBattleStruct->atkCancellerTracker++;
             break;
-        case CANCELLER_THAW: // move thawing
+        /*case CANCELLER_THAW: // move thawing
             if (gBattleMons[gBattlerAttacker].status1 & STATUS1_FREEZE)
             {
                 if (!(gBattleMoves[gCurrentMove].effect == EFFECT_BURN_UP && !IS_BATTLER_OF_TYPE(gBattlerAttacker, TYPE_FIRE)))
@@ -3643,7 +3658,7 @@ u8 AtkCanceller_UnableToUseMove(void)
                 effect = 2;
             }
             gBattleStruct->atkCancellerTracker++;
-            break;
+            break;*/
         case CANCELLER_POWDER_MOVE:
             if ((gBattleMoves[gCurrentMove].flags & FLAG_POWDER) && (gBattlerAttacker != gBattlerTarget))
             {
@@ -8442,7 +8457,7 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
     switch (gBattleMoves[move].effect)
     {
     case EFFECT_FACADE:
-        if (gBattleMons[battlerAtk].status1 & (STATUS1_BURN | STATUS1_PSN_ANY | STATUS1_PARALYSIS))
+        if (gBattleMons[battlerAtk].status1 & (STATUS1_BURN | STATUS1_PSN_ANY | STATUS1_FREEZE | STATUS1_PARALYSIS))
             MulModifier(&modifier, UQ_4_12(2.0));
         break;
     case EFFECT_BRINE:
@@ -8935,6 +8950,11 @@ static u32 CalcFinalDmg(u32 dmg, u16 move, u8 battlerAtk, u8 battlerDef, u8 move
     // check burn
     if (gBattleMons[battlerAtk].status1 & STATUS1_BURN && IS_MOVE_PHYSICAL(move)
         && gBattleMoves[move].effect != EFFECT_FACADE && abilityAtk != ABILITY_GUTS)
+        dmg = ApplyModifier(UQ_4_12(0.5), dmg);
+		
+    // check frostbite
+    if (gBattleMons[battlerAtk].status1 & STATUS1_FREEZE && IS_MOVE_SPECIAL(move)
+        && gBattleMoves[move].effect != EFFECT_FACADE)
         dmg = ApplyModifier(UQ_4_12(0.5), dmg);
 
     // check sunny/rain weather

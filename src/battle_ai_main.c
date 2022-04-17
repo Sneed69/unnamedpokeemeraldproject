@@ -1623,7 +1623,7 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
                 score -= 10;
             break;
         case EFFECT_REFRESH:
-            if (!(gBattleMons[battlerDef].status1 & (STATUS1_PSN_ANY | STATUS1_BURN | STATUS1_PARALYSIS)))
+            if (!(gBattleMons[battlerDef].status1 & (STATUS1_PSN_ANY | STATUS1_BURN | STATUS1_FREEZE | STATUS1_PARALYSIS)))
                 score -= 10;
             break;
         case EFFECT_PSYCHO_SHIFT:
@@ -1635,6 +1635,8 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
             else if (gBattleMons[battlerAtk].status1 & STATUS1_PARALYSIS && !AI_CanParalyze(battlerAtk, battlerDef, AI_DATA->defAbility, move, AI_DATA->partnerMove))
                 score -= 10;
             else if (gBattleMons[battlerAtk].status1 & STATUS1_SLEEP && !AI_CanPutToSleep(battlerAtk, battlerDef, AI_DATA->defAbility, move, AI_DATA->partnerMove))
+                score -= 10;
+            else if (gBattleMons[battlerAtk].status1 & STATUS1_FREEZE && !AI_CanFreeze(battlerAtk, battlerDef, AI_DATA->defAbility, move, AI_DATA->partnerMove))
                 score -= 10;
             else
                 score -= 10;    // attacker has no status to transmit
@@ -1676,7 +1678,7 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
         case EFFECT_BIDE:
             if (!HasDamagingMove(battlerDef)
               || GetHealthPercentage(battlerAtk) < 30 //Close to death
-              || gBattleMons[battlerDef].status1 & (STATUS1_SLEEP | STATUS1_FREEZE)) //No point in biding if can't take damage
+              || gBattleMons[battlerDef].status1 & (STATUS1_SLEEP)) //No point in biding if can't take damage
                 score -= 10;
             break;
         case EFFECT_HIT_SWITCH_TARGET:
@@ -2206,7 +2208,7 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
                   && gBattleMoves[AI_DATA->partnerMove].effect == EFFECT_PLEDGE
                   && move != AI_DATA->partnerMove) // Different pledge moves
                 {
-                    if (gBattleMons[AI_DATA->battlerAtkPartner].status1 & (STATUS1_SLEEP | STATUS1_FREEZE))
+                    if (gBattleMons[AI_DATA->battlerAtkPartner].status1 & STATUS1_SLEEP)
                     // && gBattleMons[AI_DATA->battlerAtkPartner].status1 != 1) // Will wake up this turn - how would AI know
                         score -= 10; // Don't use combo move if your partner will cause failure
                 }
@@ -3039,9 +3041,27 @@ static s16 AI_CheckViability(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
         score++;
     
     // check thawing moves
-    if ((gBattleMons[battlerAtk].status1 & STATUS1_FREEZE) && TestMoveFlags(move, FLAG_THAW_USER))
-        score += (gBattleTypeFlags & BATTLE_TYPE_DOUBLE) ? 20 : 10;
+    /*if ((gBattleMons[battlerAtk].status1 & STATUS1_FREEZE) && TestMoveFlags(move, FLAG_THAW_USER))
+        score += (gBattleTypeFlags & BATTLE_TYPE_DOUBLE) ? 20 : 10;*/
     
+    // check frostbite
+    if (gBattleMons[battlerAtk].status1 & STATUS1_FREEZE)
+    {
+        switch (AI_DATA->atkAbility)
+        {
+        /*case ABILITY_GUTS: //maybe add equivalent
+            break;*/
+        case ABILITY_NATURAL_CURE:
+            if (AI_THINKING_STRUCT->aiFlags & AI_FLAG_SMART_SWITCHING
+             && HasOnlyMovesWithSplit(battlerAtk, SPLIT_PHYSICAL, TRUE))
+                score = 90; // Force switch if all your attacking moves are physical and you have Natural Cure.
+            break;
+        default:
+            if (IS_MOVE_SPECIAL(move) && gBattleMoves[move].effect != EFFECT_FACADE)
+                score -= 2;
+            break;
+        }
+    }
     // check burn
     if (gBattleMons[battlerAtk].status1 & STATUS1_BURN)
     {
@@ -3503,7 +3523,7 @@ static s16 AI_CheckViability(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
     case EFFECT_SUBSTITUTE:
         if (gStatuses3[battlerDef] & STATUS3_PERISH_SONG)
             score += 3;
-        if (gBattleMons[battlerDef].status1 & (STATUS1_BURN | STATUS1_PSN_ANY))
+        if (gBattleMons[battlerDef].status1 & (STATUS1_BURN | STATUS1_PSN_ANY || STATUS1_FREEZE))
             score++;
         if (HasMoveEffect(battlerDef, EFFECT_SLEEP)
           || HasMoveEffect(battlerDef, EFFECT_TOXIC)
@@ -4280,6 +4300,8 @@ static s16 AI_CheckViability(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
             IncreaseParalyzeScore(battlerAtk, battlerDef, move, &score);
         else if (gBattleMons[battlerAtk].status1 & STATUS1_SLEEP)
             IncreaseSleepScore(battlerAtk, battlerDef, move, &score);
+        else if (gBattleMons[battlerAtk].status1 & STATUS1_FREEZE)
+            IncreaseFreezeScore(battlerAtk, battlerDef, move, &score);
         break;
     case EFFECT_GRUDGE:
         break;
@@ -4663,7 +4685,7 @@ static s16 AI_CheckViability(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
             score += 2;
         break;
     case EFFECT_FACADE:
-        if (gBattleMons[battlerAtk].status1 & (STATUS1_POISON | STATUS1_BURN | STATUS1_PARALYSIS | STATUS1_TOXIC_POISON))
+        if (gBattleMons[battlerAtk].status1 & (STATUS1_POISON | STATUS1_BURN | STATUS1_PARALYSIS | STATUS1_TOXIC_POISON | STATUS1_FREEZE))
             score++;
         break;
     case EFFECT_FOCUS_PUNCH:

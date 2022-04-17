@@ -29,6 +29,7 @@
 
 extern const u16 gMovesWithQuietBGM[];
 extern const u8 *const gBattleAnims_Moves[];
+extern const u8 * const gBattleAnims_General[];
 
 static void Cmd_loadspritegfx(void);
 static void Cmd_unloadspritegfx(void);
@@ -222,23 +223,26 @@ void LaunchBattleAnimation(const u8 *const animsTable[], u16 tableId, bool8 isMo
     
     if (!isMoveAnim)
     {
-        switch (tableId)
-        {
-        case B_ANIM_TURN_TRAP:
-        case B_ANIM_LEECH_SEED_DRAIN:
-        case B_ANIM_MON_HIT:
-        case B_ANIM_SNATCH_MOVE:
-        case B_ANIM_FUTURE_SIGHT_HIT:
-        case B_ANIM_DOOM_DESIRE_HIT:
-        case B_ANIM_WISH_HEAL:
-        case B_ANIM_MEGA_EVOLUTION:
-        case B_ANIM_GULP_MISSILE:
-            hideHpBoxes = TRUE;
-            break;
-        default:
-            hideHpBoxes = FALSE;
-            break;
-        }
+		if (animsTable == gBattleAnims_General)
+			switch (tableId)
+			{
+			case B_ANIM_TURN_TRAP:
+			case B_ANIM_LEECH_SEED_DRAIN:
+			case B_ANIM_MON_HIT:
+			case B_ANIM_SNATCH_MOVE:
+			case B_ANIM_FUTURE_SIGHT_HIT:
+			case B_ANIM_DOOM_DESIRE_HIT:
+			case B_ANIM_WISH_HEAL:
+			case B_ANIM_MEGA_EVOLUTION:
+			case B_ANIM_GULP_MISSILE:
+				hideHpBoxes = TRUE;
+				break;
+			default:
+				hideHpBoxes = FALSE;
+				break;
+			}
+		else
+			hideHpBoxes = FALSE;
     }
 
     if (!IsContest())

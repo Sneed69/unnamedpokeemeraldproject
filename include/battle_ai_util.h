@@ -133,6 +133,7 @@ bool32 AI_CanPutToSleep(u8 battlerAtk, u8 battlerDef, u16 defAbility, u16 move, 
 bool32 ShouldPoisonSelf(u8 battler, u16 ability);
 bool32 AI_CanPoison(u8 battlerAtk, u8 battlerDef, u16 defAbility, u16 move, u16 partnerMove);
 bool32 AI_CanParalyze(u8 battlerAtk, u8 battlerDef, u16 defAbility, u16 move, u16 partnerMove);
+bool32 AI_CanFreeze(u8 battlerAtk, u8 battlerDef, u16 defAbility, u16 move, u16 partnerMove);
 bool32 AI_CanConfuse(u8 battlerAtk, u8 battlerDef, u16 defAbility, u8 battlerAtkPartner, u16 move, u16 partnerMove);
 bool32 ShouldBurnSelf(u8 battler, u16 ability);
 bool32 AI_CanBurn(u8 battlerAtk, u8 battlerDef, u16 defAbility, u8 battlerAtkPartner, u16 move, u16 partnerMove);
@@ -167,6 +168,7 @@ bool32 SideHasMoveSplit(u8 battlerId, u8 split);
 void IncreaseStatUpScore(u8 battlerAtk, u8 battlerDef, u8 statId, s16 *score);
 void IncreasePoisonScore(u8 battlerAtk, u8 battlerdef, u16 move, s16 *score);
 void IncreaseBurnScore(u8 battlerAtk, u8 battlerdef, u16 move, s16 *score);
+void IncreaseFreezeScore(u8 battlerAtk, u8 battlerdef, u16 move, s16 *score);
 void IncreaseParalyzeScore(u8 battlerAtk, u8 battlerDef, u16 move, s16 *score);
 void IncreaseSleepScore(u8 battlerAtk, u8 battlerDef, u16 move, s16 *score);
 void IncreaseConfusionScore(u8 battlerAtk, u8 battlerDef, u16 move, s16 *score);

@@ -238,10 +238,10 @@ RustboroCity_PokemonSchool_Text_ExplainBurn:
 	.string "Cure a burn using a BURN HEAL.$"
 
 RustboroCity_PokemonSchool_Text_ExplainFreeze:
-	.string "If a Pokémon is frozen, it becomes\n"
-	.string "completely helpless.\p"
+	.string "Frostbite reduces Sp. Attack, and it\n"
+	.string "steadily reduces the victim's HP.\p"
 	.string "It will remain frozen after battle.\n"
-	.string "Thaw it out using an ICE HEAL.$"
+	.string "Thaw it out using an Ice Heal.$"
 
 RustboroCity_PokemonSchool_Text_StudentsWhoDontStudyGetQuickClaw:
 	.string "Students who don't study get a little\n"
