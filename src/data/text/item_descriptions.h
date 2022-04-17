@@ -3062,16 +3062,16 @@ static const u8 sTM12Desc[] = _(
 static const u8 sTM13Desc[] = _(
     "Fires an icy cold\n"
     "beam that may\n"
-    "freeze the foe.");
+    "cause frostbite.");
 
 static const u8 sTM14Desc[] = _(
     "A brutal snow-and-\n"
     "wind attack that\n"
-    "may freeze the foe.");
+    "may cause frostbite.");
 
 static const u8 sTM15Desc[] = _(
     "A bite attack that\n"
-    "may cause freezing\n"
+    "may cause frostbite\n"
     "or flinching.");
 
 static const u8 sTM16Desc[] = _(
