@@ -2,6 +2,8 @@
 #define GUARD_BATTLE_BG_H
 
 #if P_ENABLE_DEBUG == TRUE
+#include "constants/day_night.h"
+
 struct BattleBackground
 {
     const void *tileset;
