@@ -2954,6 +2954,10 @@ static const u8 sWaveCrashDescription[] = _(
     "A charge that raises Speed.\n"
     "Also hurts the user.");
 
+static const u8 sColdSnapDescription[] = _(
+    "Inflicts a frostbite on the\n"
+    "foe with intense cold.");
+
 static const u8 sNotDoneYetDescription[] = _(
     "Not done yet.");
 
@@ -3723,4 +3727,5 @@ const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] =
     [MOVE_FAIRY_TAIL - 1] = sFairyTailDescription,
     [MOVE_HEADLONG_RUSH - 1] = sCloseCombatDescription,
     [MOVE_WAVE_CRASH - 1] = sWaveCrashDescription,
+    [MOVE_COLD_SNAP - 1] = sColdSnapDescription,
 };

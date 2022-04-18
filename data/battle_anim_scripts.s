@@ -784,6 +784,7 @@ gBattleAnims_Moves::
 	.4byte Move_FAIRY_TAIL
 	.4byte Move_HEADLONG_RUSH
 	.4byte Move_WAVE_CRASH
+	.4byte Move_COLD_SNAP
 	.4byte Move_COUNT @ cannot be reached, because last move is Eerie Spell
 
 	.align 2
@@ -14554,6 +14555,19 @@ Move_WAVE_CRASH:
 	waitforvisualfinish
 	clearmonbg ANIM_DEF_PARTNER
 	blendoff
+	end
+	
+Move_COLD_SNAP:
+	loadspritegfx ANIM_TAG_ICE_CRYSTALS
+	monbg ANIM_DEF_PARTNER
+	@playsewithpan SE_M_ICY_WIND, 0
+	panse SE_M_GUST, SOUND_PAN_ATTACKER, SOUND_PAN_TARGET, +2, 0
+	call IcyWindSwirlingSnowballs
+	delay 5
+	call IcyWindSwirlingSnowballs
+	playsewithpan SE_M_GUST2, SOUND_PAN_TARGET
+	waitforvisualfinish
+	clearmonbg ANIM_DEF_PARTNER
 	end
 
 @@@@@@@@@@@@@@@@@@@@@@@ GEN 1-3 @@@@@@@@@@@@@@@@@@@@@@@

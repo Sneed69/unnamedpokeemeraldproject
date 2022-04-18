@@ -254,6 +254,7 @@ static const u16 sPoints_MoveEffect[NUM_BATTLE_MOVE_EFFECTS] =
     [EFFECT_TORMENT] = 7,
     [EFFECT_FLATTER] = 7,
     [EFFECT_WILL_O_WISP] = 5,
+    [EFFECT_COLD_SNAP] = 5,
     [EFFECT_MEMENTO] = 7,
     [EFFECT_FACADE] = 1,
     [EFFECT_FOCUS_PUNCH] = 7,

@@ -631,6 +631,7 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
                 case EFFECT_WILL_O_WISP:
                 case EFFECT_TOXIC:
                 case EFFECT_LEECH_SEED:
+                case EFFECT_COLD_SNAP:
                     score -= 5;
                     break;
                 case EFFECT_CURSE:
@@ -662,6 +663,7 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
                 case EFFECT_WILL_O_WISP:
                 case EFFECT_TOXIC:
                 case EFFECT_LEECH_SEED:
+                case EFFECT_COLD_SNAP:
                     score += 5;
                 case EFFECT_CURSE:
                     if (IS_BATTLER_OF_TYPE(battlerAtk, TYPE_GHOST))
@@ -1584,6 +1586,10 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
             break;
         case EFFECT_WILL_O_WISP:
             if (!AI_CanBurn(battlerAtk, battlerDef, AI_DATA->defAbility, AI_DATA->battlerAtkPartner, move, AI_DATA->partnerMove))
+                score -= 10;
+            break;
+        case EFFECT_COLD_SNAP:
+            if (!AI_CanFreeze(battlerAtk, battlerDef, AI_DATA->defAbility, move, AI_DATA->partnerMove))
                 score -= 10;
             break;
         case EFFECT_MEMENTO:
@@ -3530,6 +3536,7 @@ static s16 AI_CheckViability(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
           || HasMoveEffect(battlerDef, EFFECT_POISON)
           || HasMoveEffect(battlerDef, EFFECT_PARALYZE)
           || HasMoveEffect(battlerDef, EFFECT_WILL_O_WISP)
+          || HasMoveEffect(battlerDef, EFFECT_COLD_SNAP)
           || HasMoveEffect(battlerDef, EFFECT_CONFUSE)
           || HasMoveEffect(battlerDef, EFFECT_LEECH_SEED))
             score += 2;
@@ -4080,6 +4087,9 @@ static s16 AI_CheckViability(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
         break;
     case EFFECT_WILL_O_WISP:
         IncreaseBurnScore(battlerAtk, battlerDef, move, &score);
+        break;
+    case EFFECT_COLD_SNAP:
+        IncreaseFreezeScore(battlerAtk, battlerDef, move, &score);
         break;
     case EFFECT_FOLLOW_ME:
         if (isDoubleBattle
@@ -4800,6 +4810,7 @@ static s16 AI_SetupFirstTurn(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
     case EFFECT_TORMENT:
     case EFFECT_FLATTER:
     case EFFECT_WILL_O_WISP:
+    case EFFECT_COLD_SNAP:
     case EFFECT_INGRAIN:
     case EFFECT_IMPRISON:
     case EFFECT_TEETER_DANCE:

@@ -108,6 +108,9 @@ static bool8 ShouldSwitchIfWonderGuard(void)
                 case EFFECT_WILL_O_WISP:
 					if (!AI_CanBeBurned(opposingBattler, gBattleMons[opposingBattler].ability))
 						break;
+                case EFFECT_COLD_SNAP:
+					if (!AI_CanFreeze(gActiveBattler, opposingBattler, gBattleMons[opposingBattler].ability, move, MOVE_NONE))
+						break;
                 case EFFECT_LEECH_SEED:
 					if (gStatuses3[opposingBattler] & STATUS3_LEECHSEED || IS_BATTLER_OF_TYPE(opposingBattler, TYPE_GRASS))
 						break;
@@ -202,6 +205,9 @@ static bool8 ShouldSwitchIfWonderGuard(void)
 							break;
 					case EFFECT_WILL_O_WISP:
 						if (!AI_CanBeBurned(opposingBattler, gBattleMons[opposingBattler].ability))
+							break;
+					case EFFECT_COLD_SNAP:
+						if (!AI_CanFreeze(gActiveBattler, opposingBattler, gBattleMons[opposingBattler].ability, move, MOVE_NONE))
 							break;
 					case EFFECT_LEECH_SEED:
 						if (gStatuses3[opposingBattler] & STATUS3_LEECHSEED || IS_BATTLER_OF_TYPE(opposingBattler, TYPE_GRASS))
@@ -806,6 +812,9 @@ static u32 GetWonderGuardCounter(struct Pokemon *party, int firstId, int lastId,
 						break;
 				case EFFECT_WILL_O_WISP:
 					if (!AI_CanBeBurned(opposingBattler, gBattleMons[opposingBattler].ability))
+						break;
+                case EFFECT_COLD_SNAP:
+					if (!AI_CanFreeze(gActiveBattler, opposingBattler, gBattleMons[opposingBattler].ability, move, MOVE_NONE))
 						break;
 				case EFFECT_LEECH_SEED:
 					if (gStatuses3[opposingBattler] & STATUS3_LEECHSEED || IS_BATTLER_OF_TYPE(opposingBattler, TYPE_GRASS))

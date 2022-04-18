@@ -407,6 +407,43 @@ gBattleScriptsForMoveEffects::
 	.4byte BattleScript_EffectMeteorBeam              @ EFFECT_METEOR_BEAM
 	.4byte BattleScript_EffectScaleShot               @ EFFECT_SCALE_SHOT
 	.4byte BattleScript_EffectWaveCrash				  @ EFFECT_RECOIL_33_STAT_UP
+	.4byte BattleScript_EffectColdSnap				  @ EFFECT_COLD_SNAP
+
+BattleScript_EffectColdSnap::
+	attackcanceler
+	attackstring
+	ppreduce
+	jumpifsubstituteblocks BattleScript_ButItFailed
+	jumpifstatus BS_TARGET, STATUS1_FREEZE, BattleScript_AlreadyFrozen
+	jumpiftype BS_TARGET, TYPE_ICE, BattleScript_NotAffected
+	jumpifability BS_TARGET, ABILITY_MAGMA_ARMOR, BattleScript_MagmaArmorPrevents
+	jumpifability BS_TARGET, ABILITY_COMATOSE, BattleScript_LeafGuardProtects
+	jumpifflowerveil BattleScript_FlowerVeilProtects
+	jumpifleafguardprotected BS_TARGET, BattleScript_LeafGuardProtects
+	jumpifshieldsdown BS_TARGET, BattleScript_LeafGuardProtects
+	jumpifstatus BS_TARGET, STATUS1_ANY, BattleScript_ButItFailed
+	jumpifterrainaffected BS_TARGET, STATUS_FIELD_MISTY_TERRAIN, BattleScript_MistyTerrainPrevents
+	accuracycheck BattleScript_ButItFailed, ACC_CURR_MOVE
+	jumpifsafeguard BattleScript_SafeguardProtected
+	attackanimation
+	waitanimation
+	setmoveeffect MOVE_EFFECT_FREEZE
+	seteffectprimary
+	goto BattleScript_MoveEnd
+	
+BattleScript_MagmaArmorPrevents::
+	call BattleScript_AbilityPopUp
+	copybyte gEffectBattler, gBattlerTarget
+	setbyte cMULTISTRING_CHOOSER, B_MSG_ABILITY_PREVENTS_MOVE_STATUS
+	call BattleScript_FRZPrevention
+	goto BattleScript_MoveEnd
+	
+BattleScript_AlreadyFrozen::
+	setalreadystatusedmoveattempt BS_ATTACKER
+	pause B_WAIT_TIME_SHORT
+	printstring STRINGID_PKMNALREADYFROZEN
+	waitmessage B_WAIT_TIME_LONG
+	goto BattleScript_MoveEnd
 
 BattleScript_EffectScaleShot::
 	attackcanceler
@@ -8432,6 +8469,12 @@ BattleScript_AbilityNoStatLoss::
 BattleScript_BRNPrevention::
 	pause B_WAIT_TIME_SHORT
 	printfromtable gBRNPreventionStringIds
+	waitmessage B_WAIT_TIME_LONG
+	return
+
+BattleScript_FRZPrevention::
+	pause B_WAIT_TIME_SHORT
+	printfromtable gFRZPreventionStringIds
 	waitmessage B_WAIT_TIME_LONG
 	return
 

@@ -760,4 +760,5 @@ const u8 gMoveNames[MOVES_COUNT][MOVE_NAME_LENGTH + 1] =
     [MOVE_FAIRY_TAIL] = _("Fairy Tail"),
     [MOVE_HEADLONG_RUSH] = _("Headlong Rush"),
     [MOVE_WAVE_CRASH] = _("Wave Crash"),
+    [MOVE_COLD_SNAP] = _("Cold Snap"),
 };

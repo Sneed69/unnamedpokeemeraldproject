@@ -330,6 +330,7 @@ static const u16 sEncouragedEncoreEffects[] =
     EFFECT_HAIL,
     EFFECT_TORMENT,
     EFFECT_WILL_O_WISP,
+    EFFECT_COLD_SNAP,
     EFFECT_FOLLOW_ME,
     EFFECT_CHARGE,
     EFFECT_TRICK,
@@ -1280,6 +1281,7 @@ bool32 IsNonVolatileStatusMoveEffect(u16 moveEffect)
     case EFFECT_POISON:
     case EFFECT_PARALYZE:
     case EFFECT_WILL_O_WISP:
+    case EFFECT_COLD_SNAP:
     case EFFECT_YAWN:
         return TRUE;
     default:
@@ -3113,6 +3115,7 @@ bool32 PartnerMoveEffectIsStatusSameTarget(u8 battlerAtkPartner, u8 battlerDef, 
        || gBattleMoves[partnerMove].effect == EFFECT_TOXIC
        || gBattleMoves[partnerMove].effect == EFFECT_PARALYZE
        || gBattleMoves[partnerMove].effect == EFFECT_WILL_O_WISP
+       || gBattleMoves[partnerMove].effect == EFFECT_COLD_SNAP
        || gBattleMoves[partnerMove].effect == EFFECT_YAWN))
         return TRUE;
     return FALSE;
