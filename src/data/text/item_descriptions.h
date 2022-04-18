@@ -251,8 +251,8 @@ static const u8 sBurnHealDesc[] = _(
     "of a burn.");
 
 static const u8 sIceHealDesc[] = _(
-    "Defrosts a frozen\n"
-    "Pokémon.");
+    "Heal a Pokémon\n"
+    "with frostbite.");
 
 static const u8 sAwakeningDesc[] = _(
     "Awakens a sleeping\n"
@@ -2680,7 +2680,7 @@ static const u8 sRawstBerryDesc[] = _(
 
 static const u8 sAspearBerryDesc[] = _(
     "A hold item that\n"
-    "defrosts Pokémon\n"
+    "heals frostbite\n"
     "in battle.");
 
 static const u8 sLeppaBerryDesc[] = _(
@@ -3157,7 +3157,7 @@ static const u8 sTM31Desc[] = _(
 static const u8 sTM32Desc[] = _(
     "A punch that may\n"
     "leave the victim\n"
-    "frozen.");
+    "with a frostbite.");
 
 static const u8 sTM33Desc[] = _(
     "Creates a wall of\n"
