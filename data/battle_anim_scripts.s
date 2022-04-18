@@ -785,6 +785,7 @@ gBattleAnims_Moves::
 	.4byte Move_HEADLONG_RUSH
 	.4byte Move_WAVE_CRASH
 	.4byte Move_COLD_SNAP
+	.4byte Move_BLISTERING_COLD
 	.4byte Move_COUNT @ cannot be reached, because last move is Eerie Spell
 
 	.align 2
@@ -14569,6 +14570,33 @@ Move_COLD_SNAP:
 	waitforvisualfinish
 	clearmonbg ANIM_DEF_PARTNER
 	end
+	
+Move_BLISTERING_COLD:
+	loadspritegfx ANIM_TAG_WHITE_CIRCLE_OF_LIGHT
+	loadspritegfx ANIM_TAG_ICE_CRYSTALS
+	monbg ANIM_ATTACKER
+	playsewithpan SE_M_SOLAR_BEAM, SOUND_PAN_ATTACKER
+	createsprite gLusterPurgeCircleSpriteTemplate, ANIM_ATTACKER, 41, 0, 0, 0, 0
+	delay 20
+	createvisualtask AnimTask_BlendBattleAnimPalExclude, 5, 5, 2, 0, 16, (RGB(24, 28, 31) | RGB_ALPHA)
+	createvisualtask AnimTask_BlendParticle, 5, ANIM_TAG_WHITE_CIRCLE_OF_LIGHT, 2, 0, 16, (RGB(24, 28, 31) | RGB_ALPHA)
+	waitforvisualfinish
+	createvisualtask AnimTask_BlendBattleAnimPalExclude, 5, 5, 2, 16, 0, (RGB(24, 28, 31) | RGB_ALPHA)
+	fadetobg BG_ICE
+	waitbgfadeout
+	waitforvisualfinish
+	createvisualtask AnimTask_ShakeMon2, 2, ANIM_TARGET, 2, 0, 25, 3
+	createvisualtask AnimTask_ShakeMon2, 2, ANIM_DEF_PARTNER, 2, 0, 25, 3
+	createvisualtask AnimTask_ShakeMon2, 2, ANIM_ATK_PARTNER, 2, 0, 25, 3
+	call IceCrystalEffectLong
+	waitforvisualfinish
+	delay 30
+	clearmonbg ANIM_ATTACKER
+	restorebg
+	waitbgfadein
+	end
+	
+
 
 @@@@@@@@@@@@@@@@@@@@@@@ GEN 1-3 @@@@@@@@@@@@@@@@@@@@@@@
 Move_NONE:

@@ -2752,6 +2752,7 @@ const u16 gEggMoves[] = {
 
     egg_moves(SNOVER,
         MOVE_LEECH_SEED,
+        MOVE_SWAGGER,
         MOVE_MAGICAL_LEAF,
         MOVE_SEED_BOMB,
         MOVE_GROWTH,
