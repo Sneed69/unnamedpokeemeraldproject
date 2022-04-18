@@ -786,6 +786,7 @@ gBattleAnims_Moves::
 	.4byte Move_WAVE_CRASH
 	.4byte Move_COLD_SNAP
 	.4byte Move_BLISTERING_COLD
+	.4byte Move_HOWLING_GALE
 	.4byte Move_COUNT @ cannot be reached, because last move is Eerie Spell
 
 	.align 2
@@ -14596,6 +14597,34 @@ Move_BLISTERING_COLD:
 	waitbgfadein
 	end
 	
+Move_HOWLING_GALE:
+	loadspritegfx ANIM_TAG_GUST
+	waitforvisualfinish
+	monbg ANIM_DEF_PARTNER
+	splitbgprio ANIM_TARGET
+	setalpha 12, 8	
+	playsewithpan SE_M_GUST, SOUND_PAN_TARGET
+	launchtask AnimTask_ShakeMon 0x2 0x5 ANIM_TARGET 0x0 0x3 0x40 0x1
+	call HurricaneGust
+	delay 10
+	createvisualtask AnimTask_BlendBattleAnimPal, 10, 4, 2, 0, 9, RGB(12, 26, 31)
+	call HurricaneGust
+	delay 10
+	call HurricaneGust
+	delay 10
+	call HurricaneGust
+	delay 10
+	call HurricaneGust
+	delay 10
+	call HurricaneGust
+	createsprite gSlideMonToOriginalPosSpriteTemplate, ANIM_ATTACKER, 2, 0, 0, 11
+	waitforvisualfinish
+	stopsound
+	createvisualtask AnimTask_BlendBattleAnimPal, 10, 4, 2, 9, 0, RGB(12, 26, 31)
+	clearmonbg ANIM_DEF_PARTNER
+	blendoff
+	
+	end
 
 
 @@@@@@@@@@@@@@@@@@@@@@@ GEN 1-3 @@@@@@@@@@@@@@@@@@@@@@@

@@ -2342,7 +2342,7 @@
             ]
           },
           "cut_mons": {
-            "encounter_rate": 45,
+            "encounter_rate": 50,
             "mons": [
               {
                 "min_level": 13,
@@ -2357,7 +2357,7 @@
               {
                 "min_level": 13,
                 "max_level": 16,
-                "species": "SPECIES_EXEGGCUTE"
+                "species": "SPECIES_HOOTHOOT"
               },
               {
                 "min_level": 13,
@@ -2372,12 +2372,12 @@
               {
                 "min_level": 13,
                 "max_level": 15,
-                "species": "SPECIES_PIDGEY"
+                "species": "SPECIES_HOOTHOOT"
               },
               {
                 "min_level": 16,
                 "max_level": 17,
-                "species": "SPECIES_PIDGEY"
+                "species": "SPECIES_HOOTHOOT"
               },
               {
                 "min_level": 16,

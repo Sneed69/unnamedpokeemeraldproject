@@ -2962,6 +2962,10 @@ static const u8 sBlisteringColdDescription[] = _(
     "A freezing chill strikes\n"
     "everyone around the user.");
 
+static const u8 sHowlingGaleDescription[] = _(
+    "Whips up a frigid wind that\n"
+    "may cause a frostbite.");
+
 static const u8 sNotDoneYetDescription[] = _(
     "Not done yet.");
 
@@ -3733,4 +3737,5 @@ const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] =
     [MOVE_WAVE_CRASH - 1] = sWaveCrashDescription,
     [MOVE_COLD_SNAP - 1] = sColdSnapDescription,
     [MOVE_BLISTERING_COLD - 1] = sBlisteringColdDescription,
+    [MOVE_HOWLING_GALE - 1] = sHowlingGaleDescription,
 };
