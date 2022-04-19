@@ -94,24 +94,3 @@ SealedChamber_InnerRoom_Braille_OpenDoorEternalPokemonWaits:
 	.braille "AN ETERNAL\n"
 	.braille "POKEMON\n"
 	.braille "WAITS.$"
-
-DesertRuins_Braille_UseRockSmash:
-	brailleformat 1, 0, 27, 19, 4, 3
-	.braille "LEFT, LEFT,\n"
-	.braille "DOWN, DOWN.\n"
-	.braille "THEN, USE\n"
-	.braille "ROCK SMASH.$"
-
-IslandCave_Braille_RunLapAroundWall:
-	brailleformat 5, 0, 25, 19, 8, 3
-	.braille "STAY CLOSE\n"
-	.braille "TO THE WALL.\n"
-	.braille "RUN AROUND\n"
-	.braille "ONE LAP.$"
-
-AncientTomb_Braille_ShineInTheMiddle:
-	brailleformat 3, 0, 25, 19, 6, 3
-	.braille "THOSE WHO\n"
-	.braille "INHERIT OUR\n"
-	.braille "WILL, SHINE\n"
-	.braille "IN THE MIDDLE.$"

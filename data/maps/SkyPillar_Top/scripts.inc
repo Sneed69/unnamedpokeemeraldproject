@@ -49,8 +49,8 @@ SkyPillar_Top_EventScript_Rayquaza::
 	delay 40
 	waitmoncry
 	setflag B_SMART_WILD_AI_FLAG
-	settotemboost B_POSITION_OPPONENT_LEFT, 1, 5, 0, 1, 5
-	setwildbattle SPECIES_RAYQUAZA, 70, ITEM_DRAGON_GEM
+	settotemboost B_POSITION_OPPONENT_LEFT, 1, 5, 0, 0, 5
+	setwildbattle SPECIES_RAYQUAZA, 70
 	setflag FLAG_SYS_CTRL_OBJ_DELETE
 	special BattleSetup_StartLegendaryBattle
 	waitstate
@@ -184,5 +184,5 @@ SkyPillar_Top_Movement_CameraPanDown:
 	step_end
 
 SkyPillar_Top_Text_RayquazaFlewOff:
-	.string "The awakened RAYQUAZA flew off…$"
+	.string "The awakened Rayquaza flew off…$"
 

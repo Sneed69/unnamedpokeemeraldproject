@@ -5351,6 +5351,7 @@ static const u8 sCyndaquilTMHMLearnset[] =
     TMHM(TM82_SLEEP_TALK),
     TMHM(TM90_SUBSTITUTE),
     TMHM(TM93_WILD_CHARGE),
+    TMHM(TM_EARTH_POWER),
     0xFF,
 };
 
@@ -5375,6 +5376,7 @@ static const u8 sQuilavaTMHMLearnset[] =
     TMHM(TM90_SUBSTITUTE),
     TMHM(TM93_WILD_CHARGE),
     TMHM(TM104_STRENGTH),
+    TMHM(TM_EARTH_POWER),
     0xFF,
 };
 
@@ -5412,6 +5414,7 @@ static const u8 sTyphlosionTMHMLearnset[] =
     TMHM(TM98_GIGA_IMPACT),
     TMHM(TM104_STRENGTH),
     TMHM(TM109_SEISMIC_TOSS),
+    TMHM(TM_EARTH_POWER),
     0xFF,
 };
 
@@ -6228,7 +6231,6 @@ static const u8 sAmpharosTMHMLearnset[] =
     TMHM(TM44_REST),
     TMHM(TM52_FOCUS_BLAST),
     TMHM(TM58_SIGNAL_BEAM),
-    TMHM(TM59_DRAGON_PULSE),
     TMHM(TM63_HEAL_BELL),
     TMHM(TM73_THUNDER_WAVE),
     TMHM(TM78_HYPER_BEAM),

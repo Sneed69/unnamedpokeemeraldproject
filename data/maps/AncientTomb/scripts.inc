@@ -1,6 +1,5 @@
 AncientTomb_MapScripts::
 	map_script MAP_SCRIPT_ON_RESUME, AncientTomb_OnResume
-	map_script MAP_SCRIPT_ON_LOAD, AncientTomb_OnLoad
 	map_script MAP_SCRIPT_ON_TRANSITION, AncientTomb_OnTransition
 	.byte 0
 
@@ -23,37 +22,6 @@ AncientTomb_EventScript_ShowRegisteel::
 	clearflag FLAG_HIDE_REGISTEEL
 	return
 
-AncientTomb_OnLoad:
-	call_if_unset FLAG_SYS_REGISTEEL_PUZZLE_COMPLETED, AncientTomb_EventScript_HideRegiEntrance
-	end
-
-AncientTomb_EventScript_HideRegiEntrance::
-	setmetatile 7, 19, METATILE_Cave_EntranceCover, TRUE
-	setmetatile 8, 19, METATILE_Cave_EntranceCover, TRUE
-	setmetatile 9, 19, METATILE_Cave_EntranceCover, TRUE
-	setmetatile 7, 20, METATILE_Cave_SealedChamberBraille_Mid, TRUE
-	setmetatile 8, 20, METATILE_Cave_SealedChamberBraille_Mid, TRUE
-	setmetatile 9, 20, METATILE_Cave_SealedChamberBraille_Mid, TRUE
-	return
-
-AncientTomb_EventScript_CaveEntranceMiddle::
-	lockall
-	goto_if_set FLAG_SYS_REGISTEEL_PUZZLE_COMPLETED, AncientTomb_EventScript_BigHoleInWall
-	braillemsgbox AncientTomb_Braille_ShineInTheMiddle
-	releaseall
-	end
-
-AncientTomb_EventScript_BigHoleInWall::
-	msgbox gText_BigHoleInTheWall, MSGBOX_DEFAULT
-	releaseall
-	end
-
-AncientTomb_EventScript_CaveEntranceSide::
-	lockall
-	braillemsgbox AncientTomb_Braille_ShineInTheMiddle
-	releaseall
-	end
-
 AncientTomb_EventScript_Registeel::
 	lock
 	faceplayer
@@ -61,11 +29,14 @@ AncientTomb_EventScript_Registeel::
 	playmoncry SPECIES_REGISTEEL, CRY_MODE_ENCOUNTER
 	delay 40
 	waitmoncry
-	setwildbattle SPECIES_REGISTEEL, 40
+	setflag B_SMART_WILD_AI_FLAG
+	settotemboost B_POSITION_OPPONENT_LEFT, 1, 4, 1, 1, 4
+	setwildbattle SPECIES_REGISTEEL, 55
 	setflag FLAG_SYS_CTRL_OBJ_DELETE
 	special StartRegiBattle
 	waitstate
 	clearflag FLAG_SYS_CTRL_OBJ_DELETE
+	clearflag B_SMART_WILD_AI_FLAG
 	specialvar VAR_RESULT, GetBattleOutcome
 	goto_if_eq VAR_RESULT, B_OUTCOME_WON, AncientTomb_EventScript_DefeatedRegisteel
 	goto_if_eq VAR_RESULT, B_OUTCOME_RAN, AncientTomb_EventScript_RanFromRegisteel
@@ -83,4 +54,3 @@ AncientTomb_EventScript_RanFromRegisteel::
 	setvar VAR_0x8004, SPECIES_REGISTEEL
 	goto Common_EventScript_LegendaryFlewAway
 	end
-
