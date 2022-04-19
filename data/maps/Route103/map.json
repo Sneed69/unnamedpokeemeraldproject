@@ -291,7 +291,7 @@
       "x": 45,
       "y": 6,
       "elevation": 0,
-      "dest_map": "MAP_ALTERING_CAVE",
+      "dest_map": "MAP_COLOSSUS_GROTTO",
       "dest_warp_id": 0
     }
   ],

@@ -11,12 +11,14 @@ Route103_OnTransition:
 	end
 
 Route103_OnLoad:
-	call_if_set FLAG_SYS_GAME_CLEAR, Route103_EventScript_OpenAlteringCave
+	call_if_unset FLAG_DEFEATED_REGICE, Route103_EventScript_CloseRegigigasCave
+	call_if_unset FLAG_DEFEATED_REGIROCK, Route103_EventScript_CloseRegigigasCave
+	call_if_unset FLAG_DEFEATED_REGISTEEL, Route103_EventScript_CloseRegigigasCave
 	end
 
-Route103_EventScript_OpenAlteringCave::
-	setmetatile 45, 5, METATILE_General_CaveEntrance_Top, TRUE
-	setmetatile 45, 6, METATILE_General_CaveEntrance_Bottom, FALSE
+Route103_EventScript_CloseRegigigasCave::
+	setmetatile 45, 5, METATILE_General_RockWall_RockBase, TRUE
+	setmetatile 45, 6, METATILE_General_RockWall_SandBase, TRUE
 	return
 
 Route103_EventScript_Rival::
