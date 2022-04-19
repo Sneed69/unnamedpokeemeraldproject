@@ -9250,10 +9250,10 @@ const struct Item gItems[] =
         .flingPower = 80,
     },
 
-    [ITEM_TM115_STOMPING_TANTRUM] =
+    [ITEM_TM115_HOWLING_GALE] =
     {
         .name = _("TM115"),
-        .itemId = ITEM_TM115_STOMPING_TANTRUM,
+        .itemId = ITEM_TM115_HOWLING_GALE,
         .price = 0,
         .description = sTM115Desc,
         .importance = 1,

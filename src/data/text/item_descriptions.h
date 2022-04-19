@@ -3065,14 +3065,14 @@ static const u8 sTM13Desc[] = _(
     "cause frostbite.");
 
 static const u8 sTM14Desc[] = _(
-    "A brutal snow-and-\n"
-    "wind attack that\n"
-    "may cause frostbite.");
+    "A brutal snowstorm\n"
+    "attack that may\n"
+    "cause frostbite.");
 
 static const u8 sTM15Desc[] = _(
     "A bite attack that\n"
-    "may cause frostbite\n"
-    "or flinching.");
+    "may cause frost-\n"
+    "bite or flinching.");
 
 static const u8 sTM16Desc[] = _(
     "Creates a wall of\n"
@@ -3558,9 +3558,9 @@ static const u8 sTM114Desc[] = _(
     "with status.");
 	
 static const u8 sTM115Desc[] = _(
-    "Double power if\n"
-    "the previous\n"
-    "moved failed.");
+    "A frigid wind\n"
+    "attack that may\n"
+    "cause frostbite.");
 	
 static const u8 sTM116Desc[] = _(
     "Raises the power of\n"
