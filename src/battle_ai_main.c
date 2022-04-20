@@ -3463,10 +3463,11 @@ static s16 AI_CheckViability(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
             score += 5;
         break;
     case EFFECT_TRAP:
+		if (HasMoveEffect(battlerDef, EFFECT_RAPID_SPIN))
+			break;
     case EFFECT_MEAN_LOOK:
-        if (HasMoveEffect(battlerDef, EFFECT_RAPID_SPIN)
-          || (B_GHOSTS_ESCAPE >= GEN_6 && IS_BATTLER_OF_TYPE(battlerDef, TYPE_GHOST))
-          || gBattleMons[battlerDef].status2 & STATUS2_WRAPPED)
+        if ((B_GHOSTS_ESCAPE >= GEN_6 && IS_BATTLER_OF_TYPE(battlerDef, TYPE_GHOST))
+          || IsBattlerTrapped(battlerDef, TRUE))
         {
             break; // in this case its a bad attacking move
         }
@@ -3612,7 +3613,7 @@ static s16 AI_CheckViability(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
                     if (gLastMoves[battlerDef] == predictedMove)
                         score += 3;
                     else */if (CanMoveFaintBattler(gLastMoves[battlerDef], battlerDef, battlerAtk, 1))
-                        score += 2;; //Disable move that can kill attacker
+                        score += 2; //Disable move that can kill attacker
                 }
             }
             else if (predictedMove != MOVE_NONE && IS_MOVE_STATUS(predictedMove))
@@ -4360,9 +4361,9 @@ static s16 AI_CheckViability(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
         IncreaseStatUpScore(battlerAtk, battlerDef, STAT_SPDEF, &score);
         break;
     case EFFECT_SHELL_SMASH:
-        if (AI_DATA->atkHoldEffect == HOLD_EFFECT_POWER_HERB)
-            score += 3;
-        
+        if (AI_DATA->atkHoldEffect == HOLD_EFFECT_RESTORE_STATS)
+            score += 1;
+		
         IncreaseStatUpScore(battlerAtk, battlerDef, STAT_SPEED, &score);
         IncreaseStatUpScore(battlerAtk, battlerDef, STAT_SPATK, &score);
         IncreaseStatUpScore(battlerAtk, battlerDef, STAT_ATK, &score);
