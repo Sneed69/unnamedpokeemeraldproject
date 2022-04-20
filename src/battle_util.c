@@ -6090,7 +6090,7 @@ bool32 HasEnoughHpToEatBerry(u32 battlerId, u32 hpFraction, u32 itemId)
 
 static u8 HealConfuseBerry(u32 battlerId, u32 itemId, u8 flavorId, bool32 end2)
 {
-    if (HasEnoughHpToEatBerry(battlerId, 4, itemId))
+    if (HasEnoughHpToEatBerry(battlerId, 4, itemId) && !(gStatuses3[battlerId] & STATUS3_HEAL_BLOCK))
     {
         PREPARE_FLAVOR_BUFFER(gBattleTextBuff1, flavorId);
 
@@ -6277,7 +6277,8 @@ u8 TryHandleSeed(u8 battler, u32 terrainFlag, u8 statId, u16 itemId, bool32 exec
 static u8 ItemHealHp(u32 battlerId, u32 itemId, bool32 end2, bool32 percentHeal)
 {
     if (HasEnoughHpToEatBerry(battlerId, 2, itemId)
-      && !(gBattleScripting.overrideBerryRequirements && gBattleMons[battlerId].hp == gBattleMons[battlerId].maxHP))
+		&& !(gBattleScripting.overrideBerryRequirements && gBattleMons[battlerId].hp == gBattleMons[battlerId].maxHP)
+		&& !(gStatuses3[battlerId] & STATUS3_HEAL_BLOCK))
     {
         if (percentHeal)
             gBattleMoveDamage = (gBattleMons[battlerId].maxHP * GetBattlerHoldEffectParam(battlerId) / 100) * -1;
@@ -6715,7 +6716,7 @@ u8 ItemBattleEffects(u8 caseID, u8 battlerId, bool8 moveTurn)
                 break;
             case HOLD_EFFECT_LEFTOVERS:
             LEFTOVERS:
-                if (gBattleMons[battlerId].hp < gBattleMons[battlerId].maxHP && !moveTurn)
+                if (gBattleMons[battlerId].hp < gBattleMons[battlerId].maxHP && !moveTurn && !(gStatuses3[battlerId] & STATUS3_HEAL_BLOCK))
                 {
                     gBattleMoveDamage = gBattleMons[battlerId].maxHP / 16;
                     if (gBattleMoveDamage == 0)
@@ -7145,7 +7146,8 @@ u8 ItemBattleEffects(u8 caseID, u8 battlerId, bool8 moveTurn)
             if (gSpecialStatuses[gBattlerAttacker].damagedMons  // Need to have done damage
                 && gBattlerAttacker != gBattlerTarget
                 && gBattleMons[gBattlerAttacker].hp != gBattleMons[gBattlerAttacker].maxHP
-                && gBattleMons[gBattlerAttacker].hp != 0)
+                && gBattleMons[gBattlerAttacker].hp != 0
+				&& !(gStatuses3[gBattlerAttacker] & STATUS3_HEAL_BLOCK))
             {
                 gLastUsedItem = atkItem;
                 gPotentialItemEffectBattler = gBattlerAttacker;
