@@ -3874,7 +3874,7 @@ static void Cmd_getexp(void)
         }
         else
         {
-			VarSet(VAR_TEMP_1, 0);
+			gBattleStruct->hasShownExpShareMessage = FALSE;
             gBattleScripting.getexpState++;
             gBattleStruct->givenExpMons |= gBitTable[gBattlerPartyIndexes[gBattlerFainted]];
         }
@@ -4032,10 +4032,10 @@ static void Cmd_getexp(void)
 
 							PrepareStringBattle(STRINGID_PKMNGAINEDEXP, gBattleStruct->expGetterBattlerId);
 						}
-						else if (VarGet(VAR_TEMP_1) == FALSE)
+						else if (gBattleStruct->hasShownExpShareMessage == FALSE)
 						{
 							PrepareStringBattle(STRINGID_TEAMGAINEDEXP, gBattleStruct->expGetterBattlerId);
-							VarSet(VAR_TEMP_1, TRUE);
+							gBattleStruct->hasShownExpShareMessage = TRUE;
 						}
 						MonGainEVs(&gPlayerParty[gBattleStruct->expGetterMonId], gBattleMons[gBattlerFainted].species);
 					}
