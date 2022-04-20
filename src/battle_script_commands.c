@@ -7789,6 +7789,7 @@ static void Cmd_various(void)
         if ((gStatuses3[gActiveBattler] & (STATUS3_SEMI_INVULNERABLE | STATUS3_HEAL_BLOCK))
             || BATTLER_MAX_HP(gActiveBattler)
             || !gBattleMons[gActiveBattler].hp
+            || gBattleMons[gActiveBattler].ability == ABILITY_WONDER_GUARD
             || !(IsBattlerGrounded(gActiveBattler)))
         {
             gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 3);

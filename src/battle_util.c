@@ -1671,7 +1671,7 @@ static bool32 IsGravityPreventingMove(u32 move)
 
 bool32 IsHealBlockPreventingMove(u32 battler, u32 move)
 {
-    if (!(gStatuses3[battler] & STATUS3_HEAL_BLOCK))
+    if (!(gStatuses3[battler] & STATUS3_HEAL_BLOCK) && gBattleMons[battler].ability != ABILITY_WONDER_GUARD)
         return FALSE;
 
     switch (gBattleMoves[move].effect)
@@ -2623,6 +2623,7 @@ u8 DoBattlerEndTurnEffects(void)
             if ((gStatuses3[gActiveBattler] & STATUS3_ROOTED)
              && !BATTLER_MAX_HP(gActiveBattler)
              && !(gStatuses3[gActiveBattler] & STATUS3_HEAL_BLOCK)
+             && gBattleMons[gActiveBattler].ability != ABILITY_WONDER_GUARD
              && gBattleMons[gActiveBattler].hp != 0)
             {
                 gBattleMoveDamage = GetDrainedBigRootHp(gActiveBattler, gBattleMons[gActiveBattler].maxHP / 16);
@@ -2635,6 +2636,7 @@ u8 DoBattlerEndTurnEffects(void)
             if ((gStatuses3[gActiveBattler] & STATUS3_AQUA_RING)
              && !BATTLER_MAX_HP(gActiveBattler)
              && !(gStatuses3[gActiveBattler] & STATUS3_HEAL_BLOCK)
+             && gBattleMons[gActiveBattler].ability != ABILITY_WONDER_GUARD
              && gBattleMons[gActiveBattler].hp != 0)
             {
                 gBattleMoveDamage = GetDrainedBigRootHp(gActiveBattler, gBattleMons[gActiveBattler].maxHP / 16);
@@ -3508,7 +3510,8 @@ u8 AtkCanceller_UnableToUseMove(void)
             gBattleStruct->atkCancellerTracker++;
             break;
         case CANCELLER_HEAL_BLOCKED:
-            if (gStatuses3[gBattlerAttacker] & STATUS3_HEAL_BLOCK && IsHealBlockPreventingMove(gBattlerAttacker, gCurrentMove))
+            if ((gStatuses3[gBattlerAttacker] & STATUS3_HEAL_BLOCK || gBattleMons[gBattlerAttacker].ability == ABILITY_WONDER_GUARD)
+				&& IsHealBlockPreventingMove(gBattlerAttacker, gCurrentMove))
             {
                 gProtectStructs[gBattlerAttacker].usedHealBlockedMove = TRUE;
                 gBattleScripting.battler = gBattlerAttacker;
@@ -6090,7 +6093,7 @@ bool32 HasEnoughHpToEatBerry(u32 battlerId, u32 hpFraction, u32 itemId)
 
 static u8 HealConfuseBerry(u32 battlerId, u32 itemId, u8 flavorId, bool32 end2)
 {
-    if (HasEnoughHpToEatBerry(battlerId, 4, itemId) && !(gStatuses3[battlerId] & STATUS3_HEAL_BLOCK))
+    if (HasEnoughHpToEatBerry(battlerId, 4, itemId) && !(gStatuses3[battlerId] & STATUS3_HEAL_BLOCK || gBattleMons[battlerId].ability == ABILITY_WONDER_GUARD))
     {
         PREPARE_FLAVOR_BUFFER(gBattleTextBuff1, flavorId);
 
@@ -6278,7 +6281,7 @@ static u8 ItemHealHp(u32 battlerId, u32 itemId, bool32 end2, bool32 percentHeal)
 {
     if (HasEnoughHpToEatBerry(battlerId, 2, itemId)
 		&& !(gBattleScripting.overrideBerryRequirements && gBattleMons[battlerId].hp == gBattleMons[battlerId].maxHP)
-		&& !(gStatuses3[battlerId] & STATUS3_HEAL_BLOCK))
+		&& !(gStatuses3[battlerId] & STATUS3_HEAL_BLOCK || gBattleMons[battlerId].ability == ABILITY_WONDER_GUARD))
     {
         if (percentHeal)
             gBattleMoveDamage = (gBattleMons[battlerId].maxHP * GetBattlerHoldEffectParam(battlerId) / 100) * -1;
@@ -6716,7 +6719,8 @@ u8 ItemBattleEffects(u8 caseID, u8 battlerId, bool8 moveTurn)
                 break;
             case HOLD_EFFECT_LEFTOVERS:
             LEFTOVERS:
-                if (gBattleMons[battlerId].hp < gBattleMons[battlerId].maxHP && !moveTurn && !(gStatuses3[battlerId] & STATUS3_HEAL_BLOCK))
+                if (gBattleMons[battlerId].hp < gBattleMons[battlerId].maxHP && !moveTurn 
+					&& !(gStatuses3[battlerId] & STATUS3_HEAL_BLOCK || gBattleMons[battlerId].ability == ABILITY_WONDER_GUARD))
                 {
                     gBattleMoveDamage = gBattleMons[battlerId].maxHP / 16;
                     if (gBattleMoveDamage == 0)
@@ -7147,6 +7151,7 @@ u8 ItemBattleEffects(u8 caseID, u8 battlerId, bool8 moveTurn)
                 && gBattlerAttacker != gBattlerTarget
                 && gBattleMons[gBattlerAttacker].hp != gBattleMons[gBattlerAttacker].maxHP
                 && gBattleMons[gBattlerAttacker].hp != 0
+                && gBattleMons[gBattlerAttacker].ability != ABILITY_WONDER_GUARD
 				&& !(gStatuses3[gBattlerAttacker] & STATUS3_HEAL_BLOCK))
             {
                 gLastUsedItem = atkItem;

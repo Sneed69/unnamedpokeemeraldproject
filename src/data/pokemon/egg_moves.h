@@ -1703,7 +1703,6 @@ const u16 gEggMoves[] = {
         MOVE_FEINT_ATTACK,
         MOVE_GUST,
         MOVE_SILVER_WIND,
-        MOVE_BUG_BUZZ,
         MOVE_NIGHT_SLASH,
         MOVE_BUG_BITE,
         MOVE_FINAL_GAMBIT),
