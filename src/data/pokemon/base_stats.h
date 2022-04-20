@@ -4484,34 +4484,6 @@ const struct BaseStats gBaseStats[] =
         .noFlip = FALSE,
     },
 
-    [SPECIES_AIPOM] =
-    {
-        .baseHP        = 55,
-        .baseAttack    = 70,
-        .baseDefense   = 55,
-        .baseSpeed     = 85,
-        .baseSpAttack  = 40,
-        .baseSpDefense = 55,
-        .type1 = TYPE_NORMAL,
-        .type2 = TYPE_NORMAL,
-        .catchRate = 45,
-        .expYield = 72,
-        .evYield_Speed     = 1,
-        .genderRatio = PERCENT_FEMALE(50),
-        .eggCycles = 20,
-        .friendship = 70,
-        .growthRate = GROWTH_FAST,
-        .eggGroup1 = EGG_GROUP_FIELD,
-        .eggGroup2 = EGG_GROUP_FIELD,
-        #ifdef BATTLE_ENGINE
-            .abilities = {ABILITY_RUN_AWAY, ABILITY_PICKUP, ABILITY_SKILL_LINK},
-        #else
-            .abilities = {ABILITY_RUN_AWAY, ABILITY_PICKUP},
-        #endif
-        .bodyColor = BODY_COLOR_PURPLE,
-        .noFlip = FALSE,
-    },
-
     [SPECIES_SUNKERN] =
     {
         .baseHP        = 30,
@@ -4838,34 +4810,6 @@ const struct BaseStats gBaseStats[] =
             .abilities = {ABILITY_STURDY, ABILITY_NONE},
         #endif
         .bodyColor = BODY_COLOR_PURPLE,
-        .noFlip = FALSE,
-    },
-
-    [SPECIES_DUNSPARCE] =
-    {
-        .baseHP        = 100,
-        .baseAttack    = 70,
-        .baseDefense   = 70,
-        .baseSpeed     = 45,
-        .baseSpAttack  = 65,
-        .baseSpDefense = 65,
-        .type1 = TYPE_NORMAL,
-        .type2 = TYPE_NORMAL,
-        .catchRate = 190,
-        .expYield = 145,
-        .evYield_HP        = 1,
-        .genderRatio = PERCENT_FEMALE(50),
-        .eggCycles = 20,
-        .friendship = 70,
-        .growthRate = GROWTH_MEDIUM_FAST,
-        .eggGroup1 = EGG_GROUP_FIELD,
-        .eggGroup2 = EGG_GROUP_FIELD,
-        #ifdef BATTLE_ENGINE
-            .abilities = {ABILITY_SERENE_GRACE, ABILITY_RUN_AWAY, ABILITY_RATTLED},
-        #else
-            .abilities = {ABILITY_SERENE_GRACE, ABILITY_RUN_AWAY},
-        #endif
-        .bodyColor = BODY_COLOR_YELLOW,
         .noFlip = FALSE,
     },
 
@@ -9375,58 +9319,6 @@ const struct BaseStats gBaseStats[] =
         .eggGroup2 = EGG_GROUP_UNDISCOVERED,
         .abilities = {ABILITY_DELTA_STREAM, ABILITY_NONE},
         .bodyColor = BODY_COLOR_GREEN,
-        .noFlip = FALSE,
-    },
-
-    [SPECIES_JIRACHI] =
-    {
-        .baseHP        = 100,
-        .baseAttack    = 100,
-        .baseDefense   = 100,
-        .baseSpeed     = 100,
-        .baseSpAttack  = 100,
-        .baseSpDefense = 100,
-        .type1 = TYPE_STEEL,
-        .type2 = TYPE_PSYCHIC,
-        .catchRate = 3,
-        .expYield = 270,
-        .evYield_HP        = 3,
-        .item1 = ITEM_STAR_PIECE,
-        .item2 = ITEM_STAR_PIECE,
-        .genderRatio = MON_GENDERLESS,
-        .eggCycles = 120,
-        .friendship = 100,
-        .growthRate = GROWTH_SLOW,
-        .eggGroup1 = EGG_GROUP_UNDISCOVERED,
-        .eggGroup2 = EGG_GROUP_UNDISCOVERED,
-        .abilities = {ABILITY_SERENE_GRACE, ABILITY_NONE},
-        .bodyColor = BODY_COLOR_YELLOW,
-        .noFlip = FALSE,
-    },
-
-    [SPECIES_DEOXYS] =
-    {
-        .baseHP        = 50,
-        .baseAttack    = 150,
-        .baseDefense   = 50,
-        .baseSpeed     = 150,
-        .baseSpAttack  = 150,
-        .baseSpDefense = 50,
-        .type1 = TYPE_PSYCHIC,
-        .type2 = TYPE_PSYCHIC,
-        .catchRate = 3,
-        .expYield = 270,
-        .evYield_Attack    = 1,
-        .evYield_Speed     = 1,
-        .evYield_SpAttack  = 1,
-        .genderRatio = MON_GENDERLESS,
-        .eggCycles = 120,
-        .friendship = 0,
-        .growthRate = GROWTH_SLOW,
-        .eggGroup1 = EGG_GROUP_UNDISCOVERED,
-        .eggGroup2 = EGG_GROUP_UNDISCOVERED,
-        .abilities = {ABILITY_PRESSURE, ABILITY_NONE},
-        .bodyColor = BODY_COLOR_RED,
         .noFlip = FALSE,
     },
 
@@ -32989,6 +32881,114 @@ const struct BaseStats gBaseStats[] =
             .abilities = {ABILITY_KEEN_EYE, ABILITY_NONE},
         #endif
         .bodyColor = BODY_COLOR_BROWN,
+        .noFlip = FALSE,
+    },
+
+    [SPECIES_JIRACHI] =
+    {
+        .baseHP        = 100,
+        .baseAttack    = 100,
+        .baseDefense   = 100,
+        .baseSpeed     = 100,
+        .baseSpAttack  = 100,
+        .baseSpDefense = 100,
+        .type1 = TYPE_STEEL,
+        .type2 = TYPE_PSYCHIC,
+        .catchRate = 3,
+        .expYield = 270,
+        .evYield_HP        = 3,
+        .item1 = ITEM_STAR_PIECE,
+        .item2 = ITEM_STAR_PIECE,
+        .genderRatio = MON_GENDERLESS,
+        .eggCycles = 120,
+        .friendship = 100,
+        .growthRate = GROWTH_SLOW,
+        .eggGroup1 = EGG_GROUP_UNDISCOVERED,
+        .eggGroup2 = EGG_GROUP_UNDISCOVERED,
+        .abilities = {ABILITY_SERENE_GRACE, ABILITY_NONE},
+        .bodyColor = BODY_COLOR_YELLOW,
+        .noFlip = FALSE,
+    },
+
+    [SPECIES_DEOXYS] =
+    {
+        .baseHP        = 50,
+        .baseAttack    = 150,
+        .baseDefense   = 50,
+        .baseSpeed     = 150,
+        .baseSpAttack  = 150,
+        .baseSpDefense = 50,
+        .type1 = TYPE_PSYCHIC,
+        .type2 = TYPE_PSYCHIC,
+        .catchRate = 3,
+        .expYield = 270,
+        .evYield_Attack    = 1,
+        .evYield_Speed     = 1,
+        .evYield_SpAttack  = 1,
+        .genderRatio = MON_GENDERLESS,
+        .eggCycles = 120,
+        .friendship = 0,
+        .growthRate = GROWTH_SLOW,
+        .eggGroup1 = EGG_GROUP_UNDISCOVERED,
+        .eggGroup2 = EGG_GROUP_UNDISCOVERED,
+        .abilities = {ABILITY_PRESSURE, ABILITY_NONE},
+        .bodyColor = BODY_COLOR_RED,
+        .noFlip = FALSE,
+    },
+
+    [SPECIES_DUNSPARCE] =
+    {
+        .baseHP        = 100,
+        .baseAttack    = 70,
+        .baseDefense   = 70,
+        .baseSpeed     = 45,
+        .baseSpAttack  = 65,
+        .baseSpDefense = 65,
+        .type1 = TYPE_NORMAL,
+        .type2 = TYPE_NORMAL,
+        .catchRate = 190,
+        .expYield = 145,
+        .evYield_HP        = 1,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 20,
+        .friendship = 70,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroup1 = EGG_GROUP_FIELD,
+        .eggGroup2 = EGG_GROUP_FIELD,
+        #ifdef BATTLE_ENGINE
+            .abilities = {ABILITY_SERENE_GRACE, ABILITY_RUN_AWAY, ABILITY_RATTLED},
+        #else
+            .abilities = {ABILITY_SERENE_GRACE, ABILITY_RUN_AWAY},
+        #endif
+        .bodyColor = BODY_COLOR_YELLOW,
+        .noFlip = FALSE,
+    },
+
+    [SPECIES_AIPOM] =
+    {
+        .baseHP        = 55,
+        .baseAttack    = 70,
+        .baseDefense   = 55,
+        .baseSpeed     = 85,
+        .baseSpAttack  = 40,
+        .baseSpDefense = 55,
+        .type1 = TYPE_NORMAL,
+        .type2 = TYPE_NORMAL,
+        .catchRate = 45,
+        .expYield = 72,
+        .evYield_Speed     = 1,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 20,
+        .friendship = 70,
+        .growthRate = GROWTH_FAST,
+        .eggGroup1 = EGG_GROUP_FIELD,
+        .eggGroup2 = EGG_GROUP_FIELD,
+        #ifdef BATTLE_ENGINE
+            .abilities = {ABILITY_RUN_AWAY, ABILITY_PICKUP, ABILITY_SKILL_LINK},
+        #else
+            .abilities = {ABILITY_RUN_AWAY, ABILITY_PICKUP},
+        #endif
+        .bodyColor = BODY_COLOR_PURPLE,
         .noFlip = FALSE,
     },
 };
