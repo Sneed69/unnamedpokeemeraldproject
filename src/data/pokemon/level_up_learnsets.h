@@ -197,7 +197,7 @@ static const struct LevelUpMove sButterfreeLevelUpLearnset[] = {
     LEVEL_UP_MOVE(24, MOVE_SUPERSONIC),
     LEVEL_UP_MOVE(26, MOVE_SAFEGUARD),
     LEVEL_UP_MOVE(30, MOVE_WHIRLWIND),
-    LEVEL_UP_MOVE(32, MOVE_BUG_BUZZ),
+    LEVEL_UP_MOVE(32, MOVE_POLLEN_PUFF),
     LEVEL_UP_MOVE(36, MOVE_CAPTIVATE),
     LEVEL_UP_MOVE(41, MOVE_AIR_SLASH),
     LEVEL_UP_MOVE(47, MOVE_TAILWIND),
@@ -861,6 +861,7 @@ static const struct LevelUpMove sGloomLevelUpLearnset[] = {
 };
 
 static const struct LevelUpMove sVileplumeLevelUpLearnset[] = {
+    LEVEL_UP_MOVE( 0, MOVE_POLLEN_PUFF),
     LEVEL_UP_MOVE( 1, MOVE_AROMATHERAPY),
     LEVEL_UP_MOVE( 1, MOVE_ABSORB),
     LEVEL_UP_MOVE( 1, MOVE_GROWTH),
