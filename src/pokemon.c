@@ -3939,12 +3939,15 @@ void CalculateMonStats(struct Pokemon *mon)
     s32 spDefenseEV = GetMonData(mon, MON_DATA_SPDEF_EV, NULL);
     u16 species = GetMonData(mon, MON_DATA_SPECIES, NULL);
     s32 level = GetLevelFromMonExp(mon);
-    s32 newMaxHP;
+    s32 newMaxHP = 0;
 
     SetMonData(mon, MON_DATA_LEVEL, &level);
 
     if (species == SPECIES_SHEDINJA)
     {
+        SetMonData(mon, MON_DATA_HP_EV, &newMaxHP);
+        SetMonData(mon, MON_DATA_DEF_EV, &newMaxHP);
+        SetMonData(mon, MON_DATA_SPDEF_EV, &newMaxHP);
         newMaxHP = 1;
     }
     else
