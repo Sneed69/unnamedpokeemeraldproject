@@ -902,7 +902,7 @@ gText_PokerusExplanation::
 	.string "Pokérus.\p"
 	.string "Little is known about the Pokérus\n"
 	.string "except that they are microscopic life-\l"
-	.string "forms that attach to POKéMON.\p"
+	.string "forms that attach to Pokémon.\p"
 	.string "While infected, Pokémon are said to\n"
 	.string "grow exceptionally well.$"
 

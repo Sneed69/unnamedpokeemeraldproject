@@ -383,7 +383,7 @@ static const u8 sHypnosisDescription[] = _(
 
 static const u8 sMeditateDescription[] = _(
     "Meditates in a peaceful\n"
-    "fashion to raise Attack.");
+    "fashion. Attack & Sp. Atk up.");
 
 static const u8 sAgilityDescription[] = _(
     "Relaxes the body to sharply\n"

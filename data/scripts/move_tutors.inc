@@ -154,32 +154,6 @@ MoveTutor_EventScript_SleepTalkTaught::
 	release
 	end
 
-LilycoveCity_DepartmentStoreRooftop_EventScript_SubstituteTutor::
-	lock
-	faceplayer
-	goto_if_set FLAG_MOVE_TUTOR_TAUGHT_SUBSTITUTE, MoveTutor_EventScript_SubstituteTaught
-	msgbox MoveTutor_Text_SubstituteTeach, MSGBOX_YESNO
-	goto_if_eq VAR_RESULT, NO, MoveTutor_EventScript_SubstituteDeclined
-	call MoveTutor_EventScript_CanOnlyBeLearnedOnce
-	goto_if_eq VAR_RESULT, NO, MoveTutor_EventScript_SubstituteDeclined
-	msgbox MoveTutor_Text_SubstituteWhichMon, MSGBOX_DEFAULT
-	setvar VAR_0x8005, TUTOR_MOVE_SUBSTITUTE
-	call MoveTutor_EventScript_OpenPartyMenu
-	goto_if_eq VAR_RESULT, 0, MoveTutor_EventScript_SubstituteDeclined
-	setflag FLAG_MOVE_TUTOR_TAUGHT_SUBSTITUTE
-	goto MoveTutor_EventScript_SubstituteTaught
-	end
-
-MoveTutor_EventScript_SubstituteDeclined::
-	msgbox MoveTutor_Text_SubstituteDeclined, MSGBOX_DEFAULT
-	release
-	end
-
-MoveTutor_EventScript_SubstituteTaught::
-	msgbox MoveTutor_Text_SubstituteTaught, MSGBOX_DEFAULT
-	release
-	end
-
 MossdeepCity_EventScript_DynamicPunchTutor::
 	lock
 	faceplayer

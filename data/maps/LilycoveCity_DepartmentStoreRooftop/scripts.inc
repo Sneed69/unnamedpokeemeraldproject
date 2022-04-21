@@ -183,6 +183,22 @@ LilycoveCity_DepartmentStoreRooftop_EventScript_ExitVendingMachine::
 	hidemoneybox
 	releaseall
 	end
+	
+LilycoveCity_DepartmentStoreRooftop_EventScript_SubstituteTMGiver::
+	lock
+	faceplayer
+	goto_if_set FLAG_RECEIVED_SUBSTITUTE, LilycoveCity_DepartmentStoreRooftop_Text_ReceivedSubstitute
+	msgbox LilycoveCity_DepartmentStoreRooftop_Text_Substitute, MSGBOX_DEFAULT
+	giveitem ITEM_TM_SUBSTITUTE
+	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull
+	setflag FLAG_RECEIVED_SUBSTITUTE
+	release
+	end
+
+LilycoveCity_DepartmentStoreRooftop_Text_ReceivedSubstitute::
+	msgbox LilycoveCity_DepartmentStoreRooftop_Text_EnjoyOurLives, MSGBOX_DEFAULT
+	release
+	end
 
 LilycoveCity_DepartmentStoreRooftop_Text_SetDatesForClearOutSales:
 	.string "Don't they have set dates for their\n"
@@ -217,3 +233,19 @@ LilycoveCity_DepartmentStoreRooftop_Text_NotEnoughMoney:
 
 LilycoveCity_DepartmentStoreRooftop_Text_DecidedAgainstBuyingDrink:
 	.string "Decided against buying a drink.$"
+	
+LilycoveCity_DepartmentStoreRooftop_Text_Substitute:
+	.string "When I see the wide world from up\n"
+	.string "here on the roof…\p"
+	.string "I think about how nice it would be\n"
+	.string "if there were more than just one me\l"
+	.string "so I could enjoy all sorts of lives.\p"
+	.string "Of course it's not possible.\n"
+	.string "Giggle…\p"
+	.string "Here! This will let your Pokémon be in\n"
+	.string "more than once place at the same time!$"
+	
+LilycoveCity_DepartmentStoreRooftop_Text_EnjoyOurLives:
+	.string "We human beings should enjoy our\n"
+	.string "own lives to the utmost!\p"
+	.string "I hope you'll get that way, too!$"
