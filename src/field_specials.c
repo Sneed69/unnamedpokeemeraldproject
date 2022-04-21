@@ -2197,7 +2197,7 @@ void ShowScrollableMultichoice(void)
         break;
     case SCROLL_MULTI_GLASS_WORKSHOP_VENDOR:
         task->tMaxItemsOnScreen = MAX_SCROLL_MULTI_ON_SCREEN - 1;
-        task->tNumItems = 8;
+        task->tNumItems = 6;
         task->tLeft = 1;
         task->tTop = 1;
         task->tWidth = 9;
@@ -2322,8 +2322,8 @@ static const u8 *const sScrollableMultichoiceOptions[][MAX_SCROLL_MULTI_LENGTH] 
     [SCROLL_MULTI_GLASS_WORKSHOP_VENDOR] =
     {
         gText_BlueFlute,
-        gText_YellowFlute,
-        gText_RedFlute,
+        /*gText_YellowFlute,
+        gText_RedFlute,*/
         gText_WhiteFlute,
         gText_BlackFlute,
         gText_PrettyChair,

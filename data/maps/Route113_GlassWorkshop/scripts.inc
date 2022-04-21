@@ -5,10 +5,10 @@ Route113_GlassWorkshop_MapScripts::
 	.set BLUE_FLUTE_PRICE,   250
 	.set YELLOW_FLUTE_PRICE, 500
 	.set RED_FLUTE_PRICE,    500
-	.set WHITE_FLUTE_PRICE,  1000
+	.set WHITE_FLUTE_PRICE,  500
 	.set BLACK_FLUTE_PRICE,  1000
-	.set PRETTY_CHAIR_PRICE, 6000
-	.set PRETTY_DESK_PRICE,  8000
+	.set PRETTY_CHAIR_PRICE, 2000
+	.set PRETTY_DESK_PRICE,  3000
 	.set LOWEST_ASH_PRICE,   BLUE_FLUTE_PRICE
 
 Route113_GlassWorkshop_OnTransition:
@@ -60,13 +60,13 @@ Route113_GlassWorkshop_EventScript_ChooseGlassItem::
 	waitstate
 	switch VAR_RESULT
 	case 0, Route113_GlassWorkshop_EventScript_BlueFlute
-	case 1, Route113_GlassWorkshop_EventScript_YellowFlute
-	case 2, Route113_GlassWorkshop_EventScript_RedFlute
-	case 3, Route113_GlassWorkshop_EventScript_WhiteFlute
-	case 4, Route113_GlassWorkshop_EventScript_BlackFlute
-	case 5, Route113_GlassWorkshop_EventScript_PrettyChair
-	case 6, Route113_GlassWorkshop_EventScript_PrettyDesk
-	case 7, Route113_GlassWorkshop_EventScript_CancelGlassItemSelect
+	@case 1, Route113_GlassWorkshop_EventScript_YellowFlute
+	@case 2, Route113_GlassWorkshop_EventScript_RedFlute
+	case 1, Route113_GlassWorkshop_EventScript_WhiteFlute
+	case 2, Route113_GlassWorkshop_EventScript_BlackFlute
+	case 3, Route113_GlassWorkshop_EventScript_PrettyChair
+	case 4, Route113_GlassWorkshop_EventScript_PrettyDesk
+	case 5, Route113_GlassWorkshop_EventScript_CancelGlassItemSelect
 	case MULTI_B_PRESSED, Route113_GlassWorkshop_EventScript_CancelGlassItemSelect
 	end
 

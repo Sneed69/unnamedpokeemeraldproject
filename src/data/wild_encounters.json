@@ -1383,7 +1383,7 @@
           "map": "MAP_ROUTE113",
           "base_label": "gRoute113",
           "land_mons": {
-            "encounter_rate": 20,
+            "encounter_rate": 19,
             "mons": [
               {
                 "min_level": 15,
