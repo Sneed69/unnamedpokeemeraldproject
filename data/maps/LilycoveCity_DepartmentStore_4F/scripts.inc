@@ -49,7 +49,6 @@ LilycoveCity_DepartmentStore_4F_EventScript_ClerkRight::
 
 	.align 2
 LilycoveCity_DepartmentStore_4F_Pokemart_DefenseTMs:
-	.2byte ITEM_TM17  @ Protect
 	.2byte ITEM_TM33  @ Reflect
 	.2byte ITEM_TM16  @ Light Screen
 	.2byte ITEM_TM56  @ Tailwind
@@ -73,9 +72,8 @@ LilycoveCity_DepartmentStore_4F_EventScript_ClerkNew::
 
 	.align 2
 LilycoveCity_DepartmentStore_4F_Pokemart_StatusTMs:
-	.2byte ITEM_TM73  @ Thunder Wave
 	.2byte ITEM_TM61  @ Will-o-Wisp
-	.2byte ITEM_TM68  @ Encore
+	.2byte ITEM_TM_SPIKES
 	.2byte ITEM_TM83  @ Toxic Spikes
 	.2byte ITEM_TM75  @ Swords Dance
 	.2byte ITEM_TM45  @ Nasty Plot

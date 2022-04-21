@@ -5673,6 +5673,7 @@ static const u8 sNoctowlTMHMLearnset[] =
     TMHM(TM_HOWLING_GALE),
     TMHM(TM_ICE_BEAM),
     TMHM(TM_BLIZZARD),
+    TMHM(TM104_STRENGTH),
     0xFF,
 };
 
@@ -9970,6 +9971,7 @@ static const u8 sShedinjaTMHMLearnset[] =
     TMHM(TM114_HEX),
     TMHM(TM_ENERGY_BALL),
     TMHM(TM_CALM_MIND),
+    TMHM(TM104_STRENGTH),
     0xFF,
 };
 

@@ -3332,7 +3332,7 @@ static const u8 sTM67Desc[] = _(
 
 static const u8 sTM68Desc[] = _(
     "Makes the target\n"
-    "repeat its last.\n"
+    "repeat its last\n"
     "move.");
 
 static const u8 sTM69Desc[] = _(
