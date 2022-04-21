@@ -4,6 +4,8 @@
 Std_ObtainItem::
 	additem ITEMID, AMOUNT
 	copyvar VAR_0x8007, VAR_RESULT
+	copyvar VAR_0x8004, ITEMID
+	copyvar VAR_0x8005, AMOUNT
 	call EventScript_ObtainItemMessage
 	return
 
@@ -56,10 +58,22 @@ EventScript_BufferBerriesPocket::
 	return
 
 EventScript_ObtainedItem::
-	message gText_ObtainedTheItem
+	specialvar VAR_RESULT, BufferTMHMMoveName
+	copyvar VAR_0x8008, VAR_RESULT
+	call_if_eq VAR_0x8008, TRUE, EventScript_ObtainedTMHM
+	call_if_eq VAR_0x8008, FALSE, EventScript_ObtainedNonTM
 	waitfanfare
 	msgbox gText_PutItemInPocket, MSGBOX_DEFAULT
 	setvar VAR_RESULT, TRUE
+	return
+
+EventScript_ObtainedTMHM::
+	bufferitemnameplural STR_VAR_1, VAR_0x8004, VAR_0x8005
+	message gText_ObtainedTMHM
+	return
+
+EventScript_ObtainedNonTM::
+	message gText_ObtainedTheItem
 	return
 
 EventScript_NoRoomForItem::
