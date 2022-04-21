@@ -58,11 +58,12 @@ EventScript_BufferBerriesPocket::
 	return
 
 EventScript_ObtainedItem::
-	specialvar VAR_RESULT, BufferTMHMMoveName
-	copyvar VAR_0x8008, VAR_RESULT
-	call_if_eq VAR_0x8008, TRUE, EventScript_ObtainedTMHM
-	call_if_eq VAR_0x8008, FALSE, EventScript_ObtainedNonTM
+    specialvar VAR_RESULT, BufferTMHMMoveName
+	call_if_eq VAR_RESULT, TRUE, EventScript_ObtainedTMHM
+	call_if_eq VAR_RESULT, FALSE, EventScript_ObtainedNonTM
 	waitfanfare
+	waitmessage
+	bufferitemnameplural STR_VAR_2, VAR_0x8004, VAR_0x8005
 	msgbox gText_PutItemInPocket, MSGBOX_DEFAULT
 	setvar VAR_RESULT, TRUE
 	return
@@ -132,9 +133,8 @@ EventScript_PickUpItem::
 	removeobject VAR_LAST_TALKED
 	additem VAR_0x8004, VAR_0x8005
 	specialvar VAR_RESULT, BufferTMHMMoveName
-	copyvar VAR_0x8008, VAR_RESULT
-	call_if_eq VAR_0x8008, TRUE, EventScript_FoundTMHM
-	call_if_eq VAR_0x8008, FALSE, EventScript_FoundItem
+	call_if_eq VAR_RESULT, TRUE, EventScript_FoundTMHM
+	call_if_eq VAR_RESULT, FALSE, EventScript_FoundItem
 	waitfanfare
 	waitmessage
 	bufferitemnameplural STR_VAR_2, VAR_0x8004, VAR_0x8005
