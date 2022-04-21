@@ -2103,8 +2103,8 @@ static const u8 sLaxIncenseDesc[] = _(
 
 static const u8 sOddIncenseDesc[] = _(
     "A hold item that\n"
-    "boosts Fairy-\n"
-    "type moves.");
+    "raises the power of\n"
+    "Fairy-type moves.");
 
 static const u8 sRockIncenseDesc[] = _(
     "A hold item that\n"
