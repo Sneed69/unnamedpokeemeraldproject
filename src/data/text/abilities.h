@@ -109,7 +109,7 @@ static const u8 sAnticipationDescription[] = _("Senses dangerous moves.");
 static const u8 sForewarnDescription[] = _("Determines a foe's move.");
 static const u8 sUnawareDescription[] = _("Ignores stat changes.");
 static const u8 sTintedLensDescription[] = _("Ups “not very effective”.");
-static const u8 sFilterDescription[] = _("Weakens “supereffective”.");
+static const u8 sFilterDescription[] = _("Weakens “supereffective.”");
 static const u8 sSlowStartDescription[] = _("Takes a while to get going.");
 static const u8 sScrappyDescription[] = _("Ignores Ghost immunities.");
 static const u8 sStormDrainDescription[] = _("Draws in Water moves.");
@@ -219,7 +219,7 @@ static const u8 sPsychicSurgeDescription[] = _("Field becomes weird.");
 static const u8 sMistySurgeDescription[] = _("Field becomes misty.");
 static const u8 sGrassySurgeDescription[] = _("Field becomes grassy.");
 static const u8 sFullMetalBodyDescription[] = _("Prevents stat reduction.");
-static const u8 sNeuroforceDescription[] = _("Ups “supereffective”.");
+static const u8 sNeuroforceDescription[] = _("Ups “supereffective.”");
 static const u8 sIntrepidSwordDescription[] = _("Ups Attack on entry.");
 static const u8 sDauntlessShieldDescription[] = _("Ups Defense on entry.");
 static const u8 sLiberoDescription[] = _("Changes type to move's.");
@@ -257,6 +257,7 @@ static const u8 sAsOneShadowRiderDescription[] = _("Unnerve and Grim Neigh.");
 static const u8 sTranscendenceDescription[] = _("Ignores Dark immunity.");
 static const u8 sIonizationDescription[] = _("Ignores Ground immunity.");
 static const u8 sHyperboreanDescription[] = _("Ice raises Sp. Def.");
+static const u8 sJuggernautDescription[] = _("Only weak to special hits.");
 
 #if B_EXPANDED_ABILITY_NAMES == TRUE
 const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
@@ -532,6 +533,7 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
     [ABILITY_TRANSCENDENCE] = _("Transcendence"),
     [ABILITY_IONIZATION] = _("Ionization"),
     [ABILITY_HYPERBOREAN] = _("Hyperborean"),
+    [ABILITY_JUGGERNAUT] = _("Juggernaut"),
 };
 #else   // 12 characters
 const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
@@ -1080,4 +1082,5 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
     [ABILITY_TRANSCENDENCE] = sTranscendenceDescription,
     [ABILITY_IONIZATION] = sIonizationDescription,
     [ABILITY_HYPERBOREAN] = sHyperboreanDescription,
+    [ABILITY_JUGGERNAUT] = sJuggernautDescription,
 };
