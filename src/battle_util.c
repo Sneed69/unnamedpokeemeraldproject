@@ -8487,6 +8487,8 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
     }
 
     // various effecs
+    if (moveType == TYPE_FIRE && gDisableStructs[battlerDef].tarShot)
+        MulModifier(&modifier, UQ_4_12(2.0));
     if (gProtectStructs[battlerAtk].helpingHand)
         MulModifier(&modifier, UQ_4_12(1.5));
     if (gStatuses3[battlerAtk] & STATUS3_CHARGED_UP && moveType == TYPE_ELECTRIC)
@@ -9153,8 +9155,6 @@ static void MulByTypeEffectiveness(u16 *modifier, u16 move, u8 moveType, u8 batt
         mod = UQ_4_12(2.0);
     if (moveType == TYPE_GROUND && defType == TYPE_FLYING && (IsBattlerGrounded(battlerDef) || gBattleMoves[move].flags & FLAG_IGNORE_GROUND_IMMUNITY) && mod == UQ_4_12(0.0))
         mod = UQ_4_12(1.0);
-    if (moveType == TYPE_FIRE && gDisableStructs[battlerDef].tarShot)
-        mod = UQ_4_12(2.0);
 
     // B_WEATHER_STRONG_WINDS weakens Super Effective moves against Flying-type Pokémon
     if (WEATHER_HAS_EFFECT && gBattleWeather & B_WEATHER_STRONG_WINDS)
