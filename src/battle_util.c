@@ -9146,10 +9146,24 @@ static void MulByTypeEffectiveness(u16 *modifier, u16 move, u8 moveType, u8 batt
         if (recordAbilities)
             RecordAbilityBattle(battlerAtk, ABILITY_SCRAPPY);
     }
+	
+    if (moveType == TYPE_PSYCHIC && defType == TYPE_DARK && gStatuses3[battlerDef] & STATUS3_MIRACLE_EYED && mod == UQ_4_12(0.0))
+        mod = UQ_4_12(1.0);
+	else if (moveType == TYPE_PSYCHIC && defType == TYPE_DARK && GetBattlerAbility(battlerAtk) == ABILITY_TRANSCENDENCE && mod == UQ_4_12(0.0))
+    {
+        mod = UQ_4_12(1.0);
+        if (recordAbilities)
+            RecordAbilityBattle(battlerAtk, ABILITY_TRANSCENDENCE);
+    }
+	
+	if (moveType == TYPE_ELECTRIC && defType == TYPE_GROUND && GetBattlerAbility(battlerAtk) == ABILITY_IONIZATION && mod == UQ_4_12(0.0))
+    {
+        mod = UQ_4_12(1.0);
+        if (recordAbilities)
+            RecordAbilityBattle(battlerAtk, ABILITY_IONIZATION);
+    }
 
     if (moveType == TYPE_POISON && defType == TYPE_STEEL && gBattleMoves[move].flags & FLAG_DAMAGES_STEEL_TYPE && mod == UQ_4_12(0.0))
-        mod = UQ_4_12(1.0);
-    if (moveType == TYPE_PSYCHIC && defType == TYPE_DARK && gStatuses3[battlerDef] & STATUS3_MIRACLE_EYED && mod == UQ_4_12(0.0))
         mod = UQ_4_12(1.0);
     if (gBattleMoves[move].effect == EFFECT_FREEZE_DRY && defType == TYPE_WATER)
         mod = UQ_4_12(2.0);
