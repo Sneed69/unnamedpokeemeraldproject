@@ -137,6 +137,7 @@ static const s8 sAiAbilityRatings[ABILITIES_COUNT] =
     [ABILITY_MOLD_BREAKER] = 7,
     [ABILITY_MOODY] = 10,
     [ABILITY_MOTOR_DRIVE] = 6,
+    [ABILITY_ABILITY_HYPERBOREAN] = 7,
     [ABILITY_MOXIE] = 7,
     [ABILITY_MULTISCALE] = 8,
     [ABILITY_MULTITYPE] = 8,
@@ -186,6 +187,8 @@ static const s8 sAiAbilityRatings[ABILITIES_COUNT] =
     [ABILITY_SAP_SIPPER] = 7,
     [ABILITY_SCHOOLING] = 6,
     [ABILITY_SCRAPPY] = 6,
+    [ABILITY_TRANSCENDENCE] = 6,
+    [ABILITY_IONIZATION] = 6,
     [ABILITY_SERENE_GRACE] = 8,
     [ABILITY_SHADOW_SHIELD] = 8,
     [ABILITY_SHADOW_TAG] = 10,
@@ -280,6 +283,7 @@ static const s8 sAiAbilityRatings[ABILITIES_COUNT] =
     [ABILITY_PERISH_BODY] = -1,
     [ABILITY_WANDERING_SPIRIT] = 2,
     [ABILITY_GORILLA_TACTICS] = 4,
+    [ABILITY_JUGGERNAUT] = 9,
 };
 
 static const u16 sEncouragedEncoreEffects[] =
