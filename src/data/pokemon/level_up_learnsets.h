@@ -856,7 +856,6 @@ static const struct LevelUpMove sGloomLevelUpLearnset[] = {
     LEVEL_UP_MOVE(49, MOVE_PETAL_BLIZZARD),
     LEVEL_UP_MOVE(54, MOVE_PETAL_DANCE),
     LEVEL_UP_MOVE(59, MOVE_MOONBLAST),
-    LEVEL_UP_MOVE(65, MOVE_STRENGTH_SAP),
     LEVEL_UP_END
 };
 
@@ -879,7 +878,6 @@ static const struct LevelUpMove sVileplumeLevelUpLearnset[] = {
     LEVEL_UP_MOVE(48, MOVE_PETAL_BLIZZARD),
     LEVEL_UP_MOVE(54, MOVE_PETAL_DANCE),
     LEVEL_UP_MOVE(59, MOVE_MOONBLAST),
-    LEVEL_UP_MOVE(67, MOVE_STRENGTH_SAP),
     LEVEL_UP_END
 };
 
