@@ -2569,32 +2569,12 @@ static s16 AI_TryToFaint(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
         switch (AI_GetMoveEffectiveness(move, battlerAtk, battlerDef))
         {
         case AI_EFFECTIVENESS_x4:
-            if (WEATHER_HAS_EFFECT
-             && gBattleWeather & B_WEATHER_STRONG_WINDS
-             && IS_BATTLER_OF_TYPE(battlerDef, TYPE_FLYING))
-            {
-                if (AI_RandLessThan(176)) //Consider it supereffective instead of hypereffective.
-                    score += 2;
-                else
-                    score++;
-            }
-            else
-                score += 4;
-            break;
+			score += 4;
         case AI_EFFECTIVENESS_x2:
-            if (WEATHER_HAS_EFFECT
-             && gBattleWeather & B_WEATHER_STRONG_WINDS
-             && IS_BATTLER_OF_TYPE(battlerDef, TYPE_FLYING))
-            {
-                break; // Don't increase score, consider it neutral.
-            }
-            else
-            {
-                if (AI_RandLessThan(176))
-                    score += 2;
-                else
-                    score++;
-            }
+			if (AI_RandLessThan(176))
+				score += 2;
+			else
+				score++;
             break;
         }
     }

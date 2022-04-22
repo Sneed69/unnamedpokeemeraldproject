@@ -2672,6 +2672,7 @@ static bool8 CanMonFly(struct Pokemon *mon)
 		case SPECIES_VIBRAVA:
 		case SPECIES_SALAMENCE:
 		case SPECIES_DRIFBLIM:
+		case SPECIES_GOLURK:
 			return TRUE;
 	}
 	eggGroup[0] = gBaseStats[species].eggGroup1;
