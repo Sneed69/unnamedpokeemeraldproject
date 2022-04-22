@@ -4860,6 +4860,10 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 if (moveType == TYPE_ELECTRIC)
                     effect = 2, statId = STAT_SPEED;
                 break;
+            case ABILITY_HYPERBOREAN:
+                if (moveType == TYPE_ICE)
+                    effect = 2, statId = STAT_SPDEF;
+                break;
             case ABILITY_LIGHTNING_ROD:
                 if (moveType == TYPE_ELECTRIC)
                     effect = 2, statId = STAT_SPATK;

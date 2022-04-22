@@ -256,6 +256,7 @@ static const u8 sAsOneIceRiderDescription[] = _("Unnerve and Chilling Neigh.");
 static const u8 sAsOneShadowRiderDescription[] = _("Unnerve and Grim Neigh.");
 static const u8 sTranscendenceDescription[] = _("Ignores Dark immunity.");
 static const u8 sIonizationDescription[] = _("Ignores Ground immunity.");
+static const u8 sHyperboreanDescription[] = _("Ice raises Sp. Def.");
 
 #if B_EXPANDED_ABILITY_NAMES == TRUE
 const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
@@ -530,6 +531,7 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
     [ABILITY_AS_ONE_SHADOW_RIDER] = _("As One"),
     [ABILITY_TRANSCENDENCE] = _("Transcendence"),
     [ABILITY_IONIZATION] = _("Ionization"),
+    [ABILITY_HYPERBOREAN] = _("Hyperborean"),
 };
 #else   // 12 characters
 const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
@@ -1077,4 +1079,5 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
     [ABILITY_AS_ONE_SHADOW_RIDER] = sAsOneShadowRiderDescription,
     [ABILITY_TRANSCENDENCE] = sTranscendenceDescription,
     [ABILITY_IONIZATION] = sIonizationDescription,
+    [ABILITY_HYPERBOREAN] = sHyperboreanDescription,
 };
