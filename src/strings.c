@@ -354,7 +354,6 @@ const u8 gText_ThankYouIllSendItHome[] = _("Thank you!\nI'll send it to your hom
 const u8 gText_ThanksIllSendItHome[] = _("Thanks!\nI'll send it to your PC at home.");
 const u8 gText_YouDontHaveMoney[] = _("You don't have enough money.{PAUSE_UNTIL_PRESS}");
 const u8 gText_NoMoreRoomForThis[] = _("You have no more room for this\nitem.{PAUSE_UNTIL_PRESS}");
-const u8 gText_YouAlreadyHaveThis[] = _("You already have this item.{PAUSE_UNTIL_PRESS}");
 const u8 gText_SpaceForVar1Full[] = _("The space for {STR_VAR_1} is full.{PAUSE_UNTIL_PRESS}");
 const u8 gText_AnythingElseICanHelp[] = _("Is there anything else I can help\nyou with?");
 const u8 gText_CanIHelpWithAnythingElse[] = _("Can I help you with anything else?");
@@ -1948,3 +1947,6 @@ const u8 gText_FORMS_NONE[]                         = _("{STR_VAR_1} has no alte
 // Exp. Share
 const u8 gText_ExpShareOn[] = _("Experience sharing activated.{PAUSE_UNTIL_PRESS}");
 const u8 gText_ExpShareOff[] = _("Experience sharing deactivated.{PAUSE_UNTIL_PRESS}");
+
+const u8 gText_SoldOut[] = _("You already own a copy of this TM.\p");
+const u8 gText_SoldOut2[] = _("Owned");
