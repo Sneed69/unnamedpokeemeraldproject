@@ -94,7 +94,7 @@ gBattleScriptsForMoveEffects::
 	.4byte BattleScript_EffectSpecialAttackDownHit    @ EFFECT_SPECIAL_ATTACK_DOWN_HIT
 	.4byte BattleScript_EffectSpecialDefenseDownHit   @ EFFECT_SPECIAL_DEFENSE_DOWN_HIT
 	.4byte BattleScript_EffectAccuracyDownHit         @ EFFECT_ACCURACY_DOWN_HIT
-	.4byte BattleScript_EffectHit                     @ EFFECT_EVASION_DOWN_HIT
+	.4byte BattleScript_EffectEvasionDownHit		  @ EFFECT_EVASION_DOWN_HIT
 	.4byte BattleScript_EffectTwoTurnsAttack          @ EFFECT_TWO_TURNS_ATTACK
 	.4byte BattleScript_EffectConfuseHit              @ EFFECT_CONFUSE_HIT
 	.4byte BattleScript_EffectTwineedle               @ EFFECT_TWINEEDLE
@@ -3989,6 +3989,10 @@ BattleScript_EffectSpecialDefenseDownHit2::
 
 BattleScript_EffectAccuracyDownHit::
 	setmoveeffect MOVE_EFFECT_ACC_MINUS_1
+	goto BattleScript_EffectHit
+	
+BattleScript_EffectEvasionDownHit::
+	setmoveeffect MOVE_EFFECT_EVS_MINUS_1
 	goto BattleScript_EffectHit
 
 BattleScript_PowerHerbActivation:

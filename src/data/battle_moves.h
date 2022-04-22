@@ -11632,7 +11632,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
 
     [MOVE_FAIRY_TAIL] =
     {
-        .effect = EFFECT_DEFENSE_DOWN_HIT,
+        .effect = EFFECT_EVASION_DOWN_HIT,
         .power = 100,
         .type = TYPE_FAIRY,
         .accuracy = 75,

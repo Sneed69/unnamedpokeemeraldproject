@@ -1800,6 +1800,7 @@ const u16 gEggMoves[] = {
         MOVE_QUICK_ATTACK,
         MOVE_GUST,
         MOVE_FLAIL,
+        MOVE_FIRST_IMPRESSION,
         MOVE_FURY_CUTTER,
         MOVE_MUD_SHOT,
         MOVE_ENDURE,

@@ -2948,7 +2948,7 @@ static const u8 sMysticBladesDescription[] = _(
 
 static const u8 sFairyTailDescription[] = _(
     "Attacks with an enchanted\n"
-    "tail. May lower Defense.");
+    "tail. May lower evasiveness.");
 
 static const u8 sWaveCrashDescription[] = _(
     "A charge that raises Speed.\n"
