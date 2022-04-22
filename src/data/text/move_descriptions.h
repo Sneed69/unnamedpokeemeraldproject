@@ -202,8 +202,8 @@ static const u8 sDisableDescription[] = _(
     "the foe's moves.");
 
 static const u8 sAcidDescription[] = _(
-    "Sprays a hide-melting acid.\n"
-    "May lower Defense.");
+    "May lower Sp. Defense.\n"
+    "Ignores Steel type.");
 
 static const u8 sEmberDescription[] = _(
     "A weak fire attack that may\n"
@@ -1930,8 +1930,8 @@ static const u8 sLowSweepDescription[] = _(
     "lowering its Speed.");
 
 static const u8 sAcidSprayDescription[] = _(
-    "Sprays a hide-melting acid.\n"
-    "Sharply reduces Sp. Def.");
+    "Sharply reduces Sp. Def.\n"
+    "Ignores Steel type.");
 
 static const u8 sFoulPlayDescription[] = _(
     "The higher the foe's Attack\n"
