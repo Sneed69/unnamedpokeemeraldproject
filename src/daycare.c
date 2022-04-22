@@ -262,7 +262,7 @@ static u16 TakeSelectedPokemonFromDaycare(struct DaycareMon *daycareMon)
         CalculateMonStats(&pokemon);
         species = newSpecies;
     }
-    
+
     if (GetMonData(&pokemon, MON_DATA_LEVEL) != MAX_LEVEL)
     {
         experience = GetMonData(&pokemon, MON_DATA_EXP) + daycareMon->steps;
@@ -531,7 +531,7 @@ static void InheritIVs(struct Pokemon *egg, struct DayCare *daycare)
     // search for power items or destiny knot
 	k = 0;
     for (i = 0; i < DAYCARE_MON_COUNT; i++)
-    { 
+    {
         u16 item = GetBoxMonData(&daycare->mons[i].mon, MON_DATA_HELD_ITEM);
 		if (gItems[item].holdEffect == HOLD_EFFECT_POWER_ITEM)
 		{
@@ -549,7 +549,7 @@ static void InheritIVs(struct Pokemon *egg, struct DayCare *daycare)
 		else if (gItems[item].holdEffect == HOLD_EFFECT_DESTINY_KNOT)
 			inheritedN = INHERITED_IV_DESTINY_KNOT_COUNT;
     }
-	
+
     // Select the 1-5 remaining IVs that will be inherited randomly.
     for (i = k; i < inheritedN; i++)
     {
@@ -1413,7 +1413,7 @@ static u8 ModifyBreedingScoreForOvalCharm(u8 score)
             return 88;
         }
     }
-    
+
     return score;
 }
 

@@ -249,7 +249,7 @@ static void FindMapsWithMon(u16 species)
     sPokedexAreaScreen->alteringCaveId = VarGet(VAR_ALTERING_CAVE_WILD_SET);
     if (sPokedexAreaScreen->alteringCaveId >= NUM_ALTERING_CAVE_TABLES)
         sPokedexAreaScreen->alteringCaveId = 0;
-	
+
 	sPokedexAreaScreen->numOverworldAreas = 0;
 	sPokedexAreaScreen->numSpecialAreas = 0;
 
@@ -560,7 +560,7 @@ static void DoAreaGlow(void)
         if (sPokedexAreaScreen->markerTimer > 12)
         {
             sPokedexAreaScreen->markerTimer = 0;
-            
+
             // Flash the marker
             // With a max of 4, the marker will disappear twice
             sPokedexAreaScreen->markerFlashCounter++;
@@ -747,7 +747,7 @@ static void CreateAreaMarkerSprites(void)
 static void DestroyAreaScreenSprites(void)
 {
     u16 i;
-    
+
     // Destroy area marker sprites
     FreeSpriteTilesByTag(TAG_AREA_MARKER);
     FreeSpritePaletteByTag(TAG_AREA_MARKER);
@@ -782,7 +782,7 @@ static void CreateAreaUnknownSprites(void)
 
     if (sPokedexAreaScreen->numOverworldAreas || sPokedexAreaScreen->numSpecialAreas)
     {
-        // The current species is present on the map, don't create any "Area Unknown" sprites 
+        // The current species is present on the map, don't create any "Area Unknown" sprites
         for (i = 0; i < ARRAY_COUNT(sPokedexAreaScreen->areaUnknownSprites); i++)
             sPokedexAreaScreen->areaUnknownSprites[i] = NULL;
     }

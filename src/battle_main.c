@@ -944,7 +944,7 @@ static void CB2_HandleStartBattle(void)
             // Recv Pokémon 5-6
             ResetBlockReceivedFlags();
             memcpy(&gEnemyParty[4], gBlockRecvBuffer[enemyMultiplayerId], sizeof(struct Pokemon) * 2);
-            
+
             TryCorrectShedinjaLanguage(&gEnemyParty[0]);
             TryCorrectShedinjaLanguage(&gEnemyParty[1]);
             TryCorrectShedinjaLanguage(&gEnemyParty[2]);
@@ -2894,7 +2894,7 @@ static void SpriteCB_TrainerThrowObject_Main(struct Sprite *sprite)
         sprite->callback = SpriteCB_Idle;
 }
 
-// Sprite callback for a trainer back pic to throw an object 
+// Sprite callback for a trainer back pic to throw an object
 // (Wally throwing a ball, throwing Pokéblocks/balls in the Safari Zone)
 void SpriteCB_TrainerThrowObject(struct Sprite *sprite)
 {
@@ -3029,10 +3029,10 @@ static void BattleStartClearSetData(void)
     gBattleStruct->arenaLostOpponentMons = 0;
 
     gBattleStruct->mega.triggerSpriteId = 0xFF;
-    
+
     gBattleStruct->stickyWebUser = 0xFF;
     gBattleStruct->appearedInBattle = 0;
-    
+
     for (i = 0; i < PARTY_SIZE; i++)
     {
         gBattleStruct->usedHeldItems[i][0] = 0;
@@ -3131,7 +3131,7 @@ void SwitchInClearSetData(void)
     gBattleStruct->lastTakenMoveFrom[gActiveBattler][3] = 0;
     gBattleStruct->lastMoveFailed &= ~(gBitTable[gActiveBattler]);
     gBattleStruct->palaceFlags &= ~(gBitTable[gActiveBattler]);
-    
+
     if (gActiveBattler == gBattleStruct->stickyWebUser)
         gBattleStruct->stickyWebUser = 0xFF;    // Switched into sticky web user slot so reset it
 
@@ -3147,7 +3147,7 @@ void SwitchInClearSetData(void)
     gBattleResources->flags->flags[gActiveBattler] = 0;
     gCurrentMove = 0;
     gBattleStruct->arenaTurnCounter = 0xFF;
-    
+
     // Reset damage to prevent things like red card activating if the switched-in mon is holding it
     gSpecialStatuses[gActiveBattler].physicalDmg = 0;
     gSpecialStatuses[gActiveBattler].specialDmg = 0;
@@ -3231,7 +3231,7 @@ void FaintClearSetData(void)
     gBattleStruct->lastTakenMoveFrom[gActiveBattler][3] = 0;
 
     gBattleStruct->palaceFlags &= ~(gBitTable[gActiveBattler]);
-    
+
     if (gActiveBattler == gBattleStruct->stickyWebUser)
         gBattleStruct->stickyWebUser = 0xFF;    // User of sticky web fainted, so reset the stored battler ID
 
@@ -4589,7 +4589,7 @@ u8 GetWhoStrikesFirst(u8 battler1, u8 battler2, bool8 ignoreChosenMoves)
         // QUICK CLAW / CUSTAP - always first
         // LAGGING TAIL - always last
         // STALL - always last
-        
+
         if (gProtectStructs[battler1].quickDraw && !gProtectStructs[battler2].quickDraw)
             strikesFirst = 0;
         else if (!gProtectStructs[battler1].quickDraw && gProtectStructs[battler2].quickDraw)
@@ -5262,7 +5262,7 @@ static void ReturnFromBattleToOverworld(void)
 			if (GetMonData(&gEnemyParty[0], MON_DATA_SPECIES) == gSaveBlock1Ptr->roamer[i].species)
 			{
 				UpdateRoamerHPStatus(i, &gEnemyParty[0]);
-				
+
 #ifndef BUGFIX
 				if ((gBattleOutcome & B_OUTCOME_WON) || gBattleOutcome == B_OUTCOME_CAUGHT)
 #else

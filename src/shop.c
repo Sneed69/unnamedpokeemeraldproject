@@ -224,7 +224,7 @@ static const u16 sShopInventory_League[] = {
     ITEM_HYPER_POTION,
     ITEM_MAX_POTION,
     ITEM_FULL_RESTORE,
-    ITEM_FULL_HEAL,	
+    ITEM_FULL_HEAL,
 	ITEM_MAX_REVIVE,
 	ITEM_MAX_ETHER,
 	ITEM_ELIXIR,
@@ -253,7 +253,7 @@ static void getCurrentMartStock(void)
 		sMartInfo.itemList =  sShopInventory_Slateport;
 	else if (FlagGet(FLAG_VISITED_RUSTBORO_CITY))
 		sMartInfo.itemList =  sShopInventory_Rustboro;
-	else 
+	else
 		sMartInfo.itemList =  sShopInventory_Base;
 }
 
@@ -485,7 +485,7 @@ static void SetShopItemsForSale(const u16 *items)
 		getCurrentMartStock();
 	else
 		sMartInfo.itemList = items;
-	
+
     sMartInfo.itemCount = 0;
 
     while (sMartInfo.itemList[i])

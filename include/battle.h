@@ -658,7 +658,7 @@ struct BattleStruct
 #define SET_STATCHANGER(statId, stage, goesDown)(gBattleScripting.statChanger = (statId) + ((stage) << 3) + (goesDown << 7))
 #define SET_STATCHANGER2(dst, statId, stage, goesDown)(dst = (statId) + ((stage) << 3) + (goesDown << 7))
 
-// NOTE: The members of this struct have hard-coded offsets 
+// NOTE: The members of this struct have hard-coded offsets
 //       in include/constants/battle_script_commands.h
 struct BattleScripting
 {

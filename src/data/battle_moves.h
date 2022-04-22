@@ -10705,7 +10705,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
         .priority = 0,
         .split = SPLIT_PHYSICAL,
     },
-    
+
     [MOVE_DYNAMAX_CANNON] =
     {
         .effect = EFFECT_DYNAMAX_DOUBLE_DMG,

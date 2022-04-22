@@ -188,8 +188,8 @@ void RoamerMove(u8 index)
 					// Choose a new map (excluding the first) within this set
 					// Also exclude a map if the roamer was there 2 moves ago
 					mapNum = sRoamerLocations[locSet][(Random() % (NUM_LOCATIONS_PER_SET - 1)) + 1];
-					if (!(sLocationHistory[index][2][MAP_GRP] == ROAMER_MAP_GROUP 
-					   && sLocationHistory[index][2][MAP_NUM] == mapNum) 
+					if (!(sLocationHistory[index][2][MAP_GRP] == ROAMER_MAP_GROUP
+					   && sLocationHistory[index][2][MAP_NUM] == mapNum)
 					   && mapNum != MAP_NUM(UNDEFINED))
 						break;
 				}

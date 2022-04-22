@@ -430,14 +430,14 @@ BattleScript_EffectColdSnap::
 	setmoveeffect MOVE_EFFECT_FREEZE
 	seteffectprimary
 	goto BattleScript_MoveEnd
-	
+
 BattleScript_MagmaArmorPrevents::
 	call BattleScript_AbilityPopUp
 	copybyte gEffectBattler, gBattlerTarget
 	setbyte cMULTISTRING_CHOOSER, B_MSG_ABILITY_PREVENTS_MOVE_STATUS
 	call BattleScript_FRZPrevention
 	goto BattleScript_MoveEnd
-	
+
 BattleScript_AlreadyFrozen::
 	setalreadystatusedmoveattempt BS_ATTACKER
 	pause B_WAIT_TIME_SHORT
@@ -515,7 +515,7 @@ BattleScript_MeteorBeamEnd::
 	jumpifnoholdeffect BS_ATTACKER, HOLD_EFFECT_POWER_HERB, BattleScript_MoveEnd
 	call BattleScript_PowerHerbActivation
 	goto BattleScript_TwoTurnMovesSecondTurn
-  
+
 BattleScript_EffectSkyDrop:
 	jumpifstatus2 BS_ATTACKER, STATUS2_MULTIPLETURNS, BattleScript_SkyDropTurn2
 	attackcanceler
@@ -5570,7 +5570,7 @@ BattleScript_EffectRolePlay::
 	pause 20
 	destroyabilitypopup
 	pause 40
-.endif	
+.endif
 	printstring STRINGID_PKMNCOPIEDFOE
 	waitmessage B_WAIT_TIME_LONG
 	switchinabilities BS_ATTACKER
@@ -7312,7 +7312,7 @@ BattleScript_DefSpDefDownTrySpDef::
 	waitmessage B_WAIT_TIME_LONG
 BattleScript_DefSpDefDownRet::
 	return
-	
+
 BattleScript_DefDownSpeedUp::
 	jumpifstat BS_ATTACKER, CMP_GREATER_THAN, STAT_DEF, MIN_STAT_STAGE, BattleScript_DefDownSpeedUpTryDef
 	jumpifstat BS_ATTACKER, CMP_EQUAL, STAT_SPEED, MAX_STAT_STAGE, BattleScript_DefDownSpeedUpRet
@@ -7946,7 +7946,7 @@ BattleScript_WaveCrashStatUpPrintString::
 	waitmessage B_WAIT_TIME_LONG
 BattleScript_WaveCrashEnd::
 	return
-	
+
 BattleScript_MoveEffectRecoilWithStatus::
 	argumentstatuseffect
 	copyword gBattleMoveDamage, sSAVED_DMG
@@ -9618,7 +9618,7 @@ BattleScript_NeutralizingGasExitsLoop:
 	jumpifbytenotequal gBattlerTarget, sByteFour, BattleScript_NeutralizingGasExitsLoop	@ SOMEHOW, comparing to gBattlersCount is problematic.
 	restoretarget
 	return
-  
+
 BattleScript_MagicianActivates::
 	call BattleScript_AbilityPopUp
 	call BattleScript_ItemSteal

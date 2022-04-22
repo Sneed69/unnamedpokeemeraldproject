@@ -1,4 +1,4 @@
-const struct FormChange *const gFormChangeTablePointers[NUM_SPECIES] = 
+const struct FormChange *const gFormChangeTablePointers[NUM_SPECIES] =
 {
     [SPECIES_GIRATINA] = sGiratinaFormChangeTable,
     [SPECIES_GIRATINA_ORIGIN] = sGiratinaFormChangeTable,
@@ -30,7 +30,7 @@ const struct FormChange *const gFormChangeTablePointers[NUM_SPECIES] =
     [SPECIES_LANDORUS_THERIAN] = sLandorusTherianFormChangeTable,
     [SPECIES_KELDEO] = sKeldeoFormChangeTable,
     [SPECIES_KELDEO_RESOLUTE] = sKeldeoResoluteFormChangeTable,
-    [SPECIES_GENESECT] = sGenesectFormChangeTable, 
+    [SPECIES_GENESECT] = sGenesectFormChangeTable,
     [SPECIES_GENESECT_DOUSE_DRIVE] = sGenesectFormChangeTable,
     [SPECIES_GENESECT_SHOCK_DRIVE] = sGenesectFormChangeTable,
     [SPECIES_GENESECT_BURN_DRIVE] = sGenesectFormChangeTable,

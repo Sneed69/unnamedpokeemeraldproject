@@ -667,7 +667,7 @@ const struct BaseStats gBaseStats[] =
         .baseSpAttack  = 90,
         .baseSpDefense = 75,
 		.baseAttack    = 105,
-        
+
         .type1 = TYPE_POISON,
         .type2 = TYPE_GROUND,
         .catchRate = 45,
@@ -713,7 +713,7 @@ const struct BaseStats gBaseStats[] =
         .bodyColor = BODY_COLOR_PINK,
         .noFlip = TRUE,
     },
-	
+
     [SPECIES_CLEFAIRY] =
     {
         .baseHP        = 70,

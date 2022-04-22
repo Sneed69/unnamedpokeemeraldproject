@@ -389,7 +389,7 @@ void HandleAction_UseMove(void)
             u16 battlerAbility;
             gActiveBattler = gBattlerByTurnOrder[var];
             battlerAbility = GetBattlerAbility(gActiveBattler);
-            
+
             RecordAbilityBattle(gActiveBattler, gBattleMons[gActiveBattler].ability);
             if (battlerAbility == ABILITY_LIGHTNING_ROD)
                 gSpecialStatuses[gActiveBattler].lightningRodRedirected = TRUE;
@@ -903,7 +903,7 @@ void HandleAction_ActionFinished(void)
     gBattleCommunication[4] = 0;
     gBattleScripting.multihitMoveEffect = 0;
     gBattleResources->battleScriptsStack->size = 0;
-    
+
     #if B_RECALC_TURN_AFTER_ACTIONS >= GEN_8
     // i starts at `gCurrentTurnActionNumber` because we don't want to recalculate turn order for mon that have already
     // taken action. It's been previously increased, which we want in order to not recalculate the turn of the mon that just finished its action
@@ -924,7 +924,7 @@ void HandleAction_ActionFinished(void)
             {
                 if (GetWhoStrikesFirst(battler1, battler2, TRUE)) // If the actions chosen are switching, we recalc order but ignoring the moves
                     SwapTurnOrder(i, j);
-            }  
+            }
         }
     }
     #endif
@@ -1442,20 +1442,20 @@ void CancelMultiTurnMoves(u8 battler)
     // Clear battler's semi-invulnerable bits if they are not held by Sky Drop.
     if (!(gStatuses3[battler] & STATUS3_SKY_DROPPED))
         gStatuses3[battler] &= ~(STATUS3_SEMI_INVULNERABLE);
-    
+
     // Check to see if this Pokemon was in the middle of using Sky Drop. If so, release the target.
     if (gBattleStruct->skyDropTargets[battler] != 0xFF && !(gStatuses3[battler] & STATUS3_SKY_DROPPED))
     {
         // Get the target's battler id
         u8 otherSkyDropper = gBattleStruct->skyDropTargets[battler];
-        
+
         // Clears sky_dropped and on_air statuses
         gStatuses3[otherSkyDropper] &= ~(STATUS3_SKY_DROPPED | STATUS3_ON_AIR);
-        
+
         // Makes both attacker and target's sprites visible
         gSprites[gBattlerSpriteIds[battler]].invisible = FALSE;
         gSprites[gBattlerSpriteIds[otherSkyDropper]].invisible = FALSE;
-        
+
         // If target was sky dropped in the middle of Outrage/Thrash/Petal Dance,
         // confuse them upon release and display "confused by fatigue" message & animation.
         // Don't do this if this CancelMultiTurnMoves is caused by falling asleep via Yawn.
@@ -6710,7 +6710,7 @@ u8 ItemBattleEffects(u8 caseID, u8 battlerId, bool8 moveTurn)
                 break;
             case HOLD_EFFECT_LEFTOVERS:
             LEFTOVERS:
-                if (gBattleMons[battlerId].hp < gBattleMons[battlerId].maxHP && !moveTurn 
+                if (gBattleMons[battlerId].hp < gBattleMons[battlerId].maxHP && !moveTurn
 					&& !(gStatuses3[battlerId] & STATUS3_HEAL_BLOCK || gBattleMons[battlerId].ability == ABILITY_WONDER_GUARD))
                 {
                     gBattleMoveDamage = gBattleMons[battlerId].maxHP / 16;
@@ -8611,9 +8611,9 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
 			else if (gBattleMons[battlerAtk].hp <= (gBattleMons[battlerAtk].maxHP * 7/15))
 				MulModifier(&modifier, UQ_4_12(1.4));
 			else if (gBattleMons[battlerAtk].hp <= (gBattleMons[battlerAtk].maxHP * 9/15))
-				MulModifier(&modifier, UQ_4_12(1.3)); 
+				MulModifier(&modifier, UQ_4_12(1.3));
 			else if (gBattleMons[battlerAtk].hp <= (gBattleMons[battlerAtk].maxHP * 11/15))
-				MulModifier(&modifier, UQ_4_12(1.2)); 
+				MulModifier(&modifier, UQ_4_12(1.2));
 			else if (gBattleMons[battlerAtk].hp <= (gBattleMons[battlerAtk].maxHP * 13/15))
 				MulModifier(&modifier, UQ_4_12(1.1));
 		}
@@ -8626,9 +8626,9 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
 			else if (gBattleMons[battlerAtk].hp <= (gBattleMons[battlerAtk].maxHP * 7/15))
 				MulModifier(&modifier, UQ_4_12(1.4));
 			else if (gBattleMons[battlerAtk].hp <= (gBattleMons[battlerAtk].maxHP * 9/15))
-				MulModifier(&modifier, UQ_4_12(1.3)); 
+				MulModifier(&modifier, UQ_4_12(1.3));
 			else if (gBattleMons[battlerAtk].hp <= (gBattleMons[battlerAtk].maxHP * 11/15))
-				MulModifier(&modifier, UQ_4_12(1.2)); 
+				MulModifier(&modifier, UQ_4_12(1.2));
 			else if (gBattleMons[battlerAtk].hp <= (gBattleMons[battlerAtk].maxHP * 13/15))
 				MulModifier(&modifier, UQ_4_12(1.1));
 		}
@@ -8641,9 +8641,9 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
 			else if (gBattleMons[battlerAtk].hp <= (gBattleMons[battlerAtk].maxHP * 7/15))
 				MulModifier(&modifier, UQ_4_12(1.4));
 			else if (gBattleMons[battlerAtk].hp <= (gBattleMons[battlerAtk].maxHP * 9/15))
-				MulModifier(&modifier, UQ_4_12(1.3)); 
+				MulModifier(&modifier, UQ_4_12(1.3));
 			else if (gBattleMons[battlerAtk].hp <= (gBattleMons[battlerAtk].maxHP * 11/15))
-				MulModifier(&modifier, UQ_4_12(1.2)); 
+				MulModifier(&modifier, UQ_4_12(1.2));
 			else if (gBattleMons[battlerAtk].hp <= (gBattleMons[battlerAtk].maxHP * 13/15))
 				MulModifier(&modifier, UQ_4_12(1.1));
 		}
@@ -8656,9 +8656,9 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
 			else if (gBattleMons[battlerAtk].hp <= (gBattleMons[battlerAtk].maxHP * 7/15))
 				MulModifier(&modifier, UQ_4_12(1.4));
 			else if (gBattleMons[battlerAtk].hp <= (gBattleMons[battlerAtk].maxHP * 9/15))
-				MulModifier(&modifier, UQ_4_12(1.3)); 
+				MulModifier(&modifier, UQ_4_12(1.3));
 			else if (gBattleMons[battlerAtk].hp <= (gBattleMons[battlerAtk].maxHP * 11/15))
-				MulModifier(&modifier, UQ_4_12(1.2)); 
+				MulModifier(&modifier, UQ_4_12(1.2));
 			else if (gBattleMons[battlerAtk].hp <= (gBattleMons[battlerAtk].maxHP * 13/15))
 				MulModifier(&modifier, UQ_4_12(1.1));
 		}
@@ -8954,7 +8954,7 @@ static u32 CalcFinalDmg(u32 dmg, u16 move, u8 battlerAtk, u8 battlerDef, u8 move
     if (gBattleMons[battlerAtk].status1 & STATUS1_BURN && IS_MOVE_PHYSICAL(move)
         && gBattleMoves[move].effect != EFFECT_FACADE && abilityAtk != ABILITY_GUTS)
         dmg = ApplyModifier(UQ_4_12(0.5), dmg);
-		
+
     // check frostbite
     if (gBattleMons[battlerAtk].status1 & STATUS1_FREEZE && IS_MOVE_SPECIAL(move)
         && gBattleMoves[move].effect != EFFECT_FACADE)
@@ -9153,7 +9153,7 @@ static void MulByTypeEffectiveness(u16 *modifier, u16 move, u8 moveType, u8 batt
         if (recordAbilities)
             RecordAbilityBattle(battlerAtk, ABILITY_SCRAPPY);
     }
-	
+
     if (moveType == TYPE_PSYCHIC && defType == TYPE_DARK && gStatuses3[battlerDef] & STATUS3_MIRACLE_EYED && mod == UQ_4_12(0.0))
         mod = UQ_4_12(1.0);
 	else if (moveType == TYPE_PSYCHIC && defType == TYPE_DARK && GetBattlerAbility(battlerAtk) == ABILITY_TRANSCENDENCE && mod == UQ_4_12(0.0))
@@ -9162,7 +9162,7 @@ static void MulByTypeEffectiveness(u16 *modifier, u16 move, u8 moveType, u8 batt
         if (recordAbilities)
             RecordAbilityBattle(battlerAtk, ABILITY_TRANSCENDENCE);
     }
-	
+
 	if (moveType == TYPE_ELECTRIC && defType == TYPE_GROUND && GetBattlerAbility(battlerAtk) == ABILITY_IONIZATION && mod == UQ_4_12(0.0))
     {
         mod = UQ_4_12(1.0);
@@ -9183,7 +9183,7 @@ static void MulByTypeEffectiveness(u16 *modifier, u16 move, u8 moveType, u8 batt
         if (defType == TYPE_FLYING && mod >= UQ_4_12(2.0))
             mod = UQ_4_12(1.0);
     }
-	
+
 	if (GetBattlerAbility(battlerDef) == ABILITY_JUGGERNAUT && mod >= UQ_4_12(2.0) && gBattleMoves[move].split == SPLIT_PHYSICAL)
 		mod = UQ_4_12(1.0);
 
@@ -10078,7 +10078,7 @@ void DoBurmyFormChange(u32 monId)
 
     currSpecies = GetMonData(&party[monId], MON_DATA_SPECIES, NULL);
 
-    if ((GET_BASE_SPECIES_ID(currSpecies) == SPECIES_BURMY) 
+    if ((GET_BASE_SPECIES_ID(currSpecies) == SPECIES_BURMY)
         && (gBattleStruct->appearedInBattle & gBitTable[monId]) // Burmy appeared in battle
         && GetMonData(&party[monId], MON_DATA_HP, NULL) != 0) // Burmy isn't fainted
     {

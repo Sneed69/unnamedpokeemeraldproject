@@ -1809,7 +1809,7 @@ static s8 AdvanceMonIndex(s8 delta)
     struct Pokemon *mon = sMonSummaryScreen->monList.mons;
     u8 index = sMonSummaryScreen->curMonIndex;
     u8 numMons = sMonSummaryScreen->maxMonIndex + 1;
-	
+
     delta += numMons;
     index = (index + delta) % numMons;
 
@@ -3205,9 +3205,9 @@ static void BufferMonTrainerMemo(void)
     DynamicPlaceholderTextUtil_SetPlaceholderPtr(0, sMemoNatureTextColor);
     DynamicPlaceholderTextUtil_SetPlaceholderPtr(1, sMemoMiscTextColor);
     BufferNatureString();
-	
+
     if (sum->hiddenNature != HIDDEN_NATURE_NONE)
-    {    
+    {
         DynamicPlaceholderTextUtil_SetPlaceholderPtr(5, sMemoHiddenNatureTextColor);
         DynamicPlaceholderTextUtil_SetPlaceholderPtr(6, gNatureNamePointers[sum->hiddenNature]);
         DynamicPlaceholderTextUtil_SetPlaceholderPtr(7, sText_EndParentheses);
@@ -3887,12 +3887,12 @@ static void PrintNewMoveDetailsOrCancelText(void)
             color = 6;
         else
             color = 5;
-		
+
 		if (StringLength(gMoveNames[move]) < 13)
 			PrintTextOnWindow(windowId1, gMoveNames[move], 0, 65, 0, color);
 		else
 			PrintNarrowTextOnWindow(windowId1, gMoveNames[move], 0, 65, 0, color);
-		
+
         ConvertIntToDecimalStringN(gStringVar1, gBattleMoves[move].pp, STR_CONV_MODE_RIGHT_ALIGN, 2);
         DynamicPlaceholderTextUtil_Reset();
         DynamicPlaceholderTextUtil_SetPlaceholderPtr(0, gStringVar1);
@@ -4074,7 +4074,7 @@ static void SetNewMoveTypeIcon(void)
     else
     {
         if (sMonSummaryScreen->currPageIndex == PSS_PAGE_BATTLE_MOVES)
-            if (sMonSummaryScreen->newMove == MOVE_HIDDEN_POWER) {               
+            if (sMonSummaryScreen->newMove == MOVE_HIDDEN_POWER) {
                 u8 type  = GetHiddenPowerType(GetMonData(mon, MON_DATA_PERSONALITY));
                 SetTypeSpritePosAndPal(type & 0x3F, 85, 96, SPRITE_ARR_ID_TYPE + 4);
             } else {

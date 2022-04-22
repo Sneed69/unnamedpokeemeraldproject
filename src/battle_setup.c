@@ -768,7 +768,7 @@ static u8 GetSumOfEnemyPartyLevel(u16 opponentId, u8 numMons)
 
     for (i = 0; i < count; i++)
         sum += party[i].lvl;
-    
+
     return sum;
 }
 

@@ -3001,7 +3001,7 @@ static const u8 sMonAnimationDelayTable[NUM_SPECIES - 1] =
 #define PP_UP_SHIFTS_INV(val) (u8)~(val), (u8)~((val) << 2), (u8)~((val) << 4), (u8)~((val) << 6)
 
 // PP Up bonuses are stored for a Pokémon as a single byte.
-// There are 2 bits (a value 0-3) for each move slot that 
+// There are 2 bits (a value 0-3) for each move slot that
 // represent how many PP Ups have been applied.
 // The following arrays take a move slot id and return:
 // gPPUpGetMask - A mask to get the number of PP Ups applied to that move slot
@@ -3437,7 +3437,7 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, 
 
     value = HIDDEN_NATURE_NONE;
     SetBoxMonData(boxMon, MON_DATA_HIDDEN_NATURE, &value);
-	
+
     GiveBoxMonInitialMoveset(boxMon);
 }
 
@@ -5322,7 +5322,7 @@ u16 GetAbilityBySpecies(u16 species, u8 abilityNum)
         gLastUsedAbility = gBaseStats[species].abilities[abilityNum];
     else
         gLastUsedAbility = ABILITY_NONE;
-    
+
     if (abilityNum >= NUM_NORMAL_ABILITY_SLOTS) // if abilityNum is empty hidden ability, look for other hidden abilities
     {
         for (i = NUM_NORMAL_ABILITY_SLOTS; i < NUM_ABILITY_SLOTS && gLastUsedAbility == ABILITY_NONE; i++)
@@ -5330,12 +5330,12 @@ u16 GetAbilityBySpecies(u16 species, u8 abilityNum)
             gLastUsedAbility = gBaseStats[species].abilities[i];
         }
     }
-    
+
     for (i = 0; i < NUM_ABILITY_SLOTS && gLastUsedAbility == ABILITY_NONE; i++) // look for any non-empty ability
     {
         gLastUsedAbility = gBaseStats[species].abilities[i];
     }
-    
+
     return gLastUsedAbility;
 }
 
@@ -6160,7 +6160,7 @@ bool8 PokemonUseItemEffects(struct Pokemon *mon, u16 item, u8 partyIndex, u8 mov
                     case 4: // ITEM5_PP_MAX
                         dataUnsigned = (GetMonData(mon, MON_DATA_PP_BONUSES, NULL) & gPPUpGetMask[moveIndex]) >> (moveIndex * 2);
                         temp2 = CalculatePPWithBonus(GetMonData(mon, MON_DATA_MOVE1 + moveIndex, NULL), GetMonData(mon, MON_DATA_PP_BONUSES, NULL), moveIndex);
-                        
+
                         // Check if 3 PP Ups have been applied already, and that the move has a total PP of at least 5 (excludes Sketch)
                         if (dataUnsigned < 3 && temp2 >= 5)
                         {
@@ -7381,7 +7381,7 @@ u32 CanMonLearnTMHM(struct Pokemon *mon, u8 tm)
 u32 CanSpeciesLearnTMHM(u16 species, u8 tm)
 {
     const u8 *learnableMoves;
-    
+
     learnableMoves = gTMHMLearnsets[species];
     while (*learnableMoves != 0xFF)
     {
@@ -7458,7 +7458,7 @@ u8 GetEggMoveTutorMoves(struct Pokemon *mon, u16 *moves)
 			}
 		}
 	} while (earliestStage != species);
-	
+
 	eggMovesTotal = GetEggMovesSpecies(species, allEggMoves);
 
     for (i = 0; i < MAX_MON_MOVES; i++)
@@ -8174,7 +8174,7 @@ static bool8 ShouldSkipFriendshipChange(void)
 // Only the 'default' mode (MON_SPR_GFX_MODE_NORMAL) is used, which is set
 // up to allocate 4 sprites using the battler sprite templates (gBattlerSpriteTemplates).
 // MON_SPR_GFX_MODE_BATTLE is identical but never used.
-// MON_SPR_GFX_MODE_FULL_PARTY is set up to allocate 7 sprites (party + trainer?) 
+// MON_SPR_GFX_MODE_FULL_PARTY is set up to allocate 7 sprites (party + trainer?)
 // using a generic 64x64 template, and is also never used.
 
 // Between the unnecessarily large sizes below, a mistake allocating the spritePointers
@@ -8236,7 +8236,7 @@ struct MonSpritesGfxManager *CreateMonSpritesGfxManager(u8 managerId, u8 mode)
         gfx->dataSize = 1;
         gfx->mode = MON_SPR_GFX_MODE_FULL_PARTY;
         break;
- // case MON_SPR_GFX_MODE_BATTLE:       
+ // case MON_SPR_GFX_MODE_BATTLE:
     case MON_SPR_GFX_MODE_NORMAL:
     default:
         gfx->numSprites = MAX_BATTLERS_COUNT;
@@ -8375,13 +8375,13 @@ u8 GetFormIdFromFormSpeciesId(u16 formSpeciesId)
     return targetFormId;
 }
 
-u16 GetFormChangeTargetSpecies(struct Pokemon *mon, u16 method, u32 arg) 
+u16 GetFormChangeTargetSpecies(struct Pokemon *mon, u16 method, u32 arg)
 {
     return GetFormChangeTargetSpeciesBoxMon(&mon->box, method, arg);
 }
 
 // Returns SPECIES_NONE if no form change is possible
-u16 GetFormChangeTargetSpeciesBoxMon(struct BoxPokemon *mon, u16 method, u32 arg) 
+u16 GetFormChangeTargetSpeciesBoxMon(struct BoxPokemon *mon, u16 method, u32 arg)
 {
     u32 i;
     u16 targetSpecies = SPECIES_NONE;
@@ -8491,7 +8491,7 @@ u8 GetHiddenPowerType(u32 personality)
 			return TYPE_WATER;
 	}
 }
-	
+
 u16 MonTryLearningNewMoveEvolution(struct Pokemon *mon, bool8 firstMove)
 {
     u16 species = GetMonData(mon, MON_DATA_SPECIES, NULL);

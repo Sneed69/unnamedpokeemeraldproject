@@ -1243,7 +1243,7 @@ static const struct WindowTemplate sInfoScreen_WindowTemplates[] =
         .paletteNum = 9,
         .baseBlock = 869,
     },
-    [WIN_NAVIGATION_BUTTONS] = 
+    [WIN_NAVIGATION_BUTTONS] =
     {
         .bg = 2,
         .tilemapLeft = 0,
@@ -1253,7 +1253,7 @@ static const struct WindowTemplate sInfoScreen_WindowTemplates[] =
         .paletteNum = 15,
         .baseBlock = 641,
     },
-    
+
     DUMMY_WIN_TEMPLATE
 };
 
@@ -1270,7 +1270,7 @@ static const struct WindowTemplate sInfoScreen_WindowTemplates[] =
 #define WIN_STATS_END WIN_STATS_LEFT_UNUSED
 static const struct WindowTemplate sStatsScreen_WindowTemplates[] =
 {
-    [WIN_STATS_TOPBAR] = 
+    [WIN_STATS_TOPBAR] =
     {
         .bg = 2,
         .tilemapLeft = 0,
@@ -1280,7 +1280,7 @@ static const struct WindowTemplate sStatsScreen_WindowTemplates[] =
         .paletteNum = 0,
         .baseBlock = 1,
     },
-    [WIN_STATS_SIDEBAR] = 
+    [WIN_STATS_SIDEBAR] =
     {
         .bg = 2,
         .tilemapLeft = 30,
@@ -1290,7 +1290,7 @@ static const struct WindowTemplate sStatsScreen_WindowTemplates[] =
         .paletteNum = 0,
         .baseBlock = 1 + 60,
     },
-    [WIN_STATS_NAME_GENDER] = 
+    [WIN_STATS_NAME_GENDER] =
     {
         .bg = 2,
         .tilemapLeft = 0,
@@ -1300,7 +1300,7 @@ static const struct WindowTemplate sStatsScreen_WindowTemplates[] =
         .paletteNum = 0,
         .baseBlock = 1 + 60 + 40,
     },
-    [WIN_STATS_LEFT] = 
+    [WIN_STATS_LEFT] =
     {
         .bg = 2,
         .tilemapLeft = 0,
@@ -1310,7 +1310,7 @@ static const struct WindowTemplate sStatsScreen_WindowTemplates[] =
         .paletteNum = 0,
         .baseBlock = 1 + 60 + 40 + 48,
     },
-    [WIN_STATS_NAVIGATION_BUTTONS] = 
+    [WIN_STATS_NAVIGATION_BUTTONS] =
     {
         .bg = 2,
         .tilemapLeft = 0,
@@ -4603,7 +4603,7 @@ static void SetSpriteInvisibility(u8 spriteArrayId, bool8 invisible)
 static void SetTypeIconPosAndPal(u8 typeId, u8 x, u8 y, u8 spriteArrayId)
 {
     struct Sprite *sprite;
-        
+
     sprite = &gSprites[sPokedexView->typeIconSpriteIds[spriteArrayId]];
     StartSpriteAnim(sprite, typeId);
     sprite->oam.paletteNum = sMoveTypeToOamPaletteNum[typeId];
@@ -4632,7 +4632,7 @@ static void PrintCurrentSpeciesTypeInfo(u8 newEntry, u16 species)
     #endif
     if (species == SPECIES_NONE)
         type1 = type2 = TYPE_MYSTERY;
-    
+
     if (type1 == type2)
     {
         SetTypeIconPosAndPal(type1, 147, 48, 0);
@@ -4643,7 +4643,7 @@ static void PrintCurrentSpeciesTypeInfo(u8 newEntry, u16 species)
         SetTypeIconPosAndPal(type1, 147, 48, 0);
         SetTypeIconPosAndPal(type2, 147 + 33, 48, 1);
     }
-    
+
 }
 static void CreateTypeIconSprites(void)
 {
@@ -4655,7 +4655,7 @@ static void CreateTypeIconSprites(void)
     {
         if (sPokedexView->typeIconSpriteIds[i] == 0xFF)
             sPokedexView->typeIconSpriteIds[i] = CreateSprite(&sSpriteTemplate_MoveTypes, 10, 10, 2);
-    
+
         SetSpriteInvisibility(i, TRUE);
     }
 }
@@ -5358,7 +5358,7 @@ static int DoPokedexSearch(u8 dexMode, u8 order, u8 abcGroup, u8 bodyColor, u8 t
                 break;
             }
         }
-        
+
         for (i = 0, resultsCount = 0; i < sPokedexView->pokemonListCount; i++)
         {
             species = NationalPokedexNumToSpecies(sPokedexView->pokedexList[i].dexNum);
@@ -6370,7 +6370,7 @@ static void StatsPage_PrintNavigationButtons(void)
         AddTextPrinterParameterized3(WIN_STATS_NAVIGATION_BUTTONS, 0, x, y, sStatsPageNavigationTextColor, 0, gText_Stats_Buttons);
     else
         AddTextPrinterParameterized3(WIN_STATS_NAVIGATION_BUTTONS, 0, x, y, sStatsPageNavigationTextColor, 0, gText_Stats_Buttons_Decapped);
-    
+
     PutWindowTilemap(WIN_STATS_NAVIGATION_BUTTONS);
     CopyWindowToVram(WIN_STATS_NAVIGATION_BUTTONS, 3);
 }
@@ -6426,10 +6426,10 @@ static void SaveMonDataInStruct(void)
     sPokedexView->sPokemonStats.friendship          = gBaseStats[species].friendship;
     sPokedexView->sPokemonStats.ability0            = GetAbilityBySpecies(species, 0);
     sPokedexView->sPokemonStats.ability1            = GetAbilityBySpecies(species, 1);
-    #ifdef POKEMON_EXPANSION  
+    #ifdef POKEMON_EXPANSION
     //sPokedexView->sPokemonStats.abilityHidden       = GetAbilityBySpecies(species, 2);
     #endif
-} 
+}
 #define tMonSpriteId data[4]
 static void Task_LoadStatsScreen(u8 taskId)
 {
@@ -6585,7 +6585,7 @@ static void Task_HandleStatsScreenInput(u8 taskId)
         else
             gTasks[taskId].data[5] = 0;
 
-        FillWindowPixelBuffer(WIN_STATS_LEFT, PIXEL_FILL(0)); 
+        FillWindowPixelBuffer(WIN_STATS_LEFT, PIXEL_FILL(0));
         PrintStatsScreen_Left(taskId);
 
         FillWindowPixelBuffer(WIN_STATS_MOVES_DESCRIPTION, PIXEL_FILL(0));
@@ -6596,7 +6596,7 @@ static void Task_HandleStatsScreenInput(u8 taskId)
         PrintStatsScreen_Moves_Bottom(taskId);
 
         #ifdef POKEMON_EXPANSION
-        FillWindowPixelBuffer(WIN_STATS_ABILITIES, PIXEL_FILL(0)); 
+        FillWindowPixelBuffer(WIN_STATS_ABILITIES, PIXEL_FILL(0));
         PrintStatsScreen_Abilities(taskId);
         #endif
     }
@@ -6701,7 +6701,7 @@ static void PrintStatsScreen_Moves_Top(u8 taskId)
     u8 moves_y = 3;
     u16 move;
     u16 item;
-    
+
     u16 species = NationalPokedexNumToSpeciesHGSS(sPokedexListItem->dexNum);
 
     //Move
@@ -6732,7 +6732,7 @@ static void PrintStatsScreen_Moves_Top(u8 taskId)
 
     //Calculate and retrieve correct move from the arrays
     if (selected < (numLevelUpMoves))
-    {        
+    {
         #if defined (BATTLE_ENGINE) || defined (POKEMON_EXPANSION)
             level = gLevelUpLearnsets[species][(selected)].level;
         #else
@@ -7383,7 +7383,7 @@ static void PrintStatsScreen_Abilities(u8 taskId)
     #ifdef POKEMON_EXPANSION
     if (gTasks[taskId].data[5] == 0)
     {
-    #endif    
+    #endif
         ability0 = sPokedexView->sPokemonStats.ability0;
         PrintStatsScreenTextSmallWhite(WIN_STATS_ABILITIES, gAbilityNames[ability0], abilities_x, abilities_y);
         PrintStatsScreenTextSmall(WIN_STATS_ABILITIES, gAbilityDescriptionPointers[ability0], abilities_x, abilities_y + 14);
@@ -7395,7 +7395,7 @@ static void PrintStatsScreen_Abilities(u8 taskId)
             PrintStatsScreenTextSmall(WIN_STATS_ABILITIES, gAbilityDescriptionPointers[ability1], abilities_x, abilities_y + 44);
         }
     }
-    /*#ifdef POKEMON_EXPANSION  
+    /*#ifdef POKEMON_EXPANSION
     else //Hidden abilities
     {
         abilityHidden = sPokedexView->sPokemonStats.abilityHidden;
@@ -7529,7 +7529,7 @@ static void ResetEvoScreenDataStruct(void)
         sPokedexView->sEvoScreenData.targetSpecies[i] = 0;
         sPokedexView->sEvoScreenData.seen[i] = 0;
     }
-    
+
 }
 static void GetSeenFlagTargetSpecies(void)
 {
@@ -7543,7 +7543,7 @@ static void GetSeenFlagTargetSpecies(void)
             sPokedexView->sEvoScreenData.seen[i] = TRUE;
             sPokedexView->sEvoScreenData.numSeen += 1;
         }
-        
+
     }
 }
 static void Task_LoadEvolutionScreen(u8 taskId)
@@ -7573,7 +7573,7 @@ static void Task_LoadEvolutionScreen(u8 taskId)
         FillWindowPixelBuffer(WIN_INFO, PIXEL_FILL(0));
         PutWindowTilemap(WIN_INFO);
         CopyWindowToVram(WIN_INFO, 3);
-        FillWindowPixelBuffer(WIN_NAVIGATION_BUTTONS, PIXEL_FILL(0)); 
+        FillWindowPixelBuffer(WIN_NAVIGATION_BUTTONS, PIXEL_FILL(0));
         PutWindowTilemap(WIN_NAVIGATION_BUTTONS);
         CopyWindowToVram(WIN_NAVIGATION_BUTTONS, 3);
         CopyBgTilemapBufferToVram(1);
@@ -7596,7 +7596,7 @@ static void Task_LoadEvolutionScreen(u8 taskId)
             LoadMonIconPalette(NationalPokedexNumToSpeciesHGSS(sPokedexListItem->dexNum)); //Loads pallete for current mon
             PrintPreEvolutions(taskId, NationalPokedexNumToSpeciesHGSS(sPokedexListItem->dexNum));
             #ifdef POKEMON_EXPANSION
-                gTasks[taskId].data[4] = CreateMonIcon(NationalPokedexNumToSpeciesHGSS(sPokedexListItem->dexNum), SpriteCB_MonIcon, 18 + 32*sPokedexView->numPreEvolutions, 31, 4, 0); //Create pokemon sprite 
+                gTasks[taskId].data[4] = CreateMonIcon(NationalPokedexNumToSpeciesHGSS(sPokedexListItem->dexNum), SpriteCB_MonIcon, 18 + 32*sPokedexView->numPreEvolutions, 31, 4, 0); //Create pokemon sprite
             #else
                 gTasks[taskId].data[4] = CreateMonIcon(NationalPokedexNumToSpeciesHGSS(sPokedexListItem->dexNum), SpriteCB_MonIcon, 18 + 32*sPokedexView->numPreEvolutions, 31, 4, 0, TRUE); //Create pokemon sprite
             #endif
@@ -7687,7 +7687,7 @@ static void Task_HandleEvolutionScreenInput(u8 taskId)
                 pos += 1;
                 if (pos >= max)
                     pos = 0;
-                
+
                 if (sPokedexView->sEvoScreenData.seen[pos] == TRUE)
                     break;
             }
@@ -7784,7 +7784,7 @@ static void HandleTargetSpeciesPrint(u8 taskId, u16 targetSpecies, u16 previousT
         #endif
     }
 
-    if(base_i < maxI) 
+    if(base_i < maxI)
     {
         LoadMonIconPalette(targetSpecies); //Loads pallete for current mon
         #ifndef POKEMON_EXPANSION
@@ -7836,7 +7836,7 @@ static void HandlePreEvolutionSpeciesPrint(u8 taskId, u16 preSpecies, u16 specie
 
     PrintInfoScreenTextSmall(gStringVar3, base_x, base_y + base_y_offset*base_i); //evolution mon name
 
-    if(base_i < 3) 
+    if(base_i < 3)
     {
         LoadMonIconPalette(preSpecies); //Loads pallete for current mon
         #ifndef POKEMON_EXPANSION
@@ -8006,7 +8006,7 @@ static u8 PrintEvolutionTargetSpeciesAndMethod(u8 taskId, u16 species, u8 depth,
     //If there are no evolutions print text
     if (times == 0 && depth == 0)
     {
-        StringExpandPlaceholders(gStringVar4, gText_EVO_NONE); 
+        StringExpandPlaceholders(gStringVar4, gText_EVO_NONE);
         PrintInfoScreenTextSmall(gStringVar4, base_x-7-7, base_y + base_y_offset*depth_i);
     }
 
@@ -8033,7 +8033,7 @@ static u8 PrintEvolutionTargetSpeciesAndMethod(u8 taskId, u16 species, u8 depth,
             StringExpandPlaceholders(gStringVar4, gText_EVO_FRIENDSHIP );
             break;
         case EVO_FRIENDSHIP_DAY:
-            StringExpandPlaceholders(gStringVar4, gText_EVO_FRIENDSHIP_DAY ); 
+            StringExpandPlaceholders(gStringVar4, gText_EVO_FRIENDSHIP_DAY );
             break;
         case EVO_FRIENDSHIP_NIGHT:
             StringExpandPlaceholders(gStringVar4, gText_EVO_FRIENDSHIP_NIGHT );
@@ -8461,7 +8461,7 @@ static void Task_LoadFormsScreen(u8 taskId)
         FillWindowPixelBuffer(WIN_INFO, PIXEL_FILL(0));
         PutWindowTilemap(WIN_INFO);
         CopyWindowToVram(WIN_INFO, 3);
-        FillWindowPixelBuffer(WIN_NAVIGATION_BUTTONS, PIXEL_FILL(0)); 
+        FillWindowPixelBuffer(WIN_NAVIGATION_BUTTONS, PIXEL_FILL(0));
         PutWindowTilemap(WIN_NAVIGATION_BUTTONS);
         CopyWindowToVram(WIN_NAVIGATION_BUTTONS, 3);
         CopyBgTilemapBufferToVram(1);
@@ -8559,7 +8559,7 @@ static void Task_HandleFormsScreenInput(u8 taskId)
             gTasks[taskId].func = Task_SwitchScreensFromFormsScreen;
             PlaySE(SE_PIN);
         }
-        
+
         //Exit to overview
         if (JOY_NEW(B_BUTTON))
         {
@@ -8598,7 +8598,7 @@ static void Task_HandleFormsScreenInput(u8 taskId)
         column = menuPos % 7;
         gSprites[sPokedexView->sFormScreenData.arrowSpriteId].x = base_x + offset_x * column;
         gSprites[sPokedexView->sFormScreenData.arrowSpriteId].y = base_y + offset_y * row;
-        
+
         sPokedexView->sFormScreenData.menuPos = menuPos;
 
 
@@ -8624,7 +8624,7 @@ static void Task_HandleFormsScreenInput(u8 taskId)
             sPokedexView->sFormScreenData.inSubmenu = FALSE;
             EvoFormsPage_PrintNavigationButtons();
         }
-    }    
+    }
 }
 #define FORM_SPECIES_END (0xffff)
 static void PrintForms(u8 taskId, u16 species)
@@ -8645,7 +8645,7 @@ static void PrintForms(u8 taskId, u16 species)
 
     if (species == SPECIES_UNOWN)
         y_offset_icons = 8;
-    
+
     if (GetFormSpeciesId(species, 0) == SPECIES_UNOWN)
         y_offset_icons = 8;
 
@@ -8680,7 +8680,7 @@ static void PrintForms(u8 taskId, u16 species)
     //If there are no forms print text
     if (times == 0)
     {
-        StringExpandPlaceholders(gStringVar4, gText_FORMS_NONE); 
+        StringExpandPlaceholders(gStringVar4, gText_FORMS_NONE);
         PrintInfoScreenTextSmall(gStringVar4, base_x, base_y + base_y_offset*times);
     }
 }

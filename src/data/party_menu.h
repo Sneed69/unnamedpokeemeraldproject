@@ -74,16 +74,16 @@ static const struct PartyMenuBoxInfoRects sPartyBoxInfoRects[] =
     },
     [PARTY_BOX_EQUAL_COLUMN] = //Custom party menu
     {
-        BlitBitmapToPartyWindow_Equal, 
+        BlitBitmapToPartyWindow_Equal,
         {
             //The below are the x, y, width, and height for each of the following info
             33,  2, 40, 13, // Nickname
              5, 25, 32,  8, // Level 85,  1, 32,  8,
-           100,  1,  8,  8, // Gender 79,  1,  8,  8, 
+           100,  1,  8,  8, // Gender 79,  1,  8,  8,
             65, 20, 24,  8, // HP
             80, 20, 24,  8, // Max HP
             48, 18, 56,  3  // HP bar
-        }, 
+        },
         33, 13, 64, 16      // Description text (e.g. NO USE)
     },//
 };

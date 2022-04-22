@@ -14226,7 +14226,7 @@ TerrainPulseElectric:
 	createvisualtask AnimTask_SwayMon, 5, 0, 4, 51200, 24, ANIM_TARGET
 	createvisualtask AnimTask_BlendColorCycle, 2, 4, 2, 2, 0, 12, RGB(27, 27, 0)
 	goto TerrainPulseEnd
-  
+
 TerrainPulseGrass:
 	createvisualtask AnimTask_BlendParticle, 5, ANIM_TAG_DRAGON_PULSE, 0, 12, 12, RGB(11, 26, 11)
 	waitforvisualfinish
@@ -14248,7 +14248,7 @@ TerrainPulseFairy:
 	createvisualtask AnimTask_SwayMon, 5, 0, 4, 51200, 24, ANIM_TARGET
 	createvisualtask AnimTask_BlendColorCycle, 2, 4, 2, 2, 0, 12, RGB(31, 24, 31)
 	goto TerrainPulseEnd
-  
+
 TerrainPulsePsychic:
 	createvisualtask AnimTask_BlendParticle, 5, ANIM_TAG_DRAGON_PULSE, 0, 12, 12, RGB(27, 0, 13)
 	waitforvisualfinish
@@ -14536,7 +14536,7 @@ Move_HEADLONG_RUSH:
 	clearmonbg ANIM_DEF_PARTNER
 	blendoff
 	end
-	
+
 Move_WAVE_CRASH:
 	loadspritegfx ANIM_TAG_WATER_IMPACT
 	loadspritegfx ANIM_TAG_SMALL_BUBBLES
@@ -14558,7 +14558,7 @@ Move_WAVE_CRASH:
 	clearmonbg ANIM_DEF_PARTNER
 	blendoff
 	end
-	
+
 Move_COLD_SNAP:
 	loadspritegfx ANIM_TAG_ICE_CRYSTALS
 	monbg ANIM_DEF_PARTNER
@@ -14571,7 +14571,7 @@ Move_COLD_SNAP:
 	waitforvisualfinish
 	clearmonbg ANIM_DEF_PARTNER
 	end
-	
+
 Move_BLISTERING_COLD:
 	loadspritegfx ANIM_TAG_WHITE_CIRCLE_OF_LIGHT
 	loadspritegfx ANIM_TAG_ICE_CRYSTALS
@@ -14596,13 +14596,13 @@ Move_BLISTERING_COLD:
 	restorebg
 	waitbgfadein
 	end
-	
+
 Move_HOWLING_GALE:
 	loadspritegfx ANIM_TAG_GUST
 	waitforvisualfinish
 	monbg ANIM_DEF_PARTNER
 	splitbgprio ANIM_TARGET
-	setalpha 12, 8	
+	setalpha 12, 8
 	playsewithpan SE_M_GUST, SOUND_PAN_TARGET
 	launchtask AnimTask_ShakeMon 0x2 0x5 ANIM_TARGET 0x0 0x3 0x40 0x1
 	call HurricaneGust
@@ -14623,7 +14623,7 @@ Move_HOWLING_GALE:
 	createvisualtask AnimTask_BlendBattleAnimPal, 10, 4, 2, 9, 0, RGB(12, 26, 31)
 	clearmonbg ANIM_DEF_PARTNER
 	blendoff
-	
+
 	end
 
 

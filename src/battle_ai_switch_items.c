@@ -144,7 +144,7 @@ static bool8 ShouldSwitchIfWonderGuard(void)
 		for (i = firstId; i < lastId; i++)
 		{
 			u16 ability;
-			
+
 			if (GetMonData(&party[i], MON_DATA_HP) == 0)
 				continue;
 			if (GetMonData(&party[i], MON_DATA_SPECIES2) == SPECIES_NONE)
@@ -153,7 +153,7 @@ static bool8 ShouldSwitchIfWonderGuard(void)
 				continue;
 			if (i == gBattlerPartyIndexes[gActiveBattler])
 				continue;
-			
+
 			ability = GetMonAbility(&party[i]);
 			if (ability == ABILITY_SNOW_WARNING && !IS_BATTLER_OF_TYPE(opposingBattler, TYPE_ICE))
 			{
@@ -184,7 +184,7 @@ static bool8 ShouldSwitchIfWonderGuard(void)
             continue;
         if (i == gBattlerPartyIndexes[gActiveBattler])
             continue;
-			
+
         for (j = 0; j < MAX_MON_MOVES; j++)
         {
             move = GetMonData(&party[i], MON_DATA_MOVE1 + j);
@@ -775,10 +775,10 @@ static u32 GetWonderGuardCounter(struct Pokemon *party, int firstId, int lastId,
 		for (i = firstId; i < lastId; i++)
 		{
 			u16 ability;
-			
+
 			if (gBitTable[i] & invalidMons)
 				continue;
-			
+
 			ability = GetMonAbility(&party[i]);
 			if (ability == ABILITY_SNOW_WARNING && !IS_BATTLER_OF_TYPE(opposingBattler, TYPE_ICE))
 				return i;
@@ -788,12 +788,12 @@ static u32 GetWonderGuardCounter(struct Pokemon *party, int firstId, int lastId,
 				&& !IS_BATTLER_OF_TYPE(opposingBattler, TYPE_GROUND))
 				return i;
 		}
-		
+
     for (i = firstId; i < lastId; i++)
-    {		
+    {
         if (gBitTable[i] & invalidMons)
             continue;
-		
+
         for (j = 0; j < MAX_MON_MOVES; j++)
         {
             u32 move = GetMonData(&party[i], MON_DATA_MOVE1 + j);
@@ -983,7 +983,7 @@ static bool8 ShouldUseItem(void)
     if ((gBattleTypeFlags & BATTLE_TYPE_INGAME_PARTNER && GetBattlerPosition(gActiveBattler) == B_POSITION_PLAYER_RIGHT)
        || gStatuses3[gActiveBattler] & STATUS3_SKY_DROPPED)
         return FALSE;
-    
+
     if (gStatuses3[gActiveBattler] & STATUS3_EMBARGO)
         return FALSE;
 

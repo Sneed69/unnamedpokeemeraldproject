@@ -957,7 +957,7 @@ void TintPalette_CustomToneWithCopy(const u16 *src, u16 *dest, u16 count, u16 rT
     {
         if (excludeZeroes && *src == RGB_BLACK)
             continue;
-        
+
         r = (*src >>  0) & 0x1F;
         g = (*src >>  5) & 0x1F;
         b = (*src >> 10) & 0x1F;

@@ -6790,7 +6790,7 @@ static const union AffineAnimCmd sCompressTargetHorizontallyAffineAnimCmds[] =
 static void AnimTask_CompressTargetStep(u8 taskId)
 {
 	struct Task* task = &gTasks[taskId];
-    
+
 	if (!RunAffineAnimFromTaskData(task))
 		DestroyAnimVisualTask(taskId);
 }

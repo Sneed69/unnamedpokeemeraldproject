@@ -291,12 +291,12 @@ void RtcCalcTimeDifference(struct SiiRtcInfo *rtc, struct Time *result, struct T
                        + 3600 * (TIME_SCALE * ConvertBcdToBinary(rtc->hour) - t->hours);
     s32 days = TIME_SCALE * RtcGetDayCount(rtc) - t->days;
 	#define DAYS (86400 * days)
-                       
+
     result->seconds = (seconds + DAYS) % 60;
     result->minutes = ((seconds + DAYS) % 3600) / 60;
     result->hours = ((seconds + DAYS) % 86400) / 3600;
     result->days = (DAYS + seconds) / 86400;
-	
+
 	//mgba_printf(MGBA_LOG_DEBUG, "Day %0d, %02d:%02d:%02d", result->days, result->hours, result->minutes, result->seconds);
 }
 

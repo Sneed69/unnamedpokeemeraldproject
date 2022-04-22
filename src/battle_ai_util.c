@@ -1132,11 +1132,11 @@ bool32 AI_IsAbilityOnSide(u32 battlerId, u32 ability)
 s32 AI_GetAbility(u32 battlerId)
 {
     u32 knownAbility = GetBattlerAbility(battlerId);
-    
+
     // The AI knows its own ability.
     if (IsBattlerAIControlled(battlerId))
         return knownAbility;
-    
+
     // Check neutralizing gas, gastro acid
     if (knownAbility == ABILITY_NONE)
         return knownAbility;
@@ -1156,10 +1156,10 @@ s32 AI_GetAbility(u32 battlerId)
         {
             abilityGuess = gBaseStats[gBattleMons[battlerId].species].abilities[Random() % NUM_ABILITY_SLOTS];
         }
-        
+
         return abilityGuess;
     }
-    
+
     return ABILITY_NONE; // Unknown.
 }
 
@@ -2690,7 +2690,7 @@ static bool32 AI_CanPoisonType(u8 battlerAttacker, u8 battlerTarget)
 static bool32 AI_CanBePoisoned(u8 battlerAtk, u8 battlerDef)
 {
     u16 ability = AI_GetAbility(battlerDef);
-    
+
     if (!(AI_CanPoisonType(battlerAtk, battlerDef))
      || gSideStatuses[GetBattlerSide(battlerDef)] & SIDE_STATUS_SAFEGUARD
      || gBattleMons[battlerDef].status1 & STATUS1_ANY
@@ -3468,7 +3468,7 @@ void IncreaseStatUpScore(u8 battlerAtk, u8 battlerDef, u8 statId, s16 *score)
 
     if (GetHealthPercentage(battlerAtk) < 80 && AI_RandLessThan(128))
         return;
-    
+
     if ((AI_THINKING_STRUCT->aiFlags & AI_FLAG_TRY_TO_FAINT) && CanAIFaintTarget(battlerAtk, battlerDef, 0))
         return; // Damaging moves would get a score boost from AI_TryToFaint or PreferStrongestMove so we don't consider them here
 
@@ -3587,7 +3587,7 @@ void IncreaseParalyzeScore(u8 battlerAtk, u8 battlerDef, u16 move, s16 *score)
 {
     if ((AI_THINKING_STRUCT->aiFlags & AI_FLAG_TRY_TO_FAINT) && CanAIFaintTarget(battlerAtk, battlerDef, 0))
         return;
-    
+
     if (AI_CanParalyze(battlerAtk, battlerDef, AI_DATA->defAbility, move, AI_DATA->partnerMove))
     {
         u8 atkSpeed = GetBattlerTotalSpeedStat(battlerAtk);
@@ -3608,7 +3608,7 @@ void IncreaseSleepScore(u8 battlerAtk, u8 battlerDef, u16 move, s16 *score)
 {
     if ((AI_THINKING_STRUCT->aiFlags & AI_FLAG_TRY_TO_FAINT) && CanAIFaintTarget(battlerAtk, battlerDef, 0))
         return;
-    
+
     if (AI_CanPutToSleep(battlerAtk, battlerDef, AI_DATA->defAbility, move, AI_DATA->partnerMove))
         *score += 2;
     else
@@ -3645,7 +3645,7 @@ void IncreaseConfusionScore(u8 battlerAtk, u8 battlerDef, u16 move, s16 *score)
 {
     if ((AI_THINKING_STRUCT->aiFlags & AI_FLAG_TRY_TO_FAINT) && CanAIFaintTarget(battlerAtk, battlerDef, 0))
         return;
-    
+
     if (AI_CanConfuse(battlerAtk, battlerDef, AI_DATA->defAbility, AI_DATA->battlerAtkPartner, move, AI_DATA->partnerMove)
       && AI_DATA->defHoldEffect != HOLD_EFFECT_CURE_CONFUSION
       && AI_DATA->defHoldEffect != HOLD_EFFECT_CURE_STATUS)

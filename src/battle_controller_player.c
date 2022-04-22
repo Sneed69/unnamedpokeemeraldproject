@@ -238,7 +238,7 @@ static void HandleInputChooseAction(void)
 
     if (gBattleMoveTypeSpriteId != MAX_SPRITES)
         gSprites[gBattleMoveTypeSpriteId].invisible = TRUE;
-	
+
     DoBounceEffect(gActiveBattler, BOUNCE_HEALTHBOX, 7, 1);
     DoBounceEffect(gActiveBattler, BOUNCE_MON, 7, 1);
 
@@ -251,7 +251,7 @@ static void HandleInputChooseAction(void)
     {
         PlaySE(SE_SELECT);
         TryHideLastUsedBall();
-        
+
         switch (gActionSelectionCursor[gActiveBattler])
         {
         case 0: // Top left
@@ -650,7 +650,7 @@ static void HandleInputChooseMove(void)
                     u32 i = 0;
                     for (i = 0; i < gBattlersCount; i++)
                         TryShowAsTarget(i);
-                    
+
                     canSelectTarget = 3;
                 }
                 else if (moveTarget & (MOVE_TARGET_OPPONENTS_FIELD | MOVE_TARGET_BOTH | MOVE_TARGET_FOES_AND_ALLY))
@@ -663,7 +663,7 @@ static void HandleInputChooseMove(void)
                 }
             }
         }
-        
+
         switch (canSelectTarget)
         {
         case 0:
@@ -1676,7 +1676,7 @@ static void MoveSelectionDisplayMoveType(void)
         type = GetHiddenPowerType(GetMonData(&gPlayerParty[gBattlerPartyIndexes[gActiveBattler]], MON_DATA_PERSONALITY));
     else
         type = gBattleMoves[moveInfo->moves[gMoveSelectionCursor[gActiveBattler]]].type;
-	
+
     if (gBattleMoveTypeSpriteId == MAX_SPRITES)
         LoadTypeIcon(type);
     else

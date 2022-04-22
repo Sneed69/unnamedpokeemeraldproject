@@ -336,7 +336,7 @@ static void TryHidePlayerReflection(void)
         MoveCoords(DIR_SOUTH, &x, &y);
         if (!MetatileBehavior_IsReflective(MapGridGetMetatileBehaviorAt(x, y)))
             playerObjEvent->hideReflection = TRUE;
-        else 
+        else
             playerObjEvent->hideReflection = FALSE;
     }
 }

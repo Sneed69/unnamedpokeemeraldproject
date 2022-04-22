@@ -270,25 +270,25 @@
 	.macro stopsound
 	.byte 0x2f
 	.endm
-	
+
 @ useful macros
 	.macro jumpreteq value:req, ptr:req
 	jumpargeq ARG_RET_ID, \value, \ptr
 	.endm
-	
+
 	.macro jumprettrue ptr:req
 	jumpreteq TRUE, \ptr
 	.endm
-	
+
 	.macro jumpretfalse ptr:req
 	jumpreteq FALSE, \ptr
 	.endm
-	
+
 	.macro jumpifdoublebattle ptr:req
 	createvisualtask AnimTask_IsDoubleBattle, 0
 	jumprettrue \ptr
 	.endm
-    
+
 @ keep CFRU macros cause I'm lazy. todo: update to createsprite and createvisualtask, respectively
 .macro launchtemplate launchtemplatePtr launchtemplatePriority launchtemplateArgsNo launchtemplatearg0 launchtemplatearg1 launchtemplatearg2 launchtemplatearg3 launchtemplatearg4 launchtemplatearg5 launchtemplatearg6 launchtemplatearg7 launchtemplatearg8
     .byte 0x2
@@ -305,7 +305,7 @@
     .hword \launchtemplatearg7
     .hword \launchtemplatearg8
     .endm
-    
+
 .macro launchtask launchtaskPtr launchtaskPriority launchtaskArgsNo launchtaskarg0 launchtaskarg1 launchtaskarg2 launchtaskarg3 launchtaskarg4 launchtaskarg5 launchtaskarg6 launchtaskarg7 launchtaskarg8
     .byte 0x3
     .word \launchtaskPtr
@@ -321,7 +321,7 @@
     .hword \launchtaskarg7
     .hword \launchtaskarg8
     .endm
-    
+
 .macro setblends setblends_value
 .byte 0xC
 .hword \setblends_value
