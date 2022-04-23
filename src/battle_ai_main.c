@@ -315,54 +315,64 @@ static u8 ChooseMoveOrAction_Singles(void)
         && !(gBattleTypeFlags & (BATTLE_TYPE_ARENA | BATTLE_TYPE_PALACE))
         && AI_THINKING_STRUCT->aiFlags & (AI_FLAG_CHECK_VIABILITY | AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_TRY_TO_FAINT | AI_FLAG_PREFER_BATON_PASS))
     {
-        // Consider switching if all moves are worthless to use.
-        if (GetTotalBaseStat(gBattleMons[sBattler_AI].species) >= 310 // Mon is not weak.
-            && gBattleMons[sBattler_AI].hp >= gBattleMons[sBattler_AI].maxHP / 2)
-        {
-            s32 cap = AI_THINKING_STRUCT->aiFlags & (AI_FLAG_CHECK_VIABILITY) ? 95 : 93;
-            for (i = 0; i < MAX_MON_MOVES; i++)
-            {
-                if (AI_THINKING_STRUCT->score[i] > cap)
-                    break;
-            }
-
-            if (i == MAX_MON_MOVES && GetMostSuitableMonToSwitchInto() != PARTY_SIZE)
-            {
-                AI_THINKING_STRUCT->switchMon = TRUE;
-                return AI_CHOICE_SWITCH;
-            }
-        }
-
-        // Consider switching if your mon with truant is bodied by Protect spam.
-        // Or is using a double turn semi invulnerable move(such as Fly) and is faster.
-        if (GetBattlerAbility(sBattler_AI) == ABILITY_TRUANT
-            //&& IsTruantMonVulnerable(sBattler_AI, gBattlerTarget)
-            && gDisableStructs[sBattler_AI].truantCounter)
-            //&& gBattleMons[sBattler_AI].hp >= gBattleMons[sBattler_AI].maxHP / 2)
-        {
-			u16 damage = 0;
-			if (gSideStatuses[GetBattlerSide(sBattler_AI)] & SIDE_STATUS_STEALTH_ROCK)
-				damage += GetStealthHazardDamage(gBattleMoves[MOVE_STEALTH_ROCK].type, sBattler_AI);
-			if (gSideStatuses[GetBattlerSide(sBattler_AI)] & SIDE_STATUS_SPIKES)
-				switch (gSideTimers[GetBattlerSide(sBattler_AI)].spikesAmount)
+		u16 hazardDamage = 0;
+		u32 regeneratorAmount = 0;
+		if (gSideStatuses[GetBattlerSide(sBattler_AI)] & SIDE_STATUS_STEALTH_ROCK)
+			hazardDamage += GetStealthHazardDamage(gBattleMoves[MOVE_STEALTH_ROCK].type, sBattler_AI);
+		if (gSideStatuses[GetBattlerSide(sBattler_AI)] & SIDE_STATUS_SPIKES)
+		{
+			switch (gSideTimers[GetBattlerSide(sBattler_AI)].spikesAmount)
+			{
+				case 1:
+					hazardDamage += gBattleMons[sBattler_AI].maxHP / 8;
+					break;
+				case 2:
+					hazardDamage += gBattleMons[sBattler_AI].maxHP / 6;
+					break;
+				case 3:
+					hazardDamage += gBattleMons[sBattler_AI].maxHP / 4;
+					break;
+			}
+		}
+		if (GetBattlerAbility(sBattler_AI) == ABILITY_REGENERATOR)
+			regeneratorAmount = gBattleMons[sBattler_AI].maxHP / 3;
+		
+		// Don't switch if mon would faint to hazards on the return
+		if (hazardDamage < gBattleMons[sBattler_AI].hp + regeneratorAmount)
+		{
+			// Consider switching if all moves are worthless to use.
+			if (GetTotalBaseStat(gBattleMons[sBattler_AI].species) >= 310 // Mon is not weak.
+				&& gBattleMons[sBattler_AI].hp >= gBattleMons[sBattler_AI].maxHP / 2)
+			{
+				s32 cap = AI_THINKING_STRUCT->aiFlags & (AI_FLAG_CHECK_VIABILITY) ? 95 : 93;
+				for (i = 0; i < MAX_MON_MOVES; i++)
 				{
-					case 1:
-						damage += gBattleMons[sBattler_AI].maxHP / 8;
-						break;
-					case 2:
-						damage += gBattleMons[sBattler_AI].maxHP / 6;
-						break;
-					case 3:
-						damage += gBattleMons[sBattler_AI].maxHP / 4;
+					if (AI_THINKING_STRUCT->score[i] > cap)
 						break;
 				}
 
-            if (damage < gBattleMons[sBattler_AI].hp && GetMostSuitableMonToSwitchInto() != PARTY_SIZE)
-            {
-                AI_THINKING_STRUCT->switchMon = TRUE;
-                return AI_CHOICE_SWITCH;
-            }
-        }
+				if (i == MAX_MON_MOVES && GetMostSuitableMonToSwitchInto() != PARTY_SIZE)
+				{
+					AI_THINKING_STRUCT->switchMon = TRUE;
+					return AI_CHOICE_SWITCH;
+				}
+			}
+
+			// Consider switching if regenerator would faint
+			if ((GetBattlerAbility(sBattler_AI) == ABILITY_REGENERATOR 
+				&& CanTargetFaintAi(gBattlerTarget, sBattler_AI)
+				&& gBattleMons[sBattler_AI].hp <= gBattleMons[sBattler_AI].maxHP - regeneratorAmount)
+			// Consider switching truant on the idle turn
+				|| (GetBattlerAbility(sBattler_AI) == ABILITY_TRUANT
+				&& gDisableStructs[sBattler_AI].truantCounter))
+			{
+				if (GetMostSuitableMonToSwitchInto() != PARTY_SIZE)
+				{
+					AI_THINKING_STRUCT->switchMon = TRUE;
+					return AI_CHOICE_SWITCH;
+				}
+			}
+		}
     }
 
     numOfBestMoves = 1;
@@ -3557,9 +3567,6 @@ static s16 AI_CheckViability(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
         //todo - check z splash, z celebrate, z happy hour (lol)
         break;
     case EFFECT_TELEPORT:
-        if (!(gBattleTypeFlags & BATTLE_TYPE_TRAINER) || GetBattlerSide(battlerAtk) != B_SIDE_PLAYER)
-            break;
-        //fallthrough
     case EFFECT_HIT_ESCAPE:
     case EFFECT_PARTING_SHOT:
         if (!IsDoubleBattle())
