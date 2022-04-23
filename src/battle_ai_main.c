@@ -1754,6 +1754,7 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
             }
             break;
         case EFFECT_RECOIL_33:
+        case EFFECT_RECOIL_33_SPEED_UP:
         case EFFECT_RECOIL_33_STATUS:
             if (AI_DATA->atkAbility != ABILITY_MAGIC_GUARD && AI_DATA->atkAbility != ABILITY_ROCK_HEAD)
             {

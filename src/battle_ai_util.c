@@ -811,12 +811,14 @@ static u32 WhichMoveBetter(u32 move1, u32 move2)
                 || gBattleMoves[move1].effect == EFFECT_RECOIL_IF_MISS
                 || gBattleMoves[move1].effect == EFFECT_RECOIL_50
                 || gBattleMoves[move1].effect == EFFECT_RECOIL_33
+                || gBattleMoves[move1].effect == EFFECT_RECOIL_33_SPEED_UP
                 || gBattleMoves[move1].effect == EFFECT_RECOIL_33_STATUS)
             && (gBattleMoves[move2].effect != EFFECT_RECOIL_25
                  && gBattleMoves[move2].effect != EFFECT_RECOIL_IF_MISS
                  && gBattleMoves[move2].effect != EFFECT_RECOIL_50
                  && gBattleMoves[move2].effect != EFFECT_RECOIL_33
                  && gBattleMoves[move2].effect != EFFECT_RECOIL_33_STATUS
+                 && gBattleMoves[move2].effect != EFFECT_RECOIL_33_SPEED_UP
                  && gBattleMoves[move2].effect != EFFECT_RECHARGE)))
             return 1;
 
@@ -824,11 +826,13 @@ static u32 WhichMoveBetter(u32 move1, u32 move2)
                 || gBattleMoves[move2].effect == EFFECT_RECOIL_IF_MISS
                 || gBattleMoves[move2].effect == EFFECT_RECOIL_50
                 || gBattleMoves[move2].effect == EFFECT_RECOIL_33
+                || gBattleMoves[move2].effect == EFFECT_RECOIL_33_SPEED_UP
                 || gBattleMoves[move2].effect == EFFECT_RECOIL_33_STATUS)
             && (gBattleMoves[move1].effect != EFFECT_RECOIL_25
                  && gBattleMoves[move1].effect != EFFECT_RECOIL_IF_MISS
                  && gBattleMoves[move1].effect != EFFECT_RECOIL_50
                  && gBattleMoves[move1].effect != EFFECT_RECOIL_33
+                 && gBattleMoves[move1].effect != EFFECT_RECOIL_33_SPEED_UP
                  && gBattleMoves[move1].effect != EFFECT_RECOIL_33_STATUS
                  && gBattleMoves[move1].effect != EFFECT_RECHARGE)))
             return 0;
