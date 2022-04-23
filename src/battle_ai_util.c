@@ -2433,22 +2433,24 @@ struct Pokemon *GetPartyBattlerPartyData(u8 battlerId, u8 switchBattler)
 
 static bool32 PartyBattlerShouldAvoidHazards(u8 currBattler, u8 switchBattler)
 {
-    struct Pokemon *mon = GetPartyBattlerPartyData(currBattler, switchBattler);
-    u16 ability = GetMonAbility(mon);   // we know our own party data
-    u16 holdEffect = HOLD_EFFECT_NONE;
-    u16 species = GetMonData(mon, MON_DATA_SPECIES);
-    u32 flags = gSideStatuses[GetBattlerSide(currBattler)] & (SIDE_STATUS_SPIKES | SIDE_STATUS_STEALTH_ROCK | SIDE_STATUS_STICKY_WEB | SIDE_STATUS_TOXIC_SPIKES);
+	struct Pokemon *mon = GetPartyBattlerPartyData(currBattler, switchBattler);
+	u16 ability = GetMonAbility(mon);   // we know our own party data
+	u16 holdEffect;
+	u16 species = GetMonData(mon, MON_DATA_SPECIES);
+	u32 flags = gSideStatuses[GetBattlerSide(currBattler)] & (SIDE_STATUS_SPIKES | SIDE_STATUS_STEALTH_ROCK | SIDE_STATUS_STICKY_WEB | SIDE_STATUS_TOXIC_SPIKES);
 	s32 hazardDamage = 0;
 
-    if (flags == 0)
-        return FALSE;
+	if (flags == 0)
+		return FALSE;
 
-    if (ability == ABILITY_MAGIC_GUARD)
-        return FALSE;
-	if (!(gFieldStatuses & STATUS_FIELD_MAGIC_ROOM || ability == ABILITY_KLUTZ))
+	if (ability == ABILITY_MAGIC_GUARD)
+		return FALSE;
+	if (gFieldStatuses & STATUS_FIELD_MAGIC_ROOM || ability == ABILITY_KLUTZ)
+		holdEffect = HOLD_EFFECT_NONE;
+	else
 		holdEffect = gItems[GetMonData(mon, MON_DATA_HELD_ITEM)].holdEffect;
 	if (holdEffect == HOLD_EFFECT_HEAVY_DUTY_BOOTS)
-        return FALSE;
+		return FALSE;
 	
 	if (flags & SIDE_STATUS_STEALTH_ROCK)
 		hazardDamage += GetStealthHazardDamageByMon(gBattleMoves[MOVE_STEALTH_ROCK].type, mon);
@@ -2462,10 +2464,10 @@ static bool32 PartyBattlerShouldAvoidHazards(u8 currBattler, u8 switchBattler)
 		hazardDamage += spikesDmg;
 	}
 
-    if (GetMonData(mon, MON_DATA_HP) < hazardDamage)
-        return TRUE;
+	if (GetMonData(mon, MON_DATA_HP) < hazardDamage)
+		return TRUE;
 
-    return FALSE;
+	return FALSE;
 }
 
 enum {
@@ -2559,10 +2561,7 @@ bool32 ShouldPivot(u8 battlerAtk, u8 battlerDef, u16 defAbility, u16 move, u8 mo
         {
             if (CanTargetFaintAi(battlerDef, battlerAtk))
             {
-                if (gBattleMoves[move].effect == EFFECT_TELEPORT)
-                    return DONT_PIVOT; // If you're going to faint because you'll go second, use a different move
-                else
-                    return CAN_TRY_PIVOT; // You're probably going to faint anyways so if for some reason you don't, better switch
+				return CAN_TRY_PIVOT; // You're probably going to faint anyways so if for some reason you don't, better switch
             }
             else if (CanTargetFaintAiWithMod(battlerDef, battlerAtk, 0, 2)) // Foe can 2HKO AI
             {
