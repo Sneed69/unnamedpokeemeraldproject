@@ -7741,7 +7741,6 @@ bool32 IsBattlerProtected(u8 battlerId, u16 move)
         return FALSE;
 }
 
-
 bool32 IsBattlerGrounded(u8 battlerId)
 {
     if (GetBattlerHoldEffect(battlerId, TRUE) == HOLD_EFFECT_IRON_BALL)
@@ -7757,6 +7756,21 @@ bool32 IsBattlerGrounded(u8 battlerId)
         return FALSE;
     else if (gStatuses3[battlerId] & STATUS3_MAGNET_RISE)
         return FALSE;
+    else if (GetBattlerHoldEffect(battlerId, TRUE) == HOLD_EFFECT_AIR_BALLOON)
+        return FALSE;
+    else if (GetBattlerAbility(battlerId) == ABILITY_LEVITATE)
+        return FALSE;
+    else if (IS_BATTLER_OF_TYPE(battlerId, TYPE_FLYING))
+        return FALSE;
+
+    else
+        return TRUE;
+}
+
+bool32 IsBattlerGroundedAfterSwitching(u8 battlerId)
+{
+    if (GetBattlerHoldEffect(battlerId, TRUE) == HOLD_EFFECT_IRON_BALL)
+        return TRUE;
     else if (GetBattlerHoldEffect(battlerId, TRUE) == HOLD_EFFECT_AIR_BALLOON)
         return FALSE;
     else if (GetBattlerAbility(battlerId) == ABILITY_LEVITATE)
@@ -9315,17 +9329,14 @@ u16 GetTypeModifier(u8 atkType, u8 defType)
         return sTypeEffectivenessTable[atkType][defType];
 }
 
-s32 GetStealthHazardDamage(u8 hazardType, u8 battlerId)
+static s32 GetTypedHazardDamage(u8 hazardType, u8 victimType1, u8 victimType2, u32 maxHp)
 {
-    u8 type1 = gBattleMons[battlerId].type1;
-    u8 type2 = gBattleMons[battlerId].type2;
-    u32 maxHp = gBattleMons[battlerId].maxHP;
     s32 dmg = 0;
     u16 modifier = UQ_4_12(1.0);
 
-    MulModifier(&modifier, GetTypeModifier(hazardType, type1));
-    if (type2 != type1)
-        MulModifier(&modifier, GetTypeModifier(hazardType, type2));
+    MulModifier(&modifier, GetTypeModifier(hazardType, victimType1));
+    if (victimType2 != victimType1)
+        MulModifier(&modifier, GetTypeModifier(hazardType, victimType2));
 
     switch (modifier)
     {
@@ -9360,6 +9371,25 @@ s32 GetStealthHazardDamage(u8 hazardType, u8 battlerId)
     }
 
     return dmg;
+}
+
+s32 GetStealthHazardDamage(u8 hazardType, u8 battlerId)
+{
+    u8 type1 = gBattleMons[battlerId].type1;
+    u8 type2 = gBattleMons[battlerId].type2;
+    u32 maxHp = gBattleMons[battlerId].maxHP;
+	
+	return GetTypedHazardDamage(hazardType, type1, type2, maxHp);
+}
+
+s32 GetStealthHazardDamageByMon(u8 hazardType, struct Pokemon *mon)
+{
+    u16 species = GetMonData(mon, MON_DATA_SPECIES);
+    u8 type1 = gBaseStats[species].type1;
+    u8 type2 = gBaseStats[species].type2;
+    u32 maxHp = GetMonData(mon, MON_DATA_MAX_HP);
+    
+	return GetTypedHazardDamage(hazardType, type1, type2, maxHp);
 }
 
 bool32 IsPartnerMonFromSameTrainer(u8 battlerId)

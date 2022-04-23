@@ -2435,17 +2435,34 @@ static bool32 PartyBattlerShouldAvoidHazards(u8 currBattler, u8 switchBattler)
 {
     struct Pokemon *mon = GetPartyBattlerPartyData(currBattler, switchBattler);
     u16 ability = GetMonAbility(mon);   // we know our own party data
-    u16 holdEffect = GetBattlerHoldEffect(GetMonData(mon, MON_DATA_HELD_ITEM), TRUE);
+    u16 holdEffect = HOLD_EFFECT_NONE;
+    u16 species = GetMonData(mon, MON_DATA_SPECIES);
     u32 flags = gSideStatuses[GetBattlerSide(currBattler)] & (SIDE_STATUS_SPIKES | SIDE_STATUS_STEALTH_ROCK | SIDE_STATUS_STICKY_WEB | SIDE_STATUS_TOXIC_SPIKES);
+	s32 hazardDamage = 0;
 
     if (flags == 0)
         return FALSE;
 
-    if (ability == ABILITY_MAGIC_GUARD || ability == ABILITY_LEVITATE
-      || holdEffect == HOLD_EFFECT_HEAVY_DUTY_BOOTS)
+    if (ability == ABILITY_MAGIC_GUARD)
         return FALSE;
+	if (!(gFieldStatuses & STATUS_FIELD_MAGIC_ROOM || ability == ABILITY_KLUTZ))
+		holdEffect = gItems[GetMonData(mon, MON_DATA_HELD_ITEM)].holdEffect;
+	if (holdEffect == HOLD_EFFECT_HEAVY_DUTY_BOOTS)
+        return FALSE;
+	
+	if (flags & SIDE_STATUS_STEALTH_ROCK)
+		hazardDamage += GetStealthHazardDamageByMon(gBattleMoves[MOVE_STEALTH_ROCK].type, mon);
+	if (flags & SIDE_STATUS_SPIKES && holdEffect != HOLD_EFFECT_AIR_BALLOON
+		&& (holdEffect == HOLD_EFFECT_IRON_BALL || gFieldStatuses & STATUS_FIELD_GRAVITY
+		|| !(gBaseStats[species].type1 == TYPE_FLYING || gBaseStats[species].type2 == TYPE_FLYING || ability != ABILITY_LEVITATE)))
+	{
+		u8 spikesDmg = GetMonData(mon, MON_DATA_MAX_HP) / ((5 - gSideTimers[GetBattlerSide(currBattler)].spikesAmount) * 2);
+		if (spikesDmg == 0)
+			spikesDmg = 1;
+		hazardDamage += spikesDmg;
+	}
 
-    if (flags & (SIDE_STATUS_SPIKES | SIDE_STATUS_STEALTH_ROCK) && GetMonData(mon, MON_DATA_HP) < (GetMonData(mon, MON_DATA_MAX_HP) / 8))
+    if (GetMonData(mon, MON_DATA_HP) < hazardDamage)
         return TRUE;
 
     return FALSE;

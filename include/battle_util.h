@@ -125,6 +125,7 @@ u32 GetBattlerHoldEffect(u8 battlerId, bool32 checkNegating);
 u32 GetBattlerHoldEffectParam(u8 battlerId);
 bool32 IsMoveMakingContact(u16 move, u8 battlerAtk);
 bool32 IsBattlerGrounded(u8 battlerId);
+bool32 IsBattlerGroundedAfterSwitching(u8 battlerId);
 bool32 IsBattlerAlive(u8 battlerId);
 u8 GetBattleMonMoveSlot(struct BattlePokemon *battleMon, u16 move);
 u32 GetBattlerWeight(u8 battlerId);
@@ -133,6 +134,7 @@ u16 CalcTypeEffectivenessMultiplier(u16 move, u8 moveType, u8 battlerAtk, u8 bat
 u16 CalcPartyMonTypeEffectivenessMultiplier(u16 move, u16 speciesDef, u16 abilityDef);
 u16 GetTypeModifier(u8 atkType, u8 defType);
 s32 GetStealthHazardDamage(u8 hazardType, u8 battlerId);
+s32 GetStealthHazardDamageByMon(u8 hazardType, struct Pokemon *mon);
 u16 GetMegaEvolutionSpecies(u16 preEvoSpecies, u16 heldItemId);
 u16 GetWishMegaEvolutionSpecies(u16 preEvoSpecies, u16 moveId1, u16 moveId2, u16 moveId3, u16 moveId4);
 bool32 CanMegaEvolve(u8 battlerId);

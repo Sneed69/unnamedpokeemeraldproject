@@ -315,30 +315,27 @@ static u8 ChooseMoveOrAction_Singles(void)
         && !(gBattleTypeFlags & (BATTLE_TYPE_ARENA | BATTLE_TYPE_PALACE))
         && AI_THINKING_STRUCT->aiFlags & (AI_FLAG_CHECK_VIABILITY | AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_TRY_TO_FAINT | AI_FLAG_PREFER_BATON_PASS))
     {
-		u16 hazardDamage = 0;
 		u32 regeneratorAmount = 0;
-		if (gSideStatuses[GetBattlerSide(sBattler_AI)] & SIDE_STATUS_STEALTH_ROCK)
-			hazardDamage += GetStealthHazardDamage(gBattleMoves[MOVE_STEALTH_ROCK].type, sBattler_AI);
-		if (gSideStatuses[GetBattlerSide(sBattler_AI)] & SIDE_STATUS_SPIKES)
-		{
-			switch (gSideTimers[GetBattlerSide(sBattler_AI)].spikesAmount)
-			{
-				case 1:
-					hazardDamage += gBattleMons[sBattler_AI].maxHP / 8;
-					break;
-				case 2:
-					hazardDamage += gBattleMons[sBattler_AI].maxHP / 6;
-					break;
-				case 3:
-					hazardDamage += gBattleMons[sBattler_AI].maxHP / 4;
-					break;
-			}
-		}
+		s32 hazardDamage = 0;
+		
 		if (GetBattlerAbility(sBattler_AI) == ABILITY_REGENERATOR)
 			regeneratorAmount = gBattleMons[sBattler_AI].maxHP / 3;
 		
+		if (IsBattlerAffectedByHazards(sBattler_AI, FALSE))
+		{
+			if (gSideStatuses[GetBattlerSide(sBattler_AI)] & SIDE_STATUS_STEALTH_ROCK)
+				hazardDamage += GetStealthHazardDamage(gBattleMoves[MOVE_STEALTH_ROCK].type, sBattler_AI);
+			if (gSideStatuses[GetBattlerSide(sBattler_AI)] & SIDE_STATUS_SPIKES && IsBattlerGroundedAfterSwitching(sBattler_AI))
+			{
+				u8 spikesDmg = gBattleMons[sBattler_AI].maxHP / ((5 - gSideTimers[GetBattlerSide(sBattler_AI)].spikesAmount) * 2);
+				if (spikesDmg == 0)
+					spikesDmg = 1;
+				hazardDamage += spikesDmg;
+			}
+		}
+		
 		// Don't switch if mon would faint to hazards on the return
-		if (hazardDamage < gBattleMons[sBattler_AI].hp + regeneratorAmount)
+		if (hazardDamage < min(gBattleMons[sBattler_AI].hp + regeneratorAmount, gBattleMons[sBattler_AI].maxHP))
 		{
 			// Consider switching if all moves are worthless to use.
 			if (GetTotalBaseStat(gBattleMons[sBattler_AI].species) >= 310 // Mon is not weak.
@@ -1513,6 +1510,7 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
                 score -= 10;
             break;
         case EFFECT_PARTING_SHOT:
+        case EFFECT_TELEPORT:
             if (CountUsablePartyMons(battlerAtk) == 0)
                 score -= 10;
             break;
@@ -1547,9 +1545,6 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
                 score -= 12;
             else
                 score += 5;
-            break;
-        case EFFECT_TELEPORT:
-            score -= 10;
             break;
         case EFFECT_FAKE_OUT:
             if (!gDisableStructs[battlerAtk].isFirstTurn)
