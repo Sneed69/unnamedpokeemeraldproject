@@ -1810,6 +1810,7 @@ const u16 gEggMoves[] = {
     egg_moves(CACNEA,
         MOVE_GRASS_WHISTLE,
         MOVE_ACID,
+        MOVE_ACID_RAIN,
         MOVE_TEETER_DANCE,
         MOVE_DYNAMIC_PUNCH,
         MOVE_LOW_KICK,
@@ -2971,6 +2972,7 @@ const u16 gEggMoves[] = {
         MOVE_ENDURE,
         MOVE_CAPTIVATE,
         MOVE_ACID,
+        MOVE_ACID_RAIN,
         MOVE_CLEAR_SMOG,
         MOVE_POWER_SPLIT),
 
@@ -3239,7 +3241,10 @@ const u16 gEggMoves[] = {
 
     egg_moves(GOOMY,
         MOVE_ACID_ARMOR,
+        MOVE_ACID_RAIN,
         MOVE_CURSE,
+        MOVE_SNORE,
+        MOVE_WATER_PULSE,
         MOVE_POISON_TAIL,
         MOVE_ENDURE),
 

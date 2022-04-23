@@ -5974,6 +5974,14 @@ const struct ContestMove gContestMoves[MOVES_COUNT] =
         .comboStarterId = 0,
         .comboMoves = {COMBO_STARTER_HAIL}
     },
+
+    [MOVE_ACID_RAIN] =
+    {
+        .effect = CONTEST_EFFECT_BETTER_WHEN_LATER,
+        .contestCategory = CONTEST_CATEGORY_SMART,
+        .comboStarterId = 0,
+        .comboMoves = {COMBO_STARTER_SMOG}
+    },
 };
 
 const struct ContestEffect gContestEffects[] =

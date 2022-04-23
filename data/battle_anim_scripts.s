@@ -787,7 +787,8 @@ gBattleAnims_Moves::
 	.4byte Move_COLD_SNAP
 	.4byte Move_BLISTERING_COLD
 	.4byte Move_HOWLING_GALE
-	.4byte Move_COUNT @ cannot be reached, because last move is Eerie Spell
+	.4byte Move_ACID_RAIN
+	.4byte Move_COUNT @ cannot be reached
 
 	.align 2
 gBattleAnims_StatusConditions::
@@ -14623,9 +14624,30 @@ Move_HOWLING_GALE:
 	createvisualtask AnimTask_BlendBattleAnimPal, 10, 4, 2, 9, 0, RGB(12, 26, 31)
 	clearmonbg ANIM_DEF_PARTNER
 	blendoff
-
 	end
-
+	
+Move_ACID_RAIN:
+	loadspritegfx ANIM_TAG_RAIN_DROPS
+	loadspritegfx ANIM_TAG_GLOWY_BLUE_ORB
+	loadspritegfx ANIM_TAG_WATER_IMPACT
+	createvisualtask AnimTask_BlendParticle, 5, ANIM_TAG_RAIN_DROPS, 0, 0xF, 0xF, RGB(11, 0, 22)
+	createvisualtask AnimTask_BlendParticle, 5, ANIM_TAG_GLOWY_BLUE_ORB, 0, 0xF, 0xD, RGB(15, 3, 28)
+	createvisualtask AnimTask_BlendParticle, 5, ANIM_TAG_WATER_IMPACT, 0, 0xF, 0xD, RGB(15, 3, 28)
+	monbg ANIM_DEF_PARTNER
+	setalpha 12, 8
+	createvisualtask AnimTask_WaterSpoutLaunch, 5
+	playsewithpan SE_M_HEADBUTT, SOUND_PAN_ATTACKER
+	delay 44
+	playsewithpan SE_M_DIVE, SOUND_PAN_ATTACKER
+	waitforvisualfinish
+	delay 16
+	createvisualtask AnimTask_CreateRaindrops, 2, 0, 3, 120
+	createvisualtask AnimTask_CreateRaindrops, 2, 0, 3, 120
+	createvisualtask AnimTask_WaterSpoutRain, 5
+	playsewithpan SE_M_SURF, SOUND_PAN_TARGET
+	clearmonbg ANIM_DEF_PARTNER
+	blendoff
+	end
 
 @@@@@@@@@@@@@@@@@@@@@@@ GEN 1-3 @@@@@@@@@@@@@@@@@@@@@@@
 Move_NONE:

@@ -202,7 +202,7 @@ static const u8 sDisableDescription[] = _(
     "the foe's moves.");
 
 static const u8 sAcidDescription[] = _(
-    "May lower Sp. Defense.\n"
+    "May lower Sp. Def.\n"
     "Ignores Steel type.");
 
 static const u8 sEmberDescription[] = _(
@@ -2966,6 +2966,10 @@ static const u8 sHowlingGaleDescription[] = _(
     "Whips up a frigid wind that\n"
     "may cause a frostbite.");
 
+static const u8 sAcidRainDescription[] = _(
+    "May harshly lower Sp. Def.\n"
+    "Ignores Steel type.");
+
 static const u8 sNotDoneYetDescription[] = _(
     "Not done yet.");
 
@@ -3738,4 +3742,5 @@ const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] =
     [MOVE_COLD_SNAP - 1] = sColdSnapDescription,
     [MOVE_BLISTERING_COLD - 1] = sBlisteringColdDescription,
     [MOVE_HOWLING_GALE - 1] = sHowlingGaleDescription,
+    [MOVE_ACID_RAIN - 1] = sAcidRainDescription,
 };

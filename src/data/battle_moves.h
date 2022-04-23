@@ -11713,4 +11713,18 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
         .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED | FLAG_SHEER_FORCE_BOOST,
         .split = SPLIT_SPECIAL,
     },
+
+    [MOVE_ACID_RAIN] =
+    {
+        .power = 90,
+		.effect = EFFECT_SPECIAL_DEFENSE_DOWN_HIT_2,
+        .type = TYPE_POISON,
+        .accuracy = 100,
+        .pp = 16,
+        .secondaryEffectChance = 20,
+        .target = MOVE_TARGET_BOTH,
+        .priority = 0,
+        .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_SHEER_FORCE_BOOST | FLAG_DAMAGES_STEEL_TYPE,
+        .split = SPLIT_SPECIAL,
+    },
 };
