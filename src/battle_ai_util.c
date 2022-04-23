@@ -2103,7 +2103,6 @@ bool32 IsStatRaisingEffect(u16 effect)
     case EFFECT_BULK_UP:
     case EFFECT_GEOMANCY:
     case EFFECT_STOCKPILE:
-    case EFFECT_RECOIL_33_SPEED_UP:
         return TRUE;
     default:
         return FALSE;

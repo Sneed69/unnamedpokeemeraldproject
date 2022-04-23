@@ -3159,7 +3159,6 @@ static s16 AI_CheckViability(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
         break;
 	case EFFECT_SPEED_UP:
     case EFFECT_SPEED_UP_2:
-    case EFFECT_RECOIL_33_SPEED_UP:
         if (!WillAIStrikeFirst())
         {
             if (!AI_RandLessThan(70))
@@ -3646,7 +3645,10 @@ static s16 AI_CheckViability(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
             score++;
         break;
     case EFFECT_SPEED_UP_HIT:
-        if (AI_DATA->atkAbility == ABILITY_SERENE_GRACE && AI_DATA->defAbility != ABILITY_CONTRARY && !WillAIStrikeFirst())
+        if ((AI_DATA->atkAbility != ABILITY_SERENE_GRACE && gBattleMoves[move].secondaryEffectChance < 75))
+			break;
+    case EFFECT_RECOIL_33_SPEED_UP:
+		if (AI_DATA->defAbility != ABILITY_CONTRARY && !WillAIStrikeFirst())
             score += 3;
         break;
     case EFFECT_DESTINY_BOND:
@@ -4836,7 +4838,6 @@ static s16 AI_SetupFirstTurn(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
     case EFFECT_SANDSTORM:
     case EFFECT_HAIL:
     case EFFECT_GEOMANCY:
-    case EFFECT_RECOIL_33_SPEED_UP:
         score += 2;
         break;
     default:
