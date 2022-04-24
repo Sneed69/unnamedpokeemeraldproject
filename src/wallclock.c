@@ -15,6 +15,7 @@
 #include "text.h"
 #include "text_window.h"
 #include "trig.h"
+#include "wallclock.h"
 #include "window.h"
 #include "constants/rgb.h"
 #include "constants/songs.h"
