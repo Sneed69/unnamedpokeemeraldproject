@@ -594,17 +594,17 @@ static const u8 sWhiteFluteDesc[] = _(
 // Encounter Modifiers
 static const u8 sRepelDesc[] = _(
     "Repels weak wild\n"
-    "Pokémon for 100\n"
+    "Pokémon for 250\n"
     "steps.");
 
 static const u8 sSuperRepelDesc[] = _(
     "Repels weak wild\n"
-    "Pokémon for 200\n"
+    "Pokémon for 500\n"
     "steps.");
 
 static const u8 sMaxRepelDesc[] = _(
     "Repels weak wild\n"
-    "Pokémon for 250\n"
+    "Pokémon for 750\n"
     "steps.");
 
 static const u8 sLureDesc[] = _(
@@ -2608,7 +2608,7 @@ static const u8 sAssaultVestDesc[] = _(
     "of status moves.");
 
 static const u8 sSafetyGogglesDesc[] = _(
-    "Protect from\n"
+    "Protects from\n"
     "weather damage and\n"
     "powder moves.");
 

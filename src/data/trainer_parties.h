@@ -3516,15 +3516,15 @@ static const struct TrainerMon sParty_Norman1[] = {
     .iv = 24,
     .lvl = 29,
     .species = SPECIES_LINOONE,
-    .heldItem = ITEM_NONE,
+    .heldItem = ITEM_SITRUS_BERRY,
     .moves = {MOVE_SLASH, MOVE_BELLY_DRUM, MOVE_FACADE, MOVE_HEADBUTT}
     },
     {
     .iv = 30,
     .lvl = 31,
     .species = SPECIES_SLAKING,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .moves = {MOVE_COUNTER, MOVE_YAWN, MOVE_FACADE, MOVE_FEINT_ATTACK}
+    .heldItem = ITEM_CHOICE_SCARF,
+    .moves = {MOVE_FIRE_PUNCH, MOVE_EARTHQUAKE, MOVE_GIGA_IMPACT, MOVE_NIGHT_SLASH}
     }
 };
 

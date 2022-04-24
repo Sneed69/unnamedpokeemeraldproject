@@ -882,7 +882,7 @@ static void Task_UseRepel(u8 taskId)
 {
     if (!IsSEPlaying())
     {
-        VarSet(VAR_REPEL_STEP_COUNT, ItemId_GetHoldEffectParam(gSpecialVar_ItemId));
+        VarSet(VAR_REPEL_STEP_COUNT, ItemId_GetHoldEffectParam(gSpecialVar_ItemId) * REPEL_STEP_MULTIPLIER);
         RemoveUsedItem();
         if (!InBattlePyramid())
             DisplayItemMessage(taskId, FONT_NORMAL, gStringVar4, CloseItemMessage);
