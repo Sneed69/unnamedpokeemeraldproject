@@ -16,8 +16,8 @@ struct PokemonSubstruct0
     /*0x04*/ u32 experience;
     /*0x08*/ u8 ppBonuses;
     /*0x09*/ u8 friendship;
-    /*0x0A*/ u8 pokeball:5; //31 balls
-    /*0x0B*/ u8 hiddenNature:5;  // 25 natures
+    /*0x0A*/ u16 pokeball:5; //31 balls
+    /*0x0B*/ u16 hiddenNature:5;  // 25 natures
 }; /* size = 12 */
 
 struct PokemonSubstruct1
