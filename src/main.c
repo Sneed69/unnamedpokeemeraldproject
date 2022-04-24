@@ -6,11 +6,11 @@
 #include "librfu.h"
 #include "m4a.h"
 #include "bg.h"
-#include "rtc.h"
 #include "scanline_effect.h"
 #include "overworld.h"
 #include "play_time.h"
 #include "random.h"
+#include "rtc.h"
 #include "dma3.h"
 #include "gba/flash_internal.h"
 #include "load_save.h"
@@ -24,6 +24,7 @@
 #include "main.h"
 #include "trainer_hill.h"
 #include "constants/rgb.h"
+#include "game_time.h"
 #include "mgba.h"
 
 static void VBlankIntr(void);
@@ -158,6 +159,7 @@ void AgbMain()
         }
 
         PlayTimeCounter_Update();
+		GameTimeCounter_Update();
         MapMusicMain();
         WaitForVBlank();
     }

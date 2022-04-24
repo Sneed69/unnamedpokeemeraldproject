@@ -19,6 +19,7 @@
 	.include "src/egg_hatch.o"
 	.include "src/berry_blender.o"
 	.include "src/play_time.o"
+	.include "src/game_time.o"
 	.include "src/overworld.o"
 	.include "src/field_camera.o"
 	.include "src/script.o"

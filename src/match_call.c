@@ -17,7 +17,6 @@
 #include "pokemon.h"
 #include "random.h"
 #include "region_map.h"
-#include "rtc.h"
 #include "script.h"
 #include "script_movement.h"
 #include "sound.h"
@@ -1021,8 +1020,7 @@ extern const u8 gBirchDexRatingText_OnANationwideBasis[];
 
 void InitMatchCallCounters(void)
 {
-    RtcCalcLocalTime();
-    sMatchCallState.minutes = GetCurrentTotalMinutes(&gLocalTime) + 10;
+    sMatchCallState.minutes = GetCurrentTotalMinutes(&gSaveBlock1Ptr->gameTime) + 10;
     sMatchCallState.stepCounter = 0;
 }
 
@@ -1034,8 +1032,7 @@ static u32 GetCurrentTotalMinutes(struct Time *time)
 static bool32 UpdateMatchCallMinutesCounter(void)
 {
     int curMinutes;
-    RtcCalcLocalTime();
-    curMinutes = GetCurrentTotalMinutes(&gLocalTime);
+    curMinutes = GetCurrentTotalMinutes(&gSaveBlock1Ptr->gameTime);
     if (sMatchCallState.minutes > curMinutes || curMinutes - sMatchCallState.minutes > 9)
     {
         sMatchCallState.minutes = curMinutes;
@@ -1858,7 +1855,7 @@ static bool32 ShouldTrainerRequestBattle(int matchCallId)
     if (GetNumOwnedBadges() < 5)
         return FALSE;
 
-    dayCount = RtcGetLocalDayCount();
+    dayCount = gSaveBlock1Ptr->gameTime.days;
     otId = GetTrainerId(gSaveBlock2Ptr->playerTrainerId) & 0xFFFF;
 
     dewfordRand = gSaveBlock1Ptr->dewfordTrends[0].rand;

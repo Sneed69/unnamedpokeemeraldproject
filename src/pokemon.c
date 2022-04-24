@@ -30,7 +30,6 @@
 #include "pokemon_storage_system.h"
 #include "random.h"
 #include "recorded_battle.h"
-#include "rtc.h"
 #include "sound.h"
 #include "string_util.h"
 #include "strings.h"
@@ -6490,27 +6489,22 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, u8 mode, u16 evolutionItem, u
                     targetSpecies = gEvolutionTable[species][i].targetSpecies;
                 break;
             case EVO_FRIENDSHIP_DAY:
-                RtcCalcLocalTime();
                 if (GetCurrentTimeOfDay() != TIME_NIGHT && friendship >= 220)
                     targetSpecies = gEvolutionTable[species][i].targetSpecies;
                 break;
             case EVO_LEVEL_DAY:
-                RtcCalcLocalTime();
-                if (GetCurrentTimeOfDay() == TIME_DAY && gEvolutionTable[species][i].param <= level)
+                if (GetCurrentTimeOfDay() != TIME_NIGHT && gEvolutionTable[species][i].param <= level)
                     targetSpecies = gEvolutionTable[species][i].targetSpecies;
                 break;
             case EVO_FRIENDSHIP_NIGHT:
-                RtcCalcLocalTime();
                 if (GetCurrentTimeOfDay() == TIME_NIGHT && friendship >= 220)
                     targetSpecies = gEvolutionTable[species][i].targetSpecies;
                 break;
             case EVO_LEVEL_NIGHT:
-                RtcCalcLocalTime();
                 if (GetCurrentTimeOfDay() == TIME_NIGHT && gEvolutionTable[species][i].param <= level)
                     targetSpecies = gEvolutionTable[species][i].targetSpecies;
                 break;
             case EVO_ITEM_HOLD_NIGHT:
-                RtcCalcLocalTime();
                 if (GetCurrentTimeOfDay() == TIME_NIGHT && heldItem == gEvolutionTable[species][i].param)
                 {
                     heldItem = 0;
@@ -6519,8 +6513,7 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, u8 mode, u16 evolutionItem, u
                 }
                 break;
             case EVO_ITEM_HOLD_DAY:
-                RtcCalcLocalTime();
-                if (GetCurrentTimeOfDay() == TIME_DAY && heldItem == gEvolutionTable[species][i].param)
+                if (GetCurrentTimeOfDay() != TIME_NIGHT && heldItem == gEvolutionTable[species][i].param)
                 {
                     heldItem = 0;
                     SetMonData(mon, MON_DATA_HELD_ITEM, &heldItem);
@@ -6528,8 +6521,7 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, u8 mode, u16 evolutionItem, u
                 }
                 break;
             case EVO_LEVEL_DUSK:
-                RtcCalcLocalTime();
-                if (gLocalTime.hours >= HOUR_AFTERNOON && gLocalTime.hours < HOUR_NIGHT && gEvolutionTable[species][i].param <= level)
+                if (gSaveBlock1Ptr->gameTime.hours >= HOUR_AFTERNOON && gSaveBlock1Ptr->gameTime.hours < HOUR_NIGHT && gEvolutionTable[species][i].param <= level)
                     targetSpecies = gEvolutionTable[species][i].targetSpecies;
                 break;
             case EVO_LEVEL:
@@ -8419,17 +8411,16 @@ u16 GetFormChangeTargetSpeciesBoxMon(struct BoxPokemon *mon, u16 method, u32 arg
                         targetSpecies = formChanges[i].targetSpecies;
                     break;
                 case FORM_ITEM_USE_TIME:
-                    RtcCalcLocalTime();
                     if (arg == formChanges[i].param1)
                     {
                         switch (formChanges[i].param2)
                         {
                         case DAY:
-                            if (gLocalTime.hours >= 12 && gLocalTime.hours < 24)
+                            if (GetCurrentTimeOfDay() != TIME_NIGHT)
                                 targetSpecies = formChanges[i].targetSpecies;
                             break;
                         case NIGHT:
-                            if (gLocalTime.hours >= 0 && gLocalTime.hours < 12)
+                            if (GetCurrentTimeOfDay() == TIME_NIGHT)
                                 targetSpecies = formChanges[i].targetSpecies;
                             break;
                         }

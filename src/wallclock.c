@@ -8,7 +8,6 @@
 #include "main.h"
 #include "menu.h"
 #include "palette.h"
-#include "rtc.h"
 #include "scanline_effect.h"
 #include "sound.h"
 #include "strings.h"
@@ -16,10 +15,10 @@
 #include "text.h"
 #include "text_window.h"
 #include "trig.h"
-#include "wallclock.h"
 #include "window.h"
 #include "constants/rgb.h"
 #include "constants/songs.h"
+#include "game_time.h"
 
 static void CB2_WallClock(void);
 static void Task_SetClock_WaitFadeIn(u8 taskId);
@@ -35,7 +34,7 @@ static void Task_ViewClock_Exit(u8 taskId);
 static u16 CalcNewMinHandAngle(u16 angle, u8 direction, u8 speed);
 static bool32 AdvanceClock(u8 taskId, u8 direction);
 static void UpdateClockPeriod(u8 taskId, u8 direction);
-static void InitClockWithRtc(u8 taskId);
+static void InitClockWithGameTime(u8 taskId);
 static void SpriteCB_MinuteHand(struct Sprite *sprite);
 static void SpriteCB_HourHand(struct Sprite *sprite);
 static void SpriteCB_PMIndicator(struct Sprite *sprite);
@@ -733,7 +732,7 @@ void CB2_ViewWallClock(void)
     LZ77UnCompVram(gWallClockView_Tilemap, (u16 *)BG_SCREEN_ADDR(7));
 
     taskId = CreateTask(Task_ViewClock_WaitFadeIn, 0);
-    InitClockWithRtc(taskId);
+    InitClockWithGameTime(taskId);
     if (gTasks[taskId].tPeriod == PERIOD_AM)
     {
         angle1 = 45;
@@ -857,7 +856,7 @@ static void Task_SetClock_HandleConfirmInput(u8 taskId)
 
 static void Task_SetClock_Confirmed(u8 taskId)
 {
-    RtcInitLocalTimeOffset(gTasks[taskId].tHours, gTasks[taskId].tMinutes);
+    //RtcInitLocalTimeOffset(gTasks[taskId].tHours, gTasks[taskId].tMinutes);
     BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 16, RGB_BLACK);
     gTasks[taskId].func = Task_SetClock_Exit;
 }
@@ -879,7 +878,7 @@ static void Task_ViewClock_WaitFadeIn(u8 taskId)
 
 static void Task_ViewClock_HandleInput(u8 taskId)
 {
-    InitClockWithRtc(taskId);
+    InitClockWithGameTime(taskId);
     if (JOY_NEW(A_BUTTON | B_BUTTON))
         gTasks[taskId].func = Task_ViewClock_FadeOut;
 }
@@ -1001,15 +1000,14 @@ static void UpdateClockPeriod(u8 taskId, u8 direction)
     }
 }
 
-static void InitClockWithRtc(u8 taskId)
+static void InitClockWithGameTime(u8 taskId)
 {
-    RtcCalcLocalTime();
-    gTasks[taskId].tHours = gLocalTime.hours;
-    gTasks[taskId].tMinutes = gLocalTime.minutes;
+    gTasks[taskId].tHours = gSaveBlock1Ptr->gameTime.hours;
+    gTasks[taskId].tMinutes = gSaveBlock1Ptr->gameTime.minutes;
     gTasks[taskId].tMinuteHandAngle = gTasks[taskId].tMinutes * 6;
     gTasks[taskId].tHourHandAngle = (gTasks[taskId].tHours % 12) * 30 + (gTasks[taskId].tMinutes / 10) * 5;
 
-    if (gLocalTime.hours < 12)
+    if (gSaveBlock1Ptr->gameTime.hours < 12)
         gTasks[taskId].tPeriod = PERIOD_AM;
     else
         gTasks[taskId].tPeriod = PERIOD_PM;

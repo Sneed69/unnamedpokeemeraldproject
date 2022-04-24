@@ -14,7 +14,6 @@
 #include "pokeblock.h"
 #include "dewford_trend.h"
 #include "berry.h"
-#include "rtc.h"
 #include "easy_chat.h"
 #include "event_data.h"
 #include "money.h"
@@ -45,6 +44,7 @@
 #include "mystery_gift.h"
 #include "union_room_chat.h"
 #include "constants/items.h"
+#include "game_time.h"
 
 extern const u8 EventScript_ResetAllMapFlags[];
 
@@ -149,8 +149,6 @@ void ResetMenuAndMonGlobals(void)
 
 void NewGameInitData(void)
 {
-    if (gSaveFileStatus == SAVE_STATUS_EMPTY || gSaveFileStatus == SAVE_STATUS_CORRUPT)
-        RtcReset();
     gDifferentSaveFile = TRUE;
     gSaveBlock2Ptr->encryptionKey = 0;
     ZeroPlayerPartyMons();
@@ -163,6 +161,7 @@ void NewGameInitData(void)
     gSaveBlock2Ptr->gcnLinkFlags = 0;
     InitPlayerTrainerId();
     PlayTimeCounter_Reset();
+    GameTimeCounter_Reset();
     ClearPokedexFlags();
     InitEventData();
     ClearTVShowData();
@@ -210,11 +209,9 @@ void NewGameInitData(void)
     gSaveBlock1Ptr->registeredItemL = 0;
     gSaveBlock1Ptr->registeredItemR = 0;
 	
-	RtcInitLocalTimeOffset(9, 45);
     FlagSet(FLAG_SYS_CLOCK_SET);
-    RtcCalcLocalTime();
-    gSaveBlock2Ptr->lastBerryTreeUpdate = gLocalTime;
-    VarSet(VAR_DAYS, gLocalTime.days);
+    gSaveBlock2Ptr->lastBerryTreeUpdate = gSaveBlock1Ptr->gameTime;
+    VarSet(VAR_DAYS, gSaveBlock1Ptr->gameTime.days);
 }
 
 static void ResetMiniGamesRecords(void)

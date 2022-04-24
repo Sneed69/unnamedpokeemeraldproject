@@ -67,6 +67,7 @@
 #include "constants/songs.h"
 #include "constants/trainer_hill.h"
 #include "constants/weather.h"
+#include "game_time.h"
 
 struct CableClubPlayer
 {
@@ -1536,6 +1537,7 @@ void CB2_NewGame(void)
     NewGameInitData();
     ResetInitialPlayerAvatarState();
     PlayTimeCounter_Start();
+    GameTimeCounter_Start();
     ScriptContext1_Init();
     ScriptContext2_Disable();
     gFieldCallback = ExecuteTruckSequence;
@@ -1732,6 +1734,7 @@ void CB2_ContinueSavedGame(void)
         InitMapFromSavedGame();
 
     PlayTimeCounter_Start();
+    GameTimeCounter_Start();
     ScriptContext1_Init();
     ScriptContext2_Disable();
     InitMatchCallCounters();
@@ -1788,7 +1791,6 @@ static void VBlankCB_Field(void)
     FieldUpdateBgTilemapScroll();
     TransferPlttBuffer();
     TransferTilesetAnimsBuffer();
-    CheckClockForImmediateTimeEvents();
 }
 
 static void InitCurrentFlashLevelScanlineEffect(void)

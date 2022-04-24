@@ -6,7 +6,6 @@
 #include "field_weather.h"
 #include "overworld.h"
 #include "palette.h"
-#include "rtc.h"
 #include "constants/day_night.h"
 #include "constants/region_map_sections.h"
 #include "constants/rgb.h"
@@ -62,7 +61,7 @@ static const u16 sTimeOfDayTints[][3] = {
 
 u8 GetCurrentTimeOfDay(void)
 {
-    return GetTimeOfDay(gLocalTime.hours);
+    return GetTimeOfDay(gSaveBlock1Ptr->gameTime.hours);
 }
 
 u8 GetTimeOfDay(s8 hours)
@@ -89,7 +88,7 @@ static void LoadPaletteOverrides(void)
         return;
 #endif
 
-    hour = gLocalTime.hours;
+    hour = gSaveBlock1Ptr->gameTime.hours;
 
 #if DEBUG
     if (gDNPeriodOverride > 0)
@@ -162,10 +161,9 @@ static void TintPaletteForDayNight(u16 offset, u16 size)
 
     if (ShouldTintOverworld())
     {
-        RtcCalcLocalTimeFast();
 
-        hour = gLocalTime.hours;
-        hourPhase = gLocalTime.minutes / MINUTES_PER_TINT_PERIOD;
+        hour = gSaveBlock1Ptr->gameTime.hours;
+        hourPhase = gSaveBlock1Ptr->gameTime.minutes / MINUTES_PER_TINT_PERIOD;
 
 #if DEBUG
         if (gDNPeriodOverride > 0)
@@ -209,12 +207,6 @@ void LoadPaletteDayNight(const void *src, u16 offset, u16 size)
     CpuCopy16(gPlttBufferUnfaded + offset, gPlttBufferFaded + offset, size);
 }
 
-void CheckClockForImmediateTimeEvents(void)
-{
-    if (!sDNSystemControl.retintPhase && ShouldTintOverworld())
-        RtcCalcLocalTimeFast();
-}
-
 void ProcessImmediateTimeEvents(void)
 {
     s8 hour, nextHour;
@@ -226,8 +218,8 @@ void ProcessImmediateTimeEvents(void)
     {
         if (sDNSystemControl.retintPhase == 0)
         {
-            hour = gLocalTime.hours;
-            hourPhase = gLocalTime.minutes / MINUTES_PER_TINT_PERIOD;
+            hour = gSaveBlock1Ptr->gameTime.hours;
+            hourPhase = gSaveBlock1Ptr->gameTime.minutes / MINUTES_PER_TINT_PERIOD;
 
 #if DEBUG
             if (gDNPeriodOverride > 0)

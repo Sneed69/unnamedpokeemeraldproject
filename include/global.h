@@ -1000,6 +1000,8 @@ struct SaveBlock1
     /*0x3???*/ struct WaldaPhrase waldaPhrase;
     /*0x3D88*/ u16 registeredItemL;
     /*0x3D8A*/ u16 registeredItemR;
+	struct Time gameTime;
+    u16 gameTimeVBlanks;
     // sizeof: 0x3D8C
 };
 

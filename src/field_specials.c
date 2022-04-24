@@ -33,7 +33,6 @@
 #include "random.h"
 #include "rayquaza_scene.h"
 #include "region_map.h"
-#include "rtc.h"
 #include "script.h"
 #include "script_menu.h"
 #include "sound.h"
@@ -930,7 +929,7 @@ void SetHiddenItemFlag(void)
 
 u16 GetWeekCount(void)
 {
-    u16 weekCount = gLocalTime.days / 7;
+    u16 weekCount = gSaveBlock1Ptr->gameTime.days / 7;
     if (weekCount > 9999)
         weekCount = 9999;
 
@@ -1511,18 +1510,18 @@ void TryInitBattleTowerAwardManObjectEvent(void)
 u16 GetDaysUntilPacifidlogTMAvailable(void)
 {
     u16 tmReceivedDay = VarGet(VAR_PACIFIDLOG_TM_RECEIVED_DAY);
-    if (gLocalTime.days - tmReceivedDay >= 7)
+    if (gSaveBlock1Ptr->gameTime.days - tmReceivedDay >= 7)
         return 0;
-    else if (gLocalTime.days < 0)
+    else if (gSaveBlock1Ptr->gameTime.days < 0)
         return 8;
 
-    return 7 - (gLocalTime.days - tmReceivedDay);
+    return 7 - (gSaveBlock1Ptr->gameTime.days - tmReceivedDay);
 }
 
 u16 SetPacifidlogTMReceivedDay(void)
 {
-    VarSet(VAR_PACIFIDLOG_TM_RECEIVED_DAY, gLocalTime.days);
-    return gLocalTime.days;
+    VarSet(VAR_PACIFIDLOG_TM_RECEIVED_DAY, gSaveBlock1Ptr->gameTime.days);
+    return gSaveBlock1Ptr->gameTime.days;
 }
 
 bool8 MonOTNameNotPlayer(void)

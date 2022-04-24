@@ -105,6 +105,7 @@ SECTIONS {
         src/trade.o(.text);
         src/berry_blender.o(.text);
         src/play_time.o(.text);
+        src/game_time.o(.text);
         src/new_game.o(.text);
         src/overworld.o(.text);
         src/fieldmap.o(.text);

@@ -32,7 +32,6 @@
 #include "battle_setup.h"
 #include "overworld.h"
 #include "wild_encounter.h"
-#include "rtc.h"
 #include "party_menu.h"
 #include "constants/battle_config.h"
 #include "battle_arena.h"
@@ -56,6 +55,7 @@
 #include "constants/songs.h"
 #include "constants/trainers.h"
 #include "battle_util.h"
+#include "day_night.h"
 
 extern struct Evolution gEvolutionTable[][EVOS_PER_MON];
 
@@ -13548,8 +13548,7 @@ static void Cmd_handleballthrow(void)
             break;
         #ifdef ITEM_EXPANSION
         case ITEM_DUSK_BALL:
-            RtcCalcLocalTime();
-            if ((gLocalTime.hours >= 20 && gLocalTime.hours <= 3) || gMapHeader.cave || gMapHeader.mapType == MAP_TYPE_UNDERGROUND)
+            if (GetCurrentTimeOfDay() == TIME_NIGHT || gMapHeader.cave || gMapHeader.mapType == MAP_TYPE_UNDERGROUND)
                 #if B_DUSK_BALL_MODIFIER >= GEN_7
                     ballMultiplier = 30;
                 #else
