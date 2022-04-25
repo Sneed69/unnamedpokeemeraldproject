@@ -1107,7 +1107,7 @@ void TryPutPokemonTodayOnAir(void)
     else
     {
         InitWorldOfMastersShowAttempt();
-        if (!rbernoulli(1, 1) && StringCompare(gSpeciesNames[gBattleResults.caughtMonSpecies], gBattleResults.caughtMonNick))
+        if (StringCompare(gSpeciesNames[gBattleResults.caughtMonSpecies], gBattleResults.caughtMonNick))
         {
             sCurTVShowSlot = FindFirstEmptyRecordMixTVShowSlot(gSaveBlock1Ptr->tvShows);
             if (sCurTVShowSlot != -1 && IsRecordMixShowAlreadySpawned(TVSHOW_POKEMON_TODAY_CAUGHT, FALSE) != TRUE)
@@ -1165,32 +1165,29 @@ static void TryPutPokemonTodayFailedOnTheAir(void)
     u8 i;
     TVShow *show;
 
-    if (!rbernoulli(1, 1))
-    {
-        for (i = 0, ballsUsed = 0; i < POKEBALL_COUNT; i++)
-            ballsUsed += gBattleResults.catchAttempts[i];
-        if (ballsUsed > 255)
-            ballsUsed = 255;
+	for (i = 0, ballsUsed = 0; i < POKEBALL_COUNT; i++)
+		ballsUsed += gBattleResults.catchAttempts[i];
+	if (ballsUsed > 255)
+		ballsUsed = 255;
 
-        if (ballsUsed > 2 && (gBattleOutcome == B_OUTCOME_MON_FLED || gBattleOutcome == B_OUTCOME_WON))
-        {
-            sCurTVShowSlot = FindFirstEmptyRecordMixTVShowSlot(gSaveBlock1Ptr->tvShows);
-            if (sCurTVShowSlot != -1 && IsRecordMixShowAlreadySpawned(TVSHOW_POKEMON_TODAY_FAILED, FALSE) != TRUE)
-            {
-                show = &gSaveBlock1Ptr->tvShows[sCurTVShowSlot];
-                show->pokemonTodayFailed.kind = TVSHOW_POKEMON_TODAY_FAILED;
-                show->pokemonTodayFailed.active = FALSE; // NOTE: Show is not active until passed via Record Mix.
-                show->pokemonTodayFailed.species = gBattleResults.playerMon1Species;
-                show->pokemonTodayFailed.species2 = gBattleResults.lastOpponentSpecies;
-                show->pokemonTodayFailed.nBallsUsed = ballsUsed;
-                show->pokemonTodayFailed.outcome = gBattleOutcome;
-                show->pokemonTodayFailed.location = gMapHeader.regionMapSectionId;
-                StringCopy(show->pokemonTodayFailed.playerName, gSaveBlock2Ptr->playerName);
-                StorePlayerIdInRecordMixShow(show);
-                show->pokemonTodayFailed.language = gGameLanguage;
-            }
-        }
-    }
+	if (ballsUsed > 2 && (gBattleOutcome == B_OUTCOME_MON_FLED || gBattleOutcome == B_OUTCOME_WON))
+	{
+		sCurTVShowSlot = FindFirstEmptyRecordMixTVShowSlot(gSaveBlock1Ptr->tvShows);
+		if (sCurTVShowSlot != -1 && IsRecordMixShowAlreadySpawned(TVSHOW_POKEMON_TODAY_FAILED, FALSE) != TRUE)
+		{
+			show = &gSaveBlock1Ptr->tvShows[sCurTVShowSlot];
+			show->pokemonTodayFailed.kind = TVSHOW_POKEMON_TODAY_FAILED;
+			show->pokemonTodayFailed.active = FALSE; // NOTE: Show is not active until passed via Record Mix.
+			show->pokemonTodayFailed.species = gBattleResults.playerMon1Species;
+			show->pokemonTodayFailed.species2 = gBattleResults.lastOpponentSpecies;
+			show->pokemonTodayFailed.nBallsUsed = ballsUsed;
+			show->pokemonTodayFailed.outcome = gBattleOutcome;
+			show->pokemonTodayFailed.location = gMapHeader.regionMapSectionId;
+			StringCopy(show->pokemonTodayFailed.playerName, gSaveBlock2Ptr->playerName);
+			StorePlayerIdInRecordMixShow(show);
+			show->pokemonTodayFailed.language = gGameLanguage;
+		}
+	}
 }
 
 static void StorePlayerIdInRecordMixShow(TVShow *show)
@@ -1776,25 +1773,22 @@ static void TryPutWorldOfMastersOnAir(void)
     TVShow *show2;
 
     show = &gSaveBlock1Ptr->tvShows[LAST_TVSHOW_IDX];
-    if (!rbernoulli(1, 1))
-    {
-        sCurTVShowSlot = FindFirstEmptyRecordMixTVShowSlot(gSaveBlock1Ptr->tvShows);
-        if (sCurTVShowSlot != -1 && IsRecordMixShowAlreadySpawned(TVSHOW_WORLD_OF_MASTERS, FALSE) != TRUE)
-        {
-            show2 = &gSaveBlock1Ptr->tvShows[sCurTVShowSlot];
-            show2->worldOfMasters.kind = TVSHOW_WORLD_OF_MASTERS;
-            show2->worldOfMasters.active = FALSE; // NOTE: Show is not active until passed via Record Mix.
-            show2->worldOfMasters.numPokeCaught = show->worldOfMasters.numPokeCaught;
-            show2->worldOfMasters.steps = GetGameStat(GAME_STAT_STEPS) - show->worldOfMasters.steps;
-            show2->worldOfMasters.caughtPoke = show->worldOfMasters.caughtPoke;
-            show2->worldOfMasters.species = show->worldOfMasters.species;
-            show2->worldOfMasters.location = show->worldOfMasters.location;
-            StringCopy(show2->worldOfMasters.playerName, gSaveBlock2Ptr->playerName);
-            StorePlayerIdInRecordMixShow(show2);
-            show2->worldOfMasters.language = gGameLanguage;
-            DeleteTVShowInArrayByIdx(gSaveBlock1Ptr->tvShows, LAST_TVSHOW_IDX);
-        }
-    }
+	sCurTVShowSlot = FindFirstEmptyRecordMixTVShowSlot(gSaveBlock1Ptr->tvShows);
+	if (sCurTVShowSlot != -1 && IsRecordMixShowAlreadySpawned(TVSHOW_WORLD_OF_MASTERS, FALSE) != TRUE)
+	{
+		show2 = &gSaveBlock1Ptr->tvShows[sCurTVShowSlot];
+		show2->worldOfMasters.kind = TVSHOW_WORLD_OF_MASTERS;
+		show2->worldOfMasters.active = FALSE; // NOTE: Show is not active until passed via Record Mix.
+		show2->worldOfMasters.numPokeCaught = show->worldOfMasters.numPokeCaught;
+		show2->worldOfMasters.steps = GetGameStat(GAME_STAT_STEPS) - show->worldOfMasters.steps;
+		show2->worldOfMasters.caughtPoke = show->worldOfMasters.caughtPoke;
+		show2->worldOfMasters.species = show->worldOfMasters.species;
+		show2->worldOfMasters.location = show->worldOfMasters.location;
+		StringCopy(show2->worldOfMasters.playerName, gSaveBlock2Ptr->playerName);
+		StorePlayerIdInRecordMixShow(show2);
+		show2->worldOfMasters.language = gGameLanguage;
+		DeleteTVShowInArrayByIdx(gSaveBlock1Ptr->tvShows, LAST_TVSHOW_IDX);
+	}
 }
 
 void TryPutTodaysRivalTrainerOnAir(void)
