@@ -111,7 +111,7 @@ void FieldGetPlayerInput(struct FieldInput *input, u16 newKeys, u16 heldKeys)
                 input->pressedBButton = TRUE;
             if (newKeys & L_BUTTON)
                 input->pressedLButton = TRUE;
-            if (newKeys & R_BUTTON && !((gPlayerAvatar.flags & PLAYER_AVATAR_FLAG_ACRO_BIKE) || gPlayerAvatar.flags & PLAYER_AVATAR_FLAG_UNDERWATER))
+            if (newKeys & R_BUTTON && !(gPlayerAvatar.flags & (PLAYER_AVATAR_FLAG_ACRO_BIKE | PLAYER_AVATAR_FLAG_UNDERWATER)))
                 input->pressedRButton = TRUE;
         }
 
