@@ -119,11 +119,11 @@ static void LoadPaletteOverrides(void)
 
 static bool8 ShouldTintOverworld(void)
 {
-    if (IsMapTypeOutdoors(gMapHeader.mapType))
-        return TRUE;
+    if (!IsMapTypeOutdoors(gMapHeader.mapType))
+        return FALSE;
 
     // more conditions?
-    return FALSE;
+    return TRUE;
 }
 
 bool32 LerpColors(u16 *rgbDest, const u16 *rgb1, const u16 *rgb2, u8 coeff)

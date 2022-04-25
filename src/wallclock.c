@@ -857,7 +857,8 @@ static void Task_SetClock_HandleConfirmInput(u8 taskId)
 
 static void Task_SetClock_Confirmed(u8 taskId)
 {
-    //RtcInitLocalTimeOffset(gTasks[taskId].tHours, gTasks[taskId].tMinutes);
+    gSaveBlock1Ptr->gameTime.hours = gTasks[taskId].tHours;
+    gSaveBlock1Ptr->gameTime.minutes = gTasks[taskId].tMinutes;
     BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 16, RGB_BLACK);
     gTasks[taskId].func = Task_SetClock_Exit;
 }
