@@ -194,36 +194,28 @@ static const struct {
     u16 moves[MAX_MON_MOVES];
     u8 level;
     u8 location;
+	u8 probability;
 } sPokeOutbreakSpeciesList[] = {
     {
-        .species = SPECIES_SEEDOT,
-        .moves = {MOVE_BIDE, MOVE_HARDEN, MOVE_LEECH_SEED},
-        .level = 3,
-        .location = MAP_NUM(ROUTE102)
+        .species = SPECIES_BLAZIKEN,
+        .moves = {MOVE_BLAZE_KICK, MOVE_CLOSE_COMBAT, MOVE_POWER_UP_PUNCH, MOVE_STONE_EDGE},
+        .level = 63,
+        .probability = 5,
+        .location = MAP_NUM(ROUTE112),
     },
     {
-        .species = SPECIES_NUZLEAF,
-        .moves = {MOVE_HARDEN, MOVE_GROWTH, MOVE_NATURE_POWER, MOVE_LEECH_SEED},
-        .level = 15,
-        .location = MAP_NUM(ROUTE114),
-    },
-    {
-        .species = SPECIES_SEEDOT,
-        .moves = {MOVE_HARDEN, MOVE_GROWTH, MOVE_NATURE_POWER, MOVE_LEECH_SEED},
-        .level = 13,
-        .location = MAP_NUM(ROUTE117),
-    },
-    {
-        .species = SPECIES_SEEDOT,
-        .moves = {MOVE_GIGA_DRAIN, MOVE_FRUSTRATION, MOVE_SOLAR_BEAM, MOVE_LEECH_SEED},
-        .level = 25,
+        .species = SPECIES_SWAMPERT,
+        .moves = {MOVE_LIQUIDATION, MOVE_HEADLONG_RUSH, MOVE_ICE_PUNCH, MOVE_DARKEST_LARIAT},
+        .level = 63,
+        .probability = 5,
         .location = MAP_NUM(ROUTE120),
     },
     {
-        .species = SPECIES_SKITTY,
-        .moves = {MOVE_GROWL, MOVE_TACKLE, MOVE_TAIL_WHIP, MOVE_ATTRACT},
-        .level = 8,
-        .location = MAP_NUM(ROUTE116),
+        .species = SPECIES_SCEPTILE,
+        .moves = {MOVE_LEAF_BLADE, MOVE_SWORDS_DANCE, MOVE_EARTHQUAKE, MOVE_LOW_SWEEP},
+        .level = 63,
+        .probability = 5,
+        .location = MAP_NUM(ROUTE118),
     }
 };
 
@@ -1629,7 +1621,7 @@ static void TryStartRandomMassOutbreak(void)
     u16 outbreakIdx;
     TVShow *show;
 
-    if (FlagGet(FLAG_SYS_GAME_CLEAR))
+    if (FlagGet(FLAG_SYS_GAME_CLEAR) && gSaveBlock1Ptr->outbreakDaysLeft != 0)
     {
         for (i = 0; i < LAST_TVSHOW_IDX; i++)
         {
@@ -1657,9 +1649,9 @@ static void TryStartRandomMassOutbreak(void)
                 show->massOutbreak.locationMapNum = sPokeOutbreakSpeciesList[outbreakIdx].location;
                 show->massOutbreak.locationMapGroup = 0;
                 show->massOutbreak.unused4 = 0;
-                show->massOutbreak.probability = 50;
+                show->massOutbreak.probability = sPokeOutbreakSpeciesList[outbreakIdx].probability;
                 show->massOutbreak.unused5 = 0;
-                show->massOutbreak.daysLeft = 1;
+                show->massOutbreak.daysLeft = 2;
                 StorePlayerIdInNormalShow(show);
                 show->massOutbreak.language = gGameLanguage;
             }

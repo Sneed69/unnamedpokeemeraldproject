@@ -1,7 +1,7 @@
 #ifndef GUARD_Game_TIME_H
 #define GUARD_Game_TIME_H
 
-#define TIME_SCALE 6
+#define TIME_SCALE 600
 #define STARTING_HOUR 9
 #define STARTING_MINUTE 45
 
