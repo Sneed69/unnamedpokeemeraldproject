@@ -1621,13 +1621,8 @@ static void TryStartRandomMassOutbreak(void)
     u16 outbreakIdx;
     TVShow *show;
 
-    if (FlagGet(FLAG_SYS_GAME_CLEAR) && gSaveBlock1Ptr->outbreakDaysLeft != 0)
+    if (FlagGet(FLAG_SYS_GAME_CLEAR) && gSaveBlock1Ptr->outbreakDaysLeft == 0)
     {
-        for (i = 0; i < LAST_TVSHOW_IDX; i++)
-        {
-            if (gSaveBlock1Ptr->tvShows[i].common.kind == TVSHOW_MASS_OUTBREAK)
-                return;
-        }
         if (!rbernoulli(1, 200))
         {
             sCurTVShowSlot = FindFirstEmptyNormalTVShowSlot(gSaveBlock1Ptr->tvShows);
