@@ -2905,18 +2905,17 @@ static void PrintOnAbilityPopUp(const u8 *str, u8 *spriteTileData1, u8 *spriteTi
 {
     u32 windowId, i;
     u8 *windowTileData;
-    u8 text1[MAX_CHARS_PRINTED];
-    u8 text2[MAX_CHARS_PRINTED];
+    u8 windowText[MAX_CHARS_PRINTED + 1];
 
     for (i = 0; i < MAX_CHARS_PRINTED; i++)
     {
-        text1[i] = str[i];
-        if (text1[i] == EOS)
+        if (str[i] == EOS)
             break;
+        windowText[i] = str[i];
     }
-    text1[i] = EOS;
+    windowText[i] = EOS;
 
-    windowTileData = AddTextPrinterAndCreateWindowOnAbilityPopUp(text1, x1, y, color1, color2, color3, &windowId);
+    windowTileData = AddTextPrinterAndCreateWindowOnAbilityPopUp(windowText, x1, y, color1, color2, color3, &windowId);
     TextIntoAbilityPopUp(spriteTileData1, windowTileData, 8, (y == 0));
     RemoveWindow(windowId);
 
@@ -2924,13 +2923,13 @@ static void PrintOnAbilityPopUp(const u8 *str, u8 *spriteTileData1, u8 *spriteTi
     {
         for (i = 0; i < MAX_CHARS_PRINTED; i++)
         {
-            text2[i] = str[MAX_CHARS_PRINTED + i];
-            if (text2[i] == EOS)
+            if (str[MAX_CHARS_PRINTED + i] == EOS)
                 break;
+            windowText[i] = str[MAX_CHARS_PRINTED + i];
         }
-        text2[i] = EOS;
+        windowText[i] = EOS;
 
-        windowTileData = AddTextPrinterAndCreateWindowOnAbilityPopUp(text2, x2, y, color1, color2, color3, &windowId);
+        windowTileData = AddTextPrinterAndCreateWindowOnAbilityPopUp(windowText, x2, y, color1, color2, color3, &windowId);
         TextIntoAbilityPopUp(spriteTileData2, windowTileData, 3, (y == 0));
         RemoveWindow(windowId);
     }
@@ -2979,7 +2978,7 @@ static void PrintBattlerOnAbilityPopUp(u8 battlerId, u8 spriteId1, u8 spriteId2)
     PrintOnAbilityPopUp((const u8 *)monName,
                         (void*)(OBJ_VRAM0) + (gSprites[spriteId1].oam.tileNum * 32),
                         (void*)(OBJ_VRAM0) + (gSprites[spriteId2].oam.tileNum * 32),
-                        7, 0,
+                        6, 0,
                         0,
                         2, 7, 1);
 }
@@ -2989,7 +2988,7 @@ static void PrintAbilityOnAbilityPopUp(u32 ability, u8 spriteId1, u8 spriteId2)
     PrintOnAbilityPopUp(gAbilityNames[ability],
                         (void*)(OBJ_VRAM0) + (gSprites[spriteId1].oam.tileNum * 32) + 256,
                         (void*)(OBJ_VRAM0) + (gSprites[spriteId2].oam.tileNum * 32) + 256,
-                        6, 1,
+                        7, 0,
                         4,
                         7, 9, 1);
 }

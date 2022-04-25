@@ -726,7 +726,7 @@ static void rfu_STC_readParentCandidateList(void)
             for (j = 0; j < RFU_GAME_NAME_LENGTH; ++j)
                 target->gname[j] = *packet_p++;
             ++packet_p;
-            for (j = 0; j < PLAYER_NAME_LENGTH + 1; ++j)
+            for (j = 0; j < 8; ++j)
                 target->uname[j] = *packet_p++;
             ++gRfuLinkStatus->findParentCount;
         }
