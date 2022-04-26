@@ -53,14 +53,18 @@ BerryTree_EventScript_CheckBerryFullyGrown::
 	buffernumberstring STR_VAR_2, VAR_0x8006
 	lock
 	faceplayer
+	special ObjectEventInteractionGetBerryCountString
 	special ObjectEventInteractionPickBerryTree
 	goto_if_eq VAR_0x8004, 0, BerryTree_EventScript_BerryPocketFull
 	special IncrementDailyPickedBerries
 	special ObjectEventInteractionRemoveBerryTree
 	message BerryTree_Text_PickedTheBerry
+	delay 10
+	showberrydesc
 	playfanfare MUS_OBTAIN_BERRY
 	waitmessage
 	waitfanfare
+	hideitemdesc
 	release
 	end
 
@@ -126,7 +130,7 @@ BerryTree_Text_BerryGrowthStage1:
 	.string "One {STR_VAR_1} was planted here.$"
 
 BerryTree_Text_PickedTheBerry:
-	.string "{PLAYER} picked the {STR_VAR_2} {STR_VAR_1}.$"
+	.string "{PLAYER} picked {STR_VAR_2} {STR_VAR_1}.$"
 
 BerryTree_Text_BerryPocketFull:
 	.string "The bag's berries pocket is full.\p"

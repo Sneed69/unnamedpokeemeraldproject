@@ -212,6 +212,8 @@ void NewGameInitData(void)
     FlagSet(FLAG_SYS_CLOCK_SET);
     gSaveBlock2Ptr->lastBerryTreeUpdate = gSaveBlock1Ptr->gameTime;
     VarSet(VAR_DAYS, gSaveBlock1Ptr->gameTime.days);
+    
+    memset(&gSaveBlock2Ptr->itemFlags, 0, sizeof(gSaveBlock2Ptr->itemFlags));
 }
 
 static void ResetMiniGamesRecords(void)
