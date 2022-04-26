@@ -21,8 +21,18 @@ Route119_OnTransition:
 	call Common_EventScript_SetupRivalGfxId
 	call Common_EventScript_SetupRivalOnBikeGfxId
 	call_if_eq VAR_WEATHER_INSTITUTE_STATE, 1, Route119_EventScript_MoveInstituteWorkersDownstairs
-	special SetRoute119Weather
+	call Route119_EventScript_EvaluateWeather
 	end
+
+Route119_EventScript_EvaluateWeather::
+	getplayerxy VAR_TEMP_0, VAR_TEMP_1
+	goto_if_gt VAR_TEMP_1, 137, Route119_DontSetWeather @coming from the bottom
+	goto_if_gt VAR_TEMP_1, 13, Route119_SetWeather @not coming from fortree
+	goto_if_lt VAR_TEMP_0, 7, Route119_SetWeather @northernmost secret base
+Route119_SetWeather:
+	setweather WEATHER_ROUTE119_CYCLE
+Route119_DontSetWeather:
+	return
 
 Route119_EventScript_MoveInstituteWorkersDownstairs::
 	setflag FLAG_HIDE_WEATHER_INSTITUTE_2F_WORKERS
