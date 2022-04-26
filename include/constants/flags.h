@@ -1382,13 +1382,13 @@
 #define FLAG_IS_CHAMPION                            (SYSTEM_FLAGS + 0x1F) // Seems to be related to linking.
 #define FLAG_NURSE_UNION_ROOM_REMINDER              (SYSTEM_FLAGS + 0x20)
 
-#define FLAG_UNUSED_0x881                           (SYSTEM_FLAGS + 0x21) // Unused Flag
-#define FLAG_UNUSED_0x882                           (SYSTEM_FLAGS + 0x22) // Unused Flag
-#define FLAG_UNUSED_0x883                           (SYSTEM_FLAGS + 0x23) // Unused Flag
-#define FLAG_UNUSED_0x884                           (SYSTEM_FLAGS + 0x24) // Unused Flag
-#define FLAG_UNUSED_0x885                           (SYSTEM_FLAGS + 0x25) // Unused Flag
-#define FLAG_UNUSED_0x886                           (SYSTEM_FLAGS + 0x26) // Unused Flag
-#define FLAG_UNUSED_0x887                           (SYSTEM_FLAGS + 0x27) // Unused Flag
+#define FLAG_VISITED_SAFARI_ENTRANCE				(SYSTEM_FLAGS + 0x21) // FORMERLY Unused Flag
+#define FLAG_VISITED_MT_PYRE		                (SYSTEM_FLAGS + 0x22) // FORMERLY Unused Flag
+#define FLAG_VISITED_SHOAL_CAVE						(SYSTEM_FLAGS + 0x23) // FORMERLY Unused Flag
+#define FLAG_VISITED_ROUTE126                       (SYSTEM_FLAGS + 0x24) // FORMERLY Unused Flag
+#define FLAG_VISITED_ROUTE127						(SYSTEM_FLAGS + 0x25) // FORMERLY Unused Flag
+#define FLAG_VISITED_ROUTE128                       (SYSTEM_FLAGS + 0x26) // FORMERLY Unused Flag
+#define FLAG_VISITED_ROUTE129                       (SYSTEM_FLAGS + 0x27) // FORMERLY Unused Flag
 
 #define FLAG_SYS_USE_FLASH                          (SYSTEM_FLAGS + 0x28)
 #define FLAG_SYS_USE_STRENGTH                       (SYSTEM_FLAGS + 0x29)
@@ -1397,8 +1397,8 @@
 #define FLAG_SYS_SAFARI_MODE                        (SYSTEM_FLAGS + 0x2C)
 #define FLAG_SYS_CRUISE_MODE                        (SYSTEM_FLAGS + 0x2D)
 
-#define FLAG_UNUSED_0x88E                           (SYSTEM_FLAGS + 0x2E) // Unused Flag
-#define FLAG_UNUSED_0x88F                           (SYSTEM_FLAGS + 0x2F) // Unused Flag
+#define FLAG_VISITED_ROUTE130						(SYSTEM_FLAGS + 0x2E) // FORMERLY Unused Flag
+#define FLAG_VISITED_ROUTE133						(SYSTEM_FLAGS + 0x2F) // FORMERLY Unused Flag
 
 #define FLAG_SYS_TV_HOME                            (SYSTEM_FLAGS + 0x30)
 #define FLAG_SYS_TV_WATCH                           (SYSTEM_FLAGS + 0x31)
@@ -1407,7 +1407,7 @@
 #define FLAG_SYS_MIX_RECORD                         (SYSTEM_FLAGS + 0x34)
 #define FLAG_SYS_CLOCK_SET                          (SYSTEM_FLAGS + 0x35)
 #define FLAG_SYS_NATIONAL_DEX                       (SYSTEM_FLAGS + 0x36)
-#define FLAG_SYS_CAVE_SHIP                          (SYSTEM_FLAGS + 0x37) // Unused Flag, leftover from R/S debug, presumably used by Emerald's debug too
+#define FLAG_VISITED_ROUTE134						(SYSTEM_FLAGS + 0x37) // FORMERLY Unused Flag, leftover from R/S debug, presumably used by Emerald's debug too
 #define FLAG_SYS_CAVE_WONDER                        (SYSTEM_FLAGS + 0x38) // Unused Flag, same as above
 #define FLAG_SYS_CAVE_BATTLE                        (SYSTEM_FLAGS + 0x39) // Unused Flag, same as above
 #define FLAG_SYS_SHOAL_TIDE                         (SYSTEM_FLAGS + 0x3A)
@@ -1497,7 +1497,7 @@
 #define FLAG_ARRIVED_AT_NAVEL_ROCK                  (SYSTEM_FLAGS + 0x81)
 #define FLAG_LANDMARK_TRAINER_HILL                  (SYSTEM_FLAGS + 0x82)
 
-#define FLAG_LANDMARK_COLOSSUS_GROTTO				(SYSTEM_FLAGS + 0x83) // Unused Flag
+#define FLAG_LANDMARK_COLOSSUS_GROTTO				(SYSTEM_FLAGS + 0x83) // Formerly Unused Flag
 
 #define FLAG_RECEIVED_POKEDEX_FROM_BIRCH            (SYSTEM_FLAGS + 0x84)
 

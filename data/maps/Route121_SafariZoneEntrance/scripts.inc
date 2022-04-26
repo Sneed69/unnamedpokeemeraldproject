@@ -1,6 +1,11 @@
 Route121_SafariZoneEntrance_MapScripts::
+	map_script MAP_SCRIPT_ON_TRANSITION, Route121_SafariZoneEntrance_OnTransition
 	map_script MAP_SCRIPT_ON_FRAME_TABLE, Route121_SafariZoneEntrance_OnFrame
 	.byte 0
+
+Route121_SafariZoneEntrance_OnTransition:
+	setflag FLAG_VISITED_SAFARI_ENTRANCE
+	end
 
 Route121_SafariZoneEntrance_OnFrame:
 	map_script_2 VAR_SAFARI_ZONE_STATE, 1, Route121_SafariZoneEntrance_EventScript_ExitSafariZone
