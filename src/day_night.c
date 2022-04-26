@@ -121,8 +121,8 @@ static bool8 ShouldTintOverworld(void)
 {
     if (!IsMapTypeOutdoors(gMapHeader.mapType))
         return FALSE;
-	if (gMapHeader.regionMapSectionId == MAPSEC_MT_PYRE)
-        return FALSE;
+	/*if (gMapHeader.regionMapSectionId == MAPSEC_MT_PYRE)
+        return FALSE;*/
 
     // more conditions?
     return TRUE;
@@ -275,6 +275,8 @@ void ProcessImmediateTimeEvents(void)
             LoadPaletteOverrides();
 
             if (gWeatherPtr->palProcessingState != WEATHER_PAL_STATE_SCREEN_FADING_IN &&
+                gWeatherPtr->palProcessingState != WEATHER_PAL_STATE_CHANGING_WEATHER &&
+                gWeatherPtr->palProcessingState != WEATHER_PAL_STATE_IDLE &&
                 gWeatherPtr->palProcessingState != WEATHER_PAL_STATE_SCREEN_FADING_OUT)
                 CpuCopy16(gPlttBufferUnfaded, gPlttBufferFaded, PLTT_SIZE);
         }
