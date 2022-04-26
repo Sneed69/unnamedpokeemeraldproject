@@ -60,25 +60,41 @@ Debug_CheatStart::
 	end
 
 Debug_Script_1::
+	setweather WEATHER_RAIN
+	doweather
 	end
 
 Debug_Script_2::
+	setweather WEATHER_RAIN_THUNDERSTORM
+	doweather
 	end
 
 Debug_Script_3::
+	setweather WEATHER_DOWNPOUR
+	doweather
 	end
 
 Debug_Script_4::
+	setweather WEATHER_SANDSTORM
+	doweather
 	end
 
 Debug_Script_5::
+	setweather WEATHER_SHADE
+	doweather
 	end
 
 Debug_Script_6::
+	setweather WEATHER_DROUGHT
+	doweather
 	end
 
 Debug_Script_7::
+	setweather WEATHER_SNOW
+	doweather
 	end
 
 Debug_Script_8::
+	setweather WEATHER_FOG_HORIZONTAL
+	doweather
 	end

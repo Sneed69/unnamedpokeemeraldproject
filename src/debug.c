@@ -300,14 +300,14 @@ static const u8 gDebugText_Give[] =             _("Give X");
 static const u8 gDebugText_Sound[] =            _("Sound");
 static const u8 gDebugText_Cancel[] =           _("Cancel");
 // Script menu
-static const u8 gDebugText_Util_Script_1[] =               _("Script 1");
-static const u8 gDebugText_Util_Script_2[] =               _("Script 2");
-static const u8 gDebugText_Util_Script_3[] =               _("Script 3");
-static const u8 gDebugText_Util_Script_4[] =               _("Script 4");
-static const u8 gDebugText_Util_Script_5[] =               _("Script 5");
-static const u8 gDebugText_Util_Script_6[] =               _("Script 6");
-static const u8 gDebugText_Util_Script_7[] =               _("Script 7");
-static const u8 gDebugText_Util_Script_8[] =               _("Script 8");
+static const u8 gDebugText_Util_Script_1[] =               _("Rain");
+static const u8 gDebugText_Util_Script_2[] =               _("Thunderstorm");
+static const u8 gDebugText_Util_Script_3[] =               _("Downpour");
+static const u8 gDebugText_Util_Script_4[] =               _("Sandstorm");
+static const u8 gDebugText_Util_Script_5[] =               _("Shade");
+static const u8 gDebugText_Util_Script_6[] =               _("Drought");
+static const u8 gDebugText_Util_Script_7[] =               _("Snow");
+static const u8 gDebugText_Util_Script_8[] =               _("Fog");
 // Util Menu
 static const u8 gDebugText_Util_HealParty[] =               _("Heal Party");
 static const u8 gDebugText_Util_Fly[] =                     _("Fly to map");
