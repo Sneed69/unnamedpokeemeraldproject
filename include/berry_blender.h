@@ -11,6 +11,8 @@
 #define BLENDER_COMM_PROGRESS_BAR  5
 #define BLENDER_COMM_ARROW_POS     6
 
+#define BERRY_SPRITE_OFFSET -4
+
 extern u8 gInGameOpponentsNo;
 
 void DoBerryBlending(void);
