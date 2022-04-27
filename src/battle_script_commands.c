@@ -3509,8 +3509,11 @@ void SetMoveEffect(bool32 primary, u32 certain)
                 gBattleMons[gBattlerAttacker].status2 |= STATUS2_ESCAPE_PREVENTION;
                 break;
             case MOVE_EFFECT_SCALE_SHOT:
-                BattleScriptPush(gBattlescriptCurrInstr + 1);
-                gBattlescriptCurrInstr = BattleScript_DefDownSpeedUp;
+				if (!NoAliveMonsForEitherParty())
+				{
+					BattleScriptPush(gBattlescriptCurrInstr + 1);
+					gBattlescriptCurrInstr = BattleScript_DefDownSpeedUp;
+				}
                 break;
             }
         }
