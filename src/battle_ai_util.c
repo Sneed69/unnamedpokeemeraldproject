@@ -3287,7 +3287,7 @@ s32 AI_CalcPartyMonDamage(u16 move, u8 battlerAtk, u8 battlerDef, struct Pokemon
     for (i = 0; i < MAX_BATTLERS_COUNT; i++)
         battleMons[i] = gBattleMons[i];
 
-    PokemonToBattleMon(mon, &gBattleMons[battlerAtk]);
+    PokemonToBattleMon(mon, &gBattleMons[battlerAtk], TRUE);
     dmg = AI_CalcDamage(move, battlerAtk, battlerDef);
 
     for (i = 0; i < MAX_BATTLERS_COUNT; i++)

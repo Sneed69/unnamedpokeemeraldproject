@@ -5449,7 +5449,7 @@ void RemoveBattleMonPPBonus(struct BattlePokemon *mon, u8 moveIndex)
     mon->ppBonuses &= gPPUpClearMask[moveIndex];
 }
 
-void PokemonToBattleMon(struct Pokemon *src, struct BattlePokemon *dst)
+void PokemonToBattleMon(struct Pokemon *src, struct BattlePokemon *dst, bool8 resetStats)
 {
     s32 i;
     u8 nickname[POKEMON_NAME_LENGTH * 2];
@@ -5491,15 +5491,18 @@ void PokemonToBattleMon(struct Pokemon *src, struct BattlePokemon *dst)
     StringCopy_Nickname(dst->nickname, nickname);
     GetMonData(src, MON_DATA_OT_NAME, dst->otName);
 
-    for (i = 0; i < NUM_BATTLE_STATS; i++)
-        dst->statStages[i] = DEFAULT_STAT_STAGE;
+	if (resetStats)
+	{
+		for (i = 0; i < NUM_BATTLE_STATS; i++)
+			dst->statStages[i] = DEFAULT_STAT_STAGE;
 
-    dst->status2 = 0;
+		dst->status2 = 0;
+	}
 }
 
-void CopyPlayerPartyMonToBattleData(u8 battlerId, u8 partyIndex)
+void CopyPlayerPartyMonToBattleData(u8 battlerId, u8 partyIndex, bool8 resetStats)
 {
-    PokemonToBattleMon(&gPlayerParty[partyIndex], &gBattleMons[battlerId]);
+    PokemonToBattleMon(&gPlayerParty[partyIndex], &gBattleMons[battlerId], resetStats);
     gBattleStruct->hpOnSwitchout[GetBattlerSide(battlerId)] = gBattleMons[battlerId].hp;
     UpdateSentPokesToOpponentValue(battlerId);
     ClearTemporarySpeciesSpriteData(battlerId, FALSE);
@@ -5933,7 +5936,7 @@ bool8 PokemonUseItemEffects(struct Pokemon *mon, u16 item, u8 partyIndex, u8 mov
                                 if (battlerId != MAX_BATTLERS_COUNT)
                                 {
                                     gAbsentBattlerFlags &= ~gBitTable[battlerId];
-                                    CopyPlayerPartyMonToBattleData(battlerId, GetPartyIdFromBattlePartyId(gBattlerPartyIndexes[battlerId]));
+                                    CopyPlayerPartyMonToBattleData(battlerId, GetPartyIdFromBattlePartyId(gBattlerPartyIndexes[battlerId]), TRUE);
                                     if (GetBattlerSide(gActiveBattler) == B_SIDE_PLAYER && gBattleResults.numRevivesUsed < 255)
                                         gBattleResults.numRevivesUsed++;
                                 }
