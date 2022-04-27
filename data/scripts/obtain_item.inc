@@ -34,7 +34,7 @@ EventScript_BufferItemsPocket::
 	return
 	
 EventScript_BufferConsumablesPocket::
-	bufferstdstring STR_VAR_3, STDSTRING_ITEMS
+	bufferstdstring STR_VAR_3, STDSTRING_CONSUMABLES
 	call_if_eq VAR_0x8007, TRUE, EventScript_PlayFanfareObtainedItem
 	return
 
