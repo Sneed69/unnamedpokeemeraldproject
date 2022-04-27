@@ -10,8 +10,10 @@ void RoamerMove(u8 index);
 bool8 IsRoamerAt(u8 id, u8 mapGroup, u8 mapNum);
 void CreateRoamerMonInstance(u8 id);
 u8 TryStartRoamerEncounter(void);
-void UpdateRoamerHPStatus(u8 index, struct Pokemon *mon);
+void UpdateRoamerHPStatus(struct Pokemon *mon);
 void SetRoamerInactive(u8 index);
 void GetRoamerLocation(u8 index, u8 *mapGroup, u8 *mapNum);
+
+extern u8 gEncounteredRoamerIndex;
 
 #endif // GUARD_ROAMER_H

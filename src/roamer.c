@@ -15,9 +15,10 @@ enum
     MAP_NUM, // map number
 };
 
-#define ROAMER(x) (&gSaveBlock1Ptr->roamer[x])
+#define ROAMER(index) (&gSaveBlock1Ptr->roamer[index])
 EWRAM_DATA static u8 sLocationHistory[ROAMER_COUNT][3][2] = {0};
 EWRAM_DATA static u8 sRoamerLocation[ROAMER_COUNT][2] = {0};
+EWRAM_DATA u8 gEncounteredRoamerIndex = 0;
 
 #define ___ MAP_NUM(UNDEFINED) // For empty spots in the location table
 
@@ -75,11 +76,9 @@ static const u8 sRoamerLocations[][6] =
 #define NUM_LOCATION_SETS (ARRAY_COUNT(sRoamerLocations) - 1)
 #define NUM_LOCATIONS_PER_SET (ARRAY_COUNT(sRoamerLocations[0]))
 
-void ClearRoamerData(void)
+void ClearRoamerData()
 {
-	u8 i;
-	for (i = 0; i < ROAMER_COUNT; i++)
-		memset(ROAMER(i), 0, sizeof(*ROAMER(i)));
+	memset(&gSaveBlock1Ptr->roamer, 0, sizeof(&gSaveBlock1Ptr->roamer));
 }
 
 void ClearRoamerLocationData(void)
@@ -99,33 +98,30 @@ void ClearRoamerLocationData(void)
 	}
 }
 
-static void CreateInitialRoamerMon(u16 species, u8 index)
+static void CreateInitialRoamerMon(u8 index, u16 species)
 {
     CreateMon(&gEnemyParty[0], species, 70, 31, FALSE, 0, OT_ID_PLAYER_ID, 0);
+    ROAMER(index)->ivs = GetMonData(&gEnemyParty[0], MON_DATA_IVS);
+    ROAMER(index)->personality = GetMonData(&gEnemyParty[0], MON_DATA_PERSONALITY);
     ROAMER(index)->species = species;
     ROAMER(index)->level = 70;
     ROAMER(index)->status = 0;
-    ROAMER(index)->active = TRUE;
-    ROAMER(index)->ivs = GetMonData(&gEnemyParty[0], MON_DATA_IVS);
-    ROAMER(index)->personality = GetMonData(&gEnemyParty[0], MON_DATA_PERSONALITY);
     ROAMER(index)->hp = GetMonData(&gEnemyParty[0], MON_DATA_MAX_HP);
     ROAMER(index)->cool = GetMonData(&gEnemyParty[0], MON_DATA_COOL);
     ROAMER(index)->beauty = GetMonData(&gEnemyParty[0], MON_DATA_BEAUTY);
     ROAMER(index)->cute = GetMonData(&gEnemyParty[0], MON_DATA_CUTE);
     ROAMER(index)->smart = GetMonData(&gEnemyParty[0], MON_DATA_SMART);
     ROAMER(index)->tough = GetMonData(&gEnemyParty[0], MON_DATA_TOUGH);
+    ROAMER(index)->active = TRUE;
     sRoamerLocation[index][MAP_GRP] = ROAMER_MAP_GROUP;
     sRoamerLocation[index][MAP_NUM] = sRoamerLocations[Random() % NUM_LOCATION_SETS][0];
-	GetSetPokedexFlag(SpeciesToNationalPokedexNum(ROAMER(index)->species), FLAG_SET_SEEN);
+	GetSetPokedexFlag(SpeciesToNationalPokedexNum(ROAMER(index)->species), FLAG_SET_SEEN); //Set Pokedex to seen
 }
 
-// gSpecialVar_0x8004 here corresponds to the options in the multichoice MULTI_TV_LATI (0 for 'Red', 1 for 'Blue')
 void InitRoamer(void)
 {
-    ClearRoamerData();
-    ClearRoamerLocationData();
-    CreateInitialRoamerMon(SPECIES_LATIAS, 0);
-    CreateInitialRoamerMon(SPECIES_LATIOS, 1);
+    CreateInitialRoamerMon(0, SPECIES_LATIAS);
+    CreateInitialRoamerMon(1, SPECIES_LATIOS);
 }
 
 void UpdateLocationHistoryForRoamer(void)
@@ -231,7 +227,7 @@ void CreateRoamerMonInstance(u8 index)
     SetMonData(mon, MON_DATA_TOUGH, &ROAMER(index)->tough);
 }
 
-u8 TryStartRoamerEncounter(void)
+bool8 TryStartRoamerEncounter(void)
 {
 	u8 i;
 	for (i = 0; i < ROAMER_COUNT; i++)
@@ -239,18 +235,19 @@ u8 TryStartRoamerEncounter(void)
 		if (IsRoamerAt(i, gSaveBlock1Ptr->location.mapGroup, gSaveBlock1Ptr->location.mapNum) == TRUE && (Random() % 4) == 0)
 		{
 			CreateRoamerMonInstance(i);
-			return i;
+			gEncounteredRoamerIndex = i;
+			return TRUE;
 		}
 	}
-	return ROAMER_COUNT;
+	return FALSE;
 }
 
-void UpdateRoamerHPStatus(u8 index, struct Pokemon *mon)
+void UpdateRoamerHPStatus(struct Pokemon *mon)
 {
-    ROAMER(index)->hp = GetMonData(mon, MON_DATA_HP);
-    ROAMER(index)->status = GetMonData(mon, MON_DATA_STATUS);
+    ROAMER(gEncounteredRoamerIndex)->hp = GetMonData(mon, MON_DATA_HP);
+    ROAMER(gEncounteredRoamerIndex)->status = GetMonData(mon, MON_DATA_STATUS);
 
-    RoamerMoveToOtherLocationSet(index);
+    RoamerMoveToOtherLocationSet(gEncounteredRoamerIndex);
 }
 
 void SetRoamerInactive(u8 index)
