@@ -2165,38 +2165,36 @@ static const u8 sYellowScarfDesc[] = _(
 // EV Gain Modifiers
 static const u8 sMachoBraceDesc[] = _(
     "A hold item that\n"
-    "promotes growth,\n"
-    "but reduces Speed.");
+    "promotes growth.");
 
 static const u8 sPowerWeightDesc[] = _(
     "A hold item that\n"
-    "promotes HP gain,\n"
-    "but reduces Speed.");
+    "promotes HP gain.");
 
 static const u8 sPowerBracerDesc[] = _(
-    "Hold item that pro-\n"
-    "motes Attack gain,\n"
-    "but reduces Speed.");
+    "A hold item\n"
+    "that promotes\n"
+    "Attack gain.");
 
 static const u8 sPowerBeltDesc[] = _(
-    "Hold item that pro-\n"
-    "motes Defense gain,\n"
-    "but reduces Speed.");
+    "A hold item\n"
+    "that promotes\n"
+    "Defense gain.");
 
 static const u8 sPowerLensDesc[] = _(
-    "Hold item that pro-\n"
-    "motes Sp. Atk gain,\n"
-    "but reduces Speed.");
+    "A hold item\n"
+    "that promotes\n"
+    "Sp. Atk gain.");
 
 static const u8 sPowerBandDesc[] = _(
-    "Hold item that pro-\n"
-    "motes Sp. Def gain,\n"
-    "but reduces Speed.");
+    "A hold item\n"
+    "that promotes\n"
+    "Sp. Def gain.");
 
 static const u8 sPowerAnkletDesc[] = _(
-    "Hold item that pro-\n"
-    "motes Speed gain,\n"
-    "but reduces Speed.");
+    "A hold item\n"
+    "that promotes\n"
+    "Speed gain.");
 
 // Type-boosting Held Items
 static const u8 sSilkScarfDesc[] = _(
