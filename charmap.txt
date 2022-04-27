@@ -346,7 +346,9 @@ ARCHIE         = FD 0A
 MAXIE          = FD 0B
 KYOGRE         = FD 0C
 GROUDON        = FD 0D
-POSSESSIVE     = FD 0F
+SUBJECTIVE	   = FD 0E
+OBJECTIVE	   = FD 0F
+POSSESSIVE     = FD 10
 
 @ battle string placeholders
 

@@ -5,8 +5,6 @@
 extern const u8 gText_ExpandedPlaceholder_Empty[];
 extern const u8 gText_ExpandedPlaceholder_Kun[];
 extern const u8 gText_ExpandedPlaceholder_Chan[];
-extern const u8 gText_ExpandedPlaceholder_His[];
-extern const u8 gText_ExpandedPlaceholder_Her[];
 extern const u8 gText_ExpandedPlaceholder_Sapphire[];
 extern const u8 gText_ExpandedPlaceholder_Ruby[];
 extern const u8 gText_ExpandedPlaceholder_Emerald[];
@@ -18,6 +16,11 @@ extern const u8 gText_ExpandedPlaceholder_Kyogre[];
 extern const u8 gText_ExpandedPlaceholder_Groudon[];
 extern const u8 gText_ExpandedPlaceholder_Brendan[];
 extern const u8 gText_ExpandedPlaceholder_May[];
+extern const u8 gText_ExpandedPlaceholder_He[];
+extern const u8 gText_ExpandedPlaceholder_She[];
+extern const u8 gText_ExpandedPlaceholder_Him[];
+extern const u8 gText_ExpandedPlaceholder_His[];
+extern const u8 gText_ExpandedPlaceholder_Her[];
 
 extern const u8 gText_FromSpace[];
 

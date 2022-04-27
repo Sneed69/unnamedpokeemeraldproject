@@ -497,6 +497,21 @@ static const u8 *ExpandPlaceholder_Groudon(void)
     return gText_ExpandedPlaceholder_Groudon;
 }
 
+static const u8 *ExpandPlaceholder_Subjective(void)
+{
+    if (gSaveBlock2Ptr->playerGender == MALE)
+        return gText_ExpandedPlaceholder_He;
+    else
+        return gText_ExpandedPlaceholder_She;
+}
+
+static const u8 *ExpandPlaceholder_Objective(void)
+{
+    if (gSaveBlock2Ptr->playerGender == MALE)
+        return gText_ExpandedPlaceholder_Him;
+    else
+        return gText_ExpandedPlaceholder_Her;
+}
 
 static const u8 *ExpandPlaceholder_Possessive(void)
 {
@@ -526,6 +541,8 @@ const u8 *GetExpandedPlaceholder(u32 id)
         [PLACEHOLDER_ID_MAXIE]        = ExpandPlaceholder_Maxie,
         [PLACEHOLDER_ID_KYOGRE]       = ExpandPlaceholder_Kyogre,
         [PLACEHOLDER_ID_GROUDON]      = ExpandPlaceholder_Groudon,
+        [PLACEHOLDER_ID_SUBJECTIVE]   = ExpandPlaceholder_Subjective,
+        [PLACEHOLDER_ID_OBJECTIVE]	  = ExpandPlaceholder_Objective,
         [PLACEHOLDER_ID_POSSESSIVE]   = ExpandPlaceholder_Possessive,
     };
 

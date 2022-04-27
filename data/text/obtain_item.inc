@@ -10,7 +10,7 @@ gText_TheBagIsFull::
 
 gText_PutItemInPocket::
 	.string "{PLAYER} put the {STR_VAR_2}\n"
-	.string "in {POSSESSIVE} {STR_VAR_3} pocket.$"
+	.string "in {POSSESSIVE} bag's {STR_VAR_3} pocket.$"
 
 gText_PlayerFoundOneItem::
 	.string "{PLAYER} found one {STR_VAR_2}!$"
