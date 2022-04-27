@@ -5,6 +5,8 @@
 
 #define NUM_TEXT_PRINTERS 32
 
+#define CAPITALIZE_CHAR(c) (c += CHAR_A - CHAR_a)
+
 // Given as a text speed when all the text should be
 // loaded at once but not copied to vram yet.
 #define TEXT_SKIP_DRAW 0xFF
@@ -94,6 +96,7 @@ struct TextPrinter
     u8 scrollDistance;
     u8 minLetterSpacing;  // 0x20
     u8 japanese;
+    bool8 capitalize;
 };
 
 struct FontInfo

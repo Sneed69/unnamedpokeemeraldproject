@@ -1099,6 +1099,9 @@ static u16 RenderText(struct TextPrinter *textPrinter)
             case EXT_CTRL_CODE_ENG:
                 textPrinter->japanese = FALSE;
                 return RENDER_REPEAT;
+            case EXT_CTRL_CODE_CAPITALIZE:
+				textPrinter->capitalize = TRUE;
+                return RENDER_REPEAT;
             }
             break;
         case CHAR_PROMPT_CLEAR:
@@ -1121,7 +1124,14 @@ static u16 RenderText(struct TextPrinter *textPrinter)
         case EOS:
             return RENDER_FINISH;
         }
-
+		
+		if (textPrinter->capitalize)
+		{
+			textPrinter->capitalize = FALSE;
+			if (currChar >= CHAR_a && currChar <= CHAR_z)
+				CAPITALIZE_CHAR(currChar);
+		}
+		
         switch (subStruct->fontId)
         {
         case FONT_SMALL:
@@ -1165,6 +1175,7 @@ static u16 RenderText(struct TextPrinter *textPrinter)
             else
                 textPrinter->printerTemplate.currentX += gCurGlyph.width;
         }
+		
         return RENDER_PRINT;
     case RENDER_STATE_WAIT:
         if (TextPrinterWait(textPrinter))

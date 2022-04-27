@@ -447,6 +447,7 @@ JPN = FC 15
 ENG = FC 16
 PAUSE_MUSIC = FC 17
 RESUME_MUSIC = FC 18
+'^' = FC 19 @capitalize next letter
 
 @ fonts
 
