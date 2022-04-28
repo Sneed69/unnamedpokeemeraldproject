@@ -1093,7 +1093,7 @@ static bool8 TryGetAbilityInfluencedWildMonIndex(const struct WildPokemon *wildM
 
 static void ApplyFluteEncounterRateMod(u32 *encRate)
 {
-    if (FlagGet(FLAG_SYS_ENC_UP_ITEM) == TRUE)
+    if (FlagGet(FLAG_SYS_ENC_UP_ITEM))
         *encRate += *encRate / 2;
     else if (FlagGet(FLAG_SYS_ENC_DOWN_ITEM) == TRUE)
         *encRate = *encRate / 2;
