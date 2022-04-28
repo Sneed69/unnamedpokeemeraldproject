@@ -76,7 +76,7 @@ static const u8 sRoamerLocations[][6] =
 #define NUM_LOCATION_SETS (ARRAY_COUNT(sRoamerLocations) - 1)
 #define NUM_LOCATIONS_PER_SET (ARRAY_COUNT(sRoamerLocations[0]))
 
-void ClearRoamerData()
+void ClearRoamerData(void)
 {
 	memset(&gSaveBlock1Ptr->roamer, 0, sizeof(&gSaveBlock1Ptr->roamer));
 }
