@@ -18,6 +18,7 @@ struct PokemonSubstruct0
     /*0x09*/ u8 friendship;
     /*0x0A*/ u16 pokeball:5; //31 balls
     /*0x0B*/ u16 hiddenNature:5;  // 25 natures
+			 u16 filler:6;
 }; /* size = 12 */
 
 struct PokemonSubstruct1
@@ -47,10 +48,10 @@ struct PokemonSubstruct3
  /* 0x00 */ u8 pokerus;
  /* 0x01 */ u8 metLocation;
 
- /* 0x02 */ u8 metLevel:7;
- /* 0x02 */ u8 otGender:1;
- /* 0x03 */ u8 metGame:4;
- ///* 0x03 */ u16 unused3_3:4;
+ /* 0x02 */ u16 metLevel:7;
+ /* 0x03 */ u16 metGame:4;
+ /* 0x02 */ u16 otGender:1;
+ /* 0x03 */ u16 unused3_3:4;
 
  /* 0x04 */ u32 hpIV:5;
  /* 0x04 */ u32 attackIV:5;
@@ -59,6 +60,7 @@ struct PokemonSubstruct3
  /* 0x05 */ u32 spAttackIV:5;
  /* 0x06 */ u32 spDefenseIV:5;
  /* 0x07 */ u32 isEgg:1;
+			u32 unused:1;
 
  /* 0x08 */ u32 coolRibbon:3;
  /* 0x08 */ u32 beautyRibbon:3;
@@ -105,15 +107,14 @@ struct BoxPokemon
     u32 personality;
     u32 otId;
     u8 nickname[POKEMON_NAME_LENGTH];
-    u8 language;
+    u8 language:3;
     u8 isBadEgg:1;
     u8 hasSpecies:1;
     u8 isEgg:1;
-    //u8 unused:5;
+    u8 unused:2;
     u8 otName[PLAYER_NAME_LENGTH];
     u8 markings;
     u16 checksum;
-    u16 unknown;
 
     union
     {
