@@ -72,16 +72,8 @@ struct PokemonSubstruct3
  /* 0x0A */ u32 victoryRibbon:1;
  /* 0x0A */ u32 artistRibbon:1;
  /* 0x0A */ u32 effortRibbon:1;
- /* 0x0A */ u32 marineRibbon:1; // never distributed
- /* 0x0A */ u32 landRibbon:1; // never distributed
- /* 0x0A */ u32 skyRibbon:1; // never distributed
- /* 0x0A */ u32 countryRibbon:1; // distributed during Pokémon Festa '04 and '05 to tournament winners
- /* 0x0B */ u32 nationalRibbon:1;
- /* 0x0B */ u32 earthRibbon:1;
- /* 0x0B */ u32 worldRibbon:1; // distributed during Pokémon Festa '04 and '05 to tournament winners
- /* 0x0B */ u32 unusedRibbons:2; // discarded in Gen 4
  /* 0x0B */ u32 abilityNum:2;
- /* 0x0B */ u32 unusedFiller:1;
+ /* 0x0B */ u32 unusedFiller:10;
 }; /* size = 12 */
 
 // Number of bytes in the largest Pokémon substruct.
