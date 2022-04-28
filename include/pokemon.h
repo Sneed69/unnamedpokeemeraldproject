@@ -14,7 +14,7 @@ struct PokemonSubstruct0
     /*0x00*/ u16 species;
     /*0x02*/ u16 heldItem;
     /*0x04*/ u32 experience;
-    /*0x08*/ u8 ppBonuses;
+    /*0x08*/ u8 unused;
     /*0x09*/ u8 friendship;
     /*0x0A*/ u16 pokeball:5; //31 balls
     /*0x0B*/ u16 hiddenNature:5;  // 25 natures

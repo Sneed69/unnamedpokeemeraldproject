@@ -4515,9 +4515,6 @@ u32 GetBoxMonData(struct BoxPokemon *boxMon, s32 field, u8 *data)
     case MON_DATA_EXP:
         retVal = substruct0->experience;
         break;
-    case MON_DATA_PP_BONUSES:
-        retVal = substruct0->ppBonuses;
-        break;
     case MON_DATA_FRIENDSHIP:
         retVal = substruct0->friendship;
         break;
@@ -4833,9 +4830,6 @@ void SetBoxMonData(struct BoxPokemon *boxMon, s32 field, const void *dataArg)
         break;
     case MON_DATA_EXP:
         SET32(substruct0->experience);
-        break;
-    case MON_DATA_PP_BONUSES:
-        SET8(substruct0->ppBonuses);
         break;
     case MON_DATA_FRIENDSHIP:
         SET8(substruct0->friendship);
