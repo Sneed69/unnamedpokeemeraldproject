@@ -13458,8 +13458,6 @@ static void Cmd_handleballthrow(void)
 			case SPECIES_REGIROCK:
 			case SPECIES_REGICE:
 			case SPECIES_REGISTEEL:
-			case SPECIES_REGIELEKI:
-			case SPECIES_REGIDRAGO:
 			case SPECIES_REGIGIGAS:
 				if (gBattleMons[gBattlerTarget].hp * 3 > gBattleMons[gBattlerTarget].maxHP)
 				{
