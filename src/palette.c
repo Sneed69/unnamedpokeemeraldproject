@@ -1023,7 +1023,7 @@ static bool32 IsBlendPalettesGraduallyTaskActive(u8 id)
     int i;
 
     for (i = 0; i < NUM_TASKS; i++)
-        if ((gTasks[i].isActive == TRUE)
+        if ((gTasks[i].isActive)
          && (gTasks[i].func == Task_BlendPalettesGradually)
          && (gTasks[i].tId == id))
             return TRUE;

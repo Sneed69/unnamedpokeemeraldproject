@@ -175,7 +175,7 @@ void TraderShowDecorationMenu(void)
 
 void DecorationItemsMenuAction_Trade(u8 taskId)
 {
-    if (IsSelectedDecorInThePC() == TRUE)
+    if (IsSelectedDecorInThePC())
     {
         gSpecialVar_0x8006 = gCurDecorationItems[gCurDecorationIndex];
         StringCopy(gStringVar3, gDecorations[gSpecialVar_0x8004].name);

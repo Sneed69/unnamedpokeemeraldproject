@@ -459,7 +459,7 @@ bool8 SecretBaseMapPopupEnabled(void)
 static void EnterNewlyCreatedSecretBase_WaitFadeIn(u8 taskId)
 {
     ObjectEventTurn(&gObjectEvents[gPlayerAvatar.objectEventId], DIR_NORTH);
-    if (IsWeatherNotFadingIn() == TRUE)
+    if (IsWeatherNotFadingIn())
     {
         EnableBothScriptContexts();
         DestroyTask(taskId);
@@ -538,7 +538,7 @@ void InitSecretBaseAppearance(bool8 hidePC)
             FindMetatileIdMapCoords(&x, &y, METATILE_SecretBase_PC);
             MapGridSetMetatileIdAt(x + MAP_OFFSET, y + MAP_OFFSET, METATILE_SecretBase_RegisterPC | MAPGRID_COLLISION_MASK);
         }
-        else if (hidePC == TRUE && VarGet(VAR_SECRET_BASE_INITIALIZED) == 1)
+        else if (hidePC && VarGet(VAR_SECRET_BASE_INITIALIZED) == 1)
         {
             // Change PC to regular ground tile.
             FindMetatileIdMapCoords(&x, &y, METATILE_SecretBase_PC);
@@ -594,8 +594,8 @@ void InitSecretBaseDecorationSprites(void)
             gSpecialVar_0x8006 = decorationPositions[i] >> 4;
             gSpecialVar_0x8007 = decorationPositions[i] & 0xF;
             metatileBehavior = MapGridGetMetatileBehaviorAt(gSpecialVar_0x8006 + MAP_OFFSET, gSpecialVar_0x8007 + MAP_OFFSET);
-            if (MetatileBehavior_HoldsSmallDecoration(metatileBehavior) == TRUE
-             || MetatileBehavior_HoldsLargeDecoration(metatileBehavior) == TRUE)
+            if (MetatileBehavior_HoldsSmallDecoration(metatileBehavior)
+             || MetatileBehavior_HoldsLargeDecoration(metatileBehavior))
             {
                 gSpecialVar_Result = VAR_OBJ_GFX_ID_0 + (gMapHeader.events->objectEvents[objectEventId].graphicsId - OBJ_EVENT_GFX_VAR_0);
                 VarSet(gSpecialVar_Result, gDecorations[decorations[i]].tiles[0]);
@@ -604,7 +604,7 @@ void InitSecretBaseDecorationSprites(void)
                 TrySpawnObjectEvent(gSpecialVar_Result, gSaveBlock1Ptr->location.mapNum, gSaveBlock1Ptr->location.mapGroup);
                 TryMoveObjectEventToMapCoords(gSpecialVar_Result, gSaveBlock1Ptr->location.mapNum, gSaveBlock1Ptr->location.mapGroup, gSpecialVar_0x8006, gSpecialVar_0x8007);
                 TryOverrideObjectEventTemplateCoords(gSpecialVar_Result, gSaveBlock1Ptr->location.mapNum, gSaveBlock1Ptr->location.mapGroup);
-                if (CurMapIsSecretBase() == TRUE && VarGet(VAR_CURRENT_SECRET_BASE) != 0)
+                if (CurMapIsSecretBase() && VarGet(VAR_CURRENT_SECRET_BASE) != 0)
                 {
                     if (category == DECORCAT_DOLL)
                     {
@@ -680,7 +680,7 @@ bool8 TrySetCurSecretBase(void)
 {
     SetCurSecretBaseId();
     TrySetCurSecretBaseIndex();
-    if (gSpecialVar_Result == TRUE)
+    if (gSpecialVar_Result)
         return FALSE;
 
     return TRUE;
@@ -868,7 +868,7 @@ static u8 GetNumRegisteredSecretBases(void)
     u8 count = 0;
     for (i = 1; i < SECRET_BASES_COUNT; i++)
     {
-        if (IsSecretBaseRegistered(i) == TRUE)
+        if (IsSecretBaseRegistered(i))
             count++;
     }
 
@@ -877,7 +877,7 @@ static u8 GetNumRegisteredSecretBases(void)
 
 void GetCurSecretBaseRegistrationValidity(void)
 {
-    if (IsSecretBaseRegistered(VarGet(VAR_CURRENT_SECRET_BASE)) == TRUE)
+    if (IsSecretBaseRegistered(VarGet(VAR_CURRENT_SECRET_BASE)))
         gSpecialVar_Result = 1;
     else if (GetNumRegisteredSecretBases() >= 10)
         gSpecialVar_Result = 2;
@@ -1226,7 +1226,7 @@ void SecretBasePerStepCallback(u8 taskId)
         tileId = MapGridGetMetatileIdAt(x, y);
         if (tileId == METATILE_SecretBase_SolidBoard_Top || tileId == METATILE_SecretBase_SolidBoard_Bottom)
         {
-            if (sInFriendSecretBase == TRUE)
+            if (sInFriendSecretBase)
                 VarSet(VAR_SECRET_BASE_HIGH_TV_FLAGS, VarGet(VAR_SECRET_BASE_HIGH_TV_FLAGS) | SECRET_BASE_USED_SOLID_BOARD);
         }
         else if (tileId == METATILE_SecretBase_SmallChair
@@ -1239,7 +1239,7 @@ void SecretBasePerStepCallback(u8 taskId)
               || tileId == METATILE_SecretBase_CampChair
               || tileId == METATILE_SecretBase_HardChair)
         {
-            if (sInFriendSecretBase == TRUE)
+            if (sInFriendSecretBase)
                 VarSet(VAR_SECRET_BASE_LOW_TV_FLAGS, VarGet(VAR_SECRET_BASE_LOW_TV_FLAGS) | SECRET_BASE_USED_CHAIR);
         }
         else if (tileId == METATILE_SecretBase_RedTent_DoorTop
@@ -1247,18 +1247,18 @@ void SecretBasePerStepCallback(u8 taskId)
               || tileId == METATILE_SecretBase_BlueTent_DoorTop
               || tileId == METATILE_SecretBase_BlueTent_Door)
         {
-            if (sInFriendSecretBase == TRUE)
+            if (sInFriendSecretBase)
                 VarSet(VAR_SECRET_BASE_LOW_TV_FLAGS, VarGet(VAR_SECRET_BASE_LOW_TV_FLAGS) | SECRET_BASE_USED_TENT);
         }
         else if ((behavior == MB_IMPASSABLE_NORTHEAST && tileId == METATILE_SecretBase_Stand_CornerRight)
               || (behavior == MB_IMPASSABLE_NORTHWEST && MapGridGetMetatileIdAt(x, y) == METATILE_SecretBase_Stand_CornerLeft))
         {
-            if (sInFriendSecretBase == TRUE)
+            if (sInFriendSecretBase)
                 VarSet(VAR_SECRET_BASE_HIGH_TV_FLAGS, VarGet(VAR_SECRET_BASE_HIGH_TV_FLAGS) | SECRET_BASE_USED_STAND);
         }
         else if (behavior == MB_IMPASSABLE_WEST_AND_EAST && tileId == METATILE_SecretBase_Slide_StairLanding)
         {
-            if (sInFriendSecretBase == TRUE)
+            if (sInFriendSecretBase)
             {
                 VarSet(VAR_SECRET_BASE_HIGH_TV_FLAGS, VarGet(VAR_SECRET_BASE_HIGH_TV_FLAGS) ^ SECRET_BASE_USED_SLIDE);
                 VarSet(VAR_SECRET_BASE_HIGH_TV_FLAGS, VarGet(VAR_SECRET_BASE_HIGH_TV_FLAGS) | SECRET_BASE_DECLINED_SLIDE);
@@ -1266,21 +1266,21 @@ void SecretBasePerStepCallback(u8 taskId)
         }
         else if (behavior == MB_SLIDE_SOUTH && tileId == METATILE_SecretBase_Slide_SlideTop)
         {
-            if (sInFriendSecretBase == TRUE)
+            if (sInFriendSecretBase)
             {
                 VarSet(VAR_SECRET_BASE_HIGH_TV_FLAGS, VarGet(VAR_SECRET_BASE_HIGH_TV_FLAGS) | SECRET_BASE_USED_SLIDE);
                 VarSet(VAR_SECRET_BASE_HIGH_TV_FLAGS, VarGet(VAR_SECRET_BASE_HIGH_TV_FLAGS) ^ SECRET_BASE_DECLINED_SLIDE);
             }
         }
-        else if (MetatileBehavior_IsSecretBaseGlitterMat(behavior) == TRUE)
+        else if (MetatileBehavior_IsSecretBaseGlitterMat(behavior))
         {
-            if (sInFriendSecretBase == TRUE)
+            if (sInFriendSecretBase)
                 VarSet(VAR_SECRET_BASE_HIGH_TV_FLAGS, VarGet(VAR_SECRET_BASE_HIGH_TV_FLAGS) | SECRET_BASE_USED_GLITTER_MAT);
         }
-        else if (MetatileBehavior_IsSecretBaseBalloon(behavior) == TRUE)
+        else if (MetatileBehavior_IsSecretBaseBalloon(behavior))
         {
             PopSecretBaseBalloon(MapGridGetMetatileIdAt(x, y), x, y);
-            if (sInFriendSecretBase == TRUE)
+            if (sInFriendSecretBase)
             {
                 switch ((int)MapGridGetMetatileIdAt(x, y))
                 {
@@ -1295,25 +1295,25 @@ void SecretBasePerStepCallback(u8 taskId)
                 }
             }
         }
-        else if (MetatileBehavior_IsSecretBaseBreakableDoor(behavior) == TRUE)
+        else if (MetatileBehavior_IsSecretBaseBreakableDoor(behavior))
         {
-            if (sInFriendSecretBase == TRUE)
+            if (sInFriendSecretBase)
                 VarSet(VAR_SECRET_BASE_HIGH_TV_FLAGS, VarGet(VAR_SECRET_BASE_HIGH_TV_FLAGS) | SECRET_BASE_USED_BREAKABLE_DOOR);
 
             ShatterSecretBaseBreakableDoor(x, y);
         }
-        else if (MetatileBehavior_IsSecretBaseSoundMat(behavior) == TRUE){
-            if (sInFriendSecretBase == TRUE)
+        else if (MetatileBehavior_IsSecretBaseSoundMat(behavior)){
+            if (sInFriendSecretBase)
                 VarSet(VAR_SECRET_BASE_LOW_TV_FLAGS, VarGet(VAR_SECRET_BASE_LOW_TV_FLAGS) | SECRET_BASE_USED_NOTE_MAT);
         }
-        else if (MetatileBehavior_IsSecretBaseJumpMat(behavior) == TRUE)
+        else if (MetatileBehavior_IsSecretBaseJumpMat(behavior))
         {
-            if (sInFriendSecretBase == TRUE)
+            if (sInFriendSecretBase)
                 VarSet(VAR_SECRET_BASE_HIGH_TV_FLAGS, VarGet(VAR_SECRET_BASE_HIGH_TV_FLAGS) | SECRET_BASE_USED_JUMP_MAT);
         }
-        else if (MetatileBehavior_IsSecretBaseSpinMat(behavior) == TRUE)
+        else if (MetatileBehavior_IsSecretBaseSpinMat(behavior))
         {
-            if (sInFriendSecretBase == TRUE)
+            if (sInFriendSecretBase)
                 VarSet(VAR_SECRET_BASE_HIGH_TV_FLAGS, VarGet(VAR_SECRET_BASE_HIGH_TV_FLAGS) | SECRET_BASE_USED_SPIN_MAT);
         }
         break;
@@ -1441,10 +1441,10 @@ static u8 TrySaveFriendsSecretBase(struct SecretBase *secretBase, u32 version, u
         // An existing secret base is using this location
         if (index != -1)
         {
-            if (gSaveBlock1Ptr->secretBases[index].toRegister == TRUE)
+            if (gSaveBlock1Ptr->secretBases[index].toRegister)
                 return 0;
 
-            if (gSaveBlock1Ptr->secretBases[index].registryStatus != NEW || secretBase->toRegister == TRUE)
+            if (gSaveBlock1Ptr->secretBases[index].registryStatus != NEW || secretBase->toRegister)
             {
                 // Overwrite unregistered base at this location
                 SaveSecretBase(index, secretBase, version, language);
@@ -1553,7 +1553,7 @@ static void DeleteFirstOldBaseFromPlayerInRecordMixingFriendsRecords(struct Secr
     {
         if (!(sbFlags & DELETED_BASE_A))
         {
-            if (SecretBaseBelongsToPlayer(&basesA[i]) == TRUE)
+            if (SecretBaseBelongsToPlayer(&basesA[i]))
             {
                 ClearSecretBase(&basesA[i]);
                 sbFlags |= DELETED_BASE_A;
@@ -1562,7 +1562,7 @@ static void DeleteFirstOldBaseFromPlayerInRecordMixingFriendsRecords(struct Secr
 
         if (!(sbFlags & DELETED_BASE_B))
         {
-            if (SecretBaseBelongsToPlayer(&basesB[i]) == TRUE)
+            if (SecretBaseBelongsToPlayer(&basesB[i]))
             {
                 ClearSecretBase(&basesB[i]);
                 sbFlags |= DELETED_BASE_B;
@@ -1571,7 +1571,7 @@ static void DeleteFirstOldBaseFromPlayerInRecordMixingFriendsRecords(struct Secr
 
         if (!(sbFlags & DELETED_BASE_C))
         {
-            if (SecretBaseBelongsToPlayer(&basesC[i]) == TRUE)
+            if (SecretBaseBelongsToPlayer(&basesC[i]))
             {
                 ClearSecretBase(&basesC[i]);
                 sbFlags |= DELETED_BASE_C;
@@ -1598,7 +1598,7 @@ static bool8 ClearDuplicateOwnedSecretBase(struct SecretBase *secretBase, struct
     {
         if (secretBases[i].secretBaseId != 0)
         {
-            if (SecretBasesBelongToSamePlayer(secretBase, &secretBases[i]) == TRUE)
+            if (SecretBasesBelongToSamePlayer(secretBase, &secretBases[i]))
             {
                 if (idx == 0)
                 {
@@ -1672,7 +1672,7 @@ static void ClearDuplicateOwnedSecretBases(struct SecretBase *playersBases, stru
 
 static void TrySaveRegisteredDuplicate(struct SecretBase *base, u32 version, u32 language)
 {
-    if (base->toRegister == TRUE)
+    if (base->toRegister)
     {
         TrySaveFriendsSecretBase(base, version, language);
         ClearSecretBase(base);
@@ -1766,7 +1766,7 @@ void ReceiveSecretBasesData(void *secretBases, size_t recordSize, u8 linkIdx)
         {
             // In the process of deleting duplicate bases, if a base the player has registered is deleted it is
             // flagged with the temporary toRegister flag, so it can be re-registered after it has been newly saved
-            if (gSaveBlock1Ptr->secretBases[i].toRegister == TRUE)
+            if (gSaveBlock1Ptr->secretBases[i].toRegister)
             {
                 gSaveBlock1Ptr->secretBases[i].registryStatus = REGISTERED;
                 gSaveBlock1Ptr->secretBases[i].toRegister = FALSE;
@@ -1815,7 +1815,7 @@ void InitSecretBaseVars(void)
 
 void CheckLeftFriendsSecretBase(void)
 {
-    if (VarGet(VAR_SECRET_BASE_IS_NOT_LOCAL) && sInFriendSecretBase == TRUE && !CurMapIsSecretBase())
+    if (VarGet(VAR_SECRET_BASE_IS_NOT_LOCAL) && sInFriendSecretBase && !CurMapIsSecretBase())
     {
         VarSet(VAR_SECRET_BASE_IS_NOT_LOCAL, FALSE);
         sInFriendSecretBase = FALSE;

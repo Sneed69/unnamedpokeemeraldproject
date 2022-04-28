@@ -5338,7 +5338,7 @@ static void Task_ShowTourneyTree(u8 taskId)
             int roundId, var2;
 
             CopyDomeTrainerName(gDisplayedStringBattle, DOME_TRAINERS[i].trainerId);
-            if (notInteractive == TRUE)
+            if (notInteractive)
             {
                 if (DOME_TRAINERS[i].isEliminated)
                 {
@@ -5378,7 +5378,7 @@ static void Task_ShowTourneyTree(u8 taskId)
             else
                 roundId = gSaveBlock2Ptr->frontier.curChallengeBattleNum - 1;
 
-            if (    ((notInteractive == TRUE && DOME_TRAINERS[i].eliminatedAt < gSaveBlock2Ptr->frontier.curChallengeBattleNum - 1)
+            if (    ((notInteractive && DOME_TRAINERS[i].eliminatedAt < gSaveBlock2Ptr->frontier.curChallengeBattleNum - 1)
                   || (notInteractive == FALSE && DOME_TRAINERS[i].eliminatedAt <= roundId))
                 && DOME_TRAINERS[i].isEliminated)
             {

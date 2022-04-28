@@ -1264,7 +1264,7 @@ static void DebugAction_Flags_Flags(u8 taskId)
     ConvertIntToDecimalStringN(gStringVar1, 0, STR_CONV_MODE_LEADING_ZEROS, DEBUG_NUMBER_DIGITS_FLAGS);
     ConvertIntToHexStringN(gStringVar2, 0, STR_CONV_MODE_LEFT_ALIGN, 3);
     StringExpandPlaceholders(gStringVar1, gDebugText_Flags_FlagHex);
-    if(FlagGet(0) == TRUE)
+    if(FlagGet(0))
         StringCopyPadded(gStringVar2, gDebugText_Flags_FlagSet, CHAR_SPACE, 15);
     else
         StringCopyPadded(gStringVar2, gDebugText_Flags_FlagUnset, CHAR_SPACE, 15);
@@ -1328,7 +1328,7 @@ static void DebugAction_Flags_FlagsSelect(u8 taskId)
         ConvertIntToDecimalStringN(gStringVar1, gTasks[taskId].data[3], STR_CONV_MODE_LEADING_ZEROS, DEBUG_NUMBER_DIGITS_FLAGS);
         ConvertIntToHexStringN(gStringVar2, gTasks[taskId].data[3], STR_CONV_MODE_LEFT_ALIGN, 3);
         StringExpandPlaceholders(gStringVar1, gDebugText_Flags_FlagHex);
-        if(FlagGet(gTasks[taskId].data[3]) == TRUE)
+        if(FlagGet(gTasks[taskId].data[3]))
             StringCopyPadded(gStringVar2, gDebugText_Flags_FlagSet, CHAR_SPACE, 15);
         else
             StringCopyPadded(gStringVar2, gDebugText_Flags_FlagUnset, CHAR_SPACE, 15);

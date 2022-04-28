@@ -1012,7 +1012,7 @@ static void HandleStartAffineAnim(struct Sprite *sprite)
     sprite->oam.affineMode = ST_OAM_AFFINE_DOUBLE;
     sprite->affineAnims = sMonAffineAnims;
 
-    if (sIsSummaryAnim == TRUE)
+    if (sIsSummaryAnim)
         InitSpriteAffineAnim(sprite);
 
     if (!sprite->sDontFlip)
@@ -1070,7 +1070,7 @@ static void ResetSpriteAfterAnim(struct Sprite *sprite)
     sprite->oam.affineMode = ST_OAM_AFFINE_NORMAL;
     CalcCenterToCornerVec(sprite, sprite->oam.shape, sprite->oam.size, sprite->oam.affineMode);
 
-    if (sIsSummaryAnim == TRUE)
+    if (sIsSummaryAnim)
     {
         if (!sprite->sDontFlip)
             sprite->hFlip = TRUE;

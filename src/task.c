@@ -126,7 +126,7 @@ static u8 FindFirstActiveTask(void)
     u8 taskId;
 
     for (taskId = 0; taskId < NUM_TASKS; taskId++)
-        if (gTasks[taskId].isActive == TRUE && gTasks[taskId].prev == HEAD_SENTINEL)
+        if (gTasks[taskId].isActive && gTasks[taskId].prev == HEAD_SENTINEL)
             break;
 
     return taskId;
@@ -157,7 +157,7 @@ bool8 FuncIsActiveTask(TaskFunc func)
     u8 i;
 
     for (i = 0; i < NUM_TASKS; i++)
-        if (gTasks[i].isActive == TRUE && gTasks[i].func == func)
+        if (gTasks[i].isActive && gTasks[i].func == func)
             return TRUE;
 
     return FALSE;
@@ -168,7 +168,7 @@ u8 FindTaskIdByFunc(TaskFunc func)
     s32 i;
 
     for (i = 0; i < NUM_TASKS; i++)
-        if (gTasks[i].isActive == TRUE && gTasks[i].func == func)
+        if (gTasks[i].isActive && gTasks[i].func == func)
             return (u8)i;
 
     return TASK_NONE; // No task was found.
@@ -180,7 +180,7 @@ u8 GetTaskCount(void)
     u8 count = 0;
 
     for (i = 0; i < NUM_TASKS; i++)
-        if (gTasks[i].isActive == TRUE)
+        if (gTasks[i].isActive)
             count++;
 
     return count;

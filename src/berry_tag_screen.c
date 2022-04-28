@@ -200,11 +200,11 @@ static void CB2_InitBerryTagScreen(void)
 {
     while (1)
     {
-        if (MenuHelpers_ShouldWaitForLinkRecv() == TRUE)
+        if (MenuHelpers_ShouldWaitForLinkRecv())
             break;
-        if (InitBerryTagScreen() == TRUE)
+        if (InitBerryTagScreen())
             break;
-        if (MenuHelpers_IsLinkActive() == TRUE)
+        if (MenuHelpers_IsLinkActive())
             break;
     }
 }

@@ -477,7 +477,7 @@ static void Task_EReader(u8 taskId)
     case ER_STATE_WAIT_DISCONNECT:
         if (!gReceivedRemoteLinkPlayers)
         {
-            if (data->status == TRUE) // Was data valid?
+            if (data->status) // Was data valid?
                 data->state = ER_STATE_SAVE;
             else
                 data->state = ER_STATE_LINK_ERROR;

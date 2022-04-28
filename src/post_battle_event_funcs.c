@@ -20,7 +20,7 @@ int GameClear(void)
 
     HealPlayerParty();
 
-    if (FlagGet(FLAG_SYS_GAME_CLEAR) == TRUE)
+    if (FlagGet(FLAG_SYS_GAME_CLEAR))
     {
         gHasHallOfFameRecords = TRUE;
     }
@@ -60,7 +60,7 @@ int GameClear(void)
         }
     }
 
-    if (ribbonGet == TRUE)
+    if (ribbonGet)
     {
         IncrementGameStat(GAME_STAT_RECEIVED_RIBBONS);
         FlagSet(FLAG_SYS_RIBBON_GET);

@@ -593,7 +593,7 @@ static bool8 MailReadBuildGraphics(void)
             }
             break;
         case 15:
-            if (Overworld_IsRecvQueueAtMax() == TRUE)
+            if (Overworld_IsRecvQueueAtMax())
                 return FALSE;
             break;
         case 16:
@@ -634,7 +634,7 @@ static void CB2_InitMailRead(void)
 {
     do
     {
-        if (MailReadBuildGraphics() == TRUE)
+        if (MailReadBuildGraphics())
         {
             SetMainCallback2(CB2_MailRead);
             break;

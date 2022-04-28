@@ -1404,7 +1404,7 @@ bool8 StorytellerUpdateStat(void)
     sStorytellerPtr = &gSaveBlock1Ptr->oldMan.storyteller;
     stat = sStorytellerPtr->gameStatIDs[sSelectedStory];
 
-    if (HasTrainerStatIncreased(sSelectedStory) == TRUE)
+    if (HasTrainerStatIncreased(sSelectedStory))
     {
         StorytellerRecordNewStat(sSelectedStory, stat);
         return TRUE;

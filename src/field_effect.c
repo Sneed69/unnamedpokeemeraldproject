@@ -1708,7 +1708,7 @@ static void FadeOutAtEndOfEscalator(void)
 
 static void WarpAtEndOfEscalator(void)
 {
-    if (!gPaletteFade.active && BGMusicStopped() == TRUE)
+    if (!gPaletteFade.active && BGMusicStopped())
     {
         StopEscalator();
         WarpIntoMap();
@@ -2080,7 +2080,7 @@ static bool8 LavaridgeGymB1FWarpEffect_FadeOut(struct Task *task, struct ObjectE
 
 static bool8 LavaridgeGymB1FWarpEffect_Warp(struct Task *task, struct ObjectEvent *objectEvent, struct Sprite *sprite)
 {
-    if (!gPaletteFade.active && BGMusicStopped() == TRUE)
+    if (!gPaletteFade.active && BGMusicStopped())
     {
         WarpIntoMap();
         gFieldCallback = FieldCB_LavaridgeGymB1FWarpExit;
@@ -2236,7 +2236,7 @@ static bool8 LavaridgeGym1FWarpEffect_FadeOut(struct Task *task, struct ObjectEv
 
 static bool8 LavaridgeGym1FWarpEffect_Warp(struct Task *task, struct ObjectEvent *objectEvent, struct Sprite *sprite)
 {
-    if (!gPaletteFade.active && BGMusicStopped() == TRUE)
+    if (!gPaletteFade.active && BGMusicStopped())
     {
         WarpIntoMap();
         gFieldCallback = FieldCB_FallWarpExit;
@@ -2300,7 +2300,7 @@ static void EscapeRopeWarpOutEffect_Spin(struct Task *task)
     objectEvent = &gObjectEvents[gPlayerAvatar.objectEventId];
     if (!ObjectEventIsMovementOverridden(objectEvent) || ObjectEventClearHeldMovementIfFinished(objectEvent))
     {
-        if (task->tTimer == 0 && !gPaletteFade.active && BGMusicStopped() == TRUE)
+        if (task->tTimer == 0 && !gPaletteFade.active && BGMusicStopped())
         {
             SetObjectEventDirection(objectEvent, task->tStartDir);
             SetWarpDestinationToEscapeWarp();
@@ -2467,7 +2467,7 @@ static void TeleportWarpOutFieldEffect_End(struct Task *task)
             task->data[5] = TRUE;
         }
 
-        if (BGMusicStopped() == TRUE)
+        if (BGMusicStopped())
         {
             SetWarpDestinationToLastHealLocation();
             WarpIntoMap();
@@ -2599,7 +2599,7 @@ static void TeleportWarpInFieldEffect_SpinGround(struct Task *task)
 bool8 FldEff_FieldMoveShowMon(void)
 {
     u8 taskId;
-    if (IsMapTypeOutdoors(GetCurrentMapType()) == TRUE)
+    if (IsMapTypeOutdoors(GetCurrentMapType()))
         taskId = CreateTask(Task_FieldMoveShowMonOutdoors, 0xff);
     else
         taskId = CreateTask(Task_FieldMoveShowMonIndoors, 0xff);

@@ -874,7 +874,7 @@ static void SetArenaPrize(void)
 
 static void GiveArenaPrize(void)
 {
-    if (AddBagItem(gSaveBlock2Ptr->frontier.arenaPrize, 1) == TRUE)
+    if (AddBagItem(gSaveBlock2Ptr->frontier.arenaPrize, 1))
     {
         CopyItemName(gSaveBlock2Ptr->frontier.arenaPrize, gStringVar1);
         gSaveBlock2Ptr->frontier.arenaPrize = ITEM_NONE;

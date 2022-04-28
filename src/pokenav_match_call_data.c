@@ -993,7 +993,7 @@ static void MatchCall_BufferCallMessageText(const match_call_text_data_t *textDa
         i--;
     while (i)
     {
-        if (textData[i].flag != 0xFFFF && FlagGet(textData[i].flag) == TRUE)
+        if (textData[i].flag != 0xFFFF && FlagGet(textData[i].flag))
             break;
         i--;
     }

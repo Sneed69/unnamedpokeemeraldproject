@@ -297,7 +297,7 @@ static bool8 ShouldOpenRegionMapZoomed(void)
     if (GetZoomDisabled())
         return FALSE;
 
-    return gSaveBlock2Ptr->regionMapZoom == TRUE;
+    return gSaveBlock2Ptr->regionMapZoom;
 }
 
 static u32 LoopedTask_OpenRegionMap(s32 taskState)

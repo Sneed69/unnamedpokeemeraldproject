@@ -544,7 +544,7 @@ static void FortreeBridgePerStepCallback(u8 taskId)
         if ((u8)(elevation & 1) == 0)
             onBridgeElevation = TRUE;
 
-        if (onBridgeElevation && (isFortreeBridgeCur == TRUE || isFortreeBridgePrev == TRUE))
+        if (onBridgeElevation && (isFortreeBridgeCur || isFortreeBridgePrev))
             PlaySE(SE_BRIDGE_WALK);
 
         // Because this doesn't check for isFortreeBridgeCur, bridge sections aren't
@@ -659,7 +659,7 @@ void SetSootopolisGymCrackedIceMetatiles(void)
     {
         for (y = 0; y < height; y++)
         {
-            if (IsIcePuzzleCoordVisited(x, y) == TRUE)
+            if (IsIcePuzzleCoordVisited(x, y))
                 MapGridSetMetatileIdAt(x + MAP_OFFSET, y + MAP_OFFSET, METATILE_SootopolisGym_Ice_Cracked);
         }
     }
@@ -696,7 +696,7 @@ static void SootopolisGymIcePerStepCallback(u8 taskId)
         tPrevY = y;
         tileBehavior = MapGridGetMetatileBehaviorAt(x, y);
         iceStepCount = GetVarPointer(VAR_ICE_STEP_COUNT);
-        if (MetatileBehavior_IsThinIce(tileBehavior) == TRUE)
+        if (MetatileBehavior_IsThinIce(tileBehavior))
         {
             // Thin ice, set it to cracked ice
             (*iceStepCount)++;
@@ -705,7 +705,7 @@ static void SootopolisGymIcePerStepCallback(u8 taskId)
             tIceX = x;
             tIceY = y;
         }
-        else if (MetatileBehavior_IsCrackedIce(tileBehavior) == TRUE)
+        else if (MetatileBehavior_IsCrackedIce(tileBehavior))
         {
             // Cracked ice, set it to broken ice
             *iceStepCount = 0;

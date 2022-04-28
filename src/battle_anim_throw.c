@@ -2253,7 +2253,7 @@ static void DestroyBallOpenAnimationParticle(struct Sprite *sprite)
         {
             for (i = 0; i < POKEBALL_COUNT; i++)
             {
-                if (FuncIsActiveTask(sBallParticleAnimationFuncs[i]) == TRUE)
+                if (FuncIsActiveTask(sBallParticleAnimationFuncs[i]))
                     break;
             }
 

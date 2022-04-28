@@ -360,7 +360,7 @@ void NewGameInitPCItems(void)
     u8 i = 0;
     ClearItemSlots(gSaveBlock1Ptr->pcItems, PC_ITEMS_COUNT);
     for(; sNewGamePCItems[i].itemId != ITEM_NONE && GET_QUANTITY(i) &&
-        AddPCItem(sNewGamePCItems[i].itemId, GET_QUANTITY(i)) == TRUE; i++);
+        AddPCItem(sNewGamePCItems[i].itemId, GET_QUANTITY(i)); i++);
 }
 #undef GET_QUANTITY
 
@@ -464,7 +464,7 @@ static void PlayerPC_Mailbox(u8 taskId)
         gPlayerPCItemPageInfo.scrollIndicatorTaskId = TASK_NONE;
         //Mailbox_CompactMailList();
         SetPlayerPCListCount(taskId);
-        if (MailboxMenu_Alloc(gPlayerPCItemPageInfo.count) == TRUE)
+        if (MailboxMenu_Alloc(gPlayerPCItemPageInfo.count))
         {
             ClearDialogWindowAndFrame(0, 0);
             Mailbox_DrawMailboxMenu(taskId);
@@ -578,7 +578,7 @@ static void ItemStorage_ReshowAfterBagMenu(void)
 
 static void ItemStorage_HandleReturnToProcessInput(u8 taskId)
 {
-    if (IsWeatherNotFadingIn() == TRUE)
+    if (IsWeatherNotFadingIn())
         gTasks[taskId].func = ItemStorageMenuProcessInput;
 }
 
@@ -805,7 +805,7 @@ static void Mailbox_ReshowAfterMail(void)
 
     LoadMessageBoxAndBorderGfx();
     taskId = CreateTask(Mailbox_HandleReturnToProcessInput, 0);
-    if (MailboxMenu_Alloc(gPlayerPCItemPageInfo.count) == TRUE)
+    if (MailboxMenu_Alloc(gPlayerPCItemPageInfo.count))
         Mailbox_DrawMailboxMenu(taskId);
     else
         DestroyTask(taskId);
@@ -814,7 +814,7 @@ static void Mailbox_ReshowAfterMail(void)
 
 static void Mailbox_HandleReturnToProcessInput(u8 taskId)
 {
-    if (IsWeatherNotFadingIn() == TRUE)
+    if (IsWeatherNotFadingIn())
         gTasks[taskId].func = Mailbox_ProcessInput;
 }
 
@@ -912,7 +912,7 @@ static void Mailbox_UpdateMailListAfterDeposit(void)
         gPlayerPCItemPageInfo.itemsAbove--;
     SetPlayerPCListCount(taskId);
     LoadMessageBoxAndBorderGfx();
-    if (MailboxMenu_Alloc(gPlayerPCItemPageInfo.count) == TRUE)
+    if (MailboxMenu_Alloc(gPlayerPCItemPageInfo.count))
         Mailbox_DrawMailboxMenu(taskId);
     else
         DestroyTask(taskId);
@@ -1385,7 +1385,7 @@ static void ItemStorage_HandleQuantityRolling(u8 taskId)
     s16 *data = gTasks[taskId].data;
     u16 pos = gPlayerPCItemPageInfo.cursorPos + gPlayerPCItemPageInfo.itemsAbove;
 
-    if (AdjustQuantityAccordingToDPadInput(&tQuantity, gSaveBlock1Ptr->pcItems[pos].quantity) == TRUE)
+    if (AdjustQuantityAccordingToDPadInput(&tQuantity, gSaveBlock1Ptr->pcItems[pos].quantity))
     {
         ItemStorage_PrintItemQuantity(ItemStorage_AddWindow(ITEMPC_WIN_QUANTITY), tQuantity, STR_CONV_MODE_LEADING_ZEROS, 8, 1, 3);
     }
@@ -1417,7 +1417,7 @@ static void ItemStorage_DoItemWithdraw(u8 taskId)
     s16 *data = gTasks[taskId].data;
     u16 pos = gPlayerPCItemPageInfo.cursorPos + gPlayerPCItemPageInfo.itemsAbove;
 
-    if (AddBagItem(gSaveBlock1Ptr->pcItems[pos].itemId, tQuantity) == TRUE)
+    if (AddBagItem(gSaveBlock1Ptr->pcItems[pos].itemId, tQuantity))
     {
         // Item withdrawn
         CopyItemName(gSaveBlock1Ptr->pcItems[pos].itemId, gStringVar1);

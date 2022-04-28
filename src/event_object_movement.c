@@ -1799,7 +1799,7 @@ void ObjectEventSetGraphicsId(struct ObjectEvent *objectEvent, u8 graphicsId)
     if (paletteSlot == 0)
     {
         PatchObjectPalette(graphicsInfo->paletteTag, graphicsInfo->paletteSlot);
-        #if DYNAMIC_OW_PALS == TRUE
+        #if DYNAMIC_OW_PALS
             UpdateSpritePaletteWithWeather(FindObjectEventPaletteIndexByTag(graphicsInfo->paletteTag);
         #else
             UpdateSpritePaletteWithWeather(graphicsInfo->paletteSlot);
@@ -7683,7 +7683,7 @@ u8 GetLedgeJumpDirection(s16 x, s16 y, u8 direction)
     index--;
     behavior = MapGridGetMetatileBehaviorAt(x, y);
 
-    if (ledgeBehaviorFuncs[index](behavior) == TRUE)
+    if (ledgeBehaviorFuncs[index](behavior))
         return index + 1;
 
     return DIR_NONE;
@@ -8049,7 +8049,7 @@ static void DoFlaggedGroundEffects(struct ObjectEvent *objEvent, struct Sprite *
 {
     u8 i;
 
-    if (ObjectEventIsFarawayIslandMew(objEvent) == TRUE && !ShouldMewShakeGrass(objEvent))
+    if (ObjectEventIsFarawayIslandMew(objEvent) && !ShouldMewShakeGrass(objEvent))
         return;
 
     for (i = 0; i < ARRAY_COUNT(sGroundEffectFuncs); i++, flags >>= 1)
@@ -8671,7 +8671,7 @@ bool32 IsVirtualObjectInvisible(u8 virtualObjId)
     if (spriteId == MAX_SPRITES)
         return FALSE;
 
-    return (gSprites[spriteId].sInvisible == TRUE);
+    return (gSprites[spriteId].sInvisible);
 }
 
 void SetVirtualObjectSpriteAnim(u8 virtualObjId, u8 animNum)
@@ -8834,7 +8834,7 @@ u8 MovementAction_StoreAndLockAnim_Step0(struct ObjectEvent *objectEvent, struct
         }
     }
 
-    if (ableToStore == TRUE)
+    if (ableToStore)
     {
         objectEvent->inanimate = TRUE;
         objectEvent->facingDirectionLocked = TRUE;
@@ -8862,7 +8862,7 @@ u8 MovementAction_FreeAndUnlockAnim_Step0(struct ObjectEvent *objectEvent, struc
         }
         if (sLockedAnimObjectEvents->count == 0)
             FREE_AND_SET_NULL(sLockedAnimObjectEvents);
-        if (ableToStore == TRUE)
+        if (ableToStore)
         {
             objectEvent->inanimate = GetObjectEventGraphicsInfo(objectEvent->graphicsId)->inanimate;
             objectEvent->facingDirectionLocked = FALSE;

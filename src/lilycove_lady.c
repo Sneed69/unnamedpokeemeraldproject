@@ -680,7 +680,7 @@ bool8 GivePokeblockToContestLady(struct Pokeblock *pokeblock)
         }
         break;
     }
-    if (correctFlavor == TRUE)
+    if (correctFlavor)
     {
         ContestLadySavePlayerNameIfHighSheen(sheen);
         sContestLadyPtr->numGoodPokeblocksGiven++;
@@ -739,7 +739,7 @@ u8 GetContestLadyPokeblockState(void)
 bool8 HasPlayerGivenContestLadyPokeblock(void)
 {
     sContestLadyPtr = &gSaveBlock1Ptr->lilycoveLady.contest;
-    if (sContestLadyPtr->givenPokeblock == TRUE)
+    if (sContestLadyPtr->givenPokeblock)
         return TRUE;
     return FALSE;
 }

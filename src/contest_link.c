@@ -182,7 +182,7 @@ void Task_LinkContest_CommunicateRngRS(u8 taskId)
     case 0:
         if (GetMultiplayerId() == 0)
         {
-            if (IsLinkTaskFinished() && LinkContest_SendBlock(&gRngValue, sizeof(gRngValue)) == TRUE)
+            if (IsLinkTaskFinished() && LinkContest_SendBlock(&gRngValue, sizeof(gRngValue)))
                 gTasks[taskId].tState++;
         }
         else
@@ -258,7 +258,7 @@ void Task_LinkContest_CommunicateMonIdxs(u8 taskId)
     case 0:
         if (IsLinkTaskFinished())
         {
-            if (LinkContest_SendBlock(&gContestPlayerMonIndex, sizeof(gContestPlayerMonIndex)) == TRUE)
+            if (LinkContest_SendBlock(&gContestPlayerMonIndex, sizeof(gContestPlayerMonIndex)))
                 gTasks[taskId].tState++;
         }
         break;
@@ -283,7 +283,7 @@ void Task_LinkContest_CommunicateMoveSelections(u8 taskId)
         if (IsLinkTaskFinished())
         {
             // Send player's move selection
-            if (LinkContest_SendBlock(&eContestantStatus[gContestPlayerMonIndex].currMove, sizeof(eContestantStatus[gContestPlayerMonIndex].currMove)) == TRUE)
+            if (LinkContest_SendBlock(&eContestantStatus[gContestPlayerMonIndex].currMove, sizeof(eContestantStatus[gContestPlayerMonIndex].currMove)))
                 gTasks[taskId].tState++;
         }
         break;

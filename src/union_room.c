@@ -2667,7 +2667,7 @@ static void Task_RunUnionRoom(u8 taskId)
             break;
         case RFU_STATUS_FATAL_ERROR:
         case RFU_STATUS_CONNECTION_ERROR:
-            if (IsUnionRoomListenTaskActive() == TRUE)
+            if (IsUnionRoomListenTaskActive())
                 ScheduleFieldMessageAndExit(sText_TrainerAppearsBusy);
             else
                 ScheduleFieldMessageWithFollowupState(UR_STATE_CANCEL_ACTIVITY_LINK_ERROR, sText_TrainerAppearsBusy);
@@ -2868,7 +2868,7 @@ static void Task_RunUnionRoom(u8 taskId)
         case RFU_STATUS_CONNECTION_ERROR:
             playerGender = GetUnionRoomPlayerGender(taskData[1], uroom->playerList);
             UpdateGameData_SetActivity(ACTIVITY_PLYRTALK | IN_UNION_ROOM, 0, TRUE);
-            if (IsUnionRoomListenTaskActive() == TRUE)
+            if (IsUnionRoomListenTaskActive())
                 ScheduleFieldMessageAndExit(sChatDeclinedTexts[playerGender]);
             else
                 ScheduleFieldMessageWithFollowupState(UR_STATE_CANCEL_ACTIVITY_LINK_ERROR, sChatDeclinedTexts[playerGender]);
@@ -2884,7 +2884,7 @@ static void Task_RunUnionRoom(u8 taskId)
         {
             playerGender = GetUnionRoomPlayerGender(taskData[1], uroom->playerList);
             UpdateGameData_SetActivity(ACTIVITY_PLYRTALK | IN_UNION_ROOM, 0, TRUE);
-            if (IsUnionRoomListenTaskActive() == TRUE)
+            if (IsUnionRoomListenTaskActive())
                 ScheduleFieldMessageAndExit(sChatDeclinedTexts[playerGender]);
             else
                 ScheduleFieldMessageWithFollowupState(UR_STATE_CANCEL_ACTIVITY_LINK_ERROR, sChatDeclinedTexts[playerGender]);
@@ -3249,7 +3249,7 @@ static void Task_RunUnionRoom(u8 taskId)
 
 void SetUsingUnionRoomStartMenu(void)
 {
-    if (InUnionRoom() == TRUE)
+    if (InUnionRoom())
         gSpecialVar_Result = UR_INTERACT_START_MENU;
 }
 
@@ -3400,7 +3400,7 @@ static u8 HandlePlayerListUpdate(void)
 
     for (i = 0; i < RFU_CHILD_MAX; i++)
     {
-        if (ArePlayersDifferent(&data->incomingParentList->players[i].rfu, &sUnionRoomPlayer_DummyRfu) == TRUE)
+        if (ArePlayersDifferent(&data->incomingParentList->players[i].rfu, &sUnionRoomPlayer_DummyRfu))
         {
             data->spawnPlayer->players[0].rfu = data->incomingParentList->players[i].rfu;
             data->spawnPlayer->players[0].timeoutCounter = 0;
@@ -4488,7 +4488,7 @@ static void ViewURoomPartnerTrainerCard(u8 *unused, struct WirelessLink_URoom *d
     DynamicPlaceholderTextUtil_ExpandPlaceholders(data->trainerCardMsgStrBuffer, sText_TrainerCardInfoPage2);
     StringAppend(gStringVar4, data->trainerCardMsgStrBuffer);
 
-    if (isParent == TRUE)
+    if (isParent)
     {
         DynamicPlaceholderTextUtil_ExpandPlaceholders(data->trainerCardMsgStrBuffer, sText_FinishedCheckingPlayersTrainerCard);
         StringAppend(gStringVar4, data->trainerCardMsgStrBuffer);

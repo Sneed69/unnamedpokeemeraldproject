@@ -604,7 +604,7 @@ const struct WindowTemplate * const gBattleWindowTemplates[] =
     [B_WIN_TYPE_ARENA]  = gBattleArenaWindowTemplates,
 };
 
-#if P_ENABLE_DEBUG == TRUE
+#if P_ENABLE_DEBUG
 const struct BattleBackground sBattleTerrainTable[] =
 #else
 static const struct BattleBackground sBattleTerrainTable[] =
@@ -872,7 +872,7 @@ void LoadBattleTextboxAndBackground(void)
     CopyBgTilemapBufferToVram(0);
     LoadCompressedPalette(gBattleTextboxPalette, 0, 0x40);
     LoadBattleMenuWindowGfx();
-    #if B_TERRAIN_BG_CHANGE == TRUE
+    #if B_TERRAIN_BG_CHANGE
         DrawTerrainTypeBattleBackground();
     #else
         DrawMainBattleBackground();

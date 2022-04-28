@@ -2006,7 +2006,7 @@ static void HandleSpecialTrainerBattleEnd(void)
 
 static void Task_StartBattleAfterTransition(u8 taskId)
 {
-    if (IsBattleTransitionDone() == TRUE)
+    if (IsBattleTransitionDone())
     {
         gMain.savedCallback = HandleSpecialTrainerBattleEnd;
         SetMainCallback2(CB2_InitBattle);
@@ -2985,7 +2985,7 @@ void TryHideBattleTowerReporter(void)
 {
     if (gSaveBlock2Ptr->frontier.challengeStatus == CHALLENGE_STATUS_SAVING)
         HideBattleTowerReporter();
-    if (FlagGet(FLAG_CANCEL_BATTLE_ROOM_CHALLENGE) == TRUE)
+    if (FlagGet(FLAG_CANCEL_BATTLE_ROOM_CHALLENGE))
     {
         HideBattleTowerReporter();
         FlagClear(FLAG_CANCEL_BATTLE_ROOM_CHALLENGE);
@@ -3059,7 +3059,7 @@ static void FillPartnerParty(u16 trainerId)
             for (j = 0; gTrainers[trainerId - TRAINER_CUSTOM_PARTNER].trainerName[j] != EOS; j++)
                 nameHash += gTrainers[trainerId - TRAINER_CUSTOM_PARTNER].trainerName[j];
 
-            if (gTrainers[trainerId - TRAINER_CUSTOM_PARTNER].doubleBattle == TRUE)
+            if (gTrainers[trainerId - TRAINER_CUSTOM_PARTNER].doubleBattle)
                 personalityValue = 0x80;
             else if (gTrainers[trainerId - TRAINER_CUSTOM_PARTNER].encounterMusic_gender & 0x80)
             {

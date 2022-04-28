@@ -703,7 +703,7 @@ static void Task_StartPokemonJump(u8 taskId)
         }
         break;
     case 2:
-        if (!IsPokeJumpGfxFuncFinished() && IsNotWaitingForBGMStop() == TRUE)
+        if (!IsPokeJumpGfxFuncFinished() && IsNotWaitingForBGMStop())
         {
             FadeOutAndPlayNewMapMusic(MUS_RG_POKE_JUMP, 8);
             sPokemonJump->mainState++;
@@ -822,7 +822,7 @@ static void Task_PokemonJump_Leader(u8 taskId)
         SetLinkTimeInterval(LINK_INTERVAL_SHORT);
     }
 
-    if (sPokemonJump->funcActive == TRUE)
+    if (sPokemonJump->funcActive)
     {
         if (!sPokeJumpLeaderFuncs[sPokemonJump->comm.funcId]())
         {
@@ -865,7 +865,7 @@ static void RecvLinkData_Member(void)
     monState = sPokemonJump->players[0].monState;
     if (RecvPacket_LeaderState(sPokemonJump->players, &leaderData))
     {
-        if (sPokemonJump->players[sPokemonJump->multiplayerId].funcFinished == TRUE
+        if (sPokemonJump->players[sPokemonJump->multiplayerId].funcFinished
          && leaderData.funcId != sPokemonJump->comm.funcId)
         {
             SetFunc_Member(leaderData.funcId);
@@ -1390,11 +1390,11 @@ static bool32 HandleSwingRound(void)
         }
         break;
     case 2:
-        if (IsPlayersMonState(MONSTATE_JUMP) == TRUE)
+        if (IsPlayersMonState(MONSTATE_JUMP))
             sPokemonJump->helperState++;
         break;
     case 3:
-        if (IsPlayersMonState(MONSTATE_NORMAL) == TRUE)
+        if (IsPlayersMonState(MONSTATE_NORMAL))
             sPokemonJump->helperState = 0;
         break;
     }
@@ -1411,7 +1411,7 @@ static bool32 DoVineHitEffect(void)
     case 0:
         for (i = 0; i < sPokemonJump->numPlayers; i++)
         {
-            if (IsMonHitShakeActive(i) == TRUE)
+            if (IsMonHitShakeActive(i))
                 return TRUE;
         }
 
@@ -2069,7 +2069,7 @@ static void TryUpdateScore(void)
         }
     }
 
-    if (sPokemonJump->giveBonus && (DidAllPlayersClearVine() == TRUE || sPokemonJump->vineState == VINE_HIGHEST))
+    if (sPokemonJump->giveBonus && (DidAllPlayersClearVine() || sPokemonJump->vineState == VINE_HIGHEST))
     {
         int numPlayers = GetNumPlayersForBonus(sPokemonJump->atJumpPeak3);
         AddJumpScore(GetScoreBonus(numPlayers));
@@ -2098,7 +2098,7 @@ static bool32 UpdateVineHitStates(void)
         // Vine is in position to hit the player and jump offset is 0.
         // Unless the player had just jumped and has been forced to the ground
         // by someone else getting hit, the player has been hit
-        if (sPokemonJump->player->prevMonState == MONSTATE_JUMP && IsGameOver() == TRUE)
+        if (sPokemonJump->player->prevMonState == MONSTATE_JUMP && IsGameOver())
         {
             sPokemonJump->player->jumpState = JUMPSTATE_SUCCESS;
         }

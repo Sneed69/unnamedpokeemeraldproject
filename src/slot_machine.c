@@ -1886,14 +1886,14 @@ static u8 TrySelectBias_Regular(void)
         s16 value = sBiasProbabilities_Regular[whichBias][sSlotMachine->machineId];
 
         // Boost odds of BIAS_POWER if it's a lucky game.
-        if (whichBias == 0 && sSlotMachine->luckyGame == TRUE)
+        if (whichBias == 0 && sSlotMachine->luckyGame)
         {
             value += 10;
             if (value > 0x100)
                 value = 0x100;
         }
         // Reduce odds of BIAS_REPLAY if it's a lucky game
-        else if (whichBias == 4 && sSlotMachine->luckyGame == TRUE)
+        else if (whichBias == 4 && sSlotMachine->luckyGame)
         {
             value -= 10;
             if (value < 0)

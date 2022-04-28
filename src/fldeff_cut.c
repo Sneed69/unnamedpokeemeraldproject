@@ -144,7 +144,7 @@ bool8 SetUpFieldMove_Cut(void)
     bool8 cutTiles[CUT_NORMAL_AREA];
     bool8 ret;
 
-    if (CheckObjectGraphicsInFrontOfPlayer(OBJ_EVENT_GFX_CUTTABLE_TREE) == TRUE)
+    if (CheckObjectGraphicsInFrontOfPlayer(OBJ_EVENT_GFX_CUTTABLE_TREE))
     {
         // Standing in front of cuttable tree.
         gFieldCallback2 = FieldCallback_PrepareFadeInFromMenu;
@@ -184,21 +184,21 @@ bool8 SetUpFieldMove_Cut(void)
                 if (MapGridGetElevationAt(x, y) == gPlayerFacingPosition.elevation)
                 {
                     tileBehavior = MapGridGetMetatileBehaviorAt(x, y);
-                    if (MetatileBehavior_IsPokeGrass(tileBehavior) == TRUE
-                    || MetatileBehavior_IsAshGrass(tileBehavior) == TRUE)
+                    if (MetatileBehavior_IsPokeGrass(tileBehavior)
+                    || MetatileBehavior_IsAshGrass(tileBehavior))
                     {
                         // Standing in front of grass.
                         sHyperCutTiles[6 + (i * 5) + j] = TRUE;
                         ret = TRUE;
                     }
-                    if (MapGridIsImpassableAt(x, y) == TRUE)
+                    if (MapGridIsImpassableAt(x, y))
                     {
                         cutTiles[i * 3 + j] = FALSE;
                     }
                     else
                     {
                         cutTiles[i * 3 + j] = TRUE;
-                        if (MetatileBehavior_IsCuttableGrass(tileBehavior) == TRUE)
+                        if (MetatileBehavior_IsCuttableGrass(tileBehavior))
                             sHyperCutTiles[6 + (i * 5) + j] = TRUE;
                     }
                 }
@@ -211,7 +211,7 @@ bool8 SetUpFieldMove_Cut(void)
 
         if (userAbility != ABILITY_HYPER_CUTTER)
         {
-            if (ret == TRUE)
+            if (ret)
             {
                 gFieldCallback2 = FieldCallback_PrepareFadeInFromMenu;
                 gPostMenuFieldCallback = FieldCallback_CutGrass;
@@ -236,14 +236,14 @@ bool8 SetUpFieldMove_Cut(void)
                     }
                 }
 
-                if (tileCuttable == TRUE)
+                if (tileCuttable)
                 {
                     if (MapGridGetElevationAt(x, y) == gPlayerFacingPosition.elevation)
                     {
                         u8 tileArrayId = ((sHyperCutStruct[i].y * 5) + 12) + (sHyperCutStruct[i].x);
                         tileBehavior = MapGridGetMetatileBehaviorAt(x, y);
-                        if (MetatileBehavior_IsPokeGrass(tileBehavior) == TRUE
-                        || MetatileBehavior_IsAshGrass(tileBehavior) == TRUE)
+                        if (MetatileBehavior_IsPokeGrass(tileBehavior)
+                        || MetatileBehavior_IsAshGrass(tileBehavior))
                         {
                             gFieldCallback2 = FieldCallback_PrepareFadeInFromMenu;
                             gPostMenuFieldCallback = FieldCallback_CutGrass;
@@ -252,14 +252,14 @@ bool8 SetUpFieldMove_Cut(void)
                         }
                         else
                         {
-                            if (MetatileBehavior_IsCuttableGrass(tileBehavior) == TRUE)
+                            if (MetatileBehavior_IsCuttableGrass(tileBehavior))
                                 sHyperCutTiles[tileArrayId] = TRUE;
                         }
                     }
                 }
             }
 
-            if (ret == TRUE)
+            if (ret)
             {
                 gFieldCallback2 = FieldCallback_PrepareFadeInFromMenu;
                 gPostMenuFieldCallback = FieldCallback_CutGrass;
@@ -317,7 +317,7 @@ bool8 FldEff_CutGrass(void)
     PlayerGetDestCoords(&gPlayerFacingPosition.x, &gPlayerFacingPosition.y);
     for (i = 0; i < CUT_HYPER_AREA; i++)
     {
-        if (sHyperCutTiles[i] == TRUE)
+        if (sHyperCutTiles[i])
         {
             s8 xAdd = (i % 5) - 2;
             s8 yAdd = (i / 5) - 2;
@@ -481,7 +481,7 @@ static void HandleLongGrassOnHyper(u8 caseId, s16 x, s16 y)
         return;
     }
 
-    if (arr[0] == TRUE)
+    if (arr[0])
     {
         if (MapGridGetMetatileIdAt(newX, y + 3) == METATILE_Fortree_LongGrass_Root)
             MapGridSetMetatileIdAt(newX, y + 3, METATILE_General_Grass);
@@ -492,7 +492,7 @@ static void HandleLongGrassOnHyper(u8 caseId, s16 x, s16 y)
         if (MapGridGetMetatileIdAt(newX, y + 3) == METATILE_Fortree_SecretBase_LongGrass_BottomRight)
             MapGridSetMetatileIdAt(newX, y + 3, METATILE_Fortree_SecretBase_LongGrass_TopRight);
     }
-    if (arr[1] == TRUE)
+    if (arr[1])
     {
         if (MapGridGetMetatileIdAt(newX, y + 2) == METATILE_General_LongGrass)
         {
@@ -522,7 +522,7 @@ static void HandleLongGrassOnHyper(u8 caseId, s16 x, s16 y)
         if (MapGridGetMetatileIdAt(newX, y + 4) == METATILE_Fortree_SecretBase_LongGrass_BottomRight)
             MapGridSetMetatileIdAt(newX, y + 4, METATILE_Fortree_SecretBase_LongGrass_TopRight);
     }
-    if (arr[2] == TRUE)
+    if (arr[2])
     {
         if (MapGridGetMetatileIdAt(newX, y + 3) == METATILE_General_LongGrass)
         {
@@ -580,7 +580,7 @@ static void CutGrassSpriteCallbackEnd(struct Sprite *sprite)
     ScriptUnfreezeObjectEvents();
     ScriptContext2_Disable();
 
-    if (IsMewPlayingHideAndSeek() == TRUE)
+    if (IsMewPlayingHideAndSeek())
         ScriptContext1_SetupScript(FarawayIsland_Interior_EventScript_HideMewWhenGrassCut);
 }
 

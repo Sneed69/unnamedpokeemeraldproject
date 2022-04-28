@@ -100,7 +100,7 @@ static u16 GetFeebasFishingSpotId(s16 targetX, s16 targetY, u8 section)
         for (x = 0; x < gMapHeader.mapLayout->width; x++)
         {
             u8 behavior = MapGridGetMetatileBehaviorAt(x + MAP_OFFSET, y + MAP_OFFSET);
-            if (MetatileBehavior_IsSurfableAndNotWaterfall(behavior) == TRUE)
+            if (MetatileBehavior_IsSurfableAndNotWaterfall(behavior))
             {
                 spotId++;
                 if (targetX == x && targetY == y)
@@ -413,7 +413,7 @@ static u8 PickWildMonNature(void)
     struct Pokeblock *safariPokeblock;
     u8 natures[NUM_NATURES];
 
-    if (GetSafariZoneFlag() == TRUE && Random() % 100 < 80)
+    if (GetSafariZoneFlag() && Random() % 100 < 80)
     {
         safariPokeblock = SafariZoneGetActivePokeblock();
         if (safariPokeblock != NULL)
@@ -649,7 +649,7 @@ bool8 StandardWildEncounter(u16 currMetaTileBehavior, u16 previousMetaTileBehavi
     u16 headerId;
     struct Roamer *roamer;
 
-    if (sWildEncountersDisabled == TRUE)
+    if (sWildEncountersDisabled)
         return FALSE;
 
     headerId = GetCurrentMapWildMonHeaderId();
@@ -687,7 +687,7 @@ bool8 StandardWildEncounter(u16 currMetaTileBehavior, u16 previousMetaTileBehavi
     }
     else
     {
-        if (MetatileBehavior_IsLandWildEncounter(currMetaTileBehavior) == TRUE)
+        if (MetatileBehavior_IsLandWildEncounter(currMetaTileBehavior))
         {
             if (gWildMonHeaders[headerId].landMonsInfo == NULL)
                 return FALSE;
@@ -707,14 +707,14 @@ bool8 StandardWildEncounter(u16 currMetaTileBehavior, u16 previousMetaTileBehavi
             }
             else
             {
-                if (DoMassOutbreakEncounterTest() == TRUE && SetUpMassOutbreakEncounter(WILD_CHECK_REPEL | WILD_CHECK_KEEN_EYE) == TRUE)
+                if (DoMassOutbreakEncounterTest() && SetUpMassOutbreakEncounter(WILD_CHECK_REPEL | WILD_CHECK_KEEN_EYE))
                 {
                     BattleSetup_StartWildBattle();
                     return TRUE;
                 }
 
                 // try a regular wild land encounter
-                if (TryGenerateWildMon(gWildMonHeaders[headerId].landMonsInfo, WILD_AREA_LAND, WILD_CHECK_REPEL | WILD_CHECK_KEEN_EYE) == TRUE)
+                if (TryGenerateWildMon(gWildMonHeaders[headerId].landMonsInfo, WILD_AREA_LAND, WILD_CHECK_REPEL | WILD_CHECK_KEEN_EYE))
                 {
                     if (TryDoDoubleWildBattle())
                     {
@@ -733,10 +733,10 @@ bool8 StandardWildEncounter(u16 currMetaTileBehavior, u16 previousMetaTileBehavi
                 return FALSE;
             }
         }
-        else if (MetatileBehavior_IsWaterWildEncounter(currMetaTileBehavior) == TRUE
-                 || (TestPlayerAvatarFlags(PLAYER_AVATAR_FLAG_SURFING) && MetatileBehavior_IsBridgeOverWater(currMetaTileBehavior) == TRUE))
+        else if (MetatileBehavior_IsWaterWildEncounter(currMetaTileBehavior)
+                 || (TestPlayerAvatarFlags(PLAYER_AVATAR_FLAG_SURFING) && MetatileBehavior_IsBridgeOverWater(currMetaTileBehavior)))
         {
-            if (AreLegendariesInSootopolisPreventingEncounters() == TRUE)
+            if (AreLegendariesInSootopolisPreventingEncounters())
                 return FALSE;
             else if (gWildMonHeaders[headerId].waterMonsInfo == NULL)
                 return FALSE;
@@ -756,7 +756,7 @@ bool8 StandardWildEncounter(u16 currMetaTileBehavior, u16 previousMetaTileBehavi
             }
             else // try a regular surfing encounter
             {
-                if (TryGenerateWildMon(gWildMonHeaders[headerId].waterMonsInfo, WILD_AREA_WATER, WILD_CHECK_REPEL | WILD_CHECK_KEEN_EYE) == TRUE)
+                if (TryGenerateWildMon(gWildMonHeaders[headerId].waterMonsInfo, WILD_AREA_WATER, WILD_CHECK_REPEL | WILD_CHECK_KEEN_EYE))
                 {
                     gIsSurfingEncounter = TRUE;
                     if (TryDoDoubleWildBattle())
@@ -793,8 +793,8 @@ void RockSmashWildEncounter(void)
         {
             gSpecialVar_Result = FALSE;
         }
-        else if (DoWildEncounterRateTest(wildPokemonInfo->encounterRate, 1) == TRUE
-         && TryGenerateWildMon(wildPokemonInfo, WILD_AREA_ROCKS, WILD_CHECK_REPEL | WILD_CHECK_KEEN_EYE) == TRUE)
+        else if (DoWildEncounterRateTest(wildPokemonInfo->encounterRate, 1)
+         && TryGenerateWildMon(wildPokemonInfo, WILD_AREA_ROCKS, WILD_CHECK_REPEL | WILD_CHECK_KEEN_EYE))
         {
             BattleSetup_StartWildBattle();
             gSpecialVar_Result = TRUE;
@@ -822,8 +822,8 @@ void CutWildEncounter(void)
         {
             gSpecialVar_Result = FALSE;
         }
-        else if (DoWildEncounterRateTest(wildPokemonInfo->encounterRate, 1) == TRUE
-         && TryGenerateWildMon(wildPokemonInfo, WILD_AREA_ROCKS, WILD_CHECK_REPEL | WILD_CHECK_KEEN_EYE) == TRUE)
+        else if (DoWildEncounterRateTest(wildPokemonInfo->encounterRate, 1)
+         && TryGenerateWildMon(wildPokemonInfo, WILD_AREA_ROCKS, WILD_CHECK_REPEL | WILD_CHECK_KEEN_EYE))
         {
             BattleSetup_StartWildBattle();
             gSpecialVar_Result = TRUE;
@@ -871,7 +871,7 @@ bool8 SweetScentWildEncounter(void)
     }
     else
     {
-        if (MetatileBehavior_IsLandWildEncounter(MapGridGetMetatileBehaviorAt(x, y)) == TRUE)
+        if (MetatileBehavior_IsLandWildEncounter(MapGridGetMetatileBehaviorAt(x, y)))
         {
             if (gWildMonHeaders[headerId].landMonsInfo == NULL)
                 return FALSE;
@@ -882,7 +882,7 @@ bool8 SweetScentWildEncounter(void)
                 return TRUE;
             }
 
-            if (DoMassOutbreakEncounterTest() == TRUE)
+            if (DoMassOutbreakEncounterTest())
                 SetUpMassOutbreakEncounter(0);
             else
                 TryGenerateWildMon(gWildMonHeaders[headerId].landMonsInfo, WILD_AREA_LAND, 0);
@@ -890,9 +890,9 @@ bool8 SweetScentWildEncounter(void)
             BattleSetup_StartWildBattle();
             return TRUE;
         }
-        else if (MetatileBehavior_IsWaterWildEncounter(MapGridGetMetatileBehaviorAt(x, y)) == TRUE)
+        else if (MetatileBehavior_IsWaterWildEncounter(MapGridGetMetatileBehaviorAt(x, y)))
         {
-            if (AreLegendariesInSootopolisPreventingEncounters() == TRUE)
+            if (AreLegendariesInSootopolisPreventingEncounters())
                 return FALSE;
             if (gWildMonHeaders[headerId].waterMonsInfo == NULL)
                 return FALSE;
@@ -926,7 +926,7 @@ void FishingWildEncounter(u8 rod)
 {
     u16 species;
 
-    if (CheckFeebas() == TRUE)
+    if (CheckFeebas())
     {
         u8 level = ChooseWildMonLevel(&sWildFeebas);
 
@@ -999,7 +999,7 @@ bool8 UpdateRepelCounter(void)
 
     if (InBattlePike() || InBattlePyramid())
         return FALSE;
-    if (InUnionRoom() == TRUE)
+    if (InUnionRoom())
         return FALSE;
 
     steps = VarGet(VAR_REPEL_STEP_COUNT);
@@ -1095,7 +1095,7 @@ static void ApplyFluteEncounterRateMod(u32 *encRate)
 {
     if (FlagGet(FLAG_SYS_ENC_UP_ITEM))
         *encRate += *encRate / 2;
-    else if (FlagGet(FLAG_SYS_ENC_DOWN_ITEM) == TRUE)
+    else if (FlagGet(FLAG_SYS_ENC_DOWN_ITEM))
         *encRate = *encRate / 2;
 }
 

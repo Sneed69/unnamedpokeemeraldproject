@@ -1135,14 +1135,14 @@ static void Task_MysteryGift(u8 taskId)
         {
         case 0: // "Wonder Cards"
             data->isWonderNews = FALSE;
-            if (ValidateSavedWonderCard() == TRUE)
+            if (ValidateSavedWonderCard())
                 data->state = MG_STATE_LOAD_GIFT;
             else
                 data->state = MG_STATE_DONT_HAVE_ANY;
             break;
         case 1: // "Wonder News"
             data->isWonderNews = TRUE;
-            if (ValidateSavedWonderNews() == TRUE)
+            if (ValidateSavedWonderNews())
                 data->state = MG_STATE_LOAD_GIFT;
             else
                 data->state = MG_STATE_DONT_HAVE_ANY;
@@ -1217,13 +1217,13 @@ static void Task_MysteryGift(u8 taskId)
         switch (data->isWonderNews)
         {
         case FALSE:
-            if (data->sourceIsFriend == TRUE)
+            if (data->sourceIsFriend)
                 CreateTask_LinkMysteryGiftWithFriend(ACTIVITY_WONDER_CARD);
             else if (data->sourceIsFriend == FALSE)
                 CreateTask_LinkMysteryGiftOverWireless(ACTIVITY_WONDER_CARD);
             break;
         case TRUE:
-            if (data->sourceIsFriend == TRUE)
+            if (data->sourceIsFriend)
                 CreateTask_LinkMysteryGiftWithFriend(ACTIVITY_WONDER_NEWS);
             else if (data->sourceIsFriend == FALSE)
                 CreateTask_LinkMysteryGiftOverWireless(ACTIVITY_WONDER_NEWS);
@@ -1304,7 +1304,7 @@ static void Task_MysteryGift(u8 taskId)
         switch (input)
         {
         case 0: // Yes
-            if (IsSavedWonderCardGiftNotReceived() == TRUE)
+            if (IsSavedWonderCardGiftNotReceived())
             {
                 data->state = MG_STATE_CLIENT_ASK_TOSS_UNRECEIVED;
             }
@@ -1352,7 +1352,7 @@ static void Task_MysteryGift(u8 taskId)
     case MG_STATE_CLIENT_COMM_COMPLETED:
         if (PrintStringAndWait2Seconds(&data->textState, gText_CommunicationCompleted))
         {
-            if (data->sourceIsFriend == TRUE)
+            if (data->sourceIsFriend)
                 StringCopy(gStringVar1, gLinkPlayers[0].name);
             data->state = MG_STATE_CLIENT_RESULT_MSG;
         }
@@ -1370,7 +1370,7 @@ static void Task_MysteryGift(u8 taskId)
         {
             if (data->msgId == CLI_MSG_NEWS_RECEIVED)
             {
-                if (data->sourceIsFriend == TRUE)
+                if (data->sourceIsFriend)
                     GenerateRandomWonderNews(WONDER_NEWS_RECV_FRIEND);
                 else
                     GenerateRandomWonderNews(WONDER_NEWS_RECV_WIRELESS);
@@ -1448,7 +1448,7 @@ static void Task_MysteryGift(u8 taskId)
             data->state = MG_STATE_ASK_TOSS;
             break;
         case LIST_CANCEL:
-            if (data->isWonderNews == TRUE)
+            if (data->isWonderNews)
                 WonderNews_AddScrollIndicatorArrowPair();
             data->state = MG_STATE_HANDLE_GIFT_INPUT;
             break;
@@ -1460,7 +1460,7 @@ static void Task_MysteryGift(u8 taskId)
         switch (AskDiscardGift(&data->textState, &data->var, data->isWonderNews))
         {
         case 0: // Yes
-            if (!data->isWonderNews && IsSavedWonderCardGiftNotReceived() == TRUE)
+            if (!data->isWonderNews && IsSavedWonderCardGiftNotReceived())
                 data->state = MG_STATE_ASK_TOSS_UNRECEIVED;
             else
                 data->state = MG_STATE_TOSS;
@@ -1578,7 +1578,7 @@ static void Task_MysteryGift(u8 taskId)
     case MG_STATE_SERVER_RESULT_MSG:
         if (PrintServerResultMessage(&data->textState, &data->var, data->sourceIsFriend, data->msgId))
         {
-            if (data->sourceIsFriend == TRUE && data->msgId == SVR_MSG_NEWS_SENT)
+            if (data->sourceIsFriend && data->msgId == SVR_MSG_NEWS_SENT)
             {
                 GenerateRandomWonderNews(WONDER_NEWS_SENT);
                 data->state = MG_STATE_SAVE_LOAD_GIFT;

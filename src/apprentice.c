@@ -365,7 +365,7 @@ static u16 GetRandomAlternateMove(u8 monId)
     // This while loop contains 3 potential infinite loops, though none of them would occur in the base game
     while (i < 5)
     {
-        if (Random() % 2 == 0 || needTMs == TRUE)
+        if (Random() % 2 == 0 || needTMs)
         {
             // Get TM move
             // NOTE: Below is an infinite loop if a species that only learns TMs for moves

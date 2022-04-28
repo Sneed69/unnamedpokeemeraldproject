@@ -220,7 +220,7 @@ static u32 LoopedTask_OpenConditionGraphMenu(s32 state)
 
         LZ77UnCompVram(gPokenavCondition_Tilemap, menu->tilemapBuffers[0]);
         SetBgTilemapBuffer(3, menu->tilemapBuffers[0]);
-        if (IsConditionMenuSearchMode() == TRUE)
+        if (IsConditionMenuSearchMode())
             CopyToBgTilemapBufferRect(3, gPokenavOptions_Tilemap, 0, 5, 9, 4);
 
         CopyBgTilemapBufferToVram(3);
@@ -249,7 +249,7 @@ static u32 LoopedTask_OpenConditionGraphMenu(s32 state)
             return LT_PAUSE;
 
         menu->nameGenderWindowId = AddWindow(&sMonNameGenderWindowTemplate);
-        if (IsConditionMenuSearchMode() == TRUE)
+        if (IsConditionMenuSearchMode())
         {
             menu->listIndexWindowId = AddWindow(&sListIndexWindowTemplate);
             menu->unusedWindowId1 = AddWindow(&sUnusedWindowTemplate1);
@@ -264,7 +264,7 @@ static u32 LoopedTask_OpenConditionGraphMenu(s32 state)
         CreateMonMarkingsOrPokeballIndicators();
         return LT_INC_AND_PAUSE;
     case 9:
-        if (IsConditionMenuSearchMode() == TRUE)
+        if (IsConditionMenuSearchMode())
             CopyUnusedConditionWindowsToVram();
         return LT_INC_AND_PAUSE;
     case 10:
@@ -280,7 +280,7 @@ static u32 LoopedTask_OpenConditionGraphMenu(s32 state)
         if (UpdateConditionGraphMenuWindows(3, GetConditionGraphMenuCurrentLoadIndex(), TRUE) != TRUE)
             return LT_PAUSE;
         PutWindowTilemap(menu->nameGenderWindowId);
-        if (IsConditionMenuSearchMode() == TRUE)
+        if (IsConditionMenuSearchMode())
         {
             PutWindowTilemap(menu->listIndexWindowId);
             PutWindowTilemap(menu->unusedWindowId1);
@@ -291,7 +291,7 @@ static u32 LoopedTask_OpenConditionGraphMenu(s32 state)
         ShowBg(1);
         HideBg(2);
         ShowBg(3);
-        if (IsConditionMenuSearchMode() == TRUE)
+        if (IsConditionMenuSearchMode())
             PrintHelpBarText(HELPBAR_CONDITION_MON_STATUS);
         return LT_INC_AND_PAUSE;
     case 15:
@@ -325,7 +325,7 @@ static u32 LoopedTask_OpenConditionGraphMenu(s32 state)
         if (!ConditionMenu_UpdateMonEnter(GetConditionGraphPtr(), &menu->monTransitionX))
         {
             ResetConditionSparkleSprites(menu->conditionSparkleSprites);
-            if (IsConditionMenuSearchMode() == TRUE || GetConditionGraphCurrentListIndex() != GetMonListCount())
+            if (IsConditionMenuSearchMode() || GetConditionGraphCurrentListIndex() != GetMonListCount())
                 CreateConditionSparkleSprites(menu->conditionSparkleSprites, menu->monPicSpriteId, GetNumConditionMonSparkles());
 
             return LT_FINISH;
@@ -406,7 +406,7 @@ static u32 LoopedTask_TransitionMons(s32 state)
         UpdateConditionGraphMenuWindows(2, GetConditionGraphMenuCurrentLoadIndex(), FALSE);
         return LT_INC_AND_CONTINUE;
     case 8:
-        if (UpdateConditionGraphMenuWindows(3, GetConditionGraphMenuCurrentLoadIndex(), FALSE) == TRUE)
+        if (UpdateConditionGraphMenuWindows(3, GetConditionGraphMenuCurrentLoadIndex(), FALSE))
             return LT_INC_AND_CONTINUE;
         return LT_PAUSE;
     case 9:
@@ -454,7 +454,7 @@ static u32 LoopedTask_MoveCursorNoTransition(s32 state)
         UpdateConditionGraphMenuWindows(2, GetConditionGraphMenuCurrentLoadIndex(), FALSE);
         return LT_INC_AND_CONTINUE;
     case 7:
-        if (UpdateConditionGraphMenuWindows(3, GetConditionGraphMenuCurrentLoadIndex(), FALSE) == TRUE)
+        if (UpdateConditionGraphMenuWindows(3, GetConditionGraphMenuCurrentLoadIndex(), FALSE))
             return LT_INC_AND_CONTINUE;
         return LT_PAUSE;
     case 8:
@@ -500,7 +500,7 @@ static u32 LoopedTask_SlideMonOut(s32 state)
         UpdateConditionGraphMenuWindows(2, GetConditionGraphMenuCurrentLoadIndex(), FALSE);
         return LT_INC_AND_CONTINUE;
     case 7:
-        if (UpdateConditionGraphMenuWindows(3, GetConditionGraphMenuCurrentLoadIndex(), FALSE) == TRUE)
+        if (UpdateConditionGraphMenuWindows(3, GetConditionGraphMenuCurrentLoadIndex(), FALSE))
             return LT_INC_AND_CONTINUE;
         return LT_PAUSE;
     }
@@ -519,7 +519,7 @@ static u32 LoopedTask_OpenMonMarkingsWindow(s32 state)
         PrintHelpBarText(HELPBAR_CONDITION_MARKINGS);
         return LT_INC_AND_CONTINUE;
     case 2:
-        if (WaitForHelpBar() == TRUE)
+        if (WaitForHelpBar())
             return LT_PAUSE;
         return LT_INC_AND_CONTINUE;
     }
@@ -538,7 +538,7 @@ static u32 LoopedTask_CloseMonMarkingsWindow(s32 state)
         PrintHelpBarText(HELPBAR_CONDITION_MON_STATUS);
         return LT_INC_AND_CONTINUE;
     case 2:
-        if (WaitForHelpBar() == TRUE)
+        if (WaitForHelpBar())
             return LT_PAUSE;
         return LT_INC_AND_CONTINUE;
     }
@@ -564,18 +564,18 @@ static bool32 UpdateConditionGraphMenuWindows(u8 mode, u16 bufferIndex, bool8 wi
     {
     case 0:
         FillWindowPixelBuffer(menu->nameGenderWindowId, 0);
-        if (IsConditionMenuSearchMode() == TRUE)
+        if (IsConditionMenuSearchMode())
             FillWindowPixelBuffer(menu->listIndexWindowId, 0);
         break;
     case 1:
-        if (GetConditionGraphCurrentListIndex() != GetMonListCount() - 1 || IsConditionMenuSearchMode() == TRUE)
+        if (GetConditionGraphCurrentListIndex() != GetMonListCount() - 1 || IsConditionMenuSearchMode())
         {
             str = GetConditionMonNameText(bufferIndex);
             AddTextPrinterParameterized(menu->nameGenderWindowId, FONT_NORMAL, str, 0, 1, 0, NULL);
         }
         break;
     case 2:
-        if (IsConditionMenuSearchMode() == TRUE)
+        if (IsConditionMenuSearchMode())
         {
             str = GetConditionMonLocationText(bufferIndex);
             AddTextPrinterParameterized(menu->nameGenderWindowId, FONT_NORMAL, str, 0, 17, 0, NULL);
@@ -599,7 +599,7 @@ static bool32 UpdateConditionGraphMenuWindows(u8 mode, u16 bufferIndex, bool8 wi
             else
                 CopyWindowToVram(menu->nameGenderWindowId, COPYWIN_GFX);
 
-            if (IsConditionMenuSearchMode() == TRUE)
+            if (IsConditionMenuSearchMode())
             {
                 menu->windowModeState++;
                 return FALSE;
@@ -663,7 +663,7 @@ static void CreateMonMarkingsOrPokeballIndicators(void)
     struct Pokenav_ConditionMenuGfx *menu = GetSubstructPtr(POKENAV_SUBSTRUCT_CONDITION_GRAPH_MENU_GFX);
 
     LoadConditionSelectionIcons(sprSheets, &sprTemplate, sprPals);
-    if (IsConditionMenuSearchMode() == TRUE)
+    if (IsConditionMenuSearchMode())
     {
         // Search Mode, load markings menu
         menu->marksMenu.baseTileTag = TAG_CONDITION_MARKINGS_MENU;
@@ -743,7 +743,7 @@ static void FreeConditionMenuGfx(struct Pokenav_ConditionMenuGfx *menu)
 {
     u8 i;
 
-    if (IsConditionMenuSearchMode() == TRUE)
+    if (IsConditionMenuSearchMode())
     {
         DestroySprite(menu->monMarksSprite);
         FreeSpriteTilesByTag(TAG_CONDITION_MARKINGS_MENU);
@@ -776,7 +776,7 @@ void FreeConditionGraphMenuSubstruct2(void)
     struct Pokenav_ConditionMenuGfx *menu = GetSubstructPtr(POKENAV_SUBSTRUCT_CONDITION_GRAPH_MENU_GFX);
 
     RemoveWindow(menu->nameGenderWindowId);
-    if (IsConditionMenuSearchMode() == TRUE)
+    if (IsConditionMenuSearchMode())
     {
         RemoveWindow(menu->listIndexWindowId);
         RemoveWindow(menu->unusedWindowId1);

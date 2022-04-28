@@ -15,7 +15,7 @@ void STWI_init_all(struct RfuIntrStruct *interruptStruct, IntrFunc *interrupt, b
     // If we're copying our interrupt into RAM, DMA it to block1 and use
     // block2 for our STWIStatus, otherwise block1 holds the STWIStatus.
     // interrupt usually is a pointer to gIntrTable[1]
-    if (copyInterruptToRam == TRUE)
+    if (copyInterruptToRam)
     {
         *interrupt = (IntrFunc)interruptStruct->block1;
         DmaCopy16(3, &IntrSIO32, interruptStruct->block1, sizeof(interruptStruct->block1));

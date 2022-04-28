@@ -885,7 +885,7 @@ static void Task_ClosePyramidBag(u8 taskId)
 static void Task_HandlePyramidBagInput(u8 taskId)
 {
     s16 *data = gTasks[taskId].data;
-    if (MenuHelpers_ShouldWaitForLinkRecv() == TRUE || gPaletteFade.active)
+    if (MenuHelpers_ShouldWaitForLinkRecv() || gPaletteFade.active)
         return;
 
     if (JOY_NEW(SELECT_BUTTON))
@@ -1090,7 +1090,7 @@ static void BagAction_UseOnField(u8 taskId)
     if (pocketId == POCKET_KEY_ITEMS
         || pocketId == POCKET_POKE_BALLS
         || pocketId == POCKET_TM_HM
-        || ItemIsMail(gSpecialVar_ItemId) == TRUE)
+        || ItemIsMail(gSpecialVar_ItemId))
     {
         CloseMenuActionWindow();
         DisplayItemMessageInBattlePyramid(taskId, gText_DadsAdvice, Task_CloseBattlePyramidBagMessage);
@@ -1187,7 +1187,7 @@ static void Task_ChooseHowManyToToss(u8 taskId)
 {
     s16 *data = gTasks[taskId].data;
 
-    if (AdjustQuantityAccordingToDPadInput(&tNumToToss, tQuantity) == TRUE)
+    if (AdjustQuantityAccordingToDPadInput(&tNumToToss, tQuantity))
     {
         UpdateNumToToss(tNumToToss);
     }
@@ -1246,7 +1246,7 @@ static void Task_TossItem(u8 taskId)
 static void BagAction_Give(u8 taskId)
 {
     CloseMenuActionWindow();
-    if (ItemIsMail(gSpecialVar_ItemId) == TRUE)
+    if (ItemIsMail(gSpecialVar_ItemId))
     {
         DisplayItemMessageInBattlePyramid(taskId, gText_CantWriteMail, Task_WaitCloseErrorMessage);
     }

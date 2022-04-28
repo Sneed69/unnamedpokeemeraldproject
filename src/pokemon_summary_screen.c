@@ -1501,7 +1501,7 @@ static bool8 ExtractMonDataToSummaryStruct(struct Pokemon *mon)
         sum->ppBonuses = GetMonData(mon, MON_DATA_PP_BONUSES);
         break;
     case 2:
-        if (sMonSummaryScreen->monList.mons == gPlayerParty || sMonSummaryScreen->mode == SUMMARY_MODE_BOX || sMonSummaryScreen->unk40EF == TRUE)
+        if (sMonSummaryScreen->monList.mons == gPlayerParty || sMonSummaryScreen->mode == SUMMARY_MODE_BOX || sMonSummaryScreen->unk40EF)
         {
             sum->nature = GetNature(mon, FALSE);
             sum->hiddenNature = GetMonData(mon, MON_DATA_HIDDEN_NATURE);
@@ -1674,7 +1674,7 @@ static void Task_HandleInput(u8 taskId)
             PlaySE(SE_SELECT);
             BeginCloseSummaryScreen(taskId);
         }
-        #if P_ENABLE_DEBUG == TRUE
+        #if P_ENABLE_DEBUG
         else if (JOY_NEW(SELECT_BUTTON) && !gMain.inBattle)
         {
             sMonSummaryScreen->callback = CB2_Debug_Pokemon;
@@ -1692,7 +1692,7 @@ static void ChangeSummaryPokemon(u8 taskId, s8 delta)
 
     if (!sMonSummaryScreen->lockMonFlag)
     {
-        if (sMonSummaryScreen->isBoxMon == TRUE)
+        if (sMonSummaryScreen->isBoxMon)
         {
             if (sMonSummaryScreen->currPageIndex != PSS_PAGE_INFO)
             {
@@ -1710,7 +1710,7 @@ static void ChangeSummaryPokemon(u8 taskId, s8 delta)
             }
             monId = AdvanceStorageMonIndex(sMonSummaryScreen->monList.boxMons, sMonSummaryScreen->curMonIndex, sMonSummaryScreen->maxMonIndex, delta);
         }
-        else if (IsMultiBattle() == TRUE)
+        else if (IsMultiBattle())
         {
             monId = AdvanceMultiBattleMonIndex(delta);
         }
@@ -1846,7 +1846,7 @@ static s8 AdvanceMultiBattleMonIndex(s8 delta)
         if (arrId < 0 || arrId >= PARTY_SIZE)
             return -1;
         index = order[arrId];
-        if (IsValidToViewInMulti(&mons[index]) == TRUE)
+        if (IsValidToViewInMulti(&mons[index]))
             return index;
     }
 }
@@ -2029,13 +2029,13 @@ static void Task_HandleInput_MoveSelect(u8 taskId)
         }
         else if (JOY_NEW(A_BUTTON))
         {
-            if (sMonSummaryScreen->lockMovesFlag == TRUE
+            if (sMonSummaryScreen->lockMovesFlag
              || (sMonSummaryScreen->newMove == MOVE_NONE && sMonSummaryScreen->firstMoveIndex == MAX_MON_MOVES))
             {
                 PlaySE(SE_SELECT);
                 CloseMoveSelectMode(taskId);
             }
-            else if (HasMoreThanOneMove() == TRUE)
+            else if (HasMoreThanOneMove())
             {
                 PlaySE(SE_SELECT);
                 SwitchToMovePositionSwitchMode(taskId);
@@ -2191,7 +2191,7 @@ static void ExitMovePositionSwitchMode(u8 taskId, bool8 swapMoves)
     SetMainMoveSelectorColor(0);
     DestroyMoveSelectorSprites(SPRITE_ARR_ID_MOVE_SELECTOR2);
 
-    if (swapMoves == TRUE)
+    if (swapMoves)
     {
         if (!sMonSummaryScreen->isBoxMon)
         {
@@ -2978,7 +2978,7 @@ static void PutPageWindowTilemaps(u8 page)
     case PSS_PAGE_INFO:
         PutWindowTilemap(PSS_LABEL_WINDOW_POKEMON_INFO_TITLE);
         PutWindowTilemap(PSS_LABEL_WINDOW_PROMPT_CANCEL);
-        if (InBattleFactory() == TRUE || InSlateportBattleTent() == TRUE)
+        if (InBattleFactory() || InSlateportBattleTent())
             PutWindowTilemap(PSS_LABEL_WINDOW_POKEMON_INFO_RENTAL);
         PutWindowTilemap(PSS_LABEL_WINDOW_POKEMON_INFO_TYPE);
         break;
@@ -3028,7 +3028,7 @@ static void ClearPageWindowTilemaps(u8 page)
     {
     case PSS_PAGE_INFO:
         ClearWindowTilemap(PSS_LABEL_WINDOW_PROMPT_CANCEL);
-        if (InBattleFactory() == TRUE || InSlateportBattleTent() == TRUE)
+        if (InBattleFactory() || InSlateportBattleTent())
             ClearWindowTilemap(PSS_LABEL_WINDOW_POKEMON_INFO_RENTAL);
         ClearWindowTilemap(PSS_LABEL_WINDOW_POKEMON_INFO_TYPE);
         break;
@@ -3213,7 +3213,7 @@ static void BufferMonTrainerMemo(void)
         DynamicPlaceholderTextUtil_SetPlaceholderPtr(7, sText_EndParentheses);
     }
 
-    if (InBattleFactory() == TRUE || InSlateportBattleTent() == TRUE || IsInGamePartnerMon() == TRUE)
+    if (InBattleFactory() || InSlateportBattleTent() || IsInGamePartnerMon())
     {
         DynamicPlaceholderTextUtil_ExpandPlaceholders(gStringVar4, gText_XNature);
     }
@@ -3229,7 +3229,7 @@ static void BufferMonTrainerMemo(void)
             DynamicPlaceholderTextUtil_SetPlaceholderPtr(4, metLocationString);
         }
 
-        if (DoesMonOTMatchOwner() == TRUE)
+        if (DoesMonOTMatchOwner())
         {
             if (sum->metLevel == 0)
                 text = (sum->metLocation >= MAPSEC_NONE) ? gText_XNatureHatchedSomewhereAt : gText_XNatureHatchedAtYZ;
@@ -3350,7 +3350,7 @@ static void PrintEggState(void)
     const u8 *text;
     struct PokeSummary *sum = &sMonSummaryScreen->summary;
 
-    if (sMonSummaryScreen->summary.sanity == TRUE)
+    if (sMonSummaryScreen->summary.sanity)
         text = gText_EggWillTakeALongTime;
     else if (sum->friendship <= 5)
         text = gText_EggAboutToHatch;
@@ -3376,7 +3376,7 @@ static void PrintEggMemo(void)
         else if (DidMonComeFromGBAGames() == FALSE || DoesMonOTMatchOwner() == FALSE)
             text = gText_PeculiarEggTrade;
         else if (sum->metLocation == METLOC_SPECIAL_EGG)
-            text = (DidMonComeFromRSE() == TRUE) ? gText_EggFromHotSprings : gText_EggFromTraveler;
+            text = (DidMonComeFromRSE()) ? gText_EggFromHotSprings : gText_EggFromTraveler;
         else
             text = gText_OddEggFoundByCouple;
     }
@@ -3439,7 +3439,7 @@ static void PrintHeldItemName(void)
     int x;
 
     if (sMonSummaryScreen->summary.item == ITEM_ENIGMA_BERRY_E_READER
-        && IsMultiBattle() == TRUE
+        && IsMultiBattle()
         && (sMonSummaryScreen->curMonIndex == 1 || sMonSummaryScreen->curMonIndex == 4 || sMonSummaryScreen->curMonIndex == 5))
     {
         text = ItemId_GetName(ITEM_ENIGMA_BERRY_E_READER);
@@ -3850,7 +3850,7 @@ static void PrintMoveDetails(u16 move)
     {
         if (sMonSummaryScreen->currPageIndex == PSS_PAGE_BATTLE_MOVES)
         {
-            if (B_SHOW_SPLIT_ICON == TRUE)
+            if (B_SHOW_SPLIT_ICON)
                 ShowSplitIcon(GetBattleMoveSplit(move));
             PrintMovePowerAndAccuracy(move);
             PrintTextOnWindow(windowId, gMoveDescriptionPointers[move - 1], 6, 1, 0, 0);
@@ -4155,7 +4155,7 @@ static void PlayMonCry(void)
     struct PokeSummary *summary = &sMonSummaryScreen->summary;
     if (!summary->isEgg)
     {
-        if (ShouldPlayNormalMonCry(&sMonSummaryScreen->currentMon) == TRUE)
+        if (ShouldPlayNormalMonCry(&sMonSummaryScreen->currentMon))
             PlayCry_ByMode(summary->species2, 0, CRY_MODE_NORMAL);
         else
             PlayCry_ByMode(summary->species2, 0, CRY_MODE_WEAK);

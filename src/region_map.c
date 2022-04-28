@@ -519,7 +519,7 @@ void InitRegionMapData(struct RegionMap *regionMap, const struct BgTemplate *tem
     gRegionMap = regionMap;
     gRegionMap->initStep = 0;
     gRegionMap->zoomed = zoomed;
-    gRegionMap->inputCallback = zoomed == TRUE ? ProcessRegionMapInput_Zoomed : ProcessRegionMapInput_Full;
+    gRegionMap->inputCallback = zoomed ? ProcessRegionMapInput_Zoomed : ProcessRegionMapInput_Full;
     if (template != NULL)
     {
         gRegionMap->bgNum = template->bg;
@@ -1442,7 +1442,7 @@ void CreateRegionMapCursor(u16 tileTag, u16 paletteTag)
     if (spriteId != MAX_SPRITES)
     {
         gRegionMap->cursorSprite = &gSprites[spriteId];
-        if (gRegionMap->zoomed == TRUE)
+        if (gRegionMap->zoomed)
         {
             gRegionMap->cursorSprite->oam.size = SPRITE_SIZE(32x32);
             gRegionMap->cursorSprite->x -= 8;
@@ -1531,7 +1531,7 @@ static void UnhideRegionMapPlayerIcon(void)
 {
     if (gRegionMap->playerIconSprite != NULL)
     {
-        if (gRegionMap->zoomed == TRUE)
+        if (gRegionMap->zoomed)
         {
             gRegionMap->playerIconSprite->x = gRegionMap->playerIconSpritePosX * 16 - 0x30;
             gRegionMap->playerIconSprite->y = gRegionMap->playerIconSpritePosY * 16 - 0x42;
@@ -1566,7 +1566,7 @@ static void SpriteCB_PlayerIconMapZoomed(struct Sprite *sprite)
     else
         sprite->sVisible = TRUE;
 
-    if (sprite->sVisible == TRUE)
+    if (sprite->sVisible)
         SpriteCB_PlayerIcon(sprite);
     else
         sprite->invisible = TRUE;
@@ -1826,7 +1826,7 @@ static void DrawFlyDestTextWindow(void)
         }
         if (!namePrinted)
         {
-            if (sDrawFlyDestTextWindow == TRUE)
+            if (sDrawFlyDestTextWindow)
             {
                 ClearStdWindowAndFrameToTransparent(1, FALSE);
                 DrawStdFrameWithCustomTileAndPalette(0, FALSE, 101, 13);
@@ -1844,7 +1844,7 @@ static void DrawFlyDestTextWindow(void)
     else
     {
         // Selection is on MAPSECTYPE_NONE, draw empty fly destination text window
-        if (sDrawFlyDestTextWindow == TRUE)
+        if (sDrawFlyDestTextWindow)
         {
             ClearStdWindowAndFrameToTransparent(1, FALSE);
             DrawStdFrameWithCustomTileAndPalette(0, FALSE, 101, 13);

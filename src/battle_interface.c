@@ -1155,7 +1155,7 @@ void UpdateHpTextInHealthbox(u8 healthboxSpriteId, s16 value, u8 maxOrCurrent)
 
         memcpy(text, sEmptyWhiteText_GrayHighlight, sizeof(sEmptyWhiteText_GrayHighlight));
         battler = gSprites[healthboxSpriteId].hMain_Battler;
-        if (IsDoubleBattle() == TRUE)
+        if (IsDoubleBattle())
         {
             UpdateHpTextInHealthboxInDoubles(healthboxSpriteId, value, maxOrCurrent);
         }
@@ -1374,7 +1374,7 @@ void SwapHpBarsWithHpText(void)
                 if (gBattleTypeFlags & BATTLE_TYPE_SAFARI)
                     continue;
 
-                if (noBars == TRUE) // bars to text
+                if (noBars) // bars to text
                 {
                     healthBarSpriteId = gSprites[gHealthboxSpriteIds[i]].hMain_HealthBarSpriteId;
 
@@ -1391,7 +1391,7 @@ void SwapHpBarsWithHpText(void)
             }
             else
             {
-                if (noBars == TRUE) // bars to text
+                if (noBars) // bars to text
                 {
                     if (gBattleTypeFlags & BATTLE_TYPE_SAFARI)
                     {
@@ -2252,7 +2252,7 @@ static void UpdateStatusIconInHealthbox(u8 healthboxSpriteId)
     FillPalette(sStatusIconColors[statusPalId], pltAdder + 0x100, 2);
     CpuCopy16(gPlttBufferUnfaded + 0x100 + pltAdder, (void*)(OBJ_PLTT + pltAdder * 2), 2);
     CpuCopy32(statusGfxPtr, (void*)(OBJ_VRAM0 + (gSprites[healthboxSpriteId].oam.tileNum + tileNumAdder) * TILE_SIZE_4BPP), 96);
-    if (IsDoubleBattle() == TRUE || GetBattlerSide(battlerId) == B_SIDE_OPPONENT)
+    if (IsDoubleBattle() || GetBattlerSide(battlerId) == B_SIDE_OPPONENT)
     {
         if (!gBattleSpritesDataPtr->battlerData[battlerId].hpNumbersNoBars)
         {
@@ -2438,7 +2438,7 @@ s32 MoveBattleBar(u8 battlerId, u8 healthboxSpriteId, u8 whichBar, u8 unused)
                     gBattleSpritesDataPtr->battleBars[battlerId].oldValue,
                     gBattleSpritesDataPtr->battleBars[battlerId].receivedValue,
                     &gBattleSpritesDataPtr->battleBars[battlerId].currValue,
-                #if B_FAST_HP_DRAIN == TRUE
+                #if B_FAST_HP_DRAIN
                     B_HEALTHBAR_PIXELS / 8, max(gBattleSpritesDataPtr->battleBars[battlerId].maxValue / B_HEALTHBAR_PIXELS, 1));
                 #else
                     B_HEALTHBAR_PIXELS / 8, 1);
@@ -3319,7 +3319,7 @@ bool32 CanThrowLastUsedBall(void)
 
 void TryAddLastUsedBallItemSprites(void)
 {
-#if B_LAST_USED_BALL == TRUE
+#if B_LAST_USED_BALL
     if (gLastThrownBall == 0
       || (gLastThrownBall != 0 && !CheckBagHasItem(gLastThrownBall, 1)))
     {
@@ -3409,7 +3409,7 @@ static void SpriteCB_LastUsedBall(struct Sprite *sprite)
 
 static void TryHideOrRestoreLastUsedBall(u8 caseId)
 {
-#if B_LAST_USED_BALL == TRUE
+#if B_LAST_USED_BALL
     if (gBattleStruct->ballSpriteIds[0] == MAX_SPRITES)
         return;
 
@@ -3433,14 +3433,14 @@ static void TryHideOrRestoreLastUsedBall(u8 caseId)
 
 void TryHideLastUsedBall(void)
 {
-#if B_LAST_USED_BALL == TRUE
+#if B_LAST_USED_BALL
     TryHideOrRestoreLastUsedBall(0);
 #endif
 }
 
 void TryRestoreLastUsedBall(void)
 {
-#if B_LAST_USED_BALL == TRUE
+#if B_LAST_USED_BALL
     if (gBattleStruct->ballSpriteIds[0] != MAX_SPRITES)
         TryHideOrRestoreLastUsedBall(1);
     else

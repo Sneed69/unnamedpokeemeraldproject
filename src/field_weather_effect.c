@@ -180,7 +180,7 @@ static void CreateCloudSprites(void)
     u8 spriteId;
     struct Sprite *sprite;
 
-    if (gWeatherPtr->cloudSpritesCreated == TRUE)
+    if (gWeatherPtr->cloudSpritesCreated)
         return;
 
     LoadSpriteSheet(&sCloudSpriteSheet);
@@ -1244,7 +1244,7 @@ static void SetThunderCounter(u16 max)
 
 static void UpdateThunderSound(void)
 {
-    if (gWeatherPtr->thunderTriggered == TRUE)
+    if (gWeatherPtr->thunderTriggered)
     {
         if (gWeatherPtr->thunderCounter == 0)
         {

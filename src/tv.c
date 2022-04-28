@@ -783,13 +783,13 @@ u8 GetRandomActiveShowIdx(void)
     {
         if (GetTVGroupByShowId(gSaveBlock1Ptr->tvShows[j].common.kind) != TVGROUP_OUTBREAK)
         {
-            if (gSaveBlock1Ptr->tvShows[j].common.active == TRUE)
+            if (gSaveBlock1Ptr->tvShows[j].common.active)
                 return j;
         }
         else
         {
             show = &gSaveBlock1Ptr->tvShows[j];
-            if (show->massOutbreak.daysLeft == 0 && show->massOutbreak.active == TRUE)
+            if (show->massOutbreak.daysLeft == 0 && show->massOutbreak.active)
                 return j;
         }
 
@@ -884,7 +884,7 @@ static u8 FindFirstActiveTVShowThatIsNotAMassOutbreak(void)
     {
         if (gSaveBlock1Ptr->tvShows[i].common.kind != TVSHOW_OFF_AIR
          && gSaveBlock1Ptr->tvShows[i].common.kind != TVSHOW_MASS_OUTBREAK
-         && gSaveBlock1Ptr->tvShows[i].common.active == TRUE)
+         && gSaveBlock1Ptr->tvShows[i].common.active)
             return i;
     }
     return 0xFF;
@@ -1287,7 +1287,7 @@ bool8 Put3CheersForPokeblocksOnTheAir(const u8 *partnersName, u8 flavor, u8 colo
         return FALSE;
 
     TryReplaceOldTVShowOfKind(TVSHOW_3_CHEERS_FOR_POKEBLOCKS);
-    if (gSpecialVar_Result == TRUE)
+    if (gSpecialVar_Result)
         return FALSE; // Old show is still active
 
     show = &gSaveBlock1Ptr->tvShows[sCurTVShowSlot];
@@ -1683,7 +1683,7 @@ static void UpdateMassOutbreakTimeLeft(u16 days)
     {
         for (i = 0; i < LAST_TVSHOW_IDX; i++)
         {
-            if (gSaveBlock1Ptr->tvShows[i].massOutbreak.kind == TVSHOW_MASS_OUTBREAK && gSaveBlock1Ptr->tvShows[i].massOutbreak.active == TRUE)
+            if (gSaveBlock1Ptr->tvShows[i].massOutbreak.kind == TVSHOW_MASS_OUTBREAK && gSaveBlock1Ptr->tvShows[i].massOutbreak.active)
             {
                 show = &gSaveBlock1Ptr->tvShows[i];
                 if (show->massOutbreak.daysLeft < days)
@@ -1820,10 +1820,10 @@ void TryPutTodaysRivalTrainerOnAir(void)
         show->rivalTrainer.nGoldSymbols = 0;
         for (i = 0; i < NUM_FRONTIER_FACILITIES; i++)
         {
-            if (FlagGet(sSilverSymbolFlags[i]) == TRUE)
+            if (FlagGet(sSilverSymbolFlags[i]))
                 show->rivalTrainer.nSilverSymbols++;
 
-            if (FlagGet(sGoldSymbolFlags[i]) == TRUE)
+            if (FlagGet(sGoldSymbolFlags[i]))
                 show->rivalTrainer.nGoldSymbols++;
         }
         show->rivalTrainer.battlePoints = gSaveBlock2Ptr->frontier.battlePoints;
@@ -2298,7 +2298,7 @@ bool8 ShouldHideFanClubInterviewer(void)
         return TRUE;
 
     TryReplaceOldTVShowOfKind(TVSHOW_FAN_CLUB_SPECIAL);
-    if (gSpecialVar_Result == TRUE)
+    if (gSpecialVar_Result)
         return TRUE;
 
     return FALSE;
@@ -2310,7 +2310,7 @@ bool8 ShouldAirFrontierTVShow(void)
     u8 showIdx;
     TVShow *shows;
 
-    if (IsRecordMixShowAlreadySpawned(TVSHOW_FRONTIER, FALSE) == TRUE)
+    if (IsRecordMixShowAlreadySpawned(TVSHOW_FRONTIER, FALSE))
     {
         shows = gSaveBlock1Ptr->tvShows;
         playerId = GetPlayerIDAsU32();
@@ -2674,7 +2674,7 @@ static void UpdatePokeNewsCountdown(u16 days)
             else
             {
                 // Progress countdown to news event
-                if (gSaveBlock1Ptr->pokeNews[i].state == POKENEWS_STATE_INACTIVE && FlagGet(FLAG_SYS_GAME_CLEAR) == TRUE)
+                if (gSaveBlock1Ptr->pokeNews[i].state == POKENEWS_STATE_INACTIVE && FlagGet(FLAG_SYS_GAME_CLEAR))
                     gSaveBlock1Ptr->pokeNews[i].state = POKENEWS_STATE_UPCOMING;
 
                 gSaveBlock1Ptr->pokeNews[i].dayCountdown -= days;
@@ -2761,7 +2761,7 @@ static void SmartShopper_BufferPurchaseTotal(u8 varIdx, TVShow *show)
             price += ItemId_GetPrice(show->smartshopperShow.itemIds[i]) * show->smartshopperShow.itemAmounts[i];
     }
 
-    if (show->smartshopperShow.priceReduced == TRUE)
+    if (show->smartshopperShow.priceReduced)
         ConvertIntToDecimalString(varIdx, price >> 1);
     else
         ConvertIntToDecimalString(varIdx, price);
@@ -2781,7 +2781,7 @@ static bool8 IsRecordMixShowAlreadySpawned(u8 kind, bool8 delete)
          && (playerId & 0xFF) == shows[i].common.trainerIdLo
          && ((playerId >> 8) & 0xFF) == shows[i].common.trainerIdHi)
         {
-            if (delete == TRUE)
+            if (delete)
             {
                 DeleteTVShowInArrayByIdx(gSaveBlock1Ptr->tvShows, i);
                 CompactTVShowArray(gSaveBlock1Ptr->tvShows);
@@ -2820,7 +2820,7 @@ static void TryReplaceOldTVShowOfKind(u8 kind)
     {
         if (gSaveBlock1Ptr->tvShows[i].common.kind == kind)
         {
-            if (gSaveBlock1Ptr->tvShows[i].common.active == TRUE)
+            if (gSaveBlock1Ptr->tvShows[i].common.active)
             {
                 // Old TV show is still active, don't replace
                 gSpecialVar_Result = TRUE;
@@ -3323,10 +3323,10 @@ u8 CheckForPlayersHouseNews(void)
             return PLAYERS_HOUSE_TV_NONE;
     }
 
-    if (FlagGet(FLAG_SYS_TV_LATIAS_LATIOS) == TRUE)
+    if (FlagGet(FLAG_SYS_TV_LATIAS_LATIOS))
         return PLAYERS_HOUSE_TV_LATI;
 
-    if (FlagGet(FLAG_SYS_TV_HOME) == TRUE)
+    if (FlagGet(FLAG_SYS_TV_HOME))
         return PLAYERS_HOUSE_TV_MOVIE;
 
     return PLAYERS_HOUSE_TV_LATI;
@@ -3503,7 +3503,7 @@ static bool8 TryMixTVShow(TVShow *dest[TV_SHOWS_COUNT], TVShow *src[TV_SHOWS_COU
     }
 
     // Show was mixed, delete from array
-    if (success == TRUE)
+    if (success)
     {
         DeleteTVShowInArrayByIdx(tv2, sTVShowMixingCurSlot);
         return TRUE;
@@ -4346,7 +4346,7 @@ static void DoTVShowBravoTrainerBattleTower(void)
             StringCopy(gStringVar1, gText_OpenLevel);
         }
         ConvertIntToDecimalString(1, show->bravoTrainerTower.numFights);
-        if (show->bravoTrainerTower.wonTheChallenge == TRUE)
+        if (show->bravoTrainerTower.wonTheChallenge)
             sTVShowState = 3;
         else
             sTVShowState = 4;
@@ -4461,7 +4461,7 @@ static void DoTVShowTodaysSmartShopper(void)
         ConvertIntToDecimalString(2, show->smartshopperShow.itemAmounts[1]);
         if (show->smartshopperShow.itemIds[2] != ITEM_NONE)
             sTVShowState = SMARTSHOPPER_STATE_THIRD_ITEM;
-        else if (show->smartshopperShow.priceReduced == TRUE)
+        else if (show->smartshopperShow.priceReduced)
             sTVShowState = SMARTSHOPPER_STATE_DURING_SALE;
         else
             sTVShowState = SMARTSHOPPER_STATE_OUTRO_NORMAL;
@@ -4470,7 +4470,7 @@ static void DoTVShowTodaysSmartShopper(void)
         // Clerk describes 3rd type of item player purchased
         StringCopy(gStringVar2, ItemId_GetName(show->smartshopperShow.itemIds[2]));
         ConvertIntToDecimalString(2, show->smartshopperShow.itemAmounts[2]);
-        if (show->smartshopperShow.priceReduced == TRUE)
+        if (show->smartshopperShow.priceReduced)
             sTVShowState = SMARTSHOPPER_STATE_DURING_SALE;
         else
             sTVShowState = SMARTSHOPPER_STATE_OUTRO_NORMAL;
@@ -4488,7 +4488,7 @@ static void DoTVShowTodaysSmartShopper(void)
     case SMARTSHOPPER_STATE_IS_VIP:
         // Clerk says customer is a VIP
         // Said if player only purchased one type of item
-        if (show->smartshopperShow.priceReduced == TRUE)
+        if (show->smartshopperShow.priceReduced)
             sTVShowState = SMARTSHOPPER_STATE_DURING_SALE;
         else
             sTVShowState = SMARTSHOPPER_STATE_OUTRO_NORMAL;
@@ -4497,7 +4497,7 @@ static void DoTVShowTodaysSmartShopper(void)
         // Clerk's comments if player purchased maximum number of 1st item
         TVShowConvertInternationalString(gStringVar1, show->smartshopperShow.playerName, show->smartshopperShow.language);
         StringCopy(gStringVar2, ItemId_GetName(show->smartshopperShow.itemIds[0]));
-        if (show->smartshopperShow.priceReduced == TRUE)
+        if (show->smartshopperShow.priceReduced)
             sTVShowState = SMARTSHOPPER_STATE_DURING_SALE;
         else
             sTVShowState = SMARTSHOPPER_STATE_OUTRO_MAX;
@@ -5715,7 +5715,7 @@ static void DoTVShowFindThatGamer(void)
             StringCopy(gStringVar2, gText_Roulette);
             break;
         }
-        if (show->findThatGamer.won == TRUE)
+        if (show->findThatGamer.won)
             sTVShowState = 1;
         else
             sTVShowState = 2;

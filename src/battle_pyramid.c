@@ -947,7 +947,7 @@ static void SetBattlePyramidPrize(void)
 
 static void GiveBattlePyramidPrize(void)
 {
-    if (AddBagItem(gSaveBlock2Ptr->frontier.pyramidPrize, 1) == TRUE)
+    if (AddBagItem(gSaveBlock2Ptr->frontier.pyramidPrize, 1))
     {
         CopyItemName(gSaveBlock2Ptr->frontier.pyramidPrize, gStringVar1);
         gSaveBlock2Ptr->frontier.pyramidPrize = 0;

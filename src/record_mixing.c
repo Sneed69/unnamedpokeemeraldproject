@@ -408,7 +408,7 @@ static void Task_MixingRecordsRecv(u8 taskId)
     case 101:
         {
             u8 players = GetLinkPlayerCount_2();
-            if (IsLinkMaster() == TRUE)
+            if (IsLinkMaster())
             {
                 if (players == GetSavedPlayerCount())
                 {
@@ -570,7 +570,7 @@ static void Task_ReceivePacket(u8 taskId)
     struct Task *task = &gTasks[taskId];
 
     task->func = Task_WaitReceivePacket;
-    if (sReadyToReceive == TRUE)
+    if (sReadyToReceive)
         ReceiveExchangePacket(task->tMultiplayerId);
 }
 
@@ -657,7 +657,7 @@ static void ReceiveBattleTowerData(void *records, size_t recordSize, u8 multipla
     ShufflePlayerIndices(mixIndices);
     if (Link_AnyPartnersPlayingRubyOrSapphire())
     {
-        if (RubyBattleTowerRecordToEmerald((void *)records + recordSize * mixIndices[multiplayerId], (void *)records + recordSize * multiplayerId) == TRUE)
+        if (RubyBattleTowerRecordToEmerald((void *)records + recordSize * mixIndices[multiplayerId], (void *)records + recordSize * multiplayerId))
         {
             battleTowerRecord = (void *)records + recordSize * multiplayerId;
             battleTowerRecord->language = gLinkPlayers[mixIndices[multiplayerId]].language;
@@ -882,24 +882,24 @@ static void ReceiveDaycareMailData(struct RecordMixingDaycareMail *records, size
 
         // Count number of players that have at least
         // one daycare Pokémon with no held item
-        if (canHoldItem[i][0] == TRUE || canHoldItem[i][1] == TRUE)
+        if (canHoldItem[i][0] || canHoldItem[i][1])
             numDaycareCanHold++;
 
-        if (canHoldItem[i][0] == TRUE && canHoldItem[i][1] == FALSE)
+        if (canHoldItem[i][0] && canHoldItem[i][1] == FALSE)
         {
             // Only daycare slot 0 can hold an item for this player, record it
             idxs[j][MULTIPLAYER_ID] = i;
             idxs[j][DAYCARE_SLOT] = 0;
             j++;
         }
-        else if (canHoldItem[i][0] == FALSE && canHoldItem[i][1] == TRUE)
+        else if (canHoldItem[i][0] == FALSE && canHoldItem[i][1])
         {
             // Only daycare slot 1 can hold an item for this player, record it
             idxs[j][MULTIPLAYER_ID] = i;
             idxs[j][DAYCARE_SLOT] = 1;
             j++;
         }
-        else if (canHoldItem[i][0] == TRUE && canHoldItem[i][1] == TRUE)
+        else if (canHoldItem[i][0] && canHoldItem[i][1])
         {
             // Both daycare slots can hold an item, choose which one to use.
             // If either one is the only one to have associated mail, use that one.

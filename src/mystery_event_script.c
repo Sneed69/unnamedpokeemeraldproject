@@ -185,7 +185,7 @@ bool8 MEScrCmd_checkcompat(struct ScriptContext *ctx)
     v3 = ScriptReadHalfword(ctx);
     v4 = ScriptReadWord(ctx);
 
-    if (CheckCompatibility(v1, v2, v3, v4) == TRUE)
+    if (CheckCompatibility(v1, v2, v3, v4))
         ctx->mValid = TRUE;
     else
         SetIncompatible();
@@ -251,7 +251,7 @@ bool8 MEScrCmd_setenigmaberry(struct ScriptContext *ctx)
 
     ctx->mStatus = MEVENT_STATUS_SUCCESS;
 
-    if (IsEnigmaBerryValid() == TRUE)
+    if (IsEnigmaBerryValid())
         VarSet(VAR_ENIGMA_BERRY_AVAILABLE, 1);
     else
         ctx->mStatus = MEVENT_STATUS_LOAD_ERROR;

@@ -173,7 +173,7 @@ static u32 Client_Run(struct MysteryGiftClient * client)
             MysteryGiftClient_CopyRecvScript(client);
         break;
     case CLI_COPY_RECV_IF:
-        if (client->param == TRUE)
+        if (client->param)
             MysteryGiftClient_CopyRecvScript(client);
         break;
     case CLI_COPY_RECV:

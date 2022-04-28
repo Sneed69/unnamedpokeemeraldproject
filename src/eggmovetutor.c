@@ -531,7 +531,7 @@ static void DoEggMoveTutorMain(void)
                 {
                     sEggMoveTutorStruct->state = MENU_STATE_SETUP_BATTLE_MODE;
                 }
-                else if (sEggMoveTutorMenuSate.showContestInfo == TRUE)
+                else if (sEggMoveTutorMenuSate.showContestInfo)
                 {
                     sEggMoveTutorStruct->state = MENU_STATE_SETUP_CONTEST_MODE;
                 }
@@ -560,7 +560,7 @@ static void DoEggMoveTutorMain(void)
                 {
                     sEggMoveTutorStruct->state = MENU_STATE_SETUP_BATTLE_MODE;
                 }
-                else if (sEggMoveTutorMenuSate.showContestInfo == TRUE)
+                else if (sEggMoveTutorMenuSate.showContestInfo)
                 {
                     sEggMoveTutorStruct->state = MENU_STATE_SETUP_CONTEST_MODE;
                 }
@@ -620,7 +620,7 @@ static void DoEggMoveTutorMain(void)
                 {
                     sEggMoveTutorStruct->state = MENU_STATE_SETUP_BATTLE_MODE;
                 }
-                else if (sEggMoveTutorMenuSate.showContestInfo == TRUE)
+                else if (sEggMoveTutorMenuSate.showContestInfo)
                 {
                     sEggMoveTutorStruct->state = MENU_STATE_SETUP_CONTEST_MODE;
                 }
@@ -636,7 +636,7 @@ static void DoEggMoveTutorMain(void)
             {
                 sEggMoveTutorStruct->state = MENU_STATE_SETUP_BATTLE_MODE;
             }
-            else if (sEggMoveTutorMenuSate.showContestInfo == TRUE)
+            else if (sEggMoveTutorMenuSate.showContestInfo)
             {
                 sEggMoveTutorStruct->state = MENU_STATE_SETUP_CONTEST_MODE;
             }
@@ -683,7 +683,7 @@ static void DoEggMoveTutorMain(void)
         {
             HideHeartSpritesAndShowTeachMoveText(TRUE);
         }
-        else if (sEggMoveTutorMenuSate.showContestInfo == TRUE)
+        else if (sEggMoveTutorMenuSate.showContestInfo)
         {
             ShowTeachMoveText(TRUE);
         }

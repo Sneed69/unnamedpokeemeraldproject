@@ -688,11 +688,11 @@ void PreparePokeblockFeedScene(void)
 {
     while (1)
     {
-        if (MenuHelpers_ShouldWaitForLinkRecv() == TRUE)
+        if (MenuHelpers_ShouldWaitForLinkRecv())
             break;
-        if (LoadPokeblockFeedScene() == TRUE)
+        if (LoadPokeblockFeedScene())
             break;
-        if (MenuHelpers_IsLinkActive() == TRUE)
+        if (MenuHelpers_IsLinkActive())
             break;
     }
 }
@@ -1004,7 +1004,7 @@ static void CalculateMonAnimLength(void)
     for (i = 0; i < 8; i++, animId++)
     {
         pokeblockFeed->monAnimLength += sMonPokeblockAnims[animId][ANIMDATA_TIME];
-        if (sMonPokeblockAnims[animId][ANIMDATA_IS_LAST] == TRUE)
+        if (sMonPokeblockAnims[animId][ANIMDATA_IS_LAST])
             break;
     }
 }
@@ -1046,7 +1046,7 @@ static void UpdateMonAnim(void)
         pokeblockFeed->animRunState = 60;
         break;
     case 60:
-        if (DoMonAnimStep() == TRUE)
+        if (DoMonAnimStep())
         {
             if (!pokeblockFeed->animData[ANIMDATA_IS_LAST])
             {

@@ -1369,7 +1369,7 @@ static void WallyHandleToggleUnkFlag(void)
 
 static void WallyHandleHitAnimation(void)
 {
-    if (gSprites[gBattlerSpriteIds[gActiveBattler]].invisible == TRUE)
+    if (gSprites[gBattlerSpriteIds[gActiveBattler]].invisible)
     {
         WallyBufferExecCompleted();
     }

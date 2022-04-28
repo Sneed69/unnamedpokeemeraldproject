@@ -284,7 +284,7 @@ void Task_HandlePorthole(u8 taskId)
             data[1] = 1;
         if (!ScriptMovement_IsObjectMovementFinished(OBJ_EVENT_ID_PLAYER, location->mapNum, location->mapGroup))
             return;
-        if (CountSSTidalStep(1) == TRUE)
+        if (CountSSTidalStep(1))
         {
             if (*cruiseState == SS_TIDAL_DEPART_SLATEPORT)
                 *cruiseState = SS_TIDAL_EXIT_CURRENTS_RIGHT;

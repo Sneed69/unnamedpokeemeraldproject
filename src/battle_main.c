@@ -630,7 +630,7 @@ static void SetPlayerBerryDataInBattleStruct(void)
     struct BattleStruct *battleStruct = gBattleStruct;
     struct BattleEnigmaBerry *battleBerry = &battleStruct->multiBuffer.linkBattlerHeader.battleEnigmaBerry;
 
-    if (IsEnigmaBerryValid() == TRUE)
+    if (IsEnigmaBerryValid())
     {
         for (i = 0; i < BERRY_NAME_LENGTH; i++)
             battleBerry->name[i] = gSaveBlock1Ptr->enigmaBerry.berry.name[i];
@@ -665,7 +665,7 @@ static void SetAllPlayersBerryData(void)
 
     if (!(gBattleTypeFlags & BATTLE_TYPE_LINK))
     {
-        if (IsEnigmaBerryValid() == TRUE)
+        if (IsEnigmaBerryValid())
         {
             for (i = 0; i < BERRY_NAME_LENGTH; i++)
             {
@@ -1851,7 +1851,7 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 fir
                                                                         | BATTLE_TYPE_EREADER_TRAINER
                                                                         | BATTLE_TYPE_TRAINER_HILL)))
     {
-        if (firstTrainer == TRUE)
+        if (firstTrainer)
             ZeroEnemyPartyMons();
 
         if (gBattleTypeFlags & BATTLE_TYPE_TWO_OPPONENTS)
@@ -1875,7 +1875,7 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 fir
 
             fixedIV = fixedIV + TRAINER_IV_MODIFIER;
 
-            if (gTrainers[trainerNum].doubleBattle == TRUE)
+            if (gTrainers[trainerNum].doubleBattle)
                 personalityValue = 0x80;
             else if (gTrainers[trainerNum].encounterMusic_gender & F_TRAINER_FEMALE)
                 personalityValue = 0x78; // Use personality more likely to result in a female Pokémon
@@ -1885,7 +1885,7 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 fir
             for (j = 0; gTrainers[trainerNum].trainerName[j] != EOS; j++)
                 nameHash += gTrainers[trainerNum].trainerName[j];
 
-            if (gTrainers[trainerNum].doubleBattle == TRUE)
+            if (gTrainers[trainerNum].doubleBattle)
                 personalityValue = 0x80;
             else if (gTrainers[trainerNum].encounterMusic_gender & 0x80)
             {
@@ -2264,7 +2264,7 @@ static void EndLinkBattleInSteps(void)
             gBattleCommunication[MULTIUSE_STATE]++;
         break;
     case 6:
-        if (IsLinkTaskFinished() == TRUE)
+        if (IsLinkTaskFinished())
         {
             SetLinkStandbyCallback();
             BattlePutTextOnWindow(gText_LinkStandby3, B_WIN_MSG);
@@ -2274,7 +2274,7 @@ static void EndLinkBattleInSteps(void)
     case 7:
         if (!IsTextPrinterActive(B_WIN_MSG))
         {
-            if (IsLinkTaskFinished() == TRUE)
+            if (IsLinkTaskFinished())
                 gBattleCommunication[MULTIUSE_STATE]++;
         }
         break;
@@ -2470,7 +2470,7 @@ static void AskRecordBattle(void)
         }
         break;
     case STATE_RECORD_NO:
-        if (IsLinkTaskFinished() == TRUE)
+        if (IsLinkTaskFinished())
         {
             HandleBattleWindow(0x18, 8, 0x1D, 0xD, WINDOW_CLEAR);
             if (gMain.anyLinkBattlerHasFrontierPass)
@@ -2521,7 +2521,7 @@ static void AskRecordBattle(void)
         }
         break;
     case STATE_RECORD_WAIT:
-        if (IsLinkTaskFinished() == TRUE && !IsTextPrinterActive(B_WIN_MSG) && --gBattleCommunication[1] == 0)
+        if (IsLinkTaskFinished() && !IsTextPrinterActive(B_WIN_MSG) && --gBattleCommunication[1] == 0)
         {
             if (gMain.anyLinkBattlerHasFrontierPass)
             {
@@ -2537,7 +2537,7 @@ static void AskRecordBattle(void)
         {
             if (gMain.anyLinkBattlerHasFrontierPass)
             {
-                if (IsLinkTaskFinished() == TRUE)
+                if (IsLinkTaskFinished())
                 {
                     BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 16, RGB_BLACK);
                     gBattleCommunication[1] = 32; // Delay
@@ -2992,7 +2992,7 @@ static void BattleStartClearSetData(void)
 
     if (!(gBattleTypeFlags & BATTLE_TYPE_RECORDED))
     {
-        if (!(gBattleTypeFlags & BATTLE_TYPE_LINK) && gSaveBlock2Ptr->optionsBattleSceneOff == TRUE)
+        if (!(gBattleTypeFlags & BATTLE_TYPE_LINK) && gSaveBlock2Ptr->optionsBattleSceneOff)
             gHitMarker |= HITMARKER_NO_ANIMATIONS;
     }
     else if (!(gBattleTypeFlags & (BATTLE_TYPE_LINK | BATTLE_TYPE_RECORDED_LINK)) && GetBattleSceneInRecordedBattle())
@@ -4888,7 +4888,7 @@ static void CheckMegaEvolutionBeforeTurn(void)
             {
                 gBattleStruct->mega.toEvolve &= ~(gBitTable[gActiveBattler]);
                 gLastUsedItem = gBattleMons[gActiveBattler].item;
-                if (gBattleStruct->mega.isWishMegaEvo == TRUE)
+                if (gBattleStruct->mega.isWishMegaEvo)
                     BattleScriptExecute(BattleScript_WishMegaEvolution);
                 else
                     BattleScriptExecute(BattleScript_MegaEvolution);

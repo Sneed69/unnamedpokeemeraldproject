@@ -347,7 +347,7 @@ u16 CreateTrainerCardTrainerPicSprite(u16 species, bool8 isFrontPic, u16 destX, 
 
 u16 PlayerGenderToFrontTrainerPicId_Debug(u8 gender, bool8 getClass)
 {
-    if (getClass == TRUE)
+    if (getClass)
     {
         if (gender != MALE)
             return gFacilityClassToPicIndex[FACILITY_CLASS_MAY];

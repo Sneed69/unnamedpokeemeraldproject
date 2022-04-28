@@ -154,7 +154,7 @@ static void SetRandomVerdanturfTentPrize(void)
 
 static void GiveVerdanturfTentPrize(void)
 {
-    if (AddBagItem(gSaveBlock2Ptr->frontier.verdanturfTentPrize, 1) == TRUE)
+    if (AddBagItem(gSaveBlock2Ptr->frontier.verdanturfTentPrize, 1))
     {
         CopyItemName(gSaveBlock2Ptr->frontier.verdanturfTentPrize, gStringVar1);
         gSaveBlock2Ptr->frontier.verdanturfTentPrize = ITEM_NONE;
@@ -204,7 +204,7 @@ static void SetRandomFallarborTentPrize(void)
 
 static void GiveFallarborTentPrize(void)
 {
-    if (AddBagItem(gSaveBlock2Ptr->frontier.fallarborTentPrize, 1) == TRUE)
+    if (AddBagItem(gSaveBlock2Ptr->frontier.fallarborTentPrize, 1))
     {
         CopyItemName(gSaveBlock2Ptr->frontier.fallarborTentPrize, gStringVar1);
         gSaveBlock2Ptr->frontier.fallarborTentPrize = ITEM_NONE;
@@ -259,7 +259,7 @@ static void SetRandomSlateportTentPrize(void)
 
 static void GiveSlateportTentPrize(void)
 {
-    if (AddBagItem(gSaveBlock2Ptr->frontier.slateportTentPrize, 1) == TRUE)
+    if (AddBagItem(gSaveBlock2Ptr->frontier.slateportTentPrize, 1))
     {
         CopyItemName(gSaveBlock2Ptr->frontier.slateportTentPrize, gStringVar1);
         gSaveBlock2Ptr->frontier.slateportTentPrize = ITEM_NONE;

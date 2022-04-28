@@ -450,7 +450,7 @@ static void CB2_CreateTradeMenu(void)
         }
         break;
     case 4:
-        if (gReceivedRemoteLinkPlayers == TRUE && IsLinkPlayerDataExchangeComplete() == TRUE)
+        if (gReceivedRemoteLinkPlayers && IsLinkPlayerDataExchangeComplete())
         {
             DestroyTask_RfuIdle();
             CalculatePlayerPartyCount();
@@ -1315,7 +1315,7 @@ static u8 GetNewTradeMenuPosition(u8 oldPosition, u8 direction)
 
     for (i = 0; i < PARTY_SIZE; i++)
     {
-        if (sTradeMenuData->monPresent[sTradeNextSelectedMonTable[oldPosition][direction][i]] == TRUE)
+        if (sTradeMenuData->monPresent[sTradeNextSelectedMonTable[oldPosition][direction][i]])
         {
             newPosition = sTradeNextSelectedMonTable[oldPosition][direction][i];
             break;
@@ -2224,7 +2224,7 @@ static void SetTradePartyLiveStatuses(u8 whichParty)
     case TRADE_PLAYER:
         for (i = 0; i < sTradeMenuData->partyCounts[whichParty]; i++)
         {
-            if (GetMonData(&gPlayerParty[i], MON_DATA_IS_EGG) == TRUE)
+            if (GetMonData(&gPlayerParty[i], MON_DATA_IS_EGG))
             {
                 sTradeMenuData->isLiveMon[whichParty][i] = FALSE;
                 sTradeMenuData->isEgg[whichParty][i] = TRUE;
@@ -2244,7 +2244,7 @@ static void SetTradePartyLiveStatuses(u8 whichParty)
     case TRADE_PARTNER:
         for (i = 0; i < sTradeMenuData->partyCounts[whichParty]; i++)
         {
-            if (GetMonData(&gEnemyParty[i], MON_DATA_IS_EGG) == TRUE)
+            if (GetMonData(&gEnemyParty[i], MON_DATA_IS_EGG))
             {
                 sTradeMenuData->isLiveMon[whichParty][i] = FALSE;
                 sTradeMenuData->isEgg[whichParty][i] = TRUE;
@@ -2823,7 +2823,7 @@ void CB2_LinkTrade(void)
         break;
     case 4:
         CheckForLinkTimeout();
-        if (gReceivedRemoteLinkPlayers == TRUE && IsLinkPlayerDataExchangeComplete() == TRUE)
+        if (gReceivedRemoteLinkPlayers && IsLinkPlayerDataExchangeComplete())
             gMain.state++;
         break;
     case 5:
@@ -4557,7 +4557,7 @@ void CreateInGameTradePokemon(void)
 
 static void CB2_UpdateLinkTrade(void)
 {
-    if (AnimateTradeSequence() == TRUE)
+    if (AnimateTradeSequence())
     {
         DestroySprite(&gSprites[sTradeData->monSpriteIds[TRADE_PLAYER]]);
         FreeSpriteOamMatrix(&gSprites[sTradeData->monSpriteIds[TRADE_PARTNER]]);
@@ -4727,7 +4727,7 @@ static void CB2_SaveAndEndTrade(void)
         }
         break;
     case 8:
-        if (IsBGMStopped() == TRUE)
+        if (IsBGMStopped())
         {
             if (gWirelessCommType && gMain.savedCallback == CB2_StartCreateTradeMenu)
             {
@@ -5025,7 +5025,7 @@ static void CB2_SaveAndEndWirelessTrade(void)
         }
         break;
     case 11:
-        if (!gPaletteFade.active && IsBGMStopped() == TRUE)
+        if (!gPaletteFade.active && IsBGMStopped())
         {
             SetTradeLinkStandbyCallback(3);
             gMain.state = 12;

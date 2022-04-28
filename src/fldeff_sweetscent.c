@@ -69,7 +69,7 @@ static void TrySweetScentEncounter(u8 taskId)
         if (gTasks[taskId].data[0] == 64)
         {
             gTasks[taskId].data[0] = 0;
-            if (SweetScentWildEncounter() == TRUE)
+            if (SweetScentWildEncounter())
             {
                 DestroyTask(taskId);
             }

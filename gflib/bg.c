@@ -395,7 +395,7 @@ u16 LoadBgTiles(u8 bg, const void* src, u16 size, u16 destOffset)
 
     sDmaBusyBitfield[cursor / 0x20] |= (1 << (cursor % 0x20));
 
-    if (gWindowTileAutoAllocEnabled == TRUE)
+    if (gWindowTileAutoAllocEnabled)
         BgTileAllocOp(bg, tileOffset / 0x20, size / 0x20, 1);
 
     return cursor;

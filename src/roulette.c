@@ -1703,7 +1703,7 @@ static void Task_RecordBallHit(u8 taskId)
             {
                 bool8 won = IsHitInBetSelection(RecordHit(taskId, sRoulette->hitSlot), sRoulette->betSelection[sRoulette->curBallNum]);
                 gTasks[taskId].tWonBet = won;
-                if (won == TRUE)
+                if (won)
                     RouletteFlash_Enable(&sRoulette->flashUtil, F_FLASH_OUTER_EDGES);
             }
             if (gTasks[taskId].data[1] <= 60)
@@ -1739,7 +1739,7 @@ static void Task_SlideGridOnscreen(u8 taskId)
     else
     {
         ShowHideWinSlotCursor(gTasks[taskId].tWinningSquare);
-        if (gTasks[taskId].tWonBet == TRUE)
+        if (gTasks[taskId].tWonBet)
             gTasks[taskId].data[1] = 121;
         else
             gTasks[taskId].data[1] = 61;
@@ -4461,7 +4461,7 @@ static void SetBallStuck(struct Sprite *sprite)
     slotsToSkip = 2;
     slotId = (sRoulette->stuckHitSlot + 2) % NUM_ROULETTE_SLOTS;
 
-    if (sRoulette->useTaillow == TRUE && sRoulette->tableId == 1)
+    if (sRoulette->useTaillow && sRoulette->tableId == 1)
         maxSlotToCheck += 6; // Check all remaining slots
     else
         maxSlotToCheck += slotsToSkip; // Check enough slots to guarantee an empty will be found

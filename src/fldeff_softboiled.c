@@ -82,7 +82,7 @@ static void Task_DisplayHPRestoredMessage(u8 taskId)
 
 static void Task_FinishSoftboiled(u8 taskId)
 {
-    if(IsPartyMenuTextPrinterActive() == TRUE)
+    if(IsPartyMenuTextPrinterActive())
         return;
     gPartyMenu.action = 0;
     AnimatePartySlot(gPartyMenu.slotId, 0);
@@ -96,7 +96,7 @@ static void Task_FinishSoftboiled(u8 taskId)
 
 static void Task_ChooseNewMonForSoftboiled(u8 taskId)
 {
-    if(IsPartyMenuTextPrinterActive() == TRUE)
+    if(IsPartyMenuTextPrinterActive())
         return;
     DisplayPartyMenuStdMessage(PARTY_MSG_USE_ON_WHICH_MON);
     gTasks[taskId].func = Task_HandleChooseMonInput;

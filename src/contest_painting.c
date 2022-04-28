@@ -284,7 +284,7 @@ static void PrintContestPaintingCaption(u8 contestType, bool8 isForArtist)
     u8 category;
 
     // Artist's painting has no caption
-    if (isForArtist == TRUE)
+    if (isForArtist)
         return;
 
     category = gContestPaintingWinner->contestCategory;
@@ -421,7 +421,7 @@ static void LoadContestPaintingFrame(u8 contestWinnerId, bool8 isForArtist)
     u8 x, y;
 
     LoadPalette(sPictureFramePalettes, 0, 0x100);
-    if (isForArtist == TRUE)
+    if (isForArtist)
     {
         // Load Artist's frame
         switch (gContestPaintingWinner->contestCategory / NUM_PAINTING_CAPTIONS)

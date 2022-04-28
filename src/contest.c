@@ -2866,7 +2866,7 @@ void SetContestants(u8 contestType, u8 rank)
     {
         if (rank == gContestOpponents[i].whichRank)
         {
-            if (allowPostgameContestants == TRUE)
+            if (allowPostgameContestants)
             {
                 if (filter[i] == CONTEST_FILTER_NO_POSTGAME)
                     continue;
@@ -2920,7 +2920,7 @@ void SetLinkAIContestants(u8 contestType, u8 rank, bool32 isPostgame)
         if (rank != gContestOpponents[i].whichRank)
             continue;
 
-        if (isPostgame == TRUE)
+        if (isPostgame)
         {
             if (gPostgameContestOpponentFilter[i] == CONTEST_FILTER_NO_POSTGAME)
                 continue;
@@ -4809,7 +4809,7 @@ static void Task_SlideApplauseMeterIn(u8 taskId)
 
 static void SlideApplauseMeterOut(void)
 {
-    if (gSprites[eContest.applauseMeterSpriteId].invisible == TRUE)
+    if (gSprites[eContest.applauseMeterSpriteId].invisible)
     {
         eContest.applauseMeterIsMoving = FALSE;
     }

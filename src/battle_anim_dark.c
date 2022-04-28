@@ -618,7 +618,7 @@ void AnimTask_MoveTargetMementoShadow(u8 taskId)
     switch (task->data[0])
     {
     case 0:
-        if (IsContest() == TRUE)
+        if (IsContest())
         {
             gBattle_WIN0H = 0;
             gBattle_WIN0V = 0;
@@ -918,7 +918,7 @@ void AnimTask_MetallicShine(u8 taskId)
     {
         if (GetBattlerPosition(gBattleAnimAttacker) == B_POSITION_OPPONENT_RIGHT || GetBattlerPosition(gBattleAnimAttacker) == B_POSITION_PLAYER_LEFT)
         {
-            if (IsBattlerSpriteVisible(BATTLE_PARTNER(gBattleAnimAttacker)) == TRUE)
+            if (IsBattlerSpriteVisible(BATTLE_PARTNER(gBattleAnimAttacker)))
             {
                 gSprites[gBattlerSpriteIds[BATTLE_PARTNER(gBattleAnimAttacker)]].oam.priority--;
                 SetAnimBgAttribute(1, BG_ANIM_PRIORITY, 1);

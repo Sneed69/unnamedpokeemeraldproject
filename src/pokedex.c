@@ -2625,7 +2625,7 @@ static void LoadPokedexBgPalette(bool8 isSearchResults)
 {
     if (!HGSS_DARK_MODE)
     {
-        if (isSearchResults == TRUE)
+        if (isSearchResults)
             LoadPalette(gPokedexSearchResults_Pal + 1, 1, 0xBE);
         else if (!IsNationalPokedexEnabled())
             LoadPalette(gPokedexDefault_Pal + 1, 1, 0xBE);
@@ -2635,7 +2635,7 @@ static void LoadPokedexBgPalette(bool8 isSearchResults)
     }
     else
     {
-        if (isSearchResults == TRUE)
+        if (isSearchResults)
             LoadPalette(gPokedexSearchResults_dark_Pal + 1, 1, 0xBE);
         else if (!IsNationalPokedexEnabled())
             LoadPalette(gPokedexDefault_dark_Pal + 1, 1, 0xBE);
@@ -7688,7 +7688,7 @@ static void Task_HandleEvolutionScreenInput(u8 taskId)
                 if (pos >= max)
                     pos = 0;
 
-                if (sPokedexView->sEvoScreenData.seen[pos] == TRUE)
+                if (sPokedexView->sEvoScreenData.seen[pos])
                     break;
             }
             gSprites[sPokedexView->sEvoScreenData.arrowSpriteId].y = base_y + base_y_offset * pos;

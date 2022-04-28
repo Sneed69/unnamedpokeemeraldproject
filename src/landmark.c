@@ -400,7 +400,7 @@ const u8 *GetLandmarkName(u8 mapSection, u8 id, u8 count)
     {
         const struct Landmark *landmark = *landmarks;
 
-        if (landmark->flag == 0xFFFF || FlagGet(landmark->flag) == TRUE)
+        if (landmark->flag == 0xFFFF || FlagGet(landmark->flag))
         {
             if (count == 0)
                 break;

@@ -840,7 +840,7 @@ void UpdateWirelessStatusIndicatorSprite(void)
         }
 
         // Set signal strength sprite anim number
-        if (IsRfuRecoveringFromLinkLoss() == TRUE)
+        if (IsRfuRecoveringFromLinkLoss())
             sprite->sNextAnimNum = WIRELESS_STATUS_ANIM_ERROR;
         else if (signalStrength <= RFU_LINK_ICON_LEVEL1_MAX)
             sprite->sNextAnimNum = WIRELESS_STATUS_ANIM_SEARCHING;

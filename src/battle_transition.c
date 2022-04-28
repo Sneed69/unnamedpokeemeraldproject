@@ -3000,7 +3000,7 @@ static bool8 ShredSplit_BrokenCheck(struct Task *task)
             done = FALSE;
     }
 
-    if (done == TRUE)
+    if (done)
         task->tState++;
 
     return FALSE;
@@ -3067,7 +3067,7 @@ static bool8 Blackhole_Init(struct Task *task)
 
 static bool8 Blackhole_GrowEnd(struct Task *task)
 {
-    if (task->tFlag == TRUE)
+    if (task->tFlag)
     {
         DmaStop(0);
         SetVBlankCallback(NULL);
@@ -3264,7 +3264,7 @@ static bool8 RectangularSpiral_Main(struct Task *task)
         }
     }
 
-    if (done == TRUE)
+    if (done)
         task->tState++;
     return FALSE;
 }
@@ -3333,7 +3333,7 @@ static bool16 UpdateRectangularSpiralLine(const s16 * const *moveDataTable, stru
     if (line->position == moveData[line->moveIdx])
     {
         line->state++;
-        if (line->outward == TRUE)
+        if (line->outward)
         {
             if (line->state > SPIRAL_OUTWARD_END)
             {

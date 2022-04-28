@@ -419,7 +419,7 @@ static bool8 FadeInCenterLogoCircle(struct Task *task)
 
 static bool8 WaitForLogoCirclesAnim(struct Task *task)
 {
-    if (IsLogoCirclesAnimFinished(task) == TRUE)
+    if (IsLogoCirclesAnimFinished(task))
         task->tState++;
 
     return FALSE;

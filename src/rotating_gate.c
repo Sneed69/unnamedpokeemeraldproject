@@ -876,7 +876,7 @@ static s32 RotatingGate_CanRotate(u8 gateId, s32 rotationDirection)
 
             if (sRotatingGate_ArmLayout[shape][2 * i + j])
             {
-                if (MapGridIsImpassableAt(x + armPos[armIndex].x, y + armPos[armIndex].y) == TRUE)
+                if (MapGridIsImpassableAt(x + armPos[armIndex].x, y + armPos[armIndex].y))
                     return FALSE;
             }
         }

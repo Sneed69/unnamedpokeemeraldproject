@@ -230,7 +230,7 @@ void PlayFanfare(u16 songNum)
 
 bool8 IsFanfareTaskInactive(void)
 {
-    if (FuncIsActiveTask(Task_Fanfare) == TRUE)
+    if (FuncIsActiveTask(Task_Fanfare))
         return FALSE;
     return TRUE;
 }
@@ -465,7 +465,7 @@ void PlayCryInternal(u16 species, s8 pan, s8 volume, u8 priority, u8 mode)
 
 bool8 IsCryFinished(void)
 {
-    if (FuncIsActiveTask(Task_DuckBGMForPokemonCry) == TRUE)
+    if (FuncIsActiveTask(Task_DuckBGMForPokemonCry))
     {
         return FALSE;
     }

@@ -257,7 +257,7 @@ static void SetBattleFactoryData(void)
             gSaveBlock2Ptr->frontier.winStreakActiveFlags &= sWinStreakMasks[battleMode][lvlMode];
         break;
     case FACTORY_DATA_WIN_STREAK_SWAPS:
-        if (sPerformedRentalSwap == TRUE)
+        if (sPerformedRentalSwap)
         {
             gSaveBlock2Ptr->frontier.factoryRentsCount[battleMode][lvlMode] = gSpecialVar_0x8006;
             sPerformedRentalSwap = FALSE;

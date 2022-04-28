@@ -137,7 +137,7 @@ void AgbMain()
             DoSoftReset();
         }
 
-        if (Overworld_SendKeysToLinkIsRunning() == TRUE)
+        if (Overworld_SendKeysToLinkIsRunning())
         {
             gLinkTransferringData = TRUE;
             UpdateLinkAndCallCallbacks();
@@ -148,7 +148,7 @@ void AgbMain()
             gLinkTransferringData = FALSE;
             UpdateLinkAndCallCallbacks();
 
-            if (Overworld_RecvKeysFromLinkIsRunning() == TRUE)
+            if (Overworld_RecvKeysFromLinkIsRunning())
             {
                 gMain.newKeys = 0;
                 ClearSpriteCopyRequests();

@@ -864,7 +864,7 @@ static void Task_PlayCryWhenReleasedFromBall(u8 taskId)
         break;
     case 1:
         // Play single cry
-        if (ShouldPlayNormalMonCry(mon) == TRUE)
+        if (ShouldPlayNormalMonCry(mon))
             PlayCry_ByMode(species, pan, CRY_MODE_NORMAL);
         else
             PlayCry_ByMode(species, pan, CRY_MODE_WEAK);
@@ -880,7 +880,7 @@ static void Task_PlayCryWhenReleasedFromBall(u8 taskId)
         if (gTasks[taskId].tCryTaskFrames == 0)
         {
             // Play first doubles cry
-            if (ShouldPlayNormalMonCry(mon) == TRUE)
+            if (ShouldPlayNormalMonCry(mon))
                 PlayCry_ReleaseDouble(species, pan, CRY_MODE_DOUBLES);
             else
                 PlayCry_ReleaseDouble(species, pan, CRY_MODE_WEAK_DOUBLES);
@@ -920,7 +920,7 @@ static void Task_PlayCryWhenReleasedFromBall(u8 taskId)
             break;
         }
         // Play second doubles cry
-        if (ShouldPlayNormalMonCry(mon) == TRUE)
+        if (ShouldPlayNormalMonCry(mon))
             PlayCry_ReleaseDouble(species, pan, CRY_MODE_NORMAL);
         else
             PlayCry_ReleaseDouble(species, pan, CRY_MODE_WEAK);

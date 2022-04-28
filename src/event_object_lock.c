@@ -55,7 +55,7 @@ static void Task_FreezeSelectedObjectAndPlayer(u8 taskId)
 {
     struct Task *task = &gTasks[taskId];
 
-    if (!task->tPlayerFrozen && IsPlayerStandingStill() == TRUE)
+    if (!task->tPlayerFrozen && IsPlayerStandingStill())
     {
         PlayerFreeze();
         task->tPlayerFrozen = TRUE;
@@ -132,7 +132,7 @@ static void Task_FreezeObjectAndPlayer(u8 taskId)
     struct Task *task = &gTasks[taskId];
     u8 objectEventId = task->tObjectId;
 
-    if (!task->tPlayerFrozen && IsPlayerStandingStill() == TRUE)
+    if (!task->tPlayerFrozen && IsPlayerStandingStill())
     {
         PlayerFreeze();
         task->tPlayerFrozen = TRUE;

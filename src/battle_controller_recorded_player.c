@@ -1585,7 +1585,7 @@ static void RecordedPlayerHandleToggleUnkFlag(void)
 
 static void RecordedPlayerHandleHitAnimation(void)
 {
-    if (gSprites[gBattlerSpriteIds[gActiveBattler]].invisible == TRUE)
+    if (gSprites[gBattlerSpriteIds[gActiveBattler]].invisible)
     {
         RecordedPlayerBufferExecCompleted();
     }

@@ -265,7 +265,7 @@ bool8 FldEff_UsePuzzleEffect(void)
 {
     u8 taskId = CreateFieldMoveTask();
 
-    if (sIsRegisteelPuzzle == TRUE)
+    if (sIsRegisteelPuzzle)
     {
         gTasks[taskId].data[8] = (u32)UseRegisteelHm_Callback >> 16;
         gTasks[taskId].data[9] = (u32)UseRegisteelHm_Callback;
@@ -289,7 +289,7 @@ bool8 ShouldDoBrailleRegicePuzzle(void)
             return FALSE;
         if (FlagGet(FLAG_TEMP_2) == FALSE)
             return FALSE;
-        if (FlagGet(FLAG_TEMP_3) == TRUE)
+        if (FlagGet(FLAG_TEMP_3))
             return FALSE;
 
         for (i = 0; i < ARRAY_COUNT(sRegicePathCoords); i++)

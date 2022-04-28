@@ -1397,7 +1397,7 @@ static void Chat_SendMessage(void)
         sChat->funcState++;
         // fall through
     case 1:
-        if (IsLinkTaskFinished() == TRUE && !Rfu_IsPlayerExchangeActive() && SendBlock(0, sChat->sendMessageBuffer, sizeof(sChat->sendMessageBuffer)))
+        if (IsLinkTaskFinished() && !Rfu_IsPlayerExchangeActive() && SendBlock(0, sChat->sendMessageBuffer, sizeof(sChat->sendMessageBuffer)))
             sChat->funcState++;
         break;
     case 2:
@@ -2227,7 +2227,7 @@ static bool8 IsDisplaySubtaskActive(u8 id)
 
 static bool32 Display_LoadGfx(u8 *state)
 {
-    if (FreeTempTileDataBuffersIfPossible() == TRUE)
+    if (FreeTempTileDataBuffersIfPossible())
         return TRUE;
 
     switch (*state)

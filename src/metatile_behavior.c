@@ -819,7 +819,7 @@ bool8 MetatileBehavior_IsBridgeOverWaterNoEdge(u8 metatileBehavior)
 bool8 MetatileBehavior_IsLandWildEncounter(u8 metatileBehavior)
 {
     if (MetatileBehavior_IsSurfableWaterOrUnderwater(metatileBehavior) == FALSE
-     && MetatileBehavior_IsEncounterTile(metatileBehavior) == TRUE)
+     && MetatileBehavior_IsEncounterTile(metatileBehavior))
         return TRUE;
     else
         return FALSE;
@@ -827,8 +827,8 @@ bool8 MetatileBehavior_IsLandWildEncounter(u8 metatileBehavior)
 
 bool8 MetatileBehavior_IsWaterWildEncounter(u8 metatileBehavior)
 {
-    if (MetatileBehavior_IsSurfableWaterOrUnderwater(metatileBehavior) == TRUE
-     && MetatileBehavior_IsEncounterTile(metatileBehavior) == TRUE)
+    if (MetatileBehavior_IsSurfableWaterOrUnderwater(metatileBehavior)
+     && MetatileBehavior_IsEncounterTile(metatileBehavior))
         return TRUE;
     else
         return FALSE;

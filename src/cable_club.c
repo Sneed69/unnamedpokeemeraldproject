@@ -151,7 +151,7 @@ static u32 ExchangeDataAndGetLinkupStatus(u8 minPlayers, u8 maxPlayers)
 
 static bool32 CheckLinkErrored(u8 taskId)
 {
-    if (HasLinkErrorOccurred() == TRUE)
+    if (HasLinkErrorOccurred())
     {
         gTasks[taskId].func = Task_LinkupConnectionError;
         return TRUE;
@@ -187,7 +187,7 @@ static bool32 CheckLinkCanceled(u8 taskId)
 
 static bool32 CheckSioErrored(u8 taskId)
 {
-    if (GetSioMultiSI() == TRUE)
+    if (GetSioMultiSI())
     {
         gTasks[taskId].func = Task_LinkupConnectionError;
         return TRUE;
@@ -228,14 +228,14 @@ static void Task_LinkupAwaitConnection(u8 taskId)
 {
     u32 playerCount = GetLinkPlayerCount_2();
 
-    if (CheckLinkCanceledBeforeConnection(taskId) == TRUE
-     || CheckLinkCanceled(taskId) == TRUE
+    if (CheckLinkCanceledBeforeConnection(taskId)
+     || CheckLinkCanceled(taskId)
      || playerCount < 2)
         return;
 
     SetSuppressLinkErrorMessage(TRUE);
     gTasks[taskId].data[3] = 0;
-    if (IsLinkMaster() == TRUE)
+    if (IsLinkMaster())
     {
         PlaySE(SE_PIN);
         ShowFieldAutoScrollMessage(gText_ConfirmLinkWhenPlayersReady);
@@ -251,9 +251,9 @@ static void Task_LinkupAwaitConnection(u8 taskId)
 
 static void Task_LinkupConfirmWhenReady(u8 taskId)
 {
-    if (CheckLinkCanceledBeforeConnection(taskId) == TRUE
-     || CheckSioErrored(taskId) == TRUE
-     || CheckLinkErrored(taskId) == TRUE)
+    if (CheckLinkCanceledBeforeConnection(taskId)
+     || CheckSioErrored(taskId)
+     || CheckLinkErrored(taskId))
         return;
 
     if (GetFieldMessageBoxMode() == FIELD_MESSAGE_BOX_HIDDEN)
@@ -268,9 +268,9 @@ static void Task_LinkupAwaitConfirmation(u8 taskId)
     s16 *data = gTasks[taskId].data;
     s32 linkPlayerCount = GetLinkPlayerCount_2();
 
-    if (CheckLinkCanceledBeforeConnection(taskId) == TRUE
-     || CheckSioErrored(taskId) == TRUE
-     || CheckLinkErrored(taskId) == TRUE)
+    if (CheckLinkCanceledBeforeConnection(taskId)
+     || CheckSioErrored(taskId)
+     || CheckLinkErrored(taskId))
         return;
 
     UpdateLinkPlayerCountDisplay(taskId, linkPlayerCount);
@@ -290,9 +290,9 @@ static void Task_LinkupAwaitConfirmation(u8 taskId)
 
 static void Task_LinkupTryConfirmation(u8 taskId)
 {
-    if (CheckLinkCanceledBeforeConnection(taskId) == TRUE
-     || CheckSioErrored(taskId) == TRUE
-     || CheckLinkErrored(taskId) == TRUE)
+    if (CheckLinkCanceledBeforeConnection(taskId)
+     || CheckSioErrored(taskId)
+     || CheckLinkErrored(taskId))
         return;
 
     if (GetFieldMessageBoxMode() == FIELD_MESSAGE_BOX_HIDDEN)
@@ -321,8 +321,8 @@ static void Task_LinkupConfirm(u8 taskId)
     u8 minPlayers = gTasks[taskId].tMinPlayers;
     u8 maxPlayers = gTasks[taskId].tMaxPlayers;
 
-    if (CheckLinkErrored(taskId) == TRUE
-     || TryLinkTimeout(taskId) == TRUE)
+    if (CheckLinkErrored(taskId)
+     || TryLinkTimeout(taskId))
         return;
 
     if (GetLinkPlayerCount_2() != GetSavedPlayerCount())
@@ -345,8 +345,8 @@ static void Task_LinkupExchangeDataWithLeader(u8 taskId)
     minPlayers = gTasks[taskId].tMinPlayers;
     maxPlayers = gTasks[taskId].tMaxPlayers;
 
-    if (CheckLinkCanceledBeforeConnection(taskId) == TRUE
-     || CheckLinkErrored(taskId) == TRUE)
+    if (CheckLinkCanceledBeforeConnection(taskId)
+     || CheckLinkErrored(taskId))
         return;
 
     gSpecialVar_Result = ExchangeDataAndGetLinkupStatus(minPlayers, maxPlayers);
@@ -383,7 +383,7 @@ static void Task_LinkupCheckStatusAfterConfirm(u8 taskId)
 {
     struct TrainerCard *card;
 
-    if (CheckLinkErrored(taskId) == TRUE)
+    if (CheckLinkErrored(taskId))
         return;
 
     if (gSpecialVar_Result == LINKUP_WRONG_NUM_PLAYERS)
@@ -510,7 +510,7 @@ static void Task_LinkupAwaitTrainerCardData(u8 taskId)
 {
     u8 index;
 
-    if (CheckLinkErrored(taskId) == TRUE)
+    if (CheckLinkErrored(taskId))
         return;
 
     if (GetBlockReceivedStatus() != GetSavedLinkPlayerCountAsBitFlags())
@@ -776,7 +776,7 @@ static void Task_ReestablishLinkAwaitConnection(u8 taskId)
 {
     if (GetLinkPlayerCount_2() >= 2)
     {
-        if (IsLinkMaster() == TRUE)
+        if (IsLinkMaster())
             gTasks[taskId].func = Task_ReestablishLinkLeader;
         else
             gTasks[taskId].func = Task_ReestablishLinkAwaitConfirmation;
@@ -794,8 +794,8 @@ static void Task_ReestablishLinkLeader(u8 taskId)
 
 static void Task_ReestablishLinkAwaitConfirmation(u8 taskId)
 {
-    if (gReceivedRemoteLinkPlayers == TRUE
-     && IsLinkPlayerDataExchangeComplete() == TRUE)
+    if (gReceivedRemoteLinkPlayers
+     && IsLinkPlayerDataExchangeComplete())
     {
         CheckLinkPlayersMatchSaved();
         StartSendingKeysToLink();
@@ -1013,7 +1013,7 @@ void CB2_ReturnFromCableClubBattle(void)
         }
     }
 
-    if (InUnionRoom() == TRUE)
+    if (InUnionRoom())
         gMain.savedCallback = CB2_ReturnFromUnionRoomBattle;
     else
         gMain.savedCallback = CB2_ReturnToFieldFromMultiplayer;
@@ -1315,7 +1315,7 @@ void Task_ReconnectWithLinkPlayers(u8 taskId)
         }
         break;
     case 3:
-        if (gReceivedRemoteLinkPlayers == TRUE && IsLinkPlayerDataExchangeComplete() == TRUE)
+        if (gReceivedRemoteLinkPlayers && IsLinkPlayerDataExchangeComplete())
         {
             DestroyTask(taskId);
         }

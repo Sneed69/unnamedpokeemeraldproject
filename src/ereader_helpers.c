@@ -691,7 +691,7 @@ int EReaderHandleTransfer(u8 mode, size_t size, const void * data, void * recvBu
         sSendRecvMgr.state = EREADER_XFR_STATE_CHECKSUM;
         break;
     case EREADER_XFR_STATE_CHECKSUM:
-        if (sSendRecvMgr.isParent == TRUE && sCounter1 > 2)
+        if (sSendRecvMgr.isParent && sCounter1 > 2)
             EnableSio();
 
         if (++sCounter1 > 60)
@@ -784,7 +784,7 @@ void EReaderHelper_SerialCallback(void)
         if (!sSendRecvMgr.cursor && !sSendRecvMgr.isParent)
             sSendRecvMgr.size = recv32 / 4 + 1;
 
-        if (sSendRecvMgr.isParent == TRUE)
+        if (sSendRecvMgr.isParent)
         {
             // Send mode
             if (sSendRecvMgr.cursor < sSendRecvMgr.size)
@@ -836,7 +836,7 @@ void EReaderHelper_SerialCallback(void)
         *(vu64 *)recv = REG_SIOMLT_RECV;
         if (recv[1] == EREADER_CHECKSUM_OK || recv[1] == EREADER_CHECKSUM_ERR)
         {
-            if (sSendRecvMgr.isParent == TRUE)
+            if (sSendRecvMgr.isParent)
                 sSendRecvMgr.checksumResult = recv[1]; // EReader has (in)validated the payload
 
             sSendRecvMgr.state = EREADER_XFR_STATE_DONE;

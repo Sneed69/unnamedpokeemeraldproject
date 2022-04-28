@@ -610,9 +610,9 @@ static void SetupRoomObjectEvents(void)
         return;
     }
 
-    if (setObjGfx1 == TRUE)
+    if (setObjGfx1)
         VarSet(VAR_OBJ_GFX_ID_0, objGfx1);
-    if (setObjGfx2 == TRUE)
+    if (setObjGfx2)
         VarSet(VAR_OBJ_GFX_ID_1, objGfx2);
 }
 
@@ -1135,7 +1135,7 @@ bool32 TryGenerateBattlePikeWildMon(bool8 checkKeenEyeIntimidate)
         monLevel = 50 - wildMons[headerId][pikeMonId].levelDelta;
     }
 
-    if (checkKeenEyeIntimidate == TRUE && !CanEncounterWildMon(monLevel))
+    if (checkKeenEyeIntimidate && !CanEncounterWildMon(monLevel))
         return FALSE;
 
     SetMonData(&gEnemyParty[0],
@@ -1308,7 +1308,7 @@ static void TryHealMons(u8 healCount)
             }
         }
 
-        if (canBeHealed == TRUE)
+        if (canBeHealed)
         {
             HealMon(&gPlayerParty[indices[i]]);
             if (--healCount == 0)
@@ -1576,7 +1576,7 @@ static void IsPartyFullHealed(void)
             canBeHealed = TRUE;
         }
 
-        if (canBeHealed == TRUE)
+        if (canBeHealed)
         {
             gSpecialVar_Result = FALSE;
             break;

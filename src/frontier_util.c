@@ -1035,7 +1035,7 @@ static void TowerPrintPrevOrCurrentStreak(u8 battleMode, u8 lvlMode, u8 x1, u8 x
         break;
     }
 
-    if (isCurrent == TRUE)
+    if (isCurrent)
         TowerPrintStreak(gText_Current, winStreak, x1, x2, y);
     else
         TowerPrintStreak(gText_Prev, winStreak, x1, x2, y);
@@ -1106,7 +1106,7 @@ static void DomePrintPrevOrCurrentStreak(u8 battleMode, u8 lvlMode, u8 x1, u8 x2
         break;
     }
 
-    if (isCurrent == TRUE)
+    if (isCurrent)
         PrintTwoStrings(gText_Current, gText_ClearStreak, winStreak, x1, x2, y);
     else
         PrintTwoStrings(gText_Prev, gText_ClearStreak, winStreak, x1, x2, y);
@@ -1182,7 +1182,7 @@ static void PalacePrintPrevOrCurrentStreak(u8 battleMode, u8 lvlMode, u8 x1, u8 
             isCurrent = IsWinStreakActive(STREAK_PALACE_DOUBLES_50);
     }
 
-    if (isCurrent == TRUE)
+    if (isCurrent)
         PalacePrintStreak(gText_Current, winStreak, x1, x2, y);
     else
         PalacePrintStreak(gText_Prev, winStreak, x1, x2, y);
@@ -1238,7 +1238,7 @@ static void PikePrintPrevOrCurrentStreak(u8 lvlMode, u8 x1, u8 x2, u8 y)
     else
         isCurrent = IsWinStreakActive(STREAK_PIKE_50);
 
-    if (isCurrent == TRUE)
+    if (isCurrent)
         PrintTwoStrings(gText_Current, gText_RoomsCleared, winStreak, x1, x2, y);
     else
         PrintTwoStrings(gText_Prev, gText_RoomsCleared, winStreak, x1, x2, y);
@@ -1300,7 +1300,7 @@ static void ArenaPrintPrevOrCurrentStreak(u8 lvlMode, u8 x1, u8 x2, u8 y)
     else
         isCurrent = IsWinStreakActive(STREAK_ARENA_50);
 
-    if (isCurrent == TRUE)
+    if (isCurrent)
         ArenaPrintStreak(gText_Current, winStreak, x1, x2, y);
     else
         ArenaPrintStreak(gText_Prev, winStreak, x1, x2, y);
@@ -1386,7 +1386,7 @@ static void FactoryPrintPrevOrCurrentStreak(u8 battleMode, u8 lvlMode, u8 x1, u8
         break;
     }
 
-    if (isCurrent == TRUE)
+    if (isCurrent)
         FactoryPrintStreak(gText_Current, winStreak, rents, x1, x2, x3, y);
     else
         FactoryPrintStreak(gText_Prev, winStreak, rents, x1, x2, x3, y);
@@ -1451,7 +1451,7 @@ static void PyramidPrintPrevOrCurrentStreak(u8 lvlMode, u8 x1, u8 x2, u8 y)
     else
         isCurrent = IsWinStreakActive(STREAK_PYRAMID_50);
 
-    if (isCurrent == TRUE)
+    if (isCurrent)
         PyramidPrintStreak(gText_Current, winStreak, x1, x2, y);
     else
         PyramidPrintStreak(gText_Prev, winStreak, x1, x2, y);

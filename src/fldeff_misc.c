@@ -556,7 +556,7 @@ bool8 SetUpFieldMove_SecretPower(void)
     GetXYCoordsOneStepInFrontOfPlayer(&gPlayerFacingPosition.x, &gPlayerFacingPosition.y);
     mb = MapGridGetMetatileBehaviorAt(gPlayerFacingPosition.x, gPlayerFacingPosition.y);
 
-    if (MetatileBehavior_IsSecretBaseCave(mb) == TRUE)
+    if (MetatileBehavior_IsSecretBaseCave(mb))
     {
         SetCurrentSecretBase();
         gFieldCallback2 = FieldCallback_PrepareFadeInFromMenu;
@@ -564,7 +564,7 @@ bool8 SetUpFieldMove_SecretPower(void)
         return TRUE;
     }
 
-    if (MetatileBehavior_IsSecretBaseTree(mb) == TRUE)
+    if (MetatileBehavior_IsSecretBaseTree(mb))
     {
         SetCurrentSecretBase();
         gFieldCallback2 = FieldCallback_PrepareFadeInFromMenu;
@@ -572,7 +572,7 @@ bool8 SetUpFieldMove_SecretPower(void)
         return TRUE;
     }
 
-    if (MetatileBehavior_IsSecretBaseShrub(mb) == TRUE)
+    if (MetatileBehavior_IsSecretBaseShrub(mb))
     {
         SetCurrentSecretBase();
         gFieldCallback2 = FieldCallback_PrepareFadeInFromMenu;

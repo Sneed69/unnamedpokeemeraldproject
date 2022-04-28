@@ -610,7 +610,7 @@ void LinkRfu_Shutdown(void)
     if (gRfu.parentChild == MODE_PARENT)
     {
         // Stop parent searching for children
-        if (FuncIsActiveTask(Task_ParentSearchForChildren) == TRUE)
+        if (FuncIsActiveTask(Task_ParentSearchForChildren))
         {
             DestroyTask(gRfu.searchTaskId);
             ResetLinkRfuGFLayer();
@@ -619,7 +619,7 @@ void LinkRfu_Shutdown(void)
     else if (gRfu.parentChild == MODE_CHILD)
     {
         // Stop child searching for parent
-        if (FuncIsActiveTask(Task_ChildSearchForParent) == TRUE)
+        if (FuncIsActiveTask(Task_ChildSearchForParent))
         {
             DestroyTask(gRfu.searchTaskId);
             ResetLinkRfuGFLayer();
@@ -628,7 +628,7 @@ void LinkRfu_Shutdown(void)
     else if (gRfu.parentChild == MODE_P_C_SWITCH)
     {
         // Stop parent-child switching mode (union room)
-        if (FuncIsActiveTask(Task_UnionRoomListen) == TRUE)
+        if (FuncIsActiveTask(Task_UnionRoomListen))
         {
             DestroyTask(gRfu.searchTaskId);
             ResetLinkRfuGFLayer();
@@ -638,7 +638,7 @@ void LinkRfu_Shutdown(void)
     // Destroy additional tasks
     for (i = 0; i < ARRAY_COUNT(sShutdownTasks); i++)
     {
-        if (FuncIsActiveTask(sShutdownTasks[i]) == TRUE)
+        if (FuncIsActiveTask(sShutdownTasks[i]))
             DestroyTask(FindTaskIdByFunc(sShutdownTasks[i]));
     }
 }
@@ -830,7 +830,7 @@ static bool32 RfuMain2_Parent(void)
     u16 j;
     bool8 failed;
 
-    if (gRfu.state >= RFUSTATE_FINALIZED && gRfu.runParentMain2 == TRUE)
+    if (gRfu.state >= RFUSTATE_FINALIZED && gRfu.runParentMain2)
     {
         rfu_waitREQComplete();
         while (gRfu.parentFinished == FALSE)
@@ -1223,7 +1223,7 @@ u8 Rfu_GetBlockReceivedStatus(void)
 
     for (i = 0; i < MAX_RFU_PLAYERS; i++)
     {
-        if (gRfu.recvBlock[i].receiving == RECV_STATE_FINISHED && gRfu.blockReceived[i] == TRUE)
+        if (gRfu.recvBlock[i].receiving == RECV_STATE_FINISHED && gRfu.blockReceived[i])
             flags |= (1 << i);
     }
     return flags;
@@ -1989,7 +1989,7 @@ static void RfuCheckErrorStatus(void)
         gRfu.errorState = RFU_ERROR_STATE_PROCESSED;
         CloseLink();
     }
-    else if (gRfu.sendQueue.full == TRUE || gRfu.recvQueue.full == TRUE)
+    else if (gRfu.sendQueue.full || gRfu.recvQueue.full)
     {
         if (lman.childClockSlave_flag)
             rfu_LMAN_requestChangeAgbClockMaster();
@@ -2479,7 +2479,7 @@ static void LinkManagerCB_UnionRoom(u8 msg, u8 paramCount)
 
         if (gRfuLinkStatus->parentChild == MODE_NEUTRAL
             && !lman.pcswitch_flag
-            && FuncIsActiveTask(Task_UnionRoomListen) == TRUE)
+            && FuncIsActiveTask(Task_UnionRoomListen))
             gRfu.state = RFUSTATE_UR_CONNECT;
 
         RfuSetStatus(RFU_STATUS_CONNECTION_ERROR, msg);
@@ -2602,7 +2602,7 @@ void CreateTask_RfuIdle(void)
 
 void DestroyTask_RfuIdle(void)
 {
-     if (FuncIsActiveTask(Task_Idle) == TRUE)
+     if (FuncIsActiveTask(Task_Idle))
         DestroyTask(gRfu.idleTaskId);
 }
 

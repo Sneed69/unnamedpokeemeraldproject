@@ -76,7 +76,7 @@ bool8 RunScriptCommand(struct ScriptContext *ctx)
         // Continue to bytecode if no function or it returns TRUE
         if (ctx->nativePtr)
         {
-            if (ctx->nativePtr() == TRUE)
+            if (ctx->nativePtr())
                 ctx->mode = SCRIPT_MODE_BYTECODE;
             return TRUE;
         }
@@ -110,7 +110,7 @@ bool8 RunScriptCommand(struct ScriptContext *ctx)
                 return FALSE;
             }
 
-            if ((*func)(ctx) == TRUE)
+            if ((*func)(ctx))
                 return TRUE;
         }
     }
@@ -245,7 +245,7 @@ void ScriptContext2_RunNewScript(const u8 *ptr)
 {
     InitScriptContext(&sScriptContext2, gScriptCmdTable, gScriptCmdTableEnd);
     SetupBytecodeScript(&sScriptContext2, ptr);
-    while (RunScriptCommand(&sScriptContext2) == TRUE);
+    while (RunScriptCommand(&sScriptContext2));
 }
 
 u8 *MapHeaderGetScriptTable(u8 tag)

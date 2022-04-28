@@ -329,7 +329,7 @@ void CryScreenPlayButton(u16 species)
         if (!sDexCryScreen->cryRepeatDelay)
         {
             sDexCryScreen->cryRepeatDelay = 4;
-            if (IsCryPlaying() == TRUE)
+            if (IsCryPlaying())
             {
                 StopCry();
                 sDexCryScreen->species = species;

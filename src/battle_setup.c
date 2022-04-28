@@ -360,7 +360,7 @@ static void Task_BattleStart(u8 taskId)
         }
         break;
     case 1:
-        if (IsBattleTransitionDone() == TRUE)
+        if (IsBattleTransitionDone())
         {
             CleanupOverworldWindowsAndTilemaps();
             SetMainCallback2(CB2_InitBattle);
@@ -620,7 +620,7 @@ static void CB2_EndWildBattle(void)
     CpuFill16(0, (void*)(BG_PLTT), BG_PLTT_SIZE);
     ResetOamRange(0, 128);
 
-    if (IsPlayerDefeated(gBattleOutcome) == TRUE && !InBattlePyramid() && !InBattlePike())
+    if (IsPlayerDefeated(gBattleOutcome) && !InBattlePyramid() && !InBattlePike())
     {
         SetMainCallback2(CB2_WhiteOut);
     }
@@ -636,7 +636,7 @@ static void CB2_EndScriptedWildBattle(void)
     CpuFill16(0, (void*)(BG_PLTT), BG_PLTT_SIZE);
     ResetOamRange(0, 128);
 
-    if (IsPlayerDefeated(gBattleOutcome) == TRUE)
+    if (IsPlayerDefeated(gBattleOutcome))
     {
         if (InBattlePyramid())
             SetMainCallback2(CB2_ReturnToFieldContinueScriptPlayMapMusic);
@@ -698,7 +698,7 @@ u8 BattleSetup_GetTerrainId(void)
         if (MetatileBehavior_GetBridgeType(tileBehavior) != BRIDGE_TYPE_OCEAN)
             return BATTLE_TERRAIN_POND;
 
-        if (MetatileBehavior_IsBridgeOverWater(tileBehavior) == TRUE)
+        if (MetatileBehavior_IsBridgeOverWater(tileBehavior))
             return BATTLE_TERRAIN_WATER;
     }
     if (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(ROUTE113) && gSaveBlock1Ptr->location.mapNum == MAP_NUM(ROUTE113))
@@ -830,7 +830,7 @@ u8 GetTrainerBattleTransition(void)
         || gTrainers[gTrainerBattleOpponent_A].trainerClass == TRAINER_CLASS_AQUA_ADMIN)
         return B_TRANSITION_AQUA;
 
-    if (gTrainers[gTrainerBattleOpponent_A].doubleBattle == TRUE)
+    if (gTrainers[gTrainerBattleOpponent_A].doubleBattle)
         minPartyCount = 2; // double battles always at least have 2 pokemon.
     else
         minPartyCount = 1;
@@ -918,7 +918,7 @@ static void CB2_StartFirstBattle(void)
     UpdatePaletteFade();
     RunTasks();
 
-    if (IsBattleTransitionDone() == TRUE)
+    if (IsBattleTransitionDone())
     {
         gBattleTypeFlags = BATTLE_TYPE_FIRST_BATTLE;
         gMain.savedCallback = CB2_EndFirstBattle;
@@ -1317,7 +1317,7 @@ static void CB2_EndTrainerBattle(void)
     {
         SetMainCallback2(CB2_ReturnToFieldContinueScriptPlayMapMusic);
     }
-    else if (IsPlayerDefeated(gBattleOutcome) == TRUE)
+    else if (IsPlayerDefeated(gBattleOutcome))
     {
         if (InBattlePyramid() || InTrainerHillChallenge())
             SetMainCallback2(CB2_ReturnToFieldContinueScriptPlayMapMusic);
@@ -1341,7 +1341,7 @@ static void CB2_EndRematchBattle(void)
     {
         SetMainCallback2(CB2_ReturnToFieldContinueScriptPlayMapMusic);
     }
-    else if (IsPlayerDefeated(gBattleOutcome) == TRUE)
+    else if (IsPlayerDefeated(gBattleOutcome))
     {
         SetMainCallback2(CB2_WhiteOut);
     }
@@ -1617,7 +1617,7 @@ static bool32 UpdateRandomTrainerRematches(const struct RematchTrainer *table, u
 
 void UpdateRematchIfDefeated(s32 rematchTableId)
 {
-    if (HasTrainerBeenFought(gRematchTable[rematchTableId].trainerIds[0]) == TRUE)
+    if (HasTrainerBeenFought(gRematchTable[rematchTableId].trainerIds[0]))
         SetRematchIdForTrainer(gRematchTable, rematchTableId);
 }
 
@@ -1766,7 +1766,7 @@ static bool32 HasAtLeastFiveBadges(void)
 
     for (count = 0, i = 0; i < ARRAY_COUNT(sBadgeFlags); i++)
     {
-        if (FlagGet(sBadgeFlags[i]) == TRUE)
+        if (FlagGet(sBadgeFlags[i]))
         {
             if (++count >= 5)
                 return TRUE;
@@ -1799,7 +1799,7 @@ static bool32 IsRematchStepCounterMaxed(void)
 
 void TryUpdateRandomTrainerRematches(u16 mapGroup, u16 mapNum)
 {
-    if (IsRematchStepCounterMaxed() && UpdateRandomTrainerRematches(gRematchTable, mapGroup, mapNum) == TRUE)
+    if (IsRematchStepCounterMaxed() && UpdateRandomTrainerRematches(gRematchTable, mapGroup, mapNum))
         gSaveBlock1Ptr->trainerRematchStepCounter = 0;
 }
 

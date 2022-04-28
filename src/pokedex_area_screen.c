@@ -609,7 +609,7 @@ static void Task_ShowPokedexAreaScreen(u8 taskId)
         StringFill(sPokedexAreaScreen->charBuffer, CHAR_SPACE, 16);
         break;
     case 2:
-        if (TryShowPokedexAreaMap() == TRUE)
+        if (TryShowPokedexAreaMap())
             return;
         PokedexAreaMapChangeBgY(-8);
         break;

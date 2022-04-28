@@ -513,7 +513,7 @@ void InitDecorationContextItems(void)
         sDecorationContext.pos = gSaveBlock1Ptr->secretBases[0].decorationPositions;
     }
 
-    if (sDecorationContext.isPlayerRoom == TRUE)
+    if (sDecorationContext.isPlayerRoom)
     {
         sDecorationContext.items = gSaveBlock1Ptr->playerRoomDecorations;
         sDecorationContext.pos = gSaveBlock1Ptr->playerRoomDecorationPositions;
@@ -716,13 +716,13 @@ static void PrintDecorationCategoryMenuItems(u8 taskId)
     u8 windowId = sDecorMenuWindowIds[WINDOW_DECORATION_CATEGORIES];
     bool8 isPlayerRoom = sDecorationContext.isPlayerRoom;
     bool8 shouldDisable = FALSE;
-    if (isPlayerRoom == TRUE && tDecorationMenuCommand == DECOR_MENU_PLACE)
+    if (isPlayerRoom && tDecorationMenuCommand == DECOR_MENU_PLACE)
         shouldDisable = TRUE;
 
     for (i = 0; i < DECORCAT_COUNT; i++)
     {
         // Only DOLL and CUSHION decorations are enabled when decorating the player's room.
-        if (shouldDisable == TRUE && i != DECORCAT_DOLL && i != DECORCAT_CUSHION)
+        if (shouldDisable && i != DECORCAT_DOLL && i != DECORCAT_CUSHION)
             PrintDecorationCategoryMenuItem(windowId, i, 8, i * 16, TRUE, TEXT_SKIP_DRAW);
         else
             PrintDecorationCategoryMenuItem(windowId, i, 8, i * 16, FALSE, TEXT_SKIP_DRAW);
@@ -753,7 +753,7 @@ static void PrintDecorationCategoryMenuItem(u8 winid, u8 category, u8 x, u8 y, b
 static void ColorMenuItemString(u8 *str, bool8 disabled)
 {
     StringCopy(str, gText_Color161Shadow161);
-    if (disabled == TRUE)
+    if (disabled)
     {
         str[2] = 4;
         str[5] = 5;
@@ -876,7 +876,7 @@ static void PrintDecorationItemMenuItems(u8 taskId)
     u16 i;
 
     data = gTasks[taskId].data;
-    if ((sCurDecorationCategory < DECORCAT_DOLL || sCurDecorationCategory > DECORCAT_CUSHION) && sDecorationContext.isPlayerRoom == TRUE && tDecorationMenuCommand == DECOR_MENU_PLACE)
+    if ((sCurDecorationCategory < DECORCAT_DOLL || sCurDecorationCategory > DECORCAT_CUSHION) && sDecorationContext.isPlayerRoom && tDecorationMenuCommand == DECOR_MENU_PLACE)
         ColorMenuItemString(gStringVar1, TRUE);
     else
         ColorMenuItemString(gStringVar1, FALSE);
@@ -916,9 +916,9 @@ static void DecorationItemsMenu_PrintDecorationInUse(u8 windowId, u32 itemIndex,
 {
     if (itemIndex != LIST_CANCEL)
     {
-        if (IsDecorationIndexInSecretBase(itemIndex + 1) == TRUE)
+        if (IsDecorationIndexInSecretBase(itemIndex + 1))
             BlitMenuInfoIcon(windowId, MENU_INFO_ICON_BALL_RED, 92, y + 2);
-        else if (IsDecorationIndexInPlayersRoom(itemIndex + 1) == TRUE)
+        else if (IsDecorationIndexInPlayersRoom(itemIndex + 1))
             BlitMenuInfoIcon(windowId, MENU_INFO_ICON_BALL_BLUE, 92, y + 2);
     }
 }
@@ -1211,14 +1211,14 @@ static void ShowDecorationOnMap_(u16 mapX, u16 mapY, u8 decWidth, u8 decHeight, 
         {
             x = mapX + i;
             attributes = GetMetatileAttributesById(NUM_TILES_IN_PRIMARY + gDecorations[decoration].tiles[j * decWidth + i]);
-            if (MetatileBehavior_IsSecretBaseImpassable(attributes & METATILE_ATTR_BEHAVIOR_MASK) == TRUE
+            if (MetatileBehavior_IsSecretBaseImpassable(attributes & METATILE_ATTR_BEHAVIOR_MASK)
              || (gDecorations[decoration].permission != DECORPERM_PASS_FLOOR && (attributes >> METATILE_ATTR_LAYER_SHIFT) != METATILE_LAYER_TYPE_NORMAL))
                 impassableFlag = MAPGRID_COLLISION_MASK;
             else
                 impassableFlag = 0;
 
             // Choose the metatile that has the wall background instead of the floor if overlapping a wall.
-            if (gDecorations[decoration].permission != DECORPERM_NA_WALL && MetatileBehavior_IsSecretBaseNorthWall(MapGridGetMetatileBehaviorAt(x, y)) == TRUE)
+            if (gDecorations[decoration].permission != DECORPERM_NA_WALL && MetatileBehavior_IsSecretBaseNorthWall(MapGridGetMetatileBehaviorAt(x, y)))
                 overlapsWall = 1;
             else
                 overlapsWall = 0;
@@ -1276,7 +1276,7 @@ void SetDecoration(void)
 
     for (i = 0; i < NUM_DECORATION_FLAGS; i++)
     {
-        if (FlagGet(FLAG_DECORATION_1 + i) == TRUE)
+        if (FlagGet(FLAG_DECORATION_1 + i))
         {
             FlagClear(FLAG_DECORATION_1 + i);
             for (j = 0; j < gMapHeader.events->objectEventCount; j++)
@@ -1314,14 +1314,14 @@ static bool8 HasDecorationSpace(void)
 
 static void DecorationItemsMenuAction_AttemptPlace(u8 taskId)
 {
-    if (sDecorationContext.isPlayerRoom == TRUE && sCurDecorationCategory != DECORCAT_DOLL && sCurDecorationCategory != DECORCAT_CUSHION)
+    if (sDecorationContext.isPlayerRoom && sCurDecorationCategory != DECORCAT_DOLL && sCurDecorationCategory != DECORCAT_CUSHION)
     {
         StringExpandPlaceholders(gStringVar4, gText_CantPlaceInRoom);
         DisplayItemMessageOnField(taskId, gStringVar4, ReturnToDecorationItemsAfterInvalidSelection);
     }
-    else if (IsSelectedDecorInThePC() == TRUE)
+    else if (IsSelectedDecorInThePC())
     {
-        if (HasDecorationSpace() == TRUE)
+        if (HasDecorationSpace())
         {
             FadeScreen(FADE_TO_BLACK, 0);
             gTasks[taskId].tState = 0;
@@ -1368,7 +1368,7 @@ static void Task_PlaceDecoration(u8 taskId)
             gTasks[taskId].tState = 2;
             break;
         case 2:
-            if (IsWeatherNotFadingIn() == TRUE)
+            if (IsWeatherNotFadingIn())
             {
                 gTasks[taskId].tDecorationItemsMenuCommand = DECOR_ITEMS_MENU_PLACE;
                 ContinueDecorating(taskId);
@@ -1474,7 +1474,7 @@ static void AttemptCancelPlaceDecoration(u8 taskId)
 
 static bool8 IsSecretBaseTrainerSpot(u8 behaviorAt, u16 layerType)
 {
-    if (!(MetatileBehavior_IsSecretBaseTrainerSpot(behaviorAt) == TRUE && layerType == METATILE_LAYER_TYPE_NORMAL))
+    if (!(MetatileBehavior_IsSecretBaseTrainerSpot(behaviorAt) && layerType == METATILE_LAYER_TYPE_NORMAL))
         return FALSE;
     return TRUE;
 }
@@ -1493,7 +1493,7 @@ static bool8 IsFloorOrBoardAndHole(u16 behaviorAt, const struct Decoration *deco
 {
     if (MetatileBehavior_IsSecretBaseTrainerSpot(behaviorAt) != TRUE)
     {
-        if (decoration->id == DECOR_SOLID_BOARD && MetatileBehavior_IsSecretBaseHole(behaviorAt) == TRUE)
+        if (decoration->id == DECOR_SOLID_BOARD && MetatileBehavior_IsSecretBaseHole(behaviorAt))
             return TRUE;
 
         if (MetatileBehavior_IsNormal(behaviorAt))
@@ -1619,7 +1619,7 @@ static bool8 CanPlaceDecoration(u8 taskId, const struct Decoration *decoration)
 
 static void AttemptPlaceDecoration_(u8 taskId)
 {
-    if (CanPlaceDecoration(taskId, &gDecorations[gCurDecorationItems[gCurDecorationIndex]]) == TRUE)
+    if (CanPlaceDecoration(taskId, &gDecorations[gCurDecorationItems[gCurDecorationIndex]]))
     {
         StringExpandPlaceholders(gStringVar4, gText_PlaceItHere);
         DisplayItemMessageOnField(taskId, gStringVar4, PlaceDecorationPrompt);
@@ -1757,7 +1757,7 @@ static void Task_InitDecorationItemsWindow(u8 taskId)
         tState++;
         break;
     case 3:
-        if (IsWeatherNotFadingIn() == TRUE)
+        if (IsWeatherNotFadingIn())
             gTasks[taskId].func = HandleDecorationItemsMenuInput;
         break;
     }
@@ -2258,7 +2258,7 @@ static void Task_PutAwayDecoration(u8 taskId)
         gTasks[taskId].tState = 3;
         break;
     case 3:
-        if (IsWeatherNotFadingIn() == TRUE)
+        if (IsWeatherNotFadingIn())
         {
             StringExpandPlaceholders(gStringVar4, gText_DecorationReturnedToPC);
             DisplayItemMessageOnField(taskId, gStringVar4, ContinuePuttingAwayDecorationsPrompt);
@@ -2320,7 +2320,7 @@ static void Task_ContinuePuttingAwayDecorations(u8 taskId)
         tState = 2;
         break;
     case 2:
-        if (IsWeatherNotFadingIn() == TRUE)
+        if (IsWeatherNotFadingIn())
         {
             tDecorationItemsMenuCommand = DECOR_ITEMS_MENU_PUT_AWAY;
             ContinuePuttingAwayDecorations(taskId);
@@ -2373,7 +2373,7 @@ static void AttemptPutAwayDecoration_(u8 taskId)
     {
         data = gTasks[taskId].data;
         behavior = MapGridGetMetatileBehaviorAt(tCursorX, tCursorY);
-        if (MetatileBehavior_IsSecretBasePC(behavior) == TRUE || MetatileBehavior_IsPlayerRoomPCOn(behavior) == TRUE)
+        if (MetatileBehavior_IsSecretBasePC(behavior) || MetatileBehavior_IsPlayerRoomPCOn(behavior))
         {
             gSprites[sDecor_CameraSpriteObjectIdx1].invisible = FALSE;
             gSprites[sDecor_CameraSpriteObjectIdx1].callback = SpriteCallbackDummy;
@@ -2510,7 +2510,7 @@ static bool8 AttemptMarkSpriteDecorUnderCursorForRemoval(u8 taskId)
             if (gDecorations[sDecorationContext.items[i]].permission == DECORPERM_SPRITE)
             {
                 SetDecorRearrangementShape(sDecorationContext.items[i], sDecorRearrangementDataBuffer);
-                if (DecorationIsUnderCursor(taskId, i, sDecorRearrangementDataBuffer) == TRUE)
+                if (DecorationIsUnderCursor(taskId, i, sDecorRearrangementDataBuffer))
                 {
                     sDecorRearrangementDataBuffer->idx = i;
                     SetDecorRearrangementFlagIdIfFlagUnset();
@@ -2562,7 +2562,7 @@ static void AttemptMarkDecorUnderCursorForRemoval(u8 taskId)
             if (var1 != DECOR_NONE)
             {
                 SetDecorRearrangementShape(var1, &sDecorRearrangementDataBuffer[0]);
-                if (DecorationIsUnderCursor(taskId, i, &sDecorRearrangementDataBuffer[0]) == TRUE)
+                if (DecorationIsUnderCursor(taskId, i, &sDecorRearrangementDataBuffer[0]))
                 {
                     sDecorRearrangementDataBuffer[0].idx = i;
                     sCurDecorSelectedInRearrangement++;
@@ -2653,7 +2653,7 @@ static void Task_ReinitializeDecorationMenuHandler(u8 taskId)
         tState++;
         break;
     case 3:
-        if (IsWeatherNotFadingIn() == TRUE)
+        if (IsWeatherNotFadingIn())
             gTasks[taskId].func = HandleDecorationActionsMenuInput;
         break;
     }
@@ -2695,7 +2695,7 @@ static void FreePlayerSpritePalette(void)
 
 static void DecorationItemsMenuAction_AttemptToss(u8 taskId)
 {
-    if (IsSelectedDecorInThePC() == TRUE)
+    if (IsSelectedDecorInThePC())
     {
         StringCopy(gStringVar1, gDecorations[gCurDecorationItems[gCurDecorationIndex]].name);
         StringExpandPlaceholders(gStringVar4, gText_DecorationWillBeDiscarded);

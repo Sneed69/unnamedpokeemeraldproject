@@ -3486,7 +3486,7 @@ static void AnimMoveWringOutCircle(struct Sprite* sprite)
 static void AnimMoveWringOut(struct Sprite* sprite)
 {
     InitSpritePosToAnimTarget(sprite, TRUE);
-    if(gBattleAnimArgs[5] == TRUE)
+    if(gBattleAnimArgs[5])
     {
         sprite->oam.objMode = ST_OAM_OBJ_BLEND;
     }
@@ -3814,7 +3814,7 @@ static void AnimTranslateLinearSingleSineWave_Step(struct Sprite* sprite)
 // arg 4: speedup frame (particles move faster at the end of the animation)
 void AnimMoveTwisterParticle(struct Sprite* sprite)
 {
-    if (IsDoubleBattle() == TRUE)
+    if (IsDoubleBattle())
         SetAverageBattlerPositions(gBattleAnimTarget, 1, &sprite->x, &sprite->y);
 
     sprite->y += 32;
@@ -6029,10 +6029,10 @@ static void AnimTask_HideBattlersHealthbox(u8 taskId)
     u8 i;
     for (i = 0; i < gBattlersCount; i++)
     {
-        if (gBattleAnimArgs[0] == TRUE && GetBattlerSide(i) == B_SIDE_PLAYER)
+        if (gBattleAnimArgs[0] && GetBattlerSide(i) == B_SIDE_PLAYER)
             SetHealthboxSpriteInvisible(gHealthboxSpriteIds[i]);
 
-        if (gBattleAnimArgs[1] == TRUE && GetBattlerSide(i) == B_SIDE_OPPONENT)
+        if (gBattleAnimArgs[1] && GetBattlerSide(i) == B_SIDE_OPPONENT)
             SetHealthboxSpriteInvisible(gHealthboxSpriteIds[i]);
     }
 

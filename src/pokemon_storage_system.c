@@ -2953,7 +2953,7 @@ static void Task_ReleaseMon(u8 taskId)
             while (1)
             {
                 s8 canRelease = RunCanReleaseMon();
-                if (canRelease == TRUE)
+                if (canRelease)
                 {
                     sStorage->state++;
                     break;
@@ -3304,7 +3304,7 @@ static void Task_CloseBoxWhileHoldingItem(u8 taskId)
             SetPokeStorageTask(Task_PokeStorageMain);
             break;
         case 0:// Yes
-            if (AddBagItem(sStorage->movingItemId, 1) == TRUE)
+            if (AddBagItem(sStorage->movingItemId, 1))
             {
                 ClearBottomWindow();
                 sStorage->state = 3;
@@ -3748,7 +3748,7 @@ static void Task_ChangeScreen(u8 taskId)
     u8 mode, monIndex, maxMonIndex;
     u8 screenChangeType = sStorage->screenChangeType;
 
-    if (sStorage->boxOption == OPTION_MOVE_ITEMS && IsMovingItem() == TRUE)
+    if (sStorage->boxOption == OPTION_MOVE_ITEMS && IsMovingItem())
         sMovingItemId = GetMovingItemId();
     else
         sMovingItemId = ITEM_NONE;
@@ -5380,7 +5380,7 @@ static bool8 DoWallpaperGfxChange(void)
         }
         break;
     case 2:
-        if (WaitForWallpaperGfxLoad() == TRUE)
+        if (WaitForWallpaperGfxLoad())
         {
             CycleBoxTitleColor();
             BeginNormalPaletteFade(sStorage->wallpaperPalBits, 1, 16, 0, RGB_WHITEALPHA);
@@ -7152,7 +7152,7 @@ static u8 InBoxInput_Normal(void)
             if (!sAutoActionOn)
                 return INPUT_IN_MENU;
 
-            if (sStorage->boxOption != OPTION_MOVE_MONS || sIsMonBeingMoved == TRUE)
+            if (sStorage->boxOption != OPTION_MOVE_MONS || sIsMonBeingMoved)
             {
                 switch (GetMenuItemTextId(0))
                 {
@@ -7765,7 +7765,7 @@ static bool8 SetMenuTexts_Item(void)
         }
         else
         {
-            if (ItemIsMail(sStorage->displayMonItemId) == TRUE)
+            if (ItemIsMail(sStorage->displayMonItemId))
                 return FALSE;
 
             SetMenuText(MENU_SWITCH);
@@ -9866,7 +9866,7 @@ static void TilemapUtil_UpdateAll(void)
 
     for (i = 0; i < sNumTilemapUtilIds; i++)
     {
-        if (sTilemapUtil[i].active == TRUE)
+        if (sTilemapUtil[i].active)
             TilemapUtil_Update(i);
     }
 }

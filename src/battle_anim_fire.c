@@ -1397,7 +1397,7 @@ void AnimTask_ShakeTargetInPattern(u8 taskId)
     else
         dir = sShakeDirsPattern1[gTasks[taskId].tShakeNum % 10];
 
-    if (gTasks[taskId].tVertical == TRUE)
+    if (gTasks[taskId].tVertical)
         gSprites[spriteId].y2 = gBattleAnimArgs[1] * dir < 0 ? -(gBattleAnimArgs[1] * dir) : gBattleAnimArgs[1] * dir;
     else
         gSprites[spriteId].x2 = gBattleAnimArgs[1] * dir;

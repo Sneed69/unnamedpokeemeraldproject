@@ -35,7 +35,7 @@ static void CreateBattlerTrace(struct Task *task, u8 taskId);
 
 EWRAM_DATA static union AffineAnimCmd *sAnimTaskAffineAnim = NULL;
 
-#if P_ENABLE_DEBUG == TRUE
+#if P_ENABLE_DEBUG
 const struct UCoords8 sBattlerCoords[][MAX_BATTLERS_COUNT] =
 #else
 static const struct UCoords8 sBattlerCoords[][MAX_BATTLERS_COUNT] =
@@ -64,7 +64,7 @@ const struct MonCoords gCastformFrontSpriteCoords[NUM_CASTFORM_FORMS] =
     [CASTFORM_ICE]    = { .size = MON_COORDS_SIZE(64, 48), .y_offset =  8 },
 };
 
-#if P_ENABLE_DEBUG == TRUE
+#if P_ENABLE_DEBUG
 const u8 sCastformElevations[NUM_CASTFORM_FORMS] =
 #else
 static const u8 sCastformElevations[NUM_CASTFORM_FORMS] =
@@ -1056,7 +1056,7 @@ void AnimLoadCompressedBgTilemap(u32 bgId, const void *src)
 void AnimLoadCompressedBgTilemapHandleContest(struct BattleAnimBgData *data, const void *src, bool32 largeScreen)
 {
     InitAnimBgTilemapBuffer(data->bgId, src);
-    if (IsContest() == TRUE)
+    if (IsContest())
         RelocateBattleBgPal(data->paletteId, data->bgTilemap, 0, largeScreen);
     CopyBgTilemapBufferToVram(data->bgId);
 }

@@ -218,7 +218,7 @@ void DrawDialogueFrame(u8 windowId, bool8 copyToVram)
     CallWindowFunction(windowId, WindowFunc_DrawDialogueFrame);
     FillWindowPixelBuffer(windowId, PIXEL_FILL(1));
     PutWindowTilemap(windowId);
-    if (copyToVram == TRUE)
+    if (copyToVram)
         CopyWindowToVram(windowId, COPYWIN_FULL);
 }
 
@@ -227,7 +227,7 @@ void DrawStdWindowFrame(u8 windowId, bool8 copyToVram)
     CallWindowFunction(windowId, WindowFunc_DrawStandardFrame);
     FillWindowPixelBuffer(windowId, PIXEL_FILL(1));
     PutWindowTilemap(windowId);
-    if (copyToVram == TRUE)
+    if (copyToVram)
         CopyWindowToVram(windowId, COPYWIN_FULL);
 }
 
@@ -236,7 +236,7 @@ void ClearDialogWindowAndFrame(u8 windowId, bool8 copyToVram)
     CallWindowFunction(windowId, WindowFunc_ClearDialogWindowAndFrame);
     FillWindowPixelBuffer(windowId, PIXEL_FILL(1));
     ClearWindowTilemap(windowId);
-    if (copyToVram == TRUE)
+    if (copyToVram)
         CopyWindowToVram(windowId, COPYWIN_FULL);
 }
 
@@ -245,7 +245,7 @@ void ClearStdWindowAndFrame(u8 windowId, bool8 copyToVram)
     CallWindowFunction(windowId, WindowFunc_ClearStdWindowAndFrame);
     FillWindowPixelBuffer(windowId, PIXEL_FILL(1));
     ClearWindowTilemap(windowId);
-    if (copyToVram == TRUE)
+    if (copyToVram)
         CopyWindowToVram(windowId, COPYWIN_FULL);
 }
 
@@ -552,7 +552,7 @@ void AddTextPrinterWithCallbackForMessage(bool8 a1, void (*callback)(struct Text
 void EraseFieldMessageBox(bool8 copyToVram)
 {
     FillBgTilemapBufferRect(0, 0, 0, 0, 32, 32, 0x11);
-    if (copyToVram == TRUE)
+    if (copyToVram)
         CopyBgTilemapBufferToVram(0);
 }
 
@@ -563,7 +563,7 @@ void DrawDialogFrameWithCustomTileAndPalette(u8 windowId, bool8 copyToVram, u16 
     CallWindowFunction(windowId, WindowFunc_DrawDialogFrameWithCustomTileAndPalette);
     FillWindowPixelBuffer(windowId, PIXEL_FILL(1));
     PutWindowTilemap(windowId);
-    if (copyToVram == TRUE)
+    if (copyToVram)
         CopyWindowToVram(windowId, COPYWIN_FULL);
 }
 
@@ -575,7 +575,7 @@ static void DrawDialogFrameWithCustomTile(u8 windowId, bool8 copyToVram, u16 til
     CallWindowFunction(windowId, WindowFunc_DrawDialogFrameWithCustomTileAndPalette);
     FillWindowPixelBuffer(windowId, PIXEL_FILL(1));
     PutWindowTilemap(windowId);
-    if (copyToVram == TRUE)
+    if (copyToVram)
         CopyWindowToVram(windowId, COPYWIN_FULL);
 }
 
@@ -680,7 +680,7 @@ void ClearDialogWindowAndFrameToTransparent(u8 windowId, bool8 copyToVram)
     CallWindowFunction(windowId, WindowFunc_ClearDialogWindowAndFrameNullPalette);
     FillWindowPixelBuffer(windowId, PIXEL_FILL(0));
     ClearWindowTilemap(windowId);
-    if (copyToVram == TRUE)
+    if (copyToVram)
         CopyWindowToVram(windowId, COPYWIN_FULL);
 }
 
@@ -696,7 +696,7 @@ void DrawStdFrameWithCustomTileAndPalette(u8 windowId, bool8 copyToVram, u16 bas
     CallWindowFunction(windowId, WindowFunc_DrawStdFrameWithCustomTileAndPalette);
     FillWindowPixelBuffer(windowId, PIXEL_FILL(1));
     PutWindowTilemap(windowId);
-    if (copyToVram == TRUE)
+    if (copyToVram)
         CopyWindowToVram(windowId, COPYWIN_FULL);
 }
 
@@ -708,7 +708,7 @@ void DrawStdFrameWithCustomTile(u8 windowId, bool8 copyToVram, u16 baseTileNum)
     CallWindowFunction(windowId, WindowFunc_DrawStdFrameWithCustomTileAndPalette);
     FillWindowPixelBuffer(windowId, PIXEL_FILL(1));
     PutWindowTilemap(windowId);
-    if (copyToVram == TRUE)
+    if (copyToVram)
         CopyWindowToVram(windowId, COPYWIN_FULL);
 }
 
@@ -777,7 +777,7 @@ void ClearStdWindowAndFrameToTransparent(u8 windowId, bool8 copyToVram)
     CallWindowFunction(windowId, WindowFunc_ClearStdWindowAndFrameToTransparent);
     FillWindowPixelBuffer(windowId, PIXEL_FILL(0));
     ClearWindowTilemap(windowId);
-    if (copyToVram == TRUE)
+    if (copyToVram)
         CopyWindowToVram(windowId, COPYWIN_FULL);
 }
 
@@ -1745,22 +1745,22 @@ void ScheduleBgCopyTilemapToVram(u8 bgId)
 
 void DoScheduledBgTilemapCopiesToVram(void)
 {
-    if (sScheduledBgCopiesToVram[0] == TRUE)
+    if (sScheduledBgCopiesToVram[0])
     {
         CopyBgTilemapBufferToVram(0);
         sScheduledBgCopiesToVram[0] = FALSE;
     }
-    if (sScheduledBgCopiesToVram[1] == TRUE)
+    if (sScheduledBgCopiesToVram[1])
     {
         CopyBgTilemapBufferToVram(1);
         sScheduledBgCopiesToVram[1] = FALSE;
     }
-    if (sScheduledBgCopiesToVram[2] == TRUE)
+    if (sScheduledBgCopiesToVram[2])
     {
         CopyBgTilemapBufferToVram(2);
         sScheduledBgCopiesToVram[2] = FALSE;
     }
-    if (sScheduledBgCopiesToVram[3] == TRUE)
+    if (sScheduledBgCopiesToVram[3])
     {
         CopyBgTilemapBufferToVram(3);
         sScheduledBgCopiesToVram[3] = FALSE;
@@ -1898,7 +1898,7 @@ void AddValToTilemapBuffer(void *ptr, int delta, int width, int height, bool32 i
 {
     int i;
     int area = width * height;
-    if (isAffine == TRUE)
+    if (isAffine)
     {
         u8 *as8BPP = ptr;
         for (i = 0; i < area; i++)

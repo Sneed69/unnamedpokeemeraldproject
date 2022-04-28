@@ -1338,7 +1338,7 @@ static void Task_SetNextAnim(u8 taskId)
 {
     if (!gPaletteFade.active)
     {
-        if (sRayScene->endEarly == TRUE)
+        if (sRayScene->endEarly)
         {
             gTasks[taskId].func = Task_EndAfterFadeScreen;
         }

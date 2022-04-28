@@ -118,7 +118,7 @@ static void SetPlayerVisibility(bool8 visible)
 
 static void Task_WaitForUnionRoomFade(u8 taskId)
 {
-    if (WaitForWeatherFadeIn() == TRUE)
+    if (WaitForWeatherFadeIn())
         DestroyTask(taskId);
 }
 
@@ -132,7 +132,7 @@ void FieldCB_ContinueScriptUnionRoom(void)
 
 static void Task_WaitForFadeAndEnableScriptCtx(u8 taskID)
 {
-    if (WaitForWeatherFadeIn() == TRUE)
+    if (WaitForWeatherFadeIn())
     {
         DestroyTask(taskID);
         EnableBothScriptContexts();
@@ -172,7 +172,7 @@ static void Task_ReturnToFieldCableLink(u8 taskId)
         }
         break;
     case 2:
-        if (WaitForWeatherFadeIn() == TRUE)
+        if (WaitForWeatherFadeIn())
         {
             ScriptContext2_Disable();
             DestroyTask(taskId);
@@ -212,7 +212,7 @@ static void Task_ReturnToFieldWirelessLink(u8 taskId)
         }
         break;
     case 2:
-        if (WaitForWeatherFadeIn() == TRUE)
+        if (WaitForWeatherFadeIn())
         {
             StartSendingKeysToLink();
             ScriptContext2_Disable();
@@ -261,9 +261,9 @@ static void SetUpWarpExitTask(void)
 
     PlayerGetDestCoords(&x, &y);
     behavior = MapGridGetMetatileBehaviorAt(x, y);
-    if (MetatileBehavior_IsDoor(behavior) == TRUE)
+    if (MetatileBehavior_IsDoor(behavior))
         func = Task_ExitDoor;
-    else if (MetatileBehavior_IsNonAnimDoor(behavior) == TRUE)
+    else if (MetatileBehavior_IsNonAnimDoor(behavior))
         func = Task_ExitNonAnimDoor;
     else
         func = Task_ExitNonDoor;
@@ -423,7 +423,7 @@ static void Task_ExitNonDoor(u8 taskId)
 
 static void Task_WaitForFadeShowStartMenu(u8 taskId)
 {
-    if (WaitForWeatherFadeIn() == TRUE)
+    if (WaitForWeatherFadeIn())
     {
         DestroyTask(taskId);
         CreateTask(Task_ShowStartMenu, 80);
@@ -475,7 +475,7 @@ static bool32 PaletteFadeActive(void)
 
 static bool32 WaitForWeatherFadeIn(void)
 {
-    if (IsWeatherNotFadingIn() == TRUE)
+    if (IsWeatherNotFadingIn())
         return TRUE;
     else
         return FALSE;
@@ -1186,7 +1186,7 @@ static void Task_OrbEffect(u8 taskId)
         {
             tShakeDelay = 8;
             tShakeDir ^= 1;
-            if (UpdateOrbEffectBlend(tShakeDir) == TRUE)
+            if (UpdateOrbEffectBlend(tShakeDir))
             {
                 tState = 5;
                 BgDmaFill(0, PIXEL_FILL(0), 0, 1);
@@ -1260,7 +1260,7 @@ void Script_FadeOutMapMusic(void)
 
 static void Task_EnableScriptAfterMusicFade(u8 taskId)
 {
-    if (BGMusicStopped() == TRUE)
+    if (BGMusicStopped())
     {
         DestroyTask(taskId);
         EnableBothScriptContexts();

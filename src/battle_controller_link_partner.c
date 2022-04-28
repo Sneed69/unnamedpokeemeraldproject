@@ -1459,7 +1459,7 @@ static void LinkPartnerHandleToggleUnkFlag(void)
 
 static void LinkPartnerHandleHitAnimation(void)
 {
-    if (gSprites[gBattlerSpriteIds[gActiveBattler]].invisible == TRUE)
+    if (gSprites[gBattlerSpriteIds[gActiveBattler]].invisible)
     {
         LinkPartnerBufferExecCompleted();
     }

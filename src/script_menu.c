@@ -41,7 +41,7 @@ void TryDrawRepelMenu(void);
 
 bool8 ScriptMenu_Multichoice(u8 left, u8 top, u8 multichoiceId, bool8 ignoreBPress)
 {
-    if (FuncIsActiveTask(Task_HandleMultichoiceInput) == TRUE)
+    if (FuncIsActiveTask(Task_HandleMultichoiceInput))
     {
         return FALSE;
     }
@@ -55,7 +55,7 @@ bool8 ScriptMenu_Multichoice(u8 left, u8 top, u8 multichoiceId, bool8 ignoreBPre
 
 bool8 ScriptMenu_MultichoiceWithDefault(u8 left, u8 top, u8 multichoiceId, bool8 ignoreBPress, u8 defaultChoice)
 {
-    if (FuncIsActiveTask(Task_HandleMultichoiceInput) == TRUE)
+    if (FuncIsActiveTask(Task_HandleMultichoiceInput))
     {
         return FALSE;
     }
@@ -233,7 +233,7 @@ bool8 ScriptMenu_YesNo(u8 left, u8 top)
 {
     u8 taskId;
 
-    if (FuncIsActiveTask(Task_HandleYesNoInput) == TRUE)
+    if (FuncIsActiveTask(Task_HandleYesNoInput))
     {
         return FALSE;
     }
@@ -283,7 +283,7 @@ static void Task_HandleYesNoInput(u8 taskId)
 
 bool8 ScriptMenu_MultichoiceGrid(u8 left, u8 top, u8 multichoiceId, bool8 ignoreBPress, u8 columnCount)
 {
-    if (FuncIsActiveTask(Task_HandleMultichoiceGridInput) == TRUE)
+    if (FuncIsActiveTask(Task_HandleMultichoiceGridInput))
     {
         return FALSE;
     }
@@ -347,7 +347,7 @@ static void Task_HandleMultichoiceGridInput(u8 taskId)
 
 bool16 ScriptMenu_CreatePCMultichoice(void)
 {
-    if (FuncIsActiveTask(Task_HandleMultichoiceInput) == TRUE)
+    if (FuncIsActiveTask(Task_HandleMultichoiceInput))
     {
         return FALSE;
     }
@@ -418,7 +418,7 @@ void ScriptMenu_DisplayPCStartupPrompt(void)
 
 bool8 ScriptMenu_CreateLilycoveSSTidalMultichoice(void)
 {
-    if (FuncIsActiveTask(Task_HandleMultichoiceInput) == TRUE)
+    if (FuncIsActiveTask(Task_HandleMultichoiceInput))
     {
         return FALSE;
     }
@@ -454,14 +454,14 @@ static void CreateLilycoveSSTidalMultichoice(void)
         sLilycoveSSTidalSelections[selectionCount] = SSTIDAL_SELECTION_SLATEPORT;
         selectionCount++;
 
-        if (FlagGet(FLAG_MET_SCOTT_ON_SS_TIDAL) == TRUE)
+        if (FlagGet(FLAG_MET_SCOTT_ON_SS_TIDAL))
         {
             sLilycoveSSTidalSelections[selectionCount] = SSTIDAL_SELECTION_BATTLE_FRONTIER;
             selectionCount++;
         }
     }
 
-    if (CheckBagHasItem(ITEM_EON_TICKET, 1) == TRUE && FlagGet(FLAG_ENABLE_SHIP_SOUTHERN_ISLAND) == TRUE)
+    if (CheckBagHasItem(ITEM_EON_TICKET, 1) && FlagGet(FLAG_ENABLE_SHIP_SOUTHERN_ISLAND))
     {
         if (gSpecialVar_0x8004 == 0)
         {
@@ -477,7 +477,7 @@ static void CreateLilycoveSSTidalMultichoice(void)
         }
     }
 
-    if (CheckBagHasItem(ITEM_MYSTIC_TICKET, 1) == TRUE && FlagGet(FLAG_ENABLE_SHIP_NAVEL_ROCK) == TRUE)
+    if (CheckBagHasItem(ITEM_MYSTIC_TICKET, 1) && FlagGet(FLAG_ENABLE_SHIP_NAVEL_ROCK))
     {
         if (gSpecialVar_0x8004 == 0)
         {
@@ -493,7 +493,7 @@ static void CreateLilycoveSSTidalMultichoice(void)
         }
     }
 
-    if (CheckBagHasItem(ITEM_AURORA_TICKET, 1) == TRUE && FlagGet(FLAG_ENABLE_SHIP_BIRTH_ISLAND) == TRUE)
+    if (CheckBagHasItem(ITEM_AURORA_TICKET, 1) && FlagGet(FLAG_ENABLE_SHIP_BIRTH_ISLAND))
     {
         if (gSpecialVar_0x8004 == 0)
         {
@@ -509,7 +509,7 @@ static void CreateLilycoveSSTidalMultichoice(void)
         }
     }
 
-    if (CheckBagHasItem(ITEM_OLD_SEA_MAP, 1) == TRUE && FlagGet(FLAG_ENABLE_SHIP_FARAWAY_ISLAND) == TRUE)
+    if (CheckBagHasItem(ITEM_OLD_SEA_MAP, 1) && FlagGet(FLAG_ENABLE_SHIP_FARAWAY_ISLAND))
     {
         if (gSpecialVar_0x8004 == 0)
         {
@@ -528,7 +528,7 @@ static void CreateLilycoveSSTidalMultichoice(void)
     sLilycoveSSTidalSelections[selectionCount] = SSTIDAL_SELECTION_EXIT;
     selectionCount++;
 
-    if (gSpecialVar_0x8004 == 0 && FlagGet(FLAG_MET_SCOTT_ON_SS_TIDAL) == TRUE)
+    if (gSpecialVar_0x8004 == 0 && FlagGet(FLAG_MET_SCOTT_ON_SS_TIDAL))
     {
         count = selectionCount;
     }
@@ -706,7 +706,7 @@ static void DrawLinkServicesMultichoiceMenu(u8 multichoiceId)
 
 bool16 ScriptMenu_CreateStartMenuForPokenavTutorial(void)
 {
-    if (FuncIsActiveTask(Task_HandleMultichoiceInput) == TRUE)
+    if (FuncIsActiveTask(Task_HandleMultichoiceInput))
     {
         return FALSE;
     }

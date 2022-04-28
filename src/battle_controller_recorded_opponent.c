@@ -1572,7 +1572,7 @@ static void RecordedOpponentHandleToggleUnkFlag(void)
 
 static void RecordedOpponentHandleHitAnimation(void)
 {
-    if (gSprites[gBattlerSpriteIds[gActiveBattler]].invisible == TRUE)
+    if (gSprites[gBattlerSpriteIds[gActiveBattler]].invisible)
     {
         RecordedOpponentBufferExecCompleted();
     }

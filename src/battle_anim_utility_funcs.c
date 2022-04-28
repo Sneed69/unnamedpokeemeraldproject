@@ -307,7 +307,7 @@ void AnimTask_DrawFallingWhiteLinesOnAttacker(u8 taskId)
         if (GetBattlerPosition(gBattleAnimAttacker) == B_POSITION_OPPONENT_RIGHT
          || GetBattlerPosition(gBattleAnimAttacker) == B_POSITION_PLAYER_LEFT)
         {
-            if (IsBattlerSpriteVisible(BATTLE_PARTNER(gBattleAnimAttacker)) == TRUE)
+            if (IsBattlerSpriteVisible(BATTLE_PARTNER(gBattleAnimAttacker)))
             {
                 gSprites[gBattlerSpriteIds[BATTLE_PARTNER(gBattleAnimAttacker)]].oam.priority -= 1;
                 ((struct BgCnt *)&bg1Cnt)->priority = 1;
@@ -430,7 +430,7 @@ static void StatsChangeAnimation_Step1(u8 taskId)
         if (GetBattlerPosition(sAnimStatsChangeData->battler1) == B_POSITION_OPPONENT_RIGHT
          || GetBattlerPosition(sAnimStatsChangeData->battler1) == B_POSITION_PLAYER_LEFT)
         {
-            if (IsBattlerSpriteVisible(sAnimStatsChangeData->battler2) == TRUE)
+            if (IsBattlerSpriteVisible(sAnimStatsChangeData->battler2))
             {
                 gSprites[gBattlerSpriteIds[sAnimStatsChangeData->battler2]].oam.priority -= 1;
                 SetAnimBgAttribute(1, BG_ANIM_PRIORITY, 1);

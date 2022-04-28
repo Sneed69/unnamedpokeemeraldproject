@@ -691,7 +691,7 @@ static struct MapConnection *GetIncomingConnection(u8 direction, int x, int y)
     connection = connections->connections;
     for (i = 0; i < count; i++, connection++)
     {
-        if (connection->direction == direction && IsPosInIncomingConnectingMap(direction, x, y, connection) == TRUE)
+        if (connection->direction == direction && IsPosInIncomingConnectingMap(direction, x, y, connection))
             return connection;
     }
     return NULL;
@@ -779,7 +779,7 @@ struct MapConnection *GetConnectionAtCoords(s16 x, s16 y)
             {
                 continue;
             }
-            if (IsPosInConnectingMap(connection, x - MAP_OFFSET, y - MAP_OFFSET) == TRUE)
+            if (IsPosInConnectingMap(connection, x - MAP_OFFSET, y - MAP_OFFSET))
             {
                 return connection;
             }
@@ -834,7 +834,7 @@ static bool8 SkipCopyingMetatileFromSavedMap(u16* mapBlock, u16 mapWidth, u8 yMo
     else
         mapBlock += mapWidth;
 
-    if (IsLargeBreakableDecoration(*mapBlock & MAPGRID_METATILE_ID_MASK, yMode) == TRUE)
+    if (IsLargeBreakableDecoration(*mapBlock & MAPGRID_METATILE_ID_MASK, yMode))
         return TRUE;
     return FALSE;
 }
@@ -884,7 +884,7 @@ void LoadTilesetPalette(struct Tileset const *tileset, u16 destOffset, u16 size)
             LoadPaletteDayNight(((u16*)tileset->palettes) + 1, destOffset + 1, size - 2);
             FieldmapPaletteDummy(destOffset + 1, (size - 2) >> 1);
         }
-        else if (tileset->isSecondary == TRUE)
+        else if (tileset->isSecondary)
         {
             gPaletteOverrides[1] = tileset->paletteOverrides;
             LoadPaletteDayNight(((u16*)tileset->palettes) + (NUM_PALS_IN_PRIMARY * 16), destOffset, size);

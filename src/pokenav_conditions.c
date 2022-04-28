@@ -607,7 +607,7 @@ u16 GetConditionMonDataBuffer(void)
 bool32 IsConditionMenuSearchMode(void)
 {
     struct Pokenav_ConditionMenu *menu = GetSubstructPtr(POKENAV_SUBSTRUCT_CONDITION_GRAPH_MENU);
-    if (menu->inSearchMode == TRUE)
+    if (menu->inSearchMode)
         return TRUE;
     else
         return FALSE;
@@ -617,7 +617,7 @@ bool32 IsConditionMenuSearchMode(void)
 u8 TryGetMonMarkId(void)
 {
     struct Pokenav_ConditionMenu *menu = GetSubstructPtr(POKENAV_SUBSTRUCT_CONDITION_GRAPH_MENU);
-    if (menu->inSearchMode == TRUE)
+    if (menu->inSearchMode)
         return menu->monMarks[menu->loadId];
     else
         return 0;

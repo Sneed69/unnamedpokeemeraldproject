@@ -259,15 +259,15 @@ static void BuildStartMenuActions(void)
 {
     sNumStartMenuActions = 0;
 
-    if (IsOverworldLinkActive() == TRUE)
+    if (IsOverworldLinkActive())
     {
         BuildLinkModeStartMenu();
     }
-    else if (InUnionRoom() == TRUE)
+    else if (InUnionRoom())
     {
         BuildUnionRoomStartMenu();
     }
-    else if (GetSafariZoneFlag() == TRUE)
+    else if (GetSafariZoneFlag())
     {
         BuildSafariZoneStartMenu();
     }
@@ -303,18 +303,18 @@ static void AddStartMenuAction(u8 action)
 
 static void BuildNormalStartMenu(void)
 {
-    if (FlagGet(FLAG_SYS_POKEDEX_GET) == TRUE)
+    if (FlagGet(FLAG_SYS_POKEDEX_GET))
     {
         AddStartMenuAction(MENU_ACTION_POKEDEX);
     }
-    if (FlagGet(FLAG_SYS_POKEMON_GET) == TRUE)
+    if (FlagGet(FLAG_SYS_POKEMON_GET))
     {
         AddStartMenuAction(MENU_ACTION_POKEMON);
     }
 
     AddStartMenuAction(MENU_ACTION_BAG);
 
-    if (FlagGet(FLAG_SYS_POKENAV_GET) == TRUE)
+    if (FlagGet(FLAG_SYS_POKENAV_GET))
     {
         AddStartMenuAction(MENU_ACTION_POKENAV);
     }
@@ -327,18 +327,18 @@ static void BuildNormalStartMenu(void)
 
 static void BuildDebugStartMenu(void)
 {    
-    if (FlagGet(FLAG_SYS_POKEDEX_GET) == TRUE)
+    if (FlagGet(FLAG_SYS_POKEDEX_GET))
     {
         AddStartMenuAction(MENU_ACTION_POKEDEX);
     }
-    if (FlagGet(FLAG_SYS_POKEMON_GET) == TRUE)
+    if (FlagGet(FLAG_SYS_POKEMON_GET))
     {
         AddStartMenuAction(MENU_ACTION_POKEMON);
     }
 
     AddStartMenuAction(MENU_ACTION_BAG);
 
-    if (FlagGet(FLAG_SYS_POKENAV_GET) == TRUE)
+    if (FlagGet(FLAG_SYS_POKENAV_GET))
     {
         AddStartMenuAction(MENU_ACTION_POKENAV);
     }
@@ -365,7 +365,7 @@ static void BuildLinkModeStartMenu(void)
     AddStartMenuAction(MENU_ACTION_POKEMON);
     AddStartMenuAction(MENU_ACTION_BAG);
 
-    if (FlagGet(FLAG_SYS_POKENAV_GET) == TRUE)
+    if (FlagGet(FLAG_SYS_POKENAV_GET))
     {
         AddStartMenuAction(MENU_ACTION_POKENAV);
     }
@@ -380,7 +380,7 @@ static void BuildUnionRoomStartMenu(void)
     AddStartMenuAction(MENU_ACTION_POKEMON);
     AddStartMenuAction(MENU_ACTION_BAG);
 
-    if (FlagGet(FLAG_SYS_POKENAV_GET) == TRUE)
+    if (FlagGet(FLAG_SYS_POKENAV_GET))
     {
         AddStartMenuAction(MENU_ACTION_POKENAV);
     }
@@ -539,7 +539,7 @@ static void InitStartMenu(void)
 
 static void StartMenuTask(u8 taskId)
 {
-    if (InitStartMenuStep() == TRUE)
+    if (InitStartMenuStep())
         SwitchTaskToFollowupFunc(taskId);
 }
 
@@ -578,14 +578,14 @@ void Task_ShowStartMenu(u8 taskId)
     switch(task->data[0])
     {
     case 0:
-        if (InUnionRoom() == TRUE)
+        if (InUnionRoom())
             SetUsingUnionRoomStartMenu();
 
         gMenuCallback = HandleStartMenuInput;
         task->data[0]++;
         break;
     case 1:
-        if (gMenuCallback() == TRUE)
+        if (gMenuCallback())
             DestroyTask(taskId);
         break;
     }
@@ -917,7 +917,7 @@ static void InitSave(void)
 static u8 RunSaveCallback(void)
 {
     // True if text is still printing
-    if (RunTextPrintersAndIsPrinter0Active() == TRUE)
+    if (RunTextPrintersAndIsPrinter0Active())
     {
         return SAVE_IN_PROGRESS;
     }
@@ -1067,7 +1067,7 @@ static u8 SaveConfirmInputCallback(void)
 // A different save file exists
 static u8 SaveFileExistsCallback(void)
 {
-    if (gDifferentSaveFile == TRUE)
+    if (gDifferentSaveFile)
     {
         ShowSaveMessage(gText_DifferentSaveFile, SaveConfirmOverwriteDefaultNoCallback);
     }
@@ -1123,7 +1123,7 @@ static u8 SaveDoSaveCallback(void)
     IncrementGameStat(GAME_STAT_SAVED_GAME);
     PausePyramidChallenge();
 
-    if (gDifferentSaveFile == TRUE)
+    if (gDifferentSaveFile)
     {
         saveStatus = TrySavingData(SAVE_OVERWRITE_DIFFERENT_FILE);
         gDifferentSaveFile = FALSE;
@@ -1405,7 +1405,7 @@ static void ShowSaveInfoWindow(void)
     xOffset = GetStringRightAlignXOffset(FONT_NORMAL, gStringVar4, 0x70);
     AddTextPrinterParameterized(sSaveInfoWindowId, FONT_NORMAL, gStringVar4, xOffset, yOffset, TEXT_SKIP_DRAW, NULL);
 
-    if (FlagGet(FLAG_SYS_POKEDEX_GET) == TRUE)
+    if (FlagGet(FLAG_SYS_POKEDEX_GET))
     {
         // Print pokedex count
         yOffset += 16;

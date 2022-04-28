@@ -4161,7 +4161,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 BattleScriptPushCursorAndCallback(BattleScript_OverworldTerrain);
                 effect++;
             }
-            #if B_THUNDERSTORM_TERRAIN == TRUE
+            #if B_THUNDERSTORM_TERRAIN
             else if (GetCurrentWeather() == WEATHER_RAIN_THUNDERSTORM && !(gFieldStatuses & STATUS_FIELD_ELECTRIC_TERRAIN))
             {
                 // overworld weather started rain, so just do electric terrain anim
@@ -9568,7 +9568,7 @@ void UndoFormChange(u32 monId, u32 side, bool32 isSwitchingOut)
     currSpecies = GetMonData(&party[monId], MON_DATA_SPECIES, NULL);
     for (i = 0; i < ARRAY_COUNT(species); i++)
     {
-        if (currSpecies == species[i][0] && (!isSwitchingOut || species[i][2] == TRUE))
+        if (currSpecies == species[i][0] && (!isSwitchingOut || species[i][2]))
         {
             SetMonData(&party[monId], MON_DATA_SPECIES, &species[i][1]);
             CalculateMonStats(&party[monId]);
@@ -9971,7 +9971,7 @@ void TrySaveExchangedItem(u8 battlerId, u16 stolenItem)
 {
     // Because BtlController_EmitSetMonData does SetMonData, we need to save the stolen item only if it matches the battler's original
     // So, if the player steals an item during battle and has it stolen from it, it will not end the battle with it (naturally)
-    #if B_TRAINERS_KNOCK_OFF_ITEMS == TRUE
+    #if B_TRAINERS_KNOCK_OFF_ITEMS
     // If regular trainer battle and mon's original item matches what is being stolen, save it to be restored at end of battle
     if (gBattleTypeFlags & BATTLE_TYPE_TRAINER
       && !(gBattleTypeFlags & BATTLE_TYPE_FRONTIER)

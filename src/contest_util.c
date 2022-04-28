@@ -630,7 +630,7 @@ static void Task_ShowContestResults(u8 taskId)
             }
             return;
         case 3:
-            if (IsLinkTaskFinished() == TRUE)
+            if (IsLinkTaskFinished())
             {
                 PlayBGM(MUS_CONTEST_RESULTS);
                 gPaletteFade.bufferTransferDisabled = FALSE;
@@ -2227,7 +2227,7 @@ void Task_LinkContest_FinalizeConnection(u8 taskId)
 {
     int i;
 
-    if (gSpecialVar_0x8004 == TRUE)
+    if (gSpecialVar_0x8004)
     {
         // Link partner data doesn't agree, disconnect
         if (IsLinkTaskFinished())

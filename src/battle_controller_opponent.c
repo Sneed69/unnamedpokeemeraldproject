@@ -252,7 +252,7 @@ static void Intro_WaitForShinyAnimAndHealthbox(void)
 
     if (healthboxAnimDone)
     {
-        if (twoMons == TRUE)
+        if (twoMons)
         {
             if (gBattleSpritesDataPtr->healthBoxesData[gActiveBattler].finishedShinyMonAnim
              && gBattleSpritesDataPtr->healthBoxesData[gActiveBattler ^ BIT_FLANK].finishedShinyMonAnim)
@@ -1615,7 +1615,7 @@ static void OpponentHandleChooseMove(void)
                 BtlController_EmitTwoReturnValues(BUFFER_B, 10, (chosenMoveId) | (gActiveBattler << 8));
             else if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE)
             {
-                #if B_WILD_NATURAL_ENEMIES == TRUE
+                #if B_WILD_NATURAL_ENEMIES
                 // Don't bother to loop through table if the move can't attack ally
                 if (!(gBattleMoves[move].target & MOVE_TARGET_BOTH))
                 {
@@ -1839,7 +1839,7 @@ static void OpponentHandleToggleUnkFlag(void)
 
 static void OpponentHandleHitAnimation(void)
 {
-    if (gSprites[gBattlerSpriteIds[gActiveBattler]].invisible == TRUE)
+    if (gSprites[gBattlerSpriteIds[gActiveBattler]].invisible)
     {
         OpponentBufferExecCompleted();
     }

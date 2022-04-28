@@ -1315,7 +1315,7 @@ static void Task_InitEasyChatScreen(u8 taskId)
     }
     else
     {
-        if (InitEasyChatScreen(taskId) == TRUE)
+        if (InitEasyChatScreen(taskId))
             return;
     }
     StartEasyChatScreen(taskId, Task_EasyChatScreen);
@@ -2153,7 +2153,7 @@ static u16 TryConfirmWords(void)
     }
     else
     {
-        if (IsCurrentPhraseEmpty() == TRUE || !GetEasyChatCompleted())
+        if (IsCurrentPhraseEmpty() || !GetEasyChatCompleted())
         {
             sEasyChatScreen->inputState = INPUTSTATE_EXIT_PROMPT;
             return ECFUNC_PROMPT_EXIT;
@@ -3338,7 +3338,7 @@ static bool8 CloseKeyboard(void)
         sScreenControl->funcState++;
         break;
     case 1:
-        if (DestroySideWindowSprites() == TRUE)
+        if (DestroySideWindowSprites())
             break;
 
         InitLowerWindowAnim(WINANIM_CLOSE_KEYBOARD);

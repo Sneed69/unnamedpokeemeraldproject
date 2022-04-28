@@ -1632,7 +1632,7 @@ static void LinkOpponentHandleToggleUnkFlag(void)
 
 static void LinkOpponentHandleHitAnimation(void)
 {
-    if (gSprites[gBattlerSpriteIds[gActiveBattler]].invisible == TRUE)
+    if (gSprites[gBattlerSpriteIds[gActiveBattler]].invisible)
     {
         LinkOpponentBufferExecCompleted();
     }

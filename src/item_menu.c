@@ -849,7 +849,7 @@ static bool8 LoadBagMenu_Graphics(void)
         gBagMenu->graphicsLoadState++;
         break;
     case 3:
-        if (IsWallysBag() == TRUE || gSaveBlock2Ptr->playerGender == MALE)
+        if (IsWallysBag() || gSaveBlock2Ptr->playerGender == MALE)
             LoadCompressedSpriteSheet(&gBagMaleSpriteSheet);
         else
             LoadCompressedSpriteSheet(&gBagFemaleSpriteSheet);
@@ -1244,7 +1244,7 @@ static void Task_BagMenu_HandleInput(u8 taskId)
         default:
             if (JOY_NEW(SELECT_BUTTON))
             {
-                if (CanSwapItems() == TRUE)
+                if (CanSwapItems())
                 {
                     ListMenuGetScrollAndRow(tListTaskId, scrollPos, cursorPos);
                     if ((*scrollPos + *cursorPos) != gBagMenu->numItemStacks[gBagPosition.pocket] - 1)
@@ -1605,7 +1605,7 @@ static void OpenContextMenu(u8 taskId)
     case ITEMMENULOCATION_BERRY_TREE:
     case ITEMMENULOCATION_ITEMPC:
     default:
-        if (MenuHelpers_IsLinkActive() == TRUE || InUnionRoom() == TRUE)
+        if (MenuHelpers_IsLinkActive() || InUnionRoom())
         {
             if (gBagPosition.pocket == KEYITEMS_POCKET || !IsHoldingItemAllowed(gSpecialVar_ItemId))
             {
@@ -1626,7 +1626,7 @@ static void OpenContextMenu(u8 taskId)
                 gBagMenu->contextMenuItemsPtr = gBagMenu->contextMenuItemsBuffer;
                 gBagMenu->contextMenuNumItems = ARRAY_COUNT(sContextMenuItems_ItemsPocket);
                 memcpy(&gBagMenu->contextMenuItemsBuffer, &sContextMenuItems_ItemsPocket, sizeof(sContextMenuItems_ItemsPocket));
-                if (ItemIsMail(gSpecialVar_ItemId) == TRUE)
+                if (ItemIsMail(gSpecialVar_ItemId))
                     gBagMenu->contextMenuItemsBuffer[0] = ACTION_CHECK;
                 break;
             case KEYITEMS_POCKET:
@@ -1886,7 +1886,7 @@ static void Task_ChooseHowManyToToss(u8 taskId)
 {
     s16* data = gTasks[taskId].data;
 
-    if (AdjustQuantityAccordingToDPadInput(&tItemCount, tQuantity) == TRUE)
+    if (AdjustQuantityAccordingToDPadInput(&tItemCount, tQuantity))
     {
         PrintItemQuantity(gBagMenu->windowIds[ITEMWIN_QUANTITY], tItemCount);
     }
@@ -2042,7 +2042,7 @@ static void Task_ItemContext_GiveToParty(u8 taskId)
 // Selected item to give to a Pokémon in PC storage
 static void Task_ItemContext_GiveToPC(u8 taskId)
 {
-    if (ItemIsMail(gSpecialVar_ItemId) == TRUE)
+    if (ItemIsMail(gSpecialVar_ItemId))
         DisplayItemMessage(taskId, FONT_NORMAL, gText_CantWriteMail, HandleErrorMessage);
     else if (gBagPosition.pocket != KEYITEMS_POCKET && !ItemId_GetImportance(gSpecialVar_ItemId))
         gTasks[taskId].func = Task_FadeAndCloseBagMenu;
@@ -2115,7 +2115,7 @@ static void Task_ChooseHowManyToSell(u8 taskId)
 {
     s16* data = gTasks[taskId].data;
 
-    if (AdjustQuantityAccordingToDPadInput(&tItemCount, tQuantity) == TRUE)
+    if (AdjustQuantityAccordingToDPadInput(&tItemCount, tQuantity))
     {
         PrintItemSoldAmount(gBagMenu->windowIds[ITEMWIN_QUANTITY_WIDE], tItemCount, (ItemId_GetPrice(gSpecialVar_ItemId) / 2) * tItemCount);
     }
@@ -2199,7 +2199,7 @@ static void Task_ChooseHowManyToDeposit(u8 taskId)
 {
     s16* data = gTasks[taskId].data;
 
-    if (AdjustQuantityAccordingToDPadInput(&tItemCount, tQuantity) == TRUE)
+    if (AdjustQuantityAccordingToDPadInput(&tItemCount, tQuantity))
     {
         PrintItemQuantity(gBagMenu->windowIds[ITEMWIN_QUANTITY], tItemCount);
     }
@@ -2230,7 +2230,7 @@ static void TryDepositItem(u8 taskId)
         BagMenu_Print(WIN_DESCRIPTION, FONT_NORMAL, gText_CantStoreImportantItems, 3, 1, 0, 0, 0, COLORID_NORMAL);
         gTasks[taskId].func = WaitDepositErrorMessage;
     }
-    else if (AddPCItem(gSpecialVar_ItemId, tItemCount) == TRUE)
+    else if (AddPCItem(gSpecialVar_ItemId, tItemCount))
     {
         // Successfully deposited
         CopyItemName(gSpecialVar_ItemId, gStringVar1);
@@ -2678,7 +2678,7 @@ bool8 UseRegisteredKeyItemOnField(u8 button)
     u8 taskId;
     u16 registeredItem;
 
-    if (InUnionRoom() == TRUE || InBattlePyramid() || InBattlePike() || InMultiPartnerRoom() == TRUE)
+    if (InUnionRoom() || InBattlePyramid() || InBattlePike() || InMultiPartnerRoom())
         return FALSE;
 
     HideMapNamePopUpWindow();
@@ -2701,7 +2701,7 @@ bool8 UseRegisteredKeyItemOnField(u8 button)
 
     if (registeredItem != ITEM_NONE)
     {
-        if (CheckBagHasItem(registeredItem, 1) == TRUE)
+        if (CheckBagHasItem(registeredItem, 1))
         {
             ScriptContext2_Enable();
             FreezeObjectEvents();

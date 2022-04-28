@@ -199,7 +199,7 @@ static void SetRandomPalacePrize(void)
 
 static void GivePalacePrize(void)
 {
-    if (AddBagItem(gSaveBlock2Ptr->frontier.palacePrize, 1) == TRUE)
+    if (AddBagItem(gSaveBlock2Ptr->frontier.palacePrize, 1))
     {
         CopyItemName(gSaveBlock2Ptr->frontier.palacePrize, gStringVar1);
         gSaveBlock2Ptr->frontier.palacePrize = 0;

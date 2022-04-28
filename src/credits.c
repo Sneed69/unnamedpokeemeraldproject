@@ -390,7 +390,7 @@ static void PrintCreditsText(const u8 *string, u8 y, bool8 isTitle)
 
     color[0] = TEXT_COLOR_TRANSPARENT;
 
-    if (isTitle == TRUE)
+    if (isTitle)
     {
         color[1] = TEXT_COLOR_LIGHT_GRAY;
         color[2] = TEXT_COLOR_RED;

@@ -415,7 +415,7 @@ static const struct DoorGraphics *GetDoorGraphics(const struct DoorGraphics *gfx
 
 static s8 StartDoorAnimationTask(const struct DoorGraphics *gfx, const struct DoorAnimFrame *frames, u32 x, u32 y)
 {
-    if (FuncIsActiveTask(Task_AnimateDoor) == TRUE)
+    if (FuncIsActiveTask(Task_AnimateDoor))
         return -1;
     else
     {

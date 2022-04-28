@@ -1389,7 +1389,7 @@ static void AddPointsOnFainting(bool8 targetFainted)
             }
             break;
         case FNT_RECOIL:
-            if (targetFainted == TRUE)
+            if (targetFainted)
             {
                 AddMovePoints(PTS_FAINT_SET_UP, 0, atkSide,
                 (gBattlerPartyIndexes[gBattlerAttacker]) * 4 + tvPtr->side[atkSide].usedMoveSlot);

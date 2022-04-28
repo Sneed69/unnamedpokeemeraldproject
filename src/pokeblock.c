@@ -505,11 +505,11 @@ static void CB2_InitPokeblockMenu(void)
 {
     while (1)
     {
-        if (MenuHelpers_ShouldWaitForLinkRecv() == TRUE)
+        if (MenuHelpers_ShouldWaitForLinkRecv())
             break;
-        if (InitPokeblockMenu() == TRUE)
+        if (InitPokeblockMenu())
             break;
-        if (MenuHelpers_IsLinkActive() == TRUE)
+        if (MenuHelpers_IsLinkActive())
             break;
     }
 }
@@ -1057,7 +1057,7 @@ static void Task_HandlePokeblocksSwapInput(u8 taskId)
 {
     s16 *data = gTasks[taskId].data;
 
-    if (MenuHelpers_ShouldWaitForLinkRecv() == TRUE)
+    if (MenuHelpers_ShouldWaitForLinkRecv())
         return;
 
     if (JOY_NEW(SELECT_BUTTON))
@@ -1161,7 +1161,7 @@ static void Task_HandlePokeblockActionsInput(u8 taskId)
 {
     s8 itemId;
 
-    if (MenuHelpers_ShouldWaitForLinkRecv() == TRUE)
+    if (MenuHelpers_ShouldWaitForLinkRecv())
         return;
 
     itemId = Menu_ProcessInputNoWrap();

@@ -945,7 +945,7 @@ bool8 ScrCmd_playbgm(struct ScriptContext *ctx)
     u16 songId = ScriptReadHalfword(ctx);
     bool8 save = ScriptReadByte(ctx);
 
-    if (save == TRUE)
+    if (save)
         Overworld_SetSavedMusic(songId);
     PlayNewMapMusic(songId);
     return FALSE;
@@ -1345,7 +1345,7 @@ bool8 ScrCmd_yesnobox(struct ScriptContext *ctx)
     u8 left = ScriptReadByte(ctx);
     u8 top = ScriptReadByte(ctx);
 
-    if (ScriptMenu_YesNo(left, top) == TRUE)
+    if (ScriptMenu_YesNo(left, top))
     {
         ScriptContext1_Stop();
         return TRUE;
@@ -1363,7 +1363,7 @@ bool8 ScrCmd_multichoice(struct ScriptContext *ctx)
     u8 multichoiceId = ScriptReadByte(ctx);
     bool8 ignoreBPress = ScriptReadByte(ctx);
 
-    if (ScriptMenu_Multichoice(left, top, multichoiceId, ignoreBPress) == TRUE)
+    if (ScriptMenu_Multichoice(left, top, multichoiceId, ignoreBPress))
     {
         ScriptContext1_Stop();
         return TRUE;
@@ -1382,7 +1382,7 @@ bool8 ScrCmd_multichoicedefault(struct ScriptContext *ctx)
     u8 defaultChoice = ScriptReadByte(ctx);
     bool8 ignoreBPress = ScriptReadByte(ctx);
 
-    if (ScriptMenu_MultichoiceWithDefault(left, top, multichoiceId, ignoreBPress, defaultChoice) == TRUE)
+    if (ScriptMenu_MultichoiceWithDefault(left, top, multichoiceId, ignoreBPress, defaultChoice))
     {
         ScriptContext1_Stop();
         return TRUE;
@@ -1412,7 +1412,7 @@ bool8 ScrCmd_multichoicegrid(struct ScriptContext *ctx)
     u8 numColumns = ScriptReadByte(ctx);
     bool8 ignoreBPress = ScriptReadByte(ctx);
 
-    if (ScriptMenu_MultichoiceGrid(left, top, multichoiceId, ignoreBPress, numColumns) == TRUE)
+    if (ScriptMenu_MultichoiceGrid(left, top, multichoiceId, ignoreBPress, numColumns))
     {
         ScriptContext1_Stop();
         return TRUE;
@@ -1441,7 +1441,7 @@ bool8 ScrCmd_drawboxtext(struct ScriptContext *ctx)
     u8 multichoiceId = ScriptReadByte(ctx);
     bool8 ignoreBPress = ScriptReadByte(ctx);
 
-    /*if (Multichoice(left, top, multichoiceId, ignoreBPress) == TRUE)
+    /*if (Multichoice(left, top, multichoiceId, ignoreBPress))
     {
         ScriptContext1_Stop();
         return TRUE;
@@ -1726,7 +1726,7 @@ bool8 ScrCmd_checkpartymove(struct ScriptContext *ctx)
         u16 species = GetMonData(&gPlayerParty[i], MON_DATA_SPECIES, NULL);
         if (!species)
             break;
-        if (!GetMonData(&gPlayerParty[i], MON_DATA_IS_EGG) && MonKnowsMove(&gPlayerParty[i], moveId) == TRUE)
+        if (!GetMonData(&gPlayerParty[i], MON_DATA_IS_EGG) && MonKnowsMove(&gPlayerParty[i], moveId))
         {
             gSpecialVar_Result = i;
             gSpecialVar_0x8004 = species;
@@ -2165,7 +2165,7 @@ bool8 ScrCmd_addcoins(struct ScriptContext *ctx)
 {
     u16 coins = VarGet(ScriptReadHalfword(ctx));
 
-    if (AddCoins(coins) == TRUE)
+    if (AddCoins(coins))
         gSpecialVar_Result = FALSE;
     else
         gSpecialVar_Result = TRUE;
@@ -2176,7 +2176,7 @@ bool8 ScrCmd_removecoins(struct ScriptContext *ctx)
 {
     u16 coins = VarGet(ScriptReadHalfword(ctx));
 
-    if (RemoveCoins(coins) == TRUE)
+    if (RemoveCoins(coins))
         gSpecialVar_Result = FALSE;
     else
         gSpecialVar_Result = TRUE;

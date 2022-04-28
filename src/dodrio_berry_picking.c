@@ -1008,7 +1008,7 @@ static void WaitEndGame_Leader(void)
 
     UpdateFallingBerries();
     HandleSound_Leader();
-    if (ReadyToEndGame_Leader() == TRUE)
+    if (ReadyToEndGame_Leader())
     {
         SetMaxBerriesPickedInRow();
         SetGameFunc(FUNC_INIT_RESULTS);
@@ -1030,7 +1030,7 @@ static void WaitEndGame_Leader(void)
 static void WaitEndGame_Member(void)
 {
     HandleSound_Member();
-    if (ReadyToEndGame_Member() == TRUE)
+    if (ReadyToEndGame_Member())
         SetGameFunc(FUNC_INIT_RESULTS);
 }
 
@@ -1400,7 +1400,7 @@ static void Task_NewGameIntro(u8 taskId)
     switch (sGame->state)
     {
     case 0:
-        if (SlideTreeBordersOut() == TRUE)
+        if (SlideTreeBordersOut())
             sGame->state++;
         break;
     case 1:
@@ -1408,7 +1408,7 @@ static void Task_NewGameIntro(u8 taskId)
         sGame->state++;
         break;
     case 2:
-        if (DoStatusBarIntro() == TRUE)
+        if (DoStatusBarIntro())
             sGame->state++;
         break;
     default:
@@ -1585,7 +1585,7 @@ static void RecvLinkData_Leader(void)
     switch (sGame->funcId)
     {
     case FUNC_WAIT_START:
-        if (AllPlayersReadyToStart() == TRUE)
+        if (AllPlayersReadyToStart())
         {
             ResetReadyToStart();
             sGame->startGame = TRUE;
@@ -1688,7 +1688,7 @@ static void HandleSound_Leader(void)
         if (!IsSEPlaying())
             sGame->playingPickSound = FALSE;
     }
-    else if (sGame->players[sGame->multiplayerId].comm.ateBerry == TRUE)
+    else if (sGame->players[sGame->multiplayerId].comm.ateBerry)
     {
         if (!sGame->playingPickSound)
         {
@@ -1697,7 +1697,7 @@ static void HandleSound_Leader(void)
             sGame->playingPickSound = TRUE;
         }
     }
-    else if (sGame->players[sGame->multiplayerId].comm.missedBerry == TRUE)
+    else if (sGame->players[sGame->multiplayerId].comm.missedBerry)
     {
         if (!sGame->playingPickSound && !IsSEPlaying())
         {
@@ -1732,7 +1732,7 @@ static void HandleSound_Member(void)
          && sGame->players[sGame->multiplayerId].comm.missedBerry != TRUE)
             sGame->playingPickSound = 0;
     }
-    else if (sGame->players[sGame->multiplayerId].comm.ateBerry == TRUE)
+    else if (sGame->players[sGame->multiplayerId].comm.ateBerry)
     {
         if (!sGame->playingPickSound)
         {
@@ -1741,7 +1741,7 @@ static void HandleSound_Member(void)
             sGame->playingPickSound = TRUE;
         }
     }
-    else if (sGame->players[sGame->multiplayerId].comm.missedBerry == TRUE)
+    else if (sGame->players[sGame->multiplayerId].comm.missedBerry)
     {
         if (!sGame->playingPickSound && !IsSEPlaying())
         {
@@ -1890,7 +1890,7 @@ static void HandlePickBerries(void)
                     break;
 
                 // Check berry pick attempt
-                if (TryPickBerry(i, *pickState, column) == TRUE)
+                if (TryPickBerry(i, *pickState, column))
                 {
                     // Attempt was successful
                     for (k = 0; k < ARRAY_COUNT(sGame->playersAttemptingPick[0]); k++)
@@ -1905,7 +1905,7 @@ static void HandlePickBerries(void)
                     }
                     break;
                 }
-                if (sGame->players[i].comm.missedBerry == TRUE)
+                if (sGame->players[i].comm.missedBerry)
                     break;
             }
         }
@@ -2065,7 +2065,7 @@ static void UpdateFallingBerries(void)
                     sGame->playingSquishSound[i] = TRUE;
                     PlaySE(SE_BALLOON_RED + game->player.berries.ids[i]);
                 }
-                if (sGame->numGraySquares < NUM_STATUS_SQUARES || otherBerryMissed == TRUE)
+                if (sGame->numGraySquares < NUM_STATUS_SQUARES || otherBerryMissed)
                 {
                     otherBerryMissed = TRUE;
                     sGame->playingSquishSound[i] = FALSE;
@@ -2540,7 +2540,7 @@ static void UpdateBerriesPickedInRow(bool32 picked)
     if (sGame->numPlayers != MAX_RFU_PLAYERS)
         return;
 
-    if (picked == TRUE)
+    if (picked)
     {
         if (++sGame->berriesPickedInRow > sGame->maxBerriesPickedInRow)
             sGame->maxBerriesPickedInRow = sGame->berriesPickedInRow;
@@ -4589,7 +4589,7 @@ static void LoadGfx(void)
         sGfx->state++;
         break;
     case 1:
-        if (LoadBgGfx() == TRUE)
+        if (LoadBgGfx())
             sGfx->state++;
         break;
     case 2:
@@ -5153,7 +5153,7 @@ static void (*GetGfxFunc(void))(void)
 
 static bool32 IsGfxFuncActive(void)
 {
-    if (sGfx->finished == TRUE)
+    if (sGfx->finished)
         return FALSE;
     else
         return TRUE;
@@ -5205,7 +5205,7 @@ static bool32 LoadBgGfx(void)
         DecompressAndCopyTileDataToVram(BG_TREE_LEFT, sTreeBorder_Gfx, 0, 0, 0);
         break;
     case 4:
-        if (FreeTempTileDataBuffersIfPossible() == TRUE)
+        if (FreeTempTileDataBuffersIfPossible())
             return FALSE;
         break;
     case 5:

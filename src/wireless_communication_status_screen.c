@@ -411,7 +411,7 @@ static bool32 UpdateCommunicationCounts(u32 * groupCounts, u32 * prevGroupCounts
 
     if (!HaveCountsChanged(groupCountBuffer, prevGroupCounts))
     {
-        if (activitiesChanged == TRUE)
+        if (activitiesChanged)
             return TRUE;
         else
             return FALSE;

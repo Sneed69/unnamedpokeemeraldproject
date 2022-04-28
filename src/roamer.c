@@ -232,7 +232,7 @@ bool8 TryStartRoamerEncounter(void)
 	u8 i;
 	for (i = 0; i < ROAMER_COUNT; i++)
     {
-		if (IsRoamerAt(i, gSaveBlock1Ptr->location.mapGroup, gSaveBlock1Ptr->location.mapNum) == TRUE && (Random() % 4) == 0)
+		if (IsRoamerAt(i, gSaveBlock1Ptr->location.mapGroup, gSaveBlock1Ptr->location.mapNum) && (Random() % 4) == 0)
 		{
 			CreateRoamerMonInstance(i);
 			gEncounteredRoamerIndex = i;

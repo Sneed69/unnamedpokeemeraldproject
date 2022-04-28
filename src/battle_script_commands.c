@@ -2315,7 +2315,7 @@ static void Cmd_critmessage(void)
 {
     if (gBattleControllerExecFlags == 0)
     {
-        if (gIsCriticalHit == TRUE && !(gMoveResultFlags & MOVE_RESULT_NO_EFFECT))
+        if (gIsCriticalHit && !(gMoveResultFlags & MOVE_RESULT_NO_EFFECT))
         {
             PrepareStringBattle(STRINGID_CRITICALHIT, gBattlerAttacker);
             gBattleCommunication[MSG_DISPLAY] = 1;
@@ -2693,7 +2693,7 @@ void SetMoveEffect(bool32 primary, u32 certain)
             break;
         case STATUS1_POISON:
             if (battlerAbility == ABILITY_IMMUNITY
-                && (primary == TRUE || certain == MOVE_EFFECT_CERTAIN))
+                && (primary || certain == MOVE_EFFECT_CERTAIN))
             {
                 gLastUsedAbility = ABILITY_IMMUNITY;
                 RecordAbilityBattle(gEffectBattler, ABILITY_IMMUNITY);
@@ -2714,7 +2714,7 @@ void SetMoveEffect(bool32 primary, u32 certain)
             }
             if (!CanPoisonType(gBattleScripting.battler, gEffectBattler)
                 && (gHitMarker & HITMARKER_IGNORE_SAFEGUARD)
-                && (primary == TRUE || certain == MOVE_EFFECT_CERTAIN))
+                && (primary || certain == MOVE_EFFECT_CERTAIN))
             {
                 BattleScriptPush(gBattlescriptCurrInstr + 1);
                 gBattlescriptCurrInstr = BattleScript_PSNPrevention;
@@ -2732,7 +2732,7 @@ void SetMoveEffect(bool32 primary, u32 certain)
                 break;
 
             if ((battlerAbility == ABILITY_WATER_VEIL || battlerAbility == ABILITY_WATER_BUBBLE)
-              && (primary == TRUE || certain == MOVE_EFFECT_CERTAIN))
+              && (primary || certain == MOVE_EFFECT_CERTAIN))
             {
                 gLastUsedAbility = battlerAbility;
                 RecordAbilityBattle(gEffectBattler, battlerAbility);
@@ -2752,7 +2752,7 @@ void SetMoveEffect(bool32 primary, u32 certain)
             }
             if (IS_BATTLER_OF_TYPE(gEffectBattler, TYPE_FIRE)
                 && (gHitMarker & HITMARKER_IGNORE_SAFEGUARD)
-                && (primary == TRUE || certain == MOVE_EFFECT_CERTAIN))
+                && (primary || certain == MOVE_EFFECT_CERTAIN))
             {
                 BattleScriptPush(gBattlescriptCurrInstr + 1);
                 gBattlescriptCurrInstr = BattleScript_BRNPrevention;
@@ -2776,7 +2776,7 @@ void SetMoveEffect(bool32 primary, u32 certain)
         case STATUS1_PARALYSIS:
             if (battlerAbility == ABILITY_LIMBER)
             {
-                if (primary == TRUE || certain == MOVE_EFFECT_CERTAIN)
+                if (primary || certain == MOVE_EFFECT_CERTAIN)
                 {
                     gLastUsedAbility = ABILITY_LIMBER;
                     RecordAbilityBattle(gEffectBattler, ABILITY_LIMBER);
@@ -2800,7 +2800,7 @@ void SetMoveEffect(bool32 primary, u32 certain)
             }
             if (!CanParalyzeType(gBattleScripting.battler, gEffectBattler)
                 && (gHitMarker & HITMARKER_IGNORE_SAFEGUARD)
-                && (primary == TRUE || certain == MOVE_EFFECT_CERTAIN))
+                && (primary || certain == MOVE_EFFECT_CERTAIN))
             {
                 BattleScriptPush(gBattlescriptCurrInstr + 1);
                 gBattlescriptCurrInstr = BattleScript_PRLZPrevention;
@@ -2816,7 +2816,7 @@ void SetMoveEffect(bool32 primary, u32 certain)
             statusChanged = TRUE;
             break;
         case STATUS1_TOXIC_POISON:
-            if (battlerAbility == ABILITY_IMMUNITY && (primary == TRUE || certain == MOVE_EFFECT_CERTAIN))
+            if (battlerAbility == ABILITY_IMMUNITY && (primary || certain == MOVE_EFFECT_CERTAIN))
             {
                 gLastUsedAbility = ABILITY_IMMUNITY;
                 RecordAbilityBattle(gEffectBattler, ABILITY_IMMUNITY);
@@ -2837,7 +2837,7 @@ void SetMoveEffect(bool32 primary, u32 certain)
             }
             if (!CanPoisonType(gBattleScripting.battler, gEffectBattler)
                 && (gHitMarker & HITMARKER_IGNORE_SAFEGUARD)
-                && (primary == TRUE || certain == MOVE_EFFECT_CERTAIN))
+                && (primary || certain == MOVE_EFFECT_CERTAIN))
             {
                 BattleScriptPush(gBattlescriptCurrInstr + 1);
                 gBattlescriptCurrInstr = BattleScript_PSNPrevention;
@@ -2861,7 +2861,7 @@ void SetMoveEffect(bool32 primary, u32 certain)
             }
             break;
         }
-        if (statusChanged == TRUE)
+        if (statusChanged)
         {
             BattleScriptPush(gBattlescriptCurrInstr + 1);
 
@@ -5789,7 +5789,7 @@ bool32 CanBattlerSwitch(u32 battlerId)
                 party = gPlayerParty;
 
                 lastMonId = 0;
-                if (GetLinkTrainerFlankId(GetBattlerMultiplayerId(battlerId)) == TRUE)
+                if (GetLinkTrainerFlankId(GetBattlerMultiplayerId(battlerId)))
                     lastMonId = MULTI_PARTY_SIZE;
             }
             else
@@ -5810,7 +5810,7 @@ bool32 CanBattlerSwitch(u32 battlerId)
                 party = gPlayerParty;
 
             lastMonId = 0;
-            if (GetLinkTrainerFlankId(GetBattlerMultiplayerId(battlerId)) == TRUE)
+            if (GetLinkTrainerFlankId(GetBattlerMultiplayerId(battlerId)))
                 lastMonId = MULTI_PARTY_SIZE;
         }
 
@@ -6749,7 +6749,7 @@ static void Cmd_getmoneyreward(void)
 		}
 		for (count = 0, i = 0; i < ARRAY_COUNT(sBadgeFlags); i++)
 		{
-			if (FlagGet(sBadgeFlags[i]) == TRUE)
+			if (FlagGet(sBadgeFlags[i]))
 				++count;
 		}
 		money = sWhiteOutBadgeMoney[count] * sPartyLevel / sPartyCount;
@@ -10615,7 +10615,7 @@ static void Cmd_forcerandomswitch(void)
             while (i == battler2PartyId
                    || i == battler1PartyId
                    || GetMonData(&party[i], MON_DATA_SPECIES) == SPECIES_NONE
-                   || GetMonData(&party[i], MON_DATA_IS_EGG) == TRUE
+                   || GetMonData(&party[i], MON_DATA_IS_EGG)
                    || GetMonData(&party[i], MON_DATA_HP) == 0);
 
             *(gBattleStruct->monToSwitchIntoId + gBattlerTarget) = i;
@@ -14177,7 +14177,7 @@ static void Cmd_metalburstdamagecalculator(void)
 
 static bool32 CriticalCapture(u32 odds)
 {
-    #if B_CRITICAL_CAPTURE == TRUE
+    #if B_CRITICAL_CAPTURE
         u32 numCaught = GetNationalPokedexCount(FLAG_GET_CAUGHT);
 
         if (numCaught <= (NATIONAL_DEX_COUNT * 30) / 650)

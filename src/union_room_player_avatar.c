@@ -233,7 +233,7 @@ static bool32 AnimateUnionRoomPlayerDespawn(s8 * state, u32 leaderId, struct Uni
     switch (*state)
     {
     case 0:
-        if (SetUnionRoomPlayerEnterExitMovement(leaderId, sMovement_UnionPlayerExit) == TRUE)
+        if (SetUnionRoomPlayerEnterExitMovement(leaderId, sMovement_UnionPlayerExit))
         {
             HideUnionRoomPlayer(leaderId);
             (*state)++;
@@ -262,10 +262,10 @@ static bool32 AnimateUnionRoomPlayerSpawn(s8 * state, u32 leaderId, struct Union
         if (!IsPlayerStandingStill())
             break;
         PlayerGetDestCoords(&x, &y);
-        if (IsUnionRoomPlayerAt(leaderId, 0, x, y) == TRUE)
+        if (IsUnionRoomPlayerAt(leaderId, 0, x, y))
             break;
         player_get_pos_including_state_based_drift(&x, &y);
-        if (IsUnionRoomPlayerAt(leaderId, 0, x, y) == TRUE)
+        if (IsUnionRoomPlayerAt(leaderId, 0, x, y))
             break;
         SetUnionRoomPlayerGfx(leaderId, object->gfxId);
         CreateUnionRoomPlayerObjectEvent(leaderId);
@@ -273,7 +273,7 @@ static bool32 AnimateUnionRoomPlayerSpawn(s8 * state, u32 leaderId, struct Union
         (*state)++;
         // fallthrough
     case 3: // incorrect?
-        if (SetUnionRoomPlayerEnterExitMovement(leaderId, sMovement_UnionPlayerEnter) == TRUE)
+        if (SetUnionRoomPlayerEnterExitMovement(leaderId, sMovement_UnionPlayerEnter))
             (*state)++;
         break;
     case 2:
@@ -333,7 +333,7 @@ static void AnimateUnionRoomPlayer(u32 leaderId, struct UnionRoomObject * object
             RemoveUnionRoomPlayerObjectEvent(leaderId);
             HideUnionRoomPlayer(leaderId);
         }
-        else if (AnimateUnionRoomPlayerSpawn(&object->animState, leaderId, object) == TRUE)
+        else if (AnimateUnionRoomPlayerSpawn(&object->animState, leaderId, object))
         {
             object->state = 1;
         }
@@ -366,7 +366,7 @@ static void Task_AnimateUnionRoomPlayers(u8 taskId)
 
 static u8 CreateTask_AnimateUnionRoomPlayers(void)
 {
-    if (FuncIsActiveTask(Task_AnimateUnionRoomPlayers) == TRUE)
+    if (FuncIsActiveTask(Task_AnimateUnionRoomPlayers))
         return NUM_TASKS;
     else
         return CreateTask(Task_AnimateUnionRoomPlayers, 5);
@@ -450,7 +450,7 @@ static void SpawnGroupMember(u32 leaderId, u32 memberId, u8 graphicsId, struct R
 {
     s32 x, y;
     s32 id = UR_PLAYER_SPRITE_ID(leaderId, memberId);
-    if (IsUnionRoomPlayerInvisible(leaderId, memberId) == TRUE)
+    if (IsUnionRoomPlayerInvisible(leaderId, memberId))
     {
         SetVirtualObjectInvisibility(id - UR_SPRITE_START_ID, FALSE);
         SetVirtualObjectSpriteAnim(id - UR_SPRITE_START_ID, UNION_ROOM_SPAWN_IN);
@@ -476,9 +476,9 @@ static void AssembleGroup(u32 leaderId, struct RfuGameData * gameData)
 
     PlayerGetDestCoords(&x, &y);
     player_get_pos_including_state_based_drift(&x2, &y2);
-    if (IsVirtualObjectInvisible(UR_PLAYER_SPRITE_ID(leaderId, 0) - UR_SPRITE_START_ID) == TRUE)
+    if (IsVirtualObjectInvisible(UR_PLAYER_SPRITE_ID(leaderId, 0) - UR_SPRITE_START_ID))
     {
-        if (IsUnionRoomPlayerAt(leaderId, 0, x, y) == TRUE || IsUnionRoomPlayerAt(leaderId, 0, x2, y2) == TRUE)
+        if (IsUnionRoomPlayerAt(leaderId, 0, x, y) || IsUnionRoomPlayerAt(leaderId, 0, x2, y2))
             return;
         SpawnGroupMember(leaderId, 0, GetUnionRoomPlayerGraphicsId(gameData->playerGender, gameData->compatibility.playerTrainerId[0]), gameData);
     }

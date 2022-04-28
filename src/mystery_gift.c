@@ -257,7 +257,7 @@ bool32 IsSavedWonderCardGiftNotReceived(void)
         return FALSE;
 
     // If flag is set, player has received gift from this card
-    if (FlagGet(sReceivedGiftFlags[value - WONDER_CARD_FLAG_OFFSET]) == TRUE)
+    if (FlagGet(sReceivedGiftFlags[value - WONDER_CARD_FLAG_OFFSET]))
         return FALSE;
 
     return TRUE;

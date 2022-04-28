@@ -566,7 +566,7 @@ static void MapPostLoadHook_ReturnToShopMenu(void)
 
 static void Task_ReturnToShopMenu(u8 taskId)
 {
-    if (IsWeatherNotFadingIn() == TRUE)
+    if (IsWeatherNotFadingIn())
     {
         if (sMartInfo.martType == MART_TYPE_DECOR2)
             DisplayItemMessageOnField(taskId, gText_CanIHelpWithAnythingElse, ShowShopMenuAfterExitingBuyOrSellMenu);
@@ -914,7 +914,7 @@ static void BuyMenuDrawMapBg(void)
         for (i = 0; i < 15; i++)
         {
             metatile = MapGridGetMetatileIdAt(x + i, y + j);
-            if (BuyMenuCheckForOverlapWithMenuBg(i, j) == TRUE)
+            if (BuyMenuCheckForOverlapWithMenuBg(i, j))
                 metatileLayerType = MapGridGetMetatileLayerTypeAt(x + i, y + j);
             else
                 metatileLayerType = METATILE_LAYER_TYPE_COVERED;
@@ -1028,7 +1028,7 @@ static void BuyMenuDrawObjectEvents(void)
             (u16)sShopData->viewportObjects[i][Y_COORD] * 16 + 48 - graphicsInfo->height / 2,
             2);
 
-        if (BuyMenuCheckIfObjectEventOverlapsMenuBg(sShopData->viewportObjects[i]) == TRUE)
+        if (BuyMenuCheckIfObjectEventOverlapsMenuBg(sShopData->viewportObjects[i]))
         {
             gSprites[spriteId].subspriteTableNum = 4;
             gSprites[spriteId].subspriteMode = SUBSPRITES_ON;
@@ -1193,7 +1193,7 @@ static void Task_BuyHowManyDialogueHandleInput(u8 taskId)
 {
     s16 *data = gTasks[taskId].data;
 
-    if (AdjustQuantityAccordingToDPadInput(&tItemCount, sShopData->maxQuantity) == TRUE)
+    if (AdjustQuantityAccordingToDPadInput(&tItemCount, sShopData->maxQuantity))
     {
         sShopData->totalCost = (ItemId_GetPrice(tItemId) >> IsPokeNewsActive(POKENEWS_SLATEPORT)) * tItemCount;
         BuyMenuPrintItemQuantityAndPrice(taskId);
@@ -1238,7 +1238,7 @@ static void BuyMenuTryMakePurchase(u8 taskId)
 
     if (sMartInfo.martType == MART_TYPE_NORMAL)
     {
-        if (AddBagItem(tItemId, tItemCount) == TRUE)
+        if (AddBagItem(tItemId, tItemCount))
         {
 			RedrawListMenu(tListTaskId);
             RecordItemPurchase(taskId);
@@ -1291,7 +1291,7 @@ static void Task_ReturnToItemListAfterItemPurchase(u8 taskId)
     if (JOY_NEW(A_BUTTON | B_BUTTON))
     {
         PlaySE(SE_SELECT);
-        if ((ItemId_GetPocket(tItemId) == POCKET_POKE_BALLS) && tItemCount > 9 && AddBagItem(ITEM_PREMIER_BALL, tItemCount / 10) == TRUE)
+        if ((ItemId_GetPocket(tItemId) == POCKET_POKE_BALLS) && tItemCount > 9 && AddBagItem(ITEM_PREMIER_BALL, tItemCount / 10))
         {
 			if (tItemCount > 19)
 			{

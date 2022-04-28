@@ -1835,7 +1835,7 @@ static bool8 Fishing_CheckForBite(struct Task *task)
                 bite = TRUE;
         }
 
-        if (bite == TRUE)
+        if (bite)
             StartSpriteAnim(&gSprites[gPlayerAvatar.spriteId], GetFishingBiteDirectionAnimNum(GetPlayerFacingDirection()));
     }
     return TRUE;

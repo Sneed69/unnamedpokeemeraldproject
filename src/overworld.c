@@ -718,7 +718,7 @@ void SetFixedHoleWarp(s8 mapGroup, s8 mapNum, s8 warpId, s8 x, s8 y)
 
 void SetWarpDestinationToFixedHoleWarp(s16 x, s16 y)
 {
-    if (IsDummyWarp(&sFixedHoleWarp) == TRUE)
+    if (IsDummyWarp(&sFixedHoleWarp))
         sWarpDestination = gLastUsedWarp;
     else
         SetWarpDestination(sFixedHoleWarp.mapGroup, sFixedHoleWarp.mapNum, WARP_ID_NONE, x, y);
@@ -927,7 +927,7 @@ static u8 GetAdjustedInitialTransitionFlags(struct InitialPlayerAvatarState *pla
         return PLAYER_AVATAR_FLAG_ON_FOOT;
     else if (mapType == MAP_TYPE_UNDERWATER)
         return PLAYER_AVATAR_FLAG_UNDERWATER;
-    else if (MetatileBehavior_IsSurfableWaterOrUnderwater(metatileBehavior) == TRUE)
+    else if (MetatileBehavior_IsSurfableWaterOrUnderwater(metatileBehavior))
         return PLAYER_AVATAR_FLAG_SURFING;
     else if (Overworld_IsBikingAllowed() != TRUE)
         return PLAYER_AVATAR_FLAG_ON_FOOT;
@@ -943,22 +943,22 @@ static u8 GetAdjustedInitialDirection(struct InitialPlayerAvatarState *playerStr
 {
     if (FlagGet(FLAG_SYS_CRUISE_MODE) && mapType == MAP_TYPE_OCEAN_ROUTE)
         return DIR_EAST;
-    else if (MetatileBehavior_IsDeepSouthWarp(metatileBehavior) == TRUE)
+    else if (MetatileBehavior_IsDeepSouthWarp(metatileBehavior))
         return DIR_NORTH;
-    else if (MetatileBehavior_IsNonAnimDoor(metatileBehavior) == TRUE || MetatileBehavior_IsDoor(metatileBehavior) == TRUE)
+    else if (MetatileBehavior_IsNonAnimDoor(metatileBehavior) || MetatileBehavior_IsDoor(metatileBehavior))
         return DIR_SOUTH;
-    else if (MetatileBehavior_IsSouthArrowWarp(metatileBehavior) == TRUE)
+    else if (MetatileBehavior_IsSouthArrowWarp(metatileBehavior))
         return DIR_NORTH;
-    else if (MetatileBehavior_IsNorthArrowWarp(metatileBehavior) == TRUE)
+    else if (MetatileBehavior_IsNorthArrowWarp(metatileBehavior))
         return DIR_SOUTH;
-    else if (MetatileBehavior_IsWestArrowWarp(metatileBehavior) == TRUE)
+    else if (MetatileBehavior_IsWestArrowWarp(metatileBehavior))
         return DIR_EAST;
-    else if (MetatileBehavior_IsEastArrowWarp(metatileBehavior) == TRUE)
+    else if (MetatileBehavior_IsEastArrowWarp(metatileBehavior))
         return DIR_WEST;
     else if ((playerStruct->transitionFlags == PLAYER_AVATAR_FLAG_UNDERWATER  && transitionFlags == PLAYER_AVATAR_FLAG_SURFING)
           || (playerStruct->transitionFlags == PLAYER_AVATAR_FLAG_SURFING && transitionFlags == PLAYER_AVATAR_FLAG_UNDERWATER))
         return playerStruct->direction;
-    else if (MetatileBehavior_IsLadder(metatileBehavior) == TRUE)
+    else if (MetatileBehavior_IsLadder(metatileBehavior))
         return playerStruct->direction;
     else
         return DIR_SOUTH;
@@ -1094,13 +1094,13 @@ static bool16 IsInflitratedSpaceCenter(struct WarpData *warp)
 
 u16 GetLocationMusic(struct WarpData *warp)
 {
-    if (NoMusicInSotopolisWithLegendaries(warp) == TRUE)
+    if (NoMusicInSotopolisWithLegendaries(warp))
         return MUS_NONE;
-    else if (ShouldLegendaryMusicPlayAtLocation(warp) == TRUE)
+    else if (ShouldLegendaryMusicPlayAtLocation(warp))
         return MUS_ABNORMAL_WEATHER;
-    else if (IsInflitratedSpaceCenter(warp) == TRUE)
+    else if (IsInflitratedSpaceCenter(warp))
         return MUS_ENCOUNTER_MAGMA;
-    else if (IsInfiltratedWeatherInstitute(warp) == TRUE)
+    else if (IsInfiltratedWeatherInstitute(warp))
         return MUS_MT_CHIMNEY;
     else
         return Overworld_GetMapHeaderByGroupAndId(warp->mapGroup, warp->mapNum)->music;
@@ -1220,7 +1220,7 @@ void Overworld_ChangeMusicTo(u16 newMusic)
 u8 GetMapMusicFadeoutSpeed(void)
 {
     const struct MapHeader *mapHeader = GetDestinationWarpMapHeader();
-    if (IsMapTypeIndoors(mapHeader->mapType) == TRUE)
+    if (IsMapTypeIndoors(mapHeader->mapType))
         return 2;
     else
         return 4;
@@ -1262,7 +1262,7 @@ static void PlayAmbientCry(void)
     s8 volume;
 
     PlayerGetDestCoords(&x, &y);
-    if (sIsAmbientCryWaterMon == TRUE
+    if (sIsAmbientCryWaterMon
      && !MetatileBehavior_IsSurfableWaterOrUnderwater(MapGridGetMetatileBehaviorAt(x, y)))
         return;
     pan = (Random() % 88) + 212;
@@ -1625,7 +1625,7 @@ static void CB2_LoadMapOnReturnToFieldCableClub(void)
 
 void CB2_ReturnToField(void)
 {
-    if (IsOverworldLinkActive() == TRUE)
+    if (IsOverworldLinkActive())
     {
         SetMainCallback2(CB2_ReturnToFieldLink);
     }
@@ -1698,7 +1698,7 @@ void CB2_ReturnToFieldFadeFromBlack(void)
 
 static void FieldCB_FadeTryShowMapPopup(void)
 {
-    if (gMapHeader.showMapName == TRUE && SecretBaseMapPopupEnabled() == TRUE)
+    if (gMapHeader.showMapName && SecretBaseMapPopupEnabled())
         ShowMapNamePopup();
     FieldCB_WarpExitFadeFromBlack();
 }
@@ -1738,7 +1738,7 @@ void CB2_ContinueSavedGame(void)
     ScriptContext1_Init();
     ScriptContext2_Disable();
     InitMatchCallCounters();
-    if (UseContinueGameWarp() == TRUE)
+    if (UseContinueGameWarp())
     {
         ClearContinueGameWarpStatus();
         SetWarpDestinationToContinueGameWarp();
@@ -1757,7 +1757,7 @@ void CB2_ContinueSavedGame(void)
 
 static void FieldClearVBlankHBlankCallbacks(void)
 {
-    if (UsedPokemonCenterWarp() == TRUE)
+    if (UsedPokemonCenterWarp())
         CloseLink();
 
     if (gWirelessCommType != 0)
@@ -1945,7 +1945,7 @@ static bool32 LoadMapInStepsLocal(u8 *state, bool32 a2)
         (*state)++;
         break;
     case 11:
-        if (gMapHeader.showMapName == TRUE && SecretBaseMapPopupEnabled() == TRUE)
+        if (gMapHeader.showMapName && SecretBaseMapPopupEnabled())
             ShowMapNamePopup();
         (*state)++;
         break;
@@ -2336,7 +2336,7 @@ static void HandleLinkPlayerKeyInput(u32 playerId, u16 key, struct CableClubPlay
             }
             return;
         }
-        if (IsAnyPlayerInLinkState(PLAYER_LINK_STATE_EXITING_ROOM) == TRUE)
+        if (IsAnyPlayerInLinkState(PLAYER_LINK_STATE_EXITING_ROOM))
         {
             sPlayerLinkStates[playerId] = PLAYER_LINK_STATE_BUSY;
             if (trainer->isLocalPlayer)
@@ -2361,7 +2361,7 @@ static void HandleLinkPlayerKeyInput(u32 playerId, u16 key, struct CableClubPlay
             }
             break;
         case LINK_KEY_CODE_DPAD_DOWN:
-            if (PlayerIsAtSouthExit(trainer) == TRUE)
+            if (PlayerIsAtSouthExit(trainer))
             {
                 sPlayerLinkStates[playerId] = PLAYER_LINK_STATE_BUSY;
                 if (trainer->isLocalPlayer)
@@ -2454,8 +2454,8 @@ static void UpdateHeldKeyCode(u16 key)
 
     if (gWirelessCommType != 0
         && GetLinkSendQueueLength() > 1
-        && IsOverworldLinkActive() == TRUE
-        && IsSendingKeysToLink() == TRUE)
+        && IsOverworldLinkActive()
+        && IsSendingKeysToLink())
     {
         switch (key)
         {
@@ -2517,7 +2517,7 @@ static void ResetPlayerHeldKeys(u16 *keys)
 
 static u16 KeyInterCB_SelfIdle(u32 key)
 {
-    if (ScriptContext2_IsEnabled() == TRUE)
+    if (ScriptContext2_IsEnabled())
         return LINK_KEY_CODE_EMPTY;
     if (GetLinkRecvQueueLength() > 4)
         return LINK_KEY_CODE_HANDLE_RECV_QUEUE;
@@ -2537,7 +2537,7 @@ static u16 KeyInterCB_Idle(u32 key)
 static u16 KeyInterCB_DeferToEventScript(u32 key)
 {
     u16 retVal;
-    if (ScriptContext2_IsEnabled() == TRUE)
+    if (ScriptContext2_IsEnabled())
     {
         retVal = LINK_KEY_CODE_EMPTY;
     }
@@ -2628,7 +2628,7 @@ static u16 KeyInterCB_WaitForPlayersToExit(u32 keyOrPlayerId)
     // CB1_OverworldLink.
     if (sPlayerLinkStates[keyOrPlayerId] != PLAYER_LINK_STATE_EXITING_ROOM)
         CheckRfuKeepAliveTimer();
-    if (AreAllPlayersInLinkState(PLAYER_LINK_STATE_EXITING_ROOM) == TRUE)
+    if (AreAllPlayersInLinkState(PLAYER_LINK_STATE_EXITING_ROOM))
     {
         ScriptContext1_SetupScript(EventScript_DoLinkRoomExit);
         SetKeyInterceptCallback(KeyInterCB_SendNothing);
@@ -2650,7 +2650,7 @@ static u16 KeyInterCB_InLinkActivity(u32 key)
 
 u32 GetCableClubPartnersReady(void)
 {
-    if (IsAnyPlayerInLinkState(PLAYER_LINK_STATE_EXITING_ROOM) == TRUE)
+    if (IsAnyPlayerInLinkState(PLAYER_LINK_STATE_EXITING_ROOM))
         return CABLE_SEAT_FAILED;
     if (sPlayerKeyInterceptCallback == KeyInterCB_Ready && sPlayerLinkStates[gLocalLinkPlayerId] != PLAYER_LINK_STATE_READY)
         return CABLE_SEAT_WAITING;
@@ -2875,7 +2875,7 @@ bool32 Overworld_RecvKeysFromLinkIsRunning(void)
     temp = sReceivingFromLink;
     sReceivingFromLink = FALSE;
 
-    if (temp == TRUE)
+    if (temp)
         return TRUE;
     else if (gPaletteFade.active && gPaletteFade.softwareFadeFinishing)
         return TRUE;
