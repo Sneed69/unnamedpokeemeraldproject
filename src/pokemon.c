@@ -3380,7 +3380,6 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, 
 
     GetSpeciesName(speciesName, species);
     SetBoxMonData(boxMon, MON_DATA_NICKNAME, speciesName);
-    SetBoxMonData(boxMon, MON_DATA_LANGUAGE, &gGameLanguage);
     SetBoxMonData(boxMon, MON_DATA_OT_NAME, gSaveBlock2Ptr->playerName);
     SetBoxMonData(boxMon, MON_DATA_SPECIES, &species);
     SetBoxMonData(boxMon, MON_DATA_EXP, &gExperienceTables[gBaseStats[species].growthRate][level]);
@@ -3580,7 +3579,6 @@ void CreateBattleTowerMon(struct Pokemon *mon, struct BattleTowerPokemon *src)
         language = GAME_LANGUAGE;
     }
 
-    SetMonData(mon, MON_DATA_LANGUAGE, &language);
     SetMonData(mon, MON_DATA_NICKNAME, nickname);
     SetMonData(mon, MON_DATA_HP_EV, &src->hpEV);
     SetMonData(mon, MON_DATA_ATK_EV, &src->attackEV);
@@ -3642,7 +3640,6 @@ void CreateBattleTowerMon_HandleLevel(struct Pokemon *mon, struct BattleTowerPok
         language = GAME_LANGUAGE;
     }
 
-    SetMonData(mon, MON_DATA_LANGUAGE, &language);
     SetMonData(mon, MON_DATA_NICKNAME, nickname);
     SetMonData(mon, MON_DATA_HP_EV, &src->hpEV);
     SetMonData(mon, MON_DATA_ATK_EV, &src->attackEV);
@@ -3695,7 +3692,6 @@ void CreateApprenticeMon(struct Pokemon *mon, const struct Apprentice *src, u8 m
         SetMonData(mon, MON_DATA_HP_EV + i, &evAmount);
 
     language = src->language;
-    SetMonData(mon, MON_DATA_LANGUAGE, &language);
     SetMonData(mon, MON_DATA_OT_NAME, GetApprenticeNameInLanguage(src->id, language));
     CalculateMonStats(mon);
 }
@@ -4452,19 +4448,6 @@ u32 GetBoxMonData(struct BoxPokemon *boxMon, s32 field, u8 *data)
             StringCopy(data, gText_EggNickname);
             retVal = StringLength(data);
         }
-        else if (boxMon->language == LANGUAGE_JAPANESE)
-        {
-            data[0] = EXT_CTRL_CODE_BEGIN;
-            data[1] = EXT_CTRL_CODE_JPN;
-
-            for (retVal = 2, i = 0;
-                i < 5 && boxMon->nickname[i] != EOS;
-                data[retVal] = boxMon->nickname[i], retVal++, i++) {}
-
-            data[retVal++] = EXT_CTRL_CODE_BEGIN;
-            data[retVal++] = EXT_CTRL_CODE_ENG;
-            data[retVal] = EOS;
-        }
         else
         {
             for (retVal = 0;
@@ -4476,7 +4459,7 @@ u32 GetBoxMonData(struct BoxPokemon *boxMon, s32 field, u8 *data)
         break;
     }
     case MON_DATA_LANGUAGE:
-        retVal = boxMon->language;
+        retVal = gGameLanguage;
         break;
     case MON_DATA_SANITY_IS_BAD_EGG:
         retVal = boxMon->isBadEgg;
@@ -4791,9 +4774,6 @@ void SetBoxMonData(struct BoxPokemon *boxMon, s32 field, const void *dataArg)
             boxMon->nickname[i] = data[i];
         break;
     }
-    case MON_DATA_LANGUAGE:
-        SET8(boxMon->language);
-        break;
     case MON_DATA_SANITY_IS_BAD_EGG:
         SET8(boxMon->isBadEgg);
         break;
