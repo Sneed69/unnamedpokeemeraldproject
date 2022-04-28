@@ -78,7 +78,13 @@ static const u8 sRoamerLocations[][6] =
 
 void ClearRoamerData(void)
 {
-	memset(&gSaveBlock1Ptr->roamer, 0, sizeof(&gSaveBlock1Ptr->roamer));
+	u8 i;
+	
+	for (i = 0; i < ROAMER_COUNT; i++)
+	{
+		SetRoamerInactive(i);
+	}
+}
 }
 
 void ClearRoamerLocationData(void)
@@ -98,13 +104,13 @@ void ClearRoamerLocationData(void)
 	}
 }
 
-static void CreateInitialRoamerMon(u8 index, u16 species)
+static void CreateInitialRoamerMon(u8 index, u16 species, u8 level, u8 fixedIV)
 {
-    CreateMon(&gEnemyParty[0], species, 70, 31, FALSE, 0, OT_ID_PLAYER_ID, 0);
+    CreateMon(&gEnemyParty[0], species, level, fixedIV, FALSE, 0, OT_ID_PLAYER_ID, 0);
     ROAMER(index)->ivs = GetMonData(&gEnemyParty[0], MON_DATA_IVS);
     ROAMER(index)->personality = GetMonData(&gEnemyParty[0], MON_DATA_PERSONALITY);
     ROAMER(index)->species = species;
-    ROAMER(index)->level = 70;
+    ROAMER(index)->level = level;
     ROAMER(index)->status = 0;
     ROAMER(index)->hp = GetMonData(&gEnemyParty[0], MON_DATA_MAX_HP);
     ROAMER(index)->cool = GetMonData(&gEnemyParty[0], MON_DATA_COOL);
@@ -120,8 +126,8 @@ static void CreateInitialRoamerMon(u8 index, u16 species)
 
 void InitRoamer(void)
 {
-    CreateInitialRoamerMon(0, SPECIES_LATIAS);
-    CreateInitialRoamerMon(1, SPECIES_LATIOS);
+    CreateInitialRoamerMon(0, SPECIES_LATIAS, 70, 31);
+    CreateInitialRoamerMon(1, SPECIES_LATIOS, 70, 31);
 }
 
 void UpdateLocationHistoryForRoamer(void)
