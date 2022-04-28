@@ -4666,7 +4666,7 @@ u32 GetBoxMonData(struct BoxPokemon *boxMon, s32 field, u8 *data)
         retVal = substruct3->unusedRibbons;
         break;
     case MON_DATA_EVENT_LEGAL:
-        retVal = substruct3->eventLegal;
+        retVal = 0;
         break;
     case MON_DATA_SPECIES2:
         retVal = substruct0->species;
@@ -5034,9 +5034,6 @@ void SetBoxMonData(struct BoxPokemon *boxMon, s32 field, const void *dataArg)
         break;
     case MON_DATA_UNUSED_RIBBONS:
         SET8(substruct3->unusedRibbons);
-        break;
-    case MON_DATA_EVENT_LEGAL:
-        SET8(substruct3->eventLegal);
         break;
     case MON_DATA_IVS:
     {

@@ -81,7 +81,7 @@ struct PokemonSubstruct3
  /* 0x0B */ u32 worldRibbon:1; // distributed during Pokémon Festa '04 and '05 to tournament winners
  /* 0x0B */ u32 unusedRibbons:2; // discarded in Gen 4
  /* 0x0B */ u32 abilityNum:2;
- /* 0x0B */ u32 eventLegal:1; // controls Mew & Deoxys obedience; if set, Pokémon is a fateful encounter in Gen 4+; set for in-game event island legendaries, some distributed events, and Pokémon from XD: Gale of Darkness.
+ /* 0x0B */ u32 unusedFiller:1;
 }; /* size = 12 */
 
 // Number of bytes in the largest Pokémon substruct.
