@@ -85,7 +85,6 @@ void ClearRoamerData(void)
 		SetRoamerInactive(i);
 	}
 }
-}
 
 void ClearRoamerLocationData(void)
 {
