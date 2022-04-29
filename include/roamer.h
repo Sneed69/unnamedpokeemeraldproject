@@ -1,11 +1,6 @@
 #ifndef GUARD_ROAMER_H
 #define GUARD_ROAMER_H
 
-/* Create Latias and Latios roamers as well as 2 terrestrial
-/* Pikachu roamers on new game, flag them all as seen on the 
-/* Pokedex and give the Pokedex to the player. */
-#define MULTIPLE_ROAMERS_EXAMPLE TRUE
-
 void DeactivateAllRoamers(void);
 void ClearAllRoamerLocationData(void);
 void ClearRoamerLocationData(u8 index);
