@@ -1225,9 +1225,6 @@ static void GetNewHallRecords(struct RecordMixingHallRecords *dst, void *records
     {
         for (j = 0; j < FRONTIER_LVL_MODE_COUNT; j++)
         {
-            // First get the existing saved records
-            for (k = 0; k < HALL_RECORDS_COUNT; k++)
-                dst->hallRecords1P[i][j][k] = gSaveBlock2Ptr->hallRecords1P[i][j][k];
 
             // Then read the new mixed records
             for (k = 0; k < linkPlayerCount - 1; k++)
@@ -1256,8 +1253,6 @@ static void GetNewHallRecords(struct RecordMixingHallRecords *dst, void *records
     for (j = 0; j < FRONTIER_LVL_MODE_COUNT; j++)
     {
         // First get the existing saved records
-        for (k = 0; k < HALL_RECORDS_COUNT; k++)
-            dst->hallRecords2P[j][k] = gSaveBlock2Ptr->hallRecords2P[j][k];
 
         // Then read the new mixed records
         for (k = 0; k < linkPlayerCount - 1; k++)
@@ -1341,15 +1336,6 @@ static void FillWinStreakRecords2P(struct RankingHall2P *playerRecords, struct R
 
 static void SaveHighestWinStreakRecords(struct RecordMixingHallRecords *mixHallRecords)
 {
-    s32 i, j;
-
-    for (i = 0; i < HALL_FACILITIES_COUNT; i++)
-    {
-        for (j = 0; j < FRONTIER_LVL_MODE_COUNT; j++)
-            FillWinStreakRecords1P(gSaveBlock2Ptr->hallRecords1P[i][j], mixHallRecords->hallRecords1P[i][j]);
-    }
-    for (j = 0; j < FRONTIER_LVL_MODE_COUNT; j++)
-        FillWinStreakRecords2P(gSaveBlock2Ptr->hallRecords2P[j], mixHallRecords->hallRecords2P[j]);
 }
 
 static void ReceiveRankingHallRecords(struct PlayerHallRecords *records, size_t recordSize, u32 multiplayerId)
