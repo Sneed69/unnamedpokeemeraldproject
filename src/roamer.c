@@ -4,10 +4,13 @@
 #include "pokemon.h"
 #include "random.h"
 #include "roamer.h"
+#include "pokedex.h"
 
 // Despite having a variable to track it, the roamer is
 // hard-coded to only ever be in map group 0
 #define ROAMER_MAP_GROUP 0
+// Set to TRUE to allow roaming to every Route
+#define ROAM_THE_ENTIRE_MAP TRUE
 
 enum
 {
@@ -35,6 +38,7 @@ EWRAM_DATA u8 gEncounteredRoamerIndex = 0;
 //         that map then the roamer will be significantly less likely to move away
 //         from that map when it lands there.
 static const u8 sRoamerLocations[][6] =
+#if !ROAM_THE_ENTIRE_MAP
 {
     { MAP_NUM(ROUTE101), MAP_NUM(ROUTE102), MAP_NUM(ROUTE103), ___, ___, ___ },
     { MAP_NUM(ROUTE102), MAP_NUM(ROUTE101), MAP_NUM(ROUTE103), MAP_NUM(ROUTE104), ___, ___ },
@@ -71,41 +75,99 @@ static const u8 sRoamerLocations[][6] =
     { MAP_NUM(ROUTE134), MAP_NUM(ROUTE133), MAP_NUM(ROUTE110), MAP_NUM(ROUTE109), ___, ___ },
     { ___, ___, ___, ___, ___, ___ },
 };
+#else
+{
+	{ MAP_NUM(ROUTE101), MAP_NUM(ROUTE102), MAP_NUM(ROUTE103), ___, ___, ___ },
+	{ MAP_NUM(ROUTE102), MAP_NUM(ROUTE101), MAP_NUM(ROUTE103), MAP_NUM(ROUTE104), ___, ___ },
+	{ MAP_NUM(ROUTE103), MAP_NUM(ROUTE101), MAP_NUM(ROUTE102), MAP_NUM(ROUTE110), ___, ___ },
+	{ MAP_NUM(ROUTE104), MAP_NUM(ROUTE102), MAP_NUM(ROUTE105), MAP_NUM(ROUTE116), MAP_NUM(ROUTE115), ___ },
+	{ MAP_NUM(ROUTE105), MAP_NUM(ROUTE104), MAP_NUM(ROUTE106), ___, ___, ___ },
+	{ MAP_NUM(ROUTE106), MAP_NUM(ROUTE105), MAP_NUM(ROUTE107), ___, ___, ___ },
+	{ MAP_NUM(ROUTE107), MAP_NUM(ROUTE106), MAP_NUM(ROUTE108), ___, ___, ___ },
+	{ MAP_NUM(ROUTE108), MAP_NUM(ROUTE107), MAP_NUM(ROUTE109), ___, ___, ___ },
+	{ MAP_NUM(ROUTE109), MAP_NUM(ROUTE108), MAP_NUM(ROUTE110), MAP_NUM(ROUTE134), ___, ___ },
+	{ MAP_NUM(ROUTE110), MAP_NUM(ROUTE111), MAP_NUM(ROUTE117), MAP_NUM(ROUTE118), MAP_NUM(ROUTE109), MAP_NUM(ROUTE103) },
+	{ MAP_NUM(ROUTE111), MAP_NUM(ROUTE110), MAP_NUM(ROUTE117), MAP_NUM(ROUTE118), MAP_NUM(ROUTE113), MAP_NUM(ROUTE112) },
+	{ MAP_NUM(ROUTE112), MAP_NUM(ROUTE111), MAP_NUM(ROUTE113), ___, ___, ___ },
+	{ MAP_NUM(ROUTE113), MAP_NUM(ROUTE111), MAP_NUM(ROUTE114), MAP_NUM(ROUTE112), ___, ___ },
+	{ MAP_NUM(ROUTE114), MAP_NUM(ROUTE113), MAP_NUM(ROUTE115), ___, ___, ___ },
+	{ MAP_NUM(ROUTE115), MAP_NUM(ROUTE114), MAP_NUM(ROUTE116), MAP_NUM(ROUTE104), ___, ___ },
+	{ MAP_NUM(ROUTE116), MAP_NUM(ROUTE115), MAP_NUM(ROUTE117), MAP_NUM(ROUTE104), ___, ___ },
+	{ MAP_NUM(ROUTE117), MAP_NUM(ROUTE111), MAP_NUM(ROUTE110), MAP_NUM(ROUTE118), MAP_NUM(ROUTE116), ___ },
+	{ MAP_NUM(ROUTE118), MAP_NUM(ROUTE117), MAP_NUM(ROUTE110), MAP_NUM(ROUTE111), MAP_NUM(ROUTE119), MAP_NUM(ROUTE123) },
+	{ MAP_NUM(ROUTE119), MAP_NUM(ROUTE118), MAP_NUM(ROUTE120), ___, ___, ___ },
+	{ MAP_NUM(ROUTE120), MAP_NUM(ROUTE119), MAP_NUM(ROUTE121), ___, ___, ___ },
+	{ MAP_NUM(ROUTE121), MAP_NUM(ROUTE120), MAP_NUM(ROUTE122), MAP_NUM(ROUTE124), ___, ___ },
+	{ MAP_NUM(ROUTE122), MAP_NUM(ROUTE121), MAP_NUM(ROUTE123), ___, ___, ___ },
+	{ MAP_NUM(ROUTE123), MAP_NUM(ROUTE122), MAP_NUM(ROUTE118), ___, ___, ___ },
+	{ MAP_NUM(ROUTE124), MAP_NUM(ROUTE121), MAP_NUM(ROUTE125), MAP_NUM(ROUTE126), ___, ___ },
+	{ MAP_NUM(ROUTE125), MAP_NUM(ROUTE124), MAP_NUM(ROUTE127), ___, ___, ___ },
+	{ MAP_NUM(ROUTE126), MAP_NUM(ROUTE124), MAP_NUM(ROUTE127), ___, ___, ___ },
+	{ MAP_NUM(ROUTE127), MAP_NUM(ROUTE125), MAP_NUM(ROUTE126), MAP_NUM(ROUTE128), ___, ___ },
+	{ MAP_NUM(ROUTE128), MAP_NUM(ROUTE127), MAP_NUM(ROUTE129), ___, ___, ___ },
+	{ MAP_NUM(ROUTE129), MAP_NUM(ROUTE128), MAP_NUM(ROUTE130), ___, ___, ___ },
+	{ MAP_NUM(ROUTE130), MAP_NUM(ROUTE129), MAP_NUM(ROUTE131), ___, ___, ___ },
+	{ MAP_NUM(ROUTE131), MAP_NUM(ROUTE130), MAP_NUM(ROUTE132), ___, ___, ___ },
+	{ MAP_NUM(ROUTE132), MAP_NUM(ROUTE131), MAP_NUM(ROUTE133), ___, ___, ___ },
+	{ MAP_NUM(ROUTE133), MAP_NUM(ROUTE132), MAP_NUM(ROUTE134), ___, ___, ___ },
+	{ MAP_NUM(ROUTE134), MAP_NUM(ROUTE133), MAP_NUM(ROUTE110), MAP_NUM(ROUTE109), ___, ___ },
+	{ ___, ___, ___, ___, ___, ___ },
+};
+#endif
+
+static const u8 sTerrestrialLocations[][6] =
+{
+	{ MAP_NUM(ROUTE101), MAP_NUM(ROUTE102), MAP_NUM(ROUTE103), ___, ___, ___ },
+	{ MAP_NUM(ROUTE102), MAP_NUM(ROUTE101), MAP_NUM(ROUTE103), MAP_NUM(ROUTE104), ___, ___ },
+	{ MAP_NUM(ROUTE103), MAP_NUM(ROUTE101), MAP_NUM(ROUTE102), MAP_NUM(ROUTE110), ___, ___ },
+	{ MAP_NUM(ROUTE104), MAP_NUM(ROUTE102), MAP_NUM(ROUTE115), MAP_NUM(ROUTE116), ___, ___ },
+	{ MAP_NUM(ROUTE110), MAP_NUM(ROUTE111), MAP_NUM(ROUTE117), MAP_NUM(ROUTE118), MAP_NUM(ROUTE103), ___ },
+	{ MAP_NUM(ROUTE111), MAP_NUM(ROUTE110), MAP_NUM(ROUTE117), MAP_NUM(ROUTE118), MAP_NUM(ROUTE113), MAP_NUM(ROUTE112) },
+	{ MAP_NUM(ROUTE112), MAP_NUM(ROUTE111), MAP_NUM(ROUTE113), ___, ___, ___ },
+	{ MAP_NUM(ROUTE113), MAP_NUM(ROUTE111), MAP_NUM(ROUTE114), MAP_NUM(ROUTE112), ___, ___ },
+	{ MAP_NUM(ROUTE114), MAP_NUM(ROUTE113), MAP_NUM(ROUTE115), ___, ___, ___ },
+	{ MAP_NUM(ROUTE115), MAP_NUM(ROUTE114), MAP_NUM(ROUTE116), MAP_NUM(ROUTE104), ___, ___ },
+	{ MAP_NUM(ROUTE116), MAP_NUM(ROUTE115), MAP_NUM(ROUTE117), MAP_NUM(ROUTE104), ___, ___ },
+	{ MAP_NUM(ROUTE117), MAP_NUM(ROUTE111), MAP_NUM(ROUTE110), MAP_NUM(ROUTE118), MAP_NUM(ROUTE116), ___ },
+	{ MAP_NUM(ROUTE118), MAP_NUM(ROUTE117), MAP_NUM(ROUTE110), MAP_NUM(ROUTE111), MAP_NUM(ROUTE119), MAP_NUM(ROUTE123) },
+	{ MAP_NUM(ROUTE119), MAP_NUM(ROUTE118), MAP_NUM(ROUTE120), ___, ___, ___ },
+	{ MAP_NUM(ROUTE120), MAP_NUM(ROUTE119), MAP_NUM(ROUTE121), ___, ___, ___ },
+	{ MAP_NUM(ROUTE121), MAP_NUM(ROUTE120), MAP_NUM(ROUTE123), ___, ___, ___ },
+	{ MAP_NUM(ROUTE123), MAP_NUM(ROUTE121), MAP_NUM(ROUTE118), ___, ___, ___ },
+	{ ___, ___, ___, ___, ___, ___ },
+};
 
 #undef ___
 #define NUM_LOCATION_SETS (ARRAY_COUNT(sRoamerLocations) - 1)
+#define NUM_TERRESTRIAL_SETS (ARRAY_COUNT(sTerrestrialLocations) - 1)
 #define NUM_LOCATIONS_PER_SET (ARRAY_COUNT(sRoamerLocations[0]))
 
-void ClearRoamerData(void)
+void DeactivateAllRoamers(void)
 {
 	u32 i;
 	
 	for (i = 0; i < ROAMER_COUNT; i++)
-	{
 		SetRoamerInactive(i);
-	}
 }
 
-void ClearRoamerLocationData(void)
+void ClearRoamerLocationData(u8 index)
 {
-    u8 i, j;
+    u32 i;
 
-	for (i = 0; i < ROAMER_COUNT; i++)
-	{
-		for (j = 0; j < ARRAY_COUNT(sLocationHistory); j++)
-		{
-			sLocationHistory[i][j][MAP_GRP] = 0;
-			sLocationHistory[i][j][MAP_NUM] = 0;
-		}
+    for (i = 0; i < ARRAY_COUNT(sLocationHistory[index]); i++)
+    {
+        sLocationHistory[index][i][MAP_GRP] = 0;
+        sLocationHistory[index][i][MAP_NUM] = 0;
+    }
 
-		sRoamerLocation[i][MAP_GRP] = 0;
-		sRoamerLocation[i][MAP_NUM] = 0;
-	}
+    sRoamerLocation[index][MAP_GRP] = 0;
+    sRoamerLocation[index][MAP_NUM] = 0;
 }
 
-static void CreateInitialRoamerMon(u8 index, u16 species, u8 level, u8 fixedIV)
+static void CreateInitialRoamerMon(u8 index, u16 species, u8 level, u8 fixedIV, bool8 isTerrestrial)
 {
-    CreateMon(&gEnemyParty[0], species, level, fixedIV, FALSE, 0, OT_ID_PLAYER_ID, 0);
+	ClearRoamerLocationData(index);
+    CreateMon(&gEnemyParty[0], species, level, USE_RANDOM_IVS, FALSE, 0, OT_ID_PLAYER_ID, 0);
     ROAMER(index)->ivs = GetMonData(&gEnemyParty[0], MON_DATA_IVS);
     ROAMER(index)->personality = GetMonData(&gEnemyParty[0], MON_DATA_PERSONALITY);
     ROAMER(index)->species = species;
@@ -117,16 +179,21 @@ static void CreateInitialRoamerMon(u8 index, u16 species, u8 level, u8 fixedIV)
     ROAMER(index)->cute = GetMonData(&gEnemyParty[0], MON_DATA_CUTE);
     ROAMER(index)->smart = GetMonData(&gEnemyParty[0], MON_DATA_SMART);
     ROAMER(index)->tough = GetMonData(&gEnemyParty[0], MON_DATA_TOUGH);
+    ROAMER(index)->isTerrestrial = isTerrestrial;
     ROAMER(index)->active = TRUE;
     sRoamerLocation[index][MAP_GRP] = ROAMER_MAP_GROUP;
-    sRoamerLocation[index][MAP_NUM] = sRoamerLocations[Random() % NUM_LOCATION_SETS][0];
-	GetSetPokedexFlag(SpeciesToNationalPokedexNum(ROAMER(index)->species), FLAG_SET_SEEN); //Set Pokedex to seen
+	if (!isTerrestrial)
+		sRoamerLocation[index][MAP_NUM] = sRoamerLocations[Random() % NUM_LOCATION_SETS][0];
+	else
+		sRoamerLocation[index][MAP_NUM] = sTerrestrialLocations[Random() % NUM_TERRESTRIAL_SETS][0];
 }
 
 void InitRoamer(void)
 {
-    CreateInitialRoamerMon(0, SPECIES_LATIAS, 70, 31);
-    CreateInitialRoamerMon(1, SPECIES_LATIOS, 70, 31);
+    TryAddRoamer(SPECIES_LATIAS, 60, 31);
+    TryAddRoamer(SPECIES_LATIOS, 60, 31);
+	GetSetPokedexFlag(SpeciesToNationalPokedexNum(SPECIES_LATIAS), FLAG_SET_SEEN);
+	GetSetPokedexFlag(SpeciesToNationalPokedexNum(SPECIES_LATIOS), FLAG_SET_SEEN);
 }
 
 void UpdateLocationHistoryForRoamer(void)
@@ -148,16 +215,29 @@ void UpdateLocationHistoryForRoamer(void)
 void RoamerMoveToOtherLocationSet(u8 index)
 {
     u8 mapNum = 0;
+	const u8 (*locations)[6];
+	u32 LocationSetCount;
+	
 	if (!ROAMER(index)->active)
 		return;
 
 	sRoamerLocation[index][MAP_GRP] = ROAMER_MAP_GROUP;
 
+	if (!ROAMER(index)->isTerrestrial)
+	{
+		locations = sRoamerLocations;
+		LocationSetCount = NUM_LOCATION_SETS;
+	}
+	else
+	{
+		locations = sTerrestrialLocations;
+		LocationSetCount = NUM_TERRESTRIAL_SETS;
+	}
 	// Choose a location set that starts with a map
 	// different from the roamer's current map
 	while (1)
 	{
-		mapNum = sRoamerLocations[Random() % NUM_LOCATION_SETS][0];
+		mapNum = locations[Random() % LocationSetCount][0];
 		if (sRoamerLocation[index][MAP_NUM] != mapNum)
 		{
 			sRoamerLocation[index][MAP_NUM] = mapNum;
@@ -175,20 +255,34 @@ void RoamerMove(u8 index)
 	}
 	else
 	{
+		const u8 (*locations)[6];
+		u32 LocationSetCount;
+		
 		if (!ROAMER(index)->active)
 			return;
+		
+		if (!ROAMER(index)->isTerrestrial)
+		{
+			locations = sRoamerLocations;
+			LocationSetCount = NUM_LOCATION_SETS;
+		}
+		else
+		{
+			locations = sTerrestrialLocations;
+			LocationSetCount = NUM_TERRESTRIAL_SETS;
+		}
 
-		while (locSet < NUM_LOCATION_SETS)
+		while (locSet < LocationSetCount)
 		{
 			// Find the location set that starts with the roamer's current map
-			if (sRoamerLocation[index][MAP_NUM] == sRoamerLocations[locSet][0])
+			if (sRoamerLocation[index][MAP_NUM] == locations[locSet][0])
 			{
 				u8 mapNum;
 				while (1)
 				{
 					// Choose a new map (excluding the first) within this set
 					// Also exclude a map if the roamer was there 2 moves ago
-					mapNum = sRoamerLocations[locSet][(Random() % (NUM_LOCATIONS_PER_SET - 1)) + 1];
+					mapNum = locations[locSet][(Random() % (NUM_LOCATIONS_PER_SET - 1)) + 1];
 					if (!(sLocationHistory[index][2][MAP_GRP] == ROAMER_MAP_GROUP
 					   && sLocationHistory[index][2][MAP_NUM] == mapNum)
 					   && mapNum != MAP_NUM(UNDEFINED))
@@ -232,12 +326,13 @@ void CreateRoamerMonInstance(u8 index)
     SetMonData(mon, MON_DATA_TOUGH, &ROAMER(index)->tough);
 }
 
-bool8 TryStartRoamerEncounter(void)
+bool8 TryStartRoamerEncounter(bool8 isWaterEncounter)
 {
 	u32 i;
 	for (i = 0; i < ROAMER_COUNT; i++)
     {
-		if (IsRoamerAt(i, gSaveBlock1Ptr->location.mapGroup, gSaveBlock1Ptr->location.mapNum) && (Random() % 4) == 0)
+		if (IsRoamerAt(i, gSaveBlock1Ptr->location.mapGroup, gSaveBlock1Ptr->location.mapNum)
+			&& (Random() % 4) == 0 && !(ROAMER(i)->isTerrestrial && isWaterEncounter))
 		{
 			CreateRoamerMonInstance(i);
 			gEncounteredRoamerIndex = i;
@@ -264,4 +359,46 @@ void GetRoamerLocation(u8 index, u8 *mapGroup, u8 *mapNum)
 {
     *mapGroup = sRoamerLocation[index][MAP_GRP];
     *mapNum = sRoamerLocation[index][MAP_NUM];
+}
+
+bool8 TryAddRoamer(u16 species, u8 level, u8 fixedIV)
+{
+	u32 i;
+	// Search for inactive roamers to replace
+	for (i = 0; i < ROAMER_COUNT; i++)
+	{
+		if (!ROAMER(i)->active)
+		{
+			// Create the roamer and stop searching
+			CreateInitialRoamerMon(i, species, level, fixedIV, FALSE);
+			return TRUE;
+		}
+	}
+	// Maximum active roamers found: do nothing and let the calling function know
+	return FALSE;
+}
+
+bool8 TryAddTerrestrialRoamer(u16 species, u8 level, u8 fixedIV)
+{
+	u32 i;
+	// Search for inactive roamers to replace
+	for (i = 0; i < ROAMER_COUNT; i++)
+	{
+		if (!ROAMER(i)->active)
+		{
+			// Create the roamer and stop searching
+			CreateInitialRoamerMon(i, species, level, fixedIV, TRUE);
+			return TRUE;
+		}
+	}
+	// Maximum active roamers found: do nothing and let the calling function know
+	return FALSE;
+}
+
+void ClearAllRoamerLocationData(void)
+{
+    u32 i;
+	
+	for (i = 0; i < ROAMER_COUNT; i++)
+		ClearRoamerLocationData(i);
 }

@@ -1,0 +1,361 @@
+src/pokemon_summary_screen.c:    if (sMonSummaryScreen->splitIconSpriteId == 0xFF)
+src/pokemon_summary_screen.c:        sMonSummaryScreen->splitIconSpriteId = CreateSprite(&sSpriteTemplate_SplitIcons, 48, 129, 0);
+src/pokemon_summary_screen.c:    gSprites[sMonSummaryScreen->splitIconSpriteId].invisible = FALSE;
+src/pokemon_summary_screen.c:    StartSpriteAnim(&gSprites[sMonSummaryScreen->splitIconSpriteId], split);
+src/pokemon_summary_screen.c:    return sMonSummaryScreen->splitIconSpriteId;
+src/pokemon_summary_screen.c:    if (sMonSummaryScreen->splitIconSpriteId != 0xFF)
+src/pokemon_summary_screen.c:        DestroySprite(&gSprites[sMonSummaryScreen->splitIconSpriteId]);
+src/pokemon_summary_screen.c:    sMonSummaryScreen->splitIconSpriteId = 0xFF;
+src/pokemon_summary_screen.c:    sMonSummaryScreen->mode = mode;
+src/pokemon_summary_screen.c:    sMonSummaryScreen->monList.mons = mons;
+src/pokemon_summary_screen.c:    sMonSummaryScreen->curMonIndex = monIndex;
+src/pokemon_summary_screen.c:    sMonSummaryScreen->maxMonIndex = maxMonIndex;
+src/pokemon_summary_screen.c:    sMonSummaryScreen->callback = callback;
+src/pokemon_summary_screen.c:        sMonSummaryScreen->isBoxMon = TRUE;
+src/pokemon_summary_screen.c:        sMonSummaryScreen->isBoxMon = FALSE;
+src/pokemon_summary_screen.c:        sMonSummaryScreen->minPageIndex = 0;
+src/pokemon_summary_screen.c:        sMonSummaryScreen->maxPageIndex = PSS_PAGE_COUNT - 1;
+src/pokemon_summary_screen.c:        sMonSummaryScreen->minPageIndex = 0;
+src/pokemon_summary_screen.c:        sMonSummaryScreen->maxPageIndex = PSS_PAGE_COUNT - 1;
+src/pokemon_summary_screen.c:        sMonSummaryScreen->lockMovesFlag = TRUE;
+src/pokemon_summary_screen.c:        sMonSummaryScreen->minPageIndex = PSS_PAGE_BATTLE_MOVES;
+src/pokemon_summary_screen.c:        sMonSummaryScreen->maxPageIndex = PSS_PAGE_COUNT - 1;
+src/pokemon_summary_screen.c:        sMonSummaryScreen->lockMonFlag = TRUE;
+src/pokemon_summary_screen.c:    sMonSummaryScreen->currPageIndex = sMonSummaryScreen->minPageIndex;
+src/pokemon_summary_screen.c:    sMonSummaryScreen->splitIconSpriteId = 0xFF;
+src/pokemon_summary_screen.c:    sMonSummaryScreen->newMove = newMove;
+src/pokemon_summary_screen.c:    sMonSummaryScreen->unk40EF = TRUE;
+src/pokemon_summary_screen.c:        sMonSummaryScreen->switchCounter = 0;
+src/pokemon_summary_screen.c:        CopyMonToSummaryStruct(&sMonSummaryScreen->currentMon);
+src/pokemon_summary_screen.c:        sMonSummaryScreen->switchCounter = 0;
+src/pokemon_summary_screen.c:        if (ExtractMonDataToSummaryStruct(&sMonSummaryScreen->currentMon) != 0)
+src/pokemon_summary_screen.c:        PrintPageSpecificText(sMonSummaryScreen->currPageIndex);
+src/pokemon_summary_screen.c:        PutPageWindowTilemaps(sMonSummaryScreen->currPageIndex);
+src/pokemon_summary_screen.c:        sMonSummaryScreen->switchCounter = 0;
+src/pokemon_summary_screen.c:        sMonSummaryScreen->spriteIds[SPRITE_ARR_ID_MON] = LoadMonGfxAndSprite(&sMonSummaryScreen->currentMon, &sMonSummaryScreen->switchCounter);
+src/pokemon_summary_screen.c:        if (sMonSummaryScreen->spriteIds[SPRITE_ARR_ID_MON] != SPRITE_NONE)
+src/pokemon_summary_screen.c:            sMonSummaryScreen->switchCounter = 0;
+src/pokemon_summary_screen.c:        CreateMonMarkingsSprite(&sMonSummaryScreen->currentMon);
+src/pokemon_summary_screen.c:        CreateCaughtBallSprite(&sMonSummaryScreen->currentMon);
+src/pokemon_summary_screen.c:        if (sMonSummaryScreen->mode != SUMMARY_MODE_SELECT_MOVE)
+src/pokemon_summary_screen.c:    SetBgTilemapBuffer(1, sMonSummaryScreen->bgTilemapBuffers[PSS_PAGE_BATTLE_MOVES][0]);
+src/pokemon_summary_screen.c:    SetBgTilemapBuffer(2, sMonSummaryScreen->bgTilemapBuffers[PSS_PAGE_SKILLS][0]);
+src/pokemon_summary_screen.c:    SetBgTilemapBuffer(3, sMonSummaryScreen->bgTilemapBuffers[PSS_PAGE_INFO][0]);
+src/pokemon_summary_screen.c:    switch (sMonSummaryScreen->switchCounter)
+src/pokemon_summary_screen.c:        sMonSummaryScreen->switchCounter++;
+src/pokemon_summary_screen.c:            LZDecompressWram(gSummaryPage_Info_Tilemap, sMonSummaryScreen->bgTilemapBuffers[PSS_PAGE_INFO][0]);
+src/pokemon_summary_screen.c:            sMonSummaryScreen->switchCounter++;
+src/pokemon_summary_screen.c:        LZDecompressWram(gSummaryPage_InfoEgg_Tilemap, sMonSummaryScreen->bgTilemapBuffers[PSS_PAGE_INFO][1]);
+src/pokemon_summary_screen.c:        sMonSummaryScreen->switchCounter++;
+src/pokemon_summary_screen.c:        LZDecompressWram(gSummaryPage_Skills_Tilemap, sMonSummaryScreen->bgTilemapBuffers[PSS_PAGE_SKILLS][1]);
+src/pokemon_summary_screen.c:        sMonSummaryScreen->switchCounter++;
+src/pokemon_summary_screen.c:        LZDecompressWram(gSummaryPage_BattleMoves_Tilemap, sMonSummaryScreen->bgTilemapBuffers[PSS_PAGE_BATTLE_MOVES][1]);
+src/pokemon_summary_screen.c:        sMonSummaryScreen->switchCounter++;
+src/pokemon_summary_screen.c:        LZDecompressWram(gSummaryPage_ContestMoves_Tilemap, sMonSummaryScreen->bgTilemapBuffers[PSS_PAGE_CONTEST_MOVES][1]);
+src/pokemon_summary_screen.c:        sMonSummaryScreen->switchCounter++;
+src/pokemon_summary_screen.c:        sMonSummaryScreen->switchCounter++;
+src/pokemon_summary_screen.c:        sMonSummaryScreen->switchCounter++;
+src/pokemon_summary_screen.c:        sMonSummaryScreen->switchCounter++;
+src/pokemon_summary_screen.c:        sMonSummaryScreen->switchCounter++;
+src/pokemon_summary_screen.c:        sMonSummaryScreen->switchCounter++;
+src/pokemon_summary_screen.c:        sMonSummaryScreen->switchCounter++;
+src/pokemon_summary_screen.c:        sMonSummaryScreen->switchCounter = 0;
+src/pokemon_summary_screen.c:    if (!sMonSummaryScreen->isBoxMon)
+src/pokemon_summary_screen.c:        struct Pokemon *partyMon = sMonSummaryScreen->monList.mons;
+src/pokemon_summary_screen.c:        *mon = partyMon[sMonSummaryScreen->curMonIndex];
+src/pokemon_summary_screen.c:        struct BoxPokemon *boxMon = sMonSummaryScreen->monList.boxMons;
+src/pokemon_summary_screen.c:        BoxMonToMon(&boxMon[sMonSummaryScreen->curMonIndex], mon);
+src/pokemon_summary_screen.c:    struct PokeSummary *sum = &sMonSummaryScreen->summary;
+src/pokemon_summary_screen.c:    switch (sMonSummaryScreen->switchCounter)
+src/pokemon_summary_screen.c:        if (sMonSummaryScreen->monList.mons == gPlayerParty || sMonSummaryScreen->mode == SUMMARY_MODE_BOX || sMonSummaryScreen->unk40EF)
+src/pokemon_summary_screen.c:    sMonSummaryScreen->switchCounter++;
+src/pokemon_summary_screen.c:    if (sMonSummaryScreen->currPageIndex != PSS_PAGE_BATTLE_MOVES && sMonSummaryScreen->currPageIndex != PSS_PAGE_CONTEST_MOVES)
+src/pokemon_summary_screen.c:        DrawContestMoveHearts(sMonSummaryScreen->summary.moves[sMonSummaryScreen->firstMoveIndex]);
+src/pokemon_summary_screen.c:        TilemapFiveMovesDisplay(sMonSummaryScreen->bgTilemapBuffers[PSS_PAGE_BATTLE_MOVES][0], 3, FALSE);
+src/pokemon_summary_screen.c:        TilemapFiveMovesDisplay(sMonSummaryScreen->bgTilemapBuffers[PSS_PAGE_CONTEST_MOVES][0], 1, FALSE);
+src/pokemon_summary_screen.c:        SetBgTilemapBuffer(1, sMonSummaryScreen->bgTilemapBuffers[PSS_PAGE_CONTEST_MOVES][0]);
+src/pokemon_summary_screen.c:        SetBgTilemapBuffer(2, sMonSummaryScreen->bgTilemapBuffers[PSS_PAGE_BATTLE_MOVES][0]);
+src/pokemon_summary_screen.c:    if (sMonSummaryScreen->summary.ailment == AILMENT_NONE)
+src/pokemon_summary_screen.c:    else if (sMonSummaryScreen->currPageIndex != PSS_PAGE_BATTLE_MOVES && sMonSummaryScreen->currPageIndex != PSS_PAGE_CONTEST_MOVES)
+src/pokemon_summary_screen.c:    DrawPokerusCuredSymbol(&sMonSummaryScreen->currentMon);
+src/pokemon_summary_screen.c:        SetMainCallback2(sMonSummaryScreen->callback);
+src/pokemon_summary_screen.c:        gLastViewedMonIndex = sMonSummaryScreen->curMonIndex;
+src/pokemon_summary_screen.c:            if (sMonSummaryScreen->currPageIndex == PSS_PAGE_SKILLS)
+src/pokemon_summary_screen.c:			else if (sMonSummaryScreen->currPageIndex == PSS_PAGE_INFO)
+src/pokemon_summary_screen.c:            sMonSummaryScreen->callback = CB2_Debug_Pokemon;
+src/pokemon_summary_screen.c:    if (!sMonSummaryScreen->lockMonFlag)
+src/pokemon_summary_screen.c:        if (sMonSummaryScreen->isBoxMon)
+src/pokemon_summary_screen.c:            if (sMonSummaryScreen->currPageIndex != PSS_PAGE_INFO)
+src/pokemon_summary_screen.c:            monId = AdvanceStorageMonIndex(sMonSummaryScreen->monList.boxMons, sMonSummaryScreen->curMonIndex, sMonSummaryScreen->maxMonIndex, delta);
+src/pokemon_summary_screen.c:            if (sMonSummaryScreen->summary.ailment != AILMENT_NONE)
+src/pokemon_summary_screen.c:            sMonSummaryScreen->curMonIndex = monId;
+src/pokemon_summary_screen.c:        DestroySpriteAndFreeResources(&gSprites[sMonSummaryScreen->spriteIds[SPRITE_ARR_ID_MON]]);
+src/pokemon_summary_screen.c:        DestroySpriteAndFreeResources(&gSprites[sMonSummaryScreen->spriteIds[SPRITE_ARR_ID_BALL]]);
+src/pokemon_summary_screen.c:        CopyMonToSummaryStruct(&sMonSummaryScreen->currentMon);
+src/pokemon_summary_screen.c:        sMonSummaryScreen->switchCounter = 0;
+src/pokemon_summary_screen.c:        if (ExtractMonDataToSummaryStruct(&sMonSummaryScreen->currentMon) == FALSE)
+src/pokemon_summary_screen.c:        RemoveAndCreateMonMarkingsSprite(&sMonSummaryScreen->currentMon);
+src/pokemon_summary_screen.c:        CreateCaughtBallSprite(&sMonSummaryScreen->currentMon);
+src/pokemon_summary_screen.c:        if (sMonSummaryScreen->summary.ailment != AILMENT_NONE)
+src/pokemon_summary_screen.c:        DrawPokerusCuredSymbol(&sMonSummaryScreen->currentMon);
+src/pokemon_summary_screen.c:        sMonSummaryScreen->spriteIds[SPRITE_ARR_ID_MON] = LoadMonGfxAndSprite(&sMonSummaryScreen->currentMon, &data[1]);
+src/pokemon_summary_screen.c:        if (sMonSummaryScreen->spriteIds[SPRITE_ARR_ID_MON] == SPRITE_NONE)
+src/pokemon_summary_screen.c:        gSprites[sMonSummaryScreen->spriteIds[SPRITE_ARR_ID_MON]].data[2] = 1;
+src/pokemon_summary_screen.c:        PrintPageSpecificText(sMonSummaryScreen->currPageIndex);
+src/pokemon_summary_screen.c:        gSprites[sMonSummaryScreen->spriteIds[SPRITE_ARR_ID_MON]].data[2] = 0;
+src/pokemon_summary_screen.c:    struct Pokemon *mon = sMonSummaryScreen->monList.mons;
+src/pokemon_summary_screen.c:    u8 index = sMonSummaryScreen->curMonIndex;
+src/pokemon_summary_screen.c:    u8 numMons = sMonSummaryScreen->maxMonIndex + 1;
+src/pokemon_summary_screen.c:    if (sMonSummaryScreen->currPageIndex != PSS_PAGE_INFO)
+src/pokemon_summary_screen.c:	if (index == sMonSummaryScreen->curMonIndex)
+src/pokemon_summary_screen.c:    struct Pokemon *mons = sMonSummaryScreen->monList.mons;
+src/pokemon_summary_screen.c:        if (sMultiBattleOrder[i] == sMonSummaryScreen->curMonIndex)
+src/pokemon_summary_screen.c:    else if (sMonSummaryScreen->curMonIndex != 0 || !GetMonData(mon, MON_DATA_IS_EGG))
+src/pokemon_summary_screen.c:    struct PokeSummary *summary = &sMonSummaryScreen->summary;
+src/pokemon_summary_screen.c:    else if (delta == -1 && sMonSummaryScreen->currPageIndex == sMonSummaryScreen->minPageIndex)
+src/pokemon_summary_screen.c:    else if (delta == 1 && sMonSummaryScreen->currPageIndex == sMonSummaryScreen->maxPageIndex)
+src/pokemon_summary_screen.c:    ClearPageWindowTilemaps(sMonSummaryScreen->currPageIndex);
+src/pokemon_summary_screen.c:    sMonSummaryScreen->currPageIndex += delta;
+src/pokemon_summary_screen.c:    CreateTextPrinterTask(sMonSummaryScreen->currPageIndex);
+src/pokemon_summary_screen.c:        if (sMonSummaryScreen->bgDisplayOrder == 0)
+src/pokemon_summary_screen.c:        SetBgTilemapBuffer(data[1], sMonSummaryScreen->bgTilemapBuffers[sMonSummaryScreen->currPageIndex][0]);
+src/pokemon_summary_screen.c:    sMonSummaryScreen->bgDisplayOrder ^= 1;
+src/pokemon_summary_screen.c:    PutPageWindowTilemaps(sMonSummaryScreen->currPageIndex);
+src/pokemon_summary_screen.c:        if (sMonSummaryScreen->bgDisplayOrder == 0)
+src/pokemon_summary_screen.c:    if (sMonSummaryScreen->bgDisplayOrder == 0)
+src/pokemon_summary_screen.c:    if (sMonSummaryScreen->currPageIndex > 1)
+src/pokemon_summary_screen.c:        SetBgTilemapBuffer(data[1], sMonSummaryScreen->bgTilemapBuffers[sMonSummaryScreen->currPageIndex - 1][0]);
+src/pokemon_summary_screen.c:    sMonSummaryScreen->bgDisplayOrder ^= 1;
+src/pokemon_summary_screen.c:    PutPageWindowTilemaps(sMonSummaryScreen->currPageIndex);
+src/pokemon_summary_screen.c:    if (sMonSummaryScreen->currPageIndex == PSS_PAGE_SKILLS)
+src/pokemon_summary_screen.c:        DrawExperienceProgressBar(&sMonSummaryScreen->currentMon);
+src/pokemon_summary_screen.c:    sMonSummaryScreen->firstMoveIndex = 0;
+src/pokemon_summary_screen.c:    move = sMonSummaryScreen->summary.moves[sMonSummaryScreen->firstMoveIndex];
+src/pokemon_summary_screen.c:    if (!gSprites[sMonSummaryScreen->spriteIds[SPRITE_ARR_ID_STATUS]].invisible)
+src/pokemon_summary_screen.c:    if (!sMonSummaryScreen->lockMovesFlag)
+src/pokemon_summary_screen.c:    TilemapFiveMovesDisplay(sMonSummaryScreen->bgTilemapBuffers[PSS_PAGE_BATTLE_MOVES][0], 3, FALSE);
+src/pokemon_summary_screen.c:    TilemapFiveMovesDisplay(sMonSummaryScreen->bgTilemapBuffers[PSS_PAGE_CONTEST_MOVES][0], 1, FALSE);
+src/pokemon_summary_screen.c:            ChangeSelectedMove(data, -1, &sMonSummaryScreen->firstMoveIndex);
+src/pokemon_summary_screen.c:            ChangeSelectedMove(data, 1, &sMonSummaryScreen->firstMoveIndex);
+src/pokemon_summary_screen.c:            if (sMonSummaryScreen->lockMovesFlag
+src/pokemon_summary_screen.c:             || (sMonSummaryScreen->newMove == MOVE_NONE && sMonSummaryScreen->firstMoveIndex == MAX_MON_MOVES))
+src/pokemon_summary_screen.c:        if (sMonSummaryScreen->summary.moves[i] != 0)
+src/pokemon_summary_screen.c:            move = sMonSummaryScreen->newMove;
+src/pokemon_summary_screen.c:        move = sMonSummaryScreen->summary.moves[newMoveIndex];
+src/pokemon_summary_screen.c:    if ((*moveIndexPtr == MAX_MON_MOVES && sMonSummaryScreen->newMove == MOVE_NONE)
+src/pokemon_summary_screen.c:        if (!gSprites[sMonSummaryScreen->spriteIds[SPRITE_ARR_ID_STATUS]].invisible)
+src/pokemon_summary_screen.c:        && sMonSummaryScreen->newMove == MOVE_NONE)
+src/pokemon_summary_screen.c:    if (moveIndexPtr == &sMonSummaryScreen->firstMoveIndex)
+src/pokemon_summary_screen.c:    TilemapFiveMovesDisplay(sMonSummaryScreen->bgTilemapBuffers[PSS_PAGE_BATTLE_MOVES][0], 3, TRUE);
+src/pokemon_summary_screen.c:    TilemapFiveMovesDisplay(sMonSummaryScreen->bgTilemapBuffers[PSS_PAGE_CONTEST_MOVES][0], 1, TRUE);
+src/pokemon_summary_screen.c:    if (sMonSummaryScreen->firstMoveIndex != MAX_MON_MOVES)
+src/pokemon_summary_screen.c:    sMonSummaryScreen->secondMoveIndex = sMonSummaryScreen->firstMoveIndex;
+src/pokemon_summary_screen.c:            ChangeSelectedMove(&data[0], -1, &sMonSummaryScreen->secondMoveIndex);
+src/pokemon_summary_screen.c:            ChangeSelectedMove(&data[0], 1, &sMonSummaryScreen->secondMoveIndex);
+src/pokemon_summary_screen.c:            if (sMonSummaryScreen->firstMoveIndex == sMonSummaryScreen->secondMoveIndex)
+src/pokemon_summary_screen.c:        if (!sMonSummaryScreen->isBoxMon)
+src/pokemon_summary_screen.c:            struct Pokemon *mon = sMonSummaryScreen->monList.mons;
+src/pokemon_summary_screen.c:            SwapMonMoves(&mon[sMonSummaryScreen->curMonIndex], sMonSummaryScreen->firstMoveIndex, sMonSummaryScreen->secondMoveIndex);
+src/pokemon_summary_screen.c:            struct BoxPokemon *boxMon = sMonSummaryScreen->monList.boxMons;
+src/pokemon_summary_screen.c:            SwapBoxMonMoves(&boxMon[sMonSummaryScreen->curMonIndex], sMonSummaryScreen->firstMoveIndex, sMonSummaryScreen->secondMoveIndex);
+src/pokemon_summary_screen.c:        CopyMonToSummaryStruct(&sMonSummaryScreen->currentMon);
+src/pokemon_summary_screen.c:        SwapMovesNamesPP(sMonSummaryScreen->firstMoveIndex, sMonSummaryScreen->secondMoveIndex);
+src/pokemon_summary_screen.c:        SwapMovesTypeSprites(sMonSummaryScreen->firstMoveIndex, sMonSummaryScreen->secondMoveIndex);
+src/pokemon_summary_screen.c:        sMonSummaryScreen->firstMoveIndex = sMonSummaryScreen->secondMoveIndex;
+src/pokemon_summary_screen.c:    move = sMonSummaryScreen->summary.moves[sMonSummaryScreen->firstMoveIndex];
+src/pokemon_summary_screen.c:    struct PokeSummary* summary = &sMonSummaryScreen->summary;
+src/pokemon_summary_screen.c:    struct PokeSummary* summary = &sMonSummaryScreen->summary;
+src/pokemon_summary_screen.c:                ChangeSelectedMove(data, -1, &sMonSummaryScreen->firstMoveIndex);
+src/pokemon_summary_screen.c:                ChangeSelectedMove(data, 1, &sMonSummaryScreen->firstMoveIndex);
+src/pokemon_summary_screen.c:				sMoveSlotToReplace = sMonSummaryScreen->firstMoveIndex;
+src/pokemon_summary_screen.c:    gSprites[sMonSummaryScreen->splitIconSpriteId].invisible = TRUE;
+src/pokemon_summary_screen.c:            ChangeSelectedMove(&data[0], -1, &sMonSummaryScreen->firstMoveIndex);
+src/pokemon_summary_screen.c:            ChangeSelectedMove(&data[0], 1, &sMonSummaryScreen->firstMoveIndex);
+src/pokemon_summary_screen.c:            if (sMonSummaryScreen->currPageIndex != PSS_PAGE_BATTLE_MOVES)
+src/pokemon_summary_screen.c:                if (!gSprites[sMonSummaryScreen->spriteIds[SPRITE_ARR_ID_STATUS]].invisible)
+src/pokemon_summary_screen.c:                move = sMonSummaryScreen->summary.moves[sMonSummaryScreen->firstMoveIndex];
+src/pokemon_summary_screen.c:            if (sMonSummaryScreen->currPageIndex != PSS_PAGE_CONTEST_MOVES)
+src/pokemon_summary_screen.c:                if (!gSprites[sMonSummaryScreen->spriteIds[SPRITE_ARR_ID_STATUS]].invisible)
+src/pokemon_summary_screen.c:                move = sMonSummaryScreen->summary.moves[sMonSummaryScreen->firstMoveIndex];
+src/pokemon_summary_screen.c:            if (!gSprites[sMonSummaryScreen->spriteIds[SPRITE_ARR_ID_STATUS]].invisible)
+src/pokemon_summary_screen.c:            move = sMonSummaryScreen->summary.moves[sMonSummaryScreen->firstMoveIndex];
+src/pokemon_summary_screen.c:        if (i < sMonSummaryScreen->minPageIndex)
+src/pokemon_summary_screen.c:        else if (i > sMonSummaryScreen->maxPageIndex)
+src/pokemon_summary_screen.c:        else if (i < sMonSummaryScreen->currPageIndex)
+src/pokemon_summary_screen.c:        else if (i == sMonSummaryScreen->currPageIndex)
+src/pokemon_summary_screen.c:            if (i != sMonSummaryScreen->maxPageIndex)
+src/pokemon_summary_screen.c:        else if (i != sMonSummaryScreen->maxPageIndex)
+src/pokemon_summary_screen.c:        ChangeTilemap(&sBattleMoveTilemapCtrl, sMonSummaryScreen->bgTilemapBuffers[PSS_PAGE_BATTLE_MOVES][0], b, TRUE);
+src/pokemon_summary_screen.c:    ChangeTilemap(&sBattleMoveTilemapCtrl, sMonSummaryScreen->bgTilemapBuffers[PSS_PAGE_BATTLE_MOVES][0], data[1], TRUE);
+src/pokemon_summary_screen.c:            if (sMonSummaryScreen->currPageIndex == 2)
+src/pokemon_summary_screen.c:            if (!gSprites[sMonSummaryScreen->spriteIds[SPRITE_ARR_ID_STATUS]].invisible)
+src/pokemon_summary_screen.c:        ChangeTilemap(&sContestMoveTilemapCtrl, sMonSummaryScreen->bgTilemapBuffers[PSS_PAGE_CONTEST_MOVES][0], b, TRUE);
+src/pokemon_summary_screen.c:    ChangeTilemap(&sContestMoveTilemapCtrl, sMonSummaryScreen->bgTilemapBuffers[PSS_PAGE_CONTEST_MOVES][0], data[1], TRUE);
+src/pokemon_summary_screen.c:            if (sMonSummaryScreen->currPageIndex == 3 && FuncIsActiveTask(PssScrollRight) == 0)
+src/pokemon_summary_screen.c:            if (!gSprites[sMonSummaryScreen->spriteIds[SPRITE_ARR_ID_STATUS]].invisible)
+src/pokemon_summary_screen.c:        ChangeTilemap(&sStatusTilemapCtrl1, sMonSummaryScreen->bgTilemapBuffers[PSS_PAGE_INFO][0], b, FALSE);
+src/pokemon_summary_screen.c:        ChangeTilemap(&sStatusTilemapCtrl2, sMonSummaryScreen->bgTilemapBuffers[PSS_PAGE_INFO][0], b, FALSE);
+src/pokemon_summary_screen.c:    ChangeTilemap(&sStatusTilemapCtrl1, sMonSummaryScreen->bgTilemapBuffers[PSS_PAGE_INFO][0], data[1], FALSE);
+src/pokemon_summary_screen.c:    ChangeTilemap(&sStatusTilemapCtrl2, sMonSummaryScreen->bgTilemapBuffers[PSS_PAGE_INFO][0], data[1], FALSE);
+src/pokemon_summary_screen.c:        sMonSummaryScreen->bgTilemapBuffers[PSS_PAGE_INFO][0][0x223] = 0x2C;
+src/pokemon_summary_screen.c:        sMonSummaryScreen->bgTilemapBuffers[PSS_PAGE_INFO][1][0x223] = 0x2C;
+src/pokemon_summary_screen.c:        sMonSummaryScreen->bgTilemapBuffers[PSS_PAGE_INFO][0][0x223] = 0x81A;
+src/pokemon_summary_screen.c:        sMonSummaryScreen->bgTilemapBuffers[PSS_PAGE_INFO][1][0x223] = 0x81A;
+src/pokemon_summary_screen.c:    struct PokeSummary *summary = &sMonSummaryScreen->summary;
+src/pokemon_summary_screen.c:    dst = &sMonSummaryScreen->bgTilemapBuffers[PSS_PAGE_SKILLS][1][0x255];
+src/pokemon_summary_screen.c:    if (GetBgTilemapBuffer(1) == sMonSummaryScreen->bgTilemapBuffers[PSS_PAGE_SKILLS][0])
+src/pokemon_summary_screen.c:    u16 *tilemap = sMonSummaryScreen->bgTilemapBuffers[PSS_PAGE_CONTEST_MOVES][1];
+src/pokemon_summary_screen.c:    if (sMonSummaryScreen->summary.isEgg)
+src/pokemon_summary_screen.c:    for (i = 0; i < ARRAY_COUNT(sMonSummaryScreen->windowIds); i++)
+src/pokemon_summary_screen.c:        sMonSummaryScreen->windowIds[i] = WINDOW_NONE;
+src/pokemon_summary_screen.c:    if (!sMonSummaryScreen->summary.isEgg)
+src/pokemon_summary_screen.c:    struct Pokemon *mon = &sMonSummaryScreen->currentMon;
+src/pokemon_summary_screen.c:    struct PokeSummary *summary = &sMonSummaryScreen->summary;
+src/pokemon_summary_screen.c:    GetMonNickname(&sMonSummaryScreen->currentMon, gStringVar1);
+src/pokemon_summary_screen.c:        if (sMonSummaryScreen->mode == SUMMARY_MODE_SELECT_MOVE)
+src/pokemon_summary_screen.c:            if (sMonSummaryScreen->newMove != MOVE_NONE || sMonSummaryScreen->firstMoveIndex != MAX_MON_MOVES)
+src/pokemon_summary_screen.c:        if (sMonSummaryScreen->mode == SUMMARY_MODE_SELECT_MOVE)
+src/pokemon_summary_screen.c:            if (sMonSummaryScreen->newMove != MOVE_NONE || sMonSummaryScreen->firstMoveIndex != MAX_MON_MOVES)
+src/pokemon_summary_screen.c:    for (i = 0; i < ARRAY_COUNT(sMonSummaryScreen->windowIds); i++)
+src/pokemon_summary_screen.c:        PutWindowTilemap(sMonSummaryScreen->windowIds[i]);
+src/pokemon_summary_screen.c:        if (sMonSummaryScreen->mode == SUMMARY_MODE_SELECT_MOVE)
+src/pokemon_summary_screen.c:            if (sMonSummaryScreen->newMove != MOVE_NONE || sMonSummaryScreen->firstMoveIndex != MAX_MON_MOVES)
+src/pokemon_summary_screen.c:                gSprites[sMonSummaryScreen->splitIconSpriteId].invisible = TRUE;
+src/pokemon_summary_screen.c:        if (sMonSummaryScreen->mode == SUMMARY_MODE_SELECT_MOVE)
+src/pokemon_summary_screen.c:            if (sMonSummaryScreen->newMove != MOVE_NONE || sMonSummaryScreen->firstMoveIndex != MAX_MON_MOVES)
+src/pokemon_summary_screen.c:    for (i = 0; i < ARRAY_COUNT(sMonSummaryScreen->windowIds); i++)
+src/pokemon_summary_screen.c:    u8 *windowIdPtr = &sMonSummaryScreen->windowIds[templateId];
+src/pokemon_summary_screen.c:    u8 *windowIdPtr = &sMonSummaryScreen->windowIds[windowIndex];
+src/pokemon_summary_screen.c:    for (i = 0; i < ARRAY_COUNT(sMonSummaryScreen->windowIds); i++)
+src/pokemon_summary_screen.c:        if (sMonSummaryScreen->windowIds[i] != WINDOW_NONE)
+src/pokemon_summary_screen.c:            FillWindowPixelBuffer(sMonSummaryScreen->windowIds[i], PIXEL_FILL(0));
+src/pokemon_summary_screen.c:    if (sMonSummaryScreen->summary.isEgg)
+src/pokemon_summary_screen.c:        if (sMonSummaryScreen->summary.OTGender == 0)
+src/pokemon_summary_screen.c:            PrintTextOnWindow(windowId, sMonSummaryScreen->summary.OTName, x, 1, 0, 5);
+src/pokemon_summary_screen.c:            PrintTextOnWindow(windowId, sMonSummaryScreen->summary.OTName, x, 1, 0, 6);
+src/pokemon_summary_screen.c:        ConvertIntToDecimalStringN(StringCopy(gStringVar1, gText_IDNumber2), (u16)sMonSummaryScreen->summary.OTID, STR_CONV_MODE_LEADING_ZEROS, 5);
+src/pokemon_summary_screen.c:    u16 ability = GetAbilityBySpecies(sMonSummaryScreen->summary.species, sMonSummaryScreen->summary.abilityNum);
+src/pokemon_summary_screen.c:    u16 ability = GetAbilityBySpecies(sMonSummaryScreen->summary.species, sMonSummaryScreen->summary.abilityNum);
+src/pokemon_summary_screen.c:    struct PokeSummary *sum = &sMonSummaryScreen->summary;
+src/pokemon_summary_screen.c:    u8 level = sMonSummaryScreen->summary.metLevel;
+src/pokemon_summary_screen.c:    struct PokeSummary *sum = &sMonSummaryScreen->summary;
+src/pokemon_summary_screen.c:    if (sMonSummaryScreen->monList.mons == gEnemyParty)
+src/pokemon_summary_screen.c:    struct PokeSummary *sum = &sMonSummaryScreen->summary;
+src/pokemon_summary_screen.c:    struct PokeSummary *sum = &sMonSummaryScreen->summary;
+src/pokemon_summary_screen.c:        if (sMonSummaryScreen->curMonIndex == 1 || sMonSummaryScreen->curMonIndex == 4 || sMonSummaryScreen->curMonIndex == 5)
+src/pokemon_summary_screen.c:    struct PokeSummary *sum = &sMonSummaryScreen->summary;
+src/pokemon_summary_screen.c:    if (sMonSummaryScreen->summary.sanity)
+src/pokemon_summary_screen.c:    struct PokeSummary *sum = &sMonSummaryScreen->summary;
+src/pokemon_summary_screen.c:    if (sMonSummaryScreen->summary.sanity != 1)
+src/pokemon_summary_screen.c:    if (sMonSummaryScreen->summary.item == ITEM_ENIGMA_BERRY_E_READER
+src/pokemon_summary_screen.c:        && (sMonSummaryScreen->curMonIndex == 1 || sMonSummaryScreen->curMonIndex == 4 || sMonSummaryScreen->curMonIndex == 5))
+src/pokemon_summary_screen.c:    else if (sMonSummaryScreen->summary.item == ITEM_NONE)
+src/pokemon_summary_screen.c:        CopyItemName(sMonSummaryScreen->summary.item, gStringVar1);
+src/pokemon_summary_screen.c:    if (sMonSummaryScreen->summary.ribbonCount == 0)
+src/pokemon_summary_screen.c:        ConvertIntToDecimalStringN(gStringVar1, sMonSummaryScreen->summary.ribbonCount, STR_CONV_MODE_RIGHT_ALIGN, 2);
+src/pokemon_summary_screen.c:      (sMonSummaryScreen->summary.hiddenNature == HIDDEN_NATURE_NONE) ? sMonSummaryScreen->summary.nature : sMonSummaryScreen->summary.hiddenNature];
+src/pokemon_summary_screen.c:    BufferStat(currentHPString, 0, sMonSummaryScreen->summary.currentHP, 0, 3);
+src/pokemon_summary_screen.c:    BufferStat(maxHPString, 0, sMonSummaryScreen->summary.maxHP, 1, 3);
+src/pokemon_summary_screen.c:    BufferStat(attackString, natureMod[STAT_ATK - 1], sMonSummaryScreen->summary.atk, 2, 7);
+src/pokemon_summary_screen.c:    BufferStat(defenseString, natureMod[STAT_DEF - 1], sMonSummaryScreen->summary.def, 3, 7);
+src/pokemon_summary_screen.c:      (sMonSummaryScreen->summary.hiddenNature == HIDDEN_NATURE_NONE) ? sMonSummaryScreen->summary.nature : sMonSummaryScreen->summary.hiddenNature];
+src/pokemon_summary_screen.c:    BufferStat(gStringVar1, natureMod[STAT_SPATK - 1], sMonSummaryScreen->summary.spatk, 0, 3);
+src/pokemon_summary_screen.c:    BufferStat(gStringVar2, natureMod[STAT_SPDEF - 1], sMonSummaryScreen->summary.spdef, 1, 3);
+src/pokemon_summary_screen.c:    BufferStat(gStringVar3, natureMod[STAT_SPEED - 1], sMonSummaryScreen->summary.speed, 2, 3);
+src/pokemon_summary_screen.c:      (sMonSummaryScreen->summary.hiddenNature == HIDDEN_NATURE_NONE) ? sMonSummaryScreen->summary.nature : sMonSummaryScreen->summary.hiddenNature];
+src/pokemon_summary_screen.c:        hp = sMonSummaryScreen->summary.currentHP;
+src/pokemon_summary_screen.c:        hp2 = sMonSummaryScreen->summary.maxHP;
+src/pokemon_summary_screen.c:        atk = sMonSummaryScreen->summary.atk;
+src/pokemon_summary_screen.c:        def = sMonSummaryScreen->summary.def;
+src/pokemon_summary_screen.c:        spA = sMonSummaryScreen->summary.spatk;
+src/pokemon_summary_screen.c:        spD = sMonSummaryScreen->summary.spdef;
+src/pokemon_summary_screen.c:        spe = sMonSummaryScreen->summary.speed;
+src/pokemon_summary_screen.c:        hp = GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_HP_IV);
+src/pokemon_summary_screen.c:        atk = GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_ATK_IV);
+src/pokemon_summary_screen.c:        def = GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_DEF_IV);
+src/pokemon_summary_screen.c:        spA = GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_SPATK_IV);
+src/pokemon_summary_screen.c:        spD = GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_SPDEF_IV);
+src/pokemon_summary_screen.c:        spe = GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_SPEED_IV);
+src/pokemon_summary_screen.c:        hp = GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_HP_EV);
+src/pokemon_summary_screen.c:        atk = GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_ATK_EV);
+src/pokemon_summary_screen.c:        def = GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_DEF_EV);
+src/pokemon_summary_screen.c:        spA = GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_SPATK_EV);
+src/pokemon_summary_screen.c:        spD = GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_SPDEF_EV);
+src/pokemon_summary_screen.c:        spe = GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_SPEED_EV);
+src/pokemon_summary_screen.c:    FillWindowPixelBuffer(sMonSummaryScreen->windowIds[PSS_DATA_WINDOW_SKILLS_STATS_LEFT], 0);
+src/pokemon_summary_screen.c:    FillWindowPixelBuffer(sMonSummaryScreen->windowIds[PSS_DATA_WINDOW_SKILLS_STATS_RIGHT], 0);
+src/pokemon_summary_screen.c:    struct PokeSummary *sum = &sMonSummaryScreen->summary;
+src/pokemon_summary_screen.c:    if (sMonSummaryScreen->mode == SUMMARY_MODE_SELECT_MOVE)
+src/pokemon_summary_screen.c:        if (sMonSummaryScreen->firstMoveIndex == MAX_MON_MOVES)
+src/pokemon_summary_screen.c:            if (sMonSummaryScreen->newMove != MOVE_NONE)
+src/pokemon_summary_screen.c:                PrintMoveDetails(sMonSummaryScreen->newMove);
+src/pokemon_summary_screen.c:            PrintMoveDetails(sMonSummaryScreen->summary.moves[sMonSummaryScreen->firstMoveIndex]);
+src/pokemon_summary_screen.c:        if (sMonSummaryScreen->mode == SUMMARY_MODE_SELECT_MOVE)
+src/pokemon_summary_screen.c:        if (sMonSummaryScreen->mode == SUMMARY_MODE_SELECT_MOVE)
+src/pokemon_summary_screen.c:            if (sMonSummaryScreen->firstMoveIndex == MAX_MON_MOVES)
+src/pokemon_summary_screen.c:                data[1] = sMonSummaryScreen->newMove;
+src/pokemon_summary_screen.c:                data[1] = sMonSummaryScreen->summary.moves[sMonSummaryScreen->firstMoveIndex];
+src/pokemon_summary_screen.c:        if (sMonSummaryScreen->mode == SUMMARY_MODE_SELECT_MOVE)
+src/pokemon_summary_screen.c:            if (sMonSummaryScreen->newMove != MOVE_NONE || sMonSummaryScreen->firstMoveIndex != MAX_MON_MOVES)
+src/pokemon_summary_screen.c:    struct PokeSummary *summary = &sMonSummaryScreen->summary;
+src/pokemon_summary_screen.c:    if (sMonSummaryScreen->mode == SUMMARY_MODE_SELECT_MOVE)
+src/pokemon_summary_screen.c:        PrintContestMoveDescription(sMonSummaryScreen->firstMoveIndex);
+src/pokemon_summary_screen.c:        if (sMonSummaryScreen->mode == SUMMARY_MODE_SELECT_MOVE)
+src/pokemon_summary_screen.c:        if (sMonSummaryScreen->mode == SUMMARY_MODE_SELECT_MOVE)
+src/pokemon_summary_screen.c:            if (sMonSummaryScreen->newMove != MOVE_NONE || sMonSummaryScreen->firstMoveIndex != MAX_MON_MOVES)
+src/pokemon_summary_screen.c:                PrintContestMoveDescription(sMonSummaryScreen->firstMoveIndex);
+src/pokemon_summary_screen.c:        move = sMonSummaryScreen->newMove;
+src/pokemon_summary_screen.c:        move = sMonSummaryScreen->summary.moves[moveSlot];
+src/pokemon_summary_screen.c:        if (sMonSummaryScreen->currPageIndex == PSS_PAGE_BATTLE_MOVES)
+src/pokemon_summary_screen.c:    if (sMonSummaryScreen->newMove == MOVE_NONE)
+src/pokemon_summary_screen.c:        u16 move = sMonSummaryScreen->newMove;
+src/pokemon_summary_screen.c:        if (sMonSummaryScreen->currPageIndex == PSS_PAGE_BATTLE_MOVES)
+src/pokemon_summary_screen.c:    for (i = 0; i < ARRAY_COUNT(sMonSummaryScreen->spriteIds); i++)
+src/pokemon_summary_screen.c:        sMonSummaryScreen->spriteIds[i] = SPRITE_NONE;
+src/pokemon_summary_screen.c:    if (sMonSummaryScreen->spriteIds[spriteArrayId] != SPRITE_NONE)
+src/pokemon_summary_screen.c:        DestroySprite(&gSprites[sMonSummaryScreen->spriteIds[spriteArrayId]]);
+src/pokemon_summary_screen.c:        sMonSummaryScreen->spriteIds[spriteArrayId] = SPRITE_NONE;
+src/pokemon_summary_screen.c:    gSprites[sMonSummaryScreen->spriteIds[spriteArrayId]].invisible = invisible;
+src/pokemon_summary_screen.c:    for (i = SPRITE_ARR_ID_TYPE; i < ARRAY_COUNT(sMonSummaryScreen->spriteIds); i++)
+src/pokemon_summary_screen.c:        if (sMonSummaryScreen->spriteIds[i] != SPRITE_NONE)
+src/pokemon_summary_screen.c:    switch (sMonSummaryScreen->currPageIndex)
+src/pokemon_summary_screen.c:        if (sMonSummaryScreen->spriteIds[i] == SPRITE_NONE)
+src/pokemon_summary_screen.c:            sMonSummaryScreen->spriteIds[i] = CreateSprite(&sSpriteTemplate_MoveTypes, 0, 0, 2);
+src/pokemon_summary_screen.c:    struct Sprite *sprite = &gSprites[sMonSummaryScreen->spriteIds[spriteArrayId]];
+src/pokemon_summary_screen.c:    struct PokeSummary *summary = &sMonSummaryScreen->summary;
+src/pokemon_summary_screen.c:    struct PokeSummary *summary = &sMonSummaryScreen->summary;
+src/pokemon_summary_screen.c:    struct Pokemon *mon = &sMonSummaryScreen->currentMon;
+src/pokemon_summary_screen.c:    struct PokeSummary *summary = &sMonSummaryScreen->summary;
+src/pokemon_summary_screen.c:    struct Pokemon *mon = &sMonSummaryScreen->currentMon;
+src/pokemon_summary_screen.c:    if (sMonSummaryScreen->newMove == MOVE_NONE)
+src/pokemon_summary_screen.c:        if (sMonSummaryScreen->currPageIndex == PSS_PAGE_BATTLE_MOVES)
+src/pokemon_summary_screen.c:            if (sMonSummaryScreen->newMove == MOVE_HIDDEN_POWER) {
+src/pokemon_summary_screen.c:                SetTypeSpritePosAndPal(gBattleMoves[sMonSummaryScreen->newMove].type, 85, 96, SPRITE_ARR_ID_TYPE + 4);
+src/pokemon_summary_screen.c:            SetTypeSpritePosAndPal(NUMBER_OF_MON_TYPES + gContestMoves[sMonSummaryScreen->newMove].contestCategory, 85, 96, SPRITE_ARR_ID_TYPE + 4);
+src/pokemon_summary_screen.c:    struct Sprite *sprite1 = &gSprites[sMonSummaryScreen->spriteIds[moveIndex1 + SPRITE_ARR_ID_TYPE]];
+src/pokemon_summary_screen.c:    struct Sprite *sprite2 = &gSprites[sMonSummaryScreen->spriteIds[moveIndex2 + SPRITE_ARR_ID_TYPE]];
+src/pokemon_summary_screen.c:    struct PokeSummary *summary = &sMonSummaryScreen->summary;
+src/pokemon_summary_screen.c:    struct PokeSummary *summary = &sMonSummaryScreen->summary;
+src/pokemon_summary_screen.c:        if (ShouldPlayNormalMonCry(&sMonSummaryScreen->currentMon))
+src/pokemon_summary_screen.c:    struct PokeSummary *summary = &sMonSummaryScreen->summary;
+src/pokemon_summary_screen.c:    struct PokeSummary *summary = &sMonSummaryScreen->summary;
+src/pokemon_summary_screen.c:    if (gSprites[sMonSummaryScreen->spriteIds[SPRITE_ARR_ID_MON]].callback == SpriteCallbackDummy)
+src/pokemon_summary_screen.c:    gSprites[sMonSummaryScreen->spriteIds[SPRITE_ARR_ID_MON]].animPaused = TRUE;
+src/pokemon_summary_screen.c:    gSprites[sMonSummaryScreen->spriteIds[SPRITE_ARR_ID_MON]].callback = SpriteCallbackDummy;
+src/pokemon_summary_screen.c:    paletteIndex = (gSprites[sMonSummaryScreen->spriteIds[SPRITE_ARR_ID_MON]].oam.paletteNum * 16) | 0x100;
+src/pokemon_summary_screen.c:    sMonSummaryScreen->markingsSprite = sprite;
+src/pokemon_summary_screen.c:        sMonSummaryScreen->markingsSprite->x = 60;
+src/pokemon_summary_screen.c:        sMonSummaryScreen->markingsSprite->y = 26;
+src/pokemon_summary_screen.c:        sMonSummaryScreen->markingsSprite->oam.priority = 1;
+src/pokemon_summary_screen.c:    DestroySprite(sMonSummaryScreen->markingsSprite);
+src/pokemon_summary_screen.c:    sMonSummaryScreen->spriteIds[SPRITE_ARR_ID_BALL] = CreateSprite(&gBallSpriteTemplates[ball], 16, 136, 0);
+src/pokemon_summary_screen.c:    gSprites[sMonSummaryScreen->spriteIds[SPRITE_ARR_ID_BALL]].callback = SpriteCallbackDummy;
+src/pokemon_summary_screen.c:    gSprites[sMonSummaryScreen->spriteIds[SPRITE_ARR_ID_BALL]].oam.priority = 3;
+src/pokemon_summary_screen.c:    u8 *spriteId = &sMonSummaryScreen->spriteIds[SPRITE_ARR_ID_STATUS];
+src/pokemon_summary_screen.c:    statusAnim = GetMonAilment(&sMonSummaryScreen->currentMon);
+src/pokemon_summary_screen.c:    u8 *spriteIds = &sMonSummaryScreen->spriteIds[idArrayStart];
+src/pokemon_summary_screen.c:    if (sMonSummaryScreen->currPageIndex >= PSS_PAGE_BATTLE_MOVES)
+src/pokemon_summary_screen.c:        sprite->y2 = sMonSummaryScreen->firstMoveIndex * 16;
+src/pokemon_summary_screen.c:        sprite->y2 = sMonSummaryScreen->secondMoveIndex * 16;
+src/pokemon_summary_screen.c:    u8 *spriteIds = &sMonSummaryScreen->spriteIds[SPRITE_ARR_ID_MOVE_SELECTOR1];
+src/pokemon_summary_screen.c:    u8 *spriteIds = &sMonSummaryScreen->spriteIds[firstSpriteId];
