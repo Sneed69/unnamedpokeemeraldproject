@@ -253,22 +253,6 @@ static void FindMapsWithMon(u16 species)
 	sPokedexAreaScreen->numOverworldAreas = 0;
 	sPokedexAreaScreen->numSpecialAreas = 0;
 
-	for (i = 0; i < ROAMER_COUNT; i++)
-	{
-		roamer = &gSaveBlock1Ptr->roamer[i];
-		if (species == roamer->species)
-		{
-			// This is the roamer's species, show where the roamer is currently
-			if (roamer->active)
-			{
-				GetRoamerLocation(i, &sPokedexAreaScreen->overworldAreasWithMons[0].mapGroup, &sPokedexAreaScreen->overworldAreasWithMons[0].mapNum);
-				sPokedexAreaScreen->overworldAreasWithMons[0].regionMapSectionId = Overworld_GetMapHeaderByGroupAndId(sPokedexAreaScreen->overworldAreasWithMons[0].mapGroup, sPokedexAreaScreen->overworldAreasWithMons[0].mapNum)->regionMapSectionId;
-				sPokedexAreaScreen->numOverworldAreas = 1;
-			}
-			return;
-		}
-	}
-
 	// Check if this species should be hidden from the area map.
 	// This only applies to Wynaut, to hide the encounters on Mirage Island.
 	for (i = 0; i < ARRAY_COUNT(sSpeciesHiddenFromAreaScreen); i++)
@@ -312,6 +296,24 @@ static void FindMapsWithMon(u16 species)
 			case MAP_GROUP_SPECIAL_AREA:
 				SetSpecialMapHasMon(gWildMonHeaders[i].mapGroup, gWildMonHeaders[i].mapNum);
 				break;
+			}
+		}
+	}
+	
+	for (i = 0; i < ROAMER_COUNT; i++)
+	{
+		roamer = &gSaveBlock1Ptr->roamer[i];
+		if (species == roamer->species)
+		{
+			// This is a roamer's species, show where this roamer is currently
+			if (roamer->active)
+			{
+				struct OverworldArea *roamerLocation; // Had to do this cause lines were too long
+				roamerLocation = &sPokedexAreaScreen->overworldAreasWithMons[sPokedexAreaScreen->numOverworldAreas];
+				GetRoamerLocation(i, &roamerLocation->mapGroup, &roamerLocation->mapNum);
+				roamerLocation->regionMapSectionId = Overworld_GetMapHeaderByGroupAndId(roamerLocation->mapGroup, roamerLocation->mapNum)->regionMapSectionId;
+				sPokedexAreaScreen->numOverworldAreas++;
+				//don't break; Supports multiple roamers of the same species or species that already appear as normal encounters
 			}
 		}
 	}

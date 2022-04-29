@@ -78,7 +78,7 @@ static const u8 sRoamerLocations[][6] =
 
 void ClearRoamerData(void)
 {
-	u8 i;
+	u32 i;
 	
 	for (i = 0; i < ROAMER_COUNT; i++)
 	{
@@ -131,7 +131,7 @@ void InitRoamer(void)
 
 void UpdateLocationHistoryForRoamer(void)
 {
-	u8 i;
+	u32 i;
 	for (i = 0; i < ROAMER_COUNT; i++)
 	{
 		sLocationHistory[i][2][MAP_GRP] = sLocationHistory[i][1][MAP_GRP];
@@ -234,7 +234,7 @@ void CreateRoamerMonInstance(u8 index)
 
 bool8 TryStartRoamerEncounter(void)
 {
-	u8 i;
+	u32 i;
 	for (i = 0; i < ROAMER_COUNT; i++)
     {
 		if (IsRoamerAt(i, gSaveBlock1Ptr->location.mapGroup, gSaveBlock1Ptr->location.mapNum) && (Random() % 4) == 0)
