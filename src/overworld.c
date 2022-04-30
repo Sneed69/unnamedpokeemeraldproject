@@ -422,13 +422,11 @@ static void Overworld_ResetStateAfterWhiteOut(void)
 
 static void UpdateMiscOverworldStates(void)
 {
-	u32 i;
     FlagClear(FLAG_SYS_SAFARI_MODE);
     ChooseAmbientCrySpecies();
     ResetCyclingRoadChallengeData();
     UpdateLocationHistoryForRoamer();
-	for (i = 0; i < ROAMER_COUNT; i++)
-		RoamerMoveToOtherLocationSet(i);
+	MoveAllRoamersToOtherLocationSets();
 }
 
 void ResetGameStats(void)
@@ -793,7 +791,6 @@ bool8 SetDiveWarpDive(u16 x, u16 y)
 void LoadMapFromCameraTransition(u8 mapGroup, u8 mapNum)
 {
     s32 paletteIndex;
-	u32 i;
 
     SetWarpDestination(mapGroup, mapNum, WARP_ID_NONE, -1, -1);
 
@@ -824,8 +821,7 @@ void LoadMapFromCameraTransition(u8 mapGroup, u8 mapNum)
 
     InitSecondaryTilesetAnimation();
     UpdateLocationHistoryForRoamer();
-	for (i = 0; i < ROAMER_COUNT; i++)
-		RoamerMove(i);
+	MoveAllRoamers();
     DoCurrentWeather();
     ResetFieldTasksArgs();
     RunOnResumeMapScript();
@@ -839,7 +835,6 @@ static void LoadMapFromWarp(bool32 a1)
 {
     bool8 isOutdoors;
     bool8 isIndoors;
-	u32 i;
 
     LoadCurrentMapData();
     if (!(sObjectEventLoadFlag & SKIP_OBJECT_EVENT_LOAD))
@@ -871,8 +866,7 @@ static void LoadMapFromWarp(bool32 a1)
     Overworld_ClearSavedMusic();
     RunOnTransitionMapScript();
     UpdateLocationHistoryForRoamer();
-	for (i = 0; i < ROAMER_COUNT; i++)
-		RoamerMoveToOtherLocationSet(i);
+	MoveAllRoamersToOtherLocationSets();
     if (gMapHeader.mapLayoutId == LAYOUT_BATTLE_FRONTIER_BATTLE_PYRAMID_FLOOR)
         InitBattlePyramidMap(FALSE);
     else if (InTrainerHill())

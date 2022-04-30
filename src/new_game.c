@@ -179,8 +179,7 @@ void NewGameInitData(void)
     gPlayerPartyCount = 0;
     ZeroPlayerPartyMons();
     ResetPokemonStorageSystem();
-    DeactivateAllRoamers();
-    ClearAllRoamerLocationData();
+    StopAllRoamers();
     ClearBag();
     NewGameInitPCItems();
     ClearPokeblocks();

@@ -11,6 +11,7 @@
 #include "overworld.h"
 #include "wallclock.h"
 #include "game_time.h"
+#include "roamer.h"
 
 static void UpdatePerDay(struct Time *localTime);
 static void UpdatePerMinute(struct Time *localTime);
@@ -51,6 +52,7 @@ static void UpdatePerDay(struct Time *localTime)
         UpdateFrontierGambler(daysSince);
         SetShoalItemFlag(daysSince);
         SetRandomLotteryNumber(daysSince);
+        UpdateRoamerRespawns(daysSince);
         *days = localTime->days;
     }
 }
