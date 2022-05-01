@@ -363,10 +363,10 @@
 #define MOVE_EFFECT_RELIC_SONG          0x47
 #define MOVE_EFFECT_TRAP_BOTH           0x48
 #define MOVE_EFFECT_SKY_DROP            0x49
-#define MOVE_EFFECT_SCALE_SHOT          0x50
-#define MOVE_EFFECT_RECOIL_33_SPEED_UP   0x5A
+#define MOVE_EFFECT_SCALE_SHOT          0x4A
+#define MOVE_EFFECT_RECOIL_33_SPEED_UP  0x4B
 
-#define NUM_MOVE_EFFECTS                0x5B
+#define NUM_MOVE_EFFECTS                0x4C
 
 #define MOVE_EFFECT_AFFECTS_USER        0x4000
 #define MOVE_EFFECT_CERTAIN             0x8000

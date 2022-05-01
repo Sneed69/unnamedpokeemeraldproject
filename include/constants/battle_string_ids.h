@@ -609,17 +609,20 @@
 #define STRINGID_NEUTRALIZINGGASOVER                  607
 #define STRINGID_TARGETTOOHEAVY                       608
 #define STRINGID_PKMNTOOKTARGETHIGH                   609
-#define STRINGID_PLAYERLOSTTOENEMYTRAINER			  610
-#define STRINGID_PLAYERPAIDPRIZEMONEY       		  611
-#define STRINGID_TEAMGAINEDEXP                 		  612
-#define STRINGID_LEGENDARYFENDEDBALLOFF               613
-#define STRINGID_YOUMUSTWEAKENIT              		  614
-#define STRINGID_OVERFLOWINGSPACEPOWER       		  615
+#define STRINGID_PKMNINSNAPTRAP                       610
+#define STRINGID_METEORBEAMCHARGING                   611
+#define STRINGID_HEATUPBEAK                           612
+#define STRINGID_COURTCHANGE                          613
+#define STRINGID_LEGENDARYFENDEDBALLOFF               614
+#define STRINGID_YOUMUSTWEAKENIT              		  615
 #define STRINGID_PKMNHURTBYFROSTBITE                  616
 #define STRINGID_PKMNALREADYFROZEN                    617
 #define STRINGID_PKMNPREVENTSFREEZINGWITH			  618
+#define STRINGID_PLAYERLOSTTOENEMYTRAINER			  619
+#define STRINGID_PLAYERPAIDPRIZEMONEY       		  620
+#define STRINGID_TEAMGAINEDEXP                 		  621
 
-#define BATTLESTRINGS_COUNT                           619
+#define BATTLESTRINGS_COUNT                           622
 
 // This is the string id that gBattleStringsTable starts with.
 // String ids before this (e.g. STRINGID_INTROMSG) are not in the table,
