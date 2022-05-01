@@ -5,22 +5,27 @@
 #include "random.h"
 #include "roamer.h"
 #include "pokedex.h"
+#include "battle_tower.h" // GetHighestLevelInPlayerParty declaration
 
-// Despite having a variable to track it, the roamer is
-// hard-coded to only ever be in map group 0
-#define ROAMER_MAP_GROUP 0
+//================= RoamersPlus Config =================\\
 // Set to TRUE to allow roaming to every Route
 #define ROAM_THE_ENTIRE_MAP TRUE
 // 1 in 4 chance for a roamer to replace other encounters
 #define ROAMER_ENCOUNTER_MODULO 4
 // 1 in 6 chance for a stalker to replace other encounters
 #define STALKER_ENCOUNTER_MODULO 6
+// Scaling roamer level will be equal to your highest level pokemon's level plus this constant
+#define SCALING_LEVEL_MODIFIER -5
+// Self Explanatory
+#define SCALED_LEVEL_CAP 70
+// If TRUE, scaling roamers will evolve at appropriate levels
+#define SCALING_ROAMER_EVOLUTION TRUE
+//================= Config End =========================\\
 
-enum
-{
-    MAP_GRP, // map group
-    MAP_NUM, // map number
-};
+// Despite having a variable to track it, the roamer is
+// hard-coded to only ever be in map group 0
+// Stalkers can move to other map groups
+#define ROAMER_MAP_GROUP 0
 
 #define ROAMER(index) (&gSaveBlock1Ptr->roamer[index])
 EWRAM_DATA u8 gEncounteredRoamerIndex = 0;
@@ -171,13 +176,17 @@ static void CreateInitialRoamerMon(u8 index, u16 species, u8 level, u8 fixedIV, 
     ROAMER(index)->species = species;
     ROAMER(index)->respawnMode = respawnMode;
     ROAMER(index)->daysToRespawn = 0;
-    ROAMER(index)->hp = GetMonData(&gEnemyParty[0], MON_DATA_MAX_HP);
+    ROAMER(index)->damage = 0;
     ROAMER(index)->level = level;
     ROAMER(index)->status = 0;
     ROAMER(index)->active = TRUE;
     ROAMER(index)->isTerrestrial = isTerrestrial;
     ROAMER(index)->doesNotFlee = doesNotFlee;
     ROAMER(index)->isStalker = isStalker;
+	if (level == 0)
+		ROAMER(index)->levelScaling = TRUE;
+	else
+		ROAMER(index)->levelScaling = FALSE;
     ROAMER(index)->locationMapGroup = ROAMER_MAP_GROUP;
 	if (!isTerrestrial)
 		ROAMER(index)->locationMapNum = sRoamerLocations[Random() % NUM_LOCATION_SETS][0];
@@ -315,11 +324,35 @@ void CreateRoamerMonInstance(u8 index)
 {
 // The roamer's status field is u8, but SetMonData expects status to be u32
     u32 status = ROAMER(index)->status;
+	u16 hp;
     struct Pokemon *mon = &gEnemyParty[0];
+	
     ZeroEnemyPartyMons();
-    CreateMonWithIVsPersonality(mon, ROAMER(index)->species, ROAMER(index)->level, ROAMER(index)->ivs, ROAMER(index)->personality);
-    SetMonData(mon, MON_DATA_STATUS, &status);
-    SetMonData(mon, MON_DATA_HP, &ROAMER(index)->hp);
+#if SCALING_ROAMER_EVOLUTION
+	if (ROAMER(index)->levelScaling)
+	{
+		u16 evoSpecies;
+		
+		ROAMER(index)->level = max(max(min(GetHighestLevelInPlayerParty() + SCALING_LEVEL_MODIFIER, SCALED_LEVEL_CAP), MIN_LEVEL), ROAMER(index)->level);
+		CreateMonWithIVsPersonality(mon, ROAMER(index)->species, ROAMER(index)->level, ROAMER(index)->ivs, ROAMER(index)->personality);
+		evoSpecies = GetEvolutionTargetSpecies(mon, EVO_MODE_NORMAL, 0, 0);
+		while (evoSpecies != SPECIES_NONE)
+		{
+			ROAMER(index)->species = evoSpecies;
+			CreateMonWithIVsPersonality(mon, evoSpecies, ROAMER(index)->level, ROAMER(index)->ivs, ROAMER(index)->personality);
+			evoSpecies = GetEvolutionTargetSpecies(mon, EVO_MODE_NORMAL, 0, 0);
+		}
+	}
+	else
+		CreateMonWithIVsPersonality(mon, ROAMER(index)->species, ROAMER(index)->level, ROAMER(index)->ivs, ROAMER(index)->personality);
+#else
+	if (ROAMER(index)->levelScaling)
+		ROAMER(index)->level = max(max(min(GetHighestLevelInPlayerParty() - SCALING_LEVEL_MODIFIER, MAX_LEVEL), MIN_LEVEL), ROAMER(index)->level);
+	CreateMonWithIVsPersonality(mon, ROAMER(index)->species, ROAMER(index)->level, ROAMER(index)->ivs, ROAMER(index)->personality);
+#endif
+	hp = GetMonData(mon, MON_DATA_MAX_HP) - ROAMER(index)->damage;
+	SetMonData(mon, MON_DATA_STATUS, &status);
+	SetMonData(mon, MON_DATA_HP, &hp);
 }
 
 bool8 TryStartRoamerEncounter(bool8 isWaterEncounter)
@@ -345,12 +378,12 @@ void UpdateRoamerHPStatus(struct Pokemon *mon)
 	u16 currentHP = GetMonData(mon, MON_DATA_HP);
 	if (currentHP == 0 && CanRoamerRespawn(gEncounteredRoamerIndex))
 	{
-		ROAMER(gEncounteredRoamerIndex)->hp = GetMonData(mon, MON_DATA_MAX_HP);
-		ROAMER(gEncounteredRoamerIndex)->status = 0; //not sure if necessary
+		ROAMER(gEncounteredRoamerIndex)->damage = 0;
+		ROAMER(gEncounteredRoamerIndex)->status = 0;
 	}
 	else
 	{
-		ROAMER(gEncounteredRoamerIndex)->hp = GetMonData(mon, MON_DATA_HP);
+		ROAMER(gEncounteredRoamerIndex)->damage = GetMonData(mon, MON_DATA_MAX_HP) - GetMonData(mon, MON_DATA_HP);
 		ROAMER(gEncounteredRoamerIndex)->status = GetMonData(mon, MON_DATA_STATUS);
 	}
 
