@@ -9111,6 +9111,7 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_CLEAR_BODY, ABILITY_NONE, ABILITY_STURDY},
         .bodyColor = BODY_COLOR_BROWN,
         .noFlip = TRUE,
+		.flags = FLAG_LEGENDARY,
     },
 
     [SPECIES_REGICE] =
@@ -9139,6 +9140,7 @@ const struct BaseStats gBaseStats[] =
         #endif
         .bodyColor = BODY_COLOR_BLUE,
         .noFlip = FALSE,
+		.flags = FLAG_LEGENDARY,
     },
 
     [SPECIES_REGISTEEL] =
@@ -9168,6 +9170,36 @@ const struct BaseStats gBaseStats[] =
         #endif
         .bodyColor = BODY_COLOR_GRAY,
         .noFlip = FALSE,
+		.flags = FLAG_LEGENDARY,
+    },
+
+    [SPECIES_REGIGIGAS] =
+    {
+        .baseHP        = 110,
+        .baseAttack    = 160,
+        .baseDefense   = 110,
+        .baseSpeed     = 100,
+        .baseSpAttack  = 80,
+        .baseSpDefense = 110,
+        .type1 = TYPE_NORMAL,
+        .type2 = TYPE_NORMAL,
+        .catchRate = 3,
+        .expYield = 302,
+        .evYield_Attack    = 3,
+        .genderRatio = MON_GENDERLESS,
+        .eggCycles = 120,
+        .friendship = 0,
+        .growthRate = GROWTH_SLOW,
+        .eggGroup1 = EGG_GROUP_UNDISCOVERED,
+        .eggGroup2 = EGG_GROUP_UNDISCOVERED,
+        #ifdef BATTLE_ENGINE
+            .abilities = {ABILITY_SLOW_START, ABILITY_NONE},
+        #else
+            .abilities = {ABILITY_NONE, ABILITY_NONE},
+        #endif
+        .bodyColor = BODY_COLOR_WHITE,
+        .noFlip = FALSE,
+		.flags = FLAG_LEGENDARY,
     },
 
     [SPECIES_LATIAS] =
@@ -9192,6 +9224,7 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_LEVITATE, ABILITY_NONE},
         .bodyColor = BODY_COLOR_RED,
         .noFlip = FALSE,
+		.flags = FLAG_LEGENDARY,
     },
 
     [SPECIES_LATIOS] =
@@ -9216,6 +9249,7 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_LEVITATE, ABILITY_NONE},
         .bodyColor = BODY_COLOR_BLUE,
         .noFlip = FALSE,
+		.flags = FLAG_LEGENDARY,
     },
 
     [SPECIES_KYOGRE] =
@@ -9240,6 +9274,7 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_PRIMORDIAL_SEA, ABILITY_NONE},
         .bodyColor = BODY_COLOR_BLUE,
         .noFlip = FALSE,
+		.flags = FLAG_LEGENDARY,
     },
 
     [SPECIES_GROUDON] =
@@ -9264,6 +9299,7 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_DESOLATE_LAND, ABILITY_NONE},
         .bodyColor = BODY_COLOR_RED,
         .noFlip = FALSE,
+		.flags = FLAG_LEGENDARY,
     },
 
     [SPECIES_RAYQUAZA] =
@@ -9289,6 +9325,7 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_DELTA_STREAM, ABILITY_NONE},
         .bodyColor = BODY_COLOR_GREEN,
         .noFlip = FALSE,
+		.flags = FLAG_LEGENDARY,
     },
 
     [SPECIES_TURTWIG] =
@@ -11741,34 +11778,6 @@ const struct BaseStats gBaseStats[] =
         .eggGroup2 = EGG_GROUP_UNDISCOVERED,
         .abilities = {ABILITY_FLASH_FIRE, ABILITY_NONE, ABILITY_FLAME_BODY},
         .bodyColor = BODY_COLOR_BROWN,
-        .noFlip = FALSE,
-    },
-
-    [SPECIES_REGIGIGAS] =
-    {
-        .baseHP        = 110,
-        .baseAttack    = 160,
-        .baseDefense   = 110,
-        .baseSpeed     = 100,
-        .baseSpAttack  = 80,
-        .baseSpDefense = 110,
-        .type1 = TYPE_NORMAL,
-        .type2 = TYPE_NORMAL,
-        .catchRate = 3,
-        .expYield = 302,
-        .evYield_Attack    = 3,
-        .genderRatio = MON_GENDERLESS,
-        .eggCycles = 120,
-        .friendship = 0,
-        .growthRate = GROWTH_SLOW,
-        .eggGroup1 = EGG_GROUP_UNDISCOVERED,
-        .eggGroup2 = EGG_GROUP_UNDISCOVERED,
-        #ifdef BATTLE_ENGINE
-            .abilities = {ABILITY_SLOW_START, ABILITY_NONE},
-        #else
-            .abilities = {ABILITY_NONE, ABILITY_NONE},
-        #endif
-        .bodyColor = BODY_COLOR_WHITE,
         .noFlip = FALSE,
     },
 
