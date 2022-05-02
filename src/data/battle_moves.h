@@ -11661,7 +11661,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
     [MOVE_WAVE_CRASH] =
     {
         .effect = EFFECT_RECOIL_33_SPEED_UP,
-        .power = 75,
+        .power = 80,
         .type = TYPE_WATER,
         .accuracy = 100,
         .pp = 16,
