@@ -902,11 +902,11 @@ void ChooseStarter(void)
 static void CB2_GiveStarter(void)
 {
     u16 starterMon;
-	u8 IVs[] = STARTER_IVS;
+    u8 IVs[] = STARTER_IVS;
 
     *GetVarPointer(VAR_STARTER_MON) = gSpecialVar_Result;
     starterMon = GetStarterPokemon(gSpecialVar_Result);
-	ScriptGiveMonWithIvsAndNature(starterMon, 5, ITEM_NONE, IVs, STARTER_NATURE);
+    ScriptGiveMonWithIvsAndNature(starterMon, 5, ITEM_NONE, IVs, STARTER_NATURE);
     ResetTasks();
     PlayBattleBGM();
     SetMainCallback2(CB2_StartFirstBattle);

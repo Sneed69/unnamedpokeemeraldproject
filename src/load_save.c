@@ -214,7 +214,7 @@ void LoadPlayerBag(void)
     // load player items.
     for (i = 0; i < BAG_ITEMS_COUNT; i++)
         gLoadedSaveData.items[i] = gSaveBlock1Ptr->bagPocket_Items[i];
-	
+    
     // load player consums.
     for (i = 0; i < BAG_ITEMS_COUNT; i++)
         gLoadedSaveData.consumables[i] = gSaveBlock1Ptr->bagPocket_Consumables[i];
@@ -250,7 +250,7 @@ void SavePlayerBag(void)
     // save player items.
     for (i = 0; i < BAG_ITEMS_COUNT; i++)
         gSaveBlock1Ptr->bagPocket_Items[i] = gLoadedSaveData.items[i];
-	
+    
     // save player consums.
     for (i = 0; i < BAG_ITEMS_COUNT; i++)
         gSaveBlock1Ptr->bagPocket_Consumables[i] = gLoadedSaveData.consumables[i];

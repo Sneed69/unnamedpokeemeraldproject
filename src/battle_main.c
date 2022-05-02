@@ -578,7 +578,7 @@ static void CB2_InitBattleInternal(void)
         AdjustFriendship(&gPlayerParty[i], FRIENDSHIP_EVENT_LEAGUE_BATTLE);
 
     gBattleCommunication[MULTIUSE_STATE] = 0;
-	
+    
     gPlayerDoesNotWantToEvolveLeft = FALSE;
     gPlayerDoesNotWantToEvolveRight = FALSE;
 }
@@ -1933,10 +1933,10 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 fir
             }
 
             if (partyData[i].hiddenNature > 0)
-			{
-				u8 hNat = partyData[i].hiddenNature;
+            {
+                u8 hNat = partyData[i].hiddenNature;
                 SetMonData(&party[i], MON_DATA_HIDDEN_NATURE, &hNat);
-			}
+            }
 
             if (partyData[i].ball > 0)
                 SetMonData(&party[i], MON_DATA_POKEBALL, &partyData[i].ball);
@@ -3001,8 +3001,8 @@ static void BattleStartClearSetData(void)
     }
 
     gBattleScripting.battleStyle = OPTIONS_BATTLE_STYLE_SET;
-	gBattleScripting.expOnCatch = (B_EXP_CATCH >= GEN_6);
-	gBattleScripting.monCaught = FALSE;
+    gBattleScripting.expOnCatch = (B_EXP_CATCH >= GEN_6);
+    gBattleScripting.monCaught = FALSE;
 
     gMultiHitCounter = 0;
     gBattleOutcome = 0;
@@ -4001,7 +4001,7 @@ static void PlayerTryEvolution(void)
             return;
         }
     }
-	
+    
     gBattleMainFunc = HandleTurnActionSelectionState;
 
 }
@@ -5347,9 +5347,9 @@ static void ReturnFromBattleToOverworld(void)
     {
         if (gBattleOutcome == B_OUTCOME_CAUGHT || ((gBattleOutcome & B_OUTCOME_WON) && !CanRoamerRespawn(gEncounteredRoamerIndex)))
             StopRoamer(gEncounteredRoamerIndex);
-		else if (gBattleOutcome & B_OUTCOME_WON) // and roamer can respawn
+        else if (gBattleOutcome & B_OUTCOME_WON) // and roamer can respawn
             HandleRoamerRespawnTimer();
-		
+        
         UpdateRoamerHPStatus(&gEnemyParty[0]);
     }
 

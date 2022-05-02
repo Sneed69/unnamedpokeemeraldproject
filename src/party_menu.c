@@ -2054,7 +2054,7 @@ static u8 CanMonLearnTMTutor(struct Pokemon *mon, u16 item, u8 tutor)
 
     if (item >= ITEM_TM01)
     {
-		if (!CanMonLearnTMHM(mon, item - ITEM_TM01))
+        if (!CanMonLearnTMHM(mon, item - ITEM_TM01))
             return CANNOT_LEARN_MOVE;
         else
             move = ItemIdToBattleMoveId(item);
@@ -2646,40 +2646,40 @@ static void SetPartyMonSelectionActions(struct Pokemon *mons, u8 slotId, u8 acti
 
 static bool8 CanMonFly(struct Pokemon *mon)
 {
-	u16 eggGroup[EGG_GROUPS_PER_MON];
-	u16 species = GetBoxMonData(mon, MON_DATA_SPECIES);
-	
-	if (!FlagGet(FLAG_BADGE05_GET))
-		return FALSE;
-	
-	switch (species)
-	{
-		case SPECIES_RAYQUAZA:
-		case SPECIES_LATIAS:
-		case SPECIES_LATIOS:
-		case SPECIES_CHARIZARD:
-		case SPECIES_HYDREIGON:
-		case SPECIES_VOLCARONA:
-		//case SPECIES_ARTICUNO:
-		//case SPECIES_MOLTRES:
-		//case SPECIES_ZAPDOS:
-		case SPECIES_DRAGONITE:
-		case SPECIES_DRAGONAIR:
-		case SPECIES_LUGIA:
-		case SPECIES_HO_OH:
-		//case SPECIES_TROPIUS:
-		case SPECIES_FLYGON:
-		case SPECIES_VIBRAVA:
-		case SPECIES_SALAMENCE:
-		case SPECIES_DRIFBLIM:
-		case SPECIES_GOLURK:
-			return TRUE;
-	}
-	eggGroup[0] = gBaseStats[species].eggGroup1;
-	eggGroup[1] = gBaseStats[species].eggGroup2;
-	if (eggGroup[0] == EGG_GROUP_FLYING || eggGroup[1] == EGG_GROUP_FLYING)
-		return TRUE;
-	return FALSE;
+    u16 eggGroup[EGG_GROUPS_PER_MON];
+    u16 species = GetBoxMonData(mon, MON_DATA_SPECIES);
+    
+    if (!FlagGet(FLAG_BADGE05_GET))
+        return FALSE;
+    
+    switch (species)
+    {
+        case SPECIES_RAYQUAZA:
+        case SPECIES_LATIAS:
+        case SPECIES_LATIOS:
+        case SPECIES_CHARIZARD:
+        case SPECIES_HYDREIGON:
+        case SPECIES_VOLCARONA:
+        //case SPECIES_ARTICUNO:
+        //case SPECIES_MOLTRES:
+        //case SPECIES_ZAPDOS:
+        case SPECIES_DRAGONITE:
+        case SPECIES_DRAGONAIR:
+        case SPECIES_LUGIA:
+        case SPECIES_HO_OH:
+        //case SPECIES_TROPIUS:
+        case SPECIES_FLYGON:
+        case SPECIES_VIBRAVA:
+        case SPECIES_SALAMENCE:
+        case SPECIES_DRIFBLIM:
+        case SPECIES_GOLURK:
+            return TRUE;
+    }
+    eggGroup[0] = gBaseStats[species].eggGroup1;
+    eggGroup[1] = gBaseStats[species].eggGroup2;
+    if (eggGroup[0] == EGG_GROUP_FLYING || eggGroup[1] == EGG_GROUP_FLYING)
+        return TRUE;
+    return FALSE;
 }
 
 
@@ -2702,8 +2702,8 @@ static void SetPartyMonFieldSelectionActions(struct Pokemon *mons, u8 slotId)
             }
         }
     }
-	
-	if (sPartyMenuInternal->numActions < 5 && CanMonFly(&mons[slotId]))						//CanMonLearnTMTutor(&mons[slotId], ITEM_OVAL_CHARM, 0) != CANNOT_LEARN_MOVE)
+    
+    if (sPartyMenuInternal->numActions < 5 && CanMonFly(&mons[slotId]))                        //CanMonLearnTMTutor(&mons[slotId], ITEM_OVAL_CHARM, 0) != CANNOT_LEARN_MOVE)
         AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, FIELD_MOVE_FLY + MENU_FIELD_MOVES);
     if (!InBattlePike())
     {
@@ -2714,10 +2714,10 @@ static void SetPartyMonFieldSelectionActions(struct Pokemon *mons, u8 slotId)
         else
             AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, MENU_ITEM);
     }
-	if (!IsTradedMon(&mons[slotId]))
-	{
-		AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, MENU_NICKNAME);
-	}
+    if (!IsTradedMon(&mons[slotId]))
+    {
+        AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, MENU_NICKNAME);
+    }
     AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, MENU_CANCEL1);
 }
 
@@ -3846,7 +3846,7 @@ static void CursorCb_FieldMove(u8 taskId)
             gTasks[taskId].func = Task_ReturnToChooseMonAfterText;
         }
         else */
-		if (sFieldMoveCursorCallbacks[fieldMove].fieldMoveFunc())
+        if (sFieldMoveCursorCallbacks[fieldMove].fieldMoveFunc())
         {
             switch (fieldMove)
             {
@@ -4690,8 +4690,8 @@ static void Task_DisplayHPRestoredMessage(u8 taskId)
     StringExpandPlaceholders(gStringVar4, gText_PkmnHPRestoredByVar2);
     DisplayPartyMenuMessage(gStringVar4, FALSE);
     ScheduleBgCopyTilemapToVram(2);
-	if (gPartyMenu.menuType == PARTY_MENU_TYPE_FIELD && CheckBagHasItem(gSpecialVar_ItemId, 1))
-		gTasks[taskId].func = Task_ReturnToChooseMonAfterText;
+    if (gPartyMenu.menuType == PARTY_MENU_TYPE_FIELD && CheckBagHasItem(gSpecialVar_ItemId, 1))
+        gTasks[taskId].func = Task_ReturnToChooseMonAfterText;
     else
         gTasks[taskId].func = Task_ClosePartyMenuAfterText;
 }
@@ -4723,7 +4723,7 @@ void ItemUseCB_ReduceEV(u8 taskId, TaskFunc task)
         PlaySE(SE_SELECT);
         DisplayPartyMenuMessage(gText_WontHaveEffect, TRUE);
         ScheduleBgCopyTilemapToVram(2);
-		if (gPartyMenu.menuType == PARTY_MENU_TYPE_FIELD)
+        if (gPartyMenu.menuType == PARTY_MENU_TYPE_FIELD)
             gTasks[taskId].func = Task_ReturnToChooseMonAfterText;
         else
             gTasks[taskId].func = task;
@@ -4749,10 +4749,10 @@ void ItemUseCB_ReduceEV(u8 taskId, TaskFunc task)
         }
         DisplayPartyMenuMessage(gStringVar4, TRUE);
         ScheduleBgCopyTilemapToVram(2);
-		if (gPartyMenu.menuType == PARTY_MENU_TYPE_FIELD && CheckBagHasItem(item, 1))
-			gTasks[taskId].func = Task_ReturnToChooseMonAfterText;
-		else
-			gTasks[taskId].func = task;
+        if (gPartyMenu.menuType == PARTY_MENU_TYPE_FIELD && CheckBagHasItem(item, 1))
+            gTasks[taskId].func = Task_ReturnToChooseMonAfterText;
+        else
+            gTasks[taskId].func = task;
     }
 }
 
@@ -4761,7 +4761,7 @@ static u16 ItemEffectToMonEv(struct Pokemon *mon, u8 effectType)
     switch (effectType)
     {
     case ITEM_EFFECT_HP_EV:
-		return GetMonData(mon, MON_DATA_HP_EV);
+        return GetMonData(mon, MON_DATA_HP_EV);
         break;
     case ITEM_EFFECT_ATK_EV:
         return GetMonData(mon, MON_DATA_ATK_EV);
@@ -5116,17 +5116,17 @@ static void Task_PartyMenuReplaceMove(u8 taskId)
 {
     struct Pokemon *mon;
     u16 move;
-	u8 oldPP;
+    u8 oldPP;
 
     if (IsPartyMenuTextPrinterActive() != TRUE)
     {
         mon = &gPlayerParty[gPartyMenu.slotId];
         RemoveMonPPBonus(mon, GetMoveSlotToReplace());
-		oldPP = GetMonData(mon, MON_DATA_PP1 + GetMoveSlotToReplace(), NULL);
+        oldPP = GetMonData(mon, MON_DATA_PP1 + GetMoveSlotToReplace(), NULL);
         move = gPartyMenu.data1;
         SetMonMoveSlot(mon, move, GetMoveSlotToReplace());
-		if (GetMonData(mon, MON_DATA_PP1 + GetMoveSlotToReplace(), NULL) > oldPP)
-			SetMonData(mon, MON_DATA_PP1 + GetMoveSlotToReplace(), &oldPP);
+        if (GetMonData(mon, MON_DATA_PP1 + GetMoveSlotToReplace(), NULL) > oldPP)
+            SetMonData(mon, MON_DATA_PP1 + GetMoveSlotToReplace(), &oldPP);
         Task_LearnedMove(taskId);
     }
 }

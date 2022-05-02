@@ -2786,7 +2786,7 @@ static const u8 sMonFrontAnimIdsTable[NUM_SPECIES - 1] =
     [SPECIES_BURMY_TRASH_CLOAK - 1]      = ANIM_V_STRETCH,
     [SPECIES_WORMADAM_SANDY_CLOAK - 1]   = ANIM_SWING_CONVEX_FAST_SHORT,
     [SPECIES_WORMADAM_TRASH_CLOAK - 1]   = ANIM_SWING_CONVEX_FAST_SHORT,
-    [SPECIES_CHERRIM_SUNSHINE - 1] 	     = ANIM_RAPID_H_HOPS,
+    [SPECIES_CHERRIM_SUNSHINE - 1]          = ANIM_RAPID_H_HOPS,
     [SPECIES_SHELLOS_EAST_SEA - 1]       = ANIM_V_STRETCH,
     [SPECIES_GASTRODON_EAST_SEA - 1]     = ANIM_CIRCULAR_STRETCH_TWICE,
     [SPECIES_ROTOM_HEAT - 1]             = ANIM_V_SQUISH_AND_BOUNCE,
@@ -2890,7 +2890,7 @@ static const u8 sMonFrontAnimIdsTable[NUM_SPECIES - 1] =
     [SPECIES_ZYGARDE_50_POWER_CONSTRUCT - 1]   = ANIM_TIP_MOVE_FORWARD,
     [SPECIES_ZYGARDE_COMPLETE - 1]             = ANIM_GROW_VIBRATE,
     [SPECIES_HOOPA_UNBOUND - 1]                = ANIM_GROW_IN_STAGES,
-	//Gen 7 Forms
+    //Gen 7 Forms
     [SPECIES_ORICORIO_POM_POM - 1]          = ANIM_V_SQUISH_AND_BOUNCE, //Todo
     [SPECIES_ORICORIO_PAU - 1]              = ANIM_V_SQUISH_AND_BOUNCE, //Todo
     [SPECIES_ORICORIO_SENSU - 1]            = ANIM_V_SQUISH_AND_BOUNCE, //Todo
@@ -3996,18 +3996,18 @@ void CalculateMonStats(struct Pokemon *mon)
     }
     else
     {*/
-	if (currentHP == 0 && oldMaxHP == 0)
-		currentHP = newMaxHP;
-	else if (currentHP != 0) {
-		// BUG: currentHP is unintentionally able to become <= 0 after the instruction below. This causes the pomeg berry glitch.
-		currentHP += newMaxHP - oldMaxHP;
-		#ifdef BUGFIX
-		if (currentHP <= 0)
-			currentHP = 1;
-		#endif
-	}
-	else
-		return;
+    if (currentHP == 0 && oldMaxHP == 0)
+        currentHP = newMaxHP;
+    else if (currentHP != 0) {
+        // BUG: currentHP is unintentionally able to become <= 0 after the instruction below. This causes the pomeg berry glitch.
+        currentHP += newMaxHP - oldMaxHP;
+        #ifdef BUGFIX
+        if (currentHP <= 0)
+            currentHP = 1;
+        #endif
+    }
+    else
+        return;
     //}
 
     SetMonData(mon, MON_DATA_HP, &currentHP);
@@ -4413,7 +4413,7 @@ u32 GetBoxMonData(struct BoxPokemon *boxMon, s32 field, u8 *data)
 {
     s32 i;
     u32 retVal = 0;
-	
+    
     switch (field)
     {
     case MON_DATA_PERSONALITY:
@@ -5235,13 +5235,13 @@ void PokemonToBattleMon(struct Pokemon *src, struct BattlePokemon *dst, bool8 re
     StringCopy_Nickname(dst->nickname, nickname);
     GetMonData(src, MON_DATA_OT_NAME, dst->otName);
 
-	if (resetStats)
-	{
-		for (i = 0; i < NUM_BATTLE_STATS; i++)
-			dst->statStages[i] = DEFAULT_STAT_STAGE;
+    if (resetStats)
+    {
+        for (i = 0; i < NUM_BATTLE_STATS; i++)
+            dst->statStages[i] = DEFAULT_STAT_STAGE;
 
-		dst->status2 = 0;
-	}
+        dst->status2 = 0;
+    }
 }
 
 void CopyPlayerPartyMonToBattleData(u8 battlerId, u8 partyIndex, bool8 resetStats)
@@ -6436,15 +6436,15 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, u8 mode, u16 evolutionItem, s
                     }
                 }
                 break;
-			case EVO_LEVEL_ABILITY_1:
+            case EVO_LEVEL_ABILITY_1:
                 if (gEvolutionTable[species][i].param <= level && GetMonData(mon, MON_DATA_ABILITY_NUM, NULL) == 0)
-					targetSpecies = gEvolutionTable[species][i].targetSpecies;
-				break;
-			case EVO_LEVEL_ABILITY_2:
+                    targetSpecies = gEvolutionTable[species][i].targetSpecies;
+                break;
+            case EVO_LEVEL_ABILITY_2:
                 if (gEvolutionTable[species][i].param <= level && GetMonData(mon, MON_DATA_ABILITY_NUM, NULL) == 1)
-					targetSpecies = gEvolutionTable[species][i].targetSpecies;
-				break;
-			}
+                    targetSpecies = gEvolutionTable[species][i].targetSpecies;
+                break;
+            }
         }
         break;
     case EVO_MODE_TRADE:
@@ -7145,7 +7145,7 @@ u32 CanSpeciesLearnTMHM(u16 species, u8 tm)
     learnableMoves = gTMHMLearnsets[species];
     while (*learnableMoves != 0xFF)
     {
-		if (*learnableMoves == tm)
+        if (*learnableMoves == tm)
             return TRUE;
         learnableMoves++;
     }
@@ -7198,45 +7198,45 @@ u8 GetEggMoveTutorMoves(struct Pokemon *mon, u16 *moves)
     u16 species = GetMonData(mon, MON_DATA_SPECIES, 0);
     u16 earliestStage = species;
     u8 level = GetMonData(mon, MON_DATA_LEVEL, 0);
-	u8 eggMovesTotal;
-	u16 allEggMoves[EGG_MOVES_ARRAY_COUNT];
+    u8 eggMovesTotal;
+    u16 allEggMoves[EGG_MOVES_ARRAY_COUNT];
     int i, j, k;
 
-	do
-	{
-		species = earliestStage;
-		for (i = 0; i < NUM_SPECIES; i++)
-		{
-			for (j = 0; j < EVOS_PER_MON; j++)
-			{
-				if (gEvolutionTable[i][j].targetSpecies == species)
-				{
-					species = earliestStage;
-					earliestStage = i;
-					break;
-				}
-			}
-		}
-	} while (earliestStage != species);
+    do
+    {
+        species = earliestStage;
+        for (i = 0; i < NUM_SPECIES; i++)
+        {
+            for (j = 0; j < EVOS_PER_MON; j++)
+            {
+                if (gEvolutionTable[i][j].targetSpecies == species)
+                {
+                    species = earliestStage;
+                    earliestStage = i;
+                    break;
+                }
+            }
+        }
+    } while (earliestStage != species);
 
-	eggMovesTotal = GetEggMovesSpecies(species, allEggMoves);
+    eggMovesTotal = GetEggMovesSpecies(species, allEggMoves);
 
     for (i = 0; i < MAX_MON_MOVES; i++)
         learnedMoves[i] = GetMonData(mon, MON_DATA_MOVE1 + i, 0);
 
     for (i = 0; i < eggMovesTotal; i++)
     {
-		for (j = 0; j < MAX_MON_MOVES && learnedMoves[j] != allEggMoves[i]; j++)
-			;
+        for (j = 0; j < MAX_MON_MOVES && learnedMoves[j] != allEggMoves[i]; j++)
+            ;
 
-		if (j == MAX_MON_MOVES)
-		{
-			for (k = 0; k < numMoves && moves[k] != allEggMoves[i]; k++)
-				;
+        if (j == MAX_MON_MOVES)
+        {
+            for (k = 0; k < numMoves && moves[k] != allEggMoves[i]; k++)
+                ;
 
-			if (k == numMoves)
-				moves[numMoves++] = allEggMoves[i];
-		}
+            if (k == numMoves)
+                moves[numMoves++] = allEggMoves[i];
+        }
     }
 
     return numMoves;
@@ -8204,51 +8204,51 @@ u16 GetFormChangeTargetSpeciesBoxMon(struct BoxPokemon *mon, u16 method, u32 arg
 
 u8 GetHiddenPowerType(u32 personality)
 {
-	switch (GetNatureFromPersonality(personality))
-	{
-		case NATURE_HARDY:
-			return TYPE_STEEL;
-		case NATURE_DOCILE:
-			return TYPE_BUG;
-		case NATURE_LONELY:
-			return TYPE_DARK;
-		case NATURE_LAX:
-			return TYPE_DRAGON;
-		case NATURE_HASTY:
-		case NATURE_RASH:
-			return TYPE_ELECTRIC;
-		case NATURE_NAUGHTY:
-		case NATURE_JOLLY:
-			return TYPE_FAIRY;
-		case NATURE_BRAVE:
-		case NATURE_BOLD:
-			return TYPE_FIGHTING;
-		case NATURE_NAIVE:
-		case NATURE_SASSY:
-			return TYPE_FIRE;
-		case NATURE_TIMID:
-			return TYPE_FLYING;
-		case NATURE_BASHFUL:
-			return TYPE_GHOST;
-		case NATURE_MILD:
-		case NATURE_GENTLE:
-			return TYPE_GRASS;
-		case NATURE_CAREFUL:
-		case NATURE_MODEST:
-			return TYPE_GROUND;
-		case NATURE_CALM:
-		case NATURE_RELAXED:
-			return TYPE_ICE;
-		case NATURE_IMPISH:
-			return TYPE_POISON;
-		case NATURE_QUIET:
-			return TYPE_PSYCHIC;
-		case NATURE_ADAMANT:
-		case NATURE_SERIOUS:
-			return TYPE_ROCK;
-		case NATURE_QUIRKY:
-			return TYPE_WATER;
-	}
+    switch (GetNatureFromPersonality(personality))
+    {
+        case NATURE_HARDY:
+            return TYPE_STEEL;
+        case NATURE_DOCILE:
+            return TYPE_BUG;
+        case NATURE_LONELY:
+            return TYPE_DARK;
+        case NATURE_LAX:
+            return TYPE_DRAGON;
+        case NATURE_HASTY:
+        case NATURE_RASH:
+            return TYPE_ELECTRIC;
+        case NATURE_NAUGHTY:
+        case NATURE_JOLLY:
+            return TYPE_FAIRY;
+        case NATURE_BRAVE:
+        case NATURE_BOLD:
+            return TYPE_FIGHTING;
+        case NATURE_NAIVE:
+        case NATURE_SASSY:
+            return TYPE_FIRE;
+        case NATURE_TIMID:
+            return TYPE_FLYING;
+        case NATURE_BASHFUL:
+            return TYPE_GHOST;
+        case NATURE_MILD:
+        case NATURE_GENTLE:
+            return TYPE_GRASS;
+        case NATURE_CAREFUL:
+        case NATURE_MODEST:
+            return TYPE_GROUND;
+        case NATURE_CALM:
+        case NATURE_RELAXED:
+            return TYPE_ICE;
+        case NATURE_IMPISH:
+            return TYPE_POISON;
+        case NATURE_QUIET:
+            return TYPE_PSYCHIC;
+        case NATURE_ADAMANT:
+        case NATURE_SERIOUS:
+            return TYPE_ROCK;
+        case NATURE_QUIRKY:
+            return TYPE_WATER;
+    }
 }
 
 u16 MonTryLearningNewMoveEvolution(struct Pokemon *mon, bool8 firstMove)

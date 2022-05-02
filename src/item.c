@@ -98,7 +98,7 @@ void SetBagItemsPointers(void)
 {
     gBagPockets[ITEMS_POCKET].itemSlots = gSaveBlock1Ptr->bagPocket_Items;
     gBagPockets[ITEMS_POCKET].capacity = BAG_ITEMS_COUNT;
-	
+    
     gBagPockets[CONSUMABLES_POCKET].itemSlots = gSaveBlock1Ptr->bagPocket_Consumables;
     gBagPockets[CONSUMABLES_POCKET].capacity = BAG_ITEMS_COUNT;
 
@@ -316,7 +316,7 @@ bool8 AddBagItem(u16 itemId, u16 count)
                 slotCapacity = MAX_BAG_ITEM_CAPACITY;
             break;
         }
-		
+        
         for (i = 0; i < itemPocket->capacity; i++)
         {
             if (newItems[i].itemId == itemId)

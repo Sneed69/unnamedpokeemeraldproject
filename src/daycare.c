@@ -437,7 +437,7 @@ static s32 GetParentToInheritNature(struct DayCare *daycare)
     }
 
     // Don't inherit nature if not holding Everstone
-	return -1;
+    return -1;
 }
 
 static void _TriggerPendingDaycareEgg(struct DayCare *daycare)
@@ -520,7 +520,7 @@ static void InheritIVs(struct Pokemon *egg, struct DayCare *daycare)
     u8 availableIVs[NUM_STATS];
     u8 whichParents[INHERITED_IV_DESTINY_KNOT_COUNT];
     u8 iv;
-	u8 inheritedN = INHERITED_IV_COUNT;
+    u8 inheritedN = INHERITED_IV_COUNT;
 
     // Initialize a list of IV indices.
     for (i = 0; i < NUM_STATS; i++)
@@ -529,25 +529,25 @@ static void InheritIVs(struct Pokemon *egg, struct DayCare *daycare)
     }
 
     // search for power items or destiny knot
-	k = 0;
+    k = 0;
     for (i = 0; i < DAYCARE_MON_COUNT; i++)
     {
         u16 item = GetBoxMonData(&daycare->mons[i].mon, MON_DATA_HELD_ITEM);
-		if (gItems[item].holdEffect == HOLD_EFFECT_POWER_ITEM)
-		{
-			index = gItems[item].secondaryId;
-			for (j = 0; j <= index; j++)
-				if (availableIVs[j] == index)
-				{
-					selectedIvs[k] = index;
-					RemoveIVIndexFromList(availableIVs, index);
-					whichParents[k] = i;
-					k++;
-					break;
-				}
-		}
-		else if (gItems[item].holdEffect == HOLD_EFFECT_DESTINY_KNOT)
-			inheritedN = INHERITED_IV_DESTINY_KNOT_COUNT;
+        if (gItems[item].holdEffect == HOLD_EFFECT_POWER_ITEM)
+        {
+            index = gItems[item].secondaryId;
+            for (j = 0; j <= index; j++)
+                if (availableIVs[j] == index)
+                {
+                    selectedIvs[k] = index;
+                    RemoveIVIndexFromList(availableIVs, index);
+                    whichParents[k] = i;
+                    k++;
+                    break;
+                }
+        }
+        else if (gItems[item].holdEffect == HOLD_EFFECT_DESTINY_KNOT)
+            inheritedN = INHERITED_IV_DESTINY_KNOT_COUNT;
     }
 
     // Select the 1-5 remaining IVs that will be inherited randomly.
@@ -568,7 +568,7 @@ static void InheritIVs(struct Pokemon *egg, struct DayCare *daycare)
     for (i = 0; i < inheritedN; i++)
     {
         iv = GetBoxMonData(&daycare->mons[whichParents[i]].mon, MON_DATA_HP_IV + selectedIvs[i]);
-		SetMonData(egg, MON_DATA_HP_IV + selectedIvs[i], &iv);
+        SetMonData(egg, MON_DATA_HP_IV + selectedIvs[i], &iv);
     }
 }
 
@@ -701,7 +701,7 @@ static void BuildEggMoveset(struct Pokemon *egg, struct BoxPokemon *father, stru
                 }
             }
         }
-		if (sHatchedEggMotherMoves[i] != MOVE_NONE)
+        if (sHatchedEggMotherMoves[i] != MOVE_NONE)
         {
             for (j = 0; j < numEggMoves; j++)
             {
@@ -732,7 +732,7 @@ static void BuildEggMoveset(struct Pokemon *egg, struct BoxPokemon *father, stru
                 }
             }
         }
-		if (sHatchedEggMotherMoves[i] != MOVE_NONE)
+        if (sHatchedEggMotherMoves[i] != MOVE_NONE)
         {
             for (j = 0; j < NUM_TECHNICAL_MACHINES + NUM_HIDDEN_MACHINES; j++)
             {

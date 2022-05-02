@@ -6742,18 +6742,18 @@ static void PrintStatsScreen_Moves_Top(u8 taskId)
             }
         #endif
         if (level > 0)
-		{
-			ConvertIntToDecimalStringN(gStringVar1, level, STR_CONV_MODE_RIGHT_ALIGN, 3); //Move learn lvl
-			PrintStatsScreenTextSmall(WIN_STATS_MOVES_TOP, gText_Stats_MoveLevel, moves_x + 113, moves_y + 3); //Level text
-			PrintStatsScreenTextSmall(WIN_STATS_MOVES_TOP, gStringVar1, moves_x + 113, moves_y + 14); //Print level
-			item = ITEM_RARE_CANDY;
-		}
-		else
-		{
-			PrintStatsScreenTextSmall(WIN_STATS_MOVES_TOP, gText_Stats_On, moves_x + 113, moves_y + 3); //Print On
-			PrintStatsScreenTextSmall(WIN_STATS_MOVES_TOP, gText_Stats_Evo, moves_x + 113, moves_y + 14); //Print Evo
-			item = ITEM_EVIOLITE;
-		}
+        {
+            ConvertIntToDecimalStringN(gStringVar1, level, STR_CONV_MODE_RIGHT_ALIGN, 3); //Move learn lvl
+            PrintStatsScreenTextSmall(WIN_STATS_MOVES_TOP, gText_Stats_MoveLevel, moves_x + 113, moves_y + 3); //Level text
+            PrintStatsScreenTextSmall(WIN_STATS_MOVES_TOP, gStringVar1, moves_x + 113, moves_y + 14); //Print level
+            item = ITEM_RARE_CANDY;
+        }
+        else
+        {
+            PrintStatsScreenTextSmall(WIN_STATS_MOVES_TOP, gText_Stats_On, moves_x + 113, moves_y + 3); //Print On
+            PrintStatsScreenTextSmall(WIN_STATS_MOVES_TOP, gText_Stats_Evo, moves_x + 113, moves_y + 14); //Print Evo
+            item = ITEM_EVIOLITE;
+        }
     }
     else
     {
@@ -8230,14 +8230,14 @@ static void Task_ExitEvolutionScreen(u8 taskId)
 }
 
 //Stat bars on main screen, code by DizzyEgg, idea by Jaizu
-#define PIXEL_COORDS_TO_OFFSET(x, y)(			\
-/*Add tiles by X*/								\
-((y / 8) * 32 * 8)								\
-/*Add tiles by X*/								\
-+ ((x / 8) * 32)								\
-/*Add pixels by Y*/								\
-+ ((((y) - ((y / 8) * 8))) * 4)				    \
-/*Add pixels by X*/								\
+#define PIXEL_COORDS_TO_OFFSET(x, y)(            \
+/*Add tiles by X*/                                \
+((y / 8) * 32 * 8)                                \
+/*Add tiles by X*/                                \
++ ((x / 8) * 32)                                \
+/*Add pixels by Y*/                                \
++ ((((y) - ((y / 8) * 8))) * 4)                    \
+/*Add pixels by X*/                                \
 + ((((x) - ((x / 8) * 8)) / 2)))
 
 static inline void WritePixel(u8 *dst, u32 x, u32 y, u32 value)

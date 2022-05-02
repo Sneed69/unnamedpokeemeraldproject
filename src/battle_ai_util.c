@@ -2061,7 +2061,7 @@ bool32 IsAttackBoostMoveEffect(u16 effect)
     switch (effect)
     {
     case EFFECT_ATTACK_UP:
-	case EFFECT_ATTACK_UP_2:
+    case EFFECT_ATTACK_UP_2:
     case EFFECT_ATTACK_ACCURACY_UP:
     case EFFECT_ATTACK_SPATK_UP:
     case EFFECT_DRAGON_DANCE:
@@ -2080,17 +2080,17 @@ bool32 IsStatRaisingEffect(u16 effect)
     switch (effect)
     {
     case EFFECT_ATTACK_UP:
-	case EFFECT_ATTACK_UP_2:
-	case EFFECT_DEFENSE_UP:
-	case EFFECT_DEFENSE_UP_2:
+    case EFFECT_ATTACK_UP_2:
+    case EFFECT_DEFENSE_UP:
+    case EFFECT_DEFENSE_UP_2:
     case EFFECT_DEFENSE_UP_3:
-	case EFFECT_SPEED_UP:
-	case EFFECT_SPEED_UP_2:
-	case EFFECT_SPECIAL_ATTACK_UP:
-	case EFFECT_SPECIAL_ATTACK_UP_2:
+    case EFFECT_SPEED_UP:
+    case EFFECT_SPEED_UP_2:
+    case EFFECT_SPECIAL_ATTACK_UP:
+    case EFFECT_SPECIAL_ATTACK_UP_2:
     case EFFECT_SPECIAL_ATTACK_UP_3:
-	case EFFECT_SPECIAL_DEFENSE_UP:
-	case EFFECT_SPECIAL_DEFENSE_UP_2:
+    case EFFECT_SPECIAL_DEFENSE_UP:
+    case EFFECT_SPECIAL_DEFENSE_UP_2:
     case EFFECT_ACCURACY_UP:
     case EFFECT_ACCURACY_UP_2:
     case EFFECT_EVASION_UP:
@@ -2098,17 +2098,17 @@ bool32 IsStatRaisingEffect(u16 effect)
     case EFFECT_MINIMIZE:
     case EFFECT_DEFENSE_CURL:
     case EFFECT_CHARGE:
-	case EFFECT_CALM_MIND:
+    case EFFECT_CALM_MIND:
     case EFFECT_COSMIC_POWER:
-	case EFFECT_DRAGON_DANCE:
-	case EFFECT_ACUPRESSURE:
-	case EFFECT_SHELL_SMASH:
-	case EFFECT_SHIFT_GEAR:
-	case EFFECT_ATTACK_ACCURACY_UP:
-	case EFFECT_ATTACK_SPATK_UP:
-	case EFFECT_GROWTH:
-	case EFFECT_COIL:
-	case EFFECT_QUIVER_DANCE:
+    case EFFECT_DRAGON_DANCE:
+    case EFFECT_ACUPRESSURE:
+    case EFFECT_SHELL_SMASH:
+    case EFFECT_SHIFT_GEAR:
+    case EFFECT_ATTACK_ACCURACY_UP:
+    case EFFECT_ATTACK_SPATK_UP:
+    case EFFECT_GROWTH:
+    case EFFECT_COIL:
+    case EFFECT_QUIVER_DANCE:
     case EFFECT_BULK_UP:
     case EFFECT_GEOMANCY:
     case EFFECT_STOCKPILE:
@@ -2442,41 +2442,41 @@ struct Pokemon *GetPartyBattlerPartyData(u8 battlerId, u8 switchBattler)
 
 static bool32 PartyBattlerShouldAvoidHazards(u8 currBattler, u8 switchBattler)
 {
-	struct Pokemon *mon = GetPartyBattlerPartyData(currBattler, switchBattler);
-	u16 ability = GetMonAbility(mon);   // we know our own party data
-	u16 holdEffect;
-	u16 species = GetMonData(mon, MON_DATA_SPECIES);
-	u32 flags = gSideStatuses[GetBattlerSide(currBattler)] & (SIDE_STATUS_SPIKES | SIDE_STATUS_STEALTH_ROCK | SIDE_STATUS_STICKY_WEB | SIDE_STATUS_TOXIC_SPIKES);
-	s32 hazardDamage = 0;
+    struct Pokemon *mon = GetPartyBattlerPartyData(currBattler, switchBattler);
+    u16 ability = GetMonAbility(mon);   // we know our own party data
+    u16 holdEffect;
+    u16 species = GetMonData(mon, MON_DATA_SPECIES);
+    u32 flags = gSideStatuses[GetBattlerSide(currBattler)] & (SIDE_STATUS_SPIKES | SIDE_STATUS_STEALTH_ROCK | SIDE_STATUS_STICKY_WEB | SIDE_STATUS_TOXIC_SPIKES);
+    s32 hazardDamage = 0;
 
-	if (flags == 0)
-		return FALSE;
+    if (flags == 0)
+        return FALSE;
 
-	if (ability == ABILITY_MAGIC_GUARD)
-		return FALSE;
-	if (gFieldStatuses & STATUS_FIELD_MAGIC_ROOM || ability == ABILITY_KLUTZ)
-		holdEffect = HOLD_EFFECT_NONE;
-	else
-		holdEffect = gItems[GetMonData(mon, MON_DATA_HELD_ITEM)].holdEffect;
-	if (holdEffect == HOLD_EFFECT_HEAVY_DUTY_BOOTS)
-		return FALSE;
-	
-	if (flags & SIDE_STATUS_STEALTH_ROCK)
-		hazardDamage += GetStealthHazardDamageByMon(gBattleMoves[MOVE_STEALTH_ROCK].type, mon);
-	if (flags & SIDE_STATUS_SPIKES && holdEffect != HOLD_EFFECT_AIR_BALLOON
-		&& (holdEffect == HOLD_EFFECT_IRON_BALL || gFieldStatuses & STATUS_FIELD_GRAVITY
-		|| !(gBaseStats[species].type1 == TYPE_FLYING || gBaseStats[species].type2 == TYPE_FLYING || ability != ABILITY_LEVITATE)))
-	{
-		u8 spikesDmg = GetMonData(mon, MON_DATA_MAX_HP) / ((5 - gSideTimers[GetBattlerSide(currBattler)].spikesAmount) * 2);
-		if (spikesDmg == 0)
-			spikesDmg = 1;
-		hazardDamage += spikesDmg;
-	}
+    if (ability == ABILITY_MAGIC_GUARD)
+        return FALSE;
+    if (gFieldStatuses & STATUS_FIELD_MAGIC_ROOM || ability == ABILITY_KLUTZ)
+        holdEffect = HOLD_EFFECT_NONE;
+    else
+        holdEffect = gItems[GetMonData(mon, MON_DATA_HELD_ITEM)].holdEffect;
+    if (holdEffect == HOLD_EFFECT_HEAVY_DUTY_BOOTS)
+        return FALSE;
+    
+    if (flags & SIDE_STATUS_STEALTH_ROCK)
+        hazardDamage += GetStealthHazardDamageByMon(gBattleMoves[MOVE_STEALTH_ROCK].type, mon);
+    if (flags & SIDE_STATUS_SPIKES && holdEffect != HOLD_EFFECT_AIR_BALLOON
+        && (holdEffect == HOLD_EFFECT_IRON_BALL || gFieldStatuses & STATUS_FIELD_GRAVITY
+        || !(gBaseStats[species].type1 == TYPE_FLYING || gBaseStats[species].type2 == TYPE_FLYING || ability != ABILITY_LEVITATE)))
+    {
+        u8 spikesDmg = GetMonData(mon, MON_DATA_MAX_HP) / ((5 - gSideTimers[GetBattlerSide(currBattler)].spikesAmount) * 2);
+        if (spikesDmg == 0)
+            spikesDmg = 1;
+        hazardDamage += spikesDmg;
+    }
 
-	if (GetMonData(mon, MON_DATA_HP) < hazardDamage)
-		return TRUE;
+    if (GetMonData(mon, MON_DATA_HP) < hazardDamage)
+        return TRUE;
 
-	return FALSE;
+    return FALSE;
 }
 
 enum {
@@ -2570,7 +2570,7 @@ bool32 ShouldPivot(u8 battlerAtk, u8 battlerDef, u16 defAbility, u16 move, u8 mo
         {
             if (CanTargetFaintAi(battlerDef, battlerAtk))
             {
-				return CAN_TRY_PIVOT; // You're probably going to faint anyways so if for some reason you don't, better switch
+                return CAN_TRY_PIVOT; // You're probably going to faint anyways so if for some reason you don't, better switch
             }
             else if (CanTargetFaintAiWithMod(battlerDef, battlerAtk, 0, 2)) // Foe can 2HKO AI
             {

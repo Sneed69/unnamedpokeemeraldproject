@@ -121,7 +121,7 @@ static bool8 ShouldTintOverworld(void)
 {
     if (!IsMapTypeOutdoors(gMapHeader.mapType))
         return FALSE;
-	/*if (gMapHeader.regionMapSectionId == MAPSEC_MT_PYRE)
+    /*if (gMapHeader.regionMapSectionId == MAPSEC_MT_PYRE)
         return FALSE;*/
 
     // more conditions?

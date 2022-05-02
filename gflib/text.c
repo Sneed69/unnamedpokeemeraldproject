@@ -1010,7 +1010,7 @@ static u16 RenderText(struct TextPrinter *textPrinter)
                 textPrinter->printerTemplate.currentChar++;
                 return RENDER_REPEAT;
             case EXT_CTRL_CODE_RESET_SIZE:
-				subStruct->fontId = textPrinter->printerTemplate.fontId;
+                subStruct->fontId = textPrinter->printerTemplate.fontId;
                 return RENDER_REPEAT;
             case EXT_CTRL_CODE_PAUSE:
                 textPrinter->delayCounter = *textPrinter->printerTemplate.currentChar;
@@ -1100,7 +1100,7 @@ static u16 RenderText(struct TextPrinter *textPrinter)
                 textPrinter->japanese = FALSE;
                 return RENDER_REPEAT;
             case EXT_CTRL_CODE_CAPITALIZE:
-				textPrinter->capitalize = TRUE;
+                textPrinter->capitalize = TRUE;
                 return RENDER_REPEAT;
             }
             break;
@@ -1124,14 +1124,14 @@ static u16 RenderText(struct TextPrinter *textPrinter)
         case EOS:
             return RENDER_FINISH;
         }
-		
-		if (textPrinter->capitalize)
-		{
-			textPrinter->capitalize = FALSE;
-			if (currChar >= CHAR_a && currChar <= CHAR_z)
-				CAPITALIZE_CHAR(currChar);
-		}
-		
+        
+        if (textPrinter->capitalize)
+        {
+            textPrinter->capitalize = FALSE;
+            if (currChar >= CHAR_a && currChar <= CHAR_z)
+                CAPITALIZE_CHAR(currChar);
+        }
+        
         switch (subStruct->fontId)
         {
         case FONT_SMALL:
@@ -1175,7 +1175,7 @@ static u16 RenderText(struct TextPrinter *textPrinter)
             else
                 textPrinter->printerTemplate.currentX += gCurGlyph.width;
         }
-		
+        
         return RENDER_PRINT;
     case RENDER_STATE_WAIT:
         if (TextPrinterWait(textPrinter))
@@ -1457,11 +1457,11 @@ s32 GetStringWidth(u8 fontId, const u8 *str, s16 letterSpacing)
                 isJapanese = 0;
                 break;
             case EXT_CTRL_CODE_RESET_SIZE:
-				if (letterSpacing == -1)
-				localLetterSpacing = GetFontAttribute(fontId, FONTATTR_LETTER_SPACING);
-				else
-				  localLetterSpacing = letterSpacing;
-				break;
+                if (letterSpacing == -1)
+                localLetterSpacing = GetFontAttribute(fontId, FONTATTR_LETTER_SPACING);
+                else
+                  localLetterSpacing = letterSpacing;
+                break;
             case EXT_CTRL_CODE_PAUSE_UNTIL_PRESS:
             case EXT_CTRL_CODE_WAIT_SE:
             case EXT_CTRL_CODE_FILL_WINDOW:

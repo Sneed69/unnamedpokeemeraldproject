@@ -543,7 +543,7 @@ const u8 *GetExpandedPlaceholder(u32 id)
         [PLACEHOLDER_ID_KYOGRE]       = ExpandPlaceholder_Kyogre,
         [PLACEHOLDER_ID_GROUDON]      = ExpandPlaceholder_Groudon,
         [PLACEHOLDER_ID_SUBJECTIVE]   = ExpandPlaceholder_Subjective,
-        [PLACEHOLDER_ID_OBJECTIVE]	  = ExpandPlaceholder_Objective,
+        [PLACEHOLDER_ID_OBJECTIVE]      = ExpandPlaceholder_Objective,
         [PLACEHOLDER_ID_POSSESSIVE]   = ExpandPlaceholder_Possessive,
     };
 
@@ -816,7 +816,7 @@ char *ConvertToAscii(const u8 *str)
     for (i = 0; *str != EOS; i++, str++)
     {
         char modifiedCode = '?';
-		if (*str >= CHAR_a && *str <= CHAR_z)
+        if (*str >= CHAR_a && *str <= CHAR_z)
         {
             modifiedCode = *str-(CHAR_a-'a'); // lower-case characters
         }

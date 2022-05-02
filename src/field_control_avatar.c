@@ -135,33 +135,33 @@ void FieldGetPlayerInput(struct FieldInput *input, u16 newKeys, u16 heldKeys)
     input->dpadDirection = sCurrentDirection;
     //DEBUG
     #ifdef TX_DEBUGGING
-	if (!TX_DEBUG_MENU_OPTION)
-	{
-		if (heldKeys & B_BUTTON) 
-		{
-			if(input->pressedSelectButton)
-			{
-				input->input_field_1_2 = TRUE;
-				input->pressedSelectButton = FALSE;
-			}else if(input->pressedStartButton) 
-			{
-				input->input_field_1_2 = TRUE;
-				input->pressedStartButton = FALSE;
-			}
-		}
-		if (heldKeys & L_BUTTON) 
-		{
-			if(input->pressedSelectButton)
-			{
-				input->pressedRButton = TRUE;
-				input->pressedSelectButton = FALSE;
-			}else if(input->pressedStartButton) 
-			{
-				input->input_field_1_3 = TRUE;
-				input->pressedStartButton = FALSE;
-			}
-		}
-	}
+    if (!TX_DEBUG_MENU_OPTION)
+    {
+        if (heldKeys & B_BUTTON) 
+        {
+            if(input->pressedSelectButton)
+            {
+                input->input_field_1_2 = TRUE;
+                input->pressedSelectButton = FALSE;
+            }else if(input->pressedStartButton) 
+            {
+                input->input_field_1_2 = TRUE;
+                input->pressedStartButton = FALSE;
+            }
+        }
+        if (heldKeys & L_BUTTON) 
+        {
+            if(input->pressedSelectButton)
+            {
+                input->pressedRButton = TRUE;
+                input->pressedSelectButton = FALSE;
+            }else if(input->pressedStartButton) 
+            {
+                input->input_field_1_3 = TRUE;
+                input->pressedStartButton = FALSE;
+            }
+        }
+    }
     #endif
 }
 
@@ -219,7 +219,7 @@ int ProcessPlayerFieldInput(struct FieldInput *input)
         ShowStartMenu();
         return TRUE;
     }
-	if (input->pressedSelectButton && UseRegisteredKeyItemOnField(0))
+    if (input->pressedSelectButton && UseRegisteredKeyItemOnField(0))
         return TRUE;
     else if (input->pressedLButton && UseRegisteredKeyItemOnField(1))
         return TRUE;

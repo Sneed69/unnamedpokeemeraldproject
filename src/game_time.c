@@ -38,10 +38,10 @@ void GameTimeCounter_Update(void)
 
     if (gSaveBlock1Ptr->gameTimeVBlanks < 60)
         return;
-	
+    
     gSaveBlock1Ptr->gameTimeVBlanks -= 60;
     gSaveBlock1Ptr->gameTime.seconds++;
-	
+    
     if (gSaveBlock1Ptr->gameTime.seconds < 60)
         return;
 
@@ -53,7 +53,7 @@ void GameTimeCounter_Update(void)
 
     gSaveBlock1Ptr->gameTime.minutes -= 60;
     gSaveBlock1Ptr->gameTime.hours++;
-	
+    
     if (gSaveBlock1Ptr->gameTime.hours < 24)
         return;
 
@@ -64,10 +64,10 @@ void GameTimeCounter_Update(void)
 
     if (gSaveBlock1Ptr->gameTimeVBlanks < 60)
         return;
-	
+    
     gSaveBlock1Ptr->gameTime.seconds += gSaveBlock1Ptr->gameTimeVBlanks / 60;
     gSaveBlock1Ptr->gameTimeVBlanks %= 60;
-	
+    
     if (gSaveBlock1Ptr->gameTime.seconds < 60)
         return;
 
@@ -79,7 +79,7 @@ void GameTimeCounter_Update(void)
 
     gSaveBlock1Ptr->gameTime.hours += gSaveBlock1Ptr->gameTime.minutes / 60;
     gSaveBlock1Ptr->gameTime.minutes %= 60;
-	
+    
     if (gSaveBlock1Ptr->gameTime.hours < 24)
         return;
 

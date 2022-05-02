@@ -102,15 +102,15 @@ u8 ScriptGiveMonWithIvsAndNature(u16 species, u8 level, u16 item, u8 *IVs, u8 na
     int sentToPc;
     u8 heldItem[2];
     struct Pokemon mon;
-	u8 i=0;
-	
-	CreateMonWithNature(&mon, species, level, 0, nature);
+    u8 i=0;
+    
+    CreateMonWithNature(&mon, species, level, 0, nature);
     heldItem[0] = item;
     heldItem[1] = item >> 8;
     SetMonData(&mon, MON_DATA_HELD_ITEM, heldItem);
     SetMonData(&mon, MON_DATA_ABILITY_NUM, &i);
-	for (i = 0; i < NUM_STATS; i++)
-		SetMonData(&mon, MON_DATA_HP_IV + i, &IVs[i]);
+    for (i = 0; i < NUM_STATS; i++)
+        SetMonData(&mon, MON_DATA_HP_IV + i, &IVs[i]);
     sentToPc = GiveMonToPlayer(&mon);
     nationalDexNum = SpeciesToNationalPokedexNum(species);
 
@@ -179,24 +179,24 @@ bool8 DoesPartyHaveEnigmaBerry(void)
 void CreateScriptedWildMon(u16 species, u8 level, u16 item)
 {
     u8 heldItem[2];
-	u8 ivs;
-	
-	switch (species)
-	{
-		case SPECIES_RAYQUAZA:
-		case SPECIES_KYOGRE:
-		case SPECIES_GROUDON:
-		case SPECIES_REGIROCK:
-		case SPECIES_REGICE:
-		case SPECIES_REGISTEEL:
-		case SPECIES_REGIELEKI:
-		case SPECIES_REGIDRAGO:
-		case SPECIES_REGIGIGAS:
-			ivs = 31;
-			break;
-		default:
-			ivs = USE_RANDOM_IVS;
-	}
+    u8 ivs;
+    
+    switch (species)
+    {
+        case SPECIES_RAYQUAZA:
+        case SPECIES_KYOGRE:
+        case SPECIES_GROUDON:
+        case SPECIES_REGIROCK:
+        case SPECIES_REGICE:
+        case SPECIES_REGISTEEL:
+        case SPECIES_REGIELEKI:
+        case SPECIES_REGIDRAGO:
+        case SPECIES_REGIGIGAS:
+            ivs = 31;
+            break;
+        default:
+            ivs = USE_RANDOM_IVS;
+    }
 
     ZeroEnemyPartyMons();
     CreateMon(&gEnemyParty[0], species, level, ivs, 0, 0, OT_ID_PLAYER_ID, 0);

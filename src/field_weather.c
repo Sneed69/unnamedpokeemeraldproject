@@ -240,7 +240,7 @@ static void Task_WeatherInit(u8 taskId)
     // When the screen fades in, this is set to TRUE.
     if (gWeatherPtr->readyForInit)
     {
-		UpdateCameraPanning();
+        UpdateCameraPanning();
         sWeatherFuncs[gWeatherPtr->currWeather].initAll();
         gTasks[taskId].func = Task_WeatherMain;
     }
@@ -667,7 +667,7 @@ static void ApplyFogBlend(u8 blendCoeff, u16 blendColor)
     u16 curPalIndex;
 
     BlendPalette(0, 256, blendCoeff, blendColor);
-	BlendPalettesGradually(0x3FF0000, 0, 3, 8, RGB_WHITEALPHA, 0, 0); //blend objects
+    BlendPalettesGradually(0x3FF0000, 0, 3, 8, RGB_WHITEALPHA, 0, 0); //blend objects
     color = *(struct RGBColor *)&blendColor;
     rBlend = color.r;
     gBlend = color.g;

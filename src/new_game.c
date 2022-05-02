@@ -202,11 +202,11 @@ void NewGameInitData(void)
     ResetTrainerHillResults();
     ResetContestLinkResults();
     gSaveBlock2Ptr->expShare = 0;
-	
+    
     gSaveBlock1Ptr->registeredItemSelect = 0;
     gSaveBlock1Ptr->registeredItemL = 0;
     gSaveBlock1Ptr->registeredItemR = 0;
-	
+    
     FlagSet(FLAG_SYS_CLOCK_SET);
     gSaveBlock2Ptr->lastBerryTreeUpdate = gSaveBlock1Ptr->gameTime;
     VarSet(VAR_DAYS, gSaveBlock1Ptr->gameTime.days);

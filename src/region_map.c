@@ -1250,8 +1250,8 @@ static u8 GetMapsecType(u16 mapSecId)
     case MAPSEC_ROUTE_134:
         return FlagGet(FLAG_LANDMARK_SEALED_CHAMBER) ? MAPSECTYPE_ROUTE : MAPSECTYPE_ROUTE_CANTFLY;
     default:
-		if (mapSecId >= MAPSEC_ROUTE_101 && mapSecId <= MAPSEC_ROUTE_134)
-			return MAPSECTYPE_ROUTE;
+        if (mapSecId >= MAPSEC_ROUTE_101 && mapSecId <= MAPSEC_ROUTE_134)
+            return MAPSECTYPE_ROUTE;
         return MAPSECTYPE_ROUTE_CANTFLY;
     }
 }
@@ -2002,8 +2002,8 @@ static void CB_HandleFlyMapInput(void)
             break;
         case MAP_INPUT_A_BUTTON:
             if (sFlyMap->regionMap.mapSecType == MAPSECTYPE_CITY_CANFLY
-				|| sFlyMap->regionMap.mapSecType == MAPSECTYPE_BATTLE_FRONTIER
-				|| sFlyMap->regionMap.mapSecType == MAPSECTYPE_ROUTE)
+                || sFlyMap->regionMap.mapSecType == MAPSECTYPE_BATTLE_FRONTIER
+                || sFlyMap->regionMap.mapSecType == MAPSECTYPE_ROUTE)
             {
                 m4aSongNumStart(SE_SELECT);
                 sFlyMap->choseFlyLocation = TRUE;

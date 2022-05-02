@@ -3517,11 +3517,11 @@ void SetMoveEffect(bool32 primary, u32 certain)
                 gBattleMons[gBattlerAttacker].status2 |= STATUS2_ESCAPE_PREVENTION;
                 break;
             case MOVE_EFFECT_SCALE_SHOT:
-				if (!NoAliveMonsForEitherParty())
-				{
-					BattleScriptPush(gBattlescriptCurrInstr + 1);
-					gBattlescriptCurrInstr = BattleScript_DefDownSpeedUp;
-				}
+                if (!NoAliveMonsForEitherParty())
+                {
+                    BattleScriptPush(gBattlescriptCurrInstr + 1);
+                    gBattlescriptCurrInstr = BattleScript_DefDownSpeedUp;
+                }
                 break;
             }
         }
@@ -3885,7 +3885,7 @@ static void Cmd_getexp(void)
         }
         else
         {
-			gBattleStruct->hasShownExpShareMessage = FALSE;
+            gBattleStruct->hasShownExpShareMessage = FALSE;
             gBattleScripting.getexpState++;
             gBattleStruct->givenExpMons |= gBitTable[gBattlerPartyIndexes[gBattlerFainted]];
         }
@@ -3914,15 +3914,15 @@ static void Cmd_getexp(void)
             #else
                 calculatedExp = gBaseStats[gBattleMons[gBattlerFainted].species].expYield * gBattleMons[gBattlerFainted].level / 7;
             #endif
-			*exp = calculatedExp;
+            *exp = calculatedExp;
 
-			if (FlagGet(FLAG_EXP_SHARE_UPGRADE))
-				gExpShareExp = calculatedExp * 3 / 4;
-			else
-				gExpShareExp = calculatedExp / 2;
+            if (FlagGet(FLAG_EXP_SHARE_UPGRADE))
+                gExpShareExp = calculatedExp * 3 / 4;
+            else
+                gExpShareExp = calculatedExp / 2;
 
-			if (gExpShareExp == 0)
-				gExpShareExp = 1;
+            if (gExpShareExp == 0)
+                gExpShareExp = 1;
 
             gBattleScripting.getexpState++;
             gBattleStruct->expGetterMonId = 0;
@@ -3977,79 +3977,79 @@ static void Cmd_getexp(void)
                     else
                         gBattleMoveDamage = 0;
 
-					//give xp to fainted participants but dont give shared xp to fainted mons
-					if (GetMonData(&gPlayerParty[gBattleStruct->expGetterMonId], MON_DATA_HP) || gBattleMoveDamage > 0)
-					{
-						// only give exp share bonus in later gens if the mon wasn't sent out
-						if ((gSaveBlock2Ptr->expShare) && ((gBattleMoveDamage == 0) || (B_SPLIT_EXP < GEN_6)))
-							gBattleMoveDamage += gExpShareExp;
-						if (holdEffect == HOLD_EFFECT_LUCKY_EGG)
-							gBattleMoveDamage = (gBattleMoveDamage * 150) / 100;
-						if (gBattleTypeFlags & BATTLE_TYPE_TRAINER && B_TRAINER_EXP_MULTIPLIER <= GEN_7)
-							gBattleMoveDamage = (gBattleMoveDamage * 150) / 100;
-						#if (B_SCALED_EXP >= GEN_5) && (B_SCALED_EXP != GEN_6)
-						{
-							// Note: There is an edge case where if a pokemon receives a large amount of exp, it wouldn't be properly calculated
-							//       because of multiplying by scaling factor(the value would simply be larger than an u32 can hold). Hence u64 is needed.
-							u64 value = gBattleMoveDamage;
-							value *= sExperienceScalingFactors[(gBattleMons[gBattlerFainted].level * 2) + 10];
-							value /= sExperienceScalingFactors[gBattleMons[gBattlerFainted].level + GetMonData(&gPlayerParty[gBattleStruct->expGetterMonId], MON_DATA_LEVEL) + 10];
-							gBattleMoveDamage = value + 1;
-						}
-						#endif
+                    //give xp to fainted participants but dont give shared xp to fainted mons
+                    if (GetMonData(&gPlayerParty[gBattleStruct->expGetterMonId], MON_DATA_HP) || gBattleMoveDamage > 0)
+                    {
+                        // only give exp share bonus in later gens if the mon wasn't sent out
+                        if ((gSaveBlock2Ptr->expShare) && ((gBattleMoveDamage == 0) || (B_SPLIT_EXP < GEN_6)))
+                            gBattleMoveDamage += gExpShareExp;
+                        if (holdEffect == HOLD_EFFECT_LUCKY_EGG)
+                            gBattleMoveDamage = (gBattleMoveDamage * 150) / 100;
+                        if (gBattleTypeFlags & BATTLE_TYPE_TRAINER && B_TRAINER_EXP_MULTIPLIER <= GEN_7)
+                            gBattleMoveDamage = (gBattleMoveDamage * 150) / 100;
+                        #if (B_SCALED_EXP >= GEN_5) && (B_SCALED_EXP != GEN_6)
+                        {
+                            // Note: There is an edge case where if a pokemon receives a large amount of exp, it wouldn't be properly calculated
+                            //       because of multiplying by scaling factor(the value would simply be larger than an u32 can hold). Hence u64 is needed.
+                            u64 value = gBattleMoveDamage;
+                            value *= sExperienceScalingFactors[(gBattleMons[gBattlerFainted].level * 2) + 10];
+                            value /= sExperienceScalingFactors[gBattleMons[gBattlerFainted].level + GetMonData(&gPlayerParty[gBattleStruct->expGetterMonId], MON_DATA_LEVEL) + 10];
+                            gBattleMoveDamage = value + 1;
+                        }
+                        #endif
 
-						if (IsTradedMon(&gPlayerParty[gBattleStruct->expGetterMonId]))
-						{
-							// check if the pokemon doesn't belong to the player
-							if (gBattleTypeFlags & BATTLE_TYPE_INGAME_PARTNER && gBattleStruct->expGetterMonId >= 3)
-							{
-								i = STRINGID_EMPTYSTRING4;
-							}
-							else
-							{
-								gBattleMoveDamage = (gBattleMoveDamage * 150) / 100;
-								i = STRINGID_ABOOSTED;
-							}
-						}
-						else
-						{
-							i = STRINGID_EMPTYSTRING4;
-						}
+                        if (IsTradedMon(&gPlayerParty[gBattleStruct->expGetterMonId]))
+                        {
+                            // check if the pokemon doesn't belong to the player
+                            if (gBattleTypeFlags & BATTLE_TYPE_INGAME_PARTNER && gBattleStruct->expGetterMonId >= 3)
+                            {
+                                i = STRINGID_EMPTYSTRING4;
+                            }
+                            else
+                            {
+                                gBattleMoveDamage = (gBattleMoveDamage * 150) / 100;
+                                i = STRINGID_ABOOSTED;
+                            }
+                        }
+                        else
+                        {
+                            i = STRINGID_EMPTYSTRING4;
+                        }
 
-						// get exp getter battlerId
-						if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE)
-						{
-							if (gBattlerPartyIndexes[2] == gBattleStruct->expGetterMonId && !(gAbsentBattlerFlags & gBitTable[2]))
-								gBattleStruct->expGetterBattlerId = 2;
-							else
-							{
-								if (!(gAbsentBattlerFlags & gBitTable[0]))
-									gBattleStruct->expGetterBattlerId = 0;
-								else
-									gBattleStruct->expGetterBattlerId = 2;
-							}
-						}
-						else
-						{
-							gBattleStruct->expGetterBattlerId = 0;
-						}
+                        // get exp getter battlerId
+                        if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE)
+                        {
+                            if (gBattlerPartyIndexes[2] == gBattleStruct->expGetterMonId && !(gAbsentBattlerFlags & gBitTable[2]))
+                                gBattleStruct->expGetterBattlerId = 2;
+                            else
+                            {
+                                if (!(gAbsentBattlerFlags & gBitTable[0]))
+                                    gBattleStruct->expGetterBattlerId = 0;
+                                else
+                                    gBattleStruct->expGetterBattlerId = 2;
+                            }
+                        }
+                        else
+                        {
+                            gBattleStruct->expGetterBattlerId = 0;
+                        }
 
-						if (gBattleStruct->sentInPokes & 1)
-						{
-							PREPARE_MON_NICK_WITH_PREFIX_BUFFER(gBattleTextBuff1, gBattleStruct->expGetterBattlerId, gBattleStruct->expGetterMonId);
-							// buffer 'gained' or 'gained a boosted'
-							PREPARE_STRING_BUFFER(gBattleTextBuff2, i);
-							PREPARE_WORD_NUMBER_BUFFER(gBattleTextBuff3, 6, gBattleMoveDamage);
+                        if (gBattleStruct->sentInPokes & 1)
+                        {
+                            PREPARE_MON_NICK_WITH_PREFIX_BUFFER(gBattleTextBuff1, gBattleStruct->expGetterBattlerId, gBattleStruct->expGetterMonId);
+                            // buffer 'gained' or 'gained a boosted'
+                            PREPARE_STRING_BUFFER(gBattleTextBuff2, i);
+                            PREPARE_WORD_NUMBER_BUFFER(gBattleTextBuff3, 6, gBattleMoveDamage);
 
-							PrepareStringBattle(STRINGID_PKMNGAINEDEXP, gBattleStruct->expGetterBattlerId);
-						}
-						else if (gBattleStruct->hasShownExpShareMessage == FALSE)
-						{
-							PrepareStringBattle(STRINGID_TEAMGAINEDEXP, gBattleStruct->expGetterBattlerId);
-							gBattleStruct->hasShownExpShareMessage = TRUE;
-						}
-						MonGainEVs(&gPlayerParty[gBattleStruct->expGetterMonId], gBattleMons[gBattlerFainted].species);
-					}
+                            PrepareStringBattle(STRINGID_PKMNGAINEDEXP, gBattleStruct->expGetterBattlerId);
+                        }
+                        else if (gBattleStruct->hasShownExpShareMessage == FALSE)
+                        {
+                            PrepareStringBattle(STRINGID_TEAMGAINEDEXP, gBattleStruct->expGetterBattlerId);
+                            gBattleStruct->hasShownExpShareMessage = TRUE;
+                        }
+                        MonGainEVs(&gPlayerParty[gBattleStruct->expGetterMonId], gBattleMons[gBattlerFainted].species);
+                    }
                 }
                 gBattleStruct->sentInPokes >>= 1;
                 gBattleScripting.getexpState++;
@@ -4136,8 +4136,8 @@ static void Cmd_getexp(void)
                 gBattleScripting.getexpState = 2; // loop again
             else
             {
-				gBattleScripting.getexpState = 6; // we're done
-			}
+                gBattleScripting.getexpState = 6; // we're done
+            }
         }
         break;
     case 6: // increment instruction
@@ -6612,25 +6612,25 @@ static void Cmd_yesnoboxlearnmove(void)
             else
             {
                 u16 moveId = GetMonData(&gPlayerParty[gBattleStruct->expGetterMonId], MON_DATA_MOVE1 + movePosition);
-				gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 1);
+                gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 1);
 
-				PREPARE_MOVE_BUFFER(gBattleTextBuff2, moveId)
+                PREPARE_MOVE_BUFFER(gBattleTextBuff2, moveId)
 
-				RemoveMonPPBonus(&gPlayerParty[gBattleStruct->expGetterMonId], movePosition);
-				SetMonMoveSlot(&gPlayerParty[gBattleStruct->expGetterMonId], gMoveToLearn, movePosition);
+                RemoveMonPPBonus(&gPlayerParty[gBattleStruct->expGetterMonId], movePosition);
+                SetMonMoveSlot(&gPlayerParty[gBattleStruct->expGetterMonId], gMoveToLearn, movePosition);
 
-				if (gBattlerPartyIndexes[0] == gBattleStruct->expGetterMonId && MOVE_IS_PERMANENT(0, movePosition))
-				{
-					RemoveBattleMonPPBonus(&gBattleMons[0], movePosition);
-					SetBattleMonMoveSlot(&gBattleMons[0], gMoveToLearn, movePosition);
-				}
-				if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE
-					&& gBattlerPartyIndexes[2] == gBattleStruct->expGetterMonId
-					&& MOVE_IS_PERMANENT(2, movePosition))
-				{
-					RemoveBattleMonPPBonus(&gBattleMons[2], movePosition);
-					SetBattleMonMoveSlot(&gBattleMons[2], gMoveToLearn, movePosition);
-				}
+                if (gBattlerPartyIndexes[0] == gBattleStruct->expGetterMonId && MOVE_IS_PERMANENT(0, movePosition))
+                {
+                    RemoveBattleMonPPBonus(&gBattleMons[0], movePosition);
+                    SetBattleMonMoveSlot(&gBattleMons[0], gMoveToLearn, movePosition);
+                }
+                if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE
+                    && gBattlerPartyIndexes[2] == gBattleStruct->expGetterMonId
+                    && MOVE_IS_PERMANENT(2, movePosition))
+                {
+                    RemoveBattleMonPPBonus(&gBattleMons[2], movePosition);
+                    SetBattleMonMoveSlot(&gBattleMons[2], gMoveToLearn, movePosition);
+                }
             }
         }
         break;
@@ -6748,39 +6748,39 @@ static u32 GetTrainerMoneyToGive(u16 trainerId)
 
 static void Cmd_getmoneyreward(void)
 {
-	u32 money;
-	u8 sPartyLevel = 0;
-	u8 sPartyCount = 0;
+    u32 money;
+    u8 sPartyLevel = 0;
+    u8 sPartyCount = 0;
 
-	if (gBattleOutcome == B_OUTCOME_WON)
-	{
-		money = GetTrainerMoneyToGive(gTrainerBattleOpponent_A);
-		if (gBattleTypeFlags & BATTLE_TYPE_TWO_OPPONENTS)
-			money += GetTrainerMoneyToGive(gTrainerBattleOpponent_B);
-		AddMoney(&gSaveBlock1Ptr->money, money);
-	}
-	else
-	{
-		s32 i, count;
-		for (i = 0; i < PARTY_SIZE; i++)
-		{
-			if (GetMonData(&gPlayerParty[i], MON_DATA_SPECIES2) != SPECIES_NONE && GetMonData(&gPlayerParty[i], MON_DATA_SPECIES2) != SPECIES_EGG)
-			{
-				sPartyLevel += GetMonData(&gPlayerParty[i], MON_DATA_LEVEL);
-				sPartyCount++;
-			}
-		}
-		for (count = 0, i = 0; i < ARRAY_COUNT(sBadgeFlags); i++)
-		{
-			if (FlagGet(sBadgeFlags[i]))
-				++count;
-		}
-		money = sWhiteOutBadgeMoney[count] * sPartyLevel / sPartyCount;
-		RemoveMoney(&gSaveBlock1Ptr->money, money);
-	}
+    if (gBattleOutcome == B_OUTCOME_WON)
+    {
+        money = GetTrainerMoneyToGive(gTrainerBattleOpponent_A);
+        if (gBattleTypeFlags & BATTLE_TYPE_TWO_OPPONENTS)
+            money += GetTrainerMoneyToGive(gTrainerBattleOpponent_B);
+        AddMoney(&gSaveBlock1Ptr->money, money);
+    }
+    else
+    {
+        s32 i, count;
+        for (i = 0; i < PARTY_SIZE; i++)
+        {
+            if (GetMonData(&gPlayerParty[i], MON_DATA_SPECIES2) != SPECIES_NONE && GetMonData(&gPlayerParty[i], MON_DATA_SPECIES2) != SPECIES_EGG)
+            {
+                sPartyLevel += GetMonData(&gPlayerParty[i], MON_DATA_LEVEL);
+                sPartyCount++;
+            }
+        }
+        for (count = 0, i = 0; i < ARRAY_COUNT(sBadgeFlags); i++)
+        {
+            if (FlagGet(sBadgeFlags[i]))
+                ++count;
+        }
+        money = sWhiteOutBadgeMoney[count] * sPartyLevel / sPartyCount;
+        RemoveMoney(&gSaveBlock1Ptr->money, money);
+    }
 
-	PREPARE_WORD_NUMBER_BUFFER(gBattleTextBuff1, 5, money);
-	gBattlescriptCurrInstr++;
+    PREPARE_WORD_NUMBER_BUFFER(gBattleTextBuff1, 5, money);
+    gBattlescriptCurrInstr++;
 }
 
 // Command is never used
@@ -13543,23 +13543,23 @@ static void Cmd_handleballthrow(void)
         u8 catchRate;
 
         gLastThrownBall = gLastUsedItem;
-		switch (gBattleMons[gBattlerTarget].species)
-		{
-			case SPECIES_RAYQUAZA:
-			case SPECIES_KYOGRE:
-			case SPECIES_GROUDON:
-			case SPECIES_REGIROCK:
-			case SPECIES_REGICE:
-			case SPECIES_REGISTEEL:
-			case SPECIES_REGIGIGAS:
-				if (gBattleMons[gBattlerTarget].hp * 3 > gBattleMons[gBattlerTarget].maxHP)
-				{
-					BtlController_EmitBallThrowAnim(BUFFER_A, BALL_TRAINER_BLOCK);
-					MarkBattlerForControllerExec(gActiveBattler);
-					gBattlescriptCurrInstr = BattleScript_LegendaryBallBlock;
-					return;
-				}
-		}
+        switch (gBattleMons[gBattlerTarget].species)
+        {
+            case SPECIES_RAYQUAZA:
+            case SPECIES_KYOGRE:
+            case SPECIES_GROUDON:
+            case SPECIES_REGIROCK:
+            case SPECIES_REGICE:
+            case SPECIES_REGISTEEL:
+            case SPECIES_REGIGIGAS:
+                if (gBattleMons[gBattlerTarget].hp * 3 > gBattleMons[gBattlerTarget].maxHP)
+                {
+                    BtlController_EmitBallThrowAnim(BUFFER_A, BALL_TRAINER_BLOCK);
+                    MarkBattlerForControllerExec(gActiveBattler);
+                    gBattlescriptCurrInstr = BattleScript_LegendaryBallBlock;
+                    return;
+                }
+        }
         if (gBattleTypeFlags & BATTLE_TYPE_SAFARI)
             catchRate = gBattleStruct->safariCatchFactor * 1275 / 100;
         else
@@ -13757,9 +13757,9 @@ static void Cmd_handleballthrow(void)
             / (3 * gBattleMons[gBattlerTarget].maxHP);
 
         if (gBattleMons[gBattlerTarget].status1 & STATUS1_SLEEP)
-			odds = (odds * 25) / 10;
+            odds = (odds * 25) / 10;
         if (gBattleMons[gBattlerTarget].status1 & (STATUS1_POISON | STATUS1_BURN | STATUS1_PARALYSIS | STATUS1_TOXIC_POISON | STATUS1_FREEZE))
-			odds = (odds * 15) / 10;
+            odds = (odds * 15) / 10;
 
         if (gBattleResults.catchAttempts[gLastUsedItem - FIRST_BALL] < 255)
             gBattleResults.catchAttempts[gLastUsedItem - FIRST_BALL]++;

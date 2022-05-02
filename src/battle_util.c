@@ -3502,7 +3502,7 @@ u8 AtkCanceller_UnableToUseMove(void)
             break;
         case CANCELLER_HEAL_BLOCKED:
             if ((gStatuses3[gBattlerAttacker] & STATUS3_HEAL_BLOCK || gBattleMons[gBattlerAttacker].ability == ABILITY_WONDER_GUARD)
-				&& IsHealBlockPreventingMove(gBattlerAttacker, gCurrentMove))
+                && IsHealBlockPreventingMove(gBattlerAttacker, gCurrentMove))
             {
                 gProtectStructs[gBattlerAttacker].usedHealBlockedMove = TRUE;
                 gBattleScripting.battler = gBattlerAttacker;
@@ -6278,8 +6278,8 @@ u8 TryHandleSeed(u8 battler, u32 terrainFlag, u8 statId, u16 itemId, bool32 exec
 static u8 ItemHealHp(u32 battlerId, u32 itemId, bool32 end2, bool32 percentHeal)
 {
     if (HasEnoughHpToEatBerry(battlerId, 2, itemId)
-		&& !(gBattleScripting.overrideBerryRequirements && gBattleMons[battlerId].hp == gBattleMons[battlerId].maxHP)
-		&& !(gStatuses3[battlerId] & STATUS3_HEAL_BLOCK || gBattleMons[battlerId].ability == ABILITY_WONDER_GUARD))
+        && !(gBattleScripting.overrideBerryRequirements && gBattleMons[battlerId].hp == gBattleMons[battlerId].maxHP)
+        && !(gStatuses3[battlerId] & STATUS3_HEAL_BLOCK || gBattleMons[battlerId].ability == ABILITY_WONDER_GUARD))
     {
         if (percentHeal)
             gBattleMoveDamage = (gBattleMons[battlerId].maxHP * GetBattlerHoldEffectParam(battlerId) / 100) * -1;
@@ -6718,7 +6718,7 @@ u8 ItemBattleEffects(u8 caseID, u8 battlerId, bool8 moveTurn)
             case HOLD_EFFECT_LEFTOVERS:
             LEFTOVERS:
                 if (gBattleMons[battlerId].hp < gBattleMons[battlerId].maxHP && !moveTurn
-					&& !(gStatuses3[battlerId] & STATUS3_HEAL_BLOCK || gBattleMons[battlerId].ability == ABILITY_WONDER_GUARD))
+                    && !(gStatuses3[battlerId] & STATUS3_HEAL_BLOCK || gBattleMons[battlerId].ability == ABILITY_WONDER_GUARD))
                 {
                     gBattleMoveDamage = gBattleMons[battlerId].maxHP / 16;
                     if (gBattleMoveDamage == 0)
@@ -7150,7 +7150,7 @@ u8 ItemBattleEffects(u8 caseID, u8 battlerId, bool8 moveTurn)
                 && gBattleMons[gBattlerAttacker].hp != gBattleMons[gBattlerAttacker].maxHP
                 && gBattleMons[gBattlerAttacker].hp != 0
                 && gBattleMons[gBattlerAttacker].ability != ABILITY_WONDER_GUARD
-				&& !(gStatuses3[gBattlerAttacker] & STATUS3_HEAL_BLOCK))
+                && !(gStatuses3[gBattlerAttacker] & STATUS3_HEAL_BLOCK))
             {
                 gLastUsedItem = atkItem;
                 gPotentialItemEffectBattler = gBattlerAttacker;
@@ -8634,63 +8634,63 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
         break;
     case ABILITY_SWARM:
         if (moveType == TYPE_BUG)
-		{
-			if (gBattleMons[battlerAtk].hp <= (gBattleMons[battlerAtk].maxHP / 3))
-				MulModifier(&modifier, UQ_4_12(1.5));
-			else if (gBattleMons[battlerAtk].hp <= (gBattleMons[battlerAtk].maxHP * 7/15))
-				MulModifier(&modifier, UQ_4_12(1.4));
-			else if (gBattleMons[battlerAtk].hp <= (gBattleMons[battlerAtk].maxHP * 9/15))
-				MulModifier(&modifier, UQ_4_12(1.3));
-			else if (gBattleMons[battlerAtk].hp <= (gBattleMons[battlerAtk].maxHP * 11/15))
-				MulModifier(&modifier, UQ_4_12(1.2));
-			else if (gBattleMons[battlerAtk].hp <= (gBattleMons[battlerAtk].maxHP * 13/15))
-				MulModifier(&modifier, UQ_4_12(1.1));
-		}
+        {
+            if (gBattleMons[battlerAtk].hp <= (gBattleMons[battlerAtk].maxHP / 3))
+                MulModifier(&modifier, UQ_4_12(1.5));
+            else if (gBattleMons[battlerAtk].hp <= (gBattleMons[battlerAtk].maxHP * 7/15))
+                MulModifier(&modifier, UQ_4_12(1.4));
+            else if (gBattleMons[battlerAtk].hp <= (gBattleMons[battlerAtk].maxHP * 9/15))
+                MulModifier(&modifier, UQ_4_12(1.3));
+            else if (gBattleMons[battlerAtk].hp <= (gBattleMons[battlerAtk].maxHP * 11/15))
+                MulModifier(&modifier, UQ_4_12(1.2));
+            else if (gBattleMons[battlerAtk].hp <= (gBattleMons[battlerAtk].maxHP * 13/15))
+                MulModifier(&modifier, UQ_4_12(1.1));
+        }
         break;
     case ABILITY_TORRENT:
         if (moveType == TYPE_WATER)
-		{
-			if (gBattleMons[battlerAtk].hp <= (gBattleMons[battlerAtk].maxHP / 3))
-				MulModifier(&modifier, UQ_4_12(1.5));
-			else if (gBattleMons[battlerAtk].hp <= (gBattleMons[battlerAtk].maxHP * 7/15))
-				MulModifier(&modifier, UQ_4_12(1.4));
-			else if (gBattleMons[battlerAtk].hp <= (gBattleMons[battlerAtk].maxHP * 9/15))
-				MulModifier(&modifier, UQ_4_12(1.3));
-			else if (gBattleMons[battlerAtk].hp <= (gBattleMons[battlerAtk].maxHP * 11/15))
-				MulModifier(&modifier, UQ_4_12(1.2));
-			else if (gBattleMons[battlerAtk].hp <= (gBattleMons[battlerAtk].maxHP * 13/15))
-				MulModifier(&modifier, UQ_4_12(1.1));
-		}
+        {
+            if (gBattleMons[battlerAtk].hp <= (gBattleMons[battlerAtk].maxHP / 3))
+                MulModifier(&modifier, UQ_4_12(1.5));
+            else if (gBattleMons[battlerAtk].hp <= (gBattleMons[battlerAtk].maxHP * 7/15))
+                MulModifier(&modifier, UQ_4_12(1.4));
+            else if (gBattleMons[battlerAtk].hp <= (gBattleMons[battlerAtk].maxHP * 9/15))
+                MulModifier(&modifier, UQ_4_12(1.3));
+            else if (gBattleMons[battlerAtk].hp <= (gBattleMons[battlerAtk].maxHP * 11/15))
+                MulModifier(&modifier, UQ_4_12(1.2));
+            else if (gBattleMons[battlerAtk].hp <= (gBattleMons[battlerAtk].maxHP * 13/15))
+                MulModifier(&modifier, UQ_4_12(1.1));
+        }
         break;
     case ABILITY_BLAZE:
         if (moveType == TYPE_FIRE)
-		{
-			if (gBattleMons[battlerAtk].hp <= (gBattleMons[battlerAtk].maxHP / 3))
-				MulModifier(&modifier, UQ_4_12(1.5));
-			else if (gBattleMons[battlerAtk].hp <= (gBattleMons[battlerAtk].maxHP * 7/15))
-				MulModifier(&modifier, UQ_4_12(1.4));
-			else if (gBattleMons[battlerAtk].hp <= (gBattleMons[battlerAtk].maxHP * 9/15))
-				MulModifier(&modifier, UQ_4_12(1.3));
-			else if (gBattleMons[battlerAtk].hp <= (gBattleMons[battlerAtk].maxHP * 11/15))
-				MulModifier(&modifier, UQ_4_12(1.2));
-			else if (gBattleMons[battlerAtk].hp <= (gBattleMons[battlerAtk].maxHP * 13/15))
-				MulModifier(&modifier, UQ_4_12(1.1));
-		}
+        {
+            if (gBattleMons[battlerAtk].hp <= (gBattleMons[battlerAtk].maxHP / 3))
+                MulModifier(&modifier, UQ_4_12(1.5));
+            else if (gBattleMons[battlerAtk].hp <= (gBattleMons[battlerAtk].maxHP * 7/15))
+                MulModifier(&modifier, UQ_4_12(1.4));
+            else if (gBattleMons[battlerAtk].hp <= (gBattleMons[battlerAtk].maxHP * 9/15))
+                MulModifier(&modifier, UQ_4_12(1.3));
+            else if (gBattleMons[battlerAtk].hp <= (gBattleMons[battlerAtk].maxHP * 11/15))
+                MulModifier(&modifier, UQ_4_12(1.2));
+            else if (gBattleMons[battlerAtk].hp <= (gBattleMons[battlerAtk].maxHP * 13/15))
+                MulModifier(&modifier, UQ_4_12(1.1));
+        }
         break;
     case ABILITY_OVERGROW:
         if (moveType == TYPE_GRASS)
-		{
-			if (gBattleMons[battlerAtk].hp <= (gBattleMons[battlerAtk].maxHP / 3))
-				MulModifier(&modifier, UQ_4_12(1.5));
-			else if (gBattleMons[battlerAtk].hp <= (gBattleMons[battlerAtk].maxHP * 7/15))
-				MulModifier(&modifier, UQ_4_12(1.4));
-			else if (gBattleMons[battlerAtk].hp <= (gBattleMons[battlerAtk].maxHP * 9/15))
-				MulModifier(&modifier, UQ_4_12(1.3));
-			else if (gBattleMons[battlerAtk].hp <= (gBattleMons[battlerAtk].maxHP * 11/15))
-				MulModifier(&modifier, UQ_4_12(1.2));
-			else if (gBattleMons[battlerAtk].hp <= (gBattleMons[battlerAtk].maxHP * 13/15))
-				MulModifier(&modifier, UQ_4_12(1.1));
-		}
+        {
+            if (gBattleMons[battlerAtk].hp <= (gBattleMons[battlerAtk].maxHP / 3))
+                MulModifier(&modifier, UQ_4_12(1.5));
+            else if (gBattleMons[battlerAtk].hp <= (gBattleMons[battlerAtk].maxHP * 7/15))
+                MulModifier(&modifier, UQ_4_12(1.4));
+            else if (gBattleMons[battlerAtk].hp <= (gBattleMons[battlerAtk].maxHP * 9/15))
+                MulModifier(&modifier, UQ_4_12(1.3));
+            else if (gBattleMons[battlerAtk].hp <= (gBattleMons[battlerAtk].maxHP * 11/15))
+                MulModifier(&modifier, UQ_4_12(1.2));
+            else if (gBattleMons[battlerAtk].hp <= (gBattleMons[battlerAtk].maxHP * 13/15))
+                MulModifier(&modifier, UQ_4_12(1.1));
+        }
         break;
     case ABILITY_PLUS:
     case ABILITY_MINUS:
@@ -8818,20 +8818,20 @@ static u32 CalcDefenseStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, 
 
     if (gBattleMoves[move].effect == EFFECT_PSYSHOCK)
     {
-		if (IS_MOVE_PHYSICAL(move))// uses sp.def stat instead of defense
-		{
-			defStat = spDef;
-			defStage = gBattleMons[battlerDef].statStages[STAT_SPDEF];
-			usesDefStat = FALSE;
-		}
-		else // uses defense stat instead of sp.def
-		{
-			defStat = def;
-			defStage = gBattleMons[battlerDef].statStages[STAT_DEF];
-			usesDefStat = TRUE;
-		}
+        if (IS_MOVE_PHYSICAL(move))// uses sp.def stat instead of defense
+        {
+            defStat = spDef;
+            defStage = gBattleMons[battlerDef].statStages[STAT_SPDEF];
+            usesDefStat = FALSE;
+        }
+        else // uses defense stat instead of sp.def
+        {
+            defStat = def;
+            defStage = gBattleMons[battlerDef].statStages[STAT_DEF];
+            usesDefStat = TRUE;
+        }
     }
-	else if (IS_MOVE_PHYSICAL(move))
+    else if (IS_MOVE_PHYSICAL(move))
     {
         defStat = def;
         defStage = gBattleMons[battlerDef].statStages[STAT_DEF];
@@ -8909,7 +8909,7 @@ static u32 CalcDefenseStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, 
         if (gBattleMoves[move].flags & FLAG_SOUND)
             MulModifier(&modifier, UQ_4_12(2.0));
         break;
-	}
+    }
 
     // ally's abilities
     if (IsBattlerAlive(BATTLE_PARTNER(battlerDef)))
@@ -9185,14 +9185,14 @@ static void MulByTypeEffectiveness(u16 *modifier, u16 move, u8 moveType, u8 batt
 
     if (moveType == TYPE_PSYCHIC && defType == TYPE_DARK && gStatuses3[battlerDef] & STATUS3_MIRACLE_EYED && mod == UQ_4_12(0.0))
         mod = UQ_4_12(1.0);
-	else if (moveType == TYPE_PSYCHIC && defType == TYPE_DARK && GetBattlerAbility(battlerAtk) == ABILITY_TRANSCENDENCE && mod == UQ_4_12(0.0))
+    else if (moveType == TYPE_PSYCHIC && defType == TYPE_DARK && GetBattlerAbility(battlerAtk) == ABILITY_TRANSCENDENCE && mod == UQ_4_12(0.0))
     {
         mod = UQ_4_12(1.0);
         if (recordAbilities)
             RecordAbilityBattle(battlerAtk, ABILITY_TRANSCENDENCE);
     }
 
-	if (moveType == TYPE_ELECTRIC && defType == TYPE_GROUND && GetBattlerAbility(battlerAtk) == ABILITY_IONIZATION && mod == UQ_4_12(0.0))
+    if (moveType == TYPE_ELECTRIC && defType == TYPE_GROUND && GetBattlerAbility(battlerAtk) == ABILITY_IONIZATION && mod == UQ_4_12(0.0))
     {
         mod = UQ_4_12(1.0);
         if (recordAbilities)
@@ -9213,8 +9213,8 @@ static void MulByTypeEffectiveness(u16 *modifier, u16 move, u8 moveType, u8 batt
             mod = UQ_4_12(1.0);
     }
 
-	if (GetBattlerAbility(battlerDef) == ABILITY_JUGGERNAUT && mod >= UQ_4_12(2.0) && gBattleMoves[move].split == SPLIT_PHYSICAL)
-		mod = UQ_4_12(1.0);
+    if (GetBattlerAbility(battlerDef) == ABILITY_JUGGERNAUT && mod >= UQ_4_12(2.0) && gBattleMoves[move].split == SPLIT_PHYSICAL)
+        mod = UQ_4_12(1.0);
 
     MulModifier(modifier, mod);
 }
@@ -9393,8 +9393,8 @@ s32 GetStealthHazardDamage(u8 hazardType, u8 battlerId)
     u8 type1 = gBattleMons[battlerId].type1;
     u8 type2 = gBattleMons[battlerId].type2;
     u32 maxHp = gBattleMons[battlerId].maxHP;
-	
-	return GetTypedHazardDamage(hazardType, type1, type2, maxHp);
+    
+    return GetTypedHazardDamage(hazardType, type1, type2, maxHp);
 }
 
 s32 GetStealthHazardDamageByMon(u8 hazardType, struct Pokemon *mon)
@@ -9404,7 +9404,7 @@ s32 GetStealthHazardDamageByMon(u8 hazardType, struct Pokemon *mon)
     u8 type2 = gBaseStats[species].type2;
     u32 maxHp = GetMonData(mon, MON_DATA_MAX_HP);
     
-	return GetTypedHazardDamage(hazardType, type1, type2, maxHp);
+    return GetTypedHazardDamage(hazardType, type1, type2, maxHp);
 }
 
 bool32 IsPartnerMonFromSameTrainer(u8 battlerId)

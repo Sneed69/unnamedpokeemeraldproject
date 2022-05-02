@@ -1629,22 +1629,22 @@ static void Task_HandleInput(u8 taskId)
     {
         if (JOY_NEW(DPAD_UP))
         {
-			data[3] = 0;
+            data[3] = 0;
             ChangeSummaryPokemon(taskId, -1);
         }
         else if (JOY_NEW(DPAD_DOWN))
         {
-			data[3] = 0;
+            data[3] = 0;
             ChangeSummaryPokemon(taskId, 1);
         }
         else if ((JOY_NEW(DPAD_LEFT)) || GetLRKeysPressed() == MENU_L_PRESSED)
         {
-			data[3] = 0;
+            data[3] = 0;
             ChangePage(taskId, -1);
         }
         else if ((JOY_NEW(DPAD_RIGHT)) || GetLRKeysPressed() == MENU_R_PRESSED)
         {
-			data[3] = 0;
+            data[3] = 0;
             ChangePage(taskId, 1);
         }
         else if (JOY_NEW(A_BUTTON))
@@ -1653,20 +1653,20 @@ static void Task_HandleInput(u8 taskId)
             {
                 // Cycle through IVs/EVs/stats on pressing A
                 ChangeSummaryState(data, taskId);
-				PlaySE(SE_SELECT);
+                PlaySE(SE_SELECT);
                 BufferIvOrEvStats(data[3]);
             }
-			else if (sMonSummaryScreen->currPageIndex == PSS_PAGE_INFO)
-			{
-				StopPokemonAnimations();
-				PlaySE(SE_SELECT);
-				BeginCloseSummaryScreen(taskId);
-			}
-			else // Contest or Battle Moves
-			{
-				PlaySE(SE_SELECT);
-				SwitchToMoveSelection(taskId);
-			}
+            else if (sMonSummaryScreen->currPageIndex == PSS_PAGE_INFO)
+            {
+                StopPokemonAnimations();
+                PlaySE(SE_SELECT);
+                BeginCloseSummaryScreen(taskId);
+            }
+            else // Contest or Battle Moves
+            {
+                PlaySE(SE_SELECT);
+                SwitchToMoveSelection(taskId);
+            }
         }
         else if (JOY_NEW(B_BUTTON))
         {
@@ -1818,9 +1818,9 @@ static s8 AdvanceMonIndex(s8 delta)
         while (GetMonData(&mon[index], MON_DATA_IS_EGG))
             index = (index + delta) % numMons;
     }
-	if (index == sMonSummaryScreen->curMonIndex)
-		return -1;
-	return index;
+    if (index == sMonSummaryScreen->curMonIndex)
+        return -1;
+    return index;
 }
 
 static s8 AdvanceMultiBattleMonIndex(s8 delta)
@@ -2322,11 +2322,11 @@ static void Task_HandleReplaceMoveInput(u8 taskId)
             }
             else if (JOY_NEW(A_BUTTON))
             {
-				StopPokemonAnimations();
-				PlaySE(SE_SELECT);
-				sMoveSlotToReplace = sMonSummaryScreen->firstMoveIndex;
-				gSpecialVar_0x8005 = sMoveSlotToReplace;
-				BeginCloseSummaryScreen(taskId);
+                StopPokemonAnimations();
+                PlaySE(SE_SELECT);
+                sMoveSlotToReplace = sMonSummaryScreen->firstMoveIndex;
+                gSpecialVar_0x8005 = sMoveSlotToReplace;
+                BeginCloseSummaryScreen(taskId);
             }
             else if (JOY_NEW(B_BUTTON))
             {
@@ -3549,7 +3549,7 @@ static void BufferIvOrEvStats(u8 mode)
     switch (mode)
     {
     case 0: // stats mode
-	default:
+    default:
         hp = sMonSummaryScreen->summary.currentHP;
         hp2 = sMonSummaryScreen->summary.maxHP;
         atk = sMonSummaryScreen->summary.atk;
@@ -3577,7 +3577,7 @@ static void BufferIvOrEvStats(u8 mode)
         spD = GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_SPDEF_EV);
         spe = GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_SPEED_EV);
         break;
-	}
+    }
     FillWindowPixelBuffer(sMonSummaryScreen->windowIds[PSS_DATA_WINDOW_SKILLS_STATS_LEFT], 0);
     FillWindowPixelBuffer(sMonSummaryScreen->windowIds[PSS_DATA_WINDOW_SKILLS_STATS_RIGHT], 0);
 
@@ -3718,10 +3718,10 @@ static void PrintMoveNameAndPP(u8 moveIndex)
     if (move != 0)
     {
         pp = CalculatePPWithBonus(move, summary->ppBonuses, moveIndex);
-		if (StringLength(gMoveNames[move]) < 13)
-			PrintTextOnWindow(moveNameWindowId, gMoveNames[move], 0, moveIndex * 16 + 1, 0, 1);
-		else
-			PrintNarrowTextOnWindow(moveNameWindowId, gMoveNames[move], 0, moveIndex * 16 + 1, 0, 1);
+        if (StringLength(gMoveNames[move]) < 13)
+            PrintTextOnWindow(moveNameWindowId, gMoveNames[move], 0, moveIndex * 16 + 1, 0, 1);
+        else
+            PrintNarrowTextOnWindow(moveNameWindowId, gMoveNames[move], 0, moveIndex * 16 + 1, 0, 1);
         ConvertIntToDecimalStringN(gStringVar1, summary->pp[moveIndex], STR_CONV_MODE_RIGHT_ALIGN, 2);
         ConvertIntToDecimalStringN(gStringVar2, pp, STR_CONV_MODE_RIGHT_ALIGN, 2);
         DynamicPlaceholderTextUtil_Reset();
@@ -3888,10 +3888,10 @@ static void PrintNewMoveDetailsOrCancelText(void)
         else
             color = 5;
 
-		if (StringLength(gMoveNames[move]) < 13)
-			PrintTextOnWindow(windowId1, gMoveNames[move], 0, 65, 0, color);
-		else
-			PrintNarrowTextOnWindow(windowId1, gMoveNames[move], 0, 65, 0, color);
+        if (StringLength(gMoveNames[move]) < 13)
+            PrintTextOnWindow(windowId1, gMoveNames[move], 0, 65, 0, color);
+        else
+            PrintNarrowTextOnWindow(windowId1, gMoveNames[move], 0, 65, 0, color);
 
         ConvertIntToDecimalStringN(gStringVar1, gBattleMoves[move].pp, STR_CONV_MODE_RIGHT_ALIGN, 2);
         DynamicPlaceholderTextUtil_Reset();

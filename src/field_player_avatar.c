@@ -629,10 +629,10 @@ static void PlayerNotOnBikeMoving(u8 direction, u16 heldKeys)
 
     if (gPlayerAvatar.flags & PLAYER_AVATAR_FLAG_SURFING)
     {
-		if (heldKeys & B_BUTTON)
-			PlayerWalkFaster(direction);
-		else
-			PlayerWalkFast(direction);
+        if (heldKeys & B_BUTTON)
+            PlayerWalkFaster(direction);
+        else
+            PlayerWalkFast(direction);
     }
 
     if (!(gPlayerAvatar.flags & PLAYER_AVATAR_FLAG_UNDERWATER) && (heldKeys & B_BUTTON) //&& FlagGet(FLAG_SYS_B_DASH)
@@ -643,8 +643,8 @@ static void PlayerNotOnBikeMoving(u8 direction, u16 heldKeys)
         return;
     }
     else if ((gPlayerAvatar.flags & PLAYER_AVATAR_FLAG_UNDERWATER) && (heldKeys & R_BUTTON))
-		PlayerWalkFast(direction);
-	else
+        PlayerWalkFast(direction);
+    else
         PlayerWalkNormal(direction);
 }
 
@@ -1660,7 +1660,7 @@ static void Task_WaitStopSurfing(u8 taskId)
         gPlayerAvatar.preventStep = FALSE;
         ScriptContext2_Disable();
         DestroySprite(&gSprites[playerObjEvent->fieldEffectSpriteId]);
-		playerObjEvent->triggerGroundEffectsOnMove = TRUE;
+        playerObjEvent->triggerGroundEffectsOnMove = TRUE;
         DestroyTask(taskId);
     }
 }
@@ -1784,23 +1784,23 @@ static bool8 Fishing_ShowDots(struct Task *task)
 
     AlignFishingAnimationFrames();
     task->tFrameCounter++;
-	if (task->tFrameCounter >= 20)
-	{
-		task->tFrameCounter = 0;
-		if (task->tNumDots >= task->tDotsRequired)
-		{
-			task->tStep++;
-			if (task->tRoundsPlayed != 0)
-				task->tStep++;
-			task->tRoundsPlayed++;
-		}
-		else
-		{
-			AddTextPrinterParameterized(0, 1, dot, task->tNumDots * 8, 1, 0, NULL);
-			task->tNumDots++;
-		}
-	}
-	return FALSE;
+    if (task->tFrameCounter >= 20)
+    {
+        task->tFrameCounter = 0;
+        if (task->tNumDots >= task->tDotsRequired)
+        {
+            task->tStep++;
+            if (task->tRoundsPlayed != 0)
+                task->tStep++;
+            task->tRoundsPlayed++;
+        }
+        else
+        {
+            AddTextPrinterParameterized(0, 1, dot, task->tNumDots * 8, 1, 0, NULL);
+            task->tNumDots++;
+        }
+    }
+    return FALSE;
 }
 
 static bool8 Fishing_CheckForBite(struct Task *task)

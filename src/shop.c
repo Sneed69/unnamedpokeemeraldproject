@@ -136,8 +136,8 @@ static const u16 sShopInventory_Mauville[] = {
     ITEM_ANTIDOTE,
     ITEM_PARALYZE_HEAL,
     ITEM_AWAKENING,
-	ITEM_BURN_HEAL,
-	ITEM_ICE_HEAL,
+    ITEM_BURN_HEAL,
+    ITEM_ICE_HEAL,
     ITEM_REPEL,
     ITEM_ESCAPE_ROPE,
     ITEM_NONE
@@ -151,8 +151,8 @@ static const u16 sShopInventory_Fallarbor[] = {
     ITEM_ANTIDOTE,
     ITEM_PARALYZE_HEAL,
     ITEM_AWAKENING,
-	ITEM_BURN_HEAL,
-	ITEM_ICE_HEAL,
+    ITEM_BURN_HEAL,
+    ITEM_ICE_HEAL,
     ITEM_SUPER_REPEL,
     ITEM_ESCAPE_ROPE,
     ITEM_NONE
@@ -166,10 +166,10 @@ static const u16 sShopInventory_Lavaridge[] = {
     ITEM_ANTIDOTE,
     ITEM_PARALYZE_HEAL,
     ITEM_AWAKENING,
-	ITEM_BURN_HEAL,
-	ITEM_ICE_HEAL,
-	ITEM_REVIVE,
-	ITEM_ETHER,
+    ITEM_BURN_HEAL,
+    ITEM_ICE_HEAL,
+    ITEM_REVIVE,
+    ITEM_ETHER,
     ITEM_SUPER_REPEL,
     ITEM_ESCAPE_ROPE,
     ITEM_NONE
@@ -185,10 +185,10 @@ static const u16 sShopInventory_Fortree[] = {
     ITEM_ANTIDOTE,
     ITEM_PARALYZE_HEAL,
     ITEM_AWAKENING,
-	ITEM_BURN_HEAL,
-	ITEM_ICE_HEAL,
-	ITEM_REVIVE,
-	ITEM_ETHER,
+    ITEM_BURN_HEAL,
+    ITEM_ICE_HEAL,
+    ITEM_REVIVE,
+    ITEM_ETHER,
     ITEM_SUPER_REPEL,
     ITEM_ESCAPE_ROPE,
     ITEM_NONE
@@ -199,8 +199,8 @@ static const u16 sShopInventory_Lilycove[] = {
     ITEM_HYPER_POTION,
     ITEM_MAX_POTION,
     ITEM_FULL_HEAL,
-	ITEM_REVIVE,
-	ITEM_ETHER,
+    ITEM_REVIVE,
+    ITEM_ETHER,
     ITEM_MAX_REPEL,
     ITEM_ESCAPE_ROPE,
     ITEM_NONE
@@ -211,9 +211,9 @@ static const u16 sShopInventory_Mossdeep[] = {
     ITEM_HYPER_POTION,
     ITEM_MAX_POTION,
     ITEM_FULL_HEAL,
-	ITEM_REVIVE,
-	ITEM_MAX_ETHER,
-	ITEM_ELIXIR,
+    ITEM_REVIVE,
+    ITEM_MAX_ETHER,
+    ITEM_ELIXIR,
     ITEM_MAX_REPEL,
     ITEM_ESCAPE_ROPE,
     ITEM_NONE
@@ -225,9 +225,9 @@ static const u16 sShopInventory_League[] = {
     ITEM_MAX_POTION,
     ITEM_FULL_RESTORE,
     ITEM_FULL_HEAL,
-	ITEM_MAX_REVIVE,
-	ITEM_MAX_ETHER,
-	ITEM_ELIXIR,
+    ITEM_MAX_REVIVE,
+    ITEM_MAX_ETHER,
+    ITEM_ELIXIR,
     ITEM_MAX_REPEL,
     ITEM_ESCAPE_ROPE,
     ITEM_NONE
@@ -236,25 +236,25 @@ static const u16 sShopInventory_League[] = {
 static void getCurrentMartStock(void)
 {
     if (FlagGet(FLAG_LANDMARK_POKEMON_LEAGUE))
-		sMartInfo.itemList =  sShopInventory_League;
+        sMartInfo.itemList =  sShopInventory_League;
     else if (FlagGet(FLAG_VISITED_MOSSDEEP_CITY))
-		sMartInfo.itemList =  sShopInventory_Mossdeep;
-	else if (FlagGet(FLAG_VISITED_LILYCOVE_CITY))
-		sMartInfo.itemList =  sShopInventory_Lilycove;
-	else if (FlagGet(FLAG_VISITED_FORTREE_CITY))
-		sMartInfo.itemList =  sShopInventory_Fortree;
-	else if (FlagGet(FLAG_VISITED_LAVARIDGE_TOWN))
-		sMartInfo.itemList =  sShopInventory_Lavaridge;
-	else if (FlagGet(FLAG_VISITED_FALLARBOR_TOWN))
-		sMartInfo.itemList =  sShopInventory_Fallarbor;
-	else if (FlagGet(FLAG_VISITED_MAUVILLE_CITY))
-		sMartInfo.itemList =  sShopInventory_Mauville;
-	else if (FlagGet(FLAG_VISITED_SLATEPORT_CITY))
-		sMartInfo.itemList =  sShopInventory_Slateport;
-	else if (FlagGet(FLAG_VISITED_RUSTBORO_CITY))
-		sMartInfo.itemList =  sShopInventory_Rustboro;
-	else
-		sMartInfo.itemList =  sShopInventory_Base;
+        sMartInfo.itemList =  sShopInventory_Mossdeep;
+    else if (FlagGet(FLAG_VISITED_LILYCOVE_CITY))
+        sMartInfo.itemList =  sShopInventory_Lilycove;
+    else if (FlagGet(FLAG_VISITED_FORTREE_CITY))
+        sMartInfo.itemList =  sShopInventory_Fortree;
+    else if (FlagGet(FLAG_VISITED_LAVARIDGE_TOWN))
+        sMartInfo.itemList =  sShopInventory_Lavaridge;
+    else if (FlagGet(FLAG_VISITED_FALLARBOR_TOWN))
+        sMartInfo.itemList =  sShopInventory_Fallarbor;
+    else if (FlagGet(FLAG_VISITED_MAUVILLE_CITY))
+        sMartInfo.itemList =  sShopInventory_Mauville;
+    else if (FlagGet(FLAG_VISITED_SLATEPORT_CITY))
+        sMartInfo.itemList =  sShopInventory_Slateport;
+    else if (FlagGet(FLAG_VISITED_RUSTBORO_CITY))
+        sMartInfo.itemList =  sShopInventory_Rustboro;
+    else
+        sMartInfo.itemList =  sShopInventory_Base;
 }
 
 static const struct YesNoFuncTable sShopPurchaseYesNoFuncs =
@@ -481,10 +481,10 @@ static void SetShopItemsForSale(const u16 *items)
 {
     u16 i = 0;
 
-	if (items == NULL)
-		getCurrentMartStock();
-	else
-		sMartInfo.itemList = items;
+    if (items == NULL)
+        getCurrentMartStock();
+    else
+        sMartInfo.itemList = items;
 
     sMartInfo.itemCount = 0;
 
@@ -683,10 +683,10 @@ static void BuyMenuBuildListMenuTemplate(void)
 static void BuyMenuSetListEntry(struct ListMenuItem *menuItem, u16 item, u8 *name)
 {
     if (sMartInfo.martType == MART_TYPE_NORMAL)
-		if (ItemId_GetPocket(item) != POCKET_TM_HM)
-			CopyItemName(item, name);
-		else
-			StringCopy(name, gMoveNames[ItemIdToBattleMoveId(item)]);
+        if (ItemId_GetPocket(item) != POCKET_TM_HM)
+            CopyItemName(item, name);
+        else
+            StringCopy(name, gMoveNames[ItemIdToBattleMoveId(item)]);
     else
         StringCopy(name, gDecorations[item].name);
 
@@ -1128,8 +1128,8 @@ static void Task_BuyMenu(u8 taskId)
                     CopyItemName(itemId, gStringVar1);
                     if (ItemId_GetPocket(itemId) == POCKET_TM_HM)
                     {
-						StringAppend(gStringVar1, gText_Space);
-						StringAppend(gStringVar1, gMoveNames[ItemIdToBattleMoveId(itemId)]);
+                        StringAppend(gStringVar1, gText_Space);
+                        StringAppend(gStringVar1, gMoveNames[ItemIdToBattleMoveId(itemId)]);
                         ConvertIntToDecimalStringN(gStringVar2, sShopData->totalCost, STR_CONV_MODE_LEFT_ALIGN, 6);
                         StringExpandPlaceholders(gStringVar4, gText_YouWantedVar1ThatllBeVar2);
                         tItemCount = 1;
@@ -1240,7 +1240,7 @@ static void BuyMenuTryMakePurchase(u8 taskId)
     {
         if (AddBagItem(tItemId, tItemCount))
         {
-			RedrawListMenu(tListTaskId);
+            RedrawListMenu(tListTaskId);
             RecordItemPurchase(taskId);
             GetSetItemObtained(tItemId, FLAG_SET_OBTAINED);
             BuyMenuDisplayMessage(taskId, gText_HereYouGoThankYou, BuyMenuSubtractMoney);
@@ -1293,18 +1293,18 @@ static void Task_ReturnToItemListAfterItemPurchase(u8 taskId)
         PlaySE(SE_SELECT);
         if ((ItemId_GetPocket(tItemId) == POCKET_POKE_BALLS) && tItemCount > 9 && AddBagItem(ITEM_PREMIER_BALL, tItemCount / 10))
         {
-			if (tItemCount > 19)
-			{
-				BuyMenuDisplayMessage(taskId, gText_ThrowInPremierBalls, BuyMenuReturnToItemList);
-			}
-			else
-			{
-			   BuyMenuDisplayMessage(taskId, gText_ThrowInPremierBall, BuyMenuReturnToItemList);
-			}
+            if (tItemCount > 19)
+            {
+                BuyMenuDisplayMessage(taskId, gText_ThrowInPremierBalls, BuyMenuReturnToItemList);
+            }
+            else
+            {
+               BuyMenuDisplayMessage(taskId, gText_ThrowInPremierBall, BuyMenuReturnToItemList);
+            }
         }
-		else
+        else
         {
-			BuyMenuReturnToItemList(taskId);
+            BuyMenuReturnToItemList(taskId);
         }
     }
 }
