@@ -22,9 +22,9 @@ bool8 DoesRoamerFlee(void);
 bool8 CanRoamerRespawn(u8 index);
 void HandleRoamerRespawnTimer(void);
 void UpdateRoamerRespawns(u16 days);
-bool8 TryAddRoamer(u16 species, u8 level, u8 fixedIVs, bool8 doesNotFlee, u16 respawnMode);
-bool8 TryAddTerrestrialRoamer(u16 species, u8 level, u8 fixedIVs, bool8 doesNotFlee, u16 respawnMode);
-bool8 TryAddStalker(u16 species, u8 level, bool8 doesNotFlee, u8 fixedIVs, bool8 isTerrestrial, u16 respawnMode);
+bool8 TryAddRoamer(u16 species, u8 level, bool8 doesNotFlee, u16 respawnMode);
+bool8 TryAddTerrestrialRoamer(u16 species, u8 level, bool8 doesNotFlee, u16 respawnMode);
+bool8 TryAddStalker(u16 species, u8 level, bool8 doesNotFlee, bool8 isTerrestrial, u16 respawnMode);
 
 extern u8 gEncounteredRoamerIndex;
 

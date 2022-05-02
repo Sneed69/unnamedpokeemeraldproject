@@ -167,10 +167,10 @@ static void ClearRoamerLocationHistory(u8 index)
         ROAMER(index)->mapNumHistory[i] = 0x7F; // 0x7F is MAP_NONE
     }
 }
-static void CreateInitialRoamerMon(u8 index, u16 species, u8 level, u8 fixedIV, bool8 isTerrestrial, bool8 doesNotFlee, bool8 isStalker, u16 respawnMode)
+static void CreateInitialRoamerMon(u8 index, u16 species, u8 level, bool8 isTerrestrial, bool8 doesNotFlee, bool8 isStalker, u16 respawnMode)
 {
 	ClearRoamerLocationHistory(index);
-    CreateMon(&gEnemyParty[0], species, level, fixedIV, FALSE, 0, OT_ID_PLAYER_ID, 0);
+    CreateMon(&gEnemyParty[0], species, level, USE_RANDOM_IVS, FALSE, 0, OT_ID_PLAYER_ID, 0);
     ROAMER(index)->ivs = GetMonData(&gEnemyParty[0], MON_DATA_IVS);
     ROAMER(index)->personality = GetMonData(&gEnemyParty[0], MON_DATA_PERSONALITY);
     ROAMER(index)->species = species;
@@ -197,8 +197,8 @@ static void CreateInitialRoamerMon(u8 index, u16 species, u8 level, u8 fixedIV, 
 
 void InitRoamer(void)
 {
-    TryAddRoamer(SPECIES_LATIAS, 60, 31, FLEES, WEEKLY_RESPAWN);
-    TryAddRoamer(SPECIES_LATIOS, 60, 31, FLEES, WEEKLY_RESPAWN);
+    TryAddRoamer(SPECIES_LATIAS, 60, FLEES, WEEKLY_RESPAWN);
+    TryAddRoamer(SPECIES_LATIOS, 60, FLEES, WEEKLY_RESPAWN);
 	GetSetPokedexFlag(SpeciesToNationalPokedexNum(SPECIES_LATIAS), FLAG_SET_SEEN);
 	GetSetPokedexFlag(SpeciesToNationalPokedexNum(SPECIES_LATIOS), FLAG_SET_SEEN);
 }
@@ -408,38 +408,38 @@ static u8 GetFirstInactiveRoamerIndex()
 	return ROAMER_COUNT;
 }
 
-bool8 TryAddRoamer(u16 species, u8 level, u8 fixedIV, bool8 doesNotFlee, u16 respawnMode)
+bool8 TryAddRoamer(u16 species, u8 level, bool8 doesNotFlee, u16 respawnMode)
 {
 	u8 index = GetFirstInactiveRoamerIndex();
 	
 	if (index < ROAMER_COUNT)
 	{
-		CreateInitialRoamerMon(index, species, level, fixedIV, AMPHIBIOUS, doesNotFlee, NOT_STALKER, respawnMode);
+		CreateInitialRoamerMon(index, species, level, AMPHIBIOUS, doesNotFlee, NOT_STALKER, respawnMode);
 		return TRUE;
 	}
 	// Maximum active roamers: do nothing and let the calling function know
 	return FALSE;
 }
 
-bool8 TryAddTerrestrialRoamer(u16 species, u8 level, u8 fixedIV, bool8 doesNotFlee, u16 respawnMode)
+bool8 TryAddTerrestrialRoamer(u16 species, u8 level, bool8 doesNotFlee, u16 respawnMode)
 {
 	u8 index = GetFirstInactiveRoamerIndex();
 	
 	if (index < ROAMER_COUNT)
 	{
-		CreateInitialRoamerMon(index, species, level, fixedIV, TERRESTRIAL, doesNotFlee, NOT_STALKER, respawnMode);
+		CreateInitialRoamerMon(index, species, level, TERRESTRIAL, doesNotFlee, NOT_STALKER, respawnMode);
 		return TRUE;
 	}
 	return FALSE;
 }
 
-bool8 TryAddStalker(u16 species, u8 level, u8 fixedIV, bool8 doesNotFlee, bool8 isTerrestrial, u16 respawnMode)
+bool8 TryAddStalker(u16 species, u8 level, bool8 doesNotFlee, bool8 isTerrestrial, u16 respawnMode)
 {
 	u8 index = GetFirstInactiveRoamerIndex();
 	
 	if (index < ROAMER_COUNT)
 	{
-		CreateInitialRoamerMon(index, species, level, fixedIV, isTerrestrial, doesNotFlee, STALKER, respawnMode);
+		CreateInitialRoamerMon(index, species, level, isTerrestrial, doesNotFlee, STALKER, respawnMode);
 		return TRUE;
 	}
 	return FALSE;
