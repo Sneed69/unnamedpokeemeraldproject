@@ -104,9 +104,9 @@ MtChimney_EventScript_LavaCookieLady::
 	lock
 	faceplayer
 	showmoneybox 0, 0
-	msgbox MtChimney_Text_LavaCookiesJust200, MSGBOX_YESNO
+	msgbox MtChimney_Text_LavaCookiesJust125, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, NO, MtChimney_EventScript_DeclineLavaCookie
-	checkmoney 200
+	checkmoney 125
 	goto_if_eq VAR_RESULT, FALSE, MtChimney_EventScript_NotEnoughMoney
 	msgbox MtChimney_Text_ThankYouDear, MSGBOX_DEFAULT
 	checkitemspace ITEM_LAVA_COOKIE
@@ -124,7 +124,7 @@ MtChimney_EventScript_BagIsFull::
 	end
 
 MtChimney_EventScript_RemoveMoney::
-	removemoney 200
+	removemoney 125
 	updatemoneybox
 	return
 
@@ -703,10 +703,10 @@ MtChimney_Text_MagmasNameSimilar:
 MtChimney_Text_Bushaa:
 	.string "Bushaa!$"
 
-MtChimney_Text_LavaCookiesJust200:
+MtChimney_Text_LavaCookiesJust125:
 	.string "LAVA COOKIES are MT. CHIMNEY's local\n"
 	.string "specialty.\p"
-	.string "Try one. It's just ¥200.$"
+	.string "Try one. It's just ¥125.$"
 
 MtChimney_Text_ThankYouDear:
 	.string "Thank you, dear!$"

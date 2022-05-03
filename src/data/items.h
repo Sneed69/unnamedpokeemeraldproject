@@ -820,7 +820,7 @@ const struct Item gItems[] =
     {
         .name = _("Lava Cookie"),
         .itemId = ITEM_LAVA_COOKIE,
-        .price = 100,
+        .price = 125,
         .description = sLavaCookieDesc,
         .pocket = POCKET_CONSUMABLES,
         .type = ITEM_USE_PARTY_MENU,
