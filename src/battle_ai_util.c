@@ -2448,6 +2448,9 @@ static bool32 PartyBattlerShouldAvoidHazards(u8 currBattler, u8 switchBattler)
     u16 species = GetMonData(mon, MON_DATA_SPECIES);
     u32 flags = gSideStatuses[GetBattlerSide(currBattler)] & (SIDE_STATUS_SPIKES | SIDE_STATUS_STEALTH_ROCK | SIDE_STATUS_STICKY_WEB | SIDE_STATUS_TOXIC_SPIKES);
     s32 hazardDamage = 0;
+    u8 type1 = gBaseStats[species].type1;
+    u8 type2 = gBaseStats[species].type2;
+    u32 maxHp = GetMonData(mon, MON_DATA_MAX_HP);
 
     if (flags == 0)
         return FALSE;
@@ -2460,22 +2463,22 @@ static bool32 PartyBattlerShouldAvoidHazards(u8 currBattler, u8 switchBattler)
         holdEffect = gItems[GetMonData(mon, MON_DATA_HELD_ITEM)].holdEffect;
     if (holdEffect == HOLD_EFFECT_HEAVY_DUTY_BOOTS)
         return FALSE;
-    
+
     if (flags & SIDE_STATUS_STEALTH_ROCK)
-        hazardDamage += GetStealthHazardDamageByMon(gBattleMoves[MOVE_STEALTH_ROCK].type, mon);
-    if (flags & SIDE_STATUS_SPIKES && holdEffect != HOLD_EFFECT_AIR_BALLOON
-        && (holdEffect == HOLD_EFFECT_IRON_BALL || gFieldStatuses & STATUS_FIELD_GRAVITY
-        || !(gBaseStats[species].type1 == TYPE_FLYING || gBaseStats[species].type2 == TYPE_FLYING || ability != ABILITY_LEVITATE)))
+        hazardDamage += GetStealthHazardDamageByTypesAndHP(gBattleMoves[MOVE_STEALTH_ROCK].type, type1, type2, maxHp);
+
+    if (flags & SIDE_STATUS_SPIKES && ((type1 != TYPE_FLYING && type2 != TYPE_FLYING
+        && ability != ABILITY_LEVITATE && holdEffect != HOLD_EFFECT_AIR_BALLOON)
+        || holdEffect == HOLD_EFFECT_IRON_BALL || gFieldStatuses & STATUS_FIELD_GRAVITY))
     {
-        u8 spikesDmg = GetMonData(mon, MON_DATA_MAX_HP) / ((5 - gSideTimers[GetBattlerSide(currBattler)].spikesAmount) * 2);
+        u8 spikesDmg = maxHp / ((5 - gSideTimers[GetBattlerSide(currBattler)].spikesAmount) * 2);
         if (spikesDmg == 0)
             spikesDmg = 1;
         hazardDamage += spikesDmg;
     }
 
-    if (GetMonData(mon, MON_DATA_HP) < hazardDamage)
+    if (hazardDamage >= GetMonData(mon, MON_DATA_HP))
         return TRUE;
-
     return FALSE;
 }
 
