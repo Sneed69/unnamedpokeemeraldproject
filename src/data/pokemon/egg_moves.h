@@ -401,7 +401,6 @@ const u16 gEggMoves[] = {
         MOVE_PERISH_SONG,
         MOVE_DISABLE,
         MOVE_SLAM,
-        MOVE_WAVE_CRASH,
         MOVE_FAKE_OUT,
         MOVE_ICICLE_SPEAR,
         MOVE_WATER_PULSE,
@@ -1402,7 +1401,6 @@ const u16 gEggMoves[] = {
         MOVE_REFRESH,
         MOVE_UPROAR,
         MOVE_CURSE,
-        MOVE_WAVE_CRASH,
         MOVE_STOMP,
         MOVE_ICE_BALL,
         MOVE_MIRROR_COAT,
@@ -1720,7 +1718,6 @@ const u16 gEggMoves[] = {
 
     egg_moves(CARVANHA,
         MOVE_HYDRO_PUMP,
-        MOVE_WAVE_CRASH,
         MOVE_DOUBLE_EDGE,
         MOVE_THRASH,
         MOVE_ANCIENT_POWER,

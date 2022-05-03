@@ -8440,10 +8440,10 @@ const struct Item gItems[] =
         .flingPower = 10,
     },
 
-    [ITEM_TM49_SNATCH] =
+    [ITEM_TM49_WAVE_CRASH] =
     {
         .name = _("TM49"),
-        .itemId = ITEM_TM49_SNATCH,
+        .itemId = ITEM_TM49_WAVE_CRASH,
         .price = 3000,
         .description = sTM49Desc,
         .importance = 1,

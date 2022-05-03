@@ -3237,9 +3237,9 @@ static const u8 sTM48Desc[] = _(
     "May cause flinching.");
 
 static const u8 sTM49Desc[] = _(
-    "Steals the effects\n"
-    "of the move the foe\n"
-    "is trying to use.");
+    "A charge that hurts\n"
+    "the user but also\n"
+    "raises Speed.");
 
 static const u8 sTM50Desc[] = _(
     "Enables full-power\n"
