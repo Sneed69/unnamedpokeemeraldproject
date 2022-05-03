@@ -688,7 +688,7 @@ LittlerootTown_ProfessorBirchsLab_Text_BirchEnjoysRivalsHelpToo:
 	.string "There's a lot of love there.$"
 
 LittlerootTown_ProfessorBirchsLab_Text_LikeYouToHavePokemon:
-	.string "Prof. Birch: So, {PLAYER}{KUN}.\p"
+	.string "Prof. Birch: So, {PLAYER}.\p"
 	.string "I've heard so much about you from\n"
 	.string "your father.\p"
 	.string "I've heard that you don't have your\n"
@@ -712,7 +712,7 @@ LittlerootTown_ProfessorBirchsLab_Text_MightBeGoodIdeaToGoSeeRival:
 	.string "an extremely good Trainer.\p"
 	.string "My kid, {RIVAL}, is also studying\n"
 	.string "Pokémon while helping me out.\p"
-	.string "{PLAYER}{KUN}, don't you think it might be\n"
+	.string "{PLAYER}, don't you think it might be\n"
 	.string "a good idea to go see {RIVAL}?$"
 
 LittlerootTown_ProfessorBirchsLab_Text_GetRivalToTeachYou:
@@ -734,14 +734,14 @@ LittlerootTown_ProfessorBirchsLab_Text_BirchRivalGoneHome:
 	.string "you should get some rest at home.$"
 
 LittlerootTown_ProfessorBirchsLab_Text_HeardYouBeatRivalTakePokedex:
-	.string "Prof. Birch: Oh, hi, {PLAYER}{KUN}!\p"
+	.string "Prof. Birch: Oh, hi, {PLAYER}!\p"
 	.string "I heard you beat {RIVAL} on\n"
 	.string "your first try. That's excellent!\p"
 	.string "{RIVAL}'s been helping with my research\n"
 	.string "for a long time.\p"
 	.string "{RIVAL} has an extensive history as\n"
 	.string "a Trainer already.\p"
-	.string "Here, {PLAYER}{KUN}, I ordered this for my\n"
+	.string "Here, {PLAYER}, I ordered this for my\n"
 	.string "research, but I think you should have\l"
 	.string "this Pokédex.$"
 
@@ -766,7 +766,7 @@ LittlerootTown_ProfessorBirchsLab_Text_CountlessPokemonAwait:
 	.string "and do fieldwork again!$"
 
 LittlerootTown_ProfessorBirchsLab_Text_MayGotPokedexTooTakeThese:
-	.string "May: Oh, wow, {PLAYER}{KUN}!\n"
+	.string "May: Oh, wow, {PLAYER}!\n"
 	.string "You got a Pokédex, too!\p"
 	.string "That's great! Just like me!\n"
 	.string "I've got something for you, too!$"
@@ -823,7 +823,7 @@ LittlerootTown_ProfessorBirchsLab_Text_BookTooHardToRead:
 
 LittlerootTown_ProfessorBirchsLab_Text_OtherRegionsUpgradeToNational:
 	.string "Prof. Birch: Now…\p"
-	.string "{PLAYER}{KUN} and {RIVAL}, I've had the two\n"
+	.string "{PLAYER} and {RIVAL}, I've had the two\n"
 	.string "of you help me study Pokémon.\p"
 	.string "Thanks to your help, new facts\n"
 	.string "are coming to light.\p"
@@ -843,7 +843,7 @@ LittlerootTown_ProfessorBirchsLab_Text_MayUpgradeSoCool:
 	.string "It's so cool that even my Pokédex\n"
 	.string "is getting updated!\p"
 	.string "It's because you went out and caught\n"
-	.string "so many Pokémon, {PLAYER}{KUN}!$"
+	.string "so many Pokémon, {PLAYER}!$"
 
 LittlerootTown_ProfessorBirchsLab_Text_BrendanYouCanThankMe:
 	.string "Brendan: I went out all over Hoenn\n"
@@ -881,7 +881,7 @@ LittlerootTown_ProfessorBirchsLab_Text_BrendanTakeBreakFromFieldwork:
 	.string "for a while.$"
 
 LittlerootTown_ProfessorBirchsLab_Text_CompletedDexChoosePokemon:
-	.string "Prof. Birch: Oh, {PLAYER}{KUN}!\n"
+	.string "Prof. Birch: Oh, {PLAYER}!\n"
 	.string "Let's have a look at your Pokédex.\p"
 	.string "… … … … … …\n"
 	.string "… … … … … …\p"
@@ -941,7 +941,7 @@ LittlerootTown_ProfessorBirchsLab_Text_NicknameJohtoStarter:
 	.string "the {STR_VAR_1} you received?$"
 
 LittlerootTown_ProfessorBirchsLab_Text_GrassyPatchWaiting:
-	.string "Prof. Birch: Listen, {PLAYER}{KUN}.\n"
+	.string "Prof. Birch: Listen, {PLAYER}.\n"
 	.string "You've completed the Hoenn Pokédex,\l"
 	.string "but your Pokémon journey isn't over.\p"
 	.string "There is no end to the road\n"
@@ -959,7 +959,7 @@ LittlerootTown_ProfessorBirchsLab_Text_DontHaveAnyRoomForPokemon:
 	.string "this Pokémon.$"
 
 LittlerootTown_ProfessorBirchsLab_Text_MayWhatNextImStayingHere:
-	.string "May: {PLAYER}{KUN}, after this…\n"
+	.string "May: {PLAYER}, after this…\n"
 	.string "What are you going to do?\p"
 	.string "Are you going to keep battling\n"
 	.string "and sharpening your skills?\p"
@@ -973,7 +973,7 @@ LittlerootTown_ProfessorBirchsLab_Text_BrendanPreferCollectingSlowly:
 	.string "steadily raising the one I chose.$"
 
 LittlerootTown_ProfessorBirchsLab_Text_MayHaveYouGoneToBattleFrontier:
-	.string "May: Oh, hi, {PLAYER}{KUN}!\n"
+	.string "May: Oh, hi, {PLAYER}!\n"
 	.string "Have you gone to that place,\l"
 	.string "the Battle Frontier?$"
 

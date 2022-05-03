@@ -255,7 +255,7 @@ SSTidalCorridor_Movement_SailorReturn:
 
 SSTidalCorridor_Text_ScottBattleFrontierInvite:
 	.string "Scott: Well, hi, hi!\n"
-	.string "{PLAYER}{KUN}, {PLAYER}{KUN}!\p"
+	.string "{PLAYER}, {PLAYER}!\p"
 	.string "Something's come up, so I have to\n"
 	.string "disembark, but am I glad to see you!\p"
 	.string "Congratulations, League Champion!\p"
@@ -270,7 +270,7 @@ SSTidalCorridor_Text_ScottBattleFrontierInvite:
 	.string "The next time you take a ferry,\n"
 	.string "you should be able to sail to\l"
 	.string "the Battle Frontier.\p"
-	.string "Okay, {PLAYER}{KUN}, I'll be waiting for you\n"
+	.string "Okay, {PLAYER}, I'll be waiting for you\n"
 	.string "at the Battle Frontier!$"
 
 SSTidal_Text_FastCurrentsHopeYouEnjoyVoyage:
@@ -315,7 +315,7 @@ SSTidalCorridor_Text_HorizonSpreadsBeyondPorthole:
 	.string "the porthole.$"
 
 SSTidalCorridor_Text_BrineyWelcomeAboard:
-	.string "Mr. Briney: Welcome aboard, {PLAYER}{KUN}!\p"
+	.string "Mr. Briney: Welcome aboard, {PLAYER}!\p"
 	.string "They made me honorary captain of\n"
 	.string "the S.S. Tidal!\p"
 	.string "You can call me Captain Briney now!\p"

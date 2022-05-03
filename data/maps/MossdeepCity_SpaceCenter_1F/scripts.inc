@@ -357,7 +357,7 @@ MossdeepCity_SpaceCenter_1F_Text_MagmaWantsToSpoilMyDream:
 	.string "I'm not having any of that!$"
 
 MossdeepCity_SpaceCenter_1F_Text_StevenMagmaCantBeAllowedToTakeFuel:
-	.string "Steven: {PLAYER}{KUN}, have you read that\n"
+	.string "Steven: {PLAYER}, have you read that\n"
 	.string "proclamation already?\p"
 	.string "Team Magma is coming after the rocket\n"
 	.string "fuel on this island.\p"

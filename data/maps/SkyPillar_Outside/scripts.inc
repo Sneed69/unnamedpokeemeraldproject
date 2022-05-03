@@ -148,7 +148,7 @@ SkyPillar_Outside_Text_OpenedDoorToSkyPillar:
 	.string "I'd left you behind!\p"
 	.string "I've opened the locked door of\n"
 	.string "the Sky Pillar.\p"
-	.string "{PLAYER}{KUN}, let's be on our way!$"
+	.string "{PLAYER}, let's be on our way!$"
 
 SkyPillar_Outside_Text_EarthquakeNotMomentToWaste:
 	.string "Wallace: It's an earthquake!\p"
@@ -163,7 +163,7 @@ SkyPillar_Outside_Text_GotToGoBackForSootopolis:
 	.string "Wallace: This isn't good…\p"
 	.string "The weather distortion is spreading\n"
 	.string "even here…\p"
-	.string "{PLAYER}{KUN}.\p"
+	.string "{PLAYER}.\p"
 	.string "Rayquaza should be farther up\n"
 	.string "from here.\p"
 	.string "I'm worried about Sootopolis.\n"

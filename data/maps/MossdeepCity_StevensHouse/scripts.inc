@@ -151,7 +151,7 @@ MossdeepCity_StevensHouse_EventScript_DiveItemBall::
 	end
 
 MossdeepCity_StevensHouse_Text_YouveEarnedHMDive:
-	.string "Steven: {PLAYER}{KUN}…\p"
+	.string "Steven: {PLAYER}…\p"
 	.string "As you can see, there's not much here,\n"
 	.string "but this is my home.\p"
 	.string "Thank you for all that you've done.\p"
@@ -196,7 +196,7 @@ MossdeepCity_StevensHouse_Text_LeftPokeBallWhereItWas:
 MossdeepCity_StevensHouse_Text_LetterFromSteven:
 	.string "It's a letter.\p"
 	.string "… … … … … …\p"
-	.string "To {PLAYER}{KUN}…\p"
+	.string "To {PLAYER}…\p"
 	.string "I've decided to do a little soul-\n"
 	.string "searching and train on the road.\p"
 	.string "I don't plan to return home for some\n"

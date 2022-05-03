@@ -46,7 +46,7 @@ Route114_LanettesHouse_EventScript_PC::
 	end
 
 Route114_LanettesHouse_Text_EverythingClutteredKeepThis:
-	.string "Lanette: Oh! {PLAYER}{KUN}!\p"
+	.string "Lanette: Oh! {PLAYER}!\p"
 	.string "I'm sorry everything is so cluttered…\n"
 	.string "When I get engrossed in research,\l"
 	.string "things end up this way…\p"

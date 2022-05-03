@@ -1639,7 +1639,7 @@ SootopolisCity_Text_InvolvedWithCrisisComeWithMe:
 	.string "were awakened from a long sleep…\p"
 	.string "And now they are smashing each other\n"
 	.string "with their uncontrollable energy…\p"
-	.string "…{PLAYER}{KUN}.\p"
+	.string "…{PLAYER}.\p"
 	.string "You being here now I'll take to mean\n"
 	.string "that you're prepared to become\l"
 	.string "involved in this crisis.\p"
@@ -1648,7 +1648,7 @@ SootopolisCity_Text_InvolvedWithCrisisComeWithMe:
 	.string "Come with me, please.$"
 
 SootopolisCity_Text_DoesThisMakeYourFearPokemon:
-	.string "Steven: Listen, {PLAYER}{KUN}.\p"
+	.string "Steven: Listen, {PLAYER}.\p"
 	.string "Does seeing Groudon and Kyogre make\n"
 	.string "you think Pokémon are to be feared?\p"
 	.string "But that's not true.\n"
@@ -1685,21 +1685,21 @@ SootopolisCity_Text_MaxieArchieLeft:
 
 SootopolisCity_Text_HaventYouScaledSkyPillar:
 	.string "Wallace: Oh?\n"
-	.string "{PLAYER}{KUN}?\p"
+	.string "{PLAYER}?\p"
 	.string "Haven't you scaled the Sky Pillar\n"
 	.string "yet?\p"
 	.string "I'm sure that you can make it to\n"
 	.string "the top of the Sky Pillar…$"
 
 SootopolisCity_Text_AquaMagmaDidntMeanHarm:
-	.string "Wallace: {PLAYER}{KUN}…\p"
+	.string "Wallace: {PLAYER}…\p"
 	.string "The leaders of Team Magma and Aqua,\n"
 	.string "I don't think they meant harm.\p"
 	.string "It wouldn't hurt to hear what they\n"
 	.string "have to say for themselves.$"
 
 SootopolisCity_Text_ThankYouForHelpAcceptThis:
-	.string "Wallace: {PLAYER}{KUN}…\n"
+	.string "Wallace: {PLAYER}…\n"
 	.string "My eyes didn't deceive me.\p"
 	.string "Thanks to your help, Sootopolis…\n"
 	.string "No, all of Hoenn was saved.\p"

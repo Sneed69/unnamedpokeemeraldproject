@@ -295,7 +295,7 @@ Route103_Text_MayRoute103Pokemon:
 	.string "on Route 103 include…$"
 
 Route103_Text_MayLetsBattle:
-	.string "Oh, hi, {PLAYER}{KUN}!\p"
+	.string "Oh, hi, {PLAYER}!\p"
 	.string "…Oh, I see, my dad gave you\n"
 	.string "a Pokémon as a gift.\p"
 	.string "Since we're here, let's have a quick\n"
@@ -305,7 +305,7 @@ Route103_Text_MayLetsBattle:
 
 Route103_Text_MayDefeated:
 	.string "Wow! That's great!\n"
-	.string "{PLAYER}{KUN}, you're pretty good!$"
+	.string "{PLAYER}, you're pretty good!$"
 
 Route103_Text_MayTimeToHeadBack:
 	.string "May: I think I know why my dad has\n"

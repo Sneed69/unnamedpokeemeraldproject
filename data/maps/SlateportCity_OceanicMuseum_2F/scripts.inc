@@ -349,7 +349,7 @@ SlateportCity_OceanicMuseum_2F_Text_ArchieWarning:
 
 SlateportCity_OceanicMuseum_2F_Text_SternThankYouForSavingUs:
 	.string "Capt. Stern: You're…\n"
-	.string "Ah, okay, you're {PLAYER}{KUN}…\p"
+	.string "Ah, okay, you're {PLAYER}…\p"
 	.string "Anyway, that was a tense situation!\n"
 	.string "Thank you for saving us!\p"
 	.string "Oh, yes, I almost forgot that you\n"

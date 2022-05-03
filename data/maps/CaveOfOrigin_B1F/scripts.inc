@@ -62,7 +62,7 @@ CaveOfOrigin_B1F_EventScript_AtSkyPillar::
 	end
 
 CaveOfOrigin_B1F_Text_WallaceStory:
-	.string "Ah, so you are {PLAYER}{KUN}?\n"
+	.string "Ah, so you are {PLAYER}?\n"
 	.string "I've heard tales of your exploits.\p"
 	.string "My name is Wallace.\p"
 	.string "I was once the Gym Leader of\n"
@@ -86,7 +86,7 @@ CaveOfOrigin_B1F_Text_WallaceStory:
 	.string "Rayquaza's whereabouts…$"
 
 CaveOfOrigin_B1F_Text_WhereIsRayquaza:
-	.string "Wallace: {PLAYER}{KUN}, do you perhaps\n"
+	.string "Wallace: {PLAYER}, do you perhaps\n"
 	.string "know where Rayquaza is now?\p"
 	.string "If you do, please tell me.$"
 
@@ -103,7 +103,7 @@ CaveOfOrigin_B1F_Text_OldLadyDidntMentionThat:
 	.string "earlier, she made no mention of it.\p"
 	.string "I very much doubt that the old lady\n"
 	.string "would try to hide something from me…\p"
-	.string "{PLAYER}{KUN}, could you think about this\n"
+	.string "{PLAYER}, could you think about this\n"
 	.string "more carefully for me?$"
 
 CaveOfOrigin_B1F_Text_CantYouRememberSomehow:
@@ -115,6 +115,6 @@ CaveOfOrigin_B1F_Text_WellHeadToSkyPillar:
 	.string "Wallace: The Sky Pillar?\p"
 	.string "That's it!\n"
 	.string "It must be the Sky Pillar!\p"
-	.string "{PLAYER}{KUN}, there's not a moment to lose!\n"
+	.string "{PLAYER}, there's not a moment to lose!\n"
 	.string "We'll head to the Sky Pillar right away!$"
 

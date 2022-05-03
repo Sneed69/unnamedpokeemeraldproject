@@ -473,7 +473,7 @@ SlateportCity_Harbor_Text_CaptSternWhyStealMySubmarine:
 	.string "I don't stand a chance against them…$"
 
 SlateportCity_Harbor_Text_TeamAquaLeftNeedDive:
-	.string "Capt. Stern: Oh, {PLAYER}{KUN}…\p"
+	.string "Capt. Stern: Oh, {PLAYER}…\p"
 	.string "Okay… So Team Aqua left before you\n"
 	.string "could stop them…\p"
 	.string "Oh, no, don't blame yourself.\n"
@@ -504,7 +504,7 @@ SlateportCity_Harbor_Text_WontBeLongBeforeWeFinishFerry:
 	.string "making the ferry!$"
 
 SlateportCity_Harbor_Text_FinishedMakingFerry:
-	.string "Capt. Stern: {PLAYER}{KUN}!\p"
+	.string "Capt. Stern: {PLAYER}!\p"
 	.string "We finally finished making the ferry\n"
 	.string "S.S. Tidal!\p"
 	.string "We couldn't have done it without\n"
@@ -513,17 +513,17 @@ SlateportCity_Harbor_Text_FinishedMakingFerry:
 
 SlateportCity_Harbor_Text_WouldYouTradeScanner:
 	.string "Capt. Stern: Oh?\n"
-	.string "{PLAYER}{KUN}, that item you have…\p"
+	.string "{PLAYER}, that item you have…\p"
 	.string "That's a Scanner! That would sure\n"
 	.string "help us on our explorations.\p"
-	.string "{PLAYER}{KUN}, would you trade your\n"
+	.string "{PLAYER}, would you trade your\n"
 	.string "Scanner for something?\p"
 	.string "Like, say, a Deepseatooth or\n"
 	.string "a Deepseascale that I have?$"
 
 SlateportCity_Harbor_Text_IfYouWantToTradeLetMeKnow:
 	.string "Capt. Stern: Are you certain?\n"
-	.string "It's useless to you, {PLAYER}{KUN}…\p"
+	.string "It's useless to you, {PLAYER}…\p"
 	.string "Well, okay, then. If you want to trade\n"
 	.string "your Scanner, let me know.$"
 
@@ -543,5 +543,5 @@ SlateportCity_Harbor_Text_HandedScannerToStern:
 	.string "Capt. Stern.$"
 
 SlateportCity_Harbor_Text_ThisWillHelpResearch:
-	.string "Capt. Stern: Thanks, {PLAYER}{KUN}!\n"
+	.string "Capt. Stern: Thanks, {PLAYER}!\n"
 	.string "This will help our research a lot!$"

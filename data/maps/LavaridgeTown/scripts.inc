@@ -281,7 +281,7 @@ LavaridgeTown_EventScript_HerbShopSign::
 	end
 
 LavaridgeTown_Text_MayNiceBadgesTakeThis:
-	.string "May: {PLAYER}{KUN}! Long time no see!\p"
+	.string "May: {PLAYER}! Long time no see!\p"
 	.string "Oh? While I visited the hot springs,\n"
 	.string "you got the Lavaridge Gym Badge.\p"
 	.string "You must have collected\n"
@@ -298,11 +298,11 @@ LavaridgeTown_Text_MayExplainGoGoggles:
 	.string "as well!$"
 	
 LavaridgeTown_Text_MayChallengeDad:
-	.string "But, wow, {PLAYER}{KUN}…\n"
+	.string "But, wow, {PLAYER}…\n"
 	.string "Challenging Gyms…\p"
 	.string "You're trying hard because you don't\n"
 	.string "want to lose to me, I bet!\p"
-	.string "{PLAYER}{KUN}, I think I should challenge\n"
+	.string "{PLAYER}, I think I should challenge\n"
 	.string "your dad in Petalburg Gym.\p"
 	.string "See you again!$"
 

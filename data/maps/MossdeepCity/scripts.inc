@@ -410,7 +410,7 @@ MossdeepCity_Text_SpaceCenterSign:
 	.string "“The closest place to space.”$"
 
 MossdeepCity_Text_ScottSomethingWrongWithTown:
-	.string "Scott: {PLAYER}{KUN}, feeling good?\n"
+	.string "Scott: {PLAYER}, feeling good?\n"
 	.string "I'm doing great!\p"
 	.string "I'd heard Mossdeep's Gym Leader is\n"
 	.string "pretty strong, so I decided to come\l"

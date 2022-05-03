@@ -500,7 +500,7 @@ MauvilleCity_Text_WallyMyUncleWontKnowImStrong:
 	.string "become really strong.$"
 
 MauvilleCity_Text_UncleCanYouBattleWally:
-	.string "Uncle: {PLAYER}{KUN}, was it?\n"
+	.string "Uncle: {PLAYER}, was it?\n"
 	.string "On Wally's behalf, can I ask you to\l"
 	.string "battle with him just this once?\p"
 	.string "I don't think he's going to listen to\n"
@@ -539,7 +539,7 @@ MauvilleCity_Text_UncleNoNeedToBeDown:
 	.string "Everyone's waiting for you.$"
 
 MauvilleCity_Text_UncleVisitUsSometime:
-	.string "Uncle: {PLAYER}{KUN}, it just dawned on me\n"
+	.string "Uncle: {PLAYER}, it just dawned on me\n"
 	.string "that you must be the Trainer who kept\l"
 	.string "an eye out for Wally when he caught\l"
 	.string "his Pokémon.\p"
@@ -577,14 +577,14 @@ MauvilleCity_Text_ScottYouDidntHoldBack:
 	.string "I'll be cheering for you!$"
 
 MauvilleCity_Text_WattsonNeedFavorTakeKey:
-	.string "Wattson: Oh, {PLAYER}{KUN}!\n"
+	.string "Wattson: Oh, {PLAYER}!\n"
 	.string "You look like you have a lot of zip!\l"
 	.string "That's a good thing, wahahahaha!\p"
 	.string "Fine! I've decided!\n"
-	.string "I need a favor, {PLAYER}{KUN}!\p"
+	.string "I need a favor, {PLAYER}!\p"
 	.string "Mauville City has an underground\n"
 	.string "sector called New Mauville.\p"
-	.string "{PLAYER}{KUN}, I'd like you to go there and\n"
+	.string "{PLAYER}, I'd like you to go there and\n"
 	.string "switch off the Generator.\p"
 	.string "The Generator has been running a bit\n"
 	.string "haywire. It's getting unsafe.\p"
@@ -601,7 +601,7 @@ MauvilleCity_Text_WattsonWontBeChallenge:
 
 MauvilleCity_Text_WattsonThanksTakeTM:
 	.string "Wattson: Wahahahaha!\p"
-	.string "I knew it, {PLAYER}{KUN}! I knew I'd made\n"
+	.string "I knew it, {PLAYER}! I knew I'd made\n"
 	.string "the right choice asking you!\p"
 	.string "This is my thanks--a TM containing\n"
 	.string "Thunderbolt!\p"

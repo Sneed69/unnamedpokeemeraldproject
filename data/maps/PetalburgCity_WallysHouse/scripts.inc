@@ -69,7 +69,7 @@ PetalburgCity_WallysHouse_EventScript_ReceivedHM03Surf::
 
 PetalburgCity_WallysHouse_Text_ThanksForPlayingWithWally:
 	.string "You're…\n"
-	.string "Ah, you must be {PLAYER}{KUN}, right?\p"
+	.string "Ah, you must be {PLAYER}, right?\p"
 	.string "Thank you for playing with Wally a\n"
 	.string "little while ago.\p"
 	.string "He's been frail and sickly ever\n"
@@ -87,7 +87,7 @@ PetalburgCity_WallysHouse_Text_WonderHowWallyIsDoing:
 	.string "I wonder how our Wally is doing?$"
 
 PetalburgCity_WallysHouse_Text_PleaseExcuseUs:
-	.string "{PLAYER}{KUN}! Please excuse us for\n"
+	.string "{PLAYER}! Please excuse us for\n"
 	.string "dragging you here this way.\p"
 	.string "But our Wally's become very healthy\n"
 	.string "since he went to Verdanturf Town.\p"
@@ -114,7 +114,7 @@ PetalburgCity_WallysHouse_Text_WallyIsComingHomeSoon:
 PetalburgCity_WallysHouse_Text_YouMetWallyInEverGrandeCity:
 	.string "Oh? You met Wally in\n"
 	.string "Ever Grande City?\p"
-	.string "Oh, {PLAYER}{KUN}, don't be silly.\p"
+	.string "Oh, {PLAYER}, don't be silly.\p"
 	.string "He may have gotten healthy, but he\n"
 	.string "can't go somewhere far away like\l"
 	.string "that all by himself.$"

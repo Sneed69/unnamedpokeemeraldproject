@@ -224,7 +224,7 @@ EverGrandeCity_ChampionsRoom_Movement_BirchArrives:
 	step_end
 
 EverGrandeCity_ChampionsRoom_Text_IntroSpeech:
-	.string "Wallace: Welcome, {PLAYER}{KUN}.\p"
+	.string "Wallace: Welcome, {PLAYER}.\p"
 	.string "That incident in Sootopolis City…\n"
 	.string "That was superb work, putting an end\l"
 	.string "to that crisis all by yourself.\p"
@@ -251,7 +251,7 @@ EverGrandeCity_ChampionsRoom_Text_Defeat:
 	.string "That was wonderful work.\n"
 	.string "You were elegant, infuriatingly so.\l"
 	.string "And yet it was utterly glorious!\p"
-	.string "Kudos to you, {PLAYER}{KUN}!\p"
+	.string "Kudos to you, {PLAYER}!\p"
 	.string "You are a truly noble Pokémon\n"
 	.string "Trainer!$"
 
@@ -271,14 +271,14 @@ EverGrandeCity_ChampionsRoom_Text_PostBattleSpeech:
 	.string "Hoenn region…$"
 
 EverGrandeCity_ChampionsRoom_Text_MayAdvice:
-	.string "May: {PLAYER}{KUN}!\p"
+	.string "May: {PLAYER}!\p"
 	.string "Here's some advice before you challenge\n"
 	.string "the Champion…$"
 
 EverGrandeCity_ChampionsRoom_Text_MayItsAlreadyOver:
 	.string "May: Huh?\n"
 	.string "What, what, what?\p"
-	.string "{PLAYER}{KUN}…\n"
+	.string "{PLAYER}…\n"
 	.string "Could it be that…\l"
 	.string "It's already over?$"
 
@@ -296,9 +296,9 @@ EverGrandeCity_ChampionsRoom_Text_BirchArriveRatePokedex:
 	.string "Prof. Birch: See?\n"
 	.string "What did I tell you, {RIVAL}?\p"
 	.string "Didn't I tell you that you don't need\n"
-	.string "to worry about {PLAYER}{KUN}?\p"
+	.string "to worry about {PLAYER}?\p"
 	.string "… … … … … … … …\n"
-	.string "{PLAYER}{KUN}, you've finally done it.\p"
+	.string "{PLAYER}, you've finally done it.\p"
 	.string "When I heard that you defeated your\n"
 	.string "own father at the Petalburg Gym,\l"
 	.string "I thought perhaps you had a chance…\p"
@@ -314,7 +314,7 @@ EverGrandeCity_ChampionsRoom_Text_BirchCongratulations:
 	.string "Now, go proudly into the final room!$"
 
 EverGrandeCity_ChampionsRoom_Text_WallaceComeWithMe:
-	.string "Wallace: {PLAYER}{KUN}…\p"
+	.string "Wallace: {PLAYER}…\p"
 	.string "No, let me rephrase that properly.\p"
 	.string "The new Champion!\p"
 	.string "Come with me.$"
@@ -332,7 +332,7 @@ EverGrandeCity_ChampionsRoom_Text_MayCongratulations:
 	.string "… … … … … … … …\p"
 	.string "I'm just joking! That's okay!\n"
 	.string "That's the rule!\p"
-	.string "{PLAYER}{KUN}!\n"
+	.string "{PLAYER}!\n"
 	.string "Honestly, congratulations!$"
 
 EverGrandeCity_ChampionsRoom_Text_BrendanCongratulations:

@@ -238,7 +238,7 @@ RustboroCity_DevonCorp_3F_Text_MrStoneExplainPokenavRestUp:
 	.string "up before you go on your way.$"
 
 RustboroCity_DevonCorp_3F_Text_MrStoneGoWithCautionAndCare:
-	.string "Mr. Stone: Well, then, {PLAYER}{KUN},\n"
+	.string "Mr. Stone: Well, then, {PLAYER},\n"
 	.string "go with caution and care!$"
 
 RustboroCity_DevonCorp_3F_Text_CountingOnYou:

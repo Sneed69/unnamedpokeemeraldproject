@@ -283,7 +283,7 @@ Route128_Text_MaxieThisDefiesBelief:
 	.string "They've upset the balance of nature…$"
 
 Route128_Text_StevenWhatIsHappening:
-	.string "Steven: {PLAYER}{KUN}!\n"
+	.string "Steven: {PLAYER}!\n"
 	.string "What is happening?$"
 
 Route128_Text_StevenWholeWorldWillDrown:
@@ -299,7 +299,7 @@ Route128_Text_StevenWholeWorldWillDrown:
 	.string "Sootopolis might provide answers…$"
 
 Route128_Text_StevenImGoingToSootopolis:
-	.string "{PLAYER}{KUN}…\n"
+	.string "{PLAYER}…\n"
 	.string "I don't know what you intend to do,\l"
 	.string "but don't do anything reckless.\p"
 	.string "Okay.\n"

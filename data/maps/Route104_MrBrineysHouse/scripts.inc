@@ -102,7 +102,7 @@ Route104_MrBrineysHouse_Text_WaitUpPeeko:
 	.string "Wait up, Peeko!$"
 
 Route104_MrBrineysHouse_Text_ItsYouLetsSailToDewford:
-	.string "Hm? You're {PLAYER}{KUN}!\n"
+	.string "Hm? You're {PLAYER}!\n"
 	.string "You saved my darling Peeko!\l"
 	.string "We owe so much to you!\p"
 	.string "What's that?\n"

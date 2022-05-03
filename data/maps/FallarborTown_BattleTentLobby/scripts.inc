@@ -327,7 +327,7 @@ FallarborTown_BattleTentLobby_Text_CameToCampOut:
 	.string "my hand at battling!$"
 
 FallarborTown_BattleTentLobby_Text_ScottLookingForSomeone:
-	.string "Scott: Hi, {PLAYER}{KUN}!\n"
+	.string "Scott: Hi, {PLAYER}!\n"
 	.string "So you came out to this Battle Tent!\p"
 	.string "The people in these parts tend to be\n"
 	.string "easygoing and laid-back.\p"
