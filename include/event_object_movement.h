@@ -419,6 +419,4 @@ bool32 IsVirtualObjectInvisible(u8 virtualObjId);
 void SetVirtualObjectSpriteAnim(u8 virtualObjId, u8 animNum);
 bool32 IsVirtualObjectAnimating(u8 virtualObjId);
 
-bool8 IsObjectEventPaletteIndex(u8 paletteIndex);
-
 #endif //GUARD_EVENT_OBJECT_MOVEMENT_H

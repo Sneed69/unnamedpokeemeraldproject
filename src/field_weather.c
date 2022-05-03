@@ -667,7 +667,7 @@ static void ApplyFogBlend(u8 blendCoeff, u16 blendColor)
     u16 curPalIndex;
 
     BlendPalette(0, 256, blendCoeff, blendColor);
-    BlendPalettesGradually(0x3FF0000, 0, 3, 8, RGB_WHITEALPHA, 0, 0); //blend objects
+    BlendPalettesGradually(0x3FF0000, -1, 3, 8, RGB_WHITEALPHA, 0, 0); //blend objects
     color = *(struct RGBColor *)&blendColor;
     rBlend = color.r;
     gBlend = color.g;
@@ -724,9 +724,6 @@ static bool8 LightenSpritePaletteInFog(u8 paletteIndex)
         if (gWeatherPtr->lightenedFogSpritePals[i] == paletteIndex)
             return TRUE;
     }
-    
-    //if (IsObjectEventPaletteIndex(paletteIndex))
-        //return TRUE;
 
     return FALSE;
 }

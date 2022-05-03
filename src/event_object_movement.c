@@ -32,6 +32,8 @@
 #include "constants/union_room.h"
 #include "day_night.h"
 #include "debug.h"
+#include "constants/weather.h"
+#include "constants/rgb.h"
 
 // this file was known as evobjmv.c in Game Freak's original source
 
@@ -1441,7 +1443,6 @@ static u8 TrySetupObjectEventSprite(struct ObjectEventTemplate *objectEventTempl
 
     SetObjectSubpriorityByElevation(objectEvent->previousElevation, sprite, 1);
     UpdateObjectEventVisibility(objectEvent, sprite);
-    UpdateSpritePaletteWithWeather(IndexOfSpritePaletteTag(graphicsInfo->paletteTag));
     return objectEventId;
 }
 
@@ -1799,11 +1800,10 @@ void ObjectEventSetGraphicsId(struct ObjectEvent *objectEvent, u8 graphicsId)
     if (paletteSlot == 0)
     {
         PatchObjectPalette(graphicsInfo->paletteTag, graphicsInfo->paletteSlot);
-        #if DYNAMIC_OW_PALS
-            UpdateSpritePaletteWithWeather(FindObjectEventPaletteIndexByTag(graphicsInfo->paletteTag);
-        #else
-            UpdateSpritePaletteWithWeather(graphicsInfo->paletteSlot);
-        #endif
+        if (gWeatherPtr->nextWeather == WEATHER_FOG_HORIZONTAL)
+            BlendPalettesGradually(0x3FF0000, -1, 3, 8, RGB_WHITEALPHA, 0, 0);  //blend first 10 sprite palette slots
+        else if (gWeatherPtr->nextWeather != gWeatherPtr->currWeather && gWeatherPtr->currWeather == WEATHER_FOG_HORIZONTAL)
+            BlendPalettesGradually(0x3FF0000, -1, 8, 0, RGB_WHITEALPHA, 0, 0);  //undo fog pal blend
     }
     else if (paletteSlot == 10)
     {
@@ -2038,21 +2038,6 @@ static u8 FindObjectEventPaletteIndexByTag(u16 tag)
             return i;
     }
     return 0xFF;
-}
-
-bool8 IsObjectEventPaletteIndex(u8 paletteIndex)
-{
-    #if DYNAMIC_OW_PALS
-        if (FindObjectEventPaletteIndexByTag(GetSpritePaletteTagByPaletteNum(paletteIndex - 16)) != 0xFF)
-            return TRUE;
-    #else
-        if ((paletteIndex - 16) > 10)
-            return FALSE;   //don't mess with the weather pal itself
-        else if (FindObjectEventPaletteIndexByTag(GetSpritePaletteTagByPaletteNum(paletteIndex)) != 0xFF)
-            return TRUE;
-    #endif
-    
-    return FALSE;
 }
 
 void LoadPlayerObjectReflectionPalette(u16 tag, u8 slot)
