@@ -221,7 +221,7 @@ SafariZone_South_Text_Youngster:
 	.string "without me noticing.$"
 
 Route121_SafariZoneEntrance_Text_TrainerTip:
-	.string "Safari Zone trainer tip!\p"
+	.string "Safari Zone Trainer Tip!\p"
 	.string "Throw {POKEBLOCK}s at wild Pokémon to make\n"
 	.string "them less likely to flee.$"
 

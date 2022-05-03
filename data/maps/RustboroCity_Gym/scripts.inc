@@ -107,11 +107,11 @@ RustboroCity_Gym_Text_GymGuideAdvice:
 	.string "Yo, how's it going?\p"
 	.string "Listen, my friend!\n"
 	.string "Would you like to become the Champion?\p"
-	.string "I'm no trainer, not me, but I can\n"
+	.string "I'm no Trainer, not me, but I can\n"
 	.string "sure give you winning advice.\p"
 	.string "That's settled, then! We'll aim for the\n"
 	.string "Pokémon Championship together!\p"
-	.string "It's your job as a trainer to collect\n"
+	.string "It's your job as a Trainer to collect\n"
 	.string "Gym Badges, am I right?\p"
 	.string "But Gym Leaders aren't pushovers!\p"
 	.string "And that's where I come in!\n"
@@ -129,7 +129,7 @@ RustboroCity_Gym_Text_GymGuidePostVictory:
 	.string "Whoa! What a breathtaking victory!\n"
 	.string "My cheering must've worked!\p"
 	.string "Great!\n"
-	.string "Check your trainer card.\p"
+	.string "Check your Trainer Card.\p"
 	.string "The Stone Badge you got should be\n"
 	.string "properly recorded on it.\p"
 	.string "In other words…\p"
@@ -138,7 +138,7 @@ RustboroCity_Gym_Text_GymGuidePostVictory:
 	.string "That's got to feel awesome!$"
 
 RustboroCity_Gym_Text_JoshIntro:
-	.string "Don't take us Gym trainers lightly!\n"
+	.string "Don't take us Gym Trainers lightly!\n"
 	.string "I'll show you why we're better!$"
 
 RustboroCity_Gym_Text_JoshDefeat:
@@ -191,7 +191,7 @@ RustboroCity_Gym_Text_RoxanneDefeat:
 	.string "to learn…\p"
 	.string "I understand.\p"
 	.string "The Pokémon League's rules state\n"
-	.string "that trainers are to be given this\l"
+	.string "that Trainers are to be given this\l"
 	.string "if they defeat a Gym Leader.\p"
 	.string "Please accept the official Pokémon\n"
 	.string "League Stone Badge.$"
@@ -215,7 +215,7 @@ RustboroCity_Gym_Text_ExplainRockTomb:
 RustboroCity_Gym_Text_RoxannePostBattle:
 	.string "Since you are so strong, you should\n"
 	.string "challenge other Gym Leaders.\p"
-	.string "By battling many trainers, you should\n"
+	.string "By battling many Trainers, you should\n"
 	.string "learn many things.$"
 
 RustboroCity_Gym_Text_GymStatue:
@@ -233,7 +233,7 @@ RustboroCity_Gym_Text_RoxanneRegisterCall:
 	.string "This is Roxanne of Rustboro City.\p"
 	.string "I heard from Brawly that you're\n"
 	.string "moving up through the ranks of\l"
-	.string "trainers at an incredible clip.\p"
+	.string "Trainers at an incredible clip.\p"
 	.string "Well, I'd rather not think that\n"
 	.string "I can't beat you.\p"
 	.string "I promise, I will shape up my Gym\n"

@@ -293,11 +293,11 @@ RustboroCity_PokemonSchool_Text_StudentsNotes:
 	.string "Pokémon are to be caught using\n"
 	.string "Poké Balls.\p"
 	.string "Up to six Pokémon can accompany\n"
-	.string "a trainer.\p"
-	.string "A trainer is someone who catches\n"
+	.string "a Trainer.\p"
+	.string "A Trainer is someone who catches\n"
 	.string "Pokémon, raises them, and battles\l"
 	.string "with them.\p"
-	.string "A trainer's mission is to defeat\n"
+	.string "A Trainer's mission is to defeat\n"
 	.string "the strong Trainers who await\l"
 	.string "challengers in Pokémon Gyms.$"
 
@@ -311,7 +311,7 @@ RustboroCity_PokemonSchool_Text_ScottMetAlreadyCut:
 	.string "More specifically, I'm looking for\n"
 	.string "Pokémon battle experts.\p"
 	.string "So, what brings you to this School?\n"
-	.string "Are you a trainer, too?\p"
+	.string "Are you a Trainer, too?\p"
 	.string "The first thing you should do is to\n"
 	.string "stock up on traveling supplies.$"
 
@@ -327,7 +327,7 @@ RustboroCity_PokemonSchool_Text_ScottStoneBadge:
 	.string "But, you know, I would've loved to see\n"
 	.string "you in battle.\p"
 	.string "It's hard to tell what you're like as\n"
-	.string "a trainer from a League Badge.$"
+	.string "a Trainer from a League Badge.$"
 
 RustboroCity_PokemonSchool_Text_ScottMetAlreadyStoneBadge:
 	.string "Hello? Didn't we meet before?\n"
@@ -341,9 +341,9 @@ RustboroCity_PokemonSchool_Text_ScottMetAlreadyStoneBadge:
 	.string "Oh, what's that?\n"
 	.string "It's a Stone Badge, isn't it?\p"
 	.string "That's pretty impressive, I'd say, for\n"
-	.string "a starting trainer like yourself.\p"
+	.string "a starting Trainer like yourself.\p"
 	.string "But, you know, I would've loved to see\n"
 	.string "you in battle.\p"
 	.string "It's hard to tell what you're like as\n"
-	.string "a trainer from a League Badge.$"
+	.string "a Trainer from a League Badge.$"
 

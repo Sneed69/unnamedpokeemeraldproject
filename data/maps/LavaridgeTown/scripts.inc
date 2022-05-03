@@ -340,7 +340,7 @@ LavaridgeTown_Text_HaveEggWillYouTakeIt:
 	.string "I've heard it would be best if it were\n"
 	.string "kept together with Pokémon and\l"
 	.string "carried about.\p"
-	.string "You are a trainer, yes?\n"
+	.string "You are a Trainer, yes?\n"
 	.string "And your Pokémon radiate vitality.\p"
 	.string "So, what say you?\n"
 	.string "Will you take this Egg to hatch?$"

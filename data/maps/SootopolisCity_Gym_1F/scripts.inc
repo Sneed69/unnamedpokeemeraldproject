@@ -252,7 +252,7 @@ SootopolisCity_Gym_1F_Text_RegisteredJuan:
 	.string "in the Pokénav.$"
 
 SootopolisCity_Gym_1F_Text_JuanPostBattle:
-	.string "The trainers who have gathered all\n"
+	.string "The Trainers who have gathered all\n"
 	.string "the Gym Badges of Hoenn should make\l"
 	.string "way to the ultimate destination.\p"
 	.string "The Pokémon League.\p"
@@ -273,7 +273,7 @@ SootopolisCity_Gym_1F_Text_GymStatue:
 
 SootopolisCity_Gym_1F_Text_GymStatueCertified:
 	.string "Sootopolis City Pokémon Gym\p"
-	.string "Juan's certified trainers:\n"
+	.string "Juan's certified Trainers:\n"
 	.string "{PLAYER}$"
 
 SootopolisCity_Gym_1F_Text_JuanPreRematch:
