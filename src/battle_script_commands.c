@@ -3992,8 +3992,13 @@ static void Cmd_getexp(void)
                             // Note: There is an edge case where if a pokemon receives a large amount of exp, it wouldn't be properly calculated
                             //       because of multiplying by scaling factor(the value would simply be larger than an u32 can hold). Hence u64 is needed.
                             u64 value = gBattleMoveDamage;
-                            value *= sExperienceScalingFactors[(gBattleMons[gBattlerFainted].level * 2) + 10];
-                            value /= sExperienceScalingFactors[gBattleMons[gBattlerFainted].level + GetMonData(&gPlayerParty[gBattleStruct->expGetterMonId], MON_DATA_LEVEL) + 10];
+                            u8 expGetterLevel = GetMonData(&gPlayerParty[gBattleStruct->expGetterMonId], MON_DATA_LEVEL);
+
+                            value *= sExperienceScalingFactors[2 * gBattleMons[gBattlerFainted].level + 10];
+                            if (gBattleMons[gBattlerFainted].level > expGetterLevel)
+                                value /= sExperienceScalingFactors[gBattleMons[gBattlerFainted].level + expGetterLevel + 10];
+                            else
+                                value /= sExperienceScalingFactors[2 * expGetterLevel + 10];
                             gBattleMoveDamage = value + 1;
                         }
                         #endif
