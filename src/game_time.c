@@ -1,5 +1,6 @@
 #include "global.h"
 #include "game_time.h"
+#include "script.h"
 
 enum
 {
@@ -32,6 +33,8 @@ void GameTimeCounter_Stop(void)
 void GameTimeCounter_Update(void)
 {
     if (sGameTimeCounterState != RUNNING)
+        return;
+    if (ScriptContext2_IsEnabled())//Check if game is paused
         return;
 #if TIME_SCALE <= 60
     gSaveBlock1Ptr->gameTimeVBlanks += TIME_SCALE;
