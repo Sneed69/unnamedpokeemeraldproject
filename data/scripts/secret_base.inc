@@ -5,7 +5,7 @@ SecretBase_Text_TreeCanBeClimbed:
 SecretBase_Text_TreeUseSecretPower:
 	.string "If some vines drop down, this tree can\n"
 	.string "be climbed.\p"
-	.string "Climb up?$"
+	.string "Would you like to climb up?$"
 
 SecretBase_Text_VineDroppedDown:
 	.string "A thick vine dropped down!$"
@@ -17,7 +17,7 @@ SecretBase_Text_ClumpOfGrass:
 SecretBase_Text_ClumpUseSecretPower:
 	.string "If this clump of grass can be moved,\n"
 	.string "it might be possible to go inside.\p"
-	.string "Move it?$"
+	.string "Would you like to go inside?$"
 
 SecretBase_Text_DiscoveredSmallEntrance:
 	.string "Discovered a small entrance!$"
@@ -711,4 +711,4 @@ SecretBase_Text_WouldYouLikeToMoveBases:
 
 SecretBase_Text_MovingCompletedUseSecretPower:
 	.string "Moving completed.\p"
-	.string "Enter?$"
+	.string "Would you like to enter?$"

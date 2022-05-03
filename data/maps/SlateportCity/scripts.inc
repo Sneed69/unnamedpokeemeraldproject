@@ -1123,19 +1123,19 @@ SlateportCity_Text_SternsShipyardWantedSign:
 	.string "in all currents.”$"
 
 SlateportCity_Text_SternsShipyardNearsCompletion:
-	.string "Stern's shipyard\p"
-	.string "“The ferry S.S. TIDAL nears\n"
+	.string "Stern's Shipyard\p"
+	.string "“The ferry S.S. Tidal nears\n"
 	.string "completion for serving the ports of\l"
 	.string "Slateport and Lilycove.”$"
 
 SlateportCity_Text_SternsShipyardFerryComplete:
-	.string "Stern's shipyard\p"
+	.string "Stern's Shipyard\p"
 	.string "“Boarding of the Slateport-Lilycove\n"
 	.string "ferry S.S. Tidal is handled at the\l"
 	.string "harbor.”$"
 
 SlateportCity_Text_PokemonFanClubSign:
-	.string "Pokémon fan Club\n"
+	.string "Pokémon Fan Club\n"
 	.string "“Calling all fans of Pokémon!”$"
 
 SlateportCity_Text_OceanicMuseumSign:
@@ -1198,12 +1198,12 @@ SlateportCity_Text_KeepEyeOnTrainersBeSeeingYou:
 	.string "on the talents of other people, too.\p"
 	.string "So, I'll be off to roam other towns\n"
 	.string "a bit more.\p"
-	.string "Be seeing you, {PLAYER}{KUN}!$"
+	.string "Be seeing you, {PLAYER}!$"
 
 SlateportCity_Text_TakingBattleTentChallenge:
 	.string "Scott: Oh, hey!\n"
 	.string "If it isn't {PLAYER}{KUN}!\p"
-	.string "{PLAYER}{KUN}, let me guess--you're going\n"
+	.string "{PLAYER}, let me guess--you're going\n"
 	.string "to take the Battle Tent challenge?\p"
 	.string "Yeah! That's a good idea!\n"
 	.string "That's a really great idea!\p"

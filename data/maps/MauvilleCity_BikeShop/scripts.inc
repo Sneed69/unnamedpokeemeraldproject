@@ -122,7 +122,7 @@ MauvilleCity_BikeShop_Text_DidYouComeFromFarAway:
 MauvilleCity_BikeShop_Text_GuessYouDontNeedBike:
 	.string "Rydel: Is that right?\p"
 	.string "Then, I guess you have no need for\n"
-	.string "any of my bikes.$"
+	.string "one of my bikes.$"
 
 MauvilleCity_BikeShop_Text_GiveBike:
 	.string "Rydel: Hm, hm… … … … …\p"

@@ -207,7 +207,7 @@ MauvilleCity_GameCorner_Text_ClearEntrance:
 MauvilleCity_GameCorner_Text_LuckOnlyLastSoLongTakeCoins:
 	.string "My luck can only last so long.\n"
 	.string "This is too much for me.\l"
-	.string "Here, take some COINS!$"
+	.string "Here, take some Coins!$"
 
 MauvilleCity_GameCorner_Text_MauvilleSomethingForEveryone:
 	.string "Mauville has something for\n"
@@ -240,4 +240,3 @@ MauvilleCity_GameCorner_Text_DifficultToStopOn7:
 
 MauvilleCity_GameCorner_Text_CantPlay:
 	.string "You are too young to gamble here!$"
-

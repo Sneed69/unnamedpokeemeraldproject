@@ -82,5 +82,3 @@ EggMoveTutor_Text_Farewell:
 
 EggMoveTutor_Text_CantTeachEgg:
 	.string "That is an Egg.$"
-
-

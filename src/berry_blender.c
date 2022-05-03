@@ -255,7 +255,7 @@ static const u8 sUnusedText_Space[] = _(" ");
 static const u8 sUnusedText_Terminating[] = _("Terminating.");
 static const u8 sUnusedText_LinkPartnerNotFound[] = _("Link partner(s) not found.\nPlease try again.\p");
 
-static const u8 sText_BerryBlenderStart[] = _("Starting up the Berry Blender.\pPlease select a berry from your bag\nto put in the Berry Blender.\p");
+static const u8 sText_BerryBlenderStart[] = _("Starting up the Berry Blender.\pPlease select a Berry from your Bag\nto put in the Berry Blender.\p");
 static const u8 sText_NewParagraph[] = _("\p");
 static const u8 sText_WasMade[] = _(" was made!");
 static const u8 sText_Mister[] = _("Mister");
@@ -283,7 +283,7 @@ static const u8 sText_RunOutOfBerriesForBlending[] = _("You've run out of Berrie
 static const u8 sText_YourPokeblockCaseIsFull[] = _("Your {POKEBLOCK} case is full.\p");
 static const u8 sText_HasNoBerriesToPut[] = _(" has no Berries to put in\nthe Berry Blender.");
 static const u8 sText_ApostropheSPokeblockCaseIsFull[] = _("'s {POKEBLOCK} case is full.\p");
-static const u8 sText_BlendingResults[] = _("Results of Blending");
+static const u8 sText_BlendingResults[] = _("Results of blending");
 static const u8 sText_BerryUsed[] = _("Berry used");
 static const u8 sText_SpaceBerry[] = _(" Berry");
 static const u8 sText_Time[] = _("Time:");

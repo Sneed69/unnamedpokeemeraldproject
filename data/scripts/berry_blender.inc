@@ -158,7 +158,7 @@ BerryBlender_Text_DontHaveAnyBerries3:
 	.string "you get a Berry or two.$"
 
 BerryBlender_Text_PokeblockCaseIsFull3:
-	.string "Your {POKEBLOCK} CASE is full,\n"
+	.string "Your {POKEBLOCK} Case is full,\n"
 	.string "it looks like.\p"
 	.string "You should use some {POKEBLOCK}s up\n"
 	.string "and then come back.$"
@@ -166,7 +166,7 @@ BerryBlender_Text_PokeblockCaseIsFull3:
 BerryBlender_Text_DontHavePokeblockCase3:
 	.string "You haven't gotten a {POKEBLOCK} case\n"
 	.string "yet, it looks like.\p"
-	.string "You need to get a {POKEBLOCK} CASE before\n"
+	.string "You need to get a {POKEBLOCK} Case before\n"
 	.string "you come back.$"
 
 BerryBlender_Text_SetNewBlenderRecord:
@@ -211,7 +211,7 @@ BerryBlender_Text_PokeblockCaseIsFullLink:
 	.string "The Berry Blender can't be used.$"
 
 BerryBlender_Text_DontHavePokeblockCaseLink:
-	.string "You don't have a {POKEBLOCK} CASE.\n"
+	.string "You don't have a {POKEBLOCK} case.\n"
 	.string "The Berry Blender can't be used.$"
 
 BerryBlender_Text_LoveMakingPokeblocks:

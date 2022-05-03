@@ -144,9 +144,6 @@ Text_CantWaterfall:
 	.string "A wall of water is crashing down with\n"
 	.string "a mighty roar.$"
 
-Text_MonUsedWaterfall:
-	.string "{STR_VAR_1} used Waterfall.$"
-
 EventScript_UseDive::
 	lockall
 	dofieldeffect FLDEFF_USE_DIVE
