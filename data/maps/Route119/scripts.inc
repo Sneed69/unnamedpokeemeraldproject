@@ -21,15 +21,14 @@ Route119_OnTransition:
 	call Common_EventScript_SetupRivalGfxId
 	call Common_EventScript_SetupRivalOnBikeGfxId
 	call_if_eq VAR_WEATHER_INSTITUTE_STATE, 1, Route119_EventScript_MoveInstituteWorkersDownstairs
-	call Route119_EventScript_EvaluateWeather
+	call Route119_EventScript_FlyHealspotWeather
+	special SetRoute119Weather
 	end
 
-Route119_EventScript_EvaluateWeather::
+Route119_EventScript_FlyHealspotWeather::
 	getplayerxy VAR_TEMP_0, VAR_TEMP_1
-	goto_if_gt VAR_TEMP_1, 137, Route119_DontSetWeather @coming from the bottom
-	goto_if_gt VAR_TEMP_1, 13, Route119_SetWeather @not coming from fortree
-	goto_if_lt VAR_TEMP_0, 7, Route119_SetWeather @northernmost secret base
-Route119_SetWeather:
+	goto_if_ne VAR_TEMP_0, 7, Route119_DontSetWeather
+	goto_if_ne VAR_TEMP_1, 35, Route119_DontSetWeather
 	setweather WEATHER_ROUTE119_CYCLE
 Route119_DontSetWeather:
 	return
