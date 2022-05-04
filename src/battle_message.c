@@ -280,6 +280,8 @@ static const u8 sText_PkmnPreventsConfusionWith[] = _("{B_DEF_NAME_WITH_PREFIX}'
 static const u8 sText_PkmnRaisedFirePowerWith[] = _("{B_DEF_NAME_WITH_PREFIX}'s {B_DEF_ABILITY}\nraised its Fire power!");
 static const u8 sText_PkmnAnchorsItselfWith[] = _("{B_DEF_NAME_WITH_PREFIX} anchors\nitself with {B_DEF_ABILITY}!");
 static const u8 sText_PkmnCutsAttackWith[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX}'s {B_SCR_ACTIVE_ABILITY}\ncuts {B_DEF_NAME_WITH_PREFIX}'s Attack!");
+static const u8 sText_PkmnLoweredGuard[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX}'s {B_SCR_ACTIVE_ABILITY}\nlowers {B_DEF_NAME_WITH_PREFIX}'s guard!");
+static const u8 sText_PkmnGuardNotLowered[] = _("{B_DEF_NAME_WITH_PREFIX}'s guard\nwas not lowered!");
 static const u8 sText_PkmnPreventsStatLossWith[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX}'s {B_SCR_ACTIVE_ABILITY}\nprevents stat loss!");
 static const u8 sText_PkmnHurtsWith[] = _("{B_ATK_NAME_WITH_PREFIX} was hurt by\n{B_DEF_NAME_WITH_PREFIX}'s {B_BUFF1}!");
 static const u8 sText_PkmnTraced[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX} Traced\n{B_BUFF1}'s {B_BUFF2}!");
@@ -1357,6 +1359,8 @@ const u8 *const gBattleStringsTable[BATTLESTRINGS_COUNT] =
     [STRINGID_PKMNHURTBYFROSTBITE - BATTLESTRINGS_TABLE_START] = sText_PkmnHurtByFrostbite,
     [STRINGID_PKMNALREADYFROZEN - BATTLESTRINGS_TABLE_START] = sText_PkmnIsAlreadyFrozen,
     [STRINGID_PKMNPREVENTSFREEZINGWITH - BATTLESTRINGS_TABLE_START] = sText_PkmnPreventsFreezingWith,
+    [STRINGID_PKMNLOWEREDGUARD - BATTLESTRINGS_TABLE_START] = sText_PkmnLoweredGuard,
+    [STRINGID_PKMNGUARDWASNOTLOWERED - BATTLESTRINGS_TABLE_START] = sText_PkmnGuardNotLowered,
 };
 
 const u16 gMentalHerbCureStringIds[] =

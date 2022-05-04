@@ -7029,11 +7029,7 @@ const struct BaseStats gBaseStats[] =
         .growthRate = GROWTH_FAST,
         .eggGroup1 = EGG_GROUP_FIELD,
         .eggGroup2 = EGG_GROUP_FAIRY,
-        #ifdef BATTLE_ENGINE
-            .abilities = {ABILITY_CUTE_CHARM, ABILITY_NORMALIZE, ABILITY_WONDER_SKIN},
-        #else
-            .abilities = {ABILITY_CUTE_CHARM, ABILITY_NONE},
-        #endif
+        .abilities = {ABILITY_UNTHREATENING, ABILITY_NONE},
         .bodyColor = BODY_COLOR_PURPLE,
         .noFlip = FALSE,
     },

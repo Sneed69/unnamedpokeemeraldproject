@@ -8284,6 +8284,48 @@ BattleScript_IntimidatePrevented:
 	call BattleScript_TryAdrenalineOrb
 	goto BattleScript_IntimidateActivatesLoopIncrement
 
+BattleScript_UnthreateningActivatesEnd3::
+	call BattleScript_PauseUnthreateningActivates
+	end3
+
+BattleScript_PauseUnthreateningActivates:
+	pause B_WAIT_TIME_SHORT
+BattleScript_UnthreateningActivates::
+	setbyte gBattlerTarget, 0
+	call BattleScript_AbilityPopUp
+BattleScript_UnthreateningActivatesLoop:
+	trygetintimidatetarget BattleScript_UnthreateningActivatesReturn
+	jumpifability BS_TARGET, ABILITY_CLEAR_BODY, BattleScript_UnthreateningPrevented
+	jumpifability BS_TARGET, ABILITY_WHITE_SMOKE, BattleScript_UnthreateningPrevented
+	jumpifability BS_TARGET, ABILITY_INNER_FOCUS, BattleScript_UnthreateningPrevented
+	jumpifability BS_TARGET, ABILITY_SCRAPPY, BattleScript_UnthreateningPrevented
+	jumpifability BS_TARGET, ABILITY_OWN_TEMPO, BattleScript_UnthreateningPrevented
+	jumpifability BS_TARGET, ABILITY_OBLIVIOUS, BattleScript_UnthreateningPrevented
+	jumpifability BS_TARGET, ABILITY_BIG_PECKS, BattleScript_UnthreateningTrySpDef
+	setstatchanger STAT_DEF, 1, TRUE
+	statbuffchange STAT_BUFF_NOT_PROTECT_AFFECTED | STAT_BUFF_ALLOW_PTR, BattleScript_UnthreateningTrySpDef
+	jumpifstat BS_TARGET, CMP_EQUAL, STAT_SPDEF, MIN_STAT_STAGE, BattleScript_UnthreateningPlayAnimation
+BattleScript_UnthreateningTrySpDef:
+	setstatchanger STAT_SPDEF, 1, TRUE
+	statbuffchange STAT_BUFF_NOT_PROTECT_AFFECTED | STAT_BUFF_ALLOW_PTR, BattleScript_UnthreateningActivatesLoopIncrement
+BattleScript_UnthreateningPlayAnimation:
+	jumpifbyte CMP_GREATER_THAN, cMULTISTRING_CHOOSER, 1, BattleScript_UnthreateningActivatesLoopIncrement
+	setgraphicalstatchangevalues
+	playanimation BS_TARGET, B_ANIM_STATS_CHANGE, sB_ANIM_ARG1
+	printstring STRINGID_PKMNLOWEREDGUARD
+	waitmessage B_WAIT_TIME_LONG
+BattleScript_UnthreateningActivatesLoopIncrement:
+	addbyte gBattlerTarget, 1
+	goto BattleScript_UnthreateningActivatesLoop
+BattleScript_UnthreateningActivatesReturn:
+	return
+BattleScript_UnthreateningPrevented:
+	pause B_WAIT_TIME_SHORT
+	call BattleScript_AbilityPopUp
+	printstring STRINGID_PKMNGUARDWASNOTLOWERED
+	waitmessage B_WAIT_TIME_LONG
+	goto BattleScript_UnthreateningActivatesLoopIncrement
+
 BattleScript_DroughtActivates::
 	pause B_WAIT_TIME_SHORT
 	call BattleScript_AbilityPopUp

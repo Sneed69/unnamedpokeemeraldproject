@@ -1551,7 +1551,7 @@ void PrepareStringBattle(u16 stringId, u8 battler)
         stringId = STRINGID_STATSWONTDECREASE2;
 
     // Check Defiant and Competitive stat raise whenever a stat is lowered.
-    else if ((stringId == STRINGID_DEFENDERSSTATFELL || stringId == STRINGID_PKMNCUTSATTACKWITH)
+    else if ((stringId == STRINGID_DEFENDERSSTATFELL || stringId == STRINGID_PKMNCUTSATTACKWITH || stringId == STRINGID_PKMNLOWEREDGUARD)
               && ((targetAbility == ABILITY_DEFIANT && CompareStat(gBattlerTarget, STAT_ATK, MAX_STAT_STAGE, CMP_LESS_THAN))
                  || (targetAbility == ABILITY_COMPETITIVE && CompareStat(gBattlerTarget, STAT_SPATK, MAX_STAT_STAGE, CMP_LESS_THAN)))
               && gSpecialStatuses[gBattlerTarget].changedStatsBattlerId != BATTLE_PARTNER(gBattlerTarget)
@@ -4527,6 +4527,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             }
             break;
         case ABILITY_INTIMIDATE:
+        case ABILITY_UNTHREATENING:
             if (!(gSpecialStatuses[battler].intimidatedMon))
             {
                 gBattleResources->flags->flags[battler] |= RESOURCE_FLAG_INTIMIDATED;
@@ -5696,6 +5697,24 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 {
                     BattleScriptPushCursor();
                     gBattlescriptCurrInstr = BattleScript_IntimidateActivates;
+                }
+                battler = gBattlerAbility = gBattleStruct->intimidateBattler = i;
+                effect++;
+                break;
+            }
+            if (GetBattlerAbility(i) == ABILITY_UNTHREATENING && gBattleResources->flags->flags[i] & RESOURCE_FLAG_INTIMIDATED
+                && (IsBattlerAlive(BATTLE_OPPOSITE(i)) || IsBattlerAlive(BATTLE_PARTNER(BATTLE_OPPOSITE(i))))) // At least one opposing mon has to be alive.
+            {
+                gBattleResources->flags->flags[i] &= ~RESOURCE_FLAG_INTIMIDATED;
+                gLastUsedAbility = ABILITY_UNTHREATENING;
+                if (caseID == ABILITYEFFECT_INTIMIDATE1)
+                {
+                    BattleScriptPushCursorAndCallback(BattleScript_UnthreateningActivatesEnd3);
+                }
+                else
+                {
+                    BattleScriptPushCursor();
+                    gBattlescriptCurrInstr = BattleScript_UnthreateningActivates;
                 }
                 battler = gBattlerAbility = gBattleStruct->intimidateBattler = i;
                 effect++;
