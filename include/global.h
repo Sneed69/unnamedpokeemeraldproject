@@ -180,7 +180,7 @@ struct UCoords32
 
 struct Time
 {
-    /*0x00*/ s16 days;
+    /*0x00*/ s32 days;
     /*0x02*/ s8 hours;
     /*0x03*/ s8 minutes;
     /*0x04*/ s8 seconds;
