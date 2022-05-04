@@ -397,6 +397,7 @@ bool32 OpenPokenavMenuNotInitial(void)
         return FALSE;
 
     gfx->pokenavAlreadyOpen = TRUE;
+    InitMenuOptionGlow();
     return TRUE;
 }
 
@@ -1339,6 +1340,7 @@ static void InitMenuOptionGlow(void)
 {
     SetMenuOptionGlow();
     SetGpuReg(REG_OFFSET_BLDCNT, BLDCNT_TGT1_OBJ | BLDCNT_EFFECT_LIGHTEN);
+    SetGpuReg(REG_OFFSET_WIN0V, WIN_RANGE(0, DISPLAY_HEIGHT));
 }
 
 static void Task_CurrentMenuOptionGlow(u8 taskId)
