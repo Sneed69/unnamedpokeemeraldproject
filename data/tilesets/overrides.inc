@@ -21,8 +21,8 @@ gTilesetPalOverrides_Petalburg::
     .align 2
 gTilesetPalOverrides_Rustboro::
 	.byte 9             @ palette index
-	.byte HOUR_NIGHT    @ start hour (inclusive)
-	.byte HOUR_MORNING  @ end hour (exclusive)
+	.byte 19    @ start hour (inclusive)
+	.byte 5  @ end hour (exclusive)
 	.byte 0             @ padding
 	.4byte gTilesetPalOverride_Rustboro09
 
