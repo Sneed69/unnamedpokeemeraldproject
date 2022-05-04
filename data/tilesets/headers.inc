@@ -32,7 +32,7 @@ gTileset_Rustboro::
 	.4byte gMetatiles_Rustboro
 	.4byte gMetatileAttributes_Rustboro
 	.4byte InitTilesetAnim_Rustboro
-	.4byte NULL @ palette overrides
+	.4byte gTilesetPalOverrides_Rustboro @ palette overrides
 
 	.align 2
 gTileset_Dewford::
