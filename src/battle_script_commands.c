@@ -3999,10 +3999,9 @@ static void Cmd_getexp(void)
                                 value /= sExperienceScalingFactors[gBattleMons[gBattlerFainted].level + expGetterLevel + 10];
                             else
                                 value /= sExperienceScalingFactors[2 * expGetterLevel + 10];
-                            if (value > 0)
-                                gBattleMoveDamage = value;
-                            else
-                                gBattleMoveDamage = 1;
+                            if (value == 0)
+                                value = 1;
+                            gBattleMoveDamage = value;
                         }
                         #endif
 
