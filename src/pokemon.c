@@ -51,8 +51,6 @@
 #include "constants/trainers.h"
 #include "constants/weather.h"
 #include "constants/battle_config.h"
-#include "printf.h"
-#include "mgba.h"
 #include "daycare.h"
 
 struct SpeciesItem
