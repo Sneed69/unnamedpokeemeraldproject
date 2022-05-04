@@ -41,10 +41,14 @@ void GameTimeCounter_Update(void)
 
     if (gSaveBlock1Ptr->gameTimeVBlanks < 60)
         return;
+#if TIME_DEBUG
+    if (gSaveBlock1Ptr->gameTime.seconds / TIME_SCALE < 60)
+        mgba_printf(MGBA_LOG_DEBUG, "Time %d %d:%d:%d",gSaveBlock1Ptr->gameTime.days, gSaveBlock1Ptr->gameTime.hours, gSaveBlock1Ptr->gameTime.minutes, gSaveBlock1Ptr->gameTime.seconds);
+#endif
     
     gSaveBlock1Ptr->gameTimeVBlanks -= 60;
     gSaveBlock1Ptr->gameTime.seconds++;
-    
+
     if (gSaveBlock1Ptr->gameTime.seconds < 60)
         return;
 
@@ -115,4 +119,25 @@ void CalculateTimeDifference(struct Time *result, struct Time *t1, struct Time *
         result->hours += 24;
         --result->days;
     }
+}
+
+void IncrementGameTime(u32 addedSeconds)
+{
+    u32 seconds = gSaveBlock1Ptr->gameTime.seconds;
+    u32 minutes = gSaveBlock1Ptr->gameTime.minutes;
+    u32 hours = gSaveBlock1Ptr->gameTime.hours;
+    u32 days = gSaveBlock1Ptr->gameTime.days;
+    
+    seconds += addedSeconds;
+    minutes += seconds / 60;
+    seconds %= 60;
+    hours += minutes / 60;
+    minutes %= 60;
+    days += hours / 24;
+    hours %= 24;
+
+    gSaveBlock1Ptr->gameTime.seconds = seconds;
+    gSaveBlock1Ptr->gameTime.minutes = minutes;
+    gSaveBlock1Ptr->gameTime.hours = hours;
+    gSaveBlock1Ptr->gameTime.days = days;
 }

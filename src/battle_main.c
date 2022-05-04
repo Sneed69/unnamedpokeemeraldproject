@@ -66,6 +66,7 @@
 #include "constants/trainers.h"
 #include "cable_club.h"
 #include "reshow_battle_screen.h"
+#include "game_time.h"
 
 extern const struct BgTemplate gBattleBgTemplates[];
 extern const struct WindowTemplate *const gBattleWindowTemplates[];
@@ -5330,6 +5331,12 @@ static void WaitForEvoSceneToFinish(void)
 
 static void ReturnFromBattleToOverworld(void)
 {
+    IncrementGameTime((2 + gBattleResults.battleTurnCounter) * SECONDS_PER_BATTLE_TURN);
+#if TIME_DEBUG    
+    mgba_printf(MGBA_LOG_DEBUG, "Turns: %d",gBattleResults.battleTurnCounter+1);
+    mgba_printf(MGBA_LOG_DEBUG, "Seconds added: %d",(2 + gBattleResults.battleTurnCounter) * SECONDS_PER_BATTLE_TURN);
+#endif
+
     if (!(gBattleTypeFlags & BATTLE_TYPE_LINK))
     {
         RandomlyGivePartyPokerus(gPlayerParty);

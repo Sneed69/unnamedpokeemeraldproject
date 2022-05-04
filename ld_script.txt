@@ -708,6 +708,7 @@ SECTIONS {
         data/sound_data.o(.rodata);
         src/pokemon_debug.o(.rodata);
 		src/printf.o(.rodata);
+		src/game_time.o(.rodata);
     } =0
 
     song_data :
