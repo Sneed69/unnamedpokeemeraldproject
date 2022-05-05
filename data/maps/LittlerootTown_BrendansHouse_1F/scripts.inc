@@ -10,21 +10,11 @@ LittlerootTown_BrendansHouse_1F_MapScripts::
 
 LittlerootTown_BrendansHouse_1F_OnLoad:
 	call_if_lt VAR_LITTLEROOT_INTRO_STATE, 6, LittlerootTown_BrendansHouse_1F_EventScript_SetMovingBoxes
-	call_if_set FLAG_RECEIVED_RUNNING_SHOES, LittlerootTown_BrendansHouse_1F_EventScript_CheckShowShoesManual
 	end
 
 LittlerootTown_BrendansHouse_1F_EventScript_SetMovingBoxes::
 	setmetatile 5, 4, METATILE_BrendansMaysHouse_MovingBox_Open, TRUE
 	setmetatile 5, 2, METATILE_BrendansMaysHouse_MovingBox_Closed, TRUE
-	return
-
-LittlerootTown_BrendansHouse_1F_EventScript_CheckShowShoesManual::
-	checkplayergender
-	goto_if_eq VAR_RESULT, MALE, LittlerootTown_BrendansHouse_1F_EventScript_ShowRunningShoesManual
-	return
-
-LittlerootTown_BrendansHouse_1F_EventScript_ShowRunningShoesManual::
-	setmetatile 3, 7, METATILE_BrendansMaysHouse_BookOnTable, TRUE
 	return
 
 LittlerootTown_BrendansHouse_1F_OnTransition:
@@ -380,14 +370,6 @@ PlayersHouse_1F_Text_TheresAMovieOnTV:
 	.string "Two men are dancing on a big piano\n"
 	.string "keyboard.\p"
 	.string "Better get going!$"
-
-PlayersHouse_1F_Text_RunningShoesManual:
-	.string "It's the instruction booklet for the\n"
-	.string "running shoes.\p"
-	.string "“Press the B Button to run while\n"
-	.string "wearing your running shoes.\p"
-	.string "“Lace up your running shoes and hit\n"
-	.string "the road running!”$"
 
 PlayersHouse_1F_Text_TicketFromBrineyCameForYou:
 	.string "Dad: Hm?\p"

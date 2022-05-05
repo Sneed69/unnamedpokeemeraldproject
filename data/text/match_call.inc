@@ -2035,8 +2035,8 @@ MatchCall_Text_Mom2::
 MatchCall_Text_Mom3::
 	.string "Mom: {PLAYER}…\n"
 	.string "Don't worry about me or the house.\p"
-	.string "Wear those Running Shoes until\n"
-	.string "they fall apart, honey!$"
+	.string "Chase your dreams until your\n"
+	.string "shoes fall apart, honey!$"
 
 MatchCall_Text_Roxanne1::
 	.string "Roxanne: Oh, hello, {PLAYER}!\p"

@@ -1104,16 +1104,7 @@ static void DebugAction_Util_Warp_SelectWarp(u8 taskId)
 
 static void DebugAction_Util_RunningShoes(u8 taskId)
 {
-    if (FlagGet(FLAG_SYS_B_DASH))
-    {
-        FlagClear(FLAG_SYS_B_DASH);
-        PlaySE(SE_PC_OFF);
-    }
-    else
-    {
-        FlagSet(FLAG_SYS_B_DASH);
-        PlaySE(SE_PC_LOGIN);
-    }
+    
 }
 
 static void DebugAction_Util_PoisonMons(u8 taskId)

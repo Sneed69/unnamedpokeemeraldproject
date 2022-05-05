@@ -4116,7 +4116,7 @@ Route127_Text_KojiDefeat:
 
 Route127_Text_KojiPostBattle:
 	.string "Going barefoot feels great.\n"
-	.string "But your Running Shoes are cool, too.$"
+	.string "But your shoes are cool, too.$"
 
 Route127_Text_KojiRegister:
 	.string "This is what I do to people who beat me!\n"
@@ -4132,7 +4132,7 @@ Route127_Text_KojiRematchDefeat:
 
 Route127_Text_KojiPostRematch:
 	.string "Want to go barefoot for a while?\n"
-	.string "So I can try your Running Shoes?$"
+	.string "So I can try your shoes?$"
 
 Route127_Text_AthenaIntro:
 	.string "We should have a slow and methodical\n"

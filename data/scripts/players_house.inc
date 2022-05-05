@@ -679,7 +679,3 @@ PlayersHouse_1F_Movement_PlayerApproachTVForLatiFemale:
 	walk_right
 	walk_in_place_faster_up
 	step_end
-
-EventScript_RunningShoesManual::
-	msgbox PlayersHouse_1F_Text_RunningShoesManual, MSGBOX_SIGN
-	end

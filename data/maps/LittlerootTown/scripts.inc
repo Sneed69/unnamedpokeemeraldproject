@@ -13,7 +13,7 @@ LittlerootTown_MapScripts::
 	@ 1: Met Rival
 	@ 2: Saving Birch
 	@ 3: Received Pokedex
-	@ 4: Received Running Shoes
+	@ 4: Received PokeNav
 
 	@ State descriptions for VAR_LITTLEROOT_INTRO_STATE
 	@ 1: In truck male
@@ -432,45 +432,45 @@ LittlerootTown_EventScript_PlayersHouseSignFemale::
 	msgbox LittlerootTown_Text_PlayersHouse, MSGBOX_DEFAULT
 	return
 
-LittlerootTown_EventScript_GiveRunningShoesTrigger0::
+LittlerootTown_EventScript_GivePokenavTrigger0::
 	lockall
 	setvar VAR_0x8008, 0
 	setobjectxy LOCALID_MOM, 10, 9
-	goto LittlerootTown_EventScript_GiveRunningShoesTrigger
+	goto LittlerootTown_EventScript_GivePokenavTrigger
 	end
 
-LittlerootTown_EventScript_GiveRunningShoesTrigger1::
+LittlerootTown_EventScript_GivePokenavTrigger1::
 	lockall
 	setvar VAR_0x8008, 1
 	setobjectxy LOCALID_MOM, 11, 9
-	goto LittlerootTown_EventScript_GiveRunningShoesTrigger
+	goto LittlerootTown_EventScript_GivePokenavTrigger
 	end
 
-LittlerootTown_EventScript_GiveRunningShoesTrigger2::
+LittlerootTown_EventScript_GivePokenavTrigger2::
 	lockall
 	setvar VAR_0x8008, 2
-	goto LittlerootTown_EventScript_GiveRunningShoesTrigger
+	goto LittlerootTown_EventScript_GivePokenavTrigger
 	end
 
-LittlerootTown_EventScript_GiveRunningShoesTrigger3::
+LittlerootTown_EventScript_GivePokenavTrigger3::
 	lockall
 	setvar VAR_0x8008, 3
-	goto LittlerootTown_EventScript_GiveRunningShoesTrigger
+	goto LittlerootTown_EventScript_GivePokenavTrigger
 	end
 
-LittlerootTown_EventScript_GiveRunningShoesTrigger4::
+LittlerootTown_EventScript_GivePokenavTrigger4::
 	lockall
 	setvar VAR_0x8008, 4
-	goto LittlerootTown_EventScript_GiveRunningShoesTrigger
+	goto LittlerootTown_EventScript_GivePokenavTrigger
 	end
 
-LittlerootTown_EventScript_GiveRunningShoesTrigger5::
+LittlerootTown_EventScript_GivePokenavTrigger5::
 	lockall
 	setvar VAR_0x8008, 5
-	goto LittlerootTown_EventScript_GiveRunningShoesTrigger
+	goto LittlerootTown_EventScript_GivePokenavTrigger
 	end
 
-LittlerootTown_EventScript_GiveRunningShoesTrigger::
+LittlerootTown_EventScript_GivePokenavTrigger::
 	checkplayergender
 	call_if_eq VAR_RESULT, MALE, LittlerootTown_EventScript_MomNoticePlayerMale
 	call_if_eq VAR_RESULT, FEMALE, LittlerootTown_EventScript_MomNoticePlayerFemale
@@ -482,11 +482,11 @@ LittlerootTown_EventScript_GiveRunningShoesTrigger::
 	checkplayergender
 	call_if_eq VAR_RESULT, MALE, LittlerootTown_EventScript_MomApproachPlayerMale
 	call_if_eq VAR_RESULT, FEMALE, LittlerootTown_EventScript_MomApproachPlayerFemale
-	call LittlerootTown_EventScript_GiveRunningShoes
+	call LittlerootTown_EventScript_GivePokenav
 	checkplayergender
 	call_if_eq VAR_RESULT, MALE, LittlerootTown_EventScript_MomReturnHomeMale
 	call_if_eq VAR_RESULT, FEMALE, LittlerootTown_EventScript_MomReturnHomeFemale
-	goto LittlerootTown_EventScript_SetReceivedRunningShoes
+	goto LittlerootTown_EventScript_SetReceivedPokenav
 	end
 
 LittlerootTown_EventScript_SetHomeDoorCoordsMale::
@@ -877,7 +877,7 @@ LittlerootTown_EventScript_Mom::
 	checkplayergender
 	call_if_eq VAR_RESULT, MALE, LittlerootTown_EventScript_SetHomeDoorCoordsMale
 	call_if_eq VAR_RESULT, FEMALE, LittlerootTown_EventScript_SetHomeDoorCoordsFemale
-	call LittlerootTown_EventScript_GiveRunningShoes
+	call LittlerootTown_EventScript_GivePokenav
 	applymovement LOCALID_MOM, Common_Movement_WalkInPlaceFasterUp
 	waitmovement 0
 	opendoor VAR_0x8009, VAR_0x800A
@@ -887,23 +887,23 @@ LittlerootTown_EventScript_Mom::
 	hideobjectat LOCALID_MOM, MAP_LITTLEROOT_TOWN
 	closedoor VAR_0x8009, VAR_0x800A
 	waitdooranim
-	goto LittlerootTown_EventScript_SetReceivedRunningShoes
+	goto LittlerootTown_EventScript_SetReceivedPokenav
 	end
 
-LittlerootTown_EventScript_SetReceivedRunningShoes::
+LittlerootTown_EventScript_SetReceivedPokenav::
 	removeobject LOCALID_MOM
-	setflag FLAG_SYS_B_DASH
 	setvar VAR_LITTLEROOT_TOWN_STATE, 4
 	release
 	end
 
-LittlerootTown_EventScript_GiveRunningShoes::
-	msgbox LittlerootTown_Text_WearTheseRunningShoes, MSGBOX_DEFAULT
+LittlerootTown_EventScript_GivePokenav::
+	msgbox LittlerootTown_Text_TakePokeNav, MSGBOX_DEFAULT
 	playfanfare MUS_OBTAIN_ITEM
-	message LittlerootTown_Text_SwitchShoesWithRunningShoes
+	message LittlerootTown_Text_ReceivedPokenav
 	waitfanfare
-	setflag FLAG_RECEIVED_RUNNING_SHOES
-	msgbox LittlerootTown_Text_ExplainRunningShoes, MSGBOX_DEFAULT
+	setflag FLAG_SYS_POKENAV_GET
+	setflag FLAG_RECEIVED_POKENAV
+	msgbox LittlerootTown_Text_ExplainPokenav, MSGBOX_DEFAULT
 	msgbox LittlerootTown_Text_ComeHomeIfAnythingHappens, MSGBOX_DEFAULT
 	closemessage
 	delay 30
@@ -924,7 +924,7 @@ LittlerootTown_Text_OurNewHomeLetsGoInside:
 LittlerootTown_Text_WaitPlayer:
 	.string "Mom: Wait, {PLAYER}!$"
 
-LittlerootTown_Text_WearTheseRunningShoes:
+LittlerootTown_Text_TakePokeNav:
 	.string "Mom: {PLAYER}! {PLAYER}! Did you\n"
 	.string "introduce yourself to Prof. Birch?\p"
 	.string "Oh! What an adorable Pokémon!\n"
@@ -932,20 +932,15 @@ LittlerootTown_Text_WearTheseRunningShoes:
 	.string "You're your father's child, all right.\n"
 	.string "You look good together with Pokémon!\p"
 	.string "Here, honey! If you're going out on an\n"
-	.string "adventure, wear these Running Shoes.\p"
-	.string "They'll put a zip in your step!$"
+	.string "adventure, you're gonna need this.$"
 
-LittlerootTown_Text_SwitchShoesWithRunningShoes:
-	.string "{PLAYER} switched shoes with the\n"
-	.string "Running Shoes.$"
+LittlerootTown_Text_ReceivedPokenav:
+	.string "{PLAYER} received a PokéNav.$"
 
-LittlerootTown_Text_ExplainRunningShoes:
-	.string "Mom: {PLAYER}, those shoes came with\n"
-	.string "instructions.\p"
-	.string "“Press the B Button while wearing these\n"
-	.string "Running Shoes to run extra-fast!\p"
-	.string "“Slip on these Running Shoes and race\n"
-	.string "in the great outdoors!”$"
+LittlerootTown_Text_ExplainPokenav:
+	.string "Mom: It's a Pokémon Navigator,\n"
+	.string "or PokéNav for short.\p"
+	.string "It has a map of the entire Hoenn region!$"
 
 LittlerootTown_Text_ComeHomeIfAnythingHappens:
 	.string "… … … … … … … …\n"
@@ -1018,4 +1013,3 @@ LittlerootTown_Text_BirchSomethingToShowYouAtLab:
 	.string "I gave you?\p"
 	.string "I have something to show you.\n"
 	.string "Let's go to my lab.$"
-
