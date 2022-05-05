@@ -2999,7 +2999,7 @@ static void FillPartnerParty(u16 trainerId)
     u32 nameHash = 0;
     u32 personalityValue;
     u8 fixedIV;
-    u8 ability, gender, friendship;
+    u8 ability, gender, hiddenPowerType;
     s32 i, j;
     u32 ivs, level;
     u16 monId;
@@ -3085,15 +3085,6 @@ static void FillPartnerParty(u16 trainerId)
                 CreateMon(&gPlayerParty[i + 3], partyData[i].species, partyData[i].lvl, fixedIV, TRUE, personalityValue, partyData[i].shiny ? OT_ID_SHINY : OT_ID_RANDOM_NO_SHINY, 0);
             }
 
-            /*if (partyData[i].friendship > 0)
-            {
-                if (partyData[i].friendship == TRAINER_MON_UNFRIENDLY)
-                    friendship = 0;
-                else if (partyData[i].friendship == TRAINER_MON_FRIENDLY)
-                    friendship = MAX_FRIENDSHIP;
-                SetMonData(&gPlayerParty[i + 3], MON_DATA_FRIENDSHIP, &friendship);
-            }*/
-
             if (partyData[i].nickname[0] != '\0')
                 SetMonData(&gPlayerParty[i + 3], MON_DATA_NICKNAME, &partyData[i].nickname);
 
@@ -3109,11 +3100,8 @@ static void FillPartnerParty(u16 trainerId)
                 SetMonData(&gPlayerParty[i + 3], MON_DATA_ABILITY_NUM, &ability);
             }
 
-            if (partyData[i].hiddenNature > 0)
-            {
-                u8 hNat = partyData[i].hiddenNature;
-                SetMonData(&gPlayerParty[i + 3], MON_DATA_HIDDEN_NATURE, &hNat);
-            }
+            hiddenPowerType = partyData[i].hiddenPowerType;
+            SetMonData(&gPlayerParty[i + 3], MON_DATA_HIDDEN_POWER_TYPE, &hiddenPowerType);
 
 // Check if ball was defined for that pokemon.
             if (partyData[i].ball > 0)
@@ -3161,11 +3149,6 @@ static void FillPartnerParty(u16 trainerId)
         }
     }
 #endif
-    else if (trainerId == TRAINER_EREADER)
-    {
-        // Scrapped, lol.
-        trainerName[0] = gGameLanguage;
-    }
     else if (trainerId < FRONTIER_TRAINERS_COUNT)
     {
         level = SetFacilityPtrsGetLevel();
@@ -3181,14 +3164,8 @@ static void FillPartnerParty(u16 trainerId)
                                                  ivs,
                                                  gFacilityTrainerMons[monId].evSpread,
                                                  otID);
-            friendship = MAX_FRIENDSHIP;
             for (j = 0; j < MAX_MON_MOVES; j++)
-            {
                 SetMonMoveSlot(&gPlayerParty[MULTI_PARTY_SIZE + i], gFacilityTrainerMons[monId].moves[j], j);
-                if (gFacilityTrainerMons[monId].moves[j] == MOVE_FRUSTRATION)
-                    friendship = 0;
-            }
-            SetMonData(&gPlayerParty[MULTI_PARTY_SIZE + i], MON_DATA_FRIENDSHIP, &friendship);
             SetMonData(&gPlayerParty[MULTI_PARTY_SIZE + i], MON_DATA_HELD_ITEM, &gBattleFrontierHeldItems[gFacilityTrainerMons[monId].itemTableId]);
             for (j = 0; j < PLAYER_NAME_LENGTH + 1; j++)
                 trainerName[j] = gFacilityTrainers[trainerId].trainerName[j];

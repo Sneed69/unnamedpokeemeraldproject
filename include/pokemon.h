@@ -11,66 +11,67 @@
 
 struct BoxPokemon
 {
-    u32 personality;
-    u32 otId;
-    u8 otName[PLAYER_NAME_LENGTH];
-    u8 nickname[POKEMON_NAME_LENGTH];
-    u8 metLocation;
-    u8 friendship;
-    
-    u32 species:11; // 2047 species
-    u32 experience:21;
-    
-    u32 isBadEgg:1;
-    u32 hasSpecies:1;
-    u32 isEgg:1;
-    u32 pokerus:5;
-    u32 heldItem:10; // 1023 items.
-    u32 pokeball:5; // 31 balls
-    u32 hiddenNature:5;  // 31 natures
-    u32 unused:4;
-    
-    u16 moves[MAX_MON_MOVES];
-    u8 pp[MAX_MON_MOVES];
-    
-    u8 hpEV;
-    u8 attackEV;
-    u8 defenseEV;
-    u8 speedEV;
-    u8 spAttackEV;
-    u8 spDefenseEV;
+    /*0x00*/ u32 personality;
+    /*0x04*/ u32 otId;
+    /*0x08*/ u8 otName[PLAYER_NAME_LENGTH];
+    /*0x09*/ u8 nickname[POKEMON_NAME_LENGTH];
+    /*0x10*/ u8 metLocation;
+    /*0x1A*/ u8 friendship;
 
-    u32 hpIV:5;
-    u32 attackIV:5;
-    u32 defenseIV:5;
-    u32 speedIV:5;
-    u32 spAttackIV:5;
-    u32 spDefenseIV:5;
-    u32 abilityNum:2;
+    /*0x1B*/ u32 species:11; // 2047 species
+             u32 experience:21;
+
+    /*0x1F*/ u32 isBadEgg:1;
+             u32 hasSpecies:1;
+             u32 isEgg:1;
+             u32 pokerus:5;
+             u32 heldItem:10; // 1023 items.
+             u32 pokeball:5; // 31 balls
+             u32 mintNature:5;  // 31 natures
+             u32 unused:4;
+
+    /*0x23*/ u16 moves[MAX_MON_MOVES];
+    /*0x2B*/ u8 pp[MAX_MON_MOVES];
+
+    /*0x2F*/ u8 hpEV;
+    /*0x30*/ u8 attackEV;
+    /*0x31*/ u8 defenseEV;
+    /*0x32*/ u8 speedEV;
+    /*0x32*/ u8 spAttackEV;
+    /*0x33*/ u8 spDefenseEV;
+
+    /*0x34*/ u32 hpIV:5;
+             u32 attackIV:5;
+             u32 defenseIV:5;
+             u32 speedIV:5;
+             u32 spAttackIV:5;
+             u32 spDefenseIV:5;
+             u32 abilityNum:2;
     
-    u8 cool;
-    u8 beauty;
-    u8 cute;
-    u8 smart;
-    u8 tough;
-    u8 sheen;
-    
-    u32 metLevel:7;
-    u32 markings:4;
-    u32 otGender:1;
-    u32 coolRibbon:3;
-    u32 beautyRibbon:3;
-    u32 cuteRibbon:3;
-    u32 smartRibbon:3;
-    u32 toughRibbon:3;
-    u32 championRibbon:1;
-    u32 winningRibbon:1;
-    u32 victoryRibbon:1;
-    u32 artistRibbon:1;
-    u32 effortRibbon:1;
-    
-    u16 padding;
-};
+    /*0x38*/ u8 cool;
+    /*0x39*/ u8 beauty;
+    /*0x3A*/ u8 cute;
+    /*0x3B*/ u8 smart;
+    /*0x3C*/ u8 tough;
+    /*0x3D*/ u8 sheen;
+
+    /*0x3E*/ u32 metLevel:7;
+             u32 markings:4;
+             u32 otGender:1;
+             u32 coolRibbon:3;
+             u32 beautyRibbon:3;
+             u32 cuteRibbon:3;
+             u32 smartRibbon:3;
+             u32 toughRibbon:3;
+             u32 championRibbon:1;
+             u32 winningRibbon:1;
+             u32 victoryRibbon:1;
+             u32 artistRibbon:1;
+             u32 effortRibbon:1;
+
+    /*0x42*/ u16 hiddenPowerType:5;
+             u16 padding:11;
+}; // size 0x44, 68
 
 struct Pokemon
 {
@@ -129,6 +130,7 @@ struct BattlePokemon
     /*0x16*/ u32 spAttackIV:5;
     /*0x17*/ u32 spDefenseIV:5;
     /*0x17*/ u32 abilityNum:2;
+    /*0x59*/ u8 hiddenPowerType;
     /*0x18*/ s8 statStages[NUM_BATTLE_STATS];
     /*0x20*/ u16 ability;
     /*0x22*/ u8 type1;
@@ -341,7 +343,7 @@ bool8 PokemonUseItemEffects(struct Pokemon *mon, u16 item, u8 partyIndex, u8 mov
 bool8 HealStatusConditions(struct Pokemon *mon, u32 battlePartyId, u32 healMask, u8 battlerId);
 u8 GetItemEffectParamOffset(u16 itemId, u8 effectByte, u8 effectBit);
 u8 *UseStatIncreaseItem(u16 itemId);
-u8 GetNature(struct Pokemon *mon, bool32 checkHidden);
+u8 GetNature(struct Pokemon *mon, bool32 checkMint);
 u8 GetNatureFromPersonality(u32 personality);
 u16 GetEvolutionTargetSpecies(struct Pokemon *mon, u8 type, u16 evolutionItem, struct Pokemon *tradePartner);
 u16 HoennPokedexNumToSpecies(u16 hoennNum);
@@ -412,7 +414,6 @@ u8 *MonSpritesGfxManager_GetSpritePtr(u8 managerId, u8 spriteNum);
 u16 GetFormSpeciesId(u16 speciesId, u8 formId);
 u8 GetFormIdFromFormSpeciesId(u16 formSpeciesId);
 u16 GetFormChangeTargetSpecies(struct Pokemon *mon, u16 method, u32 arg);
-u8 GetHiddenPowerType(u32 personality);
 u16 GetFormChangeTargetSpeciesBoxMon(struct BoxPokemon *mon, u16 method, u32 arg);
 u16 MonTryLearningNewMoveEvolution(struct Pokemon *mon, bool8 firstMove);
 u8 GetEggMoveTutorMoves(struct Pokemon *mon, u16 *moves);

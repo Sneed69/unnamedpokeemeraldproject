@@ -71,7 +71,7 @@
 #define NATURE_CAREFUL  23
 #define NATURE_QUIRKY   24
 #define NUM_NATURES     25
-#define HIDDEN_NATURE_NONE      26  // 25 natures. not 0xFF to conserve bits
+#define MINT_NATURE_NONE      26  // 25 natures. not 0xFF to conserve bits
 
 // Pokemon Stats
 #define STAT_HP      0
@@ -200,7 +200,8 @@
 #define MON_DATA_KNOWN_MOVES       81
 #define MON_DATA_RIBBON_COUNT      82
 #define MON_DATA_RIBBONS           83
-#define MON_DATA_HIDDEN_NATURE     84
+#define MON_DATA_MINT_NATURE     84
+#define MON_DATA_HIDDEN_POWER_TYPE 85
 
 // Ribbon IDs used by TV and PokéNav
 #define CHAMPION_RIBBON       0

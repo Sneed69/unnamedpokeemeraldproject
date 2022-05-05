@@ -40,7 +40,7 @@ struct TrainerMon
     u16 gender:2;
     u16 shiny:1;
     u16 nature:5;
-    u16 hiddenNature:5; //added
+    u16 hiddenPowerType:5;
     u16 unused:1;
 };
 

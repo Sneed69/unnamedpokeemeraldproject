@@ -6941,7 +6941,7 @@ static void Task_Mints(u8 taskId)
             tState++;
         break;
     case 5:
-        SetMonData(&gPlayerParty[tMonId], MON_DATA_HIDDEN_NATURE, &tNewNature);
+        SetMonData(&gPlayerParty[tMonId], MON_DATA_MINT_NATURE, &tNewNature);
         CalculateMonStats(&gPlayerParty[tMonId]);
 
         RemoveBagItem(gSpecialVar_ItemId, 1);

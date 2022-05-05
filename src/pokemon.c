@@ -3474,8 +3474,13 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, 
         SetBoxMonData(boxMon, MON_DATA_ABILITY_NUM, &value);
     }
 
-    value = HIDDEN_NATURE_NONE;
-    SetBoxMonData(boxMon, MON_DATA_HIDDEN_NATURE, &value);
+    value = MINT_NATURE_NONE;
+    SetBoxMonData(boxMon, MON_DATA_MINT_NATURE, &value);
+
+    value = 1 + Random() % (NUMBER_OF_MON_TYPES - 2);
+    if (value >= TYPE_MYSTERY)
+        value++;
+    SetBoxMonData(boxMon, MON_DATA_HIDDEN_POWER_TYPE, &value);
 
     GiveBoxMonInitialMoveset(boxMon);
 }
@@ -4666,8 +4671,11 @@ u32 GetBoxMonData(struct BoxPokemon *boxMon, s32 field, u8 *data)
                 | (boxMon->effortRibbon << 19);
         }
         break;
-    case MON_DATA_HIDDEN_NATURE:
-        retVal = boxMon->hiddenNature;
+    case MON_DATA_MINT_NATURE:
+        retVal = boxMon->mintNature;
+        break;
+    case MON_DATA_HIDDEN_POWER_TYPE:
+        retVal = boxMon->hiddenPowerType;
         break;
     default:
         break;
@@ -4918,8 +4926,11 @@ void SetBoxMonData(struct BoxPokemon *boxMon, s32 field, const void *dataArg)
         boxMon->spDefenseIV = (ivs >> 25) & MAX_IV_MASK;
         break;
     }
-    case MON_DATA_HIDDEN_NATURE:
-        SET8(boxMon->hiddenNature);
+    case MON_DATA_MINT_NATURE:
+        SET8(boxMon->mintNature);
+        break;
+    case MON_DATA_HIDDEN_POWER_TYPE:
+        SET8(boxMon->hiddenPowerType);
         break;
     default:
         break;
@@ -5222,6 +5233,7 @@ void PokemonToBattleMon(struct Pokemon *src, struct BattlePokemon *dst, bool8 re
     dst->spAttack = GetMonData(src, MON_DATA_SPATK, NULL);
     dst->spDefense = GetMonData(src, MON_DATA_SPDEF, NULL);
     dst->abilityNum = GetMonData(src, MON_DATA_ABILITY_NUM, NULL);
+    dst->hiddenPowerType = GetMonData(src, MON_DATA_HIDDEN_POWER_TYPE, NULL);
     dst->otId = GetMonData(src, MON_DATA_OT_ID, NULL);
     dst->type1 = gBaseStats[dst->species].type1;
     dst->type2 = gBaseStats[dst->species].type2;
@@ -6180,12 +6192,12 @@ u8 *UseStatIncreaseItem(u16 itemId)
     return gDisplayedStringBattle;
 }
 
-u8 GetNature(struct Pokemon *mon, bool32 checkHidden)
+u8 GetNature(struct Pokemon *mon, bool32 checkMint)
 {
-    if (!checkHidden || GetMonData(mon, MON_DATA_HIDDEN_NATURE, 0) == HIDDEN_NATURE_NONE)
+    if (!checkMint || GetMonData(mon, MON_DATA_MINT_NATURE, 0) == MINT_NATURE_NONE)
         return GetNatureFromPersonality(GetMonData(mon, MON_DATA_PERSONALITY, 0));
     else
-        return GetMonData(mon, MON_DATA_HIDDEN_NATURE, 0);
+        return GetMonData(mon, MON_DATA_MINT_NATURE, 0);
 }
 
 u8 GetNatureFromPersonality(u32 personality)
@@ -8196,55 +8208,6 @@ u16 GetFormChangeTargetSpeciesBoxMon(struct BoxPokemon *mon, u16 method, u32 arg
     }
 
     return species != targetSpecies ? targetSpecies : SPECIES_NONE;
-}
-
-u8 GetHiddenPowerType(u32 personality)
-{
-    switch (GetNatureFromPersonality(personality))
-    {
-        case NATURE_HARDY:
-            return TYPE_STEEL;
-        case NATURE_DOCILE:
-            return TYPE_BUG;
-        case NATURE_LONELY:
-            return TYPE_DARK;
-        case NATURE_LAX:
-            return TYPE_DRAGON;
-        case NATURE_HASTY:
-        case NATURE_RASH:
-            return TYPE_ELECTRIC;
-        case NATURE_NAUGHTY:
-        case NATURE_JOLLY:
-            return TYPE_FAIRY;
-        case NATURE_BRAVE:
-        case NATURE_BOLD:
-            return TYPE_FIGHTING;
-        case NATURE_NAIVE:
-        case NATURE_SASSY:
-            return TYPE_FIRE;
-        case NATURE_TIMID:
-            return TYPE_FLYING;
-        case NATURE_BASHFUL:
-            return TYPE_GHOST;
-        case NATURE_MILD:
-        case NATURE_GENTLE:
-            return TYPE_GRASS;
-        case NATURE_CAREFUL:
-        case NATURE_MODEST:
-            return TYPE_GROUND;
-        case NATURE_CALM:
-        case NATURE_RELAXED:
-            return TYPE_ICE;
-        case NATURE_IMPISH:
-            return TYPE_POISON;
-        case NATURE_QUIET:
-            return TYPE_PSYCHIC;
-        case NATURE_ADAMANT:
-        case NATURE_SERIOUS:
-            return TYPE_ROCK;
-        case NATURE_QUIRKY:
-            return TYPE_WATER;
-    }
 }
 
 u16 MonTryLearningNewMoveEvolution(struct Pokemon *mon, bool8 firstMove)

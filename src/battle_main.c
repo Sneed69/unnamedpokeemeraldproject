@@ -1843,7 +1843,7 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 fir
     u8 monsCount;
     u8 nickname[POKEMON_NAME_LENGTH + 1];
     u8 trainerName[(PLAYER_NAME_LENGTH * 3) + 1];
-    u8 ability, gender, friendship;
+    u8 ability, gender, hiddenPowerType;
 
     if (trainerNum == TRAINER_SECRET_BASE)
         return 0;
@@ -1911,15 +1911,6 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 fir
                 CreateMon(&party[i], partyData[i].species, partyData[i].lvl, fixedIV, TRUE, personalityValue, partyData[i].shiny ? OT_ID_SHINY : OT_ID_RANDOM_NO_SHINY, 0);
             }
 
-            /*if (partyData[i].friendship > 0)
-            {
-                if (partyData[i].friendship == TRAINER_MON_UNFRIENDLY)
-                    friendship = 0;
-                else if (partyData[i].friendship == TRAINER_MON_FRIENDLY)
-                    friendship = MAX_FRIENDSHIP;
-                SetMonData(&party[i], MON_DATA_FRIENDSHIP, &friendship);
-            }*/
-
             if (partyData[i].nickname[0] != '\0')
                 SetMonData(&party[i], MON_DATA_NICKNAME, &partyData[i].nickname);
 
@@ -1933,11 +1924,8 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 fir
                 SetMonData(&party[i], MON_DATA_ABILITY_NUM, &ability);
             }
 
-            if (partyData[i].hiddenNature > 0)
-            {
-                u8 hNat = partyData[i].hiddenNature;
-                SetMonData(&party[i], MON_DATA_HIDDEN_NATURE, &hNat);
-            }
+            hiddenPowerType = partyData[i].hiddenPowerType;
+            SetMonData(&party[i], MON_DATA_HIDDEN_POWER_TYPE, &hiddenPowerType);
 
             if (partyData[i].ball > 0)
                 SetMonData(&party[i], MON_DATA_POKEBALL, &partyData[i].ball);
@@ -5415,7 +5403,7 @@ void SetTypeBeforeUsingMove(u16 move, u8 battlerAtk)
     }
     else if (gBattleMoves[move].effect == EFFECT_HIDDEN_POWER)
     {
-        gBattleStruct->dynamicMoveType = GetHiddenPowerType(gBattleMons[battlerAtk].personality);
+        gBattleStruct->dynamicMoveType = gBattleMons[battlerAtk].hiddenPowerType;
     }
     else if (gBattleMoves[move].effect == EFFECT_CHANGE_TYPE_ON_ITEM)
     {

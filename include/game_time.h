@@ -6,7 +6,7 @@
 #define STARTING_MINUTE 45
 #define UNSCALED_SECONDS_PER_BATTLE_TURN 6
 #define SECONDS_PER_BATTLE_TURN UNSCALED_SECONDS_PER_BATTLE_TURN * TIME_SCALE
-#define TIME_DEBUG TRUE
+#define TIME_DEBUG FALSE
 
 void GameTimeCounter_Reset(void);
 void GameTimeCounter_Start(void);
