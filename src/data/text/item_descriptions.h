@@ -3279,7 +3279,7 @@ static const u8 sTM57Desc[] = _(
     "Extra power if foe\n"
     "holds an item.\n"
     "Disables items.");
-	
+    
 static const u8 sTM58Desc[] = _(
     "A beam that may\n"
     "leave the foe\n"
@@ -3432,7 +3432,7 @@ static const u8 sTM89Desc[] = _(
     "Deals damage then\n"
     "switches out the\n"
     "user.");
-	
+    
 static const u8 sTM90Desc[] = _(
     "Creates a decoy\n"
     "using 1/4 of the\n"
@@ -3544,47 +3544,47 @@ static const u8 sTM112Desc[] = _(
     "Hurls sludge at all\n"
     "foes. Might cause\n"
     "poison.");
-	
+    
 static const u8 sTM113Desc[] = _(
     "Absorbs sunlight in\n"
     "the 1st turn, then\n"
     "attacks next turn.");
-	
+    
 static const u8 sTM114Desc[] = _(
     "Double power versus\n"
     "foes afflicted\n"
     "with status.");
-	
+    
 static const u8 sTM115Desc[] = _(
     "A frigid wind\n"
     "attack that may\n"
     "cause frostbite.");
-	
+    
 static const u8 sTM116Desc[] = _(
     "Raises the power of\n"
     "Grass-type moves\n"
     "for 5 turns.");
-	
+    
 static const u8 sTM117Desc[] = _(
     "Raises the power of\n"
     "Electric-type\n"
     "moves for 5 turns.");
-	
+    
 static const u8 sTM118Desc[] = _(
     "Raises the power of\n"
     "Psychic-type moves\n"
     "for 5 turns.");
-	
+    
 static const u8 sTM119Desc[] = _(
     "Lowers the power of\n"
     "Dragon-type moves\n"
     "for 5 turns.");
-	
+    
 static const u8 sTM120Desc[] = _(
     "Clears the terrain,\n"
     "hazards & barriers\n"
     "on both sides.");
-	
+    
 // Charms
 static const u8 sOvalCharmDesc[] = _(
     "Raises the chance\n"

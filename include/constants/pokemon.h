@@ -92,8 +92,8 @@
 #define DEFAULT_STAT_STAGE 6
 #define MAX_STAT_STAGE    12
 
-#define STARTER_NATURE					     NATURE_HARDY
-#define STARTER_IVS					         {30, 28, 24, 25, 28, 24}
+#define STARTER_NATURE                       NATURE_HARDY
+#define STARTER_IVS                          {30, 28, 24, 25, 28, 24}
 
 #define BEST_IV_SPREAD_SPECIAL               {31,  0, 31, 31, 31, 31}
 #define BEST_IV_SPREAD_TRICK_ROOM            {31, 31, 31,  0, 31, 31}
@@ -335,8 +335,8 @@
 #define FLAG_THAW_USER                            (1 << 25)
 #define FLAG_HIT_IN_SUBSTITUTE                    (1 << 26) // Hyperspace Fury
 #define FLAG_TWO_STRIKES                          (1 << 27) // A move with this flag will strike twice, and may apply its effect on each hit
-#define FLAG_IGNORE_GROUND_IMMUNITY				  (1 << 28)
-#define FLAG_DAMAGES_STEEL_TYPE					  (1 << 29)
+#define FLAG_IGNORE_GROUND_IMMUNITY               (1 << 28)
+#define FLAG_DAMAGES_STEEL_TYPE                   (1 << 29)
 
 // Split defines.
 #define SPLIT_PHYSICAL  0x0

@@ -37,9 +37,7 @@ struct TrainerMon
     u16 moves[MAX_MON_MOVES];
     u8 ball;
     u16 ability:2;
-    //u16 friendship:2; //removed
     u16 gender:2;
-    //u16 build:3; //removed
     u16 shiny:1;
     u16 nature:5;
     u16 hiddenNature:5; //added

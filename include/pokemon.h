@@ -15,60 +15,60 @@ struct BoxPokemon
     u32 otId;
     u8 otName[PLAYER_NAME_LENGTH];
     u8 nickname[POKEMON_NAME_LENGTH];
-	u8 metLocation;
-	u8 friendship;
-	
-	u32 species:11; // 2047 species
-	u32 experience:21;
-	
+    u8 metLocation;
+    u8 friendship;
+    
+    u32 species:11; // 2047 species
+    u32 experience:21;
+    
     u32 isBadEgg:1;
     u32 hasSpecies:1;
     u32 isEgg:1;
-	u32 pokerus:5;
-	u32 heldItem:10; // 1023 items.
-	u32 pokeball:5; // 31 balls
-	u32 hiddenNature:5;  // 31 natures
-	u32 unused:4;
-	
-	u16 moves[MAX_MON_MOVES];
-	u8 pp[MAX_MON_MOVES];
-	
-	u8 hpEV;
-	u8 attackEV;
-	u8 defenseEV;
-	u8 speedEV;
-	u8 spAttackEV;
-	u8 spDefenseEV;
+    u32 pokerus:5;
+    u32 heldItem:10; // 1023 items.
+    u32 pokeball:5; // 31 balls
+    u32 hiddenNature:5;  // 31 natures
+    u32 unused:4;
+    
+    u16 moves[MAX_MON_MOVES];
+    u8 pp[MAX_MON_MOVES];
+    
+    u8 hpEV;
+    u8 attackEV;
+    u8 defenseEV;
+    u8 speedEV;
+    u8 spAttackEV;
+    u8 spDefenseEV;
 
-	u32 hpIV:5;
-	u32 attackIV:5;
-	u32 defenseIV:5;
-	u32 speedIV:5;
-	u32 spAttackIV:5;
-	u32 spDefenseIV:5;
-	u32 abilityNum:2;
-	
-	u8 cool;
-	u8 beauty;
-	u8 cute;
-	u8 smart;
-	u8 tough;
-	u8 sheen;
-	
-	u32 metLevel:7;
-	u32 markings:4;
-	u32 otGender:1;
-	u32 coolRibbon:3;
-	u32 beautyRibbon:3;
-	u32 cuteRibbon:3;
-	u32 smartRibbon:3;
-	u32 toughRibbon:3;
-	u32 championRibbon:1;
-	u32 winningRibbon:1;
-	u32 victoryRibbon:1;
-	u32 artistRibbon:1;
-	u32 effortRibbon:1;
-	
+    u32 hpIV:5;
+    u32 attackIV:5;
+    u32 defenseIV:5;
+    u32 speedIV:5;
+    u32 spAttackIV:5;
+    u32 spDefenseIV:5;
+    u32 abilityNum:2;
+    
+    u8 cool;
+    u8 beauty;
+    u8 cute;
+    u8 smart;
+    u8 tough;
+    u8 sheen;
+    
+    u32 metLevel:7;
+    u32 markings:4;
+    u32 otGender:1;
+    u32 coolRibbon:3;
+    u32 beautyRibbon:3;
+    u32 cuteRibbon:3;
+    u32 smartRibbon:3;
+    u32 toughRibbon:3;
+    u32 championRibbon:1;
+    u32 winningRibbon:1;
+    u32 victoryRibbon:1;
+    u32 artistRibbon:1;
+    u32 effortRibbon:1;
+    
     u16 padding;
 };
 

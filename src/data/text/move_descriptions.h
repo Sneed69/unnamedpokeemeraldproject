@@ -3734,7 +3734,7 @@ const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] =
     [MOVE_EERIE_SPELL - 1] = sEerieSpellDescription,
 
 
-	//Custom
+    //Custom
     [MOVE_MYSTIC_BLADES - 1] = sMysticBladesDescription,
     [MOVE_FAIRY_TAIL - 1] = sFairyTailDescription,
     [MOVE_HEADLONG_RUSH - 1] = sCloseCombatDescription,

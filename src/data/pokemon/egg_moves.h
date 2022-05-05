@@ -605,10 +605,10 @@ const u16 gEggMoves[] = {
         MOVE_SCALE_SHOT,
         MOVE_SKULL_BASH,
         MOVE_FLIP_TURN),
-		
+        
     egg_moves(MAGIKARP,
         MOVE_SCALE_SHOT),
-		
+        
     egg_moves(STARYU,
         MOVE_FLIP_TURN,
         MOVE_TELEPORT,
@@ -1887,7 +1887,7 @@ const u16 gEggMoves[] = {
         MOVE_DOUBLE_EDGE,
         MOVE_AQUA_JET,
         MOVE_SWITCHEROO),
-		
+        
     egg_moves(LILEEP,
         MOVE_BARRIER,
         MOVE_RECOVER,
@@ -2085,7 +2085,7 @@ const u16 gEggMoves[] = {
 
     egg_moves(RAYQUAZA,
         MOVE_SCALE_SHOT),
-		
+        
     egg_moves(TURTWIG,
         MOVE_WORRY_SEED,
         MOVE_GROWTH,

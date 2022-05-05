@@ -230,7 +230,7 @@
 #define EXT_CTRL_CODE_ENG                    0x16
 #define EXT_CTRL_CODE_PAUSE_MUSIC            0x17
 #define EXT_CTRL_CODE_RESUME_MUSIC           0x18
-#define EXT_CTRL_CODE_CAPITALIZE			 0x19
+#define EXT_CTRL_CODE_CAPITALIZE             0x19
 
 #define TEXT_COLOR_TRANSPARENT  0x0
 #define TEXT_COLOR_WHITE        0x1
@@ -263,9 +263,9 @@
 #define PLACEHOLDER_ID_MAXIE         0xB
 #define PLACEHOLDER_ID_KYOGRE        0xC
 #define PLACEHOLDER_ID_GROUDON       0xD
-#define PLACEHOLDER_ID_SUBJECTIVE	 0xE
-#define PLACEHOLDER_ID_OBJECTIVE	 0xF
-#define PLACEHOLDER_ID_POSSESSIVE	 0x10
+#define PLACEHOLDER_ID_SUBJECTIVE    0xE
+#define PLACEHOLDER_ID_OBJECTIVE     0xF
+#define PLACEHOLDER_ID_POSSESSIVE    0x10
 
 // battle placeholders are located in battle_message.h
 

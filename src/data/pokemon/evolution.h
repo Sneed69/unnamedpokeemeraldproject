@@ -240,7 +240,7 @@ const struct Evolution gEvolutionTable[NUM_SPECIES][EVOS_PER_MON] =
     [SPECIES_PHANTUMP]              = {{EVO_LEVEL, 32, SPECIES_TREVENANT}},
     [SPECIES_SNOM]                  = {{EVO_LEVEL, 59, SPECIES_FROSMOTH}},
     [SPECIES_CUFANT]                = {{EVO_LEVEL, 34, SPECIES_COPPERAJAH}},
-	
+    
     [SPECIES_KLINK]                 = {{EVO_LEVEL, 38, SPECIES_KLANG}},
     [SPECIES_KLANG]                 = {{EVO_LEVEL, 49, SPECIES_KLINKLANG}},
     [SPECIES_TYNAMO]                = {{EVO_LEVEL, 39, SPECIES_EELEKTRIK}},
@@ -397,7 +397,7 @@ const struct Evolution gEvolutionTable[NUM_SPECIES][EVOS_PER_MON] =
     [SPECIES_PUMPKABOO_SUPER]       = {{EVO_TRADE, 0, SPECIES_GOURGEIST_SUPER}},
     [SPECIES_ROCKRUFF_OWN_TEMPO]    = {{EVO_LEVEL_DUSK, 25, SPECIES_LYCANROC_DUSK}},
     [SPECIES_SINISTEA_ANTIQUE]      = {{EVO_ITEM, ITEM_NONE, SPECIES_POLTEAGEIST_ANTIQUE}},
-	//banished
+    //banished
     [SPECIES_WEEDLE]                = {{EVO_LEVEL, 10, SPECIES_KAKUNA}},
     [SPECIES_KAKUNA]                = {{EVO_LEVEL, 16, SPECIES_BEEDRILL}},
     [SPECIES_PSYDUCK]               = {{EVO_LEVEL, 33, SPECIES_GOLDUCK}},

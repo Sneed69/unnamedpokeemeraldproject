@@ -184,7 +184,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
 
     [MOVE_RAZOR_WIND] =
     {
-		.flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED | FLAG_HIGH_CRIT,
+        .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED | FLAG_HIGH_CRIT,
         .effect = EFFECT_TWO_TURNS_ATTACK,
         .power = 130,
         .type = TYPE_FLYING,
@@ -2398,8 +2398,8 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
 
     [MOVE_CRABHAMMER] =
     {
-		.power = 100,
-		.accuracy = 90,
+        .power = 100,
+        .accuracy = 90,
         .effect = EFFECT_HIT,
         .type = TYPE_WATER,
         .pp = 16,
@@ -4968,7 +4968,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
 
     [MOVE_AIR_CUTTER] =
     {
-		.power = 60,
+        .power = 60,
         .effect = EFFECT_HIT,
         .type = TYPE_FLYING,
         .accuracy = 95,
@@ -5227,7 +5227,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
 
     [MOVE_MUDDY_WATER] =
     {
-		.power = 80,
+        .power = 80,
         .effect = EFFECT_ACCURACY_DOWN_HIT,
         .type = TYPE_WATER,
         .accuracy = 100,
@@ -6282,7 +6282,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
 
     [MOVE_AURA_SPHERE] =
     {
-		.power = 90,
+        .power = 90,
         .effect = EFFECT_HIT,
         .type = TYPE_FIGHTING,
         .accuracy = 0,
@@ -6434,7 +6434,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
 
     [MOVE_DRAGON_PULSE] =
     {
-		.power = 90,
+        .power = 90,
         .effect = EFFECT_HIT,
         .type = TYPE_DRAGON,
         .accuracy = 100,
@@ -7726,7 +7726,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
 
     [MOVE_LOW_SWEEP] =
     {
-		.power = 60,
+        .power = 60,
         .effect = EFFECT_SPEED_DOWN_HIT,
         .type = TYPE_FIGHTING,
         .accuracy = 100,
@@ -7913,7 +7913,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
 
     [MOVE_SCALD] =
     {
-		.effect = EFFECT_BURN_HIT,
+        .effect = EFFECT_BURN_HIT,
         .power = 80,
         .type = TYPE_WATER,
         .accuracy = 100,
@@ -11674,7 +11674,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
 
     [MOVE_COLD_SNAP] =
     {
-		.accuracy = 85,
+        .accuracy = 85,
         .effect = EFFECT_COLD_SNAP,
         .power = 0,
         .type = TYPE_ICE,
@@ -11688,7 +11688,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
 
     [MOVE_BLISTERING_COLD] =
     {
-		.power = 80,
+        .power = 80,
         .effect = EFFECT_FREEZE_HIT,
         .type = TYPE_ICE,
         .accuracy = 100,
@@ -11702,7 +11702,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
 
     [MOVE_HOWLING_GALE] =
     {
-		.power = 80,
+        .power = 80,
         .effect = EFFECT_FREEZE_HIT,
         .type = TYPE_FLYING,
         .accuracy = 100,
@@ -11717,7 +11717,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
     [MOVE_ACID_RAIN] =
     {
         .power = 90,
-		.effect = EFFECT_SPECIAL_DEFENSE_DOWN_HIT_2,
+        .effect = EFFECT_SPECIAL_DEFENSE_DOWN_HIT_2,
         .type = TYPE_POISON,
         .accuracy = 100,
         .pp = 16,

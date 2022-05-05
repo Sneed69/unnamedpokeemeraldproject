@@ -562,25 +562,25 @@ struct Pokeblock
 
 struct Roamer
 {
-	/*0x00*/ u32 ivs;
-	/*0x04*/ u32 personality;
-	/*0x08*/ u16 species:11; // up to 2047 different species
-	/*0x09*/ u16 respawnMode:2; // 4 respawn modes
-	/*0x09*/ u16 daysToRespawn:3; // up to 7 days
-	/*0x0A*/ u16 damage; //track damage instead of HP to handle scaling roamers
-	/*0x0C*/ u8 level;
-	/*0x0D*/ u8 status;
-	/*0x0E*/ bool8 active:1; // 1 bit for TRUE or FALSE 
-	/*0x0E*/ bool8 isTerrestrial:1;
-	/*0x0E*/ bool8 doesNotFlee:1;
-	/*0x0E*/ bool8 isStalker:1;
-	/*0x0E*/ bool8 levelScaling:1;
-	/*0x0E*/ bool8 unused:3;
-	/*0x0F*/ u8 locationMapGroup;
-	/*0x10*/ u8 locationMapNum;
-	/*0x11*/ u8 mapGroupHistory[3];
-	/*0x14*/ u8 mapNumHistory[3];
-	/*0x17*/ u8 padding;
+    /*0x00*/ u32 ivs;
+    /*0x04*/ u32 personality;
+    /*0x08*/ u16 species:11; // up to 2047 different species
+    /*0x09*/ u16 respawnMode:2; // 4 respawn modes
+    /*0x09*/ u16 daysToRespawn:3; // up to 7 days
+    /*0x0A*/ u16 damage; //track damage instead of HP to handle scaling roamers
+    /*0x0C*/ u8 level;
+    /*0x0D*/ u8 status;
+    /*0x0E*/ bool8 active:1; // 1 bit for TRUE or FALSE 
+    /*0x0E*/ bool8 isTerrestrial:1;
+    /*0x0E*/ bool8 doesNotFlee:1;
+    /*0x0E*/ bool8 isStalker:1;
+    /*0x0E*/ bool8 levelScaling:1;
+    /*0x0E*/ bool8 unused:3;
+    /*0x0F*/ u8 locationMapGroup;
+    /*0x10*/ u8 locationMapNum;
+    /*0x11*/ u8 mapGroupHistory[3];
+    /*0x14*/ u8 mapNumHistory[3];
+    /*0x17*/ u8 padding;
 }; /*size = 0x18*/
 
 struct RamScriptData
@@ -948,7 +948,7 @@ struct SaveBlock1
     /*0x5D8*/ struct ItemSlot bagPocket_KeyItems[BAG_KEYITEMS_COUNT];
     /*0x650*/ struct ItemSlot bagPocket_PokeBalls[BAG_POKEBALLS_COUNT];
     /*0x690*/ //struct ItemSlot bagPocket_TMHM[BAG_TMHM_COUNT];
-	u8 bagPocket_TMHMOwnedFlags[15]; //allow for a total of 120 TMs/HMs
+    u8 bagPocket_TMHMOwnedFlags[15]; //allow for a total of 120 TMs/HMs
     /*0x790*/ struct ItemSlot bagPocket_Berries[BAG_BERRIES_COUNT];
     /*0x848*/ struct Pokeblock pokeblocks[POKEBLOCKS_COUNT];
     /*0x9BC*/ u16 berryBlenderRecords[3];
@@ -1009,7 +1009,7 @@ struct SaveBlock1
     /*0x3???*/ struct WaldaPhrase waldaPhrase;
     /*0x3D88*/ u16 registeredItemL;
     /*0x3D8A*/ u16 registeredItemR;
-	struct Time gameTime;
+    struct Time gameTime;
     u16 gameTimeVBlanks;
     // sizeof: 0x3D8C
 };
