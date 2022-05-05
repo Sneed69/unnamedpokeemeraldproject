@@ -70,6 +70,8 @@ RustboroCity_DevonCorp_3F_EventScript_MeetPresident::
 	clearflag FLAG_HIDE_RUSTBORO_CITY_RIVAL
 	setvar VAR_DEVON_CORP_3F_STATE, 1
 	setvar VAR_RUSTBORO_CITY_STATE, 6
+	setvar VAR_ROUTE104_STATE, 1
+    setrespawn HEAL_LOCATION_RUSTBORO_CITY
 	releaseall
 	end
 
