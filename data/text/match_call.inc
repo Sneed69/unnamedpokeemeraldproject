@@ -2710,9 +2710,9 @@ MatchCall_Text_Scott7::
 	.string "the PokéNav's service area…$"
 
 MatchCall_Text_Norman1:: @ 82B5719
-	.string "Dad: In Rustboro, there's a man\n"
+	.string "Dad: In Slateport, there's a man\n"
 	.string "that goes by the odd name of\l"
-	.string "the Cutter.\p"
+	.string "the Energy Guru.\p"
 	.string "If you're in the area, you should\n"
 	.string "pay him a visit.$"
 
@@ -2721,8 +2721,8 @@ MatchCall_Text_Norman2:: @ 82B5795
 	.string "very surely, you're getting\l"
 	.string "tougher, {PLAYER}.\p"
 	.string "The stronger you get, the farther\n"
-	.string "and higher you soar from Mother\l"
-	.string "and me…\p"
+	.string "and higher you soar from your\l"
+	.string "mother and me…\p"
 	.string "This feeling is hard to explain.$"
 
 MatchCall_Text_Norman3:: @ 82B584D
@@ -2734,8 +2734,8 @@ MatchCall_Text_Norman3:: @ 82B584D
 	.string "We'll all be waiting for you!$"
 
 MatchCall_Text_Norman4:: @ 82B58E3
-	.string "Dad: {PLAYER}! You'd better go visit\n"
-	.string "Mother every so often.\p"
+	.string "Dad: {PLAYER}! You'd better go\n"
+	.string "visit your mother every so often.\p"
 	.string "I'm going to remain here and\n"
 	.string "redouble my training.\p"
 	.string "The way of battling is deep\n"

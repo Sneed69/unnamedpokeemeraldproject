@@ -561,11 +561,6 @@ SlateportCity_PokemartDecor_Dolls:
 	release
 	end
 
-SlateportCity_EventScript_ComeBackWithSecretPower::
-	msgbox gText_ComeBackWithSecretPower, MSGBOX_DEFAULT
-	release
-	end
-
 SlateportCity_EventScript_DecorClerk::
 	lock
 	faceplayer
