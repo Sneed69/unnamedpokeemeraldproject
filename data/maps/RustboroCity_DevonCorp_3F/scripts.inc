@@ -50,14 +50,14 @@ RustboroCity_DevonCorp_3F_EventScript_MeetPresident::
 	waitmovement 0
 	msgbox RustboroCity_DevonCorp_3F_Text_MrStoneIHaveFavor, MSGBOX_DEFAULT
 	giveitem ITEM_LETTER
-	msgbox RustboroCity_DevonCorp_3F_Text_MrStoneWantYouToHaveThis, MSGBOX_DEFAULT
+	msgbox RustboroCity_DevonCorp_3F_Text_MrStoneMayISeePokenav, MSGBOX_DEFAULT
 	playfanfare MUS_OBTAIN_ITEM
-	message RustboroCity_DevonCorp_3F_Text_ReceivedPokenav
+	message RustboroCity_DevonCorp_3F_Text_PokenavUpgrade
 	waitfanfare
-	setflag FLAG_SYS_POKENAV_GET
-	setflag FLAG_RECEIVED_POKENAV
+	setflag FLAG_HAS_MATCH_CALL
+	setflag FLAG_ADDED_MATCH_CALL_TO_POKENAV
 	setflag FLAG_HIDE_RUSTBORO_CITY_POKEMON_SCHOOL_SCOTT
-	msgbox RustboroCity_DevonCorp_3F_Text_MrStoneExplainPokenavRestUp, MSGBOX_DEFAULT
+	msgbox RustboroCity_DevonCorp_3F_Text_MrStoneExplainMatchCallRestUp, MSGBOX_DEFAULT
 	closemessage
 	call Common_EventScript_OutOfCenterPartyHeal
 	msgbox RustboroCity_DevonCorp_3F_Text_MrStoneGoWithCautionAndCare, MSGBOX_DEFAULT
@@ -212,25 +212,24 @@ RustboroCity_DevonCorp_3F_Text_MrStoneIHaveFavor:
 	.string "I was hoping that you'd deliver a\n"
 	.string "Letter to Steven in Dewford.$"
 
-RustboroCity_DevonCorp_3F_Text_MrStoneWantYouToHaveThis:
+RustboroCity_DevonCorp_3F_Text_MrStoneMayISeePokenav:
 	.string "Mr. Stone: Now, you should know that\n"
-	.string "I am a great President.\p"
-	.string "So, I'd never be so cheap as to ask\n"
+	.string "I'd never be so cheap as to ask\l"
 	.string "a favor for nothing in return.\p"
-	.string "That's why I want you to have this!$"
+	.string "May I see your PokéNav for a second?\p"
+	.string "… … … … … … … …\n"
+	.string "… … … … … … … …$"
 
-RustboroCity_DevonCorp_3F_Text_ReceivedPokenav:
-	.string "{PLAYER} received a PokéNav.$"
+RustboroCity_DevonCorp_3F_Text_PokenavUpgrade:
+	.string "{PLAYER}'s PokéNav was upgraded.$"
 
-RustboroCity_DevonCorp_3F_Text_MrStoneExplainPokenavRestUp:
-	.string "Mr. Stone: That device…\p"
-	.string "It's a Pokémon Navigator, or PokéNav\n"
-	.string "for short.\p"
-	.string "It's an indispensable tool for any\n"
-	.string "Trainer on an adventure.\p"
-	.string "It has a map of the Hoenn region.\p"
-	.string "You can check the locations of\n"
-	.string "Dewford and Slateport easily!\p"
+RustboroCity_DevonCorp_3F_Text_MrStoneExplainMatchCallRestUp:
+	.string "Mr. Stone: There you go!\p"
+	.string "I added a new feature named\n"
+	.string "Match Call to your PokéNav.\p"
+	.string "Using the Match Call feature,\n"
+	.string "you can chat with people who have\l"
+	.string "been registered in your PokéNav.\p"
 	.string "By the way, I've heard that sinister\n"
 	.string "criminals--Magma and Aqua, I believe--\l"
 	.string "have been making trouble far and wide.\p"
