@@ -253,7 +253,7 @@
 #define FLAG_RECEIVED_TM05                   0xE7
 #define FLAG_RECEIVED_TM19                   0xE8
 
-#define FLAG_SMART_WILD                    0xE9 // FORMERLY Unused Flag
+#define FLAG_SMART_WILD                      0xE9 // FORMERLY Unused Flag
 
 #define FLAG_RECEIVED_TM44                   0xEA
 #define FLAG_RECEIVED_TM45                   0xEB
