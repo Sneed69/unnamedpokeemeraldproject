@@ -1270,7 +1270,6 @@ static const struct LevelUpMove sKadabraLevelUpLearnset[] = {
     LEVEL_UP_MOVE( 0, MOVE_CONFUSION),
     LEVEL_UP_MOVE( 1, MOVE_KINESIS),
     LEVEL_UP_MOVE( 1, MOVE_TELEPORT),
-    LEVEL_UP_MOVE( 1, MOVE_ALLY_SWITCH),
     LEVEL_UP_MOVE(18, MOVE_DISABLE),
     LEVEL_UP_MOVE(21, MOVE_PSYBEAM),
     LEVEL_UP_MOVE(23, MOVE_MIRACLE_EYE),
@@ -1287,7 +1286,6 @@ static const struct LevelUpMove sKadabraLevelUpLearnset[] = {
 
 static const struct LevelUpMove sAlakazamLevelUpLearnset[] = {
     LEVEL_UP_MOVE( 1, MOVE_KINESIS),
-    LEVEL_UP_MOVE( 1, MOVE_ALLY_SWITCH),
     LEVEL_UP_MOVE( 1, MOVE_TELEPORT),
     LEVEL_UP_MOVE( 1, MOVE_CONFUSION),
     LEVEL_UP_MOVE(18, MOVE_DISABLE),
@@ -14194,7 +14192,6 @@ static const struct LevelUpMove sHoopaLevelUpLearnset[] = {
     LEVEL_UP_MOVE( 1, MOVE_HYPERSPACE_HOLE),
     LEVEL_UP_MOVE( 1, MOVE_TRICK),
     LEVEL_UP_MOVE( 1, MOVE_DESTINY_BOND),
-    LEVEL_UP_MOVE( 1, MOVE_ALLY_SWITCH),
     LEVEL_UP_MOVE( 1, MOVE_CONFUSION),
     LEVEL_UP_MOVE( 6, MOVE_ASTONISH),
     LEVEL_UP_MOVE(10, MOVE_MAGIC_COAT),

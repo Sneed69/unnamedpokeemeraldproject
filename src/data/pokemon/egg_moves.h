@@ -291,8 +291,7 @@ const u16 gEggMoves[] = {
         MOVE_GUARD_SWAP,
         MOVE_SKILL_SWAP,
         MOVE_GUARD_SPLIT,
-        MOVE_PSYCHO_SHIFT,
-        MOVE_ALLY_SWITCH),
+        MOVE_PSYCHO_SHIFT),
 
     egg_moves(MACHOP,
         MOVE_MEDITATE,
@@ -351,7 +350,6 @@ const u16 gEggMoves[] = {
         MOVE_MORNING_SUN,
         MOVE_LOW_KICK,
         MOVE_CAPTIVATE,
-        MOVE_ALLY_SWITCH,
         MOVE_HIGH_HORSEPOWER),
 
     egg_moves(SLOWPOKE,
@@ -477,8 +475,7 @@ const u16 gEggMoves[] = {
         MOVE_AGILITY,
         MOVE_ENDURE,
         MOVE_CHIP_AWAY,
-        MOVE_BIDE,
-        MOVE_ALLY_SWITCH),
+        MOVE_BIDE),
 
     egg_moves(EXEGGCUTE,
         MOVE_SYNTHESIS,
@@ -916,8 +913,7 @@ const u16 gEggMoves[] = {
         MOVE_SUCKER_PUNCH,
         MOVE_SYNCHRONOISE,
         MOVE_SKILL_SWAP,
-        MOVE_SIMPLE_BEAM,
-        MOVE_ALLY_SWITCH),
+        MOVE_SIMPLE_BEAM),
 
     egg_moves(MAREEP,
         MOVE_TAKE_DOWN,
@@ -1488,8 +1484,7 @@ const u16 gEggMoves[] = {
         MOVE_CONFUSE_RAY,
         MOVE_TRIPLE_AXEL,
         MOVE_SYNCHRONOISE,
-        MOVE_SKILL_SWAP,
-        MOVE_ALLY_SWITCH),
+        MOVE_SKILL_SWAP),
 
     egg_moves(SURSKIT,
         MOVE_FORESIGHT,
@@ -2796,7 +2791,6 @@ const u16 gEggMoves[] = {
         MOVE_IMPRISON,
         MOVE_NIGHTMARE,
         MOVE_DISABLE,
-        MOVE_ALLY_SWITCH,
         MOVE_CRAFTY_SHIELD),
 
     egg_moves(TIRTOUGA,
@@ -2814,7 +2808,6 @@ const u16 gEggMoves[] = {
         MOVE_STEEL_WING,
         MOVE_HEAD_SMASH,
         MOVE_BITE,
-        MOVE_ALLY_SWITCH,
         MOVE_SWITCHEROO),
 
     egg_moves(TRUBBISH,
@@ -2963,8 +2956,7 @@ const u16 gEggMoves[] = {
         MOVE_GUARD_SWAP,
         MOVE_BARRIER,
         MOVE_SKILL_SWAP,
-        MOVE_COSMIC_POWER,
-        MOVE_ALLY_SWITCH),
+        MOVE_COSMIC_POWER),
 
     egg_moves(LITWICK,
         MOVE_ACID_ARMOR,
@@ -3020,8 +3012,7 @@ const u16 gEggMoves[] = {
         MOVE_SMELLING_SALTS,
         MOVE_LOW_KICK,
         MOVE_FEINT,
-        MOVE_ME_FIRST,
-        MOVE_ALLY_SWITCH),
+        MOVE_ME_FIRST),
 
     egg_moves(DRUDDIGON,
         MOVE_CRUSH_CLAW,
@@ -3229,7 +3220,6 @@ const u16 gEggMoves[] = {
     egg_moves(HAWLUCHA,
         MOVE_AGILITY,
         MOVE_ME_FIRST,
-        MOVE_ALLY_SWITCH,
         MOVE_ENTRAINMENT,
         MOVE_BATON_PASS,
         MOVE_FEINT),
