@@ -193,30 +193,58 @@ static const struct {
     u16 species;
     u16 moves[MAX_MON_MOVES];
     u8 level;
-    u8 location;
+    u8 locationMapNum;
+    u8 locationMapGroup;
     u8 probability;
 } sPokeOutbreakSpeciesList[] = {
     {
-        .species = SPECIES_BLAZIKEN,
-        .moves = {MOVE_BLAZE_KICK, MOVE_CLOSE_COMBAT, MOVE_POWER_UP_PUNCH, MOVE_STONE_EDGE},
-        .level = 63,
-        .probability = 5,
-        .location = MAP_NUM(ROUTE112),
+        .species = SPECIES_MUK,
+        .moves = {MOVE_PURSUIT, MOVE_CLEAR_SMOG, MOVE_POWER_UP_PUNCH, MOVE_GUNK_SHOT},
+        .level = 45,
+        .probability = 75,
+        .locationMapNum = MAP_NUM(ROUTE112),
+        .locationMapGroup = MAP_GROUP(ROUTE112),
     },
     {
-        .species = SPECIES_SWAMPERT,
-        .moves = {MOVE_LIQUIDATION, MOVE_HEADLONG_RUSH, MOVE_ICE_PUNCH, MOVE_DARKEST_LARIAT},
-        .level = 63,
-        .probability = 5,
-        .location = MAP_NUM(ROUTE120),
+        .species = SPECIES_ZWEILOUS,
+        .moves = {MOVE_CHARGE_BEAM, MOVE_FLAME_CHARGE, MOVE_UPROAR, MOVE_CRUNCH},
+        .level = 54,
+        .probability = 20,
+        .locationMapNum = MAP_NUM(METEOR_FALLS_B1F_2R),
+        .locationMapGroup = MAP_GROUP(METEOR_FALLS_B1F_2R),
     },
     {
-        .species = SPECIES_SCEPTILE,
-        .moves = {MOVE_LEAF_BLADE, MOVE_SWORDS_DANCE, MOVE_EARTHQUAKE, MOVE_LOW_SWEEP},
-        .level = 63,
-        .probability = 5,
-        .location = MAP_NUM(ROUTE118),
-    }
+        .species = SPECIES_KIRLIA,
+        .moves = {MOVE_ICY_WIND, MOVE_WISH, MOVE_SNATCH, MOVE_PSYSHOCK},
+        .level = 37,
+        .probability = 30,
+        .locationMapNum = MAP_NUM(ROUTE102),
+        .locationMapGroup = MAP_GROUP(ROUTE102),
+    },
+    {
+        .species = SPECIES_SLIGGOO,
+        .moves = {MOVE_STEEL_BEAM, MOVE_BULLDOZE, MOVE_MUDDY_WATER, MOVE_DRAGON_BREATH},
+        .level = 42,
+        .probability = 30,
+        .locationMapNum = MAP_NUM(ROUTE120),
+        .locationMapGroup = MAP_GROUP(ROUTE120),
+    },
+    {
+        .species = SPECIES_MAROWAK,
+        .moves = {MOVE_FLARE_BLITZ, MOVE_BONEMERANG, MOVE_SING, MOVE_IMPRISON},
+        .level = 58,
+        .probability = 30,
+        .locationMapNum = MAP_NUM(MT_PYRE_SUMMIT),
+        .locationMapGroup = MAP_GROUP(MT_PYRE_SUMMIT),
+    },
+    {
+        .species = SPECIES_ARCANINE,
+        .moves = {MOVE_PSYCHIC_FANGS, MOVE_BULLDOZE, MOVE_FIRE_FANG, MOVE_CURSE},
+        .level = 49,
+        .probability = 40,
+        .locationMapNum = MAP_NUM(ROUTE121),
+        .locationMapGroup = MAP_GROUP(ROUTE121),
+    },
 };
 
 static const u16 sGoldSymbolFlags[NUM_FRONTIER_FACILITIES] = {
@@ -1638,8 +1666,8 @@ static void TryStartRandomMassOutbreak(void)
                 show->massOutbreak.moves[1] = sPokeOutbreakSpeciesList[outbreakIdx].moves[1];
                 show->massOutbreak.moves[2] = sPokeOutbreakSpeciesList[outbreakIdx].moves[2];
                 show->massOutbreak.moves[3] = sPokeOutbreakSpeciesList[outbreakIdx].moves[3];
-                show->massOutbreak.locationMapNum = sPokeOutbreakSpeciesList[outbreakIdx].location;
-                show->massOutbreak.locationMapGroup = 0;
+                show->massOutbreak.locationMapNum = sPokeOutbreakSpeciesList[outbreakIdx].locationMapNum;
+                show->massOutbreak.locationMapGroup = sPokeOutbreakSpeciesList[outbreakIdx].locationMapGroup;
                 show->massOutbreak.unused4 = 0;
                 show->massOutbreak.probability = sPokeOutbreakSpeciesList[outbreakIdx].probability;
                 show->massOutbreak.unused5 = 0;
@@ -4844,7 +4872,7 @@ static void DoTVShowPokemonNewsMassOutbreak(void)
     TVShow *show;
 
     show = &gSaveBlock1Ptr->tvShows[gSpecialVar_0x8004];
-    GetMapName(gStringVar1, show->massOutbreak.locationMapNum, 0);
+    GetMapName(gStringVar1, Overworld_GetMapHeaderByGroupAndId(show->massOutbreak.locationMapGroup, show->massOutbreak.locationMapNum)->regionMapSectionId, 0);
     StringCopy(gStringVar2, gSpeciesNames[show->massOutbreak.species]);
     TVShowDone();
     StartMassOutbreak();
