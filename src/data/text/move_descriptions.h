@@ -177,6 +177,10 @@ static const u8 sBiteDescription[] = _(
     "Bites with vicious fangs.\n"
     "May cause flinching.");
 
+static const u8 sBugBiteDescription[] = _(
+    "Bites with strong mandibles.\n"
+    "May cause flinching.");
+
 static const u8 sGrowlDescription[] = _(
     "Growls cutely to reduce the\n"
     "foe's Attack.");
@@ -3340,7 +3344,7 @@ const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] =
     [MOVE_BRINE - 1] = sBrineDescription,
     [MOVE_NATURAL_GIFT - 1] = sNaturalGiftDescription,
     [MOVE_FEINT - 1] = sFeintDescription,
-    [MOVE_PLUCK - 1] = sPluckDescription,
+    [MOVE_PLUCK - 1] = sThiefDescription,
     [MOVE_TAILWIND - 1] = sTailwindDescription,
     [MOVE_ACUPRESSURE - 1] = sAcupressureDescription,
     [MOVE_METAL_BURST - 1] = sMetalBurstDescription,
@@ -3425,7 +3429,7 @@ const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] =
     [MOVE_GRASS_KNOT - 1] = sGrassKnotDescription,
     [MOVE_CHATTER - 1] = sChatterDescription,
     [MOVE_JUDGMENT - 1] = sJudgmentDescription,
-    [MOVE_BUG_BITE - 1] = sPluckDescription,
+    [MOVE_BUG_BITE - 1] = sBugBiteDescription,
     [MOVE_CHARGE_BEAM - 1] = sChargeBeamDescription,
     [MOVE_WOOD_HAMMER - 1] = sWoodHammerDescription,
     [MOVE_AQUA_JET - 1] = sAquaJetDescription,
