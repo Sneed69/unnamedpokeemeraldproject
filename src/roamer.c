@@ -20,6 +20,8 @@
 #define SCALED_LEVEL_CAP 70
 // If TRUE, scaling roamers will evolve at appropriate levels
 #define SCALING_ROAMER_EVOLUTION TRUE
+// Reserved for Latios and Latias
+#define RESERVED_ROAMER_SLOTS 2
 //================= Config End =========================\\
 
 // Despite having a variable to track it, the roamer is
@@ -195,8 +197,9 @@ static void CreateInitialRoamerMon(u8 index, u16 species, u8 level, bool8 isTerr
     ClearRoamerLocationHistory(index);
 }
 
-void InitRoamer(void)
+void InitLatiRoamers(void)
 {
+    FlagSet(FLAG_LATIOS_OR_LATIAS_ROAMING);
     TryAddRoamer(SPECIES_LATIAS, 60, FLEES, WEEKLY_RESPAWN);
     TryAddRoamer(SPECIES_LATIOS, 60, FLEES, WEEKLY_RESPAWN);
     GetSetPokedexFlag(SpeciesToNationalPokedexNum(SPECIES_LATIAS), FLAG_SET_SEEN);
@@ -399,11 +402,17 @@ void GetRoamerLocation(u8 index, u8 *mapGroup, u8 *mapNum)
 static u8 GetFirstInactiveRoamerIndex()
 {
     u32 i;
+
+    if (FlagGet(FLAG_LATIOS_OR_LATIAS_ROAMING))
+        i = 0;
+    else
+        i = RESERVED_ROAMER_SLOTS;
     
-    for (i = 0; i < ROAMER_COUNT; i++)
+    while (i < ROAMER_COUNT)
     {
         if (!ROAMER(i)->active && !CanRoamerRespawn(i))
             return i;
+        i++;
     }
     return ROAMER_COUNT;
 }

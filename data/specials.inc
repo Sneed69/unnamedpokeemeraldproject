@@ -308,7 +308,7 @@ gSpecials::
 	def_special Special_AreLeadMonEVsMaxedOut
 	def_special Script_FacePlayer
 	def_special Script_ClearHeldMovement
-	def_special InitRoamer
+	def_special InitLatiRoamers
 	def_special TryUpdateRusturfTunnelState
 	def_special IsGrassTypeInParty
 	def_special DoContestHallWarp

@@ -6,7 +6,7 @@
 #define SHOW_STALKERS_ON_POKEDEX FALSE
 
 void StopAllRoamers(void);
-void InitRoamer(void);
+void InitLatiRoamers(void);
 void UpdateLocationHistoryForRoamer(void);
 void RoamerMoveToOtherLocationSet(u8 id);
 void RoamerMove(u8 index);
