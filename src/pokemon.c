@@ -3477,7 +3477,9 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, 
     value = MINT_NATURE_NONE;
     SetBoxMonData(boxMon, MON_DATA_MINT_NATURE, &value);
 
-    value = 1 + Random() % (NUMBER_OF_MON_TYPES - 2);
+    value = 1 + Random() % (NUMBER_OF_MON_TYPES - 2); //exlude normal (0) and mystery
+    if (value == TYPE_DRAGON - 1) //dragon is rerolled once
+        value = 1 + Random() % (NUMBER_OF_MON_TYPES - 2);
     if (value >= TYPE_MYSTERY)
         value++;
     SetBoxMonData(boxMon, MON_DATA_HIDDEN_POWER_TYPE, &value);
