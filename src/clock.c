@@ -38,7 +38,7 @@ static void UpdatePerDay(struct Time *localTime)
     u16 *days = GetVarPointer(VAR_DAYS);
     u16 daysSince;
 
-    if (*days != localTime->days && *days <= localTime->days)
+    if (*days < localTime->days)
     {
         daysSince = localTime->days - *days;
         ClearDailyFlags();
@@ -64,13 +64,10 @@ static void UpdatePerMinute(struct Time *localTime)
 
     CalculateTimeDifference(&difference, &gSaveBlock2Ptr->lastBerryTreeUpdate, localTime);
     minutes = 24 * 60 * difference.days + 60 * difference.hours + difference.minutes;
-    if (minutes != 0)
+    if (minutes > 0)
     {
-        if (minutes >= 0)
-        {
-            BerryTreeTimeUpdate(minutes);
-            gSaveBlock2Ptr->lastBerryTreeUpdate = *localTime;
-        }
+        BerryTreeTimeUpdate(minutes);
+        gSaveBlock2Ptr->lastBerryTreeUpdate = *localTime;
     }
 }
 
