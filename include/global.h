@@ -575,7 +575,8 @@ struct Roamer
     /*0x0E*/ bool8 doesNotFlee:1;
     /*0x0E*/ bool8 isStalker:1;
     /*0x0E*/ bool8 levelScaling:1;
-    /*0x0E*/ bool8 unused:3;
+    /*0x0E*/ bool8 hideFromDex:1;
+    /*0x0E*/ bool8 unused:2;
     /*0x0F*/ u8 locationMapGroup;
     /*0x10*/ u8 locationMapNum;
     /*0x11*/ u8 mapGroupHistory[3];

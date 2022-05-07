@@ -303,11 +303,7 @@ static void FindMapsWithMon(u16 species)
     for (i = 0; i < ROAMER_COUNT; i++)
     {
         roamer = &gSaveBlock1Ptr->roamer[i];
-#if SHOW_STALKERS_ON_POKEDEX
-        if (species == roamer->species)
-#else
-        if (species == roamer->species && !roamer->isStalker)
-#endif
+        if (species == roamer->species && !roamer->hideFromDex)
         {
             // This is a roamer's species, show where this roamer is currently
             if (roamer->active)

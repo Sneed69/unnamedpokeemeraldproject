@@ -1,10 +1,6 @@
 #ifndef GUARD_ROAMER_H
 #define GUARD_ROAMER_H
 
-/* Shows stalkers on the PokeDex. A bit pointless as
-/* stalkers are always either at your location or nowhere */
-#define SHOW_STALKERS_ON_POKEDEX FALSE
-
 void StopAllRoamers(void);
 void InitLatiRoamers(void);
 void UpdateLocationHistoryForRoamer(void);
@@ -25,6 +21,7 @@ void UpdateRoamerRespawns(u16 days);
 bool8 TryAddRoamer(u16 species, u8 level, bool8 doesNotFlee, u16 respawnMode);
 bool8 TryAddTerrestrialRoamer(u16 species, u8 level, bool8 doesNotFlee, u16 respawnMode);
 bool8 TryAddStalker(u16 species, u8 level, bool8 doesNotFlee, bool8 isTerrestrial, u16 respawnMode);
+void TryAddDailyRoamer(void);
 
 extern u8 gEncounteredRoamerIndex;
 
