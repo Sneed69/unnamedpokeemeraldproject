@@ -533,6 +533,11 @@ static const struct {
         .isTerrestrial = TRUE,
         .doesNotFlee = TRUE,
         .isStalker = FALSE,
+    },
+    {
+        .isTerrestrial = TRUE,
+        .doesNotFlee = TRUE,
+        .isStalker = FALSE,
         .prerequisiteFlag = FLAG_BADGE03_GET,
         .flagToSet = FLAG_LEFTOVER_STARTER_ROAMING,
     },
@@ -556,7 +561,7 @@ static const struct {
         .isTerrestrial = TRUE,
         .doesNotFlee = TRUE,
         .isStalker = TRUE,
-        .prerequisiteFlag = FLAG_BADGE02_GET,
+        .prerequisiteFlag = FLAG_BADGE05_GET,
         .flagToSet = FLAG_SNEASEL_ROAMING,
     },
     {
@@ -601,7 +606,7 @@ static const struct {
         .isTerrestrial = FALSE,
         .doesNotFlee = TRUE,
         .isStalker = FALSE,
-        .prerequisiteFlag = FLAG_BADGE03_GET,
+        .prerequisiteFlag = FLAG_BADGE04_GET,
         .flagToSet = FLAG_SQUIRTLE_ROAMING,
     },
     {
@@ -625,8 +630,24 @@ static const struct {
         .isTerrestrial = FALSE,
         .doesNotFlee = TRUE,
         .isStalker = FALSE,
-        .prerequisiteFlag = FLAG_BADGE03_GET,
+        .prerequisiteFlag = FLAG_BADGE04_GET,
         .flagToSet = FLAG_TOTODILE_ROAMING,
+    },
+    {
+        .species = SPECIES_TURTWIG,
+        .isTerrestrial = TRUE,
+        .doesNotFlee = TRUE,
+        .isStalker = FALSE,
+        .prerequisiteFlag = FLAG_BADGE03_GET,
+        .flagToSet = FLAG_TURTWIG_ROAMING,
+    },
+    {
+        .species = SPECIES_PIPLUP,
+        .isTerrestrial = FALSE,
+        .doesNotFlee = TRUE,
+        .isStalker = FALSE,
+        .prerequisiteFlag = FLAG_BADGE04_GET,
+        .flagToSet = FLAG_PIPLUP_ROAMING,
     },
 };
 
@@ -634,14 +655,14 @@ void TryAddDailyRoamer(void)
 {
     u32 i, species;
     u32 eligibleRoamerCount = 0;
-    u32 dailyRoamerListSize = ARRAY_COUNT(sDailyRoamerList);
-    u32 indexList[dailyRoamerListSize];
+    u32 roamerListLength = ARRAY_COUNT(sDailyRoamerList);
+    u32 indexList[roamerListLength - 1];
     u8 availableSlot = GetFirstInactiveRoamerIndex();
     
     if (availableSlot == ROAMER_COUNT)
         return;
 
-    for (i = 0; i < dailyRoamerListSize; i++)
+    for (i = 1; i < roamerListLength; i++)
     {
         if ((sDailyRoamerList[i].prerequisiteFlag == 0 || FlagGet(sDailyRoamerList[i].prerequisiteFlag))
             && !FlagGet(sDailyRoamerList[i].flagToSet))
@@ -652,9 +673,12 @@ void TryAddDailyRoamer(void)
     }
 
     if (eligibleRoamerCount > 0)
+    {
         i = indexList[Random() % eligibleRoamerCount];
+        FlagSet(sDailyRoamerList[i].flagToSet);
+    }
     else if (FlagGet(FLAG_VISITED_MOSSDEEP_CITY) && Random() % 3 == 0)
-        i = Random() % dailyRoamerListSize;
+        i = Random() % roamerListLength;
     else
         return;
 
@@ -684,10 +708,22 @@ void TryAddDailyRoamer(void)
             species = SPECIES_TREECKO;
             break;
         }
+    else if (i == 0)
+        switch (VarGet(VAR_STARTER_MON))
+        {
+        case 0:
+            species = SPECIES_TREECKO;
+            break;
+        case 1:
+            species = SPECIES_TORCHIC;
+            break;
+        case 2:
+            species = SPECIES_MUDKIP;
+            break;
+        }
     else
         species = sDailyRoamerList[i].species;
 
     CreateInitialRoamerMon(availableSlot, species, 0, sDailyRoamerList[i].isTerrestrial, sDailyRoamerList[i].doesNotFlee, sDailyRoamerList[i].isStalker, DAILY_RESPAWN);
-    FlagSet(sDailyRoamerList[i].flagToSet);
     ROAMER(i)->hideFromDex = TRUE;
 }

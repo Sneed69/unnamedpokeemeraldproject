@@ -351,8 +351,8 @@
 #define FLAG_CHIKORITA_ROAMING               0x147
 #define FLAG_CYNDAQUIL_ROAMING               0x148
 #define FLAG_TOTODILE_ROAMING                0x149
-#define FLAG_WONDER_CARD_UNUSED_14           0x14A
-#define FLAG_WONDER_CARD_UNUSED_15           0x14B
+#define FLAG_TURTWIG_ROAMING                 0x14A
+#define FLAG_PIPLUP_ROAMING                  0x14B
 #define FLAG_WONDER_CARD_UNUSED_16           0x14C
 #define FLAG_WONDER_CARD_UNUSED_17           0x14D
 
