@@ -5,13 +5,15 @@
 #include "random.h"
 #include "roamer.h"
 #include "pokedex.h"
+#include "day_night.h"
+#include "constants/day_night.h"
 #include "battle_tower.h" // GetHighestLevelInPlayerParty declaration
 
 //================= RoamersPlus Config =================\\
 // Set to TRUE to allow roaming to every Route
 #define ROAM_THE_ENTIRE_MAP TRUE
-// 1 in 4 chance for a roamer to replace other encounters
-#define ROAMER_ENCOUNTER_MODULO 4
+// 1 in 3 chance for a roamer to replace other encounters
+#define ROAMER_ENCOUNTER_MODULO 3
 // 1 in 6 chance for a stalker to replace other encounters
 #define STALKER_ENCOUNTER_MODULO 6
 // Scaling roamer level will be equal to your highest level pokemon's level plus this constant
@@ -169,7 +171,7 @@ static void ClearRoamerLocationHistory(u8 index)
         ROAMER(index)->mapNumHistory[i] = 0x7F; // 0x7F is MAP_NONE
     }
 }
-static void CreateInitialRoamerMon(u8 index, u16 species, u8 level, bool8 isTerrestrial, bool8 doesNotFlee, bool8 isStalker, u16 respawnMode)
+static void CreateInitialRoamerMon(u8 index, u16 species, u8 level, bool8 isTerrestrial, bool8 doesNotFlee, bool8 isStalker, u16 respawnMode, u8 nocturnality)
 {
     ClearRoamerLocationHistory(index);
     CreateMon(&gEnemyParty[0], species, level, USE_RANDOM_IVS, FALSE, 0, OT_ID_PLAYER_ID, 0);
@@ -185,6 +187,7 @@ static void CreateInitialRoamerMon(u8 index, u16 species, u8 level, bool8 isTerr
     ROAMER(index)->isTerrestrial = isTerrestrial;
     ROAMER(index)->doesNotFlee = doesNotFlee;
     ROAMER(index)->isStalker = isStalker;
+    ROAMER(index)->nocturnality = nocturnality;
     if (level == 0)
         ROAMER(index)->levelScaling = TRUE;
     else
@@ -365,6 +368,8 @@ bool8 TryStartRoamerEncounter(bool8 isWaterEncounter)
     {
         if (IsRoamerAt(i, gSaveBlock1Ptr->location.mapGroup, gSaveBlock1Ptr->location.mapNum)
             && !(ROAMER(i)->isTerrestrial && isWaterEncounter)
+            && !(ROAMER(i)->nocturnality == NOCTURNAL && GetCurrentTimeOfDay() != TIME_NIGHT)
+            && !(ROAMER(i)->nocturnality == DIURNAL && GetCurrentTimeOfDay() == TIME_NIGHT)
             && ((!ROAMER(i)->isStalker && (Random() % ROAMER_ENCOUNTER_MODULO) == 0)
             || (ROAMER(i)->isStalker && (Random() % STALKER_ENCOUNTER_MODULO) == 0)))
         {
@@ -423,7 +428,8 @@ bool8 TryAddRoamer(u16 species, u8 level, bool8 doesNotFlee, u16 respawnMode)
     
     if (index < ROAMER_COUNT)
     {
-        CreateInitialRoamerMon(index, species, level, AMPHIBIOUS, doesNotFlee, NOT_STALKER, respawnMode);
+        CreateInitialRoamerMon(index, species, level, AMPHIBIOUS, doesNotFlee, NOT_STALKER, respawnMode, NORMAL);
+        ROAMER(index)->hideFromDex = FALSE;
         return TRUE;
     }
     // Maximum active roamers: do nothing and let the calling function know
@@ -436,7 +442,8 @@ bool8 TryAddTerrestrialRoamer(u16 species, u8 level, bool8 doesNotFlee, u16 resp
     
     if (index < ROAMER_COUNT)
     {
-        CreateInitialRoamerMon(index, species, level, TERRESTRIAL, doesNotFlee, NOT_STALKER, respawnMode);
+        CreateInitialRoamerMon(index, species, level, TERRESTRIAL, doesNotFlee, NOT_STALKER, respawnMode, NORMAL);
+        ROAMER(index)->hideFromDex = FALSE;
         return TRUE;
     }
     return FALSE;
@@ -448,7 +455,7 @@ bool8 TryAddStalker(u16 species, u8 level, bool8 doesNotFlee, bool8 isTerrestria
     
     if (index < ROAMER_COUNT)
     {
-        CreateInitialRoamerMon(index, species, level, isTerrestrial, doesNotFlee, STALKER, respawnMode);
+        CreateInitialRoamerMon(index, species, level, isTerrestrial, doesNotFlee, STALKER, respawnMode, NORMAL);
         ROAMER(index)->hideFromDex = TRUE;
         return TRUE;
     }
@@ -525,6 +532,7 @@ static const struct {
     bool8 isTerrestrial;
     bool8 doesNotFlee;
     bool8 isStalker;
+    bool8 nocturnality;
     u16 prerequisiteFlag;
     u16 flagToSet;
 } sDailyRoamerList[] = {
@@ -553,6 +561,7 @@ static const struct {
         .isTerrestrial = FALSE,
         .doesNotFlee = TRUE,
         .isStalker = TRUE,
+        .nocturnality = NOCTURNAL,
         .prerequisiteFlag = FLAG_BADGE02_GET,
         .flagToSet = FLAG_GASTLY_ROAMING,
     },
@@ -561,6 +570,7 @@ static const struct {
         .isTerrestrial = TRUE,
         .doesNotFlee = TRUE,
         .isStalker = TRUE,
+        .nocturnality = NOCTURNAL,
         .prerequisiteFlag = FLAG_BADGE05_GET,
         .flagToSet = FLAG_SNEASEL_ROAMING,
     },
@@ -569,13 +579,23 @@ static const struct {
         .isTerrestrial = TRUE,
         .doesNotFlee = FALSE,
         .isStalker = TRUE,
+        .nocturnality = NOCTURNAL,
         .flagToSet = FLAG_CLEFFA_ROAMING,
+    },
+    {
+        .species = SPECIES_IGGLYBUFF,
+        .isTerrestrial = TRUE,
+        .doesNotFlee = TRUE,
+        .isStalker = TRUE,
+        .nocturnality = DIURNAL,
+        .flagToSet = FLAG_SNEASEL_ROAMING,
     },  // Other Roamers
     {
         .species = SPECIES_HOOTHOOT,
         .isTerrestrial = FALSE,
         .doesNotFlee = TRUE,
         .isStalker = FALSE,
+        .nocturnality = NOCTURNAL,
         .flagToSet = FLAG_HOOTHOOT_ROAMING,
     },
     {
@@ -664,7 +684,7 @@ void TryAddDailyRoamer(void)
 
     for (i = 1; i < roamerListLength; i++)
     {
-        if ((FlagGet(sDailyRoamerList[i].prerequisiteFlag || sDailyRoamerList[i].prerequisiteFlag == 0))
+        if ((sDailyRoamerList[i].prerequisiteFlag == 0 || FlagGet(sDailyRoamerList[i].prerequisiteFlag))
             && !FlagGet(sDailyRoamerList[i].flagToSet))
         {
             indexList[eligibleRoamerCount] = i;
@@ -724,6 +744,6 @@ void TryAddDailyRoamer(void)
     else
         species = sDailyRoamerList[i].species;
 
-    CreateInitialRoamerMon(availableSlot, species, 0, sDailyRoamerList[i].isTerrestrial, sDailyRoamerList[i].doesNotFlee, sDailyRoamerList[i].isStalker, DAILY_RESPAWN);
+    CreateInitialRoamerMon(availableSlot, species, 0, sDailyRoamerList[i].isTerrestrial, sDailyRoamerList[i].doesNotFlee, sDailyRoamerList[i].isStalker, DAILY_RESPAWN, sDailyRoamerList[i].nocturnality);
     ROAMER(availableSlot)->hideFromDex = TRUE;
 }

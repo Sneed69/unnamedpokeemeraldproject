@@ -47,4 +47,10 @@ enum {
     INSTANT_RESPAWN,
 };
 
+enum {
+    NORMAL,
+    NOCTURNAL,
+    DIURNAL,
+};
+
 #endif // GUARD_ROAMER_H
