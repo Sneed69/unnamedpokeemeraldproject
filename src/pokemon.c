@@ -6299,7 +6299,7 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, u8 mode, u16 evolutionItem, s
                 }
                 break;
             case EVO_LEVEL_DUSK:
-                if (gSaveBlock1Ptr->gameTime.hours >= HOUR_AFTERNOON && gSaveBlock1Ptr->gameTime.hours < HOUR_NIGHT && gEvolutionTable[species][i].param <= level)
+                if (gSaveBlock1Ptr->gameTime.hours == (HOUR_NIGHT - 1) && gEvolutionTable[species][i].param <= level)
                     targetSpecies = gEvolutionTable[species][i].targetSpecies;
                 break;
             case EVO_LEVEL:

@@ -37,8 +37,8 @@ static const u16 sTimeOfDayTints[][3] = {
     [1] =   {TINT_NIGHT},
     [2] =   {TINT_NIGHT},
     [3] =   {TINT_NIGHT},
-    [4] =   {Q_8_8(0.6), Q_8_8(0.65), Q_8_8(1.0)},
-    [5] =   {TINT_MORNING},
+    [4] =   {TINT_NIGHT},
+    [5] =   {Q_8_8(0.6), Q_8_8(0.65), Q_8_8(1.0)},
     [6] =   {TINT_MORNING},
     [7] =   {TINT_MORNING},
     [8] =   {Q_8_8(0.9), Q_8_8(0.85), Q_8_8(1.0)},
@@ -275,8 +275,12 @@ void ProcessImmediateTimeEvents(void)
             LoadPaletteOverrides();
 
             if (gWeatherPtr->palProcessingState != WEATHER_PAL_STATE_SCREEN_FADING_IN &&
-                gWeatherPtr->palProcessingState != WEATHER_PAL_STATE_CHANGING_WEATHER &&
-                gWeatherPtr->palProcessingState != WEATHER_PAL_STATE_IDLE &&
+                //gWeatherPtr->palProcessingState != WEATHER_PAL_STATE_IDLE &&
+                gMapHeader.regionMapSectionId != MAPSEC_ROUTE_119 &&
+                gMapHeader.regionMapSectionId != MAPSEC_ROUTE_120 &&
+                gMapHeader.regionMapSectionId != MAPSEC_PETALBURG_WOODS &&
+                gMapHeader.regionMapSectionId != MAPSEC_FORTREE_CITY &&
+                gMapHeader.regionMapSectionId != MAPSEC_MT_PYRE &&
                 gWeatherPtr->palProcessingState != WEATHER_PAL_STATE_SCREEN_FADING_OUT)
                 CpuCopy16(gPlttBufferUnfaded, gPlttBufferFaded, PLTT_SIZE);
         }
@@ -285,7 +289,7 @@ void ProcessImmediateTimeEvents(void)
     if (sDNSystemControl.timeOfDay != timeOfDay)
     {
         sDNSystemControl.timeOfDay = timeOfDay;
-        ChooseAmbientCrySpecies();  // so a time-of-day appropriate mon is chosen
+        //ChooseAmbientCrySpecies();  // so a time-of-day appropriate mon is chosen
         ForceTimeBasedEvents();     // for misc events that should run on time of day boundaries
     }
 }
