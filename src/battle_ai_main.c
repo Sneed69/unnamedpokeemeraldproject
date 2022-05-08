@@ -316,11 +316,13 @@ static u8 ChooseMoveOrAction_Singles(void)
         && !(gBattleTypeFlags & (BATTLE_TYPE_ARENA | BATTLE_TYPE_PALACE))
         && AI_THINKING_STRUCT->aiFlags & (AI_FLAG_CHECK_VIABILITY | AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_TRY_TO_FAINT | AI_FLAG_PREFER_BATON_PASS))
     {
-        u32 regeneratorAmount = 0;
+        u32 regeneratorAmount;
         s32 hazardDamage = 0;
         
         if (GetBattlerAbility(sBattler_AI) == ABILITY_REGENERATOR)
             regeneratorAmount = gBattleMons[sBattler_AI].maxHP / 3;
+        else
+            regeneratorAmount = 0;
         
         if (IsBattlerAffectedByHazards(sBattler_AI, FALSE))
         {
@@ -357,12 +359,43 @@ static u8 ChooseMoveOrAction_Singles(void)
             }
 
             // Consider switching if regenerator would faint
-            if ((GetBattlerAbility(sBattler_AI) == ABILITY_REGENERATOR 
+            if (GetBattlerAbility(sBattler_AI) == ABILITY_REGENERATOR 
                 && CanTargetFaintAi(gBattlerTarget, sBattler_AI)
                 && gBattleMons[sBattler_AI].hp <= gBattleMons[sBattler_AI].maxHP - regeneratorAmount)
+            {
+                bool32 willStrikeFirst = WillAIStrikeFirst();
+                if (willStrikeFirst && !CanAIFaintTarget(sBattler_AI, gBattlerTarget, 0))
+                {
+                    for (i = 0; i < MAX_MON_MOVES; i++)
+                    {
+                        if (gBattleMoves[gBattleMons[sBattler_AI].moves[i]].effect == EFFECT_HIT_ESCAPE
+                            || gBattleMoves[gBattleMons[sBattler_AI].moves[i]].effect == EFFECT_PARTING_SHOT)
+                            {
+                                AI_THINKING_STRUCT->score[i] += 20;
+                                break;
+                            }
+                    }
+
+                    if (i == MAX_MON_MOVES && GetMostSuitableMonToSwitchInto() != PARTY_SIZE)
+                    {
+                        AI_THINKING_STRUCT->switchMon = TRUE;
+                        return AI_CHOICE_SWITCH;
+                    }
+                }
+                else if (!willStrikeFirst)
+                {
+                    if (GetMostSuitableMonToSwitchInto() != PARTY_SIZE)
+                    {
+                        AI_THINKING_STRUCT->switchMon = TRUE;
+                        return AI_CHOICE_SWITCH;
+                    }
+                }
+                //else if it can faint the target and moves first dont switch
+            }
+            
             // Consider switching truant on the idle turn
-                || (GetBattlerAbility(sBattler_AI) == ABILITY_TRUANT
-                && gDisableStructs[sBattler_AI].truantCounter))
+            if (GetBattlerAbility(sBattler_AI) == ABILITY_TRUANT
+                && gDisableStructs[sBattler_AI].truantCounter)
             {
                 if (GetMostSuitableMonToSwitchInto() != PARTY_SIZE)
                 {
