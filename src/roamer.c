@@ -664,7 +664,7 @@ void TryAddDailyRoamer(void)
 
     for (i = 1; i < roamerListLength; i++)
     {
-        if ((sDailyRoamerList[i].prerequisiteFlag == 0 || FlagGet(sDailyRoamerList[i].prerequisiteFlag))
+        if ((FlagGet(sDailyRoamerList[i].prerequisiteFlag || sDailyRoamerList[i].prerequisiteFlag == 0))
             && !FlagGet(sDailyRoamerList[i].flagToSet))
         {
             indexList[eligibleRoamerCount] = i;
@@ -725,5 +725,5 @@ void TryAddDailyRoamer(void)
         species = sDailyRoamerList[i].species;
 
     CreateInitialRoamerMon(availableSlot, species, 0, sDailyRoamerList[i].isTerrestrial, sDailyRoamerList[i].doesNotFlee, sDailyRoamerList[i].isStalker, DAILY_RESPAWN);
-    ROAMER(i)->hideFromDex = TRUE;
+    ROAMER(availableSlot)->hideFromDex = TRUE;
 }
