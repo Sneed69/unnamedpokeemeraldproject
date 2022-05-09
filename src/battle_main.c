@@ -126,6 +126,7 @@ static void BeginLeftEvoluionAfterFade(void);
 static void BeginRightEvoluionAfterFade(void);
 static void WaitForEvolutionThenTryAnother(void);
 static void CB2_SetUpReshowBattleScreenAfterEvolution(void);
+static void TrySpecialEvolution(void);
 
 EWRAM_DATA u16 gBattle_BG0_X = 0;
 EWRAM_DATA u16 gBattle_BG0_Y = 0;
@@ -250,6 +251,8 @@ EWRAM_DATA u8 gBattleMoveTypeSpriteId = 0;
 EWRAM_DATA bool8 gPlayerDoesNotWantToEvolveLeft = FALSE;
 EWRAM_DATA bool8 gPlayerDoesNotWantToEvolveRight = FALSE;
 EWRAM_DATA u8 gBattleTerrainBackup = 0;
+EWRAM_DATA u8 gPartyCriticalHits[PARTY_SIZE] = {0};
+EWRAM_DATA static u8 sTriedEvolving = 0;
 
 void (*gPreBattleCallback1)(void);
 void (*gBattleMainFunc)(void);
@@ -3040,6 +3043,7 @@ static void BattleStartClearSetData(void)
         gBattleStruct->usedHeldItems[i][0] = 0;
         gBattleStruct->usedHeldItems[i][1] = 0;
         gBattleStruct->itemStolen[i].originalItem = GetMonData(&gPlayerParty[i], MON_DATA_HELD_ITEM);
+        gPartyCriticalHits[i] = 0;
     }
 
     gSwapDamageCategory = FALSE; // Photon Geyser, Shell Side Arm, Light That Burns the Sky
@@ -5269,9 +5273,15 @@ static void FreeResetData_ReturnToOvOrDoEvolutions(void)
         gIsFishingEncounter = FALSE;
         gIsSurfingEncounter = FALSE;
         ResetSpriteData();
-        if (gLeveledUpInBattle)
+        if (!(gBattleTypeFlags & (BATTLE_TYPE_LINK
+                                  | BATTLE_TYPE_RECORDED_LINK
+                                  | BATTLE_TYPE_FIRST_BATTLE
+                                  | BATTLE_TYPE_SAFARI
+                                  | BATTLE_TYPE_FRONTIER
+                                  | BATTLE_TYPE_EREADER_TRAINER
+                                  | BATTLE_TYPE_WALLY_TUTORIAL)))
         {
-            gBattleMainFunc = TryEvolvePokemon;
+            gBattleMainFunc = TrySpecialEvolution;
         }
         else
         {
@@ -5287,6 +5297,30 @@ static void FreeResetData_ReturnToOvOrDoEvolutions(void)
         FreeBattleResources();
         FreeBattleSpritesData();
     }
+}
+
+static void TrySpecialEvolution(void) // Attempts to perform non-level related battle evolutions (not the script command).
+{
+    s32 i;
+
+    for (i = 0; i < PARTY_SIZE; i++)
+    {
+        #ifndef POKEMON_EXPANSION
+            u16 species = GetEvolutionTargetSpecies(&gPlayerParty[i], EVO_MODE_BATTLE_SPECIAL, i);
+        #else
+            u16 species = GetEvolutionTargetSpecies(&gPlayerParty[i], EVO_MODE_BATTLE_SPECIAL, i, NULL);
+        #endif
+        if (species != SPECIES_NONE && !(sTriedEvolving & gBitTable[i]))
+        {
+            sTriedEvolving |= gBitTable[i];
+            FreeAllWindowBuffers();
+            gBattleMainFunc = WaitForEvoSceneToFinish;
+            EvolutionScene(&gPlayerParty[i], species, TRUE, i);
+            return;
+        }
+    }
+    sTriedEvolving = 0;
+    gBattleMainFunc = TryEvolvePokemon;
 }
 
 static void TryEvolvePokemon(void)
@@ -5323,7 +5357,7 @@ static void TryEvolvePokemon(void)
 static void WaitForEvoSceneToFinish(void)
 {
     if (gMain.callback2 == BattleMainCB2)
-        gBattleMainFunc = TryEvolvePokemon;
+        gBattleMainFunc = TrySpecialEvolution;
 }
 
 static void ReturnFromBattleToOverworld(void)

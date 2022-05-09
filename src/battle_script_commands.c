@@ -1908,6 +1908,7 @@ s8 GetInverseCritChance(u8 battlerAtk, u8 battlerDef, u32 move)
 
 static void Cmd_critcalc(void)
 {
+    u16 partySlot;
     s32 critChance = CalcCritChanceStage(gBattlerAttacker, gBattlerTarget, gCurrentMove, TRUE);
     gPotentialItemEffectBattler = gBattlerAttacker;
 
@@ -1921,6 +1922,12 @@ static void Cmd_critcalc(void)
         gIsCriticalHit = TRUE;
     else
         gIsCriticalHit = FALSE;
+
+    // Counter for EVO_CRITICAL_HITS.
+    partySlot = gBattlerPartyIndexes[gBattlerAttacker];
+    if (gIsCriticalHit && GetBattlerSide(gBattlerAttacker) == B_SIDE_PLAYER
+        && !(gBattleTypeFlags & BATTLE_TYPE_MULTI && GetBattlerPosition(gBattlerAttacker) == B_POSITION_PLAYER_LEFT))
+        gPartyCriticalHits[partySlot]++;
 
     gBattlescriptCurrInstr++;
 }
@@ -2945,7 +2952,17 @@ void SetMoveEffect(bool32 primary, u32 certain)
             case MOVE_EFFECT_FLINCH:
                 if (battlerAbility == ABILITY_INNER_FOCUS)
                 {
-                    gBattlescriptCurrInstr++;
+                    if (primary == TRUE || certain == MOVE_EFFECT_CERTAIN)
+                    {
+                        gLastUsedAbility = ABILITY_INNER_FOCUS;
+                        gBattlerAbility = gEffectBattler;
+                        RecordAbilityBattle(gEffectBattler, ABILITY_INNER_FOCUS);
+                        gBattlescriptCurrInstr = BattleScript_FlinchPrevention;
+                    }
+                    else
+                    {
+                        gBattlescriptCurrInstr++;
+                    }
                 }
                 else
                 {
