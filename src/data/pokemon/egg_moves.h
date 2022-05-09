@@ -259,6 +259,7 @@ const u16 gEggMoves[] = {
 
     egg_moves(GROWLITHE,
         MOVE_BODY_SLAM,
+        MOVE_MAGIC_FANG,
         MOVE_THRASH,
         MOVE_FIRE_SPIN,
         MOVE_HOWL,
@@ -771,6 +772,7 @@ const u16 gEggMoves[] = {
     egg_moves(TOTODILE,
         MOVE_THRASH,
         MOVE_FLIP_TURN,
+        MOVE_MAGIC_FANG,
         MOVE_HYDRO_PUMP,
         MOVE_ANCIENT_POWER,
         MOVE_METAL_CLAW,

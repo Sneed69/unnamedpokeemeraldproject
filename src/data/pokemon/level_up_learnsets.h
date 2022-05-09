@@ -4351,6 +4351,7 @@ static const struct LevelUpMove sSnubbullLevelUpLearnset[] = {
 };
 
 static const struct LevelUpMove sGranbullLevelUpLearnset[] = {
+    LEVEL_UP_MOVE( 0, MOVE_MAGIC_FANG),
     LEVEL_UP_MOVE( 1, MOVE_TACKLE),
     LEVEL_UP_MOVE( 1, MOVE_SCARY_FACE),
     LEVEL_UP_MOVE( 1, MOVE_TAIL_WHIP),
@@ -6732,7 +6733,7 @@ static const struct LevelUpMove sMawileLevelUpLearnset[] = {
     LEVEL_UP_MOVE(21, MOVE_FEINT_ATTACK),
     LEVEL_UP_MOVE(25, MOVE_BATON_PASS),
     LEVEL_UP_MOVE(29, MOVE_CRUNCH),
-    LEVEL_UP_MOVE(33, MOVE_IRON_DEFENSE),
+    LEVEL_UP_MOVE(33, MOVE_MAGIC_FANG),
     LEVEL_UP_MOVE(37, MOVE_SUCKER_PUNCH),
     LEVEL_UP_MOVE(41, MOVE_IRON_HEAD),
     LEVEL_UP_MOVE(45, MOVE_PLAY_ROUGH),

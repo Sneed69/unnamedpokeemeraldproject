@@ -764,4 +764,5 @@ const u8 gMoveNames[MOVES_COUNT][MOVE_NAME_LENGTH + 1] =
     [MOVE_BLISTERING_COLD] = _("Blistering Cold"),
     [MOVE_HOWLING_GALE] = _("Howling Gale"),
     [MOVE_ACID_RAIN] = _("Acid Rain"),
+    [MOVE_MAGIC_FANG] = _("Magic Fang"),
 };

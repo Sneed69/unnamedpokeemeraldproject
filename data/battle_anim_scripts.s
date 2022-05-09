@@ -788,6 +788,7 @@ gBattleAnims_Moves::
 	.4byte Move_BLISTERING_COLD
 	.4byte Move_HOWLING_GALE
 	.4byte Move_ACID_RAIN
+	.4byte Move_MAGIC_FANG
 	.4byte Move_COUNT @ cannot be reached
 
 	.align 2
@@ -14649,6 +14650,42 @@ Move_ACID_RAIN:
 	playsewithpan SE_M_SURF, SOUND_PAN_TARGET
 	clearmonbg ANIM_DEF_PARTNER
 	blendoff
+	end
+	
+Move_MAGIC_FANG:
+	loadspritegfx ANIM_TAG_SHARP_TEETH
+	loadspritegfx ANIM_TAG_IMPACT
+	loadspritegfx ANIM_TAG_ELECTRIC_ORBS
+	playsewithpan SE_M_HEAL_BELL, SOUND_PAN_ATTACKER
+	createvisualtask AnimTask_ScaleMonAndRestore, 5, -7, -7, 11, ANIM_ATTACKER, 0
+	waitforvisualfinish
+	delay 30
+	createvisualtask AnimTask_BlendMonInAndOut, 5, ANIM_ATTACKER, RGB(31, 3, 19), 12, 5, 1
+	delay 4
+	createvisualtask AnimTask_ScaleMonAndRestore, 5, -7, -7, 11, ANIM_ATTACKER, 0
+	playsewithpan SE_M_REVERSAL, SOUND_PAN_ATTACKER
+	createsprite gElectricTerrainOrbsTemplate, ANIM_ATTACKER, 2, 26, 0
+	createsprite gElectricTerrainOrbsTemplate, ANIM_ATTACKER, 2, 26, 42
+	createsprite gElectricTerrainOrbsTemplate, ANIM_ATTACKER, 2, 26, 84
+	createsprite gElectricTerrainOrbsTemplate, ANIM_ATTACKER, 2, 26, 126
+	createsprite gElectricTerrainOrbsTemplate, ANIM_ATTACKER, 2, 26, 168
+	createsprite gElectricTerrainOrbsTemplate, ANIM_ATTACKER, 2, 26, 210
+	delay 52
+	setarg 7, 0xFFFF
+	createsprite gHorizontalLungeSpriteTemplate, 2, 2, 4, 6
+	delay 8
+	monbg ANIM_TARGET
+	setalpha 12, 8
+	playsewithpan SE_M_BITE, SOUND_PAN_TARGET
+	createsprite gSharpTeethSpriteTemplate, ANIM_ATTACKER, 2, 0, -32, 0, 0, 819, 10
+	createsprite gSharpTeethSpriteTemplate, ANIM_ATTACKER, 2, 0, 32, 4, 0, -819, 10
+	delay 10
+	createsprite gBasicHitSplatSpriteTemplate, ANIM_ATTACKER, 2, 0, 0, ANIM_TARGET, 2
+	createvisualtask AnimTask_ShakeMon, 5, ANIM_TARGET, 0, 4, 7, 1
+	waitforvisualfinish
+	clearmonbg ANIM_TARGET
+	blendoff
+	delay 1
 	end
 
 @@@@@@@@@@@@@@@@@@@@@@@ GEN 1-3 @@@@@@@@@@@@@@@@@@@@@@@

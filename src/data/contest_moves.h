@@ -5982,6 +5982,14 @@ const struct ContestMove gContestMoves[MOVES_COUNT] =
         .comboStarterId = 0,
         .comboMoves = {COMBO_STARTER_SMOG}
     },
+
+    [MOVE_MAGIC_FANG] =
+    {
+        .effect = CONTEST_EFFECT_IMPROVE_CONDITION_PREVENT_NERVOUSNESS,
+        .contestCategory = CONTEST_CATEGORY_COOL,
+        .comboStarterId = 0,
+        .comboMoves = {COMBO_STARTER_MISTY_TERRAIN}
+    },
 };
 
 const struct ContestEffect gContestEffects[] =

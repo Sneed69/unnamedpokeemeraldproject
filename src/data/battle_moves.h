@@ -11722,4 +11722,18 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
         .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_SHEER_FORCE_BOOST | FLAG_DAMAGES_STEEL_TYPE,
         .split = SPLIT_SPECIAL,
     },
+
+    [MOVE_MAGIC_FANG] =
+    {
+        .power = 50,
+        .effect = EFFECT_ATTACK_UP_HIT,
+        .type = TYPE_FAIRY,
+        .accuracy = 100,
+        .pp = 16,
+        .secondaryEffectChance = 100,
+        .target = MOVE_TARGET_SELECTED,
+        .priority = 0,
+        .flags = FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_SHEER_FORCE_BOOST | FLAG_STRONG_JAW_BOOST,
+        .split = SPLIT_PHYSICAL,
+    },
 };
