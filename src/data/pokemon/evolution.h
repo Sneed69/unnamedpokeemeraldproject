@@ -70,7 +70,7 @@ const struct Evolution gEvolutionTable[NUM_SPECIES][EVOS_PER_MON] =
     [SPECIES_SCYTHER]               = {{EVO_MOVE_TYPE, TYPE_STEEL, SPECIES_SCIZOR}},
     [SPECIES_ELECTABUZZ]            = {{EVO_LEVEL, 50, SPECIES_ELECTIVIRE}},
     [SPECIES_MAGMAR]                = {{EVO_LEVEL, 50, SPECIES_MAGMORTAR}},
-    [SPECIES_MAGIKARP]              = {{EVO_LEVEL, 35, SPECIES_GYARADOS}},
+    [SPECIES_MAGIKARP]              = {{EVO_LEVEL, 40, SPECIES_GYARADOS}},
     [SPECIES_EEVEE]                 = {{EVO_ITEM, ITEM_THUNDER_STONE, SPECIES_JOLTEON},
                                        {EVO_ITEM, ITEM_WATER_STONE, SPECIES_VAPOREON},
                                        {EVO_ITEM, ITEM_FIRE_STONE, SPECIES_FLAREON},

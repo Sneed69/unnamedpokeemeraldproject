@@ -3216,7 +3216,6 @@ static const struct LevelUpMove sDragoniteLevelUpLearnset[] = {
     LEVEL_UP_MOVE(53, MOVE_FAIRY_TAIL),
     LEVEL_UP_MOVE(61, MOVE_DRAGON_DANCE),
     LEVEL_UP_MOVE(67, MOVE_OUTRAGE),
-    LEVEL_UP_MOVE(75, MOVE_HURRICANE),
     LEVEL_UP_END
 };
 
