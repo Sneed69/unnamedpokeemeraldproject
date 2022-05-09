@@ -1567,6 +1567,24 @@ void PrepareStringBattle(u16 stringId, u8 battler)
         else
             SET_STATCHANGER(STAT_SPATK, 2, FALSE);
     }
+    // Early Bird
+    else if ((stringId == STRINGID_PKMNWOKEUP || stringId == STRINGID_PKMNWOKEUPINUPROAR || stringId == STRINGID_PKMNSITEMWOKEIT)
+            && battlerAbility == ABILITY_EARLY_BIRD && CompareStat(battler, STAT_SPEED, MAX_STAT_STAGE, CMP_LESS_THAN))
+    {
+            gBattlerAbility = battler;
+            BattleScriptPushCursor();
+            gBattlescriptCurrInstr = BattleScript_AbilityRaisesDefenderStat;
+            SET_STATCHANGER(STAT_SPEED, 1, FALSE);
+    }
+    else if (stringId == STRINGID_TARGETWOKEUP && targetAbility == ABILITY_EARLY_BIRD
+            && CompareStat(battler, STAT_SPEED, MAX_STAT_STAGE, CMP_LESS_THAN))
+    {
+            gBattlerAbility = gBattlerTarget;
+            BattleScriptPushCursor();
+            gBattlescriptCurrInstr = BattleScript_AbilityRaisesDefenderStat;
+            SET_STATCHANGER(STAT_SPEED, 1, FALSE);
+    }
+    //Rattled
 #if  B_UPDATED_INTIMIDATE >= GEN_8
     else if (stringId == STRINGID_PKMNCUTSATTACKWITH && targetAbility == ABILITY_RATTLED
             && CompareStat(gBattlerTarget, STAT_SPEED, MAX_STAT_STAGE, CMP_LESS_THAN))
