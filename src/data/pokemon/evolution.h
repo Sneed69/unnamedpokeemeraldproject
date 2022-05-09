@@ -104,7 +104,6 @@ const struct Evolution gEvolutionTable[NUM_SPECIES][EVOS_PER_MON] =
     [SPECIES_MARILL]                = {{EVO_LEVEL, 32, SPECIES_AZUMARILL}},
     [SPECIES_HOPPIP]                = {{EVO_LEVEL, 18, SPECIES_SKIPLOOM}},
     [SPECIES_SKIPLOOM]              = {{EVO_LEVEL, 27, SPECIES_JUMPLUFF}},
-    [SPECIES_SUNKERN]               = {{EVO_LEVEL, 25, SPECIES_SUNFLORA}},
     [SPECIES_YANMA]                 = {{EVO_LEVEL, 50, SPECIES_YANMEGA}},
     [SPECIES_WOOPER]                = {{EVO_LEVEL, 20, SPECIES_QUAGSIRE}},
     [SPECIES_MURKROW]               = {{EVO_LEVEL, 46, SPECIES_HONCHKROW}},
@@ -480,4 +479,5 @@ const struct Evolution gEvolutionTable[NUM_SPECIES][EVOS_PER_MON] =
     [SPECIES_DEERLING]              = {{EVO_LEVEL, 34, SPECIES_SAWSBUCK}},
     [SPECIES_KARRABLAST]            = {{EVO_TRADE_SPECIFIC_MON, SPECIES_SHELMET, SPECIES_ESCAVALIER}},
     [SPECIES_FOONGUS]               = {{EVO_LEVEL, 39, SPECIES_AMOONGUSS}},
+    [SPECIES_SUNKERN]               = {{EVO_LEVEL, 25, SPECIES_SUNFLORA}},
 };
