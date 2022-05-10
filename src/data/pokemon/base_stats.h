@@ -1226,7 +1226,7 @@ const struct BaseStats gBaseStats[] =
     {
         .baseHP        = 40,
         .baseAttack    = 55,
-        .baseDefense   = 45,
+        .baseDefense   = 35,
         .baseSpeed     = 90,
         .baseSpAttack  = 40,
         .baseSpDefense = 40,
@@ -1250,7 +1250,7 @@ const struct BaseStats gBaseStats[] =
     {
         .baseHP        = 75,
         .baseAttack    = 100,
-        .baseDefense   = 75,
+        .baseDefense   = 70,
         .baseSpeed     = 115,
         .baseSpAttack  = 65,
         .baseSpDefense = 70,
@@ -1606,78 +1606,6 @@ const struct BaseStats gBaseStats[] =
         .noFlip = FALSE,
     },
 
-    [SPECIES_BELLSPROUT] =
-    {
-        .baseHP        = 50,
-        .baseAttack    = 75,
-        .baseDefense   = 35,
-        .baseSpeed     = 40,
-        .baseSpAttack  = 70,
-        .baseSpDefense = 30,
-        .type1 = TYPE_GRASS,
-        .type2 = TYPE_POISON,
-        .catchRate = 255,
-        .expYield = 60,
-        .evYield_Attack    = 1,
-        .genderRatio = PERCENT_FEMALE(50),
-        .eggCycles = 20,
-        .friendship = 70,
-        .growthRate = GROWTH_MEDIUM_SLOW,
-        .eggGroup1 = EGG_GROUP_GRASS,
-        .eggGroup2 = EGG_GROUP_GRASS,
-        .abilities = {ABILITY_CHLOROPHYLL, ABILITY_GLUTTONY},
-        .bodyColor = BODY_COLOR_GREEN,
-        .noFlip = FALSE,
-    },
-
-    [SPECIES_WEEPINBELL] =
-    {
-        .baseHP        = 65,
-        .baseAttack    = 90,
-        .baseDefense   = 50,
-        .baseSpeed     = 55,
-        .baseSpAttack  = 85,
-        .baseSpDefense = 45,
-        .type1 = TYPE_GRASS,
-        .type2 = TYPE_POISON,
-        .catchRate = 120,
-        .expYield = 137,
-        .evYield_Attack    = 2,
-        .genderRatio = PERCENT_FEMALE(50),
-        .eggCycles = 20,
-        .friendship = 70,
-        .growthRate = GROWTH_MEDIUM_SLOW,
-        .eggGroup1 = EGG_GROUP_GRASS,
-        .eggGroup2 = EGG_GROUP_GRASS,
-        .abilities = {ABILITY_CHLOROPHYLL, ABILITY_GLUTTONY},
-        .bodyColor = BODY_COLOR_GREEN,
-        .noFlip = FALSE,
-    },
-
-    [SPECIES_VICTREEBEL] =
-    {
-        .baseHP        = 80,
-        .baseAttack    = 100,
-        .baseDefense   = 100,
-        .baseSpeed     = 75,
-        .baseSpAttack  = 105,
-        .baseSpDefense = 70,
-        .type1 = TYPE_GRASS,
-        .type2 = TYPE_POISON,
-        .catchRate = 45,
-        .expYield = 221,
-        .evYield_Attack    = 3,
-        .genderRatio = PERCENT_FEMALE(50),
-        .eggCycles = 20,
-        .friendship = 70,
-        .growthRate = GROWTH_MEDIUM_SLOW,
-        .eggGroup1 = EGG_GROUP_GRASS,
-        .eggGroup2 = EGG_GROUP_GRASS,
-        .abilities = {ABILITY_CHLOROPHYLL, ABILITY_GLUTTONY},
-        .bodyColor = BODY_COLOR_GREEN,
-        .noFlip = FALSE,
-    },
-
     [SPECIES_TENTACOOL] =
     {
         .baseHP        = 40,
@@ -1697,7 +1625,7 @@ const struct BaseStats gBaseStats[] =
         .growthRate = GROWTH_SLOW,
         .eggGroup1 = EGG_GROUP_WATER_3,
         .eggGroup2 = EGG_GROUP_WATER_3,
-        .abilities = {ABILITY_LIQUID_OOZE, ABILITY_RAIN_DISH},
+        .abilities = {ABILITY_LIQUID_OOZE, ABILITY_CLEAR_BODY},
         .bodyColor = BODY_COLOR_BLUE,
         .noFlip = FALSE,
     },
@@ -1721,7 +1649,7 @@ const struct BaseStats gBaseStats[] =
         .growthRate = GROWTH_SLOW,
         .eggGroup1 = EGG_GROUP_WATER_3,
         .eggGroup2 = EGG_GROUP_WATER_3,
-        .abilities = {ABILITY_LIQUID_OOZE, ABILITY_RAIN_DISH},
+        .abilities = {ABILITY_LIQUID_OOZE, ABILITY_CLEAR_BODY},
         .bodyColor = BODY_COLOR_BLUE,
         .noFlip = FALSE,
     },
@@ -4744,7 +4672,7 @@ const struct BaseStats gBaseStats[] =
         .growthRate = GROWTH_MEDIUM_SLOW,
         .eggGroup1 = EGG_GROUP_BUG,
         .eggGroup2 = EGG_GROUP_BUG,
-        .abilities = {ABILITY_HYPER_CUTTER, ABILITY_SAND_VEIL, ABILITY_IMMUNITY},
+        .abilities = {ABILITY_IMMUNITY, ABILITY_SAND_VEIL},
         .bodyColor = BODY_COLOR_PURPLE,
         .noFlip = FALSE,
     },
@@ -4768,11 +4696,7 @@ const struct BaseStats gBaseStats[] =
         .growthRate = GROWTH_MEDIUM_SLOW,
         .eggGroup1 = EGG_GROUP_BUG,
         .eggGroup2 = EGG_GROUP_BUG,
-        #ifdef BATTLE_ENGINE
-            .abilities = {ABILITY_HYPER_CUTTER, ABILITY_SAND_VEIL, ABILITY_POISON_HEAL},
-        #else
-            .abilities = {ABILITY_HYPER_CUTTER, ABILITY_SAND_VEIL},
-        #endif
+        .abilities = {ABILITY_POISON_HEAL, ABILITY_SAND_VEIL},
         .bodyColor = BODY_COLOR_PURPLE,
         .noFlip = FALSE,
     },
@@ -7231,6 +7155,34 @@ const struct BaseStats gBaseStats[] =
         .noFlip = FALSE,
     },
 
+    [SPECIES_BUDEW] =
+    {
+        .baseHP        = 40,
+        .baseAttack    = 30,
+        .baseDefense   = 35,
+        .baseSpeed     = 55,
+        .baseSpAttack  = 50,
+        .baseSpDefense = 70,
+        .type1 = TYPE_GRASS,
+        .type2 = TYPE_POISON,
+        .catchRate = 255,
+        .expYield = 56,
+        .evYield_SpAttack  = 1,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 20,
+        .friendship = 70,
+        .growthRate = GROWTH_MEDIUM_SLOW,
+        .eggGroup1 = EGG_GROUP_UNDISCOVERED,
+        .eggGroup2 = EGG_GROUP_UNDISCOVERED,
+        #ifdef BATTLE_ENGINE
+            .abilities = {ABILITY_NATURAL_CURE, ABILITY_POISON_POINT, ABILITY_LEAF_GUARD},
+        #else
+            .abilities = {ABILITY_NATURAL_CURE, ABILITY_POISON_POINT},
+        #endif
+        .bodyColor = BODY_COLOR_GREEN,
+        .noFlip = TRUE,
+    },
+
     [SPECIES_ROSELIA] =
     {
         .baseHP        = 50,
@@ -7252,6 +7204,38 @@ const struct BaseStats gBaseStats[] =
         .eggGroup2 = EGG_GROUP_GRASS,
         #ifdef BATTLE_ENGINE
             .abilities = {ABILITY_NATURAL_CURE, ABILITY_POISON_POINT, ABILITY_LEAF_GUARD},
+        #else
+            .abilities = {ABILITY_NATURAL_CURE, ABILITY_POISON_POINT},
+        #endif
+        .bodyColor = BODY_COLOR_GREEN,
+        .noFlip = TRUE,
+    },
+
+    [SPECIES_ROSERADE] =
+    {
+        .baseHP        = 60,
+        .baseAttack    = 70,
+        .baseSpeed     = 90,
+        .baseSpAttack  = 125,
+        .baseSpDefense = 105,
+        #if P_UPDATED_STATS >= GEN_6
+            .baseDefense   = 65,
+        #else
+            .baseDefense   = 55,
+        #endif
+        .type1 = TYPE_GRASS,
+        .type2 = TYPE_POISON,
+        .catchRate = 75,
+        .expYield = 232,
+        .evYield_SpAttack  = 3,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 20,
+        .friendship = 70,
+        .growthRate = GROWTH_MEDIUM_SLOW,
+        .eggGroup1 = EGG_GROUP_FAIRY,
+        .eggGroup2 = EGG_GROUP_GRASS,
+        #ifdef BATTLE_ENGINE
+            .abilities = {ABILITY_NATURAL_CURE, ABILITY_POISON_POINT, ABILITY_TECHNICIAN},
         #else
             .abilities = {ABILITY_NATURAL_CURE, ABILITY_POISON_POINT},
         #endif
@@ -9669,66 +9653,6 @@ const struct BaseStats gBaseStats[] =
         #endif
         .bodyColor = BODY_COLOR_BLUE,
         .noFlip = FALSE,
-    },
-
-    [SPECIES_BUDEW] =
-    {
-        .baseHP        = 40,
-        .baseAttack    = 30,
-        .baseDefense   = 35,
-        .baseSpeed     = 55,
-        .baseSpAttack  = 50,
-        .baseSpDefense = 70,
-        .type1 = TYPE_GRASS,
-        .type2 = TYPE_POISON,
-        .catchRate = 255,
-        .expYield = 56,
-        .evYield_SpAttack  = 1,
-        .genderRatio = PERCENT_FEMALE(50),
-        .eggCycles = 20,
-        .friendship = 70,
-        .growthRate = GROWTH_MEDIUM_SLOW,
-        .eggGroup1 = EGG_GROUP_UNDISCOVERED,
-        .eggGroup2 = EGG_GROUP_UNDISCOVERED,
-        #ifdef BATTLE_ENGINE
-            .abilities = {ABILITY_NATURAL_CURE, ABILITY_POISON_POINT, ABILITY_LEAF_GUARD},
-        #else
-            .abilities = {ABILITY_NATURAL_CURE, ABILITY_POISON_POINT},
-        #endif
-        .bodyColor = BODY_COLOR_GREEN,
-        .noFlip = TRUE,
-    },
-
-    [SPECIES_ROSERADE] =
-    {
-        .baseHP        = 60,
-        .baseAttack    = 70,
-        .baseSpeed     = 90,
-        .baseSpAttack  = 125,
-        .baseSpDefense = 105,
-        #if P_UPDATED_STATS >= GEN_6
-            .baseDefense   = 65,
-        #else
-            .baseDefense   = 55,
-        #endif
-        .type1 = TYPE_GRASS,
-        .type2 = TYPE_POISON,
-        .catchRate = 75,
-        .expYield = 232,
-        .evYield_SpAttack  = 3,
-        .genderRatio = PERCENT_FEMALE(50),
-        .eggCycles = 20,
-        .friendship = 70,
-        .growthRate = GROWTH_MEDIUM_SLOW,
-        .eggGroup1 = EGG_GROUP_FAIRY,
-        .eggGroup2 = EGG_GROUP_GRASS,
-        #ifdef BATTLE_ENGINE
-            .abilities = {ABILITY_NATURAL_CURE, ABILITY_POISON_POINT, ABILITY_TECHNICIAN},
-        #else
-            .abilities = {ABILITY_NATURAL_CURE, ABILITY_POISON_POINT},
-        #endif
-        .bodyColor = BODY_COLOR_GREEN,
-        .noFlip = TRUE,
     },
 
     [SPECIES_CRANIDOS] =
@@ -32936,6 +32860,78 @@ const struct BaseStats gBaseStats[] =
         .eggGroup2 = EGG_GROUP_WATER_1,
         .abilities = {ABILITY_SWIFT_SWIM, ABILITY_WATER_ABSORB, ABILITY_WATER_VEIL},
         .bodyColor = BODY_COLOR_PURPLE,
+        .noFlip = FALSE,
+    },
+
+    [SPECIES_BELLSPROUT] =
+    {
+        .baseHP        = 50,
+        .baseAttack    = 75,
+        .baseDefense   = 35,
+        .baseSpeed     = 40,
+        .baseSpAttack  = 70,
+        .baseSpDefense = 30,
+        .type1 = TYPE_GRASS,
+        .type2 = TYPE_POISON,
+        .catchRate = 255,
+        .expYield = 60,
+        .evYield_Attack    = 1,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 20,
+        .friendship = 70,
+        .growthRate = GROWTH_MEDIUM_SLOW,
+        .eggGroup1 = EGG_GROUP_GRASS,
+        .eggGroup2 = EGG_GROUP_GRASS,
+        .abilities = {ABILITY_CHLOROPHYLL, ABILITY_GLUTTONY},
+        .bodyColor = BODY_COLOR_GREEN,
+        .noFlip = FALSE,
+    },
+
+    [SPECIES_WEEPINBELL] =
+    {
+        .baseHP        = 65,
+        .baseAttack    = 90,
+        .baseDefense   = 50,
+        .baseSpeed     = 55,
+        .baseSpAttack  = 85,
+        .baseSpDefense = 45,
+        .type1 = TYPE_GRASS,
+        .type2 = TYPE_POISON,
+        .catchRate = 120,
+        .expYield = 137,
+        .evYield_Attack    = 2,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 20,
+        .friendship = 70,
+        .growthRate = GROWTH_MEDIUM_SLOW,
+        .eggGroup1 = EGG_GROUP_GRASS,
+        .eggGroup2 = EGG_GROUP_GRASS,
+        .abilities = {ABILITY_CHLOROPHYLL, ABILITY_GLUTTONY},
+        .bodyColor = BODY_COLOR_GREEN,
+        .noFlip = FALSE,
+    },
+
+    [SPECIES_VICTREEBEL] =
+    {
+        .baseHP        = 80,
+        .baseAttack    = 100,
+        .baseDefense   = 100,
+        .baseSpeed     = 75,
+        .baseSpAttack  = 105,
+        .baseSpDefense = 70,
+        .type1 = TYPE_GRASS,
+        .type2 = TYPE_POISON,
+        .catchRate = 45,
+        .expYield = 221,
+        .evYield_Attack    = 3,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 20,
+        .friendship = 70,
+        .growthRate = GROWTH_MEDIUM_SLOW,
+        .eggGroup1 = EGG_GROUP_GRASS,
+        .eggGroup2 = EGG_GROUP_GRASS,
+        .abilities = {ABILITY_CHLOROPHYLL, ABILITY_GLUTTONY},
+        .bodyColor = BODY_COLOR_GREEN,
         .noFlip = FALSE,
     },
 };

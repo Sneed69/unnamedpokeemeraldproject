@@ -938,7 +938,7 @@ const struct PokedexEntry gPokedexEntries[] =
 
     [NATIONAL_DEX_RAPIDASH] =
     {
-        .categoryName = _("Fire Horse"),
+        .categoryName = _("Fire Unicorn"),
         .height = 17,
         .weight = 950,
         .description = gRapidashPokedexText,
