@@ -7020,7 +7020,7 @@ const struct BaseStats gBaseStats[] =
         .growthRate = GROWTH_SLOW,
         .eggGroup1 = EGG_GROUP_MONSTER,
         .eggGroup2 = EGG_GROUP_MONSTER,
-        .abilities = {ABILITY_JUGGERNAUT, ABILITY_ROCK_HEAD},
+        .abilities = {ABILITY_UNBREAKABLE, ABILITY_ROCK_HEAD},
         .bodyColor = BODY_COLOR_GRAY,
         .noFlip = FALSE,
     },

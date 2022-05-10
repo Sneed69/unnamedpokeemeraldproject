@@ -1039,7 +1039,7 @@ static const u8 sAbilitiesAffectedByMoldBreaker[] =
     [ABILITY_ICE_FACE] = 1,
     [ABILITY_PASTEL_VEIL] = 1,
     [ABILITY_HYPERBOREAN] = 1,
-    [ABILITY_JUGGERNAUT] = 1,
+    [ABILITY_UNBREAKABLE] = 1,
 };
 
 static const u8 sAbilitiesNotTraced[ABILITIES_COUNT] =
@@ -9271,7 +9271,7 @@ static void MulByTypeEffectiveness(u16 *modifier, u16 move, u8 moveType, u8 batt
             mod = UQ_4_12(1.0);
     }
 
-    if (GetBattlerAbility(battlerDef) == ABILITY_JUGGERNAUT && mod >= UQ_4_12(2.0) && gBattleMoves[move].split == SPLIT_PHYSICAL)
+    if (GetBattlerAbility(battlerDef) == ABILITY_UNBREAKABLE && mod >= UQ_4_12(2.0) && gBattleMoves[move].split == SPLIT_PHYSICAL)
         mod = UQ_4_12(1.0);
 
     MulModifier(modifier, mod);

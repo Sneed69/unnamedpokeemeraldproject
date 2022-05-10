@@ -257,7 +257,7 @@ static const u8 sAsOneShadowRiderDescription[] = _("Unnerve and Grim Neigh.");
 static const u8 sTranscendenceDescription[] = _("Ignores Dark immunity.");
 static const u8 sIonizationDescription[] = _("Ignores Ground immunity.");
 static const u8 sHyperboreanDescription[] = _("Ice raises Sp. Def.");
-static const u8 sJuggernautDescription[] = _("Only weak to special hits.");
+static const u8 sUnbreakableDescription[] = _("Only weak to special hits.");
 static const u8 sUnthreateningDescription[] = _("Foes drop their guard.");
 
 #if B_EXPANDED_ABILITY_NAMES == TRUE
@@ -534,7 +534,7 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
     [ABILITY_TRANSCENDENCE] = _("Transcendence"),
     [ABILITY_IONIZATION] = _("Ionization"),
     [ABILITY_HYPERBOREAN] = _("Hyperborean"),
-    [ABILITY_JUGGERNAUT] = _("Juggernaut"),
+    [ABILITY_UNBREAKABLE] = _("Unbreakable"),
     [ABILITY_UNTHREATENING] = _("Unthreatening"),
 };
 #else   // 12 characters
@@ -1084,6 +1084,6 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
     [ABILITY_TRANSCENDENCE] = sTranscendenceDescription,
     [ABILITY_IONIZATION] = sIonizationDescription,
     [ABILITY_HYPERBOREAN] = sHyperboreanDescription,
-    [ABILITY_JUGGERNAUT] = sJuggernautDescription,
+    [ABILITY_UNBREAKABLE] = sUnbreakableDescription,
     [ABILITY_UNTHREATENING] = sUnthreateningDescription,
 };
