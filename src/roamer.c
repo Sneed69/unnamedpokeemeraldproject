@@ -643,18 +643,18 @@ static const struct {
         .flagToSet = FLAG_TOTODILE_ROAMING,
     },
     {
-        .species = SPECIES_TEPIG,
-        .isTerrestrial = TRUE,
-        .doesNotFlee = TRUE,
-        .prerequisiteFlag = FLAG_BADGE03_GET,
-        .flagToSet = FLAG_TEPIG_ROAMING,
-    },
-    {
         .species = SPECIES_TURTWIG,
         .isTerrestrial = TRUE,
         .doesNotFlee = TRUE,
         .prerequisiteFlag = FLAG_BADGE03_GET,
         .flagToSet = FLAG_TURTWIG_ROAMING,
+    },
+    {
+        .species = SPECIES_TEPIG,
+        .isTerrestrial = TRUE,
+        .doesNotFlee = TRUE,
+        .prerequisiteFlag = FLAG_BADGE03_GET,
+        .flagToSet = FLAG_TEPIG_ROAMING,
     },
     {
         .species = SPECIES_PIPLUP,
