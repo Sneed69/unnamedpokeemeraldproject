@@ -285,6 +285,7 @@ static const s8 sAiAbilityRatings[ABILITIES_COUNT] =
     [ABILITY_WANDERING_SPIRIT] = 2,
     [ABILITY_GORILLA_TACTICS] = 4,
     [ABILITY_UNBREAKABLE] = 9,
+    [ABILITY_NINE_LIVES] = 9,
 };
 
 static const u16 sEncouragedEncoreEffects[] =

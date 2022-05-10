@@ -1955,6 +1955,7 @@ static void Cmd_adjustdamage(void)
 {
     u8 holdEffect, param;
     u32 moveType;
+    u16 partySlot = gBattlerPartyIndexes[gBattlerTarget];
 
     GET_MOVE_TYPE(gCurrentMove, moveType);
 
@@ -1984,6 +1985,16 @@ static void Cmd_adjustdamage(void)
     {
         RecordAbilityBattle(gBattlerTarget, ABILITY_STURDY);
         gSpecialStatuses[gBattlerTarget].sturdied = TRUE;
+    }
+    else if (GetBattlerAbility(gBattlerTarget) == ABILITY_NINE_LIVES && !gNineLivesUsed[partySlot] && gBattlerAttacker != gBattlerTarget)
+    {
+        CreateAbilityPopUp(gBattlerTarget, gBattleMons[gBattlerTarget].ability, (gBattleTypeFlags & BATTLE_TYPE_DOUBLE) != 0);
+        gNineLivesUsed[partySlot] = TRUE;
+        gBattlerAbility = gBattlerTarget;
+        RecordAbilityBattle(gBattlerTarget, ABILITY_NINE_LIVES);
+        gMoveResultFlags |= MOVE_RESULT_MISSED;
+        gLastUsedAbility = ABILITY_NINE_LIVES;
+        gBattleMoveDamage = 0;
     }
 
     if (gBattleMoves[gCurrentMove].effect != EFFECT_FALSE_SWIPE

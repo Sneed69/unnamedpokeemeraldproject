@@ -252,6 +252,7 @@ EWRAM_DATA bool8 gPlayerDoesNotWantToEvolveLeft = FALSE;
 EWRAM_DATA bool8 gPlayerDoesNotWantToEvolveRight = FALSE;
 EWRAM_DATA u8 gBattleTerrainBackup = 0;
 EWRAM_DATA u8 gPartyCriticalHits[PARTY_SIZE] = {0};
+EWRAM_DATA u8 gNineLivesUsed[PARTY_SIZE] = {FALSE};
 EWRAM_DATA static u8 sTriedEvolving = 0;
 
 void (*gPreBattleCallback1)(void);
@@ -3044,6 +3045,7 @@ static void BattleStartClearSetData(void)
         gBattleStruct->usedHeldItems[i][1] = 0;
         gBattleStruct->itemStolen[i].originalItem = GetMonData(&gPlayerParty[i], MON_DATA_HELD_ITEM);
         gPartyCriticalHits[i] = 0;
+        gNineLivesUsed[i] = FALSE;
     }
 
     gSwapDamageCategory = FALSE; // Photon Geyser, Shell Side Arm, Light That Burns the Sky

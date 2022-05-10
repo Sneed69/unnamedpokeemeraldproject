@@ -934,5 +934,6 @@ extern u8 gLastUsedBall;
 extern u16 gLastThrownBall;
 extern bool8 gSwapDamageCategory; // Photon Geyser, Shell Side Arm, Light That Burns the Sky
 extern u8 gPartyCriticalHits[PARTY_SIZE];
+extern bool8 gNineLivesUsed[PARTY_SIZE];
 
 #endif // GUARD_BATTLE_H
