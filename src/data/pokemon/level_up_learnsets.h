@@ -2889,6 +2889,7 @@ static const struct LevelUpMove sEspeonLevelUpLearnset[] = {
     LEVEL_UP_MOVE(37, MOVE_PSYCHIC),
     LEVEL_UP_MOVE(41, MOVE_LAST_RESORT),
     LEVEL_UP_MOVE(45, MOVE_POWER_SWAP),
+    LEVEL_UP_MOVE(49, MOVE_POWER_GEM),
     LEVEL_UP_END
 };
 
