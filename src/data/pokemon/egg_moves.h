@@ -107,7 +107,6 @@ const u16 gEggMoves[] = {
         MOVE_MUD_SHOT,
         MOVE_ENDURE,
         MOVE_CHIP_AWAY,
-        MOVE_ROCK_CLIMB,
         MOVE_ROTOTILLER,
         MOVE_HONE_CLAWS),
 
@@ -336,7 +335,6 @@ const u16 gEggMoves[] = {
         MOVE_HAMMER_ARM,
         MOVE_FLAIL,
         MOVE_CURSE,
-        MOVE_ROCK_CLIMB,
         MOVE_ENDURE,
         MOVE_AUTOTOMIZE),
 
@@ -452,7 +450,6 @@ const u16 gEggMoves[] = {
         MOVE_DEFENSE_CURL,
         MOVE_ROLLOUT,
         MOVE_ROCK_BLAST,
-        MOVE_ROCK_CLIMB,
         MOVE_HEAVY_SLAM,
         MOVE_ROTOTILLER),
 
@@ -535,7 +532,6 @@ const u16 gEggMoves[] = {
         MOVE_CRUSH_CLAW,
         MOVE_DRAGON_RUSH,
         MOVE_SKULL_BASH,
-        MOVE_ROCK_CLIMB,
         MOVE_ROTOTILLER,
         MOVE_METAL_BURST,
         MOVE_GUARD_SPLIT),
@@ -1100,7 +1096,6 @@ const u16 gEggMoves[] = {
         MOVE_NIGHT_SLASH,
         MOVE_CROSS_POISON,
         MOVE_POWER_TRICK,
-        MOVE_ROCK_CLIMB,
         MOVE_POISON_TAIL),
 
     egg_moves(SNUBBULL,
@@ -1155,7 +1150,7 @@ const u16 gEggMoves[] = {
         MOVE_DOUBLE_HIT,
         MOVE_PUNISHMENT,
         MOVE_PURSUIT,
-        MOVE_ICE_SHARD,
+        MOVE_LOW_KICK,
         MOVE_ASSIST,
         MOVE_FEINT,
         MOVE_ICICLE_CRASH,
@@ -1436,9 +1431,11 @@ const u16 gEggMoves[] = {
         MOVE_HELPING_HAND,
         MOVE_MUD_SLAP,
         MOVE_STOMPING_TANTRUM,
-        MOVE_ROCK_CLIMB,
         MOVE_SIMPLE_BEAM,
         MOVE_EXTREME_SPEED),
+
+    egg_moves(WURMPLE,
+        MOVE_STICKY_WEB),
 
     egg_moves(LOTAD,
         MOVE_SYNTHESIS,
@@ -2150,7 +2147,6 @@ const u16 gEggMoves[] = {
         MOVE_ROLLOUT,
         MOVE_ODOR_SLEUTH,
         MOVE_AQUA_TAIL,
-        MOVE_ROCK_CLIMB,
         MOVE_ENDURE,
         MOVE_SKULL_BASH),
 
@@ -2382,8 +2378,7 @@ const u16 gEggMoves[] = {
         MOVE_SAND_TOMB,
         MOVE_BODY_SLAM,
         MOVE_SCALE_SHOT,
-        MOVE_MUD_SHOT,
-        MOVE_ROCK_CLIMB),
+        MOVE_MUD_SHOT),
 
     egg_moves(MUNCHLAX,
         MOVE_LICK,
@@ -2658,8 +2653,7 @@ const u16 gEggMoves[] = {
         MOVE_CRUSH_CLAW,
         MOVE_METAL_SOUND,
         MOVE_SUBMISSION,
-        MOVE_SKULL_BASH,
-        MOVE_ROCK_CLIMB),
+        MOVE_SKULL_BASH),
 
     egg_moves(AUDINO,
         MOVE_WISH,
@@ -2703,8 +2697,7 @@ const u16 gEggMoves[] = {
     egg_moves(VENIPEDE,
         MOVE_TWINEEDLE,
         MOVE_PIN_MISSILE,
-        MOVE_TAKE_DOWN,
-        MOVE_ROCK_CLIMB),
+        MOVE_TAKE_DOWN),
 
     egg_moves(COTTONEE,
         MOVE_TICKLE,
@@ -2740,7 +2733,6 @@ const u16 gEggMoves[] = {
 
     egg_moves(SANDILE,
         MOVE_DOUBLE_EDGE,
-        MOVE_ROCK_CLIMB,
         MOVE_SCALE_SHOT,
         MOVE_PURSUIT,
         MOVE_UPROAR,
@@ -2941,7 +2933,6 @@ const u16 gEggMoves[] = {
         MOVE_PIN_MISSILE,
         MOVE_POISON_STING,
         MOVE_CROSS_POISON,
-        MOVE_ROCK_CLIMB,
         MOVE_PURSUIT,
         MOVE_DISABLE,
         MOVE_FEINT_ATTACK,
@@ -2953,7 +2944,6 @@ const u16 gEggMoves[] = {
         MOVE_LEECH_SEED,
         MOVE_WORRY_SEED,
         MOVE_GRAVITY,
-        MOVE_ROCK_CLIMB,
         MOVE_ACID_SPRAY),
 
     egg_moves(ELGYEM,
@@ -3042,7 +3032,6 @@ const u16 gEggMoves[] = {
 
     egg_moves(BOUFFALANT,
         MOVE_STOMP,
-        MOVE_ROCK_CLIMB,
         MOVE_HEADBUTT,
         MOVE_SKULL_BASH,
         MOVE_MUD_SHOT,
@@ -3071,7 +3060,6 @@ const u16 gEggMoves[] = {
     egg_moves(DURANT,
         MOVE_SCREECH,
         MOVE_ENDURE,
-        MOVE_ROCK_CLIMB,
         MOVE_BATON_PASS,
         MOVE_FEINT_ATTACK),
 
@@ -3706,7 +3694,6 @@ const u16 gEggMoves[] = {
         MOVE_ENDURE,
         MOVE_FLAIL,
         MOVE_MAGNET_RISE,
-        MOVE_ROCK_CLIMB,
         MOVE_SCREECH),
 
     egg_moves(GRIMER_ALOLAN,

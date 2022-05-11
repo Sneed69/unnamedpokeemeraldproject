@@ -3272,7 +3272,7 @@ const u8 gScolipedePokedexText[] = _(
     "With quick movements, it chases down\n"
     "its foes, attacking relentlessly with its\n"
     "horns until it prevails. Then it finishes\n"
-    "them off with deadly poison.");
+    "them off with deadly venom.");
 
 const u8 gCottoneePokedexText[] = _(
     "When it finds others of its kind, they all\n"

@@ -516,13 +516,8 @@ static const u8 sPidgeotTMHMLearnset[] =
     TMHM(TM96_HURRICANE),
     TMHM(TM98_GIGA_IMPACT),
     TMHM(TM120_DEFOG),
-    TMHM(TM38_FIRE_BLAST),
-    TMHM(TM_THUNDER),
-    TMHM(TM_BLIZZARD),
-    TMHM(TM_ICE_BEAM),
-    TMHM(TM_FLAMETHROWER),
-    TMHM(TM_THUNDERBOLT),
     TMHM(TM104_STRENGTH),
+    TMHM(TM_BLIZZARD),
     TMHM(TM_HOWLING_GALE),
     0xFF,
 };
@@ -737,6 +732,7 @@ static const u8 sPikachuTMHMLearnset[] =
     TMHM(TM104_STRENGTH),
     TMHM(TM109_SEISMIC_TOSS),
     TMHM(TM117_ELECTRIC_TERRAIN),
+    TMHM(TM_MISTY_TERRAIN),
     0xFF,
 };
 
@@ -777,6 +773,7 @@ static const u8 sRaichuTMHMLearnset[] =
     TMHM(TM104_STRENGTH),
     TMHM(TM109_SEISMIC_TOSS),
     TMHM(TM117_ELECTRIC_TERRAIN),
+    TMHM(TM_MISTY_TERRAIN),
     0xFF,
 };
 
@@ -5989,6 +5986,7 @@ static const u8 sPichuTMHMLearnset[] =
     TMHM(TM103_SURF),
     TMHM(TM109_SEISMIC_TOSS),
     TMHM(TM117_ELECTRIC_TERRAIN),
+    TMHM(TM_MISTY_TERRAIN),
     0xFF,
 };
 
@@ -7923,6 +7921,7 @@ static const u8 sSkarmoryTMHMLearnset[] =
     TMHM(TM120_DEFOG),
     TMHM(TM104_STRENGTH),
     TMHM(TM_HOWLING_GALE),
+    TMHM(TM_U_TURN),
     0xFF,
 };
 
@@ -9195,6 +9194,11 @@ static const u8 sZigzagoonTMHMLearnset[] =
     TMHM(TM90_SUBSTITUTE),
     TMHM(TM100_GUNK_SHOT),
     TMHM(TM103_SURF),
+    TMHM(TM_AMNESIA),
+    TMHM(TM_STEALTH_ROCK),
+    TMHM(TM_TOXIC_SPIKES),
+    TMHM(TM_ENCORE),
+    TMHM(TM_FOUL_PLAY),
     0xFF,
 };
 
@@ -9229,6 +9233,12 @@ static const u8 sLinooneTMHMLearnset[] =
     TMHM(TM100_GUNK_SHOT),
     TMHM(TM103_SURF),
     TMHM(TM104_STRENGTH),
+    TMHM(TM_AMNESIA),
+    TMHM(TM_BODY_PRESS),
+    TMHM(TM_STEALTH_ROCK),
+    TMHM(TM_TOXIC_SPIKES),
+    TMHM(TM_ENCORE),
+    TMHM(TM_FOUL_PLAY),
     0xFF,
 };
 
@@ -9248,6 +9258,7 @@ static const u8 sBeautiflyTMHMLearnset[] =
     TMHM(TM06_TOXIC),
     TMHM(TM10_HIDDEN_POWER),
     TMHM(TM11_SUNNY_DAY),
+    TMHM(TM16_LIGHT_SCREEN),
     TMHM(TM17_PROTECT),
     TMHM(TM19_GIGA_DRAIN),
     TMHM(TM22_SOLAR_BEAM),
@@ -9262,6 +9273,7 @@ static const u8 sBeautiflyTMHMLearnset[] =
     TMHM(TM56_TAILWIND),
     TMHM(TM58_SIGNAL_BEAM),
     TMHM(TM62_ACROBATICS),
+    TMHM(TM67_IRON_DEFENSE),
     TMHM(TM78_HYPER_BEAM),
     TMHM(TM82_SLEEP_TALK),
     TMHM(TM89_U_TURN),
@@ -9270,6 +9282,8 @@ static const u8 sBeautiflyTMHMLearnset[] =
     TMHM(TM98_GIGA_IMPACT),
     TMHM(TM110_VENOSHOCK),
     TMHM(TM120_DEFOG),
+    TMHM(TM_DAZZLING_GLEAM),
+    TMHM(TM_MISTY_TERRAIN),
     0xFF,
 };
 
@@ -9281,6 +9295,7 @@ static const u8 sCascoonTMHMLearnset[] =
 
 static const u8 sDustoxTMHMLearnset[] =
 {
+    TMHM(TM04_CALM_MIND),
     TMHM(TM06_TOXIC),
     TMHM(TM10_HIDDEN_POWER),
     TMHM(TM11_SUNNY_DAY),
@@ -9290,7 +9305,6 @@ static const u8 sDustoxTMHMLearnset[] =
     TMHM(TM22_SOLAR_BEAM),
     TMHM(TM29_PSYCHIC),
     TMHM(TM30_SHADOW_BALL),
-    TMHM(TM36_SLUDGE_BOMB),
     TMHM(TM40_AERIAL_ACE),
     TMHM(TM42_FACADE),
     TMHM(TM44_REST),
@@ -9300,6 +9314,7 @@ static const u8 sDustoxTMHMLearnset[] =
     TMHM(TM56_TAILWIND),
     TMHM(TM58_SIGNAL_BEAM),
     TMHM(TM62_ACROBATICS),
+    TMHM(TM67_IRON_DEFENSE),
     TMHM(TM78_HYPER_BEAM),
     TMHM(TM82_SLEEP_TALK),
     TMHM(TM89_U_TURN),
@@ -9308,6 +9323,8 @@ static const u8 sDustoxTMHMLearnset[] =
     TMHM(TM98_GIGA_IMPACT),
     TMHM(TM110_VENOSHOCK),
     TMHM(TM120_DEFOG),
+    TMHM(TM_PSYCHIC_TERRAIN),
+    TMHM(TM_PSYSHOCK),
     0xFF,
 };
 
@@ -18523,6 +18540,7 @@ static const u8 sVenipedeTMHMLearnset[] =
     TMHM(TM11_SUNNY_DAY),
     TMHM(TM17_PROTECT),
     TMHM(TM22_SOLAR_BEAM),
+    TMHM(TM26_EARTHQUAKE),
     TMHM(TM36_SLUDGE_BOMB),
     TMHM(TM42_FACADE),
     TMHM(TM44_REST),
@@ -18546,6 +18564,7 @@ static const u8 sWhirlipedeTMHMLearnset[] =
     TMHM(TM11_SUNNY_DAY),
     TMHM(TM17_PROTECT),
     TMHM(TM22_SOLAR_BEAM),
+    TMHM(TM26_EARTHQUAKE),
     TMHM(TM36_SLUDGE_BOMB),
     TMHM(TM42_FACADE),
     TMHM(TM44_REST),
