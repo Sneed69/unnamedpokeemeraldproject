@@ -1986,15 +1986,19 @@ static void Cmd_adjustdamage(void)
         RecordAbilityBattle(gBattlerTarget, ABILITY_STURDY);
         gSpecialStatuses[gBattlerTarget].sturdied = TRUE;
     }
-    else if (GetBattlerAbility(gBattlerTarget) == ABILITY_NINE_LIVES && !gNineLivesUsed[partySlot] && gBattlerAttacker != gBattlerTarget)
+    else if (GetBattlerAbility(gBattlerTarget) == ABILITY_NINE_LIVES && !gNineLivesUsed[partySlot])
     {
-        CreateAbilityPopUp(gBattlerTarget, gBattleMons[gBattlerTarget].ability, (gBattleTypeFlags & BATTLE_TYPE_DOUBLE) != 0);
-        gNineLivesUsed[partySlot] = TRUE;
-        gBattlerAbility = gBattlerTarget;
-        RecordAbilityBattle(gBattlerTarget, ABILITY_NINE_LIVES);
-        gMoveResultFlags |= MOVE_RESULT_MISSED;
-        gLastUsedAbility = ABILITY_NINE_LIVES;
-        gBattleMoveDamage = 0;
+        gBattleMoveDamage /= 10;
+        if (gBattleMoveDamage == 0)
+            gBattleMoveDamage = 1;
+        if (gBattleMons[gBattlerTarget].hp > gBattleMoveDamage)
+        {
+            gMoveResultFlags |= MOVE_RESULT_STURDIED;
+            gNineLivesUsed[partySlot] = TRUE;
+            gBattlerAbility = gBattlerTarget;
+            RecordAbilityBattle(gBattlerTarget, ABILITY_NINE_LIVES);
+            gLastUsedAbility = ABILITY_NINE_LIVES;
+        }
     }
 
     if (gBattleMoves[gCurrentMove].effect != EFFECT_FALSE_SWIPE

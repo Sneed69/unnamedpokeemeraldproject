@@ -259,7 +259,7 @@ static const u8 sIonizationDescription[] = _("Ignores Ground immunity.");
 static const u8 sHyperboreanDescription[] = _("Ice raises Sp. Def.");
 static const u8 sUnbreakableDescription[] = _("Only weak to special hits.");
 static const u8 sUnthreateningDescription[] = _("Foes drop their guard.");
-static const u8 sNineLivesDescription[] = _("Avoids one finishing blow.");
+static const u8 sNineLivesDescription[] = _("Resists one finishing blow.");
 
 #if B_EXPANDED_ABILITY_NAMES == TRUE
 const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
