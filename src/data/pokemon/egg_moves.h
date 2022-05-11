@@ -1493,9 +1493,11 @@ const u16 gEggMoves[] = {
 
     egg_moves(SURSKIT,
         MOVE_FORESIGHT,
+        MOVE_OMINOUS_WIND,
         MOVE_MUD_SHOT,
         MOVE_PSYBEAM,
-        MOVE_HYDRO_PUMP,
+        MOVE_BATON_PASS,
+        MOVE_STICKY_WEB,
         MOVE_MIND_READER,
         MOVE_BUG_BITE,
         MOVE_AQUA_JET,
@@ -1531,6 +1533,7 @@ const u16 gEggMoves[] = {
         MOVE_GUST,
         MOVE_SILVER_WIND,
         MOVE_NIGHT_SLASH,
+        MOVE_SLASH,
         MOVE_BUG_BITE,
         MOVE_FINAL_GAMBIT),
 
