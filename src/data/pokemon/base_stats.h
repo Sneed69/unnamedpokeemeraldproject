@@ -7668,11 +7668,7 @@ const struct BaseStats gBaseStats[] =
         .growthRate = GROWTH_MEDIUM_SLOW,
         .eggGroup1 = EGG_GROUP_FIELD,
         .eggGroup2 = EGG_GROUP_FIELD,
-        #ifdef BATTLE_ENGINE
-            .abilities = {ABILITY_PRESSURE, ABILITY_SUPER_LUCK, ABILITY_JUSTIFIED},
-        #else
-            .abilities = {ABILITY_MAGIC_BOUNCE, ABILITY_NONE},
-        #endif
+        .abilities = {ABILITY_MAGIC_BOUNCE, ABILITY_PURE_HEART},
         .bodyColor = BODY_COLOR_WHITE,
         .noFlip = TRUE,
     },

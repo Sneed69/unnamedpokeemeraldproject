@@ -642,8 +642,13 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
           && ((AI_DATA->defAbility == ABILITY_LEVITATE
           && DoesBattlerIgnoreAbilityChecks(AI_DATA->atkAbility, move))
           || AI_DATA->defHoldEffect == HOLD_EFFECT_AIR_BALLOON
-          || (gStatuses3[battlerDef] & (STATUS3_MAGNET_RISE | STATUS3_TELEKINESIS)))
-          && move != MOVE_BONEMERANG)
+          || (gStatuses3[battlerDef] & (STATUS3_MAGNET_RISE | STATUS3_TELEKINESIS))))
+        {
+            RETURN_SCORE_MINUS(20);
+        }
+
+        // check fairy immunities
+        if (moveType == TYPE_FAIRY && AI_DATA->defAbility == ABILITY_PURE_HEART)
         {
             RETURN_SCORE_MINUS(20);
         }

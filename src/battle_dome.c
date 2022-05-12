@@ -2755,6 +2755,11 @@ static int GetTypeEffectivenessPoints(int move, int targetSpecies, int arg2)
         if (arg2 == 1)
             typePower = 8;
     }
+    else if (defAbility == ABILITY_PURE_HEART && moveType == TYPE_FAIRY)
+    {
+        if (arg2 == 1)
+            typePower = 8;
+    }
     else
     {
         u32 typeEffectiveness1 = UQ_4_12_TO_INT(GetTypeModifier(moveType, defType1) * 2) * 5;

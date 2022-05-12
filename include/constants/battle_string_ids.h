@@ -491,25 +491,25 @@
 #define STRINGID_NOTDONEYET                           489
 #define STRINGID_STICKYWEBUSED                        490
 #define STRINGID_QUASHSUCCESS                         491
-#define	STRINGID_PKMNBLEWAWAYTOXICSPIKES              492
-#define	STRINGID_PKMNBLEWAWAYSTICKYWEB                493
-#define	STRINGID_PKMNBLEWAWAYSTEALTHROCK              494
-#define	STRINGID_IONDELUGEON                          495
-#define	STRINGID_TOPSYTURVYSWITCHEDSTATS              496
-#define	STRINGID_TERRAINBECOMESMISTY                  497
-#define	STRINGID_TERRAINBECOMESGRASSY                 498
-#define	STRINGID_TERRAINBECOMESELECTRIC               499
-#define	STRINGID_TERRAINBECOMESPSYCHIC                500
-#define	STRINGID_TARGETELECTRIFIED                    501
-#define	STRINGID_MEGAEVOREACTING                      502
-#define	STRINGID_MEGAEVOEVOLVED                       503
-#define	STRINGID_DRASTICALLY                          504
-#define	STRINGID_SEVERELY                             505
-#define	STRINGID_INFESTATION                          506
-#define	STRINGID_NOEFFECTONTARGET                     507
-#define	STRINGID_BURSTINGFLAMESHIT                    508
-#define	STRINGID_BESTOWITEMGIVING                     509
-#define	STRINGID_THIRDTYPEADDED                       510
+#define STRINGID_PKMNBLEWAWAYTOXICSPIKES              492
+#define STRINGID_PKMNBLEWAWAYSTICKYWEB                493
+#define STRINGID_PKMNBLEWAWAYSTEALTHROCK              494
+#define STRINGID_IONDELUGEON                          495
+#define STRINGID_TOPSYTURVYSWITCHEDSTATS              496
+#define STRINGID_TERRAINBECOMESMISTY                  497
+#define STRINGID_TERRAINBECOMESGRASSY                 498
+#define STRINGID_TERRAINBECOMESELECTRIC               499
+#define STRINGID_TERRAINBECOMESPSYCHIC                500
+#define STRINGID_TARGETELECTRIFIED                    501
+#define STRINGID_MEGAEVOREACTING                      502
+#define STRINGID_MEGAEVOEVOLVED                       503
+#define STRINGID_DRASTICALLY                          504
+#define STRINGID_SEVERELY                             505
+#define STRINGID_INFESTATION                          506
+#define STRINGID_NOEFFECTONTARGET                     507
+#define STRINGID_BURSTINGFLAMESHIT                    508
+#define STRINGID_BESTOWITEMGIVING                     509
+#define STRINGID_THIRDTYPEADDED                       510
 #define STRINGID_FELLFORFEINT                         511
 #define STRINGID_POKEMONCANNOTUSEMOVE                 512
 #define STRINGID_COVEREDINPOWDER                      513
@@ -614,17 +614,18 @@
 #define STRINGID_HEATUPBEAK                           612
 #define STRINGID_COURTCHANGE                          613
 #define STRINGID_LEGENDARYFENDEDBALLOFF               614
-#define STRINGID_YOUMUSTWEAKENIT              		  615
+#define STRINGID_YOUMUSTWEAKENIT                      615
 #define STRINGID_PKMNHURTBYFROSTBITE                  616
 #define STRINGID_PKMNALREADYFROZEN                    617
-#define STRINGID_PKMNPREVENTSFREEZINGWITH			  618
-#define STRINGID_PLAYERLOSTTOENEMYTRAINER			  619
-#define STRINGID_PLAYERPAIDPRIZEMONEY       		  620
-#define STRINGID_TEAMGAINEDEXP                 		  621
-#define STRINGID_PKMNLOWEREDGUARD           		  622
-#define STRINGID_PKMNGUARDWASNOTLOWERED           		  623
+#define STRINGID_PKMNPREVENTSFREEZINGWITH             618
+#define STRINGID_PLAYERLOSTTOENEMYTRAINER             619
+#define STRINGID_PLAYERPAIDPRIZEMONEY                 620
+#define STRINGID_TEAMGAINEDEXP                        621
+#define STRINGID_PKMNLOWEREDGUARD                     622
+#define STRINGID_PKMNGUARDWASNOTLOWERED               623
+#define STRINGID_PKMNMAKESFAIRYMISS                   624
 
-#define BATTLESTRINGS_COUNT                           624
+#define BATTLESTRINGS_COUNT                           625
 
 // This is the string id that gBattleStringsTable starts with.
 // String ids before this (e.g. STRINGID_INTROMSG) are not in the table,
@@ -656,6 +657,7 @@
 #define B_MSG_AVOIDED_ATK  2
 #define B_MSG_AVOIDED_DMG  3
 #define B_MSG_GROUND_MISS  4
+#define B_MSG_FAIRY_MISS   5
 
 // gAbsorbDrainStringIds
 #define B_MSG_ABSORB      0

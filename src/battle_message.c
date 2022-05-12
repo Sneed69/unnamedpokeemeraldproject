@@ -70,6 +70,7 @@ static const u8 sText_AttackMissed[] = _("{B_ATK_NAME_WITH_PREFIX}'s\nattack mis
 static const u8 sText_PkmnProtectedItself[] = _("{B_DEF_NAME_WITH_PREFIX}\nprotected itself!");
 static const u8 sText_AvoidedDamage[] = _("{B_DEF_NAME_WITH_PREFIX} avoided\ndamage with {B_DEF_ABILITY}!");
 static const u8 sText_PkmnMakesGroundMiss[] = _("{B_DEF_NAME_WITH_PREFIX} makes Ground\nmoves miss with {B_DEF_ABILITY}!");
+static const u8 sText_PkmnMakesFairyMiss[] = _("{B_DEF_NAME_WITH_PREFIX}'s {B_DEF_ABILITY}\nprotects from Fairy moves!");
 static const u8 sText_PkmnAvoidedAttack[] = _("{B_DEF_NAME_WITH_PREFIX} avoided\nthe attack!");
 static const u8 sText_ItDoesntAffect[] = _("It doesn't affect\n{B_DEF_NAME_WITH_PREFIX}…");
 static const u8 sText_AttackerFainted[] = _("{B_ATK_NAME_WITH_PREFIX}\nfainted!\p");
@@ -1361,6 +1362,7 @@ const u8 *const gBattleStringsTable[BATTLESTRINGS_COUNT] =
     [STRINGID_PKMNPREVENTSFREEZINGWITH - BATTLESTRINGS_TABLE_START] = sText_PkmnPreventsFreezingWith,
     [STRINGID_PKMNLOWEREDGUARD - BATTLESTRINGS_TABLE_START] = sText_PkmnLoweredGuard,
     [STRINGID_PKMNGUARDWASNOTLOWERED - BATTLESTRINGS_TABLE_START] = sText_PkmnGuardNotLowered,
+    [STRINGID_PKMNMAKESFAIRYMISS - BATTLESTRINGS_TABLE_START] = sText_PkmnMakesFairyMiss,
 };
 
 const u16 gMentalHerbCureStringIds[] =
@@ -1432,7 +1434,8 @@ const u16 gMissStringIds[] =
     [B_MSG_PROTECTED]   = STRINGID_PKMNPROTECTEDITSELF,
     [B_MSG_AVOIDED_ATK] = STRINGID_PKMNAVOIDEDATTACK,
     [B_MSG_AVOIDED_DMG] = STRINGID_AVOIDEDDAMAGE,
-    [B_MSG_GROUND_MISS] = STRINGID_PKMNMAKESGROUNDMISS
+    [B_MSG_GROUND_MISS] = STRINGID_PKMNMAKESGROUNDMISS,
+    [B_MSG_FAIRY_MISS]  = STRINGID_PKMNMAKESFAIRYMISS,
 };
 
 const u16 gNoEscapeStringIds[] =

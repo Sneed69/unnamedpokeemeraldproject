@@ -260,6 +260,7 @@ static const u8 sHyperboreanDescription[] = _("Ice raises Sp. Def.");
 static const u8 sUnbreakableDescription[] = _("Only weak to special hits.");
 static const u8 sUnthreateningDescription[] = _("Foes drop their guard.");
 static const u8 sNineLivesDescription[] = _("Resists one finishing blow.");
+static const u8 sPureHeartDescription[] = _("Not hit by Fairy attacks.");
 
 #if B_EXPANDED_ABILITY_NAMES == TRUE
 const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
@@ -538,6 +539,7 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
     [ABILITY_UNBREAKABLE] = _("Unbreakable"),
     [ABILITY_UNTHREATENING] = _("Unthreatening"),
     [ABILITY_NINE_LIVES] = _("Nine Lives"),
+    [ABILITY_PURE_HEART] = _("Pure Heart"),
 };
 #else   // 12 characters
 const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
@@ -1089,4 +1091,5 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
     [ABILITY_UNBREAKABLE] = sUnbreakableDescription,
     [ABILITY_UNTHREATENING] = sUnthreateningDescription,
     [ABILITY_NINE_LIVES] = sNineLivesDescription,
+    [ABILITY_PURE_HEART] = sPureHeartDescription,
 };

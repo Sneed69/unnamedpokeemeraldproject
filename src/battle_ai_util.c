@@ -119,6 +119,7 @@ static const s8 sAiAbilityRatings[ABILITIES_COUNT] =
     [ABILITY_KLUTZ] = -1,
     [ABILITY_LEAF_GUARD] = 2,
     [ABILITY_LEVITATE] = 7,
+    [ABILITY_PURE_HEART] = 8,
     [ABILITY_LIGHT_METAL] = 2,
     [ABILITY_LIGHTNING_ROD] = 7,
     [ABILITY_LIMBER] = 3,
