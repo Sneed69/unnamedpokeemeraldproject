@@ -1034,7 +1034,7 @@ static const u8 sAbilitiesAffectedByMoldBreaker[] =
     [ABILITY_QUEENLY_MAJESTY] = 1,
     [ABILITY_WATER_BUBBLE] = 1,
     [ABILITY_MIRROR_ARMOR] = 1,
-    [ABILITY_PUNK_ROCK] = 1,
+    [ABILITY_CACOPHONY] = 1,
     [ABILITY_ICE_SCALES] = 1,
     [ABILITY_ICE_FACE] = 1,
     [ABILITY_PASTEL_VEIL] = 1,
@@ -8382,7 +8382,7 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
         if (moveType == TYPE_NORMAL && gBattleStruct->ateBoost[battlerAtk])
             MulModifier(&modifier, UQ_4_12(1.2));
         break;
-    case ABILITY_PUNK_ROCK:
+    case ABILITY_CACOPHONY:
         if (gBattleMoves[move].flags & FLAG_SOUND)
             MulModifier(&modifier, UQ_4_12(1.3));
         break;
@@ -8963,7 +8963,7 @@ static u32 CalcDefenseStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, 
         if (gBattleMons[battlerDef].species == SPECIES_CHERRIM && IsBattlerWeatherAffected(battlerDef, B_WEATHER_SUN) && !usesDefStat)
             MulModifier(&modifier, UQ_4_12(1.5));
         break;
-    case ABILITY_PUNK_ROCK:
+    case ABILITY_CACOPHONY:
         if (gBattleMoves[move].flags & FLAG_SOUND)
             MulModifier(&modifier, UQ_4_12(2.0));
         break;

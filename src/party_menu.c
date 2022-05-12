@@ -2703,7 +2703,7 @@ static void SetPartyMonFieldSelectionActions(struct Pokemon *mons, u8 slotId)
         }
     }
     
-    if (sPartyMenuInternal->numActions < 5 && CanMonFly(&mons[slotId]))                        //CanMonLearnTMTutor(&mons[slotId], ITEM_OVAL_CHARM, 0) != CANNOT_LEARN_MOVE)
+    if (sPartyMenuInternal->numActions < 5 && CanMonFly(&mons[slotId]))
         AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, FIELD_MOVE_FLY + MENU_FIELD_MOVES);
     if (!InBattlePike())
     {
