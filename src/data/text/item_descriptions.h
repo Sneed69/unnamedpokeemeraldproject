@@ -3203,9 +3203,9 @@ static const u8 sTM41Desc[] = _(
     "double the power.");
 
 static const u8 sTM42Desc[] = _(
-    "Raises Attack when\n"
-    "poisoned, burned,\n"
-    "or paralyzed.");
+    "Doubles power when\n"
+    "suffering from non-,\n"
+    "sleep statuses.");
 
 static const u8 sTM43Desc[] = _(
     "A special attack\n"
