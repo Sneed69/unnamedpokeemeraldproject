@@ -261,6 +261,9 @@ static const u8 sUnbreakableDescription[] = _("Not weak to physical hits.");
 static const u8 sUnthreateningDescription[] = _("Foes drop their guard.");
 static const u8 sNineLivesDescription[] = _("Resists one finishing blow.");
 static const u8 sPureHeartDescription[] = _("Not hit by Fairy attacks.");
+static const u8 sSeismicBalanceDescription[] = _("Inverts Ground weakness.");
+static const u8 sAbsoluteZeroDescription[] = _("Inverts Fire weakness.");
+static const u8 sPerfectAlloyDescription[] = _("Inverts Fighting weakness.");
 static const u8 sTimelessMasterDescription[] = _("Ups & resists Regi types.");
 
 #if B_EXPANDED_ABILITY_NAMES == TRUE
@@ -541,6 +544,9 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
     [ABILITY_UNTHREATENING] = _("Unthreatening"),
     [ABILITY_NINE_LIVES] = _("Nine Lives"),
     [ABILITY_PURE_HEART] = _("Pure Heart"),
+    [ABILITY_SEISMIC_BALANCE] = _("Seismic Balance"),
+    [ABILITY_ABSOLUTE_ZERO] = _("Absolute Zero"),
+    [ABILITY_PERFECT_ALLOY] = _("Perfect Alloy"),
     [ABILITY_TIMELESS_MASTER] = _("Timeless Master"),
 };
 #else   // 12 characters
@@ -1094,5 +1100,8 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
     [ABILITY_UNTHREATENING] = sUnthreateningDescription,
     [ABILITY_NINE_LIVES] = sNineLivesDescription,
     [ABILITY_PURE_HEART] = sPureHeartDescription,
+    [ABILITY_SEISMIC_BALANCE] = sSeismicBalanceDescription,
+    [ABILITY_ABSOLUTE_ZERO] = sAbsoluteZeroDescription,
+    [ABILITY_PERFECT_ALLOY] = sPerfectAlloyDescription,
     [ABILITY_TIMELESS_MASTER] = sTimelessMasterDescription,
 };

@@ -8137,7 +8137,7 @@ const struct BaseStats gBaseStats[] =
         .growthRate = GROWTH_SLOW,
         .eggGroup1 = EGG_GROUP_UNDISCOVERED,
         .eggGroup2 = EGG_GROUP_UNDISCOVERED,
-        .abilities = {ABILITY_CLEAR_BODY, ABILITY_NONE, ABILITY_STURDY},
+        .abilities = {ABILITY_SEISMIC_BALANCE, ABILITY_NONE},
         .bodyColor = BODY_COLOR_BROWN,
         .noFlip = TRUE,
         .flags = FLAG_LEGENDARY,
@@ -8162,11 +8162,7 @@ const struct BaseStats gBaseStats[] =
         .growthRate = GROWTH_SLOW,
         .eggGroup1 = EGG_GROUP_UNDISCOVERED,
         .eggGroup2 = EGG_GROUP_UNDISCOVERED,
-        #ifdef BATTLE_ENGINE
-            .abilities = {ABILITY_CLEAR_BODY, ABILITY_NONE, ABILITY_ICE_BODY},
-        #else
-            .abilities = {ABILITY_CLEAR_BODY, ABILITY_NONE},
-        #endif
+        .abilities = {ABILITY_ABSOLUTE_ZERO, ABILITY_NONE},
         .bodyColor = BODY_COLOR_BLUE,
         .noFlip = FALSE,
         .flags = FLAG_LEGENDARY,
@@ -8192,11 +8188,7 @@ const struct BaseStats gBaseStats[] =
         .growthRate = GROWTH_SLOW,
         .eggGroup1 = EGG_GROUP_UNDISCOVERED,
         .eggGroup2 = EGG_GROUP_UNDISCOVERED,
-        #ifdef BATTLE_ENGINE
-            .abilities = {ABILITY_CLEAR_BODY, ABILITY_NONE, ABILITY_LIGHT_METAL},
-        #else
-            .abilities = {ABILITY_CLEAR_BODY, ABILITY_NONE},
-        #endif
+        .abilities = {ABILITY_PERFECT_ALLOY, ABILITY_NONE},
         .bodyColor = BODY_COLOR_GRAY,
         .noFlip = FALSE,
         .flags = FLAG_LEGENDARY,
