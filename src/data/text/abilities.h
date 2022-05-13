@@ -257,10 +257,11 @@ static const u8 sAsOneShadowRiderDescription[] = _("Unnerve and Grim Neigh.");
 static const u8 sTranscendenceDescription[] = _("Ignores Dark immunity.");
 static const u8 sIonizationDescription[] = _("Ignores Ground immunity.");
 static const u8 sHyperboreanDescription[] = _("Ice raises Sp. Def.");
-static const u8 sUnbreakableDescription[] = _("Only weak to special hits.");
+static const u8 sUnbreakableDescription[] = _("Not weak to physical hits.");
 static const u8 sUnthreateningDescription[] = _("Foes drop their guard.");
 static const u8 sNineLivesDescription[] = _("Resists one finishing blow.");
 static const u8 sPureHeartDescription[] = _("Not hit by Fairy attacks.");
+static const u8 sTimelessMasterDescription[] = _("Ups & resists Regi types.");
 
 #if B_EXPANDED_ABILITY_NAMES == TRUE
 const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
@@ -540,6 +541,7 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
     [ABILITY_UNTHREATENING] = _("Unthreatening"),
     [ABILITY_NINE_LIVES] = _("Nine Lives"),
     [ABILITY_PURE_HEART] = _("Pure Heart"),
+    [ABILITY_TIMELESS_MASTER] = _("Timeless Master"),
 };
 #else   // 12 characters
 const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
@@ -1092,4 +1094,5 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
     [ABILITY_UNTHREATENING] = sUnthreateningDescription,
     [ABILITY_NINE_LIVES] = sNineLivesDescription,
     [ABILITY_PURE_HEART] = sPureHeartDescription,
+    [ABILITY_TIMELESS_MASTER] = sTimelessMasterDescription,
 };

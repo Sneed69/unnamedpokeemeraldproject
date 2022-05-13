@@ -8205,10 +8205,10 @@ const struct BaseStats gBaseStats[] =
     [SPECIES_REGIGIGAS] =
     {
         .baseHP        = 110,
-        .baseAttack    = 160,
+        .baseAttack    = 135,
         .baseDefense   = 110,
-        .baseSpeed     = 100,
-        .baseSpAttack  = 80,
+        .baseSpeed     = 30,
+        .baseSpAttack  = 115,
         .baseSpDefense = 110,
         .type1 = TYPE_NORMAL,
         .type2 = TYPE_NORMAL,
@@ -8221,11 +8221,7 @@ const struct BaseStats gBaseStats[] =
         .growthRate = GROWTH_SLOW,
         .eggGroup1 = EGG_GROUP_UNDISCOVERED,
         .eggGroup2 = EGG_GROUP_UNDISCOVERED,
-        #ifdef BATTLE_ENGINE
-            .abilities = {ABILITY_SLOW_START, ABILITY_NONE},
-        #else
-            .abilities = {ABILITY_NONE, ABILITY_NONE},
-        #endif
+        .abilities = {ABILITY_TIMELESS_MASTER, ABILITY_NONE},
         .bodyColor = BODY_COLOR_WHITE,
         .noFlip = FALSE,
         .flags = FLAG_LEGENDARY,
@@ -8284,7 +8280,7 @@ const struct BaseStats gBaseStats[] =
     [SPECIES_KYOGRE] =
     {
         .baseHP        = 100,
-        .baseAttack    = 60,
+        .baseAttack    = 70,
         .baseDefense   = 80,
         .baseSpeed     = 80,
         .baseSpAttack  = 150,
@@ -8311,7 +8307,7 @@ const struct BaseStats gBaseStats[] =
         .baseHP        = 100,
         .baseAttack    = 150,
         .baseDefense   = 140,
-        .baseSpeed     = 50,
+        .baseSpeed     = 70,
         .baseSpAttack  = 70,
         .baseSpDefense = 90,
         .type1 = TYPE_GROUND,
@@ -8337,7 +8333,7 @@ const struct BaseStats gBaseStats[] =
         .baseAttack    = 140,
         .baseDefense   = 90,
         .baseSpeed     = 95,
-        .baseSpAttack  = 85,
+        .baseSpAttack  = 95,
         .baseSpDefense = 90,
         .type1 = TYPE_DRAGON,
         .type2 = TYPE_FLYING,

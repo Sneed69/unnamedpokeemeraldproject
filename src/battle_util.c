@@ -1006,6 +1006,7 @@ static const u8 sAbilitiesAffectedByMoldBreaker[] =
     [ABILITY_SUCTION_CUPS] = 1,
     [ABILITY_TANGLED_FEET] = 1,
     [ABILITY_THICK_FAT] = 1,
+    [ABILITY_TIMELESS_MASTER] = 1,
     [ABILITY_UNAWARE] = 1,
     [ABILITY_VITAL_SPIRIT] = 1,
     [ABILITY_VOLT_ABSORB] = 1,
@@ -8399,6 +8400,10 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
         if (moveType == TYPE_DRAGON)
             MulModifier(&modifier, UQ_4_12(1.5));
         break;
+    case ABILITY_TIMELESS_MASTER:
+        if (moveType == TYPE_ROCK || moveType == TYPE_ICE || moveType == TYPE_STEEL)
+           MulModifier(&modifier, UQ_4_12(1.5));
+        break;
     case ABILITY_GORILLA_TACTICS:
         if (IS_MOVE_PHYSICAL(move))
             MulModifier(&modifier, UQ_4_12(1.5));
@@ -8792,6 +8797,14 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
     case ABILITY_ICE_SCALES:
         if (IS_MOVE_SPECIAL(move))
             MulModifier(&modifier, UQ_4_12(0.5));
+        break;
+    case ABILITY_TIMELESS_MASTER:
+        if (moveType == TYPE_ROCK || moveType == TYPE_ICE|| moveType == TYPE_STEEL)
+        {
+            MulModifier(&modifier, UQ_4_12(0.5));
+            if (updateFlags)
+                RecordAbilityBattle(battlerDef, ABILITY_TIMELESS_MASTER);
+        }
         break;
     }
 
