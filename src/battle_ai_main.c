@@ -2770,12 +2770,6 @@ static s16 AI_DoubleBattle(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
                         RETURN_SCORE_PLUS(1);
                     }
                     break;
-                case ABILITY_HYPERBOREAN:
-                    if (moveType == TYPE_ICE && BattlerStatCanRise(battlerAtkPartner, atkPartnerAbility, STAT_SPDEF))
-                    {
-                        RETURN_SCORE_PLUS(1);
-                    }
-                    break;
                 case ABILITY_LIGHTNING_ROD:
                     if (moveType == TYPE_ELECTRIC
                       && HasMoveWithSplit(battlerAtkPartner, SPLIT_SPECIAL)
@@ -2810,6 +2804,14 @@ static s16 AI_DoubleBattle(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
                     if (moveType == TYPE_FIRE
                       && HasMoveWithType(battlerAtkPartner, TYPE_FIRE)
                       && !(gBattleResources->flags->flags[battlerAtkPartner] & RESOURCE_FLAG_FLASH_FIRE))
+                    {
+                        RETURN_SCORE_PLUS(1);
+                    }
+                    break;
+                case ABILITY_HYPERBOREAN:
+                    if (moveType == TYPE_ICE
+                      && HasMoveWithType(battlerAtkPartner, TYPE_ICE)
+                      && !(gBattleResources->flags->flags[battlerAtkPartner] & RESOURCE_FLAG_HYPERBOREAN))
                     {
                         RETURN_SCORE_PLUS(1);
                     }

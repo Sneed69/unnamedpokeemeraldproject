@@ -624,8 +624,9 @@
 #define STRINGID_PKMNLOWEREDGUARD                     622
 #define STRINGID_PKMNGUARDWASNOTLOWERED               623
 #define STRINGID_PKMNMAKESFAIRYMISS                   624
+#define STRINGID_PKMNRAISEDICEPOWERWITH               625
 
-#define BATTLESTRINGS_COUNT                           625
+#define BATTLESTRINGS_COUNT                           626
 
 // This is the string id that gBattleStringsTable starts with.
 // String ids before this (e.g. STRINGID_INTROMSG) are not in the table,
@@ -809,6 +810,7 @@
 // gFlashFireStringIds
 #define B_MSG_FLASH_FIRE_BOOST    0
 #define B_MSG_FLASH_FIRE_NO_BOOST 1
+#define B_MSG_HYPERBOREAN_BOOST   2
 
 // gBerryEffectStringIds
 #define B_MSG_CURED_PROBLEM     0
