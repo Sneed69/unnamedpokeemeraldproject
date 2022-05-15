@@ -1631,7 +1631,7 @@ static bool32 AccuracyCalcHelper(u16 move)
 
     if ((WEATHER_HAS_EFFECT &&
             ((IsBattlerWeatherAffected(gBattlerTarget, B_WEATHER_RAIN) && (gBattleMoves[move].effect == EFFECT_THUNDER || gBattleMoves[move].effect == EFFECT_HURRICANE))
-         || ((B_BLIZZARD_HAIL >= GEN_4 && (gBattleWeather & B_WEATHER_HAIL) && move == MOVE_BLIZZARD))))
+         || ((gBattleWeather & B_WEATHER_HAIL) && (move == MOVE_BLIZZARD || gBattleMoves[move].effect == EFFECT_HURRICANE))))
      || (gBattleMoves[move].effect == EFFECT_VITAL_THROW)
      || (gBattleMoves[move].accuracy == 0)
      || ((B_MINIMIZE_DMG_ACC >= GEN_6) && (gStatuses3[gBattlerTarget] & STATUS3_MINIMIZED) && (gBattleMoves[move].flags & FLAG_DMG_MINIMIZE)))
