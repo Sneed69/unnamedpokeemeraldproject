@@ -1053,4 +1053,4 @@ Common_EventScript_LegendaryFlewAway::
 	.include "data/text/save.inc"
 	.include "data/text/birch_speech.inc"
 
-	.include "data/maps/ColossusGrotto/scripts.inc"
+	.include "data/maps/TimelessGrotto/scripts.inc"

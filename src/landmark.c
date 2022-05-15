@@ -54,7 +54,7 @@ static const u8 LandmarkName_FossilManiacsHouse[] = _("Fossil Maniac's House");
 static const u8 LandmarkName_HuntersHouse[] = _("Unlikely Move Tutor");
 static const u8 LandmarkName_MagmaHideout[] = _("Magma Hideout");
 static const u8 LandmarkName_MirageTower[] = _("Mirage Tower");
-static const u8 LandmarkName_ColossusGrotto[] = _("Colossus Grotto");
+static const u8 LandmarkName_TimelessGrotto[] = _("Timeless Grotto");
 static const u8 LandmarkName_DesertUnderpass[] = _("Desert Underpass");
 static const u8 LandmarkName_TrainerHill[] = _("Trainer Hill");
 
@@ -96,13 +96,13 @@ static const struct Landmark Landmark_FossilManiacsHouse = {LandmarkName_FossilM
 static const struct Landmark Landmark_HuntersHouse = {LandmarkName_HuntersHouse, FLAG_LANDMARK_HUNTERS_HOUSE};
 static const struct Landmark Landmark_SkyPillar = {LandmarkName_SkyPillar, FLAG_LANDMARK_SKY_PILLAR};
 static const struct Landmark Landmark_MirageTower = {LandmarkName_MirageTower, FLAG_LANDMARK_MIRAGE_TOWER};
-static const struct Landmark Landmark_ColossusGrotto = {LandmarkName_ColossusGrotto, FLAG_LANDMARK_COLOSSUS_GROTTO};
+static const struct Landmark Landmark_TimelessGrotto = {LandmarkName_TimelessGrotto, FLAG_LANDMARK_TIMELESS_GROTTO};
 static const struct Landmark Landmark_DesertUnderpass = {LandmarkName_DesertUnderpass, FLAG_LANDMARK_DESERT_UNDERPASS};
 static const struct Landmark Landmark_TrainerHill = {LandmarkName_TrainerHill, FLAG_LANDMARK_TRAINER_HILL};
 
 static const struct Landmark *const Landmarks_Route103_2[]  =
 {
-    &Landmark_ColossusGrotto,
+    &Landmark_TimelessGrotto,
     NULL,
 };
 

@@ -214,7 +214,7 @@
 #define MAPSEC_ALTERING_CAVE                0xD2
 #define MAPSEC_NAVEL_ROCK                   0xD3
 #define MAPSEC_TRAINER_HILL                 0xD4
-#define MAPSEC_COLOSSUS_GROTTO              0xD5
+#define MAPSEC_TIMELESS_GROTTO              0xD5
 #define MAPSEC_NONE                         0xD6
 
 #define METLOC_SPECIAL_EGG                  0xFD
