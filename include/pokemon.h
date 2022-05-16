@@ -15,35 +15,24 @@ struct BoxPokemon
     /*0x04*/ u32 otId;
     /*0x08*/ u8 otName[PLAYER_NAME_LENGTH];
     /*0x12*/ u8 nickname[POKEMON_NAME_LENGTH];
-    /*0x1C*/ u8 metLocation;
-    /*0x1D*/ u8 friendship;
 
-    /*0x1E*/ u32 species:11; // 2047 species
+    /*0x1C*/ u32 species:11; // 2047 species
              u32 experience:21;
+             
+    /*0x20*/ u16 unused_16;
+    /*0x22*/ u8 friendship;
+    /*0x23*/ u8 metLocation;
 
-    /*0x22*/ u32 isBadEgg:1;
-             u32 hasSpecies:1;
-             u32 isEgg:1;
-             u32 pokerus:5;
+    /*0x24*/ u32 metLevel:7;
              u32 heldItem:10; // 1023 items.
              u32 pokeball:5; // 31 balls
              u32 mintNature:5;  // 31 natures
-             u32 unused:4;
+             u32 unused:5;
 
-    /*0x26*/ u16 unused2;
-    /*0x28*/ u32 unused3;
+    /*0x28*/ u16 moves[MAX_MON_MOVES];
+    /*0x30*/ u8 pp[MAX_MON_MOVES];
 
-    /*0x2C*/ u16 moves[MAX_MON_MOVES];
-    /*0x34*/ u8 pp[MAX_MON_MOVES];
-
-    /*0x38*/ u8 hpEV;
-    /*0x39*/ u8 attackEV;
-    /*0x3A*/ u8 defenseEV;
-    /*0x3B*/ u8 speedEV;
-    /*0x3C*/ u8 spAttackEV;
-    /*0x3E*/ u8 spDefenseEV;
-
-    /*0x3F*/ u32 hpIV:4;
+    /*0x34*/ u32 hpIV:4;
              u32 attackIV:4;
              u32 defenseIV:4;
              u32 speedIV:4;
@@ -51,18 +40,26 @@ struct BoxPokemon
              u32 spDefenseIV:4;
              u32 abilityNum:2;
              u32 hiddenPowerType:5;
-             u32 unused4:1;
-    
-    /*0x43*/ u8 cool;
-    /*0x44*/ u8 beauty;
-    /*0x45*/ u8 cute;
-    /*0x46*/ u8 smart;
-    /*0x47*/ u8 tough;
-    /*0x48*/ u8 sheen;
-
-    /*0x48*/ u32 metLevel:7;
-             u32 markings:4;
              u32 otGender:1;
+
+    /*0x38*/ u8 hpEV;
+    /*0x39*/ u8 attackEV;
+    /*0x3A*/ u8 defenseEV;
+    /*0x3B*/ u8 speedEV;
+    /*0x3C*/ u8 spAttackEV;
+    /*0x3D*/ u8 spDefenseEV;
+    /*0x3E*/ u8 cool;
+    /*0x3F*/ u8 beauty;
+    /*0x40*/ u8 cute;
+    /*0x41*/ u8 smart;
+    /*0x42*/ u8 tough;
+    /*0x43*/ u8 sheen;
+
+    /*0x44*/ u32 isBadEgg:1;
+             u32 hasSpecies:1;
+             u32 isEgg:1;
+             u32 pokerus:5;
+             u32 markings:4;
              u32 coolRibbon:3;
              u32 beautyRibbon:3;
              u32 cuteRibbon:3;
@@ -73,7 +70,9 @@ struct BoxPokemon
              u32 victoryRibbon:1;
              u32 artistRibbon:1;
              u32 effortRibbon:1;
-}; // size 0x4C (76)
+
+    /*0x48*/ //u32 freeSpace;
+}; // size 0x48 (72)
 
 struct Pokemon
 {
