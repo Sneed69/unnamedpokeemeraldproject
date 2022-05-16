@@ -1565,6 +1565,7 @@ const u16 gEggMoves[] = {
         MOVE_SOAK,
         MOVE_MUDDY_WATER,
         MOVE_COPYCAT,
+        MOVE_ICE_BALL,
         MOVE_PRESENT,
         MOVE_FUTURE_SIGHT,
         MOVE_BELLY_DRUM,
