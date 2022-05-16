@@ -200,7 +200,7 @@
 #define MON_DATA_KNOWN_MOVES       81
 #define MON_DATA_RIBBON_COUNT      82
 #define MON_DATA_RIBBONS           83
-#define MON_DATA_MINT_NATURE     84
+#define MON_DATA_MINT_NATURE       84
 #define MON_DATA_HIDDEN_POWER_TYPE 85
 
 // Ribbon IDs used by TV and PokéNav
