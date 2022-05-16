@@ -3433,19 +3433,19 @@ static u8 GetFrontierTrainerFixedIvs(u16 trainerId)
     u8 fixedIv;
 
     if (trainerId <= FRONTIER_TRAINER_JILL)         // 0 - 99
-        fixedIv = 3;
+        fixedIv = 0;
     else if (trainerId <= FRONTIER_TRAINER_CHLOE)   // 100 - 119
-        fixedIv = 6;
+        fixedIv = 2;
     else if (trainerId <= FRONTIER_TRAINER_SOFIA)   // 120 - 139
-        fixedIv = 9;
+        fixedIv = 4;
     else if (trainerId <= FRONTIER_TRAINER_JAZLYN)  // 140 - 159
-        fixedIv = 12;
+        fixedIv = 6;
     else if (trainerId <= FRONTIER_TRAINER_ALISON)  // 160 - 179
-        fixedIv = 15;
+        fixedIv = 8;
     else if (trainerId <= FRONTIER_TRAINER_LAMAR)   // 180 - 199
-        fixedIv = 18;
+        fixedIv = 10;
     else if (trainerId <= FRONTIER_TRAINER_TESS)    // 200 - 219
-        fixedIv = 21;
+        fixedIv = 12;
     else                                            // 220+ (- 299)
         fixedIv = MAX_PER_STAT_IVS;
 
