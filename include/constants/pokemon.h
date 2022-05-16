@@ -93,13 +93,13 @@
 #define MAX_STAT_STAGE    12
 
 #define STARTER_NATURE                       NATURE_HARDY
-#define STARTER_IVS                          {30, 28, 24, 25, 28, 24}
+#define STARTER_IVS                          {14, 12, 10, 11, 12, 9}
 
-#define BEST_IV_SPREAD_SPECIAL               {31,  0, 31, 31, 31, 31}
-#define BEST_IV_SPREAD_TRICK_ROOM            {31, 31, 31,  0, 31, 31}
-#define BEST_IV_SPREAD_SPECIAL_TRICK_ROOM    {31,  0, 31,  0, 31, 31}
+#define BEST_IV_SPREAD_SPECIAL               {15,  0, 15, 15, 15, 15}
+#define BEST_IV_SPREAD_TRICK_ROOM            {15, 15, 15,  0, 15, 15}
+#define BEST_IV_SPREAD_SPECIAL_TRICK_ROOM    {15,  0, 15,  0, 15, 15}
 
-#define BEST_IV_SPREAD {31, 31, 31, 31, 31, 31}
+#define BEST_IV_SPREAD {15, 15, 15, 15, 15, 15}
 
 #define MAX_EV_SPREAD                     {252, 252, 252, 252, 252, 252}
 #define MAX_EV_SPREAD_SPECIAL             {252,   0, 252, 252, 252, 252}
@@ -296,8 +296,8 @@
 #define MAX_SHEEN       255
 #define MAX_CONDITION   255
 
-#define MAX_PER_STAT_IVS 31
-#define MAX_IV_MASK 31
+#define MAX_PER_STAT_IVS 15
+#define MAX_IV_MASK 15
 #define USE_RANDOM_IVS (MAX_PER_STAT_IVS + 1)
 #define MAX_PER_STAT_EVS 252
 #define MAX_TOTAL_EVS 510

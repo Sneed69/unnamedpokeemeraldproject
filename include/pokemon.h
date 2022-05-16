@@ -30,9 +30,7 @@ struct BoxPokemon
              u32 mintNature:5;  // 31 natures
              u32 unused:4;
 
-    /*0x26*/ u16 hiddenPowerType:5;
-             u16 unused2:11;
-
+    /*0x26*/ u16 unused2;
     /*0x28*/ u32 unused3;
 
     /*0x2C*/ u16 moves[MAX_MON_MOVES];
@@ -45,13 +43,15 @@ struct BoxPokemon
     /*0x3C*/ u8 spAttackEV;
     /*0x3E*/ u8 spDefenseEV;
 
-    /*0x3F*/ u32 hpIV:5;
-             u32 attackIV:5;
-             u32 defenseIV:5;
-             u32 speedIV:5;
-             u32 spAttackIV:5;
-             u32 spDefenseIV:5;
+    /*0x3F*/ u32 hpIV:4;
+             u32 attackIV:4;
+             u32 defenseIV:4;
+             u32 speedIV:4;
+             u32 spAttackIV:4;
+             u32 spDefenseIV:4;
              u32 abilityNum:2;
+             u32 hiddenPowerType:5;
+             u32 unused4:1;
     
     /*0x43*/ u8 cool;
     /*0x44*/ u8 beauty;
@@ -125,14 +125,15 @@ struct BattlePokemon
     /*0x08*/ u16 spAttack;
     /*0x0A*/ u16 spDefense;
     /*0x0C*/ u16 moves[MAX_MON_MOVES];
-    /*0x14*/ u32 hpIV:5;
-    /*0x14*/ u32 attackIV:5;
-    /*0x15*/ u32 defenseIV:5;
-    /*0x15*/ u32 speedIV:5;
-    /*0x16*/ u32 spAttackIV:5;
-    /*0x17*/ u32 spDefenseIV:5;
+    /*0x14*/ u32 hpIV:4;
+    /*0x14*/ u32 attackIV:4;
+    /*0x15*/ u32 defenseIV:4;
+    /*0x15*/ u32 speedIV:4;
+    /*0x16*/ u32 spAttackIV:4;
+    /*0x16*/ u32 spDefenseIV:4;
     /*0x17*/ u32 abilityNum:2;
-    /*0x59*/ u8 hiddenPowerType;
+    /*0x17*/ u32 hiddenPowerType:5;
+    /*0x17*/ u32 unused:1;
     /*0x18*/ s8 statStages[NUM_BATTLE_STATS];
     /*0x20*/ u16 ability;
     /*0x22*/ u8 type1;

@@ -179,27 +179,9 @@ bool8 DoesPartyHaveEnigmaBerry(void)
 void CreateScriptedWildMon(u16 species, u8 level, u16 item)
 {
     u8 heldItem[2];
-    u8 ivs;
     
-    switch (species)
-    {
-        case SPECIES_RAYQUAZA:
-        case SPECIES_KYOGRE:
-        case SPECIES_GROUDON:
-        case SPECIES_REGIROCK:
-        case SPECIES_REGICE:
-        case SPECIES_REGISTEEL:
-        case SPECIES_REGIELEKI:
-        case SPECIES_REGIDRAGO:
-        case SPECIES_REGIGIGAS:
-            ivs = 31;
-            break;
-        default:
-            ivs = USE_RANDOM_IVS;
-    }
-
     ZeroEnemyPartyMons();
-    CreateMon(&gEnemyParty[0], species, level, ivs, 0, 0, OT_ID_PLAYER_ID, 0);
+    CreateMon(&gEnemyParty[0], species, level, USE_RANDOM_IVS, 0, 0, OT_ID_PLAYER_ID, 0);
     if (item)
     {
         heldItem[0] = item;
