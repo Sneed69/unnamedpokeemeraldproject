@@ -53,6 +53,8 @@
 #include "util.h"
 #include "wild_encounter.h"
 #include "window.h"
+#include "game_time.h"
+#include "daycare.h"
 #include "constants/abilities.h"
 #include "constants/battle_config.h"
 #include "constants/battle_move_effects.h"
@@ -64,10 +66,9 @@
 #include "constants/rgb.h"
 #include "constants/songs.h"
 #include "constants/trainers.h"
+#include "constants/egg_hatch.h"
 #include "cable_club.h"
 #include "reshow_battle_screen.h"
-#include "game_time.h"
-#include "daycare.h"
 
 extern struct Evolution gEvolutionTable[][EVOS_PER_MON];
 

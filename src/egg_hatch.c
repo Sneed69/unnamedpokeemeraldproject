@@ -35,7 +35,9 @@
 #include "field_screen_effect.h"
 #include "data.h"
 #include "battle.h" // to get rid of later
+#include "day_night.h"
 #include "constants/rgb.h"
+#include "constants/map_types.h"
 
 #define GFXTAG_EGG       12345
 #define GFXTAG_EGG_SHARD 23456
@@ -923,21 +925,48 @@ static void EggHatchPrintMessage(u8 windowId, u8* string, u8 x, u8 y, u8 speed)
     AddTextPrinterParameterized4(windowId, FONT_NORMAL, x, y, 0, 0, sEggHatchData->textColor, speed, string);
 }
 
-u8 GetEggStepMultiplier(void)
+u32 GetEggStepMultiplier(void)
 {
-    u8 count, i;
+    u32 count, i;
+    u32 multiplier = EGG_STEP_MULTIPLIER_BASE;
+
     for (count = CalculatePlayerPartyCount(), i = 0; i < count; i++)
     {
         if (!GetMonData(&gPlayerParty[i], MON_DATA_SANITY_IS_EGG))
         {
             u16 ability = GetMonAbility(&gPlayerParty[i]);
             if (ability == ABILITY_MAGMA_ARMOR
-             || ability == ABILITY_FLAME_BODY
-             || ability == ABILITY_STEAM_ENGINE)
-                return 2;
+                || ability == ABILITY_FLAME_BODY
+                || ability == ABILITY_STEAM_ENGINE)
+            {
+                multiplier = multiplier * EGG_STEP_MULTIPLIER_ABILITY;
+                break;
+            }
         }
     }
-    return 1;
+    
+    if (GetCurrentRegionMapSectionId() == MAPSEC_FIERY_PATH
+        || GetCurrentRegionMapSectionId() == MAPSEC_MAGMA_HIDEOUT
+        || GetCurrentRegionMapSectionId() == MAPSEC_MT_CHIMNEY)
+        multiplier = multiplier * EGG_STEP_MULTIPLIER_VOLCANO;
+    else if (gMapHeader.mapType == MAP_TYPE_UNDERGROUND)
+        multiplier = multiplier * EGG_STEP_MULTIPLIER_UNDERGROUND;
+    else if (gMapHeader.mapType == MAP_TYPE_UNDERWATER)
+        multiplier = multiplier * EGG_STEP_MULTIPLIER_UNDERWATER;
+    
+    switch (GetCurrentTimeOfDay())
+    {
+    case TIME_MORNING:
+        multiplier = multiplier * EGG_STEP_MULTIPLIER_MORNING;
+        break;
+    case TIME_DAY:
+        multiplier = multiplier * EGG_STEP_MULTIPLIER_DAY;
+        break;
+    case TIME_NIGHT:
+        multiplier = multiplier * EGG_STEP_MULTIPLIER_NIGHT;
+        break;
+    }
+    return multiplier;
 }
 
 u16 CountPartyAliveNonEggMons(void)

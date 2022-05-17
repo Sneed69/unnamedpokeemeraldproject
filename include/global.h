@@ -742,7 +742,7 @@ struct DayCare
 {
     struct DaycareMon mons[DAYCARE_MON_COUNT];
     u32 offspringPersonality;
-    u8 stepCounter;
+    u16 stepCounter;
     bool8 hatchOnNextStep;
 };
 
