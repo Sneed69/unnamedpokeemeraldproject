@@ -1006,7 +1006,7 @@ static const u8 sAbilitiesAffectedByMoldBreaker[] =
     [ABILITY_SUCTION_CUPS] = 1,
     [ABILITY_TANGLED_FEET] = 1,
     [ABILITY_THICK_FAT] = 1,
-    [ABILITY_SEISMIC_BALANCE] = 1,
+    [ABILITY_TECTONIC_BALANCE] = 1,
     [ABILITY_ABSOLUTE_ZERO] = 1,
     [ABILITY_PERFECT_ALLOY] = 1,
     [ABILITY_TIMELESS_MASTER] = 1,
@@ -9317,7 +9317,7 @@ static void MulByTypeEffectiveness(u16 *modifier, u16 move, u8 moveType, u8 batt
 
     if (GetBattlerAbility(battlerDef) == ABILITY_UNBREAKABLE && mod >= UQ_4_12(2.0) && gBattleMoves[move].split == SPLIT_PHYSICAL)
         mod = UQ_4_12(1.0);
-    if (moveType == TYPE_GROUND && GetBattlerAbility(battlerDef) == ABILITY_SEISMIC_BALANCE && mod >= UQ_4_12(2.0))
+    if (moveType == TYPE_GROUND && GetBattlerAbility(battlerDef) == ABILITY_TECTONIC_BALANCE && mod >= UQ_4_12(2.0))
         mod = UQ_4_12(0.5);
     if (moveType == TYPE_FIRE && GetBattlerAbility(battlerDef) == ABILITY_ABSOLUTE_ZERO && mod >= UQ_4_12(2.0))
         mod = UQ_4_12(0.5);
