@@ -5541,7 +5541,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
              && gBattleMons[gBattlerTarget].hp != 0
              && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
-             && (Random() % 10) == 0
+             && (Random() % 4) == 0
              && !IS_MOVE_STATUS(move)
              && !sMovesNotAffectedByStench[gCurrentMove])
             {
