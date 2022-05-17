@@ -67,6 +67,7 @@
 #include "cable_club.h"
 #include "reshow_battle_screen.h"
 #include "game_time.h"
+#include "daycare.h"
 
 extern struct Evolution gEvolutionTable[][EVOS_PER_MON];
 
@@ -5357,6 +5358,7 @@ static void WaitForEvoSceneToFinish(void)
 
 static void ReturnFromBattleToOverworld(void)
 {
+    IncrementEggSteps((1 + gBattleResults.battleTurnCounter) * EGG_STEPS_PER_BATTLE_TURN);
     IncrementGameTime((2 + gBattleResults.battleTurnCounter) * SECONDS_PER_BATTLE_TURN);
 #if TIME_DEBUG    
     mgba_printf(MGBA_LOG_DEBUG, "Turns: %d",gBattleResults.battleTurnCounter+1);

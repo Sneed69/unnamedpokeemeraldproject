@@ -971,10 +971,46 @@ static bool8 TryProduceOrHatchEgg(struct DayCare *daycare)
     }
 
     // Try to hatch Egg
-    if (++daycare->stepCounter == 255)
+    if (daycare->hatchOnNextStep)
     {
-        u32 eggCycles;
-        u8 toSub = GetEggCyclesToSubtract();
+        u32 i;
+
+        for (i = 0; i < gPlayerPartyCount; i++)
+        {
+            if (!GetMonData(&gPlayerParty[i], MON_DATA_IS_EGG))
+                continue;
+            if (GetMonData(&gPlayerParty[i], MON_DATA_SANITY_IS_BAD_EGG))
+                continue;
+
+            if (GetMonData(&gPlayerParty[i], MON_DATA_FRIENDSHIP) == 0)
+            {
+                gSpecialVar_0x8004 = i;
+                return TRUE;
+            }
+        }
+        daycare->hatchOnNextStep = FALSE;
+    }
+
+    IncrementEggSteps(1);
+
+    return FALSE;
+}
+
+bool8 ShouldEggHatch(void)
+{
+    return TryProduceOrHatchEgg(&gSaveBlock1Ptr->daycare);
+}
+
+void IncrementEggSteps(u32 steps)
+{
+    u32 i, eggCycles;
+    u32 eggSteps = gSaveBlock1Ptr->daycare.stepCounter + steps * GetEggStepMultiplier();
+    
+    gSaveBlock1Ptr->daycare.stepCounter = eggSteps % STEPS_PER_EGG_CYCLE;
+
+    if (eggSteps >= STEPS_PER_EGG_CYCLE)
+    {
+        u32 toSub = (eggSteps / STEPS_PER_EGG_CYCLE);
 
         for (i = 0; i < gPlayerPartyCount; i++)
         {
@@ -984,29 +1020,25 @@ static bool8 TryProduceOrHatchEgg(struct DayCare *daycare)
                 continue;
 
             eggCycles = GetMonData(&gPlayerParty[i], MON_DATA_FRIENDSHIP);
-            if (eggCycles != 0)
+            if (eggCycles > 0)
             {
                 if (eggCycles >= toSub)
                     eggCycles -= toSub;
                 else
-                    eggCycles -= 1;
+                    eggCycles = 0;
 
                 SetMonData(&gPlayerParty[i], MON_DATA_FRIENDSHIP, &eggCycles);
             }
-            else
-            {
-                gSpecialVar_0x8004 = i;
-                return TRUE;
-            }
+            if (eggCycles == 0)
+                gSaveBlock1Ptr->daycare.hatchOnNextStep = TRUE;
+#if EGG_HATCH_DEBUG == TRUE
+            mgba_printf(MGBA_LOG_DEBUG, "Egg %d Cycles: %d", i, GetMonData(&gPlayerParty[i], MON_DATA_FRIENDSHIP, 0));
+#endif
         }
     }
-
-    return FALSE;
-}
-
-bool8 ShouldEggHatch(void)
-{
-    return TryProduceOrHatchEgg(&gSaveBlock1Ptr->daycare);
+#if EGG_HATCH_DEBUG == TRUE
+    mgba_printf(MGBA_LOG_DEBUG, "Steps %d", gSaveBlock1Ptr->daycare.stepCounter);
+#endif
 }
 
 static bool8 IsEggPending(struct DayCare *daycare)
