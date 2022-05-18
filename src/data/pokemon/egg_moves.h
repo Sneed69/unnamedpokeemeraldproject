@@ -2441,6 +2441,7 @@ const u16 gEggMoves[] = {
     egg_moves(HIPPOPOTAS,
         MOVE_CURSE,
         MOVE_SLACK_OFF,
+        MOVE_HIGH_HORSEPOWER,
         MOVE_BODY_SLAM,
         MOVE_SAND_TOMB,
         MOVE_REVENGE,
@@ -2650,7 +2651,7 @@ const u16 gEggMoves[] = {
         MOVE_SNATCH,
         MOVE_FEINT),
 
-    egg_moves(BRONZONG,
+    egg_moves(BRONZOR,
         MOVE_ANCIENT_POWER,
         MOVE_STEEL_BEAM,
         MOVE_METEOR_BEAM),
