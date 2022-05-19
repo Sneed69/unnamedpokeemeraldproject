@@ -95,7 +95,7 @@ const struct Item gItems[] =
     {
         .name = _("Net Ball"),
         .itemId = ITEM_NET_BALL,
-        .price = 500,
+        .price = 600,
         .description = sNetBallDesc,
         .pocket = POCKET_POKE_BALLS,
         .type = ITEM_NET_BALL - FIRST_BALL,
@@ -108,7 +108,7 @@ const struct Item gItems[] =
     {
         .name = _("Nest Ball"),
         .itemId = ITEM_NEST_BALL,
-        .price = 200,
+        .price = 250,
         .description = sNestBallDesc,
         .pocket = POCKET_POKE_BALLS,
         .type = ITEM_NEST_BALL - FIRST_BALL,
@@ -121,7 +121,7 @@ const struct Item gItems[] =
     {
         .name = _("Dive Ball"),
         .itemId = ITEM_DIVE_BALL,
-        .price = 500,
+        .price = 400,
         .description = sDiveBallDesc,
         .pocket = POCKET_POKE_BALLS,
         .type = ITEM_DIVE_BALL - FIRST_BALL,
@@ -134,7 +134,7 @@ const struct Item gItems[] =
     {
         .name = _("Dusk Ball"),
         .itemId = ITEM_DUSK_BALL,
-        .price = 600,
+        .price = 750,
         .description = sDuskBallDesc,
         .pocket = POCKET_POKE_BALLS,
         .type = ITEM_DUSK_BALL - FIRST_BALL,
@@ -160,7 +160,7 @@ const struct Item gItems[] =
     {
         .name = _("Quick Ball"),
         .itemId = ITEM_QUICK_BALL,
-        .price = 500,
+        .price = 700,
         .description = sQuickBallDesc,
         .pocket = POCKET_POKE_BALLS,
         .type = ITEM_QUICK_BALL - FIRST_BALL,
@@ -290,7 +290,7 @@ const struct Item gItems[] =
     {
         .name = _("Dream Ball"),
         .itemId = ITEM_DREAM_BALL,
-        .price = 400,
+        .price = 500,
         .description = sDreamBallDesc,
         .pocket = POCKET_POKE_BALLS,
         .type = ITEM_DREAM_BALL - FIRST_BALL,
@@ -338,17 +338,17 @@ const struct Item gItems[] =
         .secondaryId = ITEM_PARK_BALL - FIRST_BALL,
     },
 
-    [ITEM_BEAST_BALL] =
+    [ITEM_WING_BALL] =
     {
-        .name = _("Beast Ball"),
-        .itemId = ITEM_BEAST_BALL,
-        .price = 0,
-        .description = sBeastBallDesc,
+        .name = _("Wing Ball"),
+        .itemId = ITEM_WING_BALL,
+        .price = 600,
+        .description = sWingBallDesc,
         .pocket = POCKET_POKE_BALLS,
-        .type = ITEM_BEAST_BALL - FIRST_BALL,
+        .type = ITEM_WING_BALL - FIRST_BALL,
         .battleUsage = ITEM_B_USE_OTHER,
         .battleUseFunc = ItemUseInBattle_PokeBall,
-        .secondaryId = ITEM_BEAST_BALL - FIRST_BALL,
+        .secondaryId = ITEM_WING_BALL - FIRST_BALL,
     },
 
     [ITEM_CHERISH_BALL] =
@@ -5845,10 +5845,10 @@ const struct Item gItems[] =
         .flingPower = 30,
     },
 
-    [ITEM_ODD_INCENSE] =
+    [ITEM_LOVELY_INCENSE] =
     {
         .name = _("Lovely Incense"),
-        .itemId = ITEM_ODD_INCENSE,
+        .itemId = ITEM_LOVELY_INCENSE,
         .price = 5000,
         .holdEffect = HOLD_EFFECT_FAIRY_POWER,
         .holdEffectParam = 25,

@@ -69,7 +69,7 @@ static u16 GetBattlerPokeballItemId(u8 battlerId);
 #define GFX_TAG_SAFARIBALL  55022
 #define GFX_TAG_SPORTBALL   55023
 #define GFX_TAG_PARKBALL    55024
-#define GFX_TAG_BEASTBALL   55025
+#define GFX_TAG_WINGBALL   55025
 #define GFX_TAG_CHERISHBALL 55026
 
 const struct CompressedSpriteSheet gBallSpriteSheets[POKEBALL_COUNT] =
@@ -99,7 +99,7 @@ const struct CompressedSpriteSheet gBallSpriteSheets[POKEBALL_COUNT] =
     [BALL_SAFARI]  = {gBallGfx_Safari,  384, GFX_TAG_SAFARIBALL},
     [BALL_SPORT]   = {gBallGfx_Sport,   384, GFX_TAG_SPORTBALL},
     [BALL_PARK]    = {gBallGfx_Park,    384, GFX_TAG_PARKBALL},
-    [BALL_BEAST]   = {gBallGfx_Beast,   384, GFX_TAG_BEASTBALL},
+    [BALL_WING]   =  {gBallGfx_Wing,    384, GFX_TAG_WINGBALL},
     [BALL_CHERISH] = {gBallGfx_Cherish, 384, GFX_TAG_CHERISHBALL},
 };
 
@@ -130,7 +130,7 @@ const struct CompressedSpritePalette gBallSpritePalettes[POKEBALL_COUNT] =
     [BALL_SAFARI]  = {gBallPal_Safari,  GFX_TAG_SAFARIBALL},
     [BALL_SPORT]   = {gBallPal_Sport,   GFX_TAG_SPORTBALL},
     [BALL_PARK]    = {gBallPal_Park,    GFX_TAG_PARKBALL},
-    [BALL_BEAST]   = {gBallPal_Beast,   GFX_TAG_BEASTBALL},
+    [BALL_WING]   =  {gBallPal_Wing,   GFX_TAG_WINGBALL},
     [BALL_CHERISH] = {gBallPal_Cherish, GFX_TAG_CHERISHBALL},
 };
 
@@ -499,10 +499,10 @@ const struct SpriteTemplate gBallSpriteTemplates[POKEBALL_COUNT] =
         .affineAnims = sAffineAnim_BallRotate,
         .callback = SpriteCB_BallThrow,
     },
-    [BALL_BEAST] =
+    [BALL_WING] =
     {
-        .tileTag = GFX_TAG_BEASTBALL,
-        .paletteTag = GFX_TAG_BEASTBALL,
+        .tileTag = GFX_TAG_WINGBALL,
+        .paletteTag = GFX_TAG_WINGBALL,
         .oam = &sBallOamData,
         .anims = sBallAnimSequences,
         .images = NULL,
@@ -1475,6 +1475,7 @@ void LoadBallGfx(u8 ballId)
     case BALL_NET ... BALL_NEST:
     case BALL_REPEAT:
     case BALL_SAFARI:
+    case BALL_WING:
         var = GetSpriteTileStartByTag(gBallSpriteSheets[ballId].tag);
         LZDecompressVram(gOpenPokeballGfx, (void *)(OBJ_VRAM0 + 0x100 + var * 32));
         break;

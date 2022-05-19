@@ -79,8 +79,8 @@ const u32 gItemIconPalette_SportBall[] = INCBIN_U32("graphics/items/icon_palette
 const u32 gItemIcon_ParkBall[] = INCBIN_U32("graphics/items/icons/park_ball.4bpp.lz");
 const u32 gItemIconPalette_ParkBall[] = INCBIN_U32("graphics/items/icon_palettes/park_ball.gbapal.lz");
 
-const u32 gItemIcon_BeastBall[] = INCBIN_U32("graphics/items/icons/beast_ball.4bpp.lz");
-const u32 gItemIconPalette_BeastBall[] = INCBIN_U32("graphics/items/icon_palettes/beast_ball.gbapal.lz");
+const u32 gItemIcon_WingBall[] = INCBIN_U32("graphics/items/icons/wing_ball.4bpp.lz");
+const u32 gItemIconPalette_WingBall[] = INCBIN_U32("graphics/items/icon_palettes/wing_ball.gbapal.lz");
 
 const u32 gItemIcon_CherishBall[] = INCBIN_U32("graphics/items/icons/cherish_ball.4bpp.lz");
 const u32 gItemIconPalette_CherishBall[] = INCBIN_U32("graphics/items/icon_palettes/cherish_ball.gbapal.lz");

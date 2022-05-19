@@ -28,7 +28,7 @@ enum
     BALL_SAFARI,
     BALL_SPORT,
     BALL_PARK,
-    BALL_BEAST,
+    BALL_WING,
     BALL_CHERISH,
     POKEBALL_COUNT
 };

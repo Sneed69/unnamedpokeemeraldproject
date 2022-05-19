@@ -13603,18 +13603,6 @@ static void Cmd_handleballthrow(void)
         else
             catchRate = gBaseStats[gBattleMons[gBattlerTarget].species].catchRate;
 
-        #ifdef POKEMON_EXPANSION
-        if (gBaseStats[gBattleMons[gBattlerTarget].species].flags & FLAG_ULTRA_BEAST)
-        {
-            if (gLastUsedItem == ITEM_BEAST_BALL)
-                ballMultiplier = 50;
-            else
-                ballMultiplier = 1;
-        }
-        else
-        {
-        #endif
-
         switch (gLastUsedItem)
         {
         case ITEM_ULTRA_BALL:
@@ -13774,15 +13762,12 @@ static void Cmd_handleballthrow(void)
                 ballMultiplier = 10;
             #endif
             break;
-        case ITEM_BEAST_BALL:
-            ballMultiplier = 1;
+        case ITEM_WING_BALL:
+            if (!IsBattlerGrounded(gBattlerTarget))
+                    ballMultiplier = 30;
             break;
         #endif
         }
-
-        #ifdef POKEMON_EXPANSION
-        }
-        #endif
 
         // catchRate is unsigned, which means that it may potentially overflow if sum is applied directly.
         if (catchRate < 21 && ballAddition == -20)

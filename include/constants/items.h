@@ -29,7 +29,7 @@
 #define ITEM_SAFARI_BALL 23
 #define ITEM_SPORT_BALL 24
 #define ITEM_PARK_BALL 25
-#define ITEM_BEAST_BALL 26
+#define ITEM_WING_BALL 26
 #define ITEM_CHERISH_BALL 27
 
 // Note: If moving ball IDs around, updating FIRST_BALL/LAST_BALL is not sufficient
@@ -479,7 +479,7 @@
 // Incenses
 #define ITEM_SEA_INCENSE 404
 #define ITEM_LAX_INCENSE 405
-#define ITEM_ODD_INCENSE 406
+#define ITEM_LOVELY_INCENSE 406
 #define ITEM_ROCK_INCENSE 407
 #define ITEM_FULL_INCENSE 408
 #define ITEM_WAVE_INCENSE 409

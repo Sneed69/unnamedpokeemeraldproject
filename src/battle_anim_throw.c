@@ -153,7 +153,7 @@ static const struct CaptureStar sCaptureStars[] =
 #define TAG_PARTICLES_SAFARIBALL  65052
 #define TAG_PARTICLES_SPORTBALL   65053
 #define TAG_PARTICLES_PARKBALL    65054
-#define TAG_PARTICLES_BEASTBALL   65055
+#define TAG_PARTICLES_WINGBALL   65055
 #define TAG_PARTICLES_CHERISHBALL 65056
 
 static const struct CompressedSpriteSheet sBallParticleSpriteSheets[] =
@@ -183,7 +183,7 @@ static const struct CompressedSpriteSheet sBallParticleSpriteSheets[] =
     [BALL_SAFARI]   = {gBattleAnimSpriteGfx_Particles,      0x100, TAG_PARTICLES_SAFARIBALL},
     [BALL_SPORT]    = {gBattleAnimSpriteGfx_Particles,      0x100, TAG_PARTICLES_SPORTBALL},
     [BALL_PARK]     = {gBattleAnimSpriteGfx_Particles,      0x100, TAG_PARTICLES_PARKBALL},
-    [BALL_BEAST]    = {gBattleAnimSpriteGfx_Particles,      0x100, TAG_PARTICLES_BEASTBALL},
+    [BALL_WING]    =  {gBattleAnimSpriteGfx_Particles2,     0x100, TAG_PARTICLES_WINGBALL},
     [BALL_CHERISH]  = {gBattleAnimSpriteGfx_Particles2,     0x100, TAG_PARTICLES_CHERISHBALL},
 };
 
@@ -214,7 +214,7 @@ static const struct CompressedSpritePalette sBallParticlePalettes[] =
     [BALL_SAFARI]   = {gBattleAnimSpritePal_CircleImpact,   TAG_PARTICLES_SAFARIBALL},
     [BALL_SPORT]    = {gBattleAnimSpritePal_CircleImpact,   TAG_PARTICLES_SPORTBALL},
     [BALL_PARK]     = {gBattleAnimSpritePal_CircleImpact,   TAG_PARTICLES_PARKBALL},
-    [BALL_BEAST]    = {gBattleAnimSpritePal_CircleImpact,   TAG_PARTICLES_BEASTBALL},
+    [BALL_WING]    =  {gBattleAnimSpritePal_CircleImpact,   TAG_PARTICLES_WINGBALL},
     [BALL_CHERISH]  = {gBattleAnimSpritePal_Particles2,     TAG_PARTICLES_CHERISHBALL},
 };
 
@@ -297,7 +297,7 @@ static const u8 sBallParticleAnimNums[POKEBALL_COUNT] =
     [BALL_SAFARI]  = 0,
     [BALL_SPORT]   = 0,
     [BALL_PARK]    = 5,
-    [BALL_BEAST]   = 5,
+    [BALL_WING]   = 0,
     [BALL_CHERISH] = 0,
 };
 
@@ -329,7 +329,7 @@ static const TaskFunc sBallParticleAnimationFuncs[POKEBALL_COUNT] =
     [BALL_SAFARI]  = SafariBallOpenParticleAnimation,
     [BALL_SPORT]   = UltraBallOpenParticleAnimation,
     [BALL_PARK]    = UltraBallOpenParticleAnimation,
-    [BALL_BEAST]   = UltraBallOpenParticleAnimation,
+    [BALL_WING]    = GreatBallOpenParticleAnimation,
     [BALL_CHERISH] = MasterBallOpenParticleAnimation,
 };
 
@@ -560,9 +560,9 @@ static const struct SpriteTemplate sBallParticleSpriteTemplates[POKEBALL_COUNT] 
         .affineAnims = gDummySpriteAffineAnimTable,
         .callback = SpriteCallbackDummy,
     },
-    [BALL_BEAST] = {
-        .tileTag = TAG_PARTICLES_BEASTBALL,
-        .paletteTag = TAG_PARTICLES_BEASTBALL,
+    [BALL_WING] = {
+        .tileTag = TAG_PARTICLES_WINGBALL,
+        .paletteTag = TAG_PARTICLES_WINGBALL,
         .oam = &gOamData_AffineOff_ObjNormal_8x8,
         .anims = sAnims_BallParticles,
         .images = NULL,
@@ -608,7 +608,7 @@ const u16 gBallOpenFadeColors[] =
     [BALL_SAFARI] = RGB(23, 30, 20),
     [BALL_SPORT] = RGB(31, 31, 15),
     [BALL_PARK] = RGB(31, 31, 15),
-    [BALL_BEAST] = RGB(31, 31, 15),
+    [BALL_WING] = RGB(5, 25, 31),
     [BALL_CHERISH] = RGB(25, 4, 3),
 };
 
@@ -997,8 +997,8 @@ u8 ItemIdToBallId(u16 ballItem)
         return BALL_SPORT;
     case ITEM_PARK_BALL:
         return BALL_PARK;
-    case ITEM_BEAST_BALL:
-        return BALL_BEAST;
+    case ITEM_WING_BALL:
+        return BALL_WING;
     case ITEM_CHERISH_BALL:
         return BALL_CHERISH;
     default:
