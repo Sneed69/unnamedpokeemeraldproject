@@ -539,3 +539,4 @@ gSpecials::
 	def_special SetTotemBoost
 	def_special TeachEggMoveTutorMove
 	def_special ChooseMonForEggMoveTutor
+	def_special TrySpecialOverworldEvo
