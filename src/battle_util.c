@@ -3936,18 +3936,18 @@ u8 TryWeatherFormChange(u8 battler)
         {
             ret = 0; // No change
         }
-        else if (!weatherEffect && !IS_BATTLER_OF_TYPE(battler, TYPE_NORMAL))
+        else if (!weatherEffect && !IS_BATTLER_OF_TYPE(battler, TYPE_FLYING))
         {
-            SET_BATTLER_TYPE(battler, TYPE_NORMAL);
+            SET_BATTLER_TYPE(battler, TYPE_FLYING);
             ret = CASTFORM_NORMAL + 1;
         }
         else if (!weatherEffect)
         {
             ret = 0; // No change
         }
-        else if (holdEffect == HOLD_EFFECT_UTILITY_UMBRELLA || (!(gBattleWeather & (B_WEATHER_RAIN | B_WEATHER_SUN | B_WEATHER_HAIL)) && !IS_BATTLER_OF_TYPE(battler, TYPE_NORMAL)))
+        else if (holdEffect == HOLD_EFFECT_UTILITY_UMBRELLA || (!(gBattleWeather & (B_WEATHER_RAIN | B_WEATHER_SUN | B_WEATHER_HAIL)) && !IS_BATTLER_OF_TYPE(battler, TYPE_FLYING)))
         {
-            SET_BATTLER_TYPE(battler, TYPE_NORMAL);
+            SET_BATTLER_TYPE(battler, TYPE_FLYING);
             ret = CASTFORM_NORMAL + 1;
         }
         else if (gBattleWeather & B_WEATHER_SUN && holdEffect != HOLD_EFFECT_UTILITY_UMBRELLA && !IS_BATTLER_OF_TYPE(battler, TYPE_FIRE))
