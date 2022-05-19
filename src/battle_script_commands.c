@@ -13722,37 +13722,11 @@ static void Cmd_handleballthrow(void)
                 ballMultiplier = 40;
             break;
         case ITEM_HEAVY_BALL:
-            i = GetPokedexHeightWeight(SpeciesToNationalPokedexNum(gBattleMons[gBattlerTarget].species), 1);
-            #if B_HEAVY_BALL_MODIFIER >= GEN_7
-                if (i < 1000)
-                    ballAddition = -20;
-                else if (i < 2000)
-                    ballAddition = 0;
-                else if (i < 3000)
-                    ballMultiplier = 20;
-                else
-                    ballMultiplier = 30;
-            #elif B_HEAVY_BALL_MODIFIER >= GEN_4
-                if (i < 2048)
-                    ballAddition = -20;
-                else if (i < 3072)
-                    ballAddition = 20;
-                else if (i < 4096)
-                    ballAddition = 30;
-                else
-                    ballAddition = 40;
-            #else
-                if (i < 1024)
-                    ballAddition = -20;
-                else if (i < 2048)
-                    ballAddition = 0;
-                else if (i < 3072)
-                    ballAddition = 20;
-                else if (i < 4096)
-                    ballAddition = 30;
-                else
-                    ballAddition = 40;
-            #endif
+            ballMultiplier = GetPokedexHeightWeight(SpeciesToNationalPokedexNum(gBattleMons[gBattlerTarget].species), 1) / 100;
+            if (ballMultiplier == 0)
+                ballMultiplier = 1;
+            else if (ballMultiplier > 30)
+                ballMultiplier = 30;
             break;
         case ITEM_DREAM_BALL:
             #if B_DREAM_BALL_MODIFIER >= GEN_8
