@@ -621,6 +621,18 @@ static void CB2_InitBattleInternal(void)
             (flags) |= 3 << (i) * 2;                                \
     }
 
+static const u8 sTrainerClassBallTable[TRAINER_CLASS_COUNT] =
+{
+    [TRAINER_CLASS_AQUA_ADMIN] = ITEM_PARK_BALL,
+    [TRAINER_CLASS_AQUA_LEADER] = ITEM_PARK_BALL,
+    [TRAINER_CLASS_TEAM_AQUA] = ITEM_PARK_BALL,
+    [TRAINER_CLASS_MAGMA_ADMIN] = ITEM_SPORT_BALL,
+    [TRAINER_CLASS_MAGMA_LEADER] = ITEM_SPORT_BALL,
+    [TRAINER_CLASS_TEAM_MAGMA] = ITEM_SPORT_BALL,
+    [TRAINER_CLASS_BUG_MANIAC] = ITEM_NET_BALL,
+    [TRAINER_CLASS_BIRD_KEEPER] = ITEM_WING_BALL,
+};
+
 // For Vs Screen at link battle start
 static void BufferPartyVsScreenHealth_AtStart(void)
 {
@@ -1935,8 +1947,10 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 fir
             hiddenPowerType = partyData[i].hiddenPowerType;
             SetMonData(&party[i], MON_DATA_HIDDEN_POWER_TYPE, &hiddenPowerType);
 
-            if (partyData[i].ball > 0)
+            if (partyData[i].ball > ITEM_POKE_BALL)
                 SetMonData(&party[i], MON_DATA_POKEBALL, &partyData[i].ball);
+            else if (sTrainerClassBallTable[gTrainers[trainerNum].trainerClass] > ITEM_POKE_BALL)
+                SetMonData(&party[i], MON_DATA_POKEBALL, &sTrainerClassBallTable[gTrainers[trainerNum].trainerClass]);
 
             if (partyData[i].heldItem > 0)
                 SetMonData(&party[i], MON_DATA_HELD_ITEM, &partyData[i].heldItem);
