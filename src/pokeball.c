@@ -58,7 +58,7 @@ static u16 GetBattlerPokeballItemId(u8 battlerId);
 #define GFX_TAG_QUICKBALL   55011
 #define GFX_TAG_REPEATBALL  55012
 #define GFX_TAG_LUXURYBALL  55013
-#define GFX_TAG_LEVELBALL   55014
+#define GFX_TAG_LITTLEBALL   55014
 #define GFX_TAG_LUREBALL    55015
 #define GFX_TAG_MOONBALL    55016
 #define GFX_TAG_FRIENDBALL  55017
@@ -88,7 +88,7 @@ const struct CompressedSpriteSheet gBallSpriteSheets[POKEBALL_COUNT] =
     [BALL_QUICK]   = {gBallGfx_Quick,   384, GFX_TAG_QUICKBALL},
     [BALL_REPEAT]  = {gBallGfx_Repeat,  384, GFX_TAG_REPEATBALL},
     [BALL_LUXURY]  = {gBallGfx_Luxury,  384, GFX_TAG_LUXURYBALL},
-    [BALL_LEVEL]   = {gBallGfx_Level,   384, GFX_TAG_LEVELBALL},
+    [BALL_LITTLE]  = {gBallGfx_Level,   384, GFX_TAG_LITTLEBALL},
     [BALL_LURE]    = {gBallGfx_Lure,    384, GFX_TAG_LUREBALL},
     [BALL_MOON]    = {gBallGfx_Moon,    384, GFX_TAG_MOONBALL},
     [BALL_FRIEND]  = {gBallGfx_Friend,  384, GFX_TAG_FRIENDBALL},
@@ -119,7 +119,7 @@ const struct CompressedSpritePalette gBallSpritePalettes[POKEBALL_COUNT] =
     [BALL_QUICK]   = {gBallPal_Quick,   GFX_TAG_QUICKBALL},
     [BALL_REPEAT]  = {gBallPal_Repeat,  GFX_TAG_REPEATBALL},
     [BALL_LUXURY]  = {gBallPal_Luxury,  GFX_TAG_LUXURYBALL},
-    [BALL_LEVEL]   = {gBallPal_Level,   GFX_TAG_LEVELBALL},
+    [BALL_LITTLE]  = {gBallPal_Level,   GFX_TAG_LITTLEBALL},
     [BALL_LURE]    = {gBallPal_Lure,    GFX_TAG_LUREBALL},
     [BALL_MOON]    = {gBallPal_Moon,    GFX_TAG_MOONBALL},
     [BALL_FRIEND]  = {gBallPal_Friend,  GFX_TAG_FRIENDBALL},
@@ -389,10 +389,10 @@ const struct SpriteTemplate gBallSpriteTemplates[POKEBALL_COUNT] =
         .affineAnims = sAffineAnim_BallRotate,
         .callback = SpriteCB_BallThrow,
     },
-    [BALL_LEVEL] =
+    [BALL_LITTLE] =
     {
-        .tileTag = GFX_TAG_LEVELBALL,
-        .paletteTag = GFX_TAG_LEVELBALL,
+        .tileTag = GFX_TAG_LITTLEBALL,
+        .paletteTag = GFX_TAG_LITTLEBALL,
         .oam = &sBallOamData,
         .anims = sBallAnimSequences,
         .images = NULL,

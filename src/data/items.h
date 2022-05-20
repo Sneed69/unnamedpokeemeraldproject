@@ -195,17 +195,17 @@ const struct Item gItems[] =
         .secondaryId = ITEM_LUXURY_BALL - FIRST_BALL,
     },
 
-    [ITEM_LEVEL_BALL] =
+    [ITEM_LITTLE_BALL] =
     {
-        .name = _("Level Ball"),
-        .itemId = ITEM_LEVEL_BALL,
-        .price = 0,
-        .description = sLevelBallDesc,
+        .name = _("Little Ball"),
+        .itemId = ITEM_LITTLE_BALL,
+        .price = 200,
+        .description = sLittleBallDesc,
         .pocket = POCKET_POKE_BALLS,
-        .type = ITEM_LEVEL_BALL - FIRST_BALL,
+        .type = ITEM_LITTLE_BALL - FIRST_BALL,
         .battleUsage = ITEM_B_USE_OTHER,
         .battleUseFunc = ItemUseInBattle_PokeBall,
-        .secondaryId = ITEM_LEVEL_BALL - FIRST_BALL,
+        .secondaryId = ITEM_LITTLE_BALL - FIRST_BALL,
     },
 
     [ITEM_LURE_BALL] =

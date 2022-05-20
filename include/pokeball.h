@@ -17,7 +17,7 @@ enum
     BALL_QUICK,
     BALL_REPEAT,
     BALL_LUXURY,
-    BALL_LEVEL,
+    BALL_LITTLE,
     BALL_LURE,
     BALL_MOON,
     BALL_FRIEND,

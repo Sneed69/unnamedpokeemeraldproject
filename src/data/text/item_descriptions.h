@@ -72,10 +72,10 @@ static const u8 sLuxuryBallDesc[] = _(
     "makes Pokémon\n"
     "more friendly.");
 
-static const u8 sLevelBallDesc[] = _(
+static const u8 sLittleBallDesc[] = _(
     "A Ball that works\n"
-    "well on lower\n"
-    "level Pokémon.");
+    "best on very\n"
+    "small Pokémon.");
 
 static const u8 sLureBallDesc[] = _(
     "A Ball that works\n"

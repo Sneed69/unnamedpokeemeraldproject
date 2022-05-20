@@ -68,6 +68,7 @@ SpecialMart_Start::
 SpecialItems_Sootopolis:
     .2byte ITEM_HEAL_BALL
     .2byte ITEM_LUXURY_BALL
+    .2byte ITEM_LITTLE_BALL
     .2byte ITEM_DREAM_BALL
     .2byte ITEM_NEST_BALL
     .2byte ITEM_REPEAT_BALL
@@ -91,6 +92,7 @@ SpecialItems_Sootopolis:
 SpecialItems_Mossdeep:
     .2byte ITEM_HEAL_BALL
     .2byte ITEM_LUXURY_BALL
+    .2byte ITEM_LITTLE_BALL
     .2byte ITEM_DREAM_BALL
     .2byte ITEM_NEST_BALL
     .2byte ITEM_REPEAT_BALL
@@ -111,6 +113,7 @@ SpecialItems_Mossdeep:
 SpecialItems_Fortree:
     .2byte ITEM_HEAL_BALL
     .2byte ITEM_LUXURY_BALL
+    .2byte ITEM_LITTLE_BALL
     .2byte ITEM_DREAM_BALL
     .2byte ITEM_NEST_BALL
     .2byte ITEM_REPEAT_BALL
@@ -129,6 +132,7 @@ SpecialItems_Fortree:
 SpecialItems_Fallarbor:
     .2byte ITEM_HEAL_BALL
     .2byte ITEM_LUXURY_BALL
+    .2byte ITEM_LITTLE_BALL
     .2byte ITEM_DREAM_BALL
     .2byte ITEM_NEST_BALL
     .2byte ITEM_REPEAT_BALL
@@ -145,6 +149,7 @@ SpecialItems_Fallarbor:
 SpecialItems_Strength:
     .2byte ITEM_HEAL_BALL
     .2byte ITEM_LUXURY_BALL
+    .2byte ITEM_LITTLE_BALL
     .2byte ITEM_DREAM_BALL
     .2byte ITEM_NEST_BALL
     .2byte ITEM_REPEAT_BALL
@@ -159,6 +164,7 @@ SpecialItems_Strength:
 SpecialItems_Verdanturf:
     .2byte ITEM_HEAL_BALL
     .2byte ITEM_LUXURY_BALL
+    .2byte ITEM_LITTLE_BALL
     .2byte ITEM_DREAM_BALL
     .2byte ITEM_NEST_BALL
     .2byte ITEM_FOCUS_SASH
@@ -172,6 +178,7 @@ SpecialItems_Verdanturf:
 SpecialItems_Slateport:
     .2byte ITEM_HEAL_BALL
     .2byte ITEM_LUXURY_BALL
+    .2byte ITEM_LITTLE_BALL
     .2byte ITEM_DREAM_BALL
     .2byte ITEM_NEST_BALL
     .2byte ITEM_FOCUS_SASH

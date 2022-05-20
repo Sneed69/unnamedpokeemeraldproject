@@ -142,7 +142,7 @@ static const struct CaptureStar sCaptureStars[] =
 #define TAG_PARTICLES_QUICKBALL   65041
 #define TAG_PARTICLES_REPEATBALL  65042
 #define TAG_PARTICLES_LUXURYBALL  65043
-#define TAG_PARTICLES_LEVELBALL   65044
+#define TAG_PARTICLES_LITTLEBALL   65044
 #define TAG_PARTICLES_LUREBALL    65045
 #define TAG_PARTICLES_MOONBALL    65046
 #define TAG_PARTICLES_FRIENDBALL  65047
@@ -172,7 +172,7 @@ static const struct CompressedSpriteSheet sBallParticleSpriteSheets[] =
     [BALL_QUICK]    = {gBattleAnimSpriteGfx_Particles2,     0x100, TAG_PARTICLES_QUICKBALL},
     [BALL_REPEAT]   = {gBattleAnimSpriteGfx_Particles,      0x100, TAG_PARTICLES_REPEATBALL},
     [BALL_LUXURY]   = {gBattleAnimSpriteGfx_Particles,      0x100, TAG_PARTICLES_LUXURYBALL},
-    [BALL_LEVEL]    = {gBattleAnimSpriteGfx_Particles2,     0x100, TAG_PARTICLES_LEVELBALL},
+    [BALL_LITTLE]   = {gBattleAnimSpriteGfx_Particles,      0x100, TAG_PARTICLES_LITTLEBALL},
     [BALL_LURE]     = {gBattleAnimSpriteGfx_Particles,      0x100, TAG_PARTICLES_LUREBALL},
     [BALL_MOON]     = {gBattleAnimSpriteGfx_Particles2,     0x100, TAG_PARTICLES_MOONBALL},
     [BALL_FRIEND]   = {gBattleAnimSpriteGfx_Particles,      0x100, TAG_PARTICLES_FRIENDBALL},
@@ -203,7 +203,7 @@ static const struct CompressedSpritePalette sBallParticlePalettes[] =
     [BALL_QUICK]    = {gBattleAnimSpritePal_Particles2,     TAG_PARTICLES_QUICKBALL},
     [BALL_REPEAT]   = {gBattleAnimSpritePal_CircleImpact,   TAG_PARTICLES_REPEATBALL},
     [BALL_LUXURY]   = {gBattleAnimSpritePal_CircleImpact,   TAG_PARTICLES_LUXURYBALL},
-    [BALL_LEVEL]    = {gBattleAnimSpritePal_Particles2,     TAG_PARTICLES_LEVELBALL},
+    [BALL_LITTLE]   = {gBattleAnimSpritePal_CircleImpact,   TAG_PARTICLES_LITTLEBALL},
     [BALL_LURE]     = {gBattleAnimSpritePal_CircleImpact,   TAG_PARTICLES_LUREBALL},
     [BALL_MOON]     = {gBattleAnimSpritePal_Particles2,     TAG_PARTICLES_MOONBALL},
     [BALL_FRIEND]   = {gBattleAnimSpritePal_CircleImpact,   TAG_PARTICLES_FRIENDBALL},
@@ -286,7 +286,7 @@ static const u8 sBallParticleAnimNums[POKEBALL_COUNT] =
     [BALL_QUICK]   = 4,
     [BALL_REPEAT]  = 5,
     [BALL_LUXURY]  = 4,
-    [BALL_LEVEL]   = 5,
+    [BALL_LITTLE]  = 3,
     [BALL_LURE]    = 2,
     [BALL_MOON]    = 4,
     [BALL_FRIEND]  = 3,
@@ -318,7 +318,7 @@ static const TaskFunc sBallParticleAnimationFuncs[POKEBALL_COUNT] =
     [BALL_QUICK]   = UltraBallOpenParticleAnimation,
     [BALL_REPEAT]  = RepeatBallOpenParticleAnimation,
     [BALL_LUXURY]  = GreatBallOpenParticleAnimation,
-    [BALL_LEVEL]   = SafariBallOpenParticleAnimation,
+    [BALL_LITTLE]  = SafariBallOpenParticleAnimation,
     [BALL_LURE]    = GreatBallOpenParticleAnimation,
     [BALL_MOON]    = UltraBallOpenParticleAnimation,
     [BALL_FRIEND]  = UltraBallOpenParticleAnimation,
@@ -327,8 +327,8 @@ static const TaskFunc sBallParticleAnimationFuncs[POKEBALL_COUNT] =
     [BALL_HEAVY]   = GreatBallOpenParticleAnimation,
     [BALL_DREAM]   = UltraBallOpenParticleAnimation,
     [BALL_SAFARI]  = SafariBallOpenParticleAnimation,
-    [BALL_AQUA]   = UltraBallOpenParticleAnimation,
-    [BALL_MAGMA]    = UltraBallOpenParticleAnimation,
+    [BALL_AQUA]    = UltraBallOpenParticleAnimation,
+    [BALL_MAGMA]   = UltraBallOpenParticleAnimation,
     [BALL_WING]    = GreatBallOpenParticleAnimation,
     [BALL_CHERISH] = MasterBallOpenParticleAnimation,
 };
@@ -461,9 +461,9 @@ static const struct SpriteTemplate sBallParticleSpriteTemplates[POKEBALL_COUNT] 
         .affineAnims = gDummySpriteAffineAnimTable,
         .callback = SpriteCallbackDummy,
     },
-    [BALL_LEVEL] = {
-        .tileTag = TAG_PARTICLES_LEVELBALL,
-        .paletteTag = TAG_PARTICLES_LEVELBALL,
+    [BALL_LITTLE] = {
+        .tileTag = TAG_PARTICLES_LITTLEBALL,
+        .paletteTag = TAG_PARTICLES_LITTLEBALL,
         .oam = &gOamData_AffineOff_ObjNormal_8x8,
         .anims = sAnims_BallParticles,
         .images = NULL,
@@ -597,7 +597,7 @@ const u16 gBallOpenFadeColors[] =
     [BALL_QUICK] = RGB(16, 25, 30),
     [BALL_REPEAT] = RGB(31, 24, 16),
     [BALL_LUXURY] = RGB(31, 17, 10),
-    [BALL_LEVEL] = RGB(24, 4, 4),
+    [BALL_LITTLE] = RGB(14, 24, 4),
     [BALL_LURE] = RGB(9, 22, 27),
     [BALL_MOON] = RGB(30, 25, 8),
     [BALL_FRIEND] = RGB(17, 24, 7),
@@ -975,8 +975,8 @@ u8 ItemIdToBallId(u16 ballItem)
         return BALL_REPEAT;
     case ITEM_LUXURY_BALL:
         return BALL_LUXURY;
-    case ITEM_LEVEL_BALL:
-        return BALL_LEVEL;
+    case ITEM_LITTLE_BALL:
+        return BALL_LITTLE;
     case ITEM_LURE_BALL:
         return BALL_LURE;
     case ITEM_MOON_BALL:

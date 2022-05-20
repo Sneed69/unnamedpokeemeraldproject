@@ -13684,13 +13684,14 @@ static void Cmd_handleballthrow(void)
                     ballMultiplier = 40;
                 #endif
             break;
-        case ITEM_LEVEL_BALL:
-            if (gBattleMons[gBattlerAttacker].level >= 4 * gBattleMons[gBattlerTarget].level)
-                ballMultiplier = 80;
-            else if (gBattleMons[gBattlerAttacker].level > 2 * gBattleMons[gBattlerTarget].level)
-                ballMultiplier = 40;
-            else if (gBattleMons[gBattlerAttacker].level > gBattleMons[gBattlerTarget].level)
-                ballMultiplier = 20;
+        case ITEM_LITTLE_BALL:
+            i = GetPokedexHeightWeight(SpeciesToNationalPokedexNum(gBattleMons[gBattlerTarget].species), 0);
+            if (i <= 2)
+                ballMultiplier = 50;
+            else if (i < 8)
+                ballMultiplier = 58 - i * 6;
+            else if (i > 15)
+                ballMultiplier = 150 / i;
             break;
         case ITEM_LURE_BALL:
             if (gIsFishingEncounter)

@@ -40,8 +40,8 @@ const u32 gBallPal_Repeat[] = INCBIN_U32("graphics/balls/repeat.gbapal.lz");
 const u32 gBallGfx_Luxury[] = INCBIN_U32("graphics/balls/luxury.4bpp.lz");
 const u32 gBallPal_Luxury[] = INCBIN_U32("graphics/balls/luxury.gbapal.lz");
 
-const u32 gBallGfx_Level[] = INCBIN_U32("graphics/balls/level.4bpp.lz");
-const u32 gBallPal_Level[] = INCBIN_U32("graphics/balls/level.gbapal.lz");
+const u32 gBallGfx_Level[] = INCBIN_U32("graphics/balls/little.4bpp.lz");
+const u32 gBallPal_Level[] = INCBIN_U32("graphics/balls/little.gbapal.lz");
 
 const u32 gBallGfx_Lure[] = INCBIN_U32("graphics/balls/lure.4bpp.lz");
 const u32 gBallPal_Lure[] = INCBIN_U32("graphics/balls/lure.gbapal.lz");
