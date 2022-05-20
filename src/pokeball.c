@@ -67,9 +67,9 @@ static u16 GetBattlerPokeballItemId(u8 battlerId);
 #define GFX_TAG_HEAVYBALL   55020
 #define GFX_TAG_DREAMBALL   55021
 #define GFX_TAG_SAFARIBALL  55022
-#define GFX_TAG_SPORTBALL   55023
-#define GFX_TAG_PARKBALL    55024
-#define GFX_TAG_WINGBALL   55025
+#define GFX_TAG_AQUABALL    55023
+#define GFX_TAG_MAGMABALL   55024
+#define GFX_TAG_WINGBALL    55025
 #define GFX_TAG_CHERISHBALL 55026
 
 const struct CompressedSpriteSheet gBallSpriteSheets[POKEBALL_COUNT] =
@@ -97,9 +97,9 @@ const struct CompressedSpriteSheet gBallSpriteSheets[POKEBALL_COUNT] =
     [BALL_HEAVY]   = {gBallGfx_Heavy,   384, GFX_TAG_HEAVYBALL},
     [BALL_DREAM]   = {gBallGfx_Dream,   384, GFX_TAG_DREAMBALL},
     [BALL_SAFARI]  = {gBallGfx_Safari,  384, GFX_TAG_SAFARIBALL},
-    [BALL_SPORT]   = {gBallGfx_Sport,   384, GFX_TAG_SPORTBALL},
-    [BALL_PARK]    = {gBallGfx_Park,    384, GFX_TAG_PARKBALL},
-    [BALL_WING]   =  {gBallGfx_Wing,    384, GFX_TAG_WINGBALL},
+    [BALL_AQUA]    = {gBallGfx_Aqua,    384, GFX_TAG_AQUABALL},
+    [BALL_MAGMA]   = {gBallGfx_Magma,   384, GFX_TAG_MAGMABALL},
+    [BALL_WING]    = {gBallGfx_Wing,    384, GFX_TAG_WINGBALL},
     [BALL_CHERISH] = {gBallGfx_Cherish, 384, GFX_TAG_CHERISHBALL},
 };
 
@@ -128,9 +128,9 @@ const struct CompressedSpritePalette gBallSpritePalettes[POKEBALL_COUNT] =
     [BALL_HEAVY]   = {gBallPal_Heavy,   GFX_TAG_HEAVYBALL},
     [BALL_DREAM]   = {gBallPal_Dream,   GFX_TAG_DREAMBALL},
     [BALL_SAFARI]  = {gBallPal_Safari,  GFX_TAG_SAFARIBALL},
-    [BALL_SPORT]   = {gBallPal_Sport,   GFX_TAG_SPORTBALL},
-    [BALL_PARK]    = {gBallPal_Park,    GFX_TAG_PARKBALL},
-    [BALL_WING]   =  {gBallPal_Wing,   GFX_TAG_WINGBALL},
+    [BALL_AQUA]    = {gBallPal_Aqua,    GFX_TAG_AQUABALL},
+    [BALL_MAGMA]   = {gBallPal_Magma,   GFX_TAG_MAGMABALL},
+    [BALL_WING]    = {gBallPal_Wing,    GFX_TAG_WINGBALL},
     [BALL_CHERISH] = {gBallPal_Cherish, GFX_TAG_CHERISHBALL},
 };
 
@@ -479,20 +479,20 @@ const struct SpriteTemplate gBallSpriteTemplates[POKEBALL_COUNT] =
         .affineAnims = sAffineAnim_BallRotate,
         .callback = SpriteCB_BallThrow,
     },
-    [BALL_SPORT] =
+    [BALL_AQUA] =
     {
-        .tileTag = GFX_TAG_SPORTBALL,
-        .paletteTag = GFX_TAG_SPORTBALL,
+        .tileTag = GFX_TAG_AQUABALL,
+        .paletteTag = GFX_TAG_AQUABALL,
         .oam = &sBallOamData,
         .anims = sBallAnimSequences,
         .images = NULL,
         .affineAnims = sAffineAnim_BallRotate,
         .callback = SpriteCB_BallThrow,
     },
-    [BALL_PARK] =
+    [BALL_MAGMA] =
     {
-        .tileTag = GFX_TAG_PARKBALL,
-        .paletteTag = GFX_TAG_PARKBALL,
+        .tileTag = GFX_TAG_MAGMABALL,
+        .paletteTag = GFX_TAG_MAGMABALL,
         .oam = &sBallOamData,
         .anims = sBallAnimSequences,
         .images = NULL,

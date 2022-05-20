@@ -312,30 +312,30 @@ const struct Item gItems[] =
         .secondaryId = ITEM_SAFARI_BALL - FIRST_BALL,
     },
 
-    [ITEM_SPORT_BALL] =
+    [ITEM_AQUA_BALL] =
     {
-        .name = _("Sport Ball"),
-        .itemId = ITEM_SPORT_BALL,
+        .name = _("Aqua Ball"),
+        .itemId = ITEM_AQUA_BALL,
         .price = 0,
         .description = sSportBallDesc,
         .pocket = POCKET_POKE_BALLS,
-        .type = ITEM_SPORT_BALL - FIRST_BALL,
+        .type = ITEM_AQUA_BALL - FIRST_BALL,
         .battleUsage = ITEM_B_USE_OTHER,
         .battleUseFunc = ItemUseInBattle_PokeBall,
-        .secondaryId = ITEM_SPORT_BALL - FIRST_BALL,
+        .secondaryId = ITEM_AQUA_BALL - FIRST_BALL,
     },
 
-    [ITEM_PARK_BALL] =
+    [ITEM_MAGMA_BALL] =
     {
-        .name = _("Park Ball"),
-        .itemId = ITEM_PARK_BALL,
+        .name = _("Magma Ball"),
+        .itemId = ITEM_MAGMA_BALL,
         .price = 0,
         .description = sParkBallDesc,
         .pocket = POCKET_POKE_BALLS,
-        .type = ITEM_PARK_BALL - FIRST_BALL,
+        .type = ITEM_MAGMA_BALL - FIRST_BALL,
         .battleUsage = ITEM_B_USE_OTHER,
         .battleUseFunc = ItemUseInBattle_PokeBall,
-        .secondaryId = ITEM_PARK_BALL - FIRST_BALL,
+        .secondaryId = ITEM_MAGMA_BALL - FIRST_BALL,
     },
 
     [ITEM_WING_BALL] =

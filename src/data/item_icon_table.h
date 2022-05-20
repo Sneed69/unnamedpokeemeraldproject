@@ -25,8 +25,8 @@ const u32 *const gItemIconTable[][2] =
     [ITEM_HEAVY_BALL] = {gItemIcon_HeavyBall, gItemIconPalette_HeavyBall},
     [ITEM_DREAM_BALL] = {gItemIcon_DreamBall, gItemIconPalette_DreamBall},
     [ITEM_SAFARI_BALL] = {gItemIcon_SafariBall, gItemIconPalette_SafariBall},
-    [ITEM_SPORT_BALL] = {gItemIcon_SportBall, gItemIconPalette_SportBall},
-    [ITEM_PARK_BALL] = {gItemIcon_ParkBall, gItemIconPalette_ParkBall},
+    [ITEM_AQUA_BALL] = {gItemIcon_SportBall, gItemIconPalette_SportBall},
+    [ITEM_MAGMA_BALL] = {gItemIcon_ParkBall, gItemIconPalette_ParkBall},
     [ITEM_WING_BALL] = {gItemIcon_WingBall, gItemIconPalette_WingBall},
     [ITEM_CHERISH_BALL] = {gItemIcon_CherishBall, gItemIconPalette_CherishBall},
     // Medicine

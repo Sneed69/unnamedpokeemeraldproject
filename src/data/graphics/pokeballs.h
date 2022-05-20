@@ -67,11 +67,11 @@ const u32 gBallPal_Dream[] = INCBIN_U32("graphics/balls/dream.gbapal.lz");
 const u32 gBallGfx_Safari[] = INCBIN_U32("graphics/balls/safari.4bpp.lz");
 const u32 gBallPal_Safari[] = INCBIN_U32("graphics/balls/safari.gbapal.lz");
 
-const u32 gBallGfx_Sport[] = INCBIN_U32("graphics/balls/sport.4bpp.lz");
-const u32 gBallPal_Sport[] = INCBIN_U32("graphics/balls/sport.gbapal.lz");
+const u32 gBallGfx_Aqua[] = INCBIN_U32("graphics/balls/aqua.4bpp.lz");
+const u32 gBallPal_Aqua[] = INCBIN_U32("graphics/balls/aqua.gbapal.lz");
 
-const u32 gBallGfx_Park[] = INCBIN_U32("graphics/balls/park.4bpp.lz");
-const u32 gBallPal_Park[] = INCBIN_U32("graphics/balls/park.gbapal.lz");
+const u32 gBallGfx_Magma[] = INCBIN_U32("graphics/balls/magma.4bpp.lz");
+const u32 gBallPal_Magma[] = INCBIN_U32("graphics/balls/magma.gbapal.lz");
 
 const u32 gBallGfx_Wing[] = INCBIN_U32("graphics/balls/wing.4bpp.lz");
 const u32 gBallPal_Wing[] = INCBIN_U32("graphics/balls/wing.gbapal.lz");

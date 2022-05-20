@@ -151,9 +151,9 @@ static const struct CaptureStar sCaptureStars[] =
 #define TAG_PARTICLES_HEAVYBALL   65050
 #define TAG_PARTICLES_DREAMBALL   65051
 #define TAG_PARTICLES_SAFARIBALL  65052
-#define TAG_PARTICLES_SPORTBALL   65053
-#define TAG_PARTICLES_PARKBALL    65054
-#define TAG_PARTICLES_WINGBALL   65055
+#define TAG_PARTICLES_AQUABALL    65053
+#define TAG_PARTICLES_MAGMABALL   65054
+#define TAG_PARTICLES_WINGBALL    65055
 #define TAG_PARTICLES_CHERISHBALL 65056
 
 static const struct CompressedSpriteSheet sBallParticleSpriteSheets[] =
@@ -181,9 +181,9 @@ static const struct CompressedSpriteSheet sBallParticleSpriteSheets[] =
     [BALL_HEAVY]    = {gBattleAnimSpriteGfx_Particles2,     0x100, TAG_PARTICLES_HEAVYBALL},
     [BALL_DREAM]    = {gBattleAnimSpriteGfx_Particles,      0x100, TAG_PARTICLES_DREAMBALL},
     [BALL_SAFARI]   = {gBattleAnimSpriteGfx_Particles,      0x100, TAG_PARTICLES_SAFARIBALL},
-    [BALL_SPORT]    = {gBattleAnimSpriteGfx_Particles,      0x100, TAG_PARTICLES_SPORTBALL},
-    [BALL_PARK]     = {gBattleAnimSpriteGfx_Particles,      0x100, TAG_PARTICLES_PARKBALL},
-    [BALL_WING]    =  {gBattleAnimSpriteGfx_Particles2,     0x100, TAG_PARTICLES_WINGBALL},
+    [BALL_AQUA]     = {gBattleAnimSpriteGfx_Particles2,     0x100, TAG_PARTICLES_AQUABALL},
+    [BALL_MAGMA]    = {gBattleAnimSpriteGfx_Particles2,     0x100, TAG_PARTICLES_MAGMABALL},
+    [BALL_WING]     = {gBattleAnimSpriteGfx_Particles2,     0x100, TAG_PARTICLES_WINGBALL},
     [BALL_CHERISH]  = {gBattleAnimSpriteGfx_Particles2,     0x100, TAG_PARTICLES_CHERISHBALL},
 };
 
@@ -212,9 +212,9 @@ static const struct CompressedSpritePalette sBallParticlePalettes[] =
     [BALL_HEAVY]    = {gBattleAnimSpritePal_Particles2,     TAG_PARTICLES_HEAVYBALL},
     [BALL_DREAM]    = {gBattleAnimSpritePal_CircleImpact,   TAG_PARTICLES_DREAMBALL},
     [BALL_SAFARI]   = {gBattleAnimSpritePal_CircleImpact,   TAG_PARTICLES_SAFARIBALL},
-    [BALL_SPORT]    = {gBattleAnimSpritePal_CircleImpact,   TAG_PARTICLES_SPORTBALL},
-    [BALL_PARK]     = {gBattleAnimSpritePal_CircleImpact,   TAG_PARTICLES_PARKBALL},
-    [BALL_WING]    =  {gBattleAnimSpritePal_CircleImpact,   TAG_PARTICLES_WINGBALL},
+    [BALL_AQUA]     = {gBattleAnimSpritePal_Particles2,     TAG_PARTICLES_AQUABALL},
+    [BALL_MAGMA]    = {gBattleAnimSpritePal_Particles2,     TAG_PARTICLES_MAGMABALL},
+    [BALL_WING]     = {gBattleAnimSpritePal_Particles2,     TAG_PARTICLES_WINGBALL},
     [BALL_CHERISH]  = {gBattleAnimSpritePal_Particles2,     TAG_PARTICLES_CHERISHBALL},
 };
 
@@ -295,9 +295,9 @@ static const u8 sBallParticleAnimNums[POKEBALL_COUNT] =
     [BALL_HEAVY]   = 0,
     [BALL_DREAM]   = 5,
     [BALL_SAFARI]  = 0,
-    [BALL_SPORT]   = 0,
-    [BALL_PARK]    = 5,
-    [BALL_WING]   = 0,
+    [BALL_AQUA]    = 1,
+    [BALL_MAGMA]   = 3,
+    [BALL_WING]    = 0,
     [BALL_CHERISH] = 0,
 };
 
@@ -327,8 +327,8 @@ static const TaskFunc sBallParticleAnimationFuncs[POKEBALL_COUNT] =
     [BALL_HEAVY]   = GreatBallOpenParticleAnimation,
     [BALL_DREAM]   = UltraBallOpenParticleAnimation,
     [BALL_SAFARI]  = SafariBallOpenParticleAnimation,
-    [BALL_SPORT]   = UltraBallOpenParticleAnimation,
-    [BALL_PARK]    = UltraBallOpenParticleAnimation,
+    [BALL_AQUA]   = UltraBallOpenParticleAnimation,
+    [BALL_MAGMA]    = UltraBallOpenParticleAnimation,
     [BALL_WING]    = GreatBallOpenParticleAnimation,
     [BALL_CHERISH] = MasterBallOpenParticleAnimation,
 };
@@ -542,18 +542,18 @@ static const struct SpriteTemplate sBallParticleSpriteTemplates[POKEBALL_COUNT] 
         .affineAnims = gDummySpriteAffineAnimTable,
         .callback = SpriteCallbackDummy,
     },
-    [BALL_SPORT] = {
-        .tileTag = TAG_PARTICLES_SPORTBALL,
-        .paletteTag = TAG_PARTICLES_SPORTBALL,
+    [BALL_AQUA] = {
+        .tileTag = TAG_PARTICLES_AQUABALL,
+        .paletteTag = TAG_PARTICLES_AQUABALL,
         .oam = &gOamData_AffineOff_ObjNormal_8x8,
         .anims = sAnims_BallParticles,
         .images = NULL,
         .affineAnims = gDummySpriteAffineAnimTable,
         .callback = SpriteCallbackDummy,
     },
-    [BALL_PARK] = {
-        .tileTag = TAG_PARTICLES_PARKBALL,
-        .paletteTag = TAG_PARTICLES_PARKBALL,
+    [BALL_MAGMA] = {
+        .tileTag = TAG_PARTICLES_MAGMABALL,
+        .paletteTag = TAG_PARTICLES_MAGMABALL,
         .oam = &gOamData_AffineOff_ObjNormal_8x8,
         .anims = sAnims_BallParticles,
         .images = NULL,
@@ -606,8 +606,8 @@ const u16 gBallOpenFadeColors[] =
     [BALL_HEAVY] = RGB(7, 11, 20),
     [BALL_DREAM] = RGB(31, 31, 15),
     [BALL_SAFARI] = RGB(23, 30, 20),
-    [BALL_SPORT] = RGB(31, 31, 15),
-    [BALL_PARK] = RGB(31, 31, 15),
+    [BALL_AQUA] = RGB(0, 0, 18),
+    [BALL_MAGMA] = RGB(21, 0, 0),
     [BALL_WING] = RGB(5, 25, 31),
     [BALL_CHERISH] = RGB(25, 4, 3),
 };
@@ -993,10 +993,10 @@ u8 ItemIdToBallId(u16 ballItem)
         return BALL_DREAM;
     case ITEM_SAFARI_BALL:
         return BALL_SAFARI;
-    case ITEM_SPORT_BALL:
-        return BALL_SPORT;
-    case ITEM_PARK_BALL:
-        return BALL_PARK;
+    case ITEM_AQUA_BALL:
+        return BALL_AQUA;
+    case ITEM_MAGMA_BALL:
+        return BALL_MAGMA;
     case ITEM_WING_BALL:
         return BALL_WING;
     case ITEM_CHERISH_BALL:

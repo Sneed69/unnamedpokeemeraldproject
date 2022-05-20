@@ -13610,7 +13610,7 @@ static void Cmd_handleballthrow(void)
         case ITEM_GREAT_BALL:
         case ITEM_SAFARI_BALL:
         #ifdef ITEM_EXPANSION
-        case ITEM_SPORT_BALL:
+        case ITEM_AQUA_BALL:
         #endif
             ballMultiplier = 15;
         case ITEM_NET_BALL:
