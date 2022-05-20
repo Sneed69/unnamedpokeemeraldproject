@@ -607,11 +607,12 @@ struct BattleStruct
     u8 quickClawBattlerId;
     struct StolenItem itemStolen[PARTY_SIZE];  // Player's team that had items stolen (two bytes per party member)
     u8 blunderPolicy:1; // should blunder policy activate
+    bool8 hasShownExpShareMessage:1;
     u8 ballSpriteIds[2];    // item gfx, window gfx
     u8 stickyWebUser;
     u8 appearedInBattle; // Bitfield to track which Pokemon appeared in battle. Used for Burmy's form change
     u8 skyDropTargets[MAX_BATTLERS_COUNT]; // For Sky Drop, to account for if multiple Pokemon use Sky Drop in a double battle.
-    bool8 hasShownExpShareMessage:1;
+    bool8 nineLivesUsed[PARTY_SIZE][2];
 };
 
 #define F_DYNAMIC_TYPE_1 (1 << 6)
@@ -935,6 +936,5 @@ extern u8 gLastUsedBall;
 extern u16 gLastThrownBall;
 extern bool8 gSwapDamageCategory; // Photon Geyser, Shell Side Arm, Light That Burns the Sky
 extern u8 gPartyCriticalHits[PARTY_SIZE];
-extern bool8 gNineLivesUsed[PARTY_SIZE];
 
 #endif // GUARD_BATTLE_H

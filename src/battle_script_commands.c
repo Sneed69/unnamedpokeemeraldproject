@@ -1955,7 +1955,8 @@ static void Cmd_adjustdamage(void)
 {
     u8 holdEffect, param;
     u32 moveType;
-    u16 partySlot = gBattlerPartyIndexes[gBattlerTarget];
+    u32 partyIndex = gBattlerPartyIndexes[gBattlerTarget];
+    u32 side = GetBattlerSide(gBattlerTarget);
 
     GET_MOVE_TYPE(gCurrentMove, moveType);
 
@@ -1986,7 +1987,7 @@ static void Cmd_adjustdamage(void)
         RecordAbilityBattle(gBattlerTarget, ABILITY_STURDY);
         gSpecialStatuses[gBattlerTarget].sturdied = TRUE;
     }
-    else if (GetBattlerAbility(gBattlerTarget) == ABILITY_NINE_LIVES && !gNineLivesUsed[partySlot])
+    else if (GetBattlerAbility(gBattlerTarget) == ABILITY_NINE_LIVES && !gBattleStruct->nineLivesUsed[partyIndex][side])
     {
         gBattleMoveDamage /= 10;
         if (gBattleMoveDamage == 0)
@@ -1994,7 +1995,7 @@ static void Cmd_adjustdamage(void)
         if (gBattleMons[gBattlerTarget].hp > gBattleMoveDamage)
         {
             gMoveResultFlags |= MOVE_RESULT_STURDIED;
-            gNineLivesUsed[partySlot] = TRUE;
+            gBattleStruct->nineLivesUsed[partyIndex][side] = TRUE;
             gBattlerAbility = gBattlerTarget;
             RecordAbilityBattle(gBattlerTarget, ABILITY_NINE_LIVES);
             gLastUsedAbility = ABILITY_NINE_LIVES;
