@@ -334,7 +334,7 @@
 #define TRAINER_CLASS_SWIMMER_F      0x2d
 #define TRAINER_CLASS_TWINS          0x2e
 #define TRAINER_CLASS_SAILOR         0x2f
-#define TRAINER_CLASS_COOLTRAINER_2  0x30 // Used for only one trainer.
+#define TRAINER_CLASS_RS_PROTAG      0x30
 #define TRAINER_CLASS_MAGMA_ADMIN    0x31
 #define TRAINER_CLASS_RIVAL          0x32
 #define TRAINER_CLASS_BUG_CATCHER    0x33
@@ -351,8 +351,7 @@
 #define TRAINER_CLASS_FACTORY_HEAD   0x3e
 #define TRAINER_CLASS_PIKE_QUEEN     0x3f
 #define TRAINER_CLASS_PYRAMID_KING   0x40
-#define TRAINER_CLASS_RS_PROTAG      0x41
-#define TRAINER_CLASS_COUNT          TRAINER_CLASS_RS_PROTAG + 1
+#define TRAINER_CLASS_COUNT          TRAINER_CLASS_PYRAMID_KING + 1
 
 #define TRAINER_ENCOUNTER_MUSIC_MALE         0 // standard male encounter music
 #define TRAINER_ENCOUNTER_MUSIC_FEMALE       1 // standard female encounter music
