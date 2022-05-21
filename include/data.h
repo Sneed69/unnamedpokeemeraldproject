@@ -57,7 +57,6 @@ struct Trainer
     u8 encounterMusic_gender; // last bit is gender
     u8 trainerPic;
     u8 trainerName[12];
-    u16 items[4];
     bool8 doubleBattle;
     u32 aiFlags;
     u8 partySize;

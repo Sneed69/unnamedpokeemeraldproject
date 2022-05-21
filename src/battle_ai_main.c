@@ -98,34 +98,6 @@ static s16 (*const sBattleAiFuncTable[])(u8, u8, u16, s16) =
     [31] = AI_FirstBattle,          // AI_FLAG_FIRST_BATTLE
 };
 
-// Functions
-void BattleAI_SetupItems(void)
-{
-    s32 i;
-    u8 *data = (u8 *)BATTLE_HISTORY;
-
-    for (i = 0; i < sizeof(struct BattleHistory); i++)
-        data[i] = 0;
-
-    // Items are allowed to use in ONLY trainer battles.
-    if ((gBattleTypeFlags & BATTLE_TYPE_TRAINER)
-        && !(gBattleTypeFlags & (BATTLE_TYPE_LINK | BATTLE_TYPE_SAFARI | BATTLE_TYPE_BATTLE_TOWER
-                               | BATTLE_TYPE_EREADER_TRAINER | BATTLE_TYPE_SECRET_BASE | BATTLE_TYPE_FRONTIER
-                               | BATTLE_TYPE_INGAME_PARTNER | BATTLE_TYPE_RECORDED_LINK)
-            )
-       )
-    {
-        for (i = 0; i < MAX_TRAINER_ITEMS; i++)
-        {
-            if (gTrainers[gTrainerBattleOpponent_A].items[i] != 0)
-            {
-                BATTLE_HISTORY->trainerItems[BATTLE_HISTORY->itemsNo] = gTrainers[gTrainerBattleOpponent_A].items[i];
-                BATTLE_HISTORY->itemsNo++;
-            }
-        }
-    }
-}
-
 static u32 GetWildAiFlags(void)
 {
     u32 flags = AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_TRY_TO_FAINT | AI_FLAG_CHECK_VIABILITY | AI_FLAG_HP_AWARE; 
