@@ -55,6 +55,7 @@
 #include "window.h"
 #include "game_time.h"
 #include "daycare.h"
+#include "overworld.h"
 #include "constants/abilities.h"
 #include "constants/battle_config.h"
 #include "constants/battle_move_effects.h"
@@ -5608,5 +5609,5 @@ void DestroyTypeIcon(void)
 
 bool32 IsWildMonSmart(void)
 {
-    return (B_SMART_WILD_AI_FLAG != 0 && FlagGet(B_SMART_WILD_AI_FLAG));
+    return (FlagGet(B_SMART_WILD_AI_FLAG) || gBattleTypeFlags & BATTLE_TYPE_LEGENDARY || GetCurrentRegionMapSectionId() == MAPSEC_VICTORY_ROAD);
 }

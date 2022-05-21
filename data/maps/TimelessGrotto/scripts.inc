@@ -29,14 +29,12 @@ TimelessGrotto_EventScript_Regigigas::
 	playmoncry SPECIES_REGIGIGAS, CRY_MODE_ENCOUNTER
 	delay 40
 	waitmoncry
-	setflag B_SMART_WILD_AI_FLAG
 	settotemboost B_POSITION_OPPONENT_LEFT, 1, 4, 1, 1, 4
 	setwildbattle SPECIES_REGIGIGAS, 70
 	setflag FLAG_SYS_CTRL_OBJ_DELETE
 	special StartRegiBattle
 	waitstate
 	clearflag FLAG_SYS_CTRL_OBJ_DELETE
-	clearflag B_SMART_WILD_AI_FLAG
 	specialvar VAR_RESULT, GetBattleOutcome
 	goto_if_eq VAR_RESULT, B_OUTCOME_WON, TimelessGrotto_EventScript_DefeatedRegigigas
 	goto_if_eq VAR_RESULT, B_OUTCOME_RAN, TimelessGrotto_EventScript_RanFromRegigigas
