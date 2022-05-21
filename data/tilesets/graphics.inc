@@ -1741,3 +1741,11 @@ gTilesetPalOverride_Petalburg08::
 .align 2
 gTilesetPalOverride_Rustboro09::
 	.incbin "data/tilesets/secondary/rustboro/palettes/09_over.gbapal"
+
+.align 2
+gTilesetPalOverride_Lavaridge06::
+	.incbin "data/tilesets/secondary/lavaridge/palettes/06_over.gbapal"
+
+.align 2
+gTilesetPalOverride_Lavaridge10::
+	.incbin "data/tilesets/secondary/lavaridge/palettes/10_over.gbapal"

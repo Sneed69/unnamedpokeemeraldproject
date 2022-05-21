@@ -80,7 +80,7 @@ gTileset_Lavaridge::
 	.4byte gMetatiles_Lavaridge
 	.4byte gMetatileAttributes_Lavaridge
 	.4byte InitTilesetAnim_Lavaridge
-	.4byte NULL @ palette overrides
+	.4byte gTilesetPalOverrides_Lavaridge @ palette overrides
 
 	.align 2
 gTileset_Fallarbor::
