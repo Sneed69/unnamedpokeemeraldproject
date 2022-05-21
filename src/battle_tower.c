@@ -3130,13 +3130,6 @@ static void FillPartnerParty(u16 trainerId)
                     SetMonData(&gPlayerParty[i + 3], MON_DATA_HP_IV + j, &partyData[i].ivs[j]);
                 }
             }
-            else if (partyData[i].iv == WORST_IVS)
-            {
-                for (j = 0; j < NUM_STATS; j++)
-                {
-                    SetMonData(&gPlayerParty[i + 3], MON_DATA_HP_IV + j, 0);
-                }
-            }
 
 // Set effort values regardless.  Default is 0.
             for (j = 0; j < NUM_STATS; j++)
