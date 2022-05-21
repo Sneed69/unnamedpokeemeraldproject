@@ -407,6 +407,18 @@ const struct TrainerMoney gTrainerMoneyTable[] =
     {0xFF, 5}, // Any trainer class not listed above uses this
 };
 
+static const u8 sTrainerClassBallTable[TRAINER_CLASS_COUNT] =
+{
+    [TRAINER_CLASS_AQUA_ADMIN] = ITEM_AQUA_BALL,
+    [TRAINER_CLASS_AQUA_LEADER] = ITEM_AQUA_BALL,
+    [TRAINER_CLASS_TEAM_AQUA] = ITEM_AQUA_BALL,
+    [TRAINER_CLASS_MAGMA_ADMIN] = ITEM_MAGMA_BALL,
+    [TRAINER_CLASS_MAGMA_LEADER] = ITEM_MAGMA_BALL,
+    [TRAINER_CLASS_TEAM_MAGMA] = ITEM_MAGMA_BALL,
+    [TRAINER_CLASS_BUG_MANIAC] = ITEM_NET_BALL,
+    [TRAINER_CLASS_BIRD_KEEPER] = ITEM_WING_BALL,
+};
+
 #include "data/text/abilities.h"
 
 static void (* const sTurnActionsFuncsTable[])(void) =
@@ -620,18 +632,6 @@ static void CB2_InitBattleInternal(void)
         if (species != SPECIES_EGG && hp == 0)                      \
             (flags) |= 3 << (i) * 2;                                \
     }
-
-static const u8 sTrainerClassBallTable[TRAINER_CLASS_COUNT] =
-{
-    [TRAINER_CLASS_AQUA_ADMIN] = ITEM_AQUA_BALL,
-    [TRAINER_CLASS_AQUA_LEADER] = ITEM_AQUA_BALL,
-    [TRAINER_CLASS_TEAM_AQUA] = ITEM_AQUA_BALL,
-    [TRAINER_CLASS_MAGMA_ADMIN] = ITEM_MAGMA_BALL,
-    [TRAINER_CLASS_MAGMA_LEADER] = ITEM_MAGMA_BALL,
-    [TRAINER_CLASS_TEAM_MAGMA] = ITEM_MAGMA_BALL,
-    [TRAINER_CLASS_BUG_MANIAC] = ITEM_NET_BALL,
-    [TRAINER_CLASS_BIRD_KEEPER] = ITEM_WING_BALL,
-};
 
 // For Vs Screen at link battle start
 static void BufferPartyVsScreenHealth_AtStart(void)
