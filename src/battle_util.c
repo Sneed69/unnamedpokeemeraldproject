@@ -9267,6 +9267,8 @@ s32 CalculateMoveDamage(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, s32
 static void MulByTypeEffectiveness(u16 *modifier, u16 move, u8 moveType, u8 battlerDef, u8 defType, u8 battlerAtk, bool32 recordAbilities)
 {
     u16 mod = GetTypeModifier(moveType, defType);
+    u32 defAbility = GetBattlerAbility(battlerDef);
+    u32 atkAbility = GetBattlerAbility(battlerAtk);
 
     if (mod == UQ_4_12(0.0) && GetBattlerHoldEffect(battlerDef, TRUE) == HOLD_EFFECT_RING_TARGET)
     {
@@ -9278,7 +9280,7 @@ static void MulByTypeEffectiveness(u16 *modifier, u16 move, u8 moveType, u8 batt
     {
         mod = UQ_4_12(1.0);
     }
-    else if ((moveType == TYPE_FIGHTING || moveType == TYPE_NORMAL) && defType == TYPE_GHOST && GetBattlerAbility(battlerAtk) == ABILITY_SCRAPPY && mod == UQ_4_12(0.0))
+    else if ((moveType == TYPE_FIGHTING || moveType == TYPE_NORMAL) && defType == TYPE_GHOST && atkAbility == ABILITY_SCRAPPY && mod == UQ_4_12(0.0))
     {
         mod = UQ_4_12(1.0);
         if (recordAbilities)
@@ -9287,14 +9289,14 @@ static void MulByTypeEffectiveness(u16 *modifier, u16 move, u8 moveType, u8 batt
 
     if (moveType == TYPE_PSYCHIC && defType == TYPE_DARK && gStatuses3[battlerDef] & STATUS3_MIRACLE_EYED && mod == UQ_4_12(0.0))
         mod = UQ_4_12(1.0);
-    else if (moveType == TYPE_PSYCHIC && defType == TYPE_DARK && GetBattlerAbility(battlerAtk) == ABILITY_TRANSCENDENCE && mod == UQ_4_12(0.0))
+    else if (moveType == TYPE_PSYCHIC && defType == TYPE_DARK && atkAbility == ABILITY_TRANSCENDENCE && mod == UQ_4_12(0.0))
     {
         mod = UQ_4_12(1.0);
         if (recordAbilities)
             RecordAbilityBattle(battlerAtk, ABILITY_TRANSCENDENCE);
     }
 
-    if (moveType == TYPE_ELECTRIC && defType == TYPE_GROUND && GetBattlerAbility(battlerAtk) == ABILITY_IONIZATION && mod == UQ_4_12(0.0))
+    if (moveType == TYPE_ELECTRIC && defType == TYPE_GROUND && atkAbility == ABILITY_IONIZATION && mod == UQ_4_12(0.0))
     {
         mod = UQ_4_12(1.0);
         if (recordAbilities)
@@ -9315,14 +9317,20 @@ static void MulByTypeEffectiveness(u16 *modifier, u16 move, u8 moveType, u8 batt
             mod = UQ_4_12(1.0);
     }
 
-    if (GetBattlerAbility(battlerDef) == ABILITY_UNBREAKABLE && mod >= UQ_4_12(2.0) && gBattleMoves[move].split == SPLIT_PHYSICAL)
+    if (defAbility == ABILITY_UNBREAKABLE && mod >= UQ_4_12(2.0) && gBattleMoves[move].split == SPLIT_PHYSICAL)
+    {
         mod = UQ_4_12(1.0);
-    if (moveType == TYPE_GROUND && GetBattlerAbility(battlerDef) == ABILITY_TECTONIC_BALANCE && mod >= UQ_4_12(2.0))
+        if (recordAbilities)
+            RecordAbilityBattle(battlerDef, ABILITY_UNBREAKABLE);
+    }
+    else if ((moveType == TYPE_GROUND && defAbility == ABILITY_TECTONIC_BALANCE && mod >= UQ_4_12(2.0))
+            || (moveType == TYPE_FIRE && defAbility == ABILITY_ABSOLUTE_ZERO && mod >= UQ_4_12(2.0))
+            || (moveType == TYPE_FIGHTING && defAbility == ABILITY_PERFECT_ALLOY && mod >= UQ_4_12(2.0)))
+    {
         mod = UQ_4_12(0.5);
-    if (moveType == TYPE_FIRE && GetBattlerAbility(battlerDef) == ABILITY_ABSOLUTE_ZERO && mod >= UQ_4_12(2.0))
-        mod = UQ_4_12(0.5);
-    if (moveType == TYPE_FIGHTING && GetBattlerAbility(battlerDef) == ABILITY_PERFECT_ALLOY && mod >= UQ_4_12(2.0))
-        mod = UQ_4_12(0.5);
+        if (recordAbilities)
+            RecordAbilityBattle(battlerDef, defAbility);
+    }
 
     MulModifier(modifier, mod);
 }
