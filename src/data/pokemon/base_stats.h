@@ -3301,7 +3301,7 @@ const struct BaseStats gBaseStats[] =
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroup1 = EGG_GROUP_FIELD,
         .eggGroup2 = EGG_GROUP_FIELD,
-        .abilities = {ABILITY_MAGIC_BOUNCE, ABILITY_TRANSCENDENCE},
+        .abilities = {ABILITY_MAGIC_BOUNCE, ABILITY_SOLAR_POWER},
         .bodyColor = BODY_COLOR_PURPLE,
         .noFlip = FALSE,
     },
@@ -3357,10 +3357,10 @@ const struct BaseStats gBaseStats[] =
     [SPECIES_GLACEON] =
     {
         .baseHP        = 65,
-        .baseAttack    = 50,
+        .baseAttack    = 65,
         .baseDefense   = 110,
-        .baseSpeed     = 85,
-        .baseSpAttack  = 130,
+        .baseSpeed     = 95,
+        .baseSpAttack  = 120,
         .baseSpDefense = 95,
         .type1 = TYPE_ICE,
         .type2 = TYPE_ICE,
@@ -3381,11 +3381,11 @@ const struct BaseStats gBaseStats[] =
     [SPECIES_SYLVEON] =
     {
         .baseHP        = 95,
-        .baseAttack    = 50,
+        .baseAttack    = 65,
         .baseDefense   = 75,
         .baseSpeed     = 60,
         .baseSpAttack  = 125,
-        .baseSpDefense = 130,
+        .baseSpDefense = 115,
         .type1 = TYPE_FAIRY,
         .type2 = TYPE_FAIRY,
         .catchRate = 45,
