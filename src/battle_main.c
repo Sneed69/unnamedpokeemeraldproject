@@ -4545,18 +4545,42 @@ u32 GetBattlerTotalSpeedStat(u8 battlerId)
         else if (ability == ABILITY_SLUSH_RUSH  && gBattleWeather & B_WEATHER_HAIL)
             speed *= 2;
     }
+    
+    switch (GetBattlerAbility(BATTLE_PARTNER(battlerId)))
+    {
+    case ABILITY_FLOWER_GIFT:
+        if (gBattleMons[BATTLE_PARTNER(battlerId)].species == SPECIES_CHERRIM && IsBattlerWeatherAffected(BATTLE_PARTNER(battlerId), B_WEATHER_SUN))
+            speed = (speed * 150) / 100;
+        break;
+    }
 
-    // other abilities
-    if (ability == ABILITY_QUICK_FEET && gBattleMons[battlerId].status1 & STATUS1_ANY)
-        speed = (speed * 150) / 100;
-    else if (ability == ABILITY_TOXIC_BOOST && gBattleMons[battlerId].status1 & STATUS1_PSN_ANY)
-        speed = (speed * 150) / 100;
-    else if (ability == ABILITY_FLARE_BOOST && gBattleMons[battlerId].status1 & STATUS1_BURN)
-        speed = (speed * 150) / 100;
-    else if (ability == ABILITY_SURGE_SURFER && gFieldStatuses & STATUS_FIELD_ELECTRIC_TERRAIN)
-        speed *= 2;
-    else if (ability == ABILITY_SLOW_START && gDisableStructs[battlerId].slowStartTimer != 0)
-        speed /= 2;
+    switch (ability)
+    {
+    case ABILITY_FLOWER_GIFT:
+        if (gBattleMons[battlerId].species == SPECIES_CHERRIM && IsBattlerWeatherAffected(battlerId, B_WEATHER_SUN))
+            speed = (speed * 150) / 100;
+        break;
+    case ABILITY_QUICK_FEET:
+        if (gBattleMons[battlerId].status1 & STATUS1_ANY)
+            speed = (speed * 150) / 100;
+        break;
+    case ABILITY_TOXIC_BOOST:
+        if (gBattleMons[battlerId].status1 & STATUS1_PSN_ANY)
+            speed = (speed * 150) / 100;
+        break;
+    case ABILITY_FLARE_BOOST:
+        if (gBattleMons[battlerId].status1 & STATUS1_BURN)
+            speed = (speed * 150) / 100;
+        break;
+    case ABILITY_SURGE_SURFER:
+        if (gFieldStatuses & STATUS_FIELD_ELECTRIC_TERRAIN)
+            speed = (speed * 150) / 100;
+        break;
+    case ABILITY_SLOW_START:
+        if (gDisableStructs[battlerId].slowStartTimer != 0)
+            speed = (speed * 150) / 100;
+        break;
+    }
 
     // stat stages
     speed *= gStatStageRatios[gBattleMons[battlerId].statStages[STAT_SPEED]][0];
