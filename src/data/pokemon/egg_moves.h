@@ -1126,6 +1126,7 @@ const u16 gEggMoves[] = {
     egg_moves(HERACROSS,
         MOVE_HARDEN,
         MOVE_BIDE,
+        MOVE_REVERSAL,
         MOVE_FLAIL,
         MOVE_REVENGE,
         MOVE_PURSUIT,

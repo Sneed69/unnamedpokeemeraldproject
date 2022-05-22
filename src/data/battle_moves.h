@@ -4923,7 +4923,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
     {
         .effect = EFFECT_WEATHER_BALL,
         .power = 50,
-        .type = TYPE_NORMAL,
+        .type = TYPE_FLYING,
         .accuracy = 100,
         .pp = 16,
         .secondaryEffectChance = 0,
