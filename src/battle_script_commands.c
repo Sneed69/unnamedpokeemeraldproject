@@ -9605,6 +9605,19 @@ static void Cmd_various(void)
     case VARIOUS_SWAP_SIDE_STATUSES:
         CourtChangeSwapSideStatuses();
         break;
+    case VARIOUS_GIVE_DROPPED_ITEMS:
+        gLastUsedItem = gBattleResources->battleHistory->heldItems[gActiveBattler];
+        if (gLastUsedItem 
+            && !(gBattleTypeFlags & (BATTLE_TYPE_TRAINER
+                                    | BATTLE_TYPE_FIRST_BATTLE
+                                    | BATTLE_TYPE_WALLY_TUTORIAL)))
+        {
+            AddBagItem(gLastUsedItem, 1);
+            BattleScriptPush(gBattlescriptCurrInstr + 3);
+            gBattlescriptCurrInstr = BattleScript_ItemDropped;
+            return;
+        }
+        break;
     } // End of switch (gBattlescriptCurrInstr[2])
 
     gBattlescriptCurrInstr += 3;
