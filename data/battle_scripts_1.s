@@ -9790,7 +9790,7 @@ BattleScript_MagicianActivates::
 	return
 
 BattleScript_ItemDropped::
-	playse SE_BALL_BOUNCE_1
+	playse SE_ITEMFINDER
 	printstring STRINGID_PKMNDROPPEDITEM
 	waitmessage B_WAIT_TIME_LONG
 	return

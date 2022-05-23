@@ -1,5 +1,5 @@
 gText_ObtainedTheItem::
-	.string "Obtained the {STR_VAR_2}!$"
+	.string "{STR_VAR_2} obtained!$"
 	
 gText_ObtainedTMHM::
 	.string "Obtained {STR_VAR_1}\n"
@@ -13,7 +13,7 @@ gText_PutItemInPocket::
 	.string "in {POSSESSIVE} bag's {STR_VAR_3} pocket.$"
 
 gText_PlayerFoundOneItem::
-	.string "{PLAYER} found one {STR_VAR_2}!$"
+	.string "{STR_VAR_2} found!$"
 
 gText_TooBadBagIsFull::
 	.string "Too bad!\n"
