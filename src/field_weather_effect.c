@@ -17,8 +17,8 @@
 #include "palette.h"
 
 // EWRAM
-EWRAM_DATA static u8 gCurrentAbnormalWeather = 0;
-EWRAM_DATA static u16 gUnusedWeatherRelated = 0;
+EWRAM_DATA static u8 sCurrentAbnormalWeather = 0;
+EWRAM_DATA static u16 sUnusedWeatherRelated = 0;
 
 // CONST
 const u16 gCloudsWeatherPalette[] = INCBIN_U16("graphics/weather/cloud.gbapal");
@@ -1821,7 +1821,7 @@ static void UpdateFogDiagonalMovement(void)
     gWeatherPtr->fogDPosY = gSpriteCoordOffsetY + gWeatherPtr->fogDYOffset;
 }
 
-static const struct SpriteSheet gFogDiagonalSpriteSheet =
+static const struct SpriteSheet sFogDiagonalSpriteSheet =
 {
     .data = gWeatherFogDiagonalTiles,
     .size = sizeof(gWeatherFogDiagonalTiles),
@@ -1876,7 +1876,7 @@ static void CreateFogDiagonalSprites(void)
 
     if (!gWeatherPtr->fogDSpritesCreated)
     {
-        fogDiagonalSpriteSheet = gFogDiagonalSpriteSheet;
+        fogDiagonalSpriteSheet = sFogDiagonalSpriteSheet;
         LoadSpriteSheet(&fogDiagonalSpriteSheet);
         for (i = 0; i < NUM_FOG_DIAGONAL_SPRITES; i++)
         {
@@ -2435,8 +2435,8 @@ static void UpdateBubbleSprite(struct Sprite *sprite)
 // Unused function.
 static void UnusedSetCurrentAbnormalWeather(u32 a0, u32 a1)
 {
-    gCurrentAbnormalWeather = a0;
-    gUnusedWeatherRelated = a1;
+    sCurrentAbnormalWeather = a0;
+    sUnusedWeatherRelated = a1;
 }
 
 static void Task_DoAbnormalWeather(u8 taskId)
@@ -2449,7 +2449,7 @@ static void Task_DoAbnormalWeather(u8 taskId)
         if (data[15]-- <= 0)
         {
             SetNextWeather(data[1]);
-            gCurrentAbnormalWeather = data[1];
+            sCurrentAbnormalWeather = data[1];
             data[15] = 600;
             data[0]++;
         }
@@ -2458,7 +2458,7 @@ static void Task_DoAbnormalWeather(u8 taskId)
         if (data[15]-- <= 0)
         {
             SetNextWeather(data[2]);
-            gCurrentAbnormalWeather = data[2];
+            sCurrentAbnormalWeather = data[2];
             data[15] = 600;
             data[0] = 0;
         }
@@ -2472,19 +2472,19 @@ static void CreateAbnormalWeatherTask(void)
     s16 *data = gTasks[taskId].data;
 
     data[15] = 600;
-    if (gCurrentAbnormalWeather == WEATHER_DOWNPOUR)
+    if (sCurrentAbnormalWeather == WEATHER_DOWNPOUR)
     {
         data[1] = WEATHER_DROUGHT;
         data[2] = WEATHER_DOWNPOUR;
     }
-    else if (gCurrentAbnormalWeather == WEATHER_DROUGHT)
+    else if (sCurrentAbnormalWeather == WEATHER_DROUGHT)
     {
         data[1] = WEATHER_DOWNPOUR;
         data[2] = WEATHER_DROUGHT;
     }
     else
     {
-        gCurrentAbnormalWeather = WEATHER_DOWNPOUR;
+        sCurrentAbnormalWeather = WEATHER_DOWNPOUR;
         data[1] = WEATHER_DROUGHT;
         data[2] = WEATHER_DOWNPOUR;
     }
@@ -2532,13 +2532,13 @@ void DoCurrentWeather(void)
     {
         if (!FuncIsActiveTask(Task_DoAbnormalWeather))
             CreateAbnormalWeatherTask();
-        weather = gCurrentAbnormalWeather;
+        weather = sCurrentAbnormalWeather;
     }
     else
     {
         if (FuncIsActiveTask(Task_DoAbnormalWeather))
             DestroyTask(FindTaskIdByFunc(Task_DoAbnormalWeather));
-        gCurrentAbnormalWeather = WEATHER_DOWNPOUR;
+        sCurrentAbnormalWeather = WEATHER_DOWNPOUR;
     }
     SetNextWeather(weather);
 }
@@ -2551,13 +2551,13 @@ void ResumePausedWeather(void)
     {
         if (!FuncIsActiveTask(Task_DoAbnormalWeather))
             CreateAbnormalWeatherTask();
-        weather = gCurrentAbnormalWeather;
+        weather = sCurrentAbnormalWeather;
     }
     else
     {
         if (FuncIsActiveTask(Task_DoAbnormalWeather))
             DestroyTask(FindTaskIdByFunc(Task_DoAbnormalWeather));
-        gCurrentAbnormalWeather = WEATHER_DOWNPOUR;
+        sCurrentAbnormalWeather = WEATHER_DOWNPOUR;
     }
     SetCurrentAndNextWeather(weather);
 }

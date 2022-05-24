@@ -609,7 +609,7 @@ static void BattleLoadMonSpriteGfx(struct Pokemon *mon, u32 battlerId, bool32 op
     if (species == SPECIES_CASTFORM || species == SPECIES_CHERRIM)
     {
         paletteOffset = 0x100 + battlerId * 16;
-        LZDecompressWram(lzPaletteData, gBattleStruct->castformPalette[CASTFORM_NORMAL]);
+        LZDecompressWram(lzPaletteData, gBattleStruct->castformPalette);
         LoadPalette(gBattleStruct->castformPalette[gBattleMonForms[battlerId]], paletteOffset, 0x20);
     }
 
@@ -930,7 +930,7 @@ void HandleSpeciesGfxDataChange(u8 battlerAtk, u8 battlerDef, bool8 castform, bo
         if (targetSpecies == SPECIES_CASTFORM || targetSpecies == SPECIES_CHERRIM)
         {
             gSprites[gBattlerSpriteIds[battlerAtk]].anims = gMonFrontAnimsPtrTable[targetSpecies];
-            LZDecompressWram(lzPaletteData, gBattleStruct->castformPalette[CASTFORM_NORMAL]);
+            LZDecompressWram(lzPaletteData, gBattleStruct->castformPalette);
             LoadPalette(gBattleStruct->castformPalette[gBattleMonForms[battlerDef]], paletteOffset, 32);
         }
 
