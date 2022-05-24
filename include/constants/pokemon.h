@@ -418,7 +418,7 @@
 #define EVO_LEVEL_ABILITY_1               39     // Pokémon reaches the specified level and has the first ability.
 #define EVO_LEVEL_ABILITY_2               40     // Pokémon reaches the specified level and has the second ability.
 
-#define EVOS_PER_MON 10
+#define EVOS_PER_MON 8
 
 // Evolution 'modes,' for GetEvolutionTargetSpecies
 #define EVO_MODE_NORMAL            0
