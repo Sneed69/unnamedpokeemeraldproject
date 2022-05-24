@@ -267,6 +267,7 @@ static const u8 sAbsoluteZeroDescription[] = _("Inverts Fire weakness.");
 static const u8 sPerfectAlloyDescription[] = _("Inverts Fighting weakness.");
 static const u8 sTimelessMasterDescription[] = _("Ups & resists Regi types.");
 static const u8 sCondensedEnergyDescription[] = _("Gradually boosts Special.");
+static const u8 sOverturnDescription[] = _("Inverts type effectiveness.");
 
 #if B_EXPANDED_ABILITY_NAMES == TRUE
 const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
@@ -551,6 +552,7 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
     [ABILITY_PERFECT_ALLOY] = _("Perfect Alloy"),
     [ABILITY_MASTER_OF_THE_AGES] = _("Master of the Ages"),
     [ABILITY_CONDENSED_ENERGY] = _("Condensed Energy"),
+    [ABILITY_OVERTURN] = _("Overturn"),
 };
 #else   // 12 characters
 const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
@@ -1108,4 +1110,5 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
     [ABILITY_PERFECT_ALLOY] = sPerfectAlloyDescription,
     [ABILITY_MASTER_OF_THE_AGES] = sTimelessMasterDescription,
     [ABILITY_CONDENSED_ENERGY] = sCondensedEnergyDescription,
+    [ABILITY_OVERTURN] = sOverturnDescription,
 };

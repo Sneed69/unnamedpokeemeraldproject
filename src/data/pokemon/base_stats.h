@@ -13591,11 +13591,7 @@ const struct BaseStats gBaseStats[] =
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroup1 = EGG_GROUP_WATER_1,
         .eggGroup2 = EGG_GROUP_WATER_2,
-        #ifdef BATTLE_ENGINE
-            .abilities = {ABILITY_CONTRARY, ABILITY_SUCTION_CUPS, ABILITY_INFILTRATOR},
-        #else
-            .abilities = {ABILITY_NONE, ABILITY_SUCTION_CUPS},
-        #endif
+        .abilities = {ABILITY_CONTRARY, ABILITY_OVERTURN},
         .bodyColor = BODY_COLOR_BLUE,
         .noFlip = FALSE,
     },
@@ -13619,11 +13615,7 @@ const struct BaseStats gBaseStats[] =
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroup1 = EGG_GROUP_WATER_1,
         .eggGroup2 = EGG_GROUP_WATER_2,
-        #ifdef BATTLE_ENGINE
-            .abilities = {ABILITY_CONTRARY, ABILITY_SUCTION_CUPS, ABILITY_INFILTRATOR},
-        #else
-            .abilities = {ABILITY_NONE, ABILITY_SUCTION_CUPS},
-        #endif
+        .abilities = {ABILITY_CONTRARY, ABILITY_OVERTURN},
         .bodyColor = BODY_COLOR_BLUE,
         .noFlip = FALSE,
     },

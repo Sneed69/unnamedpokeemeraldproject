@@ -740,6 +740,7 @@ static const u8 sText_CantEscapeDueToUsedMove[] = _("{B_ATK_NAME_WITH_PREFIX} ca
 static const u8 sText_PkmnBecameWeakerToFire[] = _("{B_DEF_NAME_WITH_PREFIX} became\nweaker to fire!");
 static const u8 sText_PkmnAboutToBeAttackedByItsItem[] = _("{B_DEF_NAME_WITH_PREFIX} is about\nto be attacked by its {B_BUFF1}!");
 static const u8 sText_CantEscapeBecauseOfCurrentMove[] = _("{B_DEF_NAME_WITH_PREFIX} can no longer escape\nbecause of {B_CURRENT_MOVE}!");
+static const u8 sText_PkmnTurnedTheTables[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX} turns the tables!");
 static const u8 sText_NeutralizingGasEnters[] = _("Neutralizing Gas filled the area!");
 static const u8 sText_NeutralizingGasOver[] = _("The effects of Neutralizing\nGas wore off!");
 static const u8 sText_TeamGainedEXP[] = _("{B_PLAYER_NAME}'s Exp. Share\ntakes effect!\p");
@@ -1367,6 +1368,7 @@ const u8 *const gBattleStringsTable[BATTLESTRINGS_COUNT] =
     [STRINGID_PKMNGUARDWASNOTLOWERED - BATTLESTRINGS_TABLE_START] = sText_PkmnGuardNotLowered,
     [STRINGID_PKMNMAKESFAIRYMISS - BATTLESTRINGS_TABLE_START] = sText_PkmnMakesFairyMiss,
     [STRINGID_PKMNRAISEDICEPOWERWITH - BATTLESTRINGS_TABLE_START] = sText_PkmnRaisedIcePowerWith,
+    [STRINGID_OVERTURNENTERS - BATTLESTRINGS_TABLE_START] = sText_PkmnTurnedTheTables,
 };
 
 const u16 gMentalHerbCureStringIds[] =
@@ -1430,6 +1432,7 @@ const u16 gSwitchInAbilityStringIds[] =
     [B_MSG_SWITCHIN_CURIOUS_MEDICINE] = STRINGID_CURIOUSMEDICINEENTERS,
     [B_MSG_SWITCHIN_PASTEL_VEIL] = STRINGID_PASTELVEILENTERS,
     [B_MSG_SWITCHIN_NEUTRALIZING_GAS] = STRINGID_NEUTRALIZINGGASENTERS,
+    [B_MSG_SWITCHIN_OVERTURN] = STRINGID_OVERTURNENTERS,
 };
 
 const u16 gMissStringIds[] =
