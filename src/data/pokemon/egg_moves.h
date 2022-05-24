@@ -2541,6 +2541,7 @@ const u16 gEggMoves[] = {
         MOVE_YAWN,
         MOVE_HEAVY_SLAM,
         MOVE_SUCKER_PUNCH,
+        MOVE_DOUBLE_EDGE,
         MOVE_BURN_UP),
 
     egg_moves(OSHAWOTT,
@@ -2659,6 +2660,7 @@ const u16 gEggMoves[] = {
 
     egg_moves(ROGGENROLA,
         MOVE_MAGNITUDE,
+        MOVE_METEOR_BEAM,
         MOVE_CURSE,
         MOVE_AUTOTOMIZE,
         MOVE_ROCK_TOMB,

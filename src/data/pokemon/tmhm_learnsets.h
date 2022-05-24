@@ -17226,6 +17226,7 @@ static const u8 sPigniteTMHMLearnset[] =
     TMHM(TM93_WILD_CHARGE),
     TMHM(TM104_STRENGTH),
     TMHM(TM105_SUPERPOWER),
+    TMHM(TM_CLOSE_COMBAT),
     0xFF,
 };
 
@@ -17268,6 +17269,7 @@ static const u8 sEmboarTMHMLearnset[] =
     TMHM(TM98_GIGA_IMPACT),
     TMHM(TM104_STRENGTH),
     TMHM(TM105_SUPERPOWER),
+    TMHM(TM_CLOSE_COMBAT),
     0xFF,
 };
 
