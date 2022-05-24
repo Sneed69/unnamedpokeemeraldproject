@@ -1009,7 +1009,7 @@ static const u8 sAbilitiesAffectedByMoldBreaker[] =
     [ABILITY_TECTONIC_BALANCE] = 1,
     [ABILITY_ABSOLUTE_ZERO] = 1,
     [ABILITY_PERFECT_ALLOY] = 1,
-    [ABILITY_TIMELESS_MASTER] = 1,
+    [ABILITY_MASTER_OF_THE_AGES] = 1,
     [ABILITY_UNAWARE] = 1,
     [ABILITY_VITAL_SPIRIT] = 1,
     [ABILITY_VOLT_ABSORB] = 1,
@@ -4730,6 +4730,20 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                     effect++;
                 }
                 break;
+            case ABILITY_CONDENSED_ENERGY:
+                if (gDisableStructs[battler].isFirstTurn != 2)
+                { 
+                    bool32 canRaiseSpAtk = CompareStat(battler, STAT_SPATK, MAX_STAT_STAGE, CMP_LESS_THAN);
+                    bool32 canRaiseSpDef = CompareStat(battler, STAT_SPDEF, MAX_STAT_STAGE, CMP_LESS_THAN);
+
+                    if (canRaiseSpAtk || canRaiseSpDef)
+                    {
+                        BattleScriptPushCursorAndCallback(BattleScript_CondensedEnergyActivates);
+                        gBattleScripting.battler = battler;
+                        effect++;
+                    }
+                }
+                break;
             case ABILITY_MOODY:
                 if (gDisableStructs[battler].isFirstTurn != 2)
                 {
@@ -8425,7 +8439,7 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
         if (moveType == TYPE_DRAGON)
             MulModifier(&modifier, UQ_4_12(1.5));
         break;
-    case ABILITY_TIMELESS_MASTER:
+    case ABILITY_MASTER_OF_THE_AGES:
         if (moveType == TYPE_ROCK || moveType == TYPE_ICE || moveType == TYPE_STEEL)
            MulModifier(&modifier, UQ_4_12(1.5));
         break;
@@ -8827,12 +8841,12 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
         if (IS_MOVE_SPECIAL(move))
             MulModifier(&modifier, UQ_4_12(0.5));
         break;
-    case ABILITY_TIMELESS_MASTER:
+    case ABILITY_MASTER_OF_THE_AGES:
         if (moveType == TYPE_ROCK || moveType == TYPE_ICE|| moveType == TYPE_STEEL)
         {
             MulModifier(&modifier, UQ_4_12(0.5));
             if (updateFlags)
-                RecordAbilityBattle(battlerDef, ABILITY_TIMELESS_MASTER);
+                RecordAbilityBattle(battlerDef, ABILITY_MASTER_OF_THE_AGES);
         }
         break;
     }

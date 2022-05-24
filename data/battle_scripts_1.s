@@ -8119,8 +8119,26 @@ BattleScript_SpeedBoostActivates::
 	printstring STRINGID_PKMNRAISEDSPEED
 	waitmessage B_WAIT_TIME_LONG
 	end3
+	return
 
-@ Can't compare directly to a value, have to compare to value at pointer
+BattleScript_CondensedEnergyActivates::
+	call BattleScript_AbilityPopUp
+	playstatchangeanimation BS_ATTACKER, BIT_SPATK | BIT_SPDEF, 0
+	setstatchanger STAT_SPATK, 1, FALSE
+	statbuffchange MOVE_EFFECT_AFFECTS_USER | STAT_BUFF_ALLOW_PTR, BattleScript_CondensedEnergyTrySpDef
+	jumpifbyte CMP_EQUAL, cMULTISTRING_CHOOSER, B_MSG_STAT_WONT_INCREASE, BattleScript_CondensedEnergyTrySpDef
+	printfromtable gStatUpStringIds
+	waitmessage B_WAIT_TIME_LONG
+BattleScript_CondensedEnergyTrySpDef::
+	setstatchanger STAT_SPDEF, 1, FALSE
+	statbuffchange MOVE_EFFECT_AFFECTS_USER | STAT_BUFF_ALLOW_PTR, BattleScript_CondensedEnergyEnd
+	jumpifbyte CMP_EQUAL, cMULTISTRING_CHOOSER, B_MSG_STAT_WONT_INCREASE, BattleScript_CondensedEnergyEnd
+	printfromtable gStatUpStringIds
+	waitmessage B_WAIT_TIME_LONG
+BattleScript_CondensedEnergyEnd::
+	end3
+
+@ Cannot compare directly to a value, have to compare to value at pointer
 sZero:
 .byte 0
 
@@ -8368,17 +8386,16 @@ BattleScript_UnthreateningActivatesLoop:
 	jumpifability BS_TARGET, ABILITY_SCRAPPY, BattleScript_UnthreateningPrevented
 	jumpifability BS_TARGET, ABILITY_OWN_TEMPO, BattleScript_UnthreateningPrevented
 	jumpifability BS_TARGET, ABILITY_OBLIVIOUS, BattleScript_UnthreateningPrevented
+	playstatchangeanimation BS_TARGET, BIT_DEF | BIT_SPDEF, 1
 	jumpifability BS_TARGET, ABILITY_BIG_PECKS, BattleScript_UnthreateningTrySpDef
 	setstatchanger STAT_DEF, 1, TRUE
 	statbuffchange STAT_BUFF_NOT_PROTECT_AFFECTED | STAT_BUFF_ALLOW_PTR, BattleScript_UnthreateningTrySpDef
-	jumpifstat BS_TARGET, CMP_EQUAL, STAT_SPDEF, MIN_STAT_STAGE, BattleScript_UnthreateningPlayAnimation
+	jumpifstat BS_TARGET, CMP_EQUAL, STAT_SPDEF, MIN_STAT_STAGE, BattleScript_UnthreateningPrint
 BattleScript_UnthreateningTrySpDef:
 	setstatchanger STAT_SPDEF, 1, TRUE
 	statbuffchange STAT_BUFF_NOT_PROTECT_AFFECTED | STAT_BUFF_ALLOW_PTR, BattleScript_UnthreateningActivatesLoopIncrement
-BattleScript_UnthreateningPlayAnimation:
+BattleScript_UnthreateningPrint:
 	jumpifbyte CMP_GREATER_THAN, cMULTISTRING_CHOOSER, 1, BattleScript_UnthreateningActivatesLoopIncrement
-	setgraphicalstatchangevalues
-	playanimation BS_TARGET, B_ANIM_STATS_CHANGE, sB_ANIM_ARG1
 	printstring STRINGID_PKMNLOWEREDGUARD
 	waitmessage B_WAIT_TIME_LONG
 BattleScript_UnthreateningActivatesLoopIncrement:

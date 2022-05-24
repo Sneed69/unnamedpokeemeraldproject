@@ -266,6 +266,7 @@ static const u8 sTectonicBalanceDescription[] = _("Inverts Ground weakness.");
 static const u8 sAbsoluteZeroDescription[] = _("Inverts Fire weakness.");
 static const u8 sPerfectAlloyDescription[] = _("Inverts Fighting weakness.");
 static const u8 sTimelessMasterDescription[] = _("Ups & resists Regi types.");
+static const u8 sCondensedEnergyDescription[] = _("Gradually boosts Special.");
 
 #if B_EXPANDED_ABILITY_NAMES == TRUE
 const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
@@ -545,10 +546,11 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
     [ABILITY_UNTHREATENING] = _("Unthreatening"),
     [ABILITY_NINE_LIVES] = _("Nine Lives"),
     [ABILITY_PURE_HEART] = _("Pure Heart"),
-    [ABILITY_TECTONIC_BALANCE] = _("Seismic Balance"),
+    [ABILITY_TECTONIC_BALANCE] = _("Tectonic Balance"),
     [ABILITY_ABSOLUTE_ZERO] = _("Absolute Zero"),
     [ABILITY_PERFECT_ALLOY] = _("Perfect Alloy"),
-    [ABILITY_TIMELESS_MASTER] = _("Timeless Master"),
+    [ABILITY_MASTER_OF_THE_AGES] = _("Master of the Ages"),
+    [ABILITY_CONDENSED_ENERGY] = _("Condensed Energy"),
 };
 #else   // 12 characters
 const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
@@ -1104,5 +1106,6 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
     [ABILITY_TECTONIC_BALANCE] = sTectonicBalanceDescription,
     [ABILITY_ABSOLUTE_ZERO] = sAbsoluteZeroDescription,
     [ABILITY_PERFECT_ALLOY] = sPerfectAlloyDescription,
-    [ABILITY_TIMELESS_MASTER] = sTimelessMasterDescription,
+    [ABILITY_MASTER_OF_THE_AGES] = sTimelessMasterDescription,
+    [ABILITY_CONDENSED_ENERGY] = sCondensedEnergyDescription,
 };
