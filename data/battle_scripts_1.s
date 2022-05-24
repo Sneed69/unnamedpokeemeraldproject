@@ -9792,5 +9792,4 @@ BattleScript_MagicianActivates::
 BattleScript_ItemDropped::
 	playse SE_ITEMFINDER
 	printstring STRINGID_PKMNDROPPEDITEM
-	waitmessage B_WAIT_TIME_LONG
 	return

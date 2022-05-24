@@ -111,11 +111,13 @@
 #define ABILITY_HIDDEN 2
 
 // Held Item Chances
-#define ITEM_CHANCE_COMMON         50
-#define ITEM_CHANCE_RARE            5
-// With Compound Eyes
-#define ITEM_CHANCE_ABILITY_COMMON 60
-#define ITEM_CHANCE_ABILITY_RARE   20
+#define ITEM_CHANCE_COMMON          25
+#define ITEM_CHANCE_RARE             5
+// With Compound Eyes or Super Luck
+#define ITEM_CHANCE_ABILITY_COMMON  44
+#define ITEM_CHANCE_ABILITY_RARE    10
+
+#define ITEM_CHANCE_EVOLUTION_STONE  3
 
 // Shiny odds
 #define SHINY_ODDS 8 // Actual probability is SHINY_ODDS/65536

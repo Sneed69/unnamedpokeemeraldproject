@@ -7649,6 +7649,26 @@ static s32 GetWildMonTableIdInAlteringCave(u16 species)
     return 0;
 }
 
+static u32 GetEvoStoneByType(u32 type)
+{
+    switch (type)
+    {
+    case TYPE_WATER:
+        return ITEM_WATER_STONE;
+    case TYPE_FIRE:
+        return ITEM_FIRE_STONE;
+    case TYPE_GRASS:
+        return ITEM_LEAF_STONE;
+    case TYPE_ELECTRIC:
+        return ITEM_THUNDER_STONE;
+    case TYPE_ICE:
+        return ITEM_ICE_STONE;
+    case TYPE_FAIRY:
+        return ITEM_SHINY_STONE;
+    }
+    return ITEM_NONE;
+}
+
 void SetWildMonHeldItem(void)
 {
     if (!(gBattleTypeFlags & (BATTLE_TYPE_LEGENDARY | BATTLE_TYPE_TRAINER | BATTLE_TYPE_PYRAMID | BATTLE_TYPE_PIKE)))
@@ -7675,42 +7695,27 @@ void SetWildMonHeldItem(void)
             
             rnd = Random() % 100;
             species = GetMonData(&gEnemyParty[i], MON_DATA_SPECIES, 0);
-            if (gMapHeader.mapLayoutId == LAYOUT_ALTERING_CAVE)
+            
+            if (gBaseStats[species].itemCommon == gBaseStats[species].itemRare && gBaseStats[species].itemCommon != ITEM_NONE)
             {
-                s32 alteringCaveId = GetWildMonTableIdInAlteringCave(species);
-                if (alteringCaveId != 0)
-                {
-                    // In active Altering Cave, use special item list
-                    if (rnd < chanceNotRare)
-                        continue;
-                    SetMonData(&gEnemyParty[i], MON_DATA_HELD_ITEM, &sAlteringCaveWildMonHeldItems[alteringCaveId].item);
-                }
-                else
-                {
-                    // In inactive Altering Cave, use normal items
-                    if (rnd < chanceNoItem)
-                        continue;
-                    if (rnd < chanceNotRare)
-                        SetMonData(&gEnemyParty[i], MON_DATA_HELD_ITEM, &gBaseStats[species].itemCommon);
-                    else
-                        SetMonData(&gEnemyParty[i], MON_DATA_HELD_ITEM, &gBaseStats[species].itemRare);
-                }
+                // Both held items are the same, 100% chance to hold item
+                SetMonData(&gEnemyParty[i], MON_DATA_HELD_ITEM, &gBaseStats[species].itemCommon);
             }
             else
             {
-                if (gBaseStats[species].itemCommon == gBaseStats[species].itemRare && gBaseStats[species].itemCommon != ITEM_NONE)
-                {
-                    // Both held items are the same, 100% chance to hold item
+                if (rnd >= chanceNotRare)
+                    SetMonData(&gEnemyParty[i], MON_DATA_HELD_ITEM, &gBaseStats[species].itemRare);
+                else if (rnd >= chanceNoItem)
                     SetMonData(&gEnemyParty[i], MON_DATA_HELD_ITEM, &gBaseStats[species].itemCommon);
-                }
-                else
+                else if (rnd < ITEM_CHANCE_EVOLUTION_STONE)
                 {
-                    if (rnd < chanceNoItem)
-                        continue;
-                    if (rnd < chanceNotRare)
-                        SetMonData(&gEnemyParty[i], MON_DATA_HELD_ITEM, &gBaseStats[species].itemCommon);
-                    else
-                        SetMonData(&gEnemyParty[i], MON_DATA_HELD_ITEM, &gBaseStats[species].itemRare);
+                    u32 item;
+
+                    item = GetEvoStoneByType(gBaseStats[species].type1);
+                    if (item == ITEM_NONE)
+                        item = GetEvoStoneByType(gBaseStats[species].type2);
+
+                    SetMonData(&gEnemyParty[i], MON_DATA_HELD_ITEM, &item);
                 }
             }
         }
