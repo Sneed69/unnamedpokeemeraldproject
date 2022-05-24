@@ -18053,6 +18053,8 @@ static const u8 sGigalithTMHMLearnset[] =
     TMHM(TM98_GIGA_IMPACT),
     TMHM(TM104_STRENGTH),
     TMHM(TM105_SUPERPOWER),
+    TMHM(TM50_OVERHEAT),
+    TMHM(TM_SOLAR_BLADE),
     0xFF,
 };
 
