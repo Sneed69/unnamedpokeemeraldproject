@@ -573,7 +573,7 @@ static const struct WindowTemplate sSummaryTemplate[] =
     },
     [PSS_LABEL_WINDOW_POKEMON_IVS_RIGHT] = {
         .bg = 0,
-        .tilemapLeft = 22,
+        .tilemapLeft = 21,
         .tilemapTop = 4,
         .width = 5,
         .height = 6,
@@ -591,7 +591,7 @@ static const struct WindowTemplate sSummaryTemplate[] =
     },
     [PSS_LABEL_WINDOW_POKEMON_EVS_RIGHT] = {
         .bg = 0,
-        .tilemapLeft = 22,
+        .tilemapLeft = 21,
         .tilemapTop = 11,
         .width = 5,
         .height = 6,
@@ -736,9 +736,9 @@ static const struct WindowTemplate sPageIVsEVsTemplate[] =
 {
     [PSS_DATA_WINDOW_IVS_LEFT] = {
         .bg = 0,
-        .tilemapLeft = 16,
+        .tilemapLeft = 18,
         .tilemapTop = 4,
-        .width = 6,
+        .width = 3,
         .height = 6,
         .paletteNum = 6,
         .baseBlock = 603,
@@ -750,16 +750,16 @@ static const struct WindowTemplate sPageIVsEVsTemplate[] =
         .width = 3,
         .height = 6,
         .paletteNum = 6,
-        .baseBlock = 639,
+        .baseBlock = 621,
     },
     [PSS_DATA_WINDOW_EVS_LEFT] = {
         .bg = 0,
-        .tilemapLeft = 16,
+        .tilemapLeft = 18,
         .tilemapTop = 11,
-        .width = 6,
+        .width = 3,
         .height = 6,
         .paletteNum = 6,
-        .baseBlock = 657,
+        .baseBlock = 639,
     },
     [PSS_DATA_WINDOW_EVS_RIGHT] = {
         .bg = 0,
@@ -768,7 +768,7 @@ static const struct WindowTemplate sPageIVsEVsTemplate[] =
         .width = 3,
         .height = 6,
         .paletteNum = 6,
-        .baseBlock = 693,
+        .baseBlock = 657,
     },
 };
 static const struct WindowTemplate sPageMovesTemplate[] = // This is used for both battle and contest moves
@@ -3829,15 +3829,15 @@ static void Task_PrintIVsEVsPage(u8 taskId)
 static void BufferLeftColumnIVs(void)
 {
     DynamicPlaceholderTextUtil_Reset();
-    BufferStat(gStringVar1, 0, sMonSummaryScreen->summary.hpIV, 0, 7);
-    BufferStat(gStringVar2, 0, sMonSummaryScreen->summary.atkIV, 1, 7);
-    BufferStat(gStringVar3, 0, sMonSummaryScreen->summary.defIV, 2, 7);
+    BufferStat(gStringVar1, 0, sMonSummaryScreen->summary.hpIV, 0, 3);
+    BufferStat(gStringVar2, 0, sMonSummaryScreen->summary.atkIV, 1, 3);
+    BufferStat(gStringVar3, 0, sMonSummaryScreen->summary.defIV, 2, 3);
     DynamicPlaceholderTextUtil_ExpandPlaceholders(gStringVar4, sStatsLeftColumnLayoutIVEV);
 }
 
 static void PrintLeftColumnIVs(void)
 {
-    PrintTextOnWindow(AddWindowFromTemplateList(sPageIVsEVsTemplate, PSS_DATA_WINDOW_IVS_LEFT), gStringVar4, 4, 1, 0, 0);
+    PrintTextOnWindow(AddWindowFromTemplateList(sPageIVsEVsTemplate, PSS_DATA_WINDOW_IVS_LEFT), gStringVar4, 2, 1, 0, 0);
 }
 
 static void BufferRightColumnIVs(void)
@@ -3857,15 +3857,15 @@ static void PrintRightColumnIVs(void)
 static void BufferLeftColumnEVs(void)
 {
     DynamicPlaceholderTextUtil_Reset();
-    BufferStat(gStringVar1, 0, sMonSummaryScreen->summary.hpEV, 0, 7);
-    BufferStat(gStringVar2, 0, sMonSummaryScreen->summary.atkEV, 1, 7);
-    BufferStat(gStringVar3, 0, sMonSummaryScreen->summary.defEV, 2, 7);
+    BufferStat(gStringVar1, 0, sMonSummaryScreen->summary.hpEV, 0, 3);
+    BufferStat(gStringVar2, 0, sMonSummaryScreen->summary.atkEV, 1, 3);
+    BufferStat(gStringVar3, 0, sMonSummaryScreen->summary.defEV, 2, 3);
     DynamicPlaceholderTextUtil_ExpandPlaceholders(gStringVar4, sStatsLeftColumnLayoutIVEV);
 }
 
 static void PrintLeftColumnEVs(void)
 {
-    PrintTextOnWindow(AddWindowFromTemplateList(sPageIVsEVsTemplate, PSS_DATA_WINDOW_EVS_LEFT), gStringVar4, 4, 1, 0, 0);
+    PrintTextOnWindow(AddWindowFromTemplateList(sPageIVsEVsTemplate, PSS_DATA_WINDOW_EVS_LEFT), gStringVar4, 2, 1, 0, 0);
 }
 
 static void BufferRightColumnEVs(void)
