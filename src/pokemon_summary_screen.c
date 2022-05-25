@@ -618,19 +618,10 @@ static const struct WindowTemplate sPageSkillsTemplate[] =
         .bg = 0,
         .tilemapLeft = 10,
         .tilemapTop = 4,
-        .width = 10,
+        .width = 15,
         .height = 2,
         .paletteNum = 6,
         .baseBlock = 449,
-    },
-    [PSS_DATA_WINDOW_SKILLS_RIBBON_COUNT] = {
-        .bg = 0,
-        .tilemapLeft = 20,
-        .tilemapTop = 4,
-        .width = 10,
-        .height = 2,
-        .paletteNum = 6,
-        .baseBlock = 469,
     },
     [PSS_DATA_WINDOW_SKILLS_STATS_LEFT] = {
         .bg = 0,
@@ -639,7 +630,7 @@ static const struct WindowTemplate sPageSkillsTemplate[] =
         .width = 6,
         .height = 6,
         .paletteNum = 6,
-        .baseBlock = 489,
+        .baseBlock = 479,
     },
     [PSS_DATA_WINDOW_SKILLS_STATS_RIGHT] = {
         .bg = 0,
@@ -648,7 +639,7 @@ static const struct WindowTemplate sPageSkillsTemplate[] =
         .width = 3,
         .height = 6,
         .paletteNum = 6,
-        .baseBlock = 525,
+        .baseBlock = 515,
     },
     [PSS_DATA_WINDOW_EXP] = {
         .bg = 0,
@@ -657,7 +648,7 @@ static const struct WindowTemplate sPageSkillsTemplate[] =
         .width = 6,
         .height = 4,
         .paletteNum = 6,
-        .baseBlock = 543,
+        .baseBlock = 533,
     },
 };
 static const struct WindowTemplate sPageMovesTemplate[] = // This is used for both battle and contest moves
@@ -3391,7 +3382,6 @@ static void PrintEggMemo(void)
 static void PrintSkillsPageText(void)
 {
     PrintHeldItemName();
-    PrintRibbonCount();
     BufferLeftColumnStats();
     PrintLeftColumnStats();
     BufferRightColumnStats();
@@ -3409,24 +3399,21 @@ static void Task_PrintSkillsPage(u8 taskId)
         PrintHeldItemName();
         break;
     case 2:
-        PrintRibbonCount();
-        break;
-    case 3:
         BufferLeftColumnStats();
         break;
-    case 4:
+    case 3:
         PrintLeftColumnStats();
         break;
-    case 5:
+    case 4:
         BufferRightColumnStats();
         break;
-    case 6:
+    case 5:
         PrintRightColumnStats();
         break;
-    case 7:
+    case 6:
         PrintExpPointsNextLevel();
         break;
-    case 8:
+    case 7:
         DestroyTask(taskId);
         return;
     }
