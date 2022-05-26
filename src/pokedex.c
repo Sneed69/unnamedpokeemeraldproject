@@ -7138,27 +7138,24 @@ static void PrintStatsScreen_Left(u8 taskId)
 static void PrintStatsScreen_Abilities(u8 taskId)
 {
     u16 species = NationalPokedexNumToSpeciesHGSS(sPokedexListItem->dexNum);
-    u8 abilities_x = 5;
+    u8 abilities_x = 6;
     u8 abilities_y = 3;
     u16 ability0;
     u16 ability1;
 
     //Abilitie(s)
-    #ifdef POKEMON_EXPANSION
-    if (gTasks[taskId].data[5] == 0)
-    {
-    #endif
-        ability0 = sPokedexView->sPokemonStats.ability0;
-        PrintStatsScreenTextSmallWhite(WIN_STATS_ABILITIES, gAbilityNames[ability0], abilities_x, abilities_y);
-        PrintStatsScreenTextSmall(WIN_STATS_ABILITIES, gAbilityDescriptionPointers[ability0], abilities_x, abilities_y + 14);
+    ability0 = sPokedexView->sPokemonStats.ability0;
+    PrintStatsScreenTextSmall(WIN_STATS_ABILITIES, gAbilityNames[ability0], abilities_x + 4, abilities_y + 14);
 
-        ability1 = sPokedexView->sPokemonStats.ability1;
-        if (ability1 != ABILITY_NONE && ability1 != ability0)
-        {
-            PrintStatsScreenTextSmallWhite(WIN_STATS_ABILITIES, gAbilityNames[ability1], abilities_x, abilities_y + 30);
-            PrintStatsScreenTextSmall(WIN_STATS_ABILITIES, gAbilityDescriptionPointers[ability1], abilities_x, abilities_y + 44);
-        }
+    ability1 = sPokedexView->sPokemonStats.ability1;
+    if (ability1 != ABILITY_NONE && ability1 != ability0)
+    {
+        PrintStatsScreenTextSmallWhite(WIN_STATS_ABILITIES, gText_Stats_AbilityFirst, abilities_x, abilities_y);
+        PrintStatsScreenTextSmallWhite(WIN_STATS_ABILITIES, gText_Stats_AbilitySecond, abilities_x, abilities_y + 30);
+        PrintStatsScreenTextSmall(WIN_STATS_ABILITIES, gAbilityNames[ability1], abilities_x + 4, abilities_y + 44);
     }
+    else
+        PrintStatsScreenTextSmallWhite(WIN_STATS_ABILITIES, gText_Stats_Ability, abilities_x, abilities_y);
 }
 
 static void Task_SwitchScreensFromStatsScreen(u8 taskId)
