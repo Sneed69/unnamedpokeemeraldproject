@@ -441,6 +441,7 @@ static void CreateStatBars(struct PokedexListItem *dexMon);
 static void CreateStatBarsBg(void);
 static void SpriteCB_StatBars(struct Sprite *sprite);
 static void SpriteCB_StatBarsBg(struct Sprite *sprite);
+static void SwapTypeIcon(u8 taskId);
 
 //HGSS_UI Forms screen for PokemonExpansion (rhh)
 #ifdef POKEMON_EXPANSION
@@ -6600,6 +6601,8 @@ static void Task_HandleStatsScreenInput(u8 taskId)
 
         FillWindowPixelBuffer(WIN_STATS_LEFT, PIXEL_FILL(0));
         PrintStatsScreen_Left(taskId);
+        
+        SwapTypeIcon(taskId);
 
         FillWindowPixelBuffer(WIN_STATS_MOVES_DESCRIPTION, PIXEL_FILL(0));
         PrintStatsScreen_Moves_Description(taskId);
@@ -6607,22 +6610,16 @@ static void Task_HandleStatsScreenInput(u8 taskId)
         FillWindowPixelBuffer(WIN_STATS_MOVES_BOTTOM, PIXEL_FILL(0));
         PrintStatsScreen_Moves_BottomText(taskId);
         PrintStatsScreen_Moves_Bottom(taskId);
-
-        #ifdef POKEMON_EXPANSION
-        FillWindowPixelBuffer(WIN_STATS_ABILITIES, PIXEL_FILL(0));
-        PrintStatsScreen_Abilities(taskId);
-        #endif
     }
-    if (JOY_NEW(B_BUTTON))
+    else if (JOY_NEW(B_BUTTON))
     {
         BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 16, RGB_BLACK);
         gTasks[taskId].func = Task_ExitStatsScreen;
         PlaySE(SE_PC_OFF);
         return;
     }
-
     //Change moves
-    if (JOY_REPEAT(DPAD_UP) && sPokedexView->moveSelected > 0)
+    else if (JOY_REPEAT(DPAD_UP) && sPokedexView->moveSelected > 0)
     {
         sPokedexView->moveSelected -= 1;
         PlaySE(SE_SELECT);
@@ -6637,7 +6634,7 @@ static void Task_HandleStatsScreenInput(u8 taskId)
         FillWindowPixelRect(WIN_STATS_MOVES_BOTTOM, PIXEL_FILL(0), 120, 0, 20, 16);
         PrintStatsScreen_Moves_Bottom(taskId);
     }
-    if (JOY_REPEAT(DPAD_DOWN) && sPokedexView->moveSelected < sPokedexView->numLevelUpMoves -1 )
+    else if (JOY_REPEAT(DPAD_DOWN) && sPokedexView->moveSelected < sPokedexView->numLevelUpMoves -1 )
     {
         sPokedexView->moveSelected = sPokedexView->moveSelected + 1;
         PlaySE(SE_SELECT);
@@ -6652,9 +6649,8 @@ static void Task_HandleStatsScreenInput(u8 taskId)
         FillWindowPixelRect(WIN_STATS_MOVES_BOTTOM, PIXEL_FILL(0), 120, 0, 20, 16);
         PrintStatsScreen_Moves_Bottom(taskId);
     }
-
     //Switch screens
-    if ((JOY_NEW(DPAD_LEFT) || (JOY_NEW(L_BUTTON) && gSaveBlock2Ptr->optionsButtonMode == OPTIONS_BUTTON_MODE_LR)))
+    else if ((JOY_NEW(DPAD_LEFT) || (JOY_NEW(L_BUTTON) && gSaveBlock2Ptr->optionsButtonMode == OPTIONS_BUTTON_MODE_LR)))
     {
         sPokedexView->selectedScreen = INFO_SCREEN;
         BeginNormalPaletteFade(0xFFFFFFEB, 0, 0, 0x10, RGB_BLACK);
@@ -6662,7 +6658,7 @@ static void Task_HandleStatsScreenInput(u8 taskId)
         gTasks[taskId].func = Task_SwitchScreensFromStatsScreen;
         PlaySE(SE_PIN);
     }
-    if ((JOY_NEW(DPAD_RIGHT) || (JOY_NEW(R_BUTTON) && gSaveBlock2Ptr->optionsButtonMode == OPTIONS_BUTTON_MODE_LR)))
+    else if ((JOY_NEW(DPAD_RIGHT) || (JOY_NEW(R_BUTTON) && gSaveBlock2Ptr->optionsButtonMode == OPTIONS_BUTTON_MODE_LR)))
     {
         if (!sPokedexListItem->owned)
             PlaySE(SE_FAILURE);
@@ -6699,6 +6695,22 @@ static bool8 CalculateMoves(void)
 
     sPokedexView->numLevelUpMoves = numLevelUpMoves;
     return TRUE;
+}
+
+static void SwapTypeIcon(u8 taskId)
+{
+    u16 move = sStatsMoves[sPokedexView->moveSelected];
+    //Draw move type icon
+    if (gTasks[taskId].data[5] == 0)
+    {
+        SetTypeIconPosAndPal(gBattleMoves[move].type, 151, 20, 0);
+        SetSpriteInvisibility(1, TRUE);
+    }
+    else
+    {
+        SetTypeIconPosAndPal(NUMBER_OF_MON_TYPES + gContestMoves[move].contestCategory, 151, 20, 1);
+        SetSpriteInvisibility(0, TRUE);
+    }
 }
 
 static void PrintStatsScreen_Moves_Top(u8 taskId)
