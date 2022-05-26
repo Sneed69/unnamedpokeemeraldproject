@@ -433,7 +433,7 @@ static const u8 sLonelyMintDesc[] = _(
 static const u8 sAdamantMintDesc[] = _(
     "Pokémon that smell\n"
     "this mint trade\n"
-    "Sp. Atk. for Attack.");
+    "Sp. Atk for Attack.");
 
 static const u8 sNaughtyMintDesc[] = _(
     "Pokémon that smell\n"
@@ -453,12 +453,12 @@ static const u8 sBoldMintDesc[] = _(
 static const u8 sImpishMintDesc[] = _(
     "Pokémon that smell\n"
     "this mint trade\n"
-    "Sp. Atk. for Defense.");
+    "Sp. Atk for Defense.");
 
 static const u8 sLaxMintDesc[] = _(
     "Pokémon that smell\n"
     "this mint trade\n"
-    "Sp. Def. for Defense.");
+    "Sp. Def for Defense.");
 
 static const u8 sRelaxedMintDesc[] = _(
     "Pokémon that smell\n"
@@ -498,7 +498,7 @@ static const u8 sGentleMintDesc[] = _(
 static const u8 sCarefulMintDesc[] = _(
     "Pokémon that smell\n"
     "this mint trade\n"
-    "Sp. Atk. for Sp. Def.");
+    "Sp. Atk for Sp. Def.");
 
 static const u8 sSassyMintDesc[] = _(
     "Pokémon that smell\n"
@@ -518,7 +518,7 @@ static const u8 sHastyMintDesc[] = _(
 static const u8 sJollyMintDesc[] = _(
     "Pokémon that smell\n"
     "this mint trade\n"
-    "Sp. Atk. for Speed.");
+    "Sp. Atk for Speed.");
 
 static const u8 sNaiveMintDesc[] = _(
     "Pokémon that smell\n"
