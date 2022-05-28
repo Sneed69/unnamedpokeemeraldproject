@@ -2645,19 +2645,8 @@ static void DebugAction_Give_DayCareEgg(u8 taskId)
 static void DebugAction_Give_FillPC(u8 taskId) //Credit: Sierraffinity
 {
     int boxId, boxPosition;
-    u32 personality;
     struct BoxPokemon boxMon;
-
-    personality = Random32();
-
-    CreateBoxMon(&boxMon,
-                 SPECIES_DEOXYS,
-                 100,
-                 32,
-                 personality,
-                 0,
-                 OT_ID_PLAYER_ID,
-                 0);
+    u32 species = 2;
 
     for (boxId = 0; boxId < TOTAL_BOXES_COUNT; boxId++)
     {
@@ -2665,6 +2654,15 @@ static void DebugAction_Give_FillPC(u8 taskId) //Credit: Sierraffinity
         {
             if (!GetBoxMonData(&gPokemonStoragePtr->boxes[boxId][boxPosition], MON_DATA_SANITY_HAS_SPECIES))
             {
+                CreateBoxMon(&boxMon,
+                            species,
+                            100,
+                            32,
+                            0,
+                            0,
+                            OT_ID_PLAYER_ID,
+                            0);
+                species++;
                 gPokemonStoragePtr->boxes[boxId][boxPosition] = boxMon;
             }
         }
