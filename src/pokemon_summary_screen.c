@@ -3306,7 +3306,20 @@ static void PrintMonAbilityName(void)
 static void PrintMonAbilityDescription(void)
 {
     u16 ability = GetAbilityBySpecies(sMonSummaryScreen->summary.species, sMonSummaryScreen->summary.abilityNum);
-    PrintTextOnWindow(AddWindowFromTemplateList(sPageInfoTemplate, PSS_DATA_WINDOW_INFO_ABILITY), gAbilityDescriptionPointers[ability], 0, 15, 0, 0);
+    u32 i = 0;
+    bool32 twoLines = FALSE;
+
+    while (gAbilityDescriptionPointers[ability][i] != EOS && !twoLines)
+    {
+        if (gAbilityDescriptionPointers[ability][i] == CHAR_NEWLINE)
+            twoLines = TRUE;
+        i++;
+    }
+
+    if (twoLines)
+        PrintTextOnWindow(AddWindowFromTemplateList(sPageInfoTemplate, PSS_DATA_WINDOW_INFO_ABILITY), gAbilityDescriptionPointers[ability], 0, 15, 0, 0);
+    else
+        PrintTextOnWindow(AddWindowFromTemplateList(sPageInfoTemplate, PSS_DATA_WINDOW_INFO_ABILITY), gAbilityDescriptionPointers[ability], 0, 18, 0, 0);
 }
 
 static void BufferMonTrainerMemo(void)
