@@ -125,7 +125,7 @@ static const s8 sAiAbilityRatings[ABILITIES_COUNT] =
     [ABILITY_LIMBER] = 3,
     [ABILITY_LIQUID_OOZE] = 3,
     [ABILITY_LIQUID_VOICE] = 5,
-    [ABILITY_LONG_REACH] = 3,
+    [ABILITY_GHOST_TOUCH] = 3,
     [ABILITY_MAGIC_BOUNCE] = 9,
     [ABILITY_MAGIC_GUARD] = 9,
     [ABILITY_MAGICIAN] = 3,
@@ -3706,7 +3706,7 @@ void IncreaseConfusionScore(u8 battlerAtk, u8 battlerDef, u16 move, s16 *score)
 bool32 AI_MoveMakesContact(u32 ability, u32 holdEffect, u16 move)
 {
     if (TestMoveFlags(move, FLAG_MAKES_CONTACT)
-      && ability != ABILITY_LONG_REACH
+      && ability != ABILITY_GHOST_TOUCH
       && holdEffect != HOLD_EFFECT_PROTECTIVE_PADS)
         return TRUE;
     return FALSE;

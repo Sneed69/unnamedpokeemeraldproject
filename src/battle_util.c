@@ -7793,7 +7793,7 @@ bool32 IsMoveMakingContact(u16 move, u8 battlerAtk)
         else
             return FALSE;
     }
-    else if (GetBattlerAbility(battlerAtk) == ABILITY_LONG_REACH)
+    else if (GetBattlerAbility(battlerAtk) == ABILITY_GHOST_TOUCH)
     {
         return FALSE;
     }

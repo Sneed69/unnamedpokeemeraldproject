@@ -7630,7 +7630,7 @@ const struct BaseStats gBaseStats[] =
         .growthRate = GROWTH_FAST,
         .eggGroup1 = EGG_GROUP_AMORPHOUS,
         .eggGroup2 = EGG_GROUP_AMORPHOUS,
-        .abilities = {ABILITY_COLD_EMBRACE, ABILITY_LONG_REACH},
+        .abilities = {ABILITY_COLD_EMBRACE, ABILITY_GHOST_TOUCH},
         .bodyColor = BODY_COLOR_BLACK,
         .noFlip = FALSE,
     },
@@ -14581,7 +14581,7 @@ const struct BaseStats gBaseStats[] =
         .eggGroup1 = EGG_GROUP_FLYING,
         .eggGroup2 = EGG_GROUP_FLYING,
         #ifdef BATTLE_ENGINE
-            .abilities = {ABILITY_OVERGROW, ABILITY_NONE, ABILITY_LONG_REACH},
+            .abilities = {ABILITY_OVERGROW, ABILITY_NONE, ABILITY_GHOST_TOUCH},
         #else
             .abilities = {ABILITY_OVERGROW, ABILITY_NONE},
         #endif
@@ -14609,7 +14609,7 @@ const struct BaseStats gBaseStats[] =
         .eggGroup1 = EGG_GROUP_FLYING,
         .eggGroup2 = EGG_GROUP_FLYING,
         #ifdef BATTLE_ENGINE
-            .abilities = {ABILITY_OVERGROW, ABILITY_NONE, ABILITY_LONG_REACH},
+            .abilities = {ABILITY_OVERGROW, ABILITY_NONE, ABILITY_GHOST_TOUCH},
         #else
             .abilities = {ABILITY_OVERGROW, ABILITY_NONE},
         #endif
@@ -14637,7 +14637,7 @@ const struct BaseStats gBaseStats[] =
         .eggGroup1 = EGG_GROUP_FLYING,
         .eggGroup2 = EGG_GROUP_FLYING,
         #ifdef BATTLE_ENGINE
-            .abilities = {ABILITY_OVERGROW, ABILITY_NONE, ABILITY_LONG_REACH},
+            .abilities = {ABILITY_OVERGROW, ABILITY_NONE, ABILITY_GHOST_TOUCH},
         #else
             .abilities = {ABILITY_OVERGROW, ABILITY_NONE},
         #endif
