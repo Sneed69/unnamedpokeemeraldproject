@@ -1891,10 +1891,7 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 fir
         {
             const struct TrainerMon *partyData = gTrainers[trainerNum].party.TrainerMon;
 
-// Comment out the following line if you have changed .iv to go 0-31, instead of 0-255 as in vanilla.
-            fixedIV = partyData[i].iv;
-
-            fixedIV = fixedIV + TRAINER_IV_MODIFIER;
+            fixedIV = partyData[i].iv + TRAINER_IV_MODIFIER;
 
             if (gTrainers[trainerNum].doubleBattle)
                 personalityValue = 0x80;
@@ -1931,7 +1928,7 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 fir
                 CreateMon(&party[i], partyData[i].species, partyData[i].lvl, fixedIV, TRUE, personalityValue, partyData[i].shiny ? OT_ID_SHINY : OT_ID_RANDOM_NO_SHINY, 0);
             }
 
-            if (partyData[i].nickname[0] != '\0')
+            if (partyData[i].nickname[0] != 0)
                 SetMonData(&party[i], MON_DATA_NICKNAME, &partyData[i].nickname);
 
             if (partyData[i].ability > 0)
@@ -1955,13 +1952,11 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 fir
             if (partyData[i].heldItem > 0)
                 SetMonData(&party[i], MON_DATA_HELD_ITEM, &partyData[i].heldItem);
 
-            if (partyData[i].moves[0] != '\0')
+            if (partyData[i].moves[0] != MOVE_NONE)
             {
                 for (j = 0; j < MAX_MON_MOVES; j++)
                 {
                     SetMonData(&party[i], MON_DATA_MOVE1 + j, &partyData[i].moves[j]);
-                    SetMonData(&party[i], MON_DATA_MOVE1 + j, &partyData[i].moves[j]);
-                    SetMonData(&party[i], MON_DATA_PP1 + j, &gBattleMoves[partyData[i].moves[j]].pp);
                     SetMonData(&party[i], MON_DATA_PP1 + j, &gBattleMoves[partyData[i].moves[j]].pp);
                 }
             }
