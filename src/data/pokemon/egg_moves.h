@@ -557,7 +557,6 @@ const u16 gEggMoves[] = {
         MOVE_WAKE_UP_SLAP),
 
     egg_moves(KANGASKHAN,
-        MOVE_STOMP,
         MOVE_FORESIGHT,
         MOVE_FOCUS_ENERGY,
         MOVE_DISABLE,
@@ -1562,6 +1561,7 @@ const u16 gEggMoves[] = {
         MOVE_SLAM,
         MOVE_TICKLE,
         MOVE_FAKE_TEARS,
+        MOVE_FAIRY_TAIL,
         MOVE_BODY_SLAM,
         MOVE_SOAK,
         MOVE_MUDDY_WATER,
