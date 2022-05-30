@@ -59,7 +59,7 @@ EventScript_BufferBerriesPocket::
 	return
 
 EventScript_ObtainedItem::
-    specialvar VAR_RESULT, BufferTMHMMoveName
+	specialvar VAR_RESULT, BufferTMHMMoveName
 	call_if_eq VAR_RESULT, TRUE, EventScript_ObtainedTMHM
 	call_if_eq VAR_RESULT, FALSE, EventScript_ObtainedNonTM
 	delay 10
