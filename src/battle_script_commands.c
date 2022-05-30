@@ -11305,7 +11305,7 @@ static void Cmd_metronome(void)
 {
     while (1)
     {
-        gCurrentMove = (Random() % (MOVES_COUNT - 1)) + 1;
+        gCurrentMove = (Random() % (MOVES_COUNT_GEN5 - 1)) + 1;
         if (gBattleMoves[gCurrentMove].effect == EFFECT_PLACEHOLDER)
             continue;
 
