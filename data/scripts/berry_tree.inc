@@ -3,11 +3,8 @@ BerryTreeScript::
 	switch VAR_0x8004
 	case BERRY_STAGE_SPARKLING, BerryTree_EventScript_Sparkling
 	case BERRY_STAGE_NO_BERRY, BerryTree_EventScript_CheckSoil
-	case BERRY_STAGE_PLANTED, BerryTree_EventScript_WaterBerry
-	case BERRY_STAGE_SPROUTED, BerryTree_EventScript_WaterBerry
-	case BERRY_STAGE_TALLER, BerryTree_EventScript_WaterBerry
-	case BERRY_STAGE_FLOWERING, BerryTree_EventScript_WaterBerry
 	case BERRY_STAGE_BERRIES, BerryTree_EventScript_CheckBerryFullyGrown
+	goto BerryTree_EventScript_WaterBerry
 	end
 
 BerryTree_EventScript_Sparkling::
@@ -98,12 +95,46 @@ BerryTree_EventScript_WaterBerry::
 	end
 
 BerryTree_EventScript_DontWater::
+	switch VAR_0x8004
+	case BERRY_STAGE_PLANTED, BerryTree_EventScript_CheckBerryStage1
+	case BERRY_STAGE_SPROUTED, BerryTree_EventScript_CheckBerryStage2
+	case BERRY_STAGE_TALLER, BerryTree_EventScript_CheckBerryStage3
+	case BERRY_STAGE_FLOWERING, BerryTree_EventScript_CheckBerryStage4
+BerryTree_EventScript_CheckBerryStage1::
 	special ObjectEventInteractionGetBerryCountString
 	message BerryTree_Text_BerryGrowthStage1
+    goto BerryTree_EventScript_DontWaterEnd
+BerryTree_EventScript_CheckBerryStage2::
+	special ObjectEventInteractionGetBerryName
+	message BerryTree_Text_BerryGrowthStage2
+    goto BerryTree_EventScript_DontWaterEnd
+BerryTree_EventScript_CheckBerryStage3::
+	special ObjectEventInteractionGetBerryName
+	message BerryTree_Text_BerryGrowthStage3
+    goto BerryTree_EventScript_DontWaterEnd
+BerryTree_EventScript_CheckBerryStage4::
+	call BerryTree_EventScript_GetCareAdverb
+	special ObjectEventInteractionGetBerryName
+	message BerryTree_Text_BerryGrowthStage4
+BerryTree_EventScript_DontWaterEnd::
 	waitmessage
 	waitbuttonpress
 	releaseall
 	end
+	
+@ VAR_0x8005 here is the number of times watered
+@ Buffered by ObjectEventInteractionGetBerryTreeData
+BerryTree_EventScript_GetCareAdverb::
+	goto_if_eq VAR_0x8005, 0, BerryTree_EventScript_SetAdverbPoor
+	goto_if_eq VAR_0x8005, 4, BerryTree_EventScript_SetAdverbGreat
+	bufferstring STR_VAR_2, BerryTree_Text_CareAdverbGood
+	return
+BerryTree_EventScript_SetAdverbGreat::
+	bufferstring STR_VAR_2, BerryTree_Text_CareAdverbGreat
+	return
+BerryTree_EventScript_SetAdverbPoor::
+	bufferstring STR_VAR_2, BerryTree_Text_CareAdverbPoor
+	return
 
 BerryTree_EventScript_PlantBerry::
 	special ObjectEventInteractionPlantBerryTree
@@ -128,6 +159,25 @@ BerryTree_Text_PlantedOneBerry:
 
 BerryTree_Text_BerryGrowthStage1:
 	.string "One {STR_VAR_1} was planted here.$"
+	
+BerryTree_Text_BerryGrowthStage2:
+	.string "{STR_VAR_1} has sprouted.$"
+
+BerryTree_Text_BerryGrowthStage3:
+	.string "This {STR_VAR_1} plant is growing taller.$"
+
+BerryTree_Text_BerryGrowthStage4:
+	.string "These {STR_VAR_1} flowers are blooming\n"
+	.string "{STR_VAR_2}.$"
+
+BerryTree_Text_CareAdverbGreat:
+	.string "very beautifully$"
+
+BerryTree_Text_CareAdverbPoor:
+	.string "cutely$"
+
+BerryTree_Text_CareAdverbGood:
+	.string "prettily$"
 
 BerryTree_Text_PickedTheBerry:
 	.string "{PLAYER} picked {STR_VAR_2} {STR_VAR_1}.$"
