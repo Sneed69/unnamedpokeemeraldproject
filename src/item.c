@@ -1090,18 +1090,11 @@ void DrawHeaderBox(void)
 {
     struct WindowTemplate template;
     u16 item = gSpecialVar_0x8006;
-    u8 headerType = gSpecialVar_0x8009;
     u8 textY;
-    u8 *dst;
     bool8 handleFlash = FALSE;
 
     if (GetFlashLevel() > 0 || InBattlePyramid_())
         handleFlash = TRUE;
-
-    if (headerType == 1)
-        dst = gStringVar3;
-    else
-        dst = gStringVar1;
 
     if (GetSetItemObtained(item, FLAG_GET_OBTAINED))
     {
@@ -1117,13 +1110,13 @@ void DrawHeaderBox(void)
     SetStandardWindowBorderStyle(sHeaderBoxWindowId, FALSE);
     DrawStdFrameWithCustomTileAndPalette(sHeaderBoxWindowId, FALSE, 0x214, 14);
 
-    if (ReformatItemDescription(item, dst) == 1)
+    if (ReformatItemDescription(item, gStringVar1) == 1)
         textY = 4;
     else
         textY = 0;
 
     ShowItemIconSprite(item, TRUE, handleFlash);
-    AddTextPrinterParameterized(sHeaderBoxWindowId, 0, dst, ITEM_ICON_X + 2, textY, 0, NULL);
+    AddTextPrinterParameterized(sHeaderBoxWindowId, 0, gStringVar1, ITEM_ICON_X + 2, textY, 0, NULL);
 }
 
 void HideHeaderBox(void)

@@ -60,7 +60,7 @@ BerryTree_EventScript_CheckBerryFullyGrown::
 	special ObjectEventInteractionRemoveBerryTree
 	message BerryTree_Text_PickedTheBerry
 	delay 10
-	showberrydesc
+	showitemdesc
 	playfanfare MUS_OBTAIN_BERRY
 	waitmessage
 	waitfanfare
