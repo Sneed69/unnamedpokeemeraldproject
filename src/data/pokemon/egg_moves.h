@@ -2729,6 +2729,7 @@ const u16 gEggMoves[] = {
     egg_moves(VENIPEDE,
         MOVE_TWINEEDLE,
         MOVE_PIN_MISSILE,
+        MOVE_AQUA_TAIL,
         MOVE_TAKE_DOWN),
 
     egg_moves(COTTONEE,
