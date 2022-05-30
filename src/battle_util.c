@@ -2846,16 +2846,26 @@ u8 DoBattlerEndTurnEffects(void)
             {
                 if (--gDisableStructs[gActiveBattler].wrapTurns != 0)  // damaged by wrap
                 {
+                    u32 wrapHpFraction;
+
                     MAGIC_GUARD_CHECK;
+
+                    if (gBattleTypeFlags & BATTLE_TYPE_LEGENDARY && GET_BATTLER_SIDE2(gActiveBattler) == B_SIDE_OPPONENT)
+                        if (GetBattlerHoldEffect(gBattleStruct->wrappedBy[gActiveBattler], TRUE) == HOLD_EFFECT_BINDING_BAND)
+                            wrapHpFraction = ((B_BINDING_DAMAGE >= GEN_6) ? 24 : 32);
+                        else
+                            wrapHpFraction = ((B_BINDING_DAMAGE >= GEN_6) ? 32 : 64);
+                    else
+                        if (GetBattlerHoldEffect(gBattleStruct->wrappedBy[gActiveBattler], TRUE) == HOLD_EFFECT_BINDING_BAND)
+                            wrapHpFraction = ((B_BINDING_DAMAGE >= GEN_6) ? 6 : 8);
+                        else
+                            wrapHpFraction = ((B_BINDING_DAMAGE >= GEN_6) ? 8 : 16);
 
                     gBattleScripting.animArg1 = gBattleStruct->wrappedMove[gActiveBattler];
                     gBattleScripting.animArg2 = gBattleStruct->wrappedMove[gActiveBattler] >> 8;
                     PREPARE_MOVE_BUFFER(gBattleTextBuff1, gBattleStruct->wrappedMove[gActiveBattler]);
                     gBattlescriptCurrInstr = BattleScript_WrapTurnDmg;
-                    if (GetBattlerHoldEffect(gBattleStruct->wrappedBy[gActiveBattler], TRUE) == HOLD_EFFECT_BINDING_BAND)
-                        gBattleMoveDamage = gBattleMons[gActiveBattler].maxHP / ((B_BINDING_DAMAGE >= GEN_6) ? 6 : 8);
-                    else
-                        gBattleMoveDamage = gBattleMons[gActiveBattler].maxHP / ((B_BINDING_DAMAGE >= GEN_6) ? 8 : 16);
+                    gBattleMoveDamage = gBattleMons[gActiveBattler].maxHP / wrapHpFraction;
 
                     if (gBattleMoveDamage == 0)
                         gBattleMoveDamage = 1;
@@ -3661,7 +3671,10 @@ u8 AtkCanceller_UnableToUseMove(void)
                     if (gTakenDmg[gBattlerAttacker])
                     {
                         gCurrentMove = MOVE_BIDE;
-                        *bideDmg = gTakenDmg[gBattlerAttacker] * 2;
+                        if (gBattleTypeFlags & BATTLE_TYPE_LEGENDARY && GET_BATTLER_SIDE2(gBattlerAttacker) == B_SIDE_PLAYER)
+                            *bideDmg = gTakenDmg[gBattlerAttacker] / 2;
+                        else
+                            *bideDmg = gTakenDmg[gBattlerAttacker] * 2;
                         gBattlerTarget = gTakenDmgByBattler[gBattlerAttacker];
                         if (gAbsentBattlerFlags & gBitTable[gBattlerTarget])
                             gBattlerTarget = GetMoveTarget(MOVE_BIDE, MOVE_TARGET_SELECTED + 1);

@@ -1976,7 +1976,7 @@ BattleScript_EffectFinalGambit:
 	critcalc
 	typecalc
 	bichalfword gMoveResultFlags, MOVE_RESULT_SUPER_EFFECTIVE | MOVE_RESULT_NOT_VERY_EFFECTIVE
-	dmgtocurrattackerhp
+	dmgtocurrattackerhptarget
 	adjustdamage
 	attackanimation
 	waitanimation
@@ -3782,7 +3782,7 @@ BattleScript_EffectDragonRage::
 	ppreduce
 	typecalc
 	bichalfword gMoveResultFlags, MOVE_RESULT_SUPER_EFFECTIVE | MOVE_RESULT_NOT_VERY_EFFECTIVE
-	setword gBattleMoveDamage, 40
+	dmg40flat
 	adjustdamage
 	goto BattleScript_HitFromAtkAnimation
 

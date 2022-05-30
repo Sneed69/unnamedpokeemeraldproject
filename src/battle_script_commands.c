@@ -9925,6 +9925,12 @@ static void Cmd_manipulatedamage(void)
     case DMG_CURR_ATTACKER_HP:
         gBattleMoveDamage = gBattleMons[gBattlerAttacker].hp;
         break;
+    case DMG_CURR_ATTACKER_HP_TARGET:
+        if (gBattleTypeFlags & BATTLE_TYPE_LEGENDARY && GET_BATTLER_SIDE2(gBattlerTarget) == B_SIDE_OPPONENT)
+            gBattleMoveDamage = gBattleMons[gBattlerAttacker].hp / 4;
+        else
+            gBattleMoveDamage = gBattleMons[gBattlerAttacker].hp;
+        break;
     case DMG_BIG_ROOT:
         gBattleMoveDamage = GetDrainedBigRootHp(gBattlerAttacker, gBattleMoveDamage);
         break;
@@ -9933,6 +9939,12 @@ static void Cmd_manipulatedamage(void)
         break;
     case DMG_RECOIL_FROM_IMMUNE:
         gBattleMoveDamage = gBattleMons[gBattlerTarget].maxHP / 2;
+        break;
+    case DMG_40_FLAT:
+        if (gBattleTypeFlags & BATTLE_TYPE_LEGENDARY && GET_BATTLER_SIDE2(gBattlerTarget) == B_SIDE_OPPONENT)
+            gBattleMoveDamage = 10;
+        else
+            gBattleMoveDamage = 40;
         break;
     }
 
@@ -10991,7 +11003,10 @@ static void Cmd_tryKO(void)
 
 static void Cmd_damagetohalftargethp(void) // super fang
 {
-    gBattleMoveDamage = gBattleMons[gBattlerTarget].hp / 2;
+    if (gBattleTypeFlags & BATTLE_TYPE_LEGENDARY && GET_BATTLER_SIDE2(gBattlerTarget) == B_SIDE_OPPONENT)
+        gBattleMoveDamage = gBattleMons[gBattlerTarget].hp / 8;
+    else
+        gBattleMoveDamage = gBattleMons[gBattlerTarget].hp / 2;
     if (gBattleMoveDamage == 0)
         gBattleMoveDamage = 1;
 
@@ -11308,7 +11323,10 @@ static void Cmd_metronome(void)
 
 static void Cmd_dmgtolevel(void)
 {
-    gBattleMoveDamage = gBattleMons[gBattlerAttacker].level;
+    if (gBattleTypeFlags & BATTLE_TYPE_LEGENDARY && GET_BATTLER_SIDE2(gBattlerTarget) == B_SIDE_OPPONENT)
+        gBattleMoveDamage = gBattleMons[gBattlerAttacker].level / 4;
+    else
+        gBattleMoveDamage = gBattleMons[gBattlerAttacker].level;
     gBattlescriptCurrInstr++;
 }
 
@@ -11319,7 +11337,10 @@ static void Cmd_psywavedamageeffect(void)
         randDamage = (Random() % 101);
     else
         randDamage = (Random() % 11) * 10;
-    gBattleMoveDamage = gBattleMons[gBattlerAttacker].level * (randDamage + 50) / 100;
+    if (gBattleTypeFlags & BATTLE_TYPE_LEGENDARY && GET_BATTLER_SIDE2(gBattlerTarget) == B_SIDE_OPPONENT)
+        gBattleMoveDamage = gBattleMons[gBattlerAttacker].level * (randDamage + 50) / 400;
+    else
+        gBattleMoveDamage = gBattleMons[gBattlerAttacker].level * (randDamage + 50) / 100;
     gBattlescriptCurrInstr++;
 }
 
@@ -11332,7 +11353,10 @@ static void Cmd_counterdamagecalculator(void)
         && sideAttacker != sideTarget
         && gBattleMons[gProtectStructs[gBattlerAttacker].physicalBattlerId].hp)
     {
-        gBattleMoveDamage = gProtectStructs[gBattlerAttacker].physicalDmg * 2;
+        if (gBattleTypeFlags & BATTLE_TYPE_LEGENDARY && GET_BATTLER_SIDE2(gBattlerTarget) == B_SIDE_OPPONENT)
+            gBattleMoveDamage = gProtectStructs[gBattlerAttacker].physicalDmg / 2;
+        else
+            gBattleMoveDamage = gProtectStructs[gBattlerAttacker].physicalDmg * 2;
 
         if (IsAffectedByFollowMe(gBattlerAttacker, sideTarget, gCurrentMove))
             gBattlerTarget = gSideTimers[sideTarget].followmeTarget;
@@ -11357,7 +11381,10 @@ static void Cmd_mirrorcoatdamagecalculator(void) // a copy of atkA1 with the phy
         && sideAttacker != sideTarget
         && gBattleMons[gProtectStructs[gBattlerAttacker].specialBattlerId].hp)
     {
-        gBattleMoveDamage = gProtectStructs[gBattlerAttacker].specialDmg * 2;
+        if (gBattleTypeFlags & BATTLE_TYPE_LEGENDARY && GET_BATTLER_SIDE2(gBattlerTarget) == B_SIDE_OPPONENT)
+            gBattleMoveDamage = gProtectStructs[gBattlerAttacker].specialDmg / 2;
+        else
+            gBattleMoveDamage = gProtectStructs[gBattlerAttacker].specialDmg * 2;
 
         if (IsAffectedByFollowMe(gBattlerAttacker, sideTarget, gCurrentMove))
             gBattlerTarget = gSideTimers[sideTarget].followmeTarget;
@@ -12807,7 +12834,10 @@ static void Cmd_setdamagetohealthdifference(void)
     }
     else
     {
-        gBattleMoveDamage = gBattleMons[gBattlerTarget].hp - gBattleMons[gBattlerAttacker].hp;
+        if (gBattleTypeFlags & BATTLE_TYPE_LEGENDARY && GET_BATTLER_SIDE2(gBattlerTarget) == B_SIDE_OPPONENT)
+            gBattleMoveDamage = (gBattleMons[gBattlerTarget].hp - gBattleMons[gBattlerAttacker].hp) / 4;
+        else
+            gBattleMoveDamage = gBattleMons[gBattlerTarget].hp - gBattleMons[gBattlerAttacker].hp;
         gBattlescriptCurrInstr += 5;
     }
 }
@@ -13589,29 +13619,19 @@ static void Cmd_handleballthrow(void)
         MarkBattlerForControllerExec(gActiveBattler);
         gBattlescriptCurrInstr = BattleScript_WallyBallThrow;
     }
+    else if (gBattleTypeFlags & BATTLE_TYPE_LEGENDARY && gBattleMons[gBattlerTarget].hp * 3 > gBattleMons[gBattlerTarget].maxHP)
+    {
+        BtlController_EmitBallThrowAnim(BUFFER_A, BALL_TRAINER_BLOCK);
+        MarkBattlerForControllerExec(gActiveBattler);
+        gBattlescriptCurrInstr = BattleScript_LegendaryBallBlock;
+    }
     else
     {
         u32 odds, i;
         u8 catchRate;
 
         gLastThrownBall = gLastUsedItem;
-        switch (gBattleMons[gBattlerTarget].species)
-        {
-            case SPECIES_RAYQUAZA:
-            case SPECIES_KYOGRE:
-            case SPECIES_GROUDON:
-            case SPECIES_REGIROCK:
-            case SPECIES_REGICE:
-            case SPECIES_REGISTEEL:
-            case SPECIES_REGIGIGAS:
-                if (gBattleMons[gBattlerTarget].hp * 3 > gBattleMons[gBattlerTarget].maxHP)
-                {
-                    BtlController_EmitBallThrowAnim(BUFFER_A, BALL_TRAINER_BLOCK);
-                    MarkBattlerForControllerExec(gActiveBattler);
-                    gBattlescriptCurrInstr = BattleScript_LegendaryBallBlock;
-                    return;
-                }
-        }
+
         if (gBattleTypeFlags & BATTLE_TYPE_SAFARI)
             catchRate = gBattleStruct->safariCatchFactor * 1275 / 100;
         else
@@ -14255,7 +14275,10 @@ static void Cmd_metalburstdamagecalculator(void)
         && sideAttacker != (sideTarget = GetBattlerSide(gProtectStructs[gBattlerAttacker].physicalBattlerId))
         && gBattleMons[gProtectStructs[gBattlerAttacker].physicalBattlerId].hp)
     {
-        gBattleMoveDamage = gProtectStructs[gBattlerAttacker].physicalDmg * 150 / 100;
+        if (gBattleTypeFlags & BATTLE_TYPE_LEGENDARY && GET_BATTLER_SIDE2(gBattlerTarget) == B_SIDE_OPPONENT)
+            gBattleMoveDamage = gProtectStructs[gBattlerAttacker].physicalDmg * 375 / 1000;
+        else
+            gBattleMoveDamage = gProtectStructs[gBattlerAttacker].physicalDmg * 150 / 100;
 
         if (IsAffectedByFollowMe(gBattlerAttacker, sideTarget, gCurrentMove))
             gBattlerTarget = gSideTimers[sideTarget].followmeTarget;
@@ -14268,7 +14291,10 @@ static void Cmd_metalburstdamagecalculator(void)
              && sideAttacker != (sideTarget = GetBattlerSide(gProtectStructs[gBattlerAttacker].specialBattlerId))
              && gBattleMons[gProtectStructs[gBattlerAttacker].specialBattlerId].hp)
     {
-        gBattleMoveDamage = gProtectStructs[gBattlerAttacker].specialDmg * 150 / 100;
+        if (gBattleTypeFlags & BATTLE_TYPE_LEGENDARY && GET_BATTLER_SIDE2(gBattlerTarget) == B_SIDE_OPPONENT)
+            gBattleMoveDamage = gProtectStructs[gBattlerAttacker].specialDmg * 375 / 1000;
+        else
+            gBattleMoveDamage = gProtectStructs[gBattlerAttacker].specialDmg * 150 / 100;
 
         if (IsAffectedByFollowMe(gBattlerAttacker, sideTarget, gCurrentMove))
             gBattlerTarget = gSideTimers[sideTarget].followmeTarget;
