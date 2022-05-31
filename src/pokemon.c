@@ -7251,7 +7251,7 @@ u8 GetMoveRelearnerMoves(struct Pokemon *mon, u16 *moves)
 
 u8 GetEggMoveTutorMoves(struct Pokemon *mon, u16 *moves)
 {
-    u16 learnedMoves[4];
+    u16 learnedMoves[MAX_MON_MOVES];
     u8 numMoves = 0;
     u16 species = GetMonData(mon, MON_DATA_SPECIES, 0);
     u16 earliestStage = species;
@@ -7356,10 +7356,8 @@ u8 GetNumberOfRelearnableMoves(struct Pokemon *mon)
 
 u8 GetNumberOfEggMoveTutorMoves(struct Pokemon *mon)
 {
-    u16 learnedMoves[MAX_MON_MOVES];
     u16 moves[EGG_MOVES_ARRAY_COUNT];
     u16 species = GetMonData(mon, MON_DATA_SPECIES2, 0);
-    int i, j, k;
 
     if (species == SPECIES_EGG)
         return 0;

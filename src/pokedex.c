@@ -5425,6 +5425,19 @@ static void PrintSearchText(const u8 *str, u32 x, u32 y)
     AddTextPrinterParameterized4(0, FONT_NORMAL, x, y, 0, 0, color, TEXT_SKIP_DRAW, str);
 }
 
+static void PrintSearchTextType(const u8 *str, u32 x, u32 y)
+{
+    u8 color[3];
+
+    color[0] = TEXT_COLOR_TRANSPARENT;
+    color[1] = TEXT_DYNAMIC_COLOR_6;
+    color[2] = TEXT_COLOR_DARK_GRAY;
+    if (StringLength(str) < 7)
+        AddTextPrinterParameterized4(0, FONT_NORMAL, x, y, 0, 0, color, TEXT_SKIP_DRAW, str);
+    else
+        AddTextPrinterParameterized4(0, FONT_NARROW, x, y, 0, 0, color, TEXT_SKIP_DRAW, str);
+}
+
 static void ClearSearchMenuRect(u32 x, u32 y, u32 width, u32 height)
 {
     FillWindowPixelRect(0, PIXEL_FILL(0), x, y, width, height);
@@ -6049,10 +6062,10 @@ static void PrintSelectedSearchParameters(u8 taskId)
     PrintSearchText(sDexSearchColorOptions[searchParamId].title, 0x2D, 0x21);
 
     searchParamId = gTasks[taskId].tCursorPos_TypeLeft + gTasks[taskId].tScrollOffset_TypeLeft;
-    PrintSearchText(sDexSearchTypeOptions[searchParamId].title, 0x2D, 0x31);
+    PrintSearchTextType(sDexSearchTypeOptions[searchParamId].title, 0x2D, 0x31);
 
     searchParamId = gTasks[taskId].tCursorPos_TypeRight + gTasks[taskId].tScrollOffset_TypeRight;
-    PrintSearchText(sDexSearchTypeOptions[searchParamId].title, 0x5D, 0x31);
+    PrintSearchTextType(sDexSearchTypeOptions[searchParamId].title, 0x5D, 0x31);
 
     searchParamId = gTasks[taskId].tCursorPos_Order + gTasks[taskId].tScrollOffset_Order;
     PrintSearchText(sDexOrderOptions[searchParamId].title, 0x2D, 0x41);
