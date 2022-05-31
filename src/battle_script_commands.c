@@ -11468,12 +11468,18 @@ static void Cmd_painsplitdmgcalc(void)
         s32 painSplitHp = gBattleMoveDamage = gBattleMons[gBattlerTarget].hp - hpDiff;
         u8* storeLoc = (void*)(&gBattleScripting.painSplitHp);
 
+        if (gBattleTypeFlags & BATTLE_TYPE_LEGENDARY && GET_BATTLER_SIDE2(gBattlerTarget) == B_SIDE_OPPONENT)
+            painSplitHp = gBattleMoveDamage = gBattleMoveDamage / 2;
+
         storeLoc[0] = (painSplitHp);
         storeLoc[1] = (painSplitHp & 0x0000FF00) >> 8;
         storeLoc[2] = (painSplitHp & 0x00FF0000) >> 16;
         storeLoc[3] = (painSplitHp & 0xFF000000) >> 24;
 
-        gBattleMoveDamage = gBattleMons[gBattlerAttacker].hp - hpDiff;
+        if (gBattleTypeFlags & BATTLE_TYPE_LEGENDARY && GET_BATTLER_SIDE2(gBattlerTarget) == B_SIDE_OPPONENT)
+            gBattleMoveDamage = (gBattleMons[gBattlerAttacker].hp - hpDiff) / 2;
+        else
+            gBattleMoveDamage = gBattleMons[gBattlerAttacker].hp - hpDiff;
         gSpecialStatuses[gBattlerTarget].dmg = 0xFFFF;
 
         gBattlescriptCurrInstr += 5;
