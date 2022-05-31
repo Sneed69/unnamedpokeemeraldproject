@@ -10,6 +10,7 @@
 #include "scanline_effect.h"
 #include "overworld.h"
 #include "play_time.h"
+#include "anti_save_state.h"
 #include "random.h"
 #include "dma3.h"
 #include "gba/flash_internal.h"
@@ -154,6 +155,7 @@ void AgbMain()
         }
 
         PlayTimeCounter_Update();
+        AntiSaveStateUpdate();
         MapMusicMain();
         WaitForVBlank();
     }
