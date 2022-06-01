@@ -6162,7 +6162,7 @@ BattleScript_FaintAttacker::
 	pause B_WAIT_TIME_LONG
 	dofaintanimation BS_ATTACKER
 	printstring STRINGID_ATTACKERFAINTED
-	savebattleritem BS_ATTACKER
+	savedroppeditem BS_ATTACKER
 	cleareffectsonfaint BS_ATTACKER
 	tryactivatesoulheart
 	tryactivatereceiver BS_ATTACKER
@@ -6175,7 +6175,7 @@ BattleScript_FaintTarget::
 	pause B_WAIT_TIME_LONG
 	dofaintanimation BS_TARGET
 	printstring STRINGID_TARGETFAINTED
-	savebattleritem BS_TARGET
+	savedroppeditem BS_TARGET
 	cleareffectsonfaint BS_TARGET
 	tryactivatefellstinger BS_ATTACKER
 	tryactivatesoulheart

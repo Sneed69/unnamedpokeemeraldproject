@@ -9603,8 +9603,12 @@ static void Cmd_various(void)
     case VARIOUS_SWAP_SIDE_STATUSES:
         CourtChangeSwapSideStatuses();
         break;
+    case VARIOUS_SAVE_DROPPED_ITEMS:
+        if (GET_BATTLER_SIDE2(gActiveBattler) == B_SIDE_OPPONENT)
+            gBattleStruct->droppedItem = gBattleMons[gActiveBattler].item;
+        break;
     case VARIOUS_GIVE_DROPPED_ITEMS:
-        gLastUsedItem = gBattleResources->battleHistory->heldItems[gActiveBattler];
+        gLastUsedItem = gBattleStruct->droppedItem;
         if (gLastUsedItem 
             && !(gBattleTypeFlags & (BATTLE_TYPE_TRAINER
                                     | BATTLE_TYPE_FIRST_BATTLE
