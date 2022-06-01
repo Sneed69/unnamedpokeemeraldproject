@@ -41,6 +41,10 @@ const u32 gBattleTerrainTiles_Cave[] = INCBIN_U32("graphics/battle_terrain/cave/
 const u32 gBattleTerrainPalette_Cave[] = INCBIN_U32("graphics/battle_terrain/cave/palette.gbapal.lz");
 const u32 gBattleTerrainTilemap_Cave[] = INCBIN_U32("graphics/battle_terrain/cave/map.bin.lz");
 
+const u32 gBattleTerrainTiles_CaveWater[] = INCBIN_U32("graphics/battle_terrain/cave_water/tiles.4bpp.lz");
+const u32 gBattleTerrainPalette_CaveWater[] = INCBIN_U32("graphics/battle_terrain/cave_water/palette.gbapal.lz");
+const u32 gBattleTerrainTilemap_CaveWater[] = INCBIN_U32("graphics/battle_terrain/cave_water/map.bin.lz");
+
 const u32 gBattleTerrainPalette_Plain_Morning[] = INCBIN_U32("graphics/battle_terrain/plain/morning.gbapal.lz");
 const u32 gBattleTerrainPalette_Plain_Day[] = INCBIN_U32("graphics/battle_terrain/plain/day.gbapal.lz");
 const u32 gBattleTerrainPalette_Plain_Night[] = INCBIN_U32("graphics/battle_terrain/plain/night.gbapal.lz");

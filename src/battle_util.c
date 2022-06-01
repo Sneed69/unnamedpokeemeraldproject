@@ -10289,6 +10289,7 @@ void DoBurmyFormChange(u32 monId)
             case BATTLE_TERRAIN_GRASS:
             case BATTLE_TERRAIN_LONG_GRASS:
             case BATTLE_TERRAIN_POND:
+            case BATTLE_TERRAIN_CAVE_WATER:
             case BATTLE_TERRAIN_MOUNTAIN:
             case BATTLE_TERRAIN_PLAIN:
                 newSpecies = SPECIES_BURMY;

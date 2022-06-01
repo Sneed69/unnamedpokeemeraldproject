@@ -396,8 +396,9 @@
 #define BATTLE_TERRAIN_DISTORTION_WORLD 19
 #define BATTLE_TERRAIN_SPACE            20
 #define BATTLE_TERRAIN_ULTRA_SPACE      21
+#define BATTLE_TERRAIN_CAVE_WATER       22
 
-#define BATTLE_TERRAIN_COUNT            22
+#define BATTLE_TERRAIN_COUNT            23
 
 #define B_WAIT_TIME_LONG     64
 #define B_WAIT_TIME_MED      48

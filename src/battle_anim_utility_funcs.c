@@ -124,6 +124,7 @@ void AnimTask_SetCamouflageBlend(u8 taskId)
         gBattleAnimArgs[4] = RGB(11, 22, 31);
         break;
     case BATTLE_TERRAIN_POND:
+    case BATTLE_TERRAIN_CAVE_WATER:
         gBattleAnimArgs[4] = RGB(11, 22, 31);
         break;
     case BATTLE_TERRAIN_MOUNTAIN:

@@ -23908,6 +23908,7 @@ Move_SECRET_POWER:
 	jumpargeq 0, BATTLE_TERRAIN_UNDERWATER,     Move_WATERFALL
 	jumpargeq 0, BATTLE_TERRAIN_WATER,          Move_SURF
 	jumpargeq 0, BATTLE_TERRAIN_POND,           Move_BUBBLE_BEAM
+	jumpargeq 0, BATTLE_TERRAIN_CAVE_WATER,     Move_BUBBLE_BEAM
 	jumpargeq 0, BATTLE_TERRAIN_MOUNTAIN,       Move_ROCK_THROW
 	jumpargeq 0, BATTLE_TERRAIN_CAVE,           Move_BITE
 	jumpargeq 0, BATTLE_TERRAIN_BUILDING,       Move_STRENGTH
