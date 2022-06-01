@@ -20,6 +20,7 @@
 	.include "src/berry_blender.o"
 	.include "src/play_time.o"
 	.include "src/game_time.o"
+	.include "src/anti_save_state.o"
 	.include "src/overworld.o"
 	.include "src/field_camera.o"
 	.include "src/script.o"
