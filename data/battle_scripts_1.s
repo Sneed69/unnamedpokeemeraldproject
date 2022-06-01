@@ -9808,5 +9808,5 @@ BattleScript_MagicianActivates::
 
 BattleScript_ItemDropped::
 	playse SE_ITEMFINDER
-	printstring STRINGID_PKMNDROPPEDITEM
+	printfromtable gItemDroppedStringIds
 	return
