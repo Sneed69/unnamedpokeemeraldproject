@@ -661,7 +661,7 @@ static const struct BattleBackground sBattleTerrainTable[] =
         .tilemap = gBattleTerrainTilemap_PondWater,
         .entryTileset = gBattleTerrainAnimTiles_PondWater,
         .entryTilemap = gBattleTerrainAnimTilemap_PondWater,
-        .palette = {gBattleTerrainPalette_PondWater, gBattleTerrainPalette_PondWater, gBattleTerrainPalette_PondWater},
+        .palette = {gBattleTerrainPalette_PondWater_Morning, gBattleTerrainPalette_PondWater_Day, gBattleTerrainPalette_PondWater_Night},
     },
 
     [BATTLE_TERRAIN_MOUNTAIN] =
