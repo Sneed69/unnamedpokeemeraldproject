@@ -685,7 +685,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
     [MOVE_BITE] =
     {
         .effect = EFFECT_FLINCH_HIT,
-        .power = 60,
+        .power = 45,
         .type = TYPE_DARK,
         .accuracy = 100,
         .pp = 40,
