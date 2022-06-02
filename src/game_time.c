@@ -30,21 +30,28 @@ void GameTimeCounter_Stop(void)
     sGameTimeCounterState = STOPPED;
 }
 
+#if TIME_DEBUG
+static u32 debugVBlanks;
+#endif
+
 void GameTimeCounter_Update(void)
 {
     if (sGameTimeCounterState != RUNNING)
         return;
     if (ScriptContext2_IsEnabled())//Check if game is paused
         return;
+#if TIME_DEBUG
+    if (++debugVBlanks == 60)
+    {
+        mgba_printf(MGBA_LOG_DEBUG, "Time %d %d:%d:%d",gSaveBlock1Ptr->gameTime.days, gSaveBlock1Ptr->gameTime.hours, gSaveBlock1Ptr->gameTime.minutes, gSaveBlock1Ptr->gameTime.seconds);
+        debugVBlanks = 0;
+    }
+#endif
 #if TIME_SCALE <= 60
     gSaveBlock1Ptr->gameTimeVBlanks += TIME_SCALE;
 
     if (gSaveBlock1Ptr->gameTimeVBlanks < 60)
         return;
-#if TIME_DEBUG
-    if (gSaveBlock1Ptr->gameTime.seconds / TIME_SCALE < 60)
-        mgba_printf(MGBA_LOG_DEBUG, "Time %d %d:%d:%d",gSaveBlock1Ptr->gameTime.days, gSaveBlock1Ptr->gameTime.hours, gSaveBlock1Ptr->gameTime.minutes, gSaveBlock1Ptr->gameTime.seconds);
-#endif
     
     gSaveBlock1Ptr->gameTimeVBlanks -= 60;
     gSaveBlock1Ptr->gameTime.seconds++;
