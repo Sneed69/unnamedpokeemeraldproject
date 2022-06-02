@@ -1031,6 +1031,7 @@ static const u8 sAbilitiesAffectedByMoldBreaker[] =
     [ABILITY_BULLETPROOF] = 1,
     [ABILITY_FLOWER_VEIL] = 1,
     [ABILITY_FUR_COAT] = 1,
+    [ABILITY_PRISTINE_PLUMAGE] = 1,
     [ABILITY_OVERCOAT] = 1,
     [ABILITY_SWEET_VEIL] = 1,
     [ABILITY_DAZZLING] = 1,
@@ -9014,6 +9015,14 @@ static u32 CalcDefenseStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, 
             MulModifier(&modifier, UQ_4_12(2.0));
             if (updateFlags)
                 RecordAbilityBattle(battlerDef, ABILITY_FUR_COAT);
+        }
+        break;
+    case ABILITY_PRISTINE_PLUMAGE:
+        if (!usesDefStat)
+        {
+            MulModifier(&modifier, UQ_4_12(2.0));
+            if (updateFlags)
+                RecordAbilityBattle(battlerDef, ABILITY_PRISTINE_PLUMAGE);
         }
         break;
     case ABILITY_GRASS_PELT:

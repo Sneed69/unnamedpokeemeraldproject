@@ -267,6 +267,7 @@ static const u8 sPerfectAlloyDescription[] = _("Weakness to Fighting-Type\nattac
 static const u8 sMasterOfTheAgesDescription[] = _("Powers up and resists Rock,\nIce and Steel-type moves.");
 static const u8 sCondensedEnergyDescription[] = _("Boosts Sp. Atk and Sp. Def\nat the end of each turn.");
 static const u8 sOverturnDescription[] = _("Inverts the type based\neffectiveness of all moves.");
+static const u8 sPristinePlumageDescription[] = _("Doubles Sp. Def.");
 
 #if B_EXPANDED_ABILITY_NAMES == TRUE
 const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
@@ -552,6 +553,7 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
     [ABILITY_MASTER_OF_THE_AGES] = _("Master of the Ages"),
     [ABILITY_CONDENSED_ENERGY] = _("Condensed Energy"),
     [ABILITY_OVERTURN] = _("Overturn"),
+    [ABILITY_PRISTINE_PLUMAGE] = _("Pristine Plumage"),
 };
 #else   // 12 characters
 const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
@@ -1110,4 +1112,5 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
     [ABILITY_MASTER_OF_THE_AGES] = sMasterOfTheAgesDescription,
     [ABILITY_CONDENSED_ENERGY] = sCondensedEnergyDescription,
     [ABILITY_OVERTURN] = sOverturnDescription,
+    [ABILITY_PRISTINE_PLUMAGE] = sPristinePlumageDescription,
 };
