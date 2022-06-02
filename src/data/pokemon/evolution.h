@@ -239,9 +239,9 @@ const struct Evolution gEvolutionTable[NUM_SPECIES][EVOS_PER_MON] =
     [SPECIES_GOOMY]                 = {{EVO_LEVEL, 40, SPECIES_SLIGGOO}},
     [SPECIES_SLIGGOO]               = {{EVO_LEVEL, 50, SPECIES_GOODRA}},
     [SPECIES_PHANTUMP]              = {{EVO_LEVEL, 32, SPECIES_TREVENANT}},
-    [SPECIES_SNOM]                  = {{EVO_LEVEL, 59, SPECIES_FROSMOTH}},
-    [SPECIES_CUFANT]                = {{EVO_LEVEL, 34, SPECIES_COPPERAJAH}},
     /*
+    [SPECIES_CUFANT]                = {{EVO_LEVEL, 34, SPECIES_COPPERAJAH}},
+    [SPECIES_SNOM]                  = {{EVO_LEVEL, 59, SPECIES_FROSMOTH}},
     [SPECIES_KLINK]                 = {{EVO_LEVEL, 38, SPECIES_KLANG}},
     [SPECIES_KLANG]                 = {{EVO_LEVEL, 49, SPECIES_KLINKLANG}},
     [SPECIES_TYNAMO]                = {{EVO_LEVEL, 39, SPECIES_EELEKTRIK}},

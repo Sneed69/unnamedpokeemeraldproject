@@ -2933,6 +2933,7 @@ const u16 gEggMoves[] = {
         MOVE_POWER_SPLIT,
         MOVE_CAMOUFLAGE,
         MOVE_FLATTER,
+        MOVE_REVERSAL,
         MOVE_DESTINY_BOND,
         MOVE_GUARD_SWAP),
 
