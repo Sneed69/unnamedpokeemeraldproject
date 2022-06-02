@@ -4712,10 +4712,19 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 }
                 break;
             case ABILITY_HYDRATION:
-                if (IsBattlerWeatherAffected(battler, B_WEATHER_RAIN)
-                 && gBattleMons[battler].status1 & STATUS1_ANY)
+                if (IsBattlerWeatherAffected(battler, B_WEATHER_RAIN))
                 {
-                    goto ABILITY_HEAL_MON_STATUS;
+                    if (!BATTLER_MAX_HP(battler) && !(gStatuses3[battler] & STATUS3_HEAL_BLOCK))
+                    {
+                        BattleScriptPushCursorAndCallback(BattleScript_RainDishActivates);
+                        gBattleMoveDamage = gBattleMons[battler].maxHP / 16;
+                        if (gBattleMoveDamage == 0)
+                            gBattleMoveDamage = 1;
+                        gBattleMoveDamage *= -1;
+                        effect++;
+                    }
+                    if (gBattleMons[battler].status1 & STATUS1_ANY)
+                        goto ABILITY_HEAL_MON_STATUS;
                 }
                 break;
             case ABILITY_SHED_SKIN:
