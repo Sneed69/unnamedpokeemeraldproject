@@ -10114,11 +10114,7 @@ const struct BaseStats gBaseStats[] =
         .growthRate = GROWTH_SLOW,
         .eggGroup1 = EGG_GROUP_DRAGON,
         .eggGroup2 = EGG_GROUP_DRAGON,
-        #ifdef BATTLE_ENGINE
-            .abilities = {ABILITY_SAP_SIPPER, ABILITY_HYDRATION, ABILITY_GOOEY},
-        #else
-            .abilities = {ABILITY_NONE, ABILITY_NONE},
-        #endif
+        .abilities = {ABILITY_GOOEY, ABILITY_HYDRATION},
         .bodyColor = BODY_COLOR_PURPLE,
         .noFlip = FALSE,
     },
@@ -10142,11 +10138,7 @@ const struct BaseStats gBaseStats[] =
         .growthRate = GROWTH_SLOW,
         .eggGroup1 = EGG_GROUP_DRAGON,
         .eggGroup2 = EGG_GROUP_DRAGON,
-        #ifdef BATTLE_ENGINE
-            .abilities = {ABILITY_SAP_SIPPER, ABILITY_HYDRATION, ABILITY_GOOEY},
-        #else
-            .abilities = {ABILITY_NONE, ABILITY_NONE},
-        #endif
+        .abilities = {ABILITY_GOOEY, ABILITY_HYDRATION},
         .bodyColor = BODY_COLOR_PURPLE,
         .noFlip = FALSE,
     },
@@ -10170,18 +10162,14 @@ const struct BaseStats gBaseStats[] =
         .growthRate = GROWTH_SLOW,
         .eggGroup1 = EGG_GROUP_DRAGON,
         .eggGroup2 = EGG_GROUP_DRAGON,
-        #ifdef BATTLE_ENGINE
-            .abilities = {ABILITY_SAP_SIPPER, ABILITY_HYDRATION, ABILITY_GOOEY},
-        #else
-            .abilities = {ABILITY_NONE, ABILITY_NONE},
-        #endif
+        .abilities = {ABILITY_GOOEY, ABILITY_HYDRATION},
         .bodyColor = BODY_COLOR_PURPLE,
         .noFlip = FALSE,
     },
 
     [SPECIES_PHANTUMP] =
     {
-        .baseHP        = 43,
+        .baseHP        = 58,
         .baseAttack    = 70,
         .baseDefense   = 48,
         .baseSpeed     = 38,
@@ -10226,7 +10214,7 @@ const struct BaseStats gBaseStats[] =
         .bodyColor = BODY_COLOR_BROWN,
         .noFlip = FALSE,
     },
-
+/*
 #define MINIOR_METEOR_ATTRIBUTES\
         .baseHP        = 60,    \
         .baseAttack    = 60,    \
@@ -10438,5 +10426,5 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_LEVITATE, ABILITY_NONE},
         .bodyColor = BODY_COLOR_RED,
         .noFlip = FALSE,
-    },
+    },*/
 };
