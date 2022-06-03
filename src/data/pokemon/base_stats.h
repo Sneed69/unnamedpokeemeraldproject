@@ -1771,6 +1771,7 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_REGENERATOR, ABILITY_UNAWARE},
         .bodyColor = BODY_COLOR_PINK,
         .noFlip = FALSE,
+        .itemCommon = ITEM_CHERI_BERRY,
     },
 
     [SPECIES_SLOWBRO] =
@@ -1795,6 +1796,7 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_REGENERATOR, ABILITY_DRY_SKIN},
         .bodyColor = BODY_COLOR_PINK,
         .noFlip = FALSE,
+        .itemCommon = ITEM_CHERI_BERRY,
     },
 
     [SPECIES_SLOWKING] =
@@ -1819,6 +1821,7 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_ANALYTIC, ABILITY_UNAWARE},
         .bodyColor = BODY_COLOR_PINK,
         .noFlip = FALSE,
+        .itemCommon = ITEM_CHERI_BERRY,
     },
 
     [SPECIES_MAGNEMITE] =
@@ -5420,6 +5423,7 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_UNNERVE, ABILITY_RATTLED},
         .bodyColor = BODY_COLOR_GRAY,
         .noFlip = FALSE,
+        .itemCommon = ITEM_ORAN_BERRY,
     },
 
     [SPECIES_MIGHTYENA] =
@@ -5444,6 +5448,7 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_INTIMIDATE, ABILITY_MOXIE},
         .bodyColor = BODY_COLOR_GRAY,
         .noFlip = FALSE,
+        .itemCommon = ITEM_SITRUS_BERRY,
     },
 
     [SPECIES_ZIGZAGOON] =
@@ -5785,6 +5790,7 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_GUTS, ABILITY_PRISTINE_PLUMAGE},
         .bodyColor = BODY_COLOR_BLUE,
         .noFlip = FALSE,
+        .itemCommon = ITEM_CHESTO_BERRY,
     },
 
     [SPECIES_SWELLOW] =
@@ -5809,6 +5815,7 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_GUTS, ABILITY_PRISTINE_PLUMAGE},
         .bodyColor = BODY_COLOR_BLUE,
         .noFlip = FALSE,
+        .itemCommon = ITEM_CHESTO_BERRY,
     },
 
     [SPECIES_WINGULL] =
