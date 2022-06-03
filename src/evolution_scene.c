@@ -866,8 +866,7 @@ static void Task_EvolutionScene(u8 taskId)
             DestroyTask(taskId);
             if (!gMain.inBattle || gBattleOutcome != 0)
                 FreeMonSpritesGfx(); // Free resources if battle is not ongoing
-            Free(sEvoStructPtr);
-            sEvoStructPtr = NULL;
+            FREE_AND_SET_NULL(sEvoStructPtr);
             FreeAllWindowBuffers();
             SetMainCallback2(gCB2_AfterEvolution);
         }
@@ -1276,8 +1275,7 @@ static void Task_TradeEvolutionScene(u8 taskId)
         if (!IsTextPrinterActive(0))
         {
             DestroyTask(taskId);
-            Free(sEvoStructPtr);
-            sEvoStructPtr = NULL;
+            FREE_AND_SET_NULL(sEvoStructPtr);
             gTextFlags.useAlternateDownArrow = 0;
             SetMainCallback2(gCB2_AfterEvolution);
         }
