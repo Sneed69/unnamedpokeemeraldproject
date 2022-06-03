@@ -3,6 +3,7 @@
 // communicating with the RTC.
 
 #include "gba/gba.h"
+#include "config.h"
 #include "siirtc.h"
 
 #define STATUS_INTFE  0x02 // frequency interrupt enable
