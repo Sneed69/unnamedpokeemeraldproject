@@ -1162,18 +1162,9 @@ s32 AI_GetAbility(u32 battlerId)
         return knownAbility;
 
     // Else, guess the ability
-    if (gBaseStats[gBattleMons[battlerId].species].abilities[0] != ABILITY_NONE)
-    {
-        u16 abilityGuess = ABILITY_NONE;
-        while (abilityGuess == ABILITY_NONE)
-        {
-            abilityGuess = gBaseStats[gBattleMons[battlerId].species].abilities[Random() % NUM_ABILITY_SLOTS];
-        }
-
-        return abilityGuess;
-    }
-
-    return ABILITY_NONE; // Unknown.
+    if (gBaseStats[gBattleMons[battlerId].species].abilities[1] != ABILITY_NONE)
+        return gBaseStats[gBattleMons[battlerId].species].abilities[Random() % NUM_ABILITY_SLOTS];
+    return gBaseStats[gBattleMons[battlerId].species].abilities[0];
 }
 
 u16 AI_GetHoldEffect(u32 battlerId)
