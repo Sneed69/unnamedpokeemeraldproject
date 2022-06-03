@@ -9,17 +9,12 @@ void AntiSaveStateUpdate(void)
     RtcCalcLocalTime();
     if (gMain.inBattle)
     {
-        s32 diff = abs(sAntiSaveStateTime.days - gLocalTime.days);
-        if (diff > 1)
-            DoSoftReset();
-        diff = abs(sAntiSaveStateTime.hours - gLocalTime.hours);
-        if (diff > 2 && diff != 23) // 2 to account for daylight saving time change
-            DoSoftReset();
-        diff = abs(sAntiSaveStateTime.minutes - gLocalTime.minutes);
-        if (diff > 1 && diff != 59)
-            DoSoftReset();
-        diff = abs(sAntiSaveStateTime.seconds - gLocalTime.seconds);
-        if (diff > 1 && diff != 59)
+        struct Time diff;
+
+        CalcTimeDifference(&diff, &sAntiSaveStateTime, &gLocalTime);
+        if ((diff.seconds > 1 || diff.minutes != 0 || diff.hours != 0 || diff.days != 0)
+            && !(diff.seconds == 1 && diff.minutes == 0 && diff.hours == 23 && diff.days == -1) // DLST winter
+            && !(diff.seconds == 1 && diff.minutes == 0 && diff.hours == 1 && diff.days == 0)) // DLST summer
             DoSoftReset();
     }
     sAntiSaveStateTime = gLocalTime;
