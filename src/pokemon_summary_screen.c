@@ -48,7 +48,6 @@
 #include "constants/rgb.h"
 #include "constants/songs.h"
 #include "constants/battle_config.h"
-#include "item_icon.h"
 
 enum {
     PSS_PAGE_INFO,
@@ -124,7 +123,6 @@ enum
     SPRITE_ARR_ID_MON,
     SPRITE_ARR_ID_BALL,
     SPRITE_ARR_ID_STATUS,
-    SPRITE_ARR_ID_ITEM,
     SPRITE_ARR_ID_TYPE, // 2 for mon types, 5 for move types(4 moves and 1 to learn), used interchangeably, because mon types and move types aren't shown on the same screen
     SPRITE_ARR_ID_MOVE_SELECTOR1 = SPRITE_ARR_ID_TYPE + 5, // 10 sprites that make up the selector
     SPRITE_ARR_ID_MOVE_SELECTOR2 = SPRITE_ARR_ID_MOVE_SELECTOR1 + MOVE_SELECTOR_SPRITES_COUNT,
@@ -323,7 +321,6 @@ static void ResetSpriteIds(void);
 static void SetSpriteInvisibility(u8 spriteArrayId, bool8 invisible);
 static void HidePageSpecificSprites(void);
 static void SetTypeIcons(void);
-static void ShowHeldItem(void);
 static void CreateMoveTypeIcons(void);
 static void SetMonTypeIcons(void);
 static void SetMoveTypeIcons(void);
@@ -345,7 +342,6 @@ static void SetMainMoveSelectorColor(u8 whichColor);
 static void KeepMoveSelectorVisible(u8 firstSpriteId);
 static void SummaryScreen_DestroyAnimDelayTask(void);
 static void BufferIvOrEvStats(u8 mode);
-static void CreateHeldItemSprite(struct Pokemon *mon);
 
 // const rom data
 #include "data/text/move_descriptions.h"
@@ -1384,10 +1380,6 @@ static bool8 LoadGraphics(void)
         gMain.state++;
         break;
     case 17:
-        CreateHeldItemSprite(&sMonSummaryScreen->currentMon);
-        gMain.state++;
-        break;
-    case 18:
         sMonSummaryScreen->spriteIds[SPRITE_ARR_ID_MON] = LoadMonGfxAndSprite(&sMonSummaryScreen->currentMon, &sMonSummaryScreen->switchCounter);
         if (sMonSummaryScreen->spriteIds[SPRITE_ARR_ID_MON] != SPRITE_NONE)
         {
@@ -1395,38 +1387,34 @@ static bool8 LoadGraphics(void)
             gMain.state++;
         }
         break;
-    case 19:
+    case 18:
         CreateMonMarkingsSprite(&sMonSummaryScreen->currentMon);
         gMain.state++;
         break;
-    case 20:
+    case 19:
         CreateCaughtBallSprite(&sMonSummaryScreen->currentMon);
         gMain.state++;
         break;
-    case 21:
+    case 20:
         CreateSetStatusSprite();
         gMain.state++;
         break;
-    case 22:
-        ShowHeldItem();
-        gMain.state++;
-        break;
-    case 23:
+    case 21:
         SetTypeIcons();
         gMain.state++;
         break;
-    case 24:
+    case 22:
         if (sMonSummaryScreen->mode != SUMMARY_MODE_SELECT_MOVE)
             CreateTask(Task_HandleInput, 0);
         else
             CreateTask(Task_SetHandleReplaceMoveInput, 0);
         gMain.state++;
         break;
-    case 25:
+    case 23:
         BlendPalettes(PALETTES_ALL, 16, 0);
         gMain.state++;
         break;
-    case 26:
+    case 24:
         BeginNormalPaletteFade(PALETTES_ALL, 0, 16, 0, RGB_BLACK);
         gPaletteFade.bufferTransferDisabled = 0;
         gMain.state++;
@@ -1820,32 +1808,26 @@ static void Task_ChangeSummaryMon(u8 taskId)
         DestroySpriteAndFreeResources(&gSprites[sMonSummaryScreen->spriteIds[SPRITE_ARR_ID_BALL]]);
         break;
     case 3:
-        DestroySpriteAndFreeResources(&gSprites[sMonSummaryScreen->spriteIds[SPRITE_ARR_ID_ITEM]]);
-        break;
-    case 4:
         CopyMonToSummaryStruct(&sMonSummaryScreen->currentMon);
         sMonSummaryScreen->switchCounter = 0;
         break;
-    case 5:
+    case 4:
         if (ExtractMonDataToSummaryStruct(&sMonSummaryScreen->currentMon) == FALSE)
             return;
         break;
-    case 6:
+    case 5:
         RemoveAndCreateMonMarkingsSprite(&sMonSummaryScreen->currentMon);
         break;
-    case 7:
+    case 6:
         CreateCaughtBallSprite(&sMonSummaryScreen->currentMon);
         break;
-    case 8:
-        CreateHeldItemSprite(&sMonSummaryScreen->currentMon);
-        break;
-    case 9:
+    case 7:
         if (sMonSummaryScreen->summary.ailment != AILMENT_NONE)
             HandleStatusTilemap(10, -2);
         DrawPokerusCuredSymbol(&sMonSummaryScreen->currentMon);
         data[1] = 0;
         break;
-    case 10:
+    case 8:
         sMonSummaryScreen->spriteIds[SPRITE_ARR_ID_MON] = LoadMonGfxAndSprite(&sMonSummaryScreen->currentMon, &data[1]);
         if (sMonSummaryScreen->spriteIds[SPRITE_ARR_ID_MON] == SPRITE_NONE)
             return;
@@ -1853,20 +1835,17 @@ static void Task_ChangeSummaryMon(u8 taskId)
         TryDrawExperienceProgressBar();
         data[1] = 0;
         break;
-    case 11:
-        ShowHeldItem();
-        break;
-    case 12:
+    case 9:
         SetTypeIcons();
         break;
-    case 13:
+    case 10:
         PrintMonInfo();
         break;
-    case 14:
+    case 11:
         PrintPageSpecificText(sMonSummaryScreen->currPageIndex);
         LimitEggSummaryPageDisplay();
         break;
-    case 15:
+    case 12:
         gSprites[sMonSummaryScreen->spriteIds[SPRITE_ARR_ID_MON]].data[2] = 0;
         break;
     default:
@@ -1999,7 +1978,6 @@ static void PssScrollRightEnd(u8 taskId) // display right
     data[0] = 0;
     DrawPagination();
     PutPageWindowTilemaps(sMonSummaryScreen->currPageIndex);
-    ShowHeldItem();
     SetTypeIcons();
     TryDrawExperienceProgressBar();
     SwitchTaskToFollowupFunc(taskId);
@@ -2049,7 +2027,6 @@ static void PssScrollLeftEnd(u8 taskId) // display left
     data[0] = 0;
     DrawPagination();
     PutPageWindowTilemaps(sMonSummaryScreen->currPageIndex);
-    ShowHeldItem();
     SetTypeIcons();
     TryDrawExperienceProgressBar();
     SwitchTaskToFollowupFunc(taskId);
@@ -3569,7 +3546,7 @@ static void PrintHeldItemName(void)
         text = gStringVar1;
     }
 
-    x = GetStringCenterAlignXOffset(FONT_NORMAL, text, 81) + 6;
+    x = GetStringCenterAlignXOffset(FONT_NORMAL, text, 72) + 6;
     PrintTextOnWindow(AddWindowFromTemplateList(sPageSkillsTemplate, PSS_DATA_WINDOW_SKILLS_HELD_ITEM), text, x, 1, 0, 0);
 }
 
@@ -3823,18 +3800,6 @@ static void BufferIVs(void)
     Free(spDefString);
     Free(speedString);
     Free(totalString);
-}
-
-static void CreateHeldItemSprite(struct Pokemon *mon)
-{
-    FreeSpriteTilesByTag(5501);
-    FreeSpritePaletteByTag(5501);
-    sMonSummaryScreen->spriteIds[SPRITE_ARR_ID_ITEM] = AddItemIconSprite(5501, 5501, sMonSummaryScreen->summary.item);
-    gSprites[sMonSummaryScreen->spriteIds[SPRITE_ARR_ID_ITEM]].callback = SpriteCallbackDummy;
-    gSprites[sMonSummaryScreen->spriteIds[SPRITE_ARR_ID_ITEM]].oam.priority = 0;
-    gSprites[sMonSummaryScreen->spriteIds[SPRITE_ARR_ID_ITEM]].x = 210;
-    gSprites[sMonSummaryScreen->spriteIds[SPRITE_ARR_ID_ITEM]].y = 44;
-    SetSpriteInvisibility(SPRITE_ARR_ID_ITEM, TRUE);
 }
 
 static void PrintIVs(void)
@@ -4200,19 +4165,11 @@ static void HidePageSpecificSprites(void)
     // Keeps Pok�mon, caught ball and status sprites visible.
     u8 i;
 
-    for (i = SPRITE_ARR_ID_ITEM; i < ARRAY_COUNT(sMonSummaryScreen->spriteIds); i++)
+    for (i = SPRITE_ARR_ID_TYPE; i < ARRAY_COUNT(sMonSummaryScreen->spriteIds); i++)
     {
         if (sMonSummaryScreen->spriteIds[i] != SPRITE_NONE)
             SetSpriteInvisibility(i, TRUE);
     }
-}
-
-static void ShowHeldItem(void)
-{
-    if (sMonSummaryScreen->currPageIndex == PSS_PAGE_SKILLS && sMonSummaryScreen->summary.item != ITEM_NONE)
-        SetSpriteInvisibility(SPRITE_ARR_ID_ITEM, FALSE);
-    else
-        SetSpriteInvisibility(SPRITE_ARR_ID_ITEM, TRUE);
 }
 
 static void SetTypeIcons(void)
