@@ -91,6 +91,8 @@ PetalburgCity_Gym_EventScript_ReturnFromWallyTutorial::
 	delay 30
 	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFasterUp
 	waitmovement 0
+	msgbox PetalburgCity_Gym_Text_DadTakeExpShare, MSGBOX_DEFAULT
+	giveitem ITEM_EXP_SHARE
 	msgbox PetalburgCity_Gym_Text_DadGoCollectBadges, MSGBOX_DEFAULT
 	setvar VAR_PETALBURG_GYM_STATE, 2
 	releaseall
@@ -383,7 +385,6 @@ PetalburgCity_Gym_EventScript_GiveFacade::
 	giveitem ITEM_TM42
 	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_BagIsFull
 	setflag FLAG_RECEIVED_TM42
-	msgbox PetalburgCity_Gym_Text_ExplainFacade, MSGBOX_DEFAULT
 	return
 
 PetalburgCity_Gym_EventScript_WallysDadArrivesNorth::
@@ -1189,10 +1190,17 @@ PetalburgCity_Gym_Text_WallyThankYouBye:
 	.string "so I have to go!\p"
 	.string "Bye, {PLAYER}!$"
 
-PetalburgCity_Gym_Text_DadGoCollectBadges:
+PetalburgCity_Gym_Text_DadTakeExpShare:
 	.string "Dad: Now…\p"
 	.string "{PLAYER}, if you want to become a\n"
-	.string "strong Trainer, here's my advice.\p"
+	.string "strong Trainer, you should use\l"
+	.string "one of these.$"
+
+PetalburgCity_Gym_Text_DadGoCollectBadges:
+	.string "If you use that Exp. Share, your\n"
+	.string "team will grow stronger together.\p"
+	.string "… … … … … … … …\n"
+	.string "… … … … … … … …\p"
 	.string "Head for Rustboro City beyond this\n"
 	.string "town.\p"
 	.string "There, you should challenge\n"
@@ -1258,20 +1266,10 @@ PetalburgCity_Gym_Text_ReceivedBalanceBadge:
 	.string "from Dad!$"
 
 PetalburgCity_Gym_Text_ExplainBalanceBadgeTakeThis:
-	.string "Dad: With that Badge, the Defense\n"
-	.string "of all your Pokémon will increase.\p"
-	.string "Pokémon that know the HM move Surf\n"
+	.string "Dad: With that Badge, your Pokémon\n"
 	.string "will be able to travel over water.\p"
 	.string "This is my gift to you. {PLAYER}, I'm\n"
 	.string "sure you can use it correctly.$"
-
-PetalburgCity_Gym_Text_ExplainFacade:
-	.string "Dad: TM42 contains Facade.\p"
-	.string "It doubles the power of moves if\n"
-	.string "the Pokémon is poisoned, paralyzed,\l"
-	.string "or burned.\p"
-	.string "It might be able to turn a bad\n"
-	.string "situation into an advantage.$"
 
 PetalburgCity_Gym_Text_DadHappyAndSad:
 	.string "Dad: As the Gym Leader, I can't\n"
