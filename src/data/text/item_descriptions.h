@@ -3205,7 +3205,7 @@ static const u8 sTM41Desc[] = _(
 
 static const u8 sTM42Desc[] = _(
     "Doubles power when\n"
-    "suffering from non-,\n"
+    "suffering from non-\n"
     "sleep statuses.");
 
 static const u8 sTM43Desc[] = _(
