@@ -1,3 +1,44 @@
+static const struct TrainerMon sParty_Calvin1[] = {
+    {
+    .lvl = 6,
+    .species = SPECIES_ZIGZAGOON,
+    .ability = ABILITY_SLOT_2,
+    }
+};
+
+static const struct TrainerMon sParty_Rick[] = {
+    {
+    .lvl = 6,
+    .species = SPECIES_WURMPLE,
+    },
+    {
+    .lvl = 7,
+    .species = SPECIES_CATERPIE,
+    }
+};
+
+static const struct TrainerMon sParty_Allen[] = {
+    {
+    .lvl = 6,
+    .species = SPECIES_POLIWAG,
+    },
+    {
+    .lvl = 6,
+    .species = SPECIES_TAILLOW,
+    }
+};
+
+static const struct TrainerMon sParty_Tiana[] = {
+    {
+    .lvl = 7,
+    .species = SPECIES_ZIGZAGOON,
+    },
+    {
+    .lvl = 7,
+    .species = SPECIES_SHROOMISH,
+    }
+};
+
 static const struct TrainerMon sParty_Sawyer1[] = {
     {
     .lvl = 21,
@@ -3705,13 +3746,6 @@ static const struct TrainerMon sParty_Shelby5[] = {
     }
 };
 
-static const struct TrainerMon sParty_Calvin1[] = {
-    {
-    .lvl = 5,
-    .species = SPECIES_POOCHYENA,
-    }
-};
-
 static const struct TrainerMon sParty_Billy[] = {
     {
     .lvl = 5,
@@ -3860,17 +3894,6 @@ static const struct TrainerMon sParty_Eddie[] = {
     {
     .lvl = 16,
     .species = SPECIES_ZIGZAGOON,
-    }
-};
-
-static const struct TrainerMon sParty_Allen[] = {
-    {
-    .lvl = 4,
-    .species = SPECIES_ZIGZAGOON,
-    },
-    {
-    .lvl = 3,
-    .species = SPECIES_TAILLOW,
     }
 };
 
@@ -6915,17 +6938,6 @@ static const struct TrainerMon sParty_MaxieMtChimney[] = {
     }
 };
 
-static const struct TrainerMon sParty_Tiana[] = {
-    {
-    .lvl = 4,
-    .species = SPECIES_ZIGZAGOON,
-    },
-    {
-    .lvl = 4,
-    .species = SPECIES_SHROOMISH,
-    }
-};
-
 static const struct TrainerMon sParty_Haley1[] = {
     {
     .lvl = 6,
@@ -7044,17 +7056,6 @@ static const struct TrainerMon sParty_Crissy[] = {
     {
     .lvl = 39,
     .species = SPECIES_WAILMER,
-    }
-};
-
-static const struct TrainerMon sParty_Rick[] = {
-    {
-    .lvl = 4,
-    .species = SPECIES_WURMPLE,
-    },
-    {
-    .lvl = 4,
-    .species = SPECIES_WURMPLE,
     }
 };
 

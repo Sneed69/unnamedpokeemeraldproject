@@ -101,15 +101,15 @@ Route104_EventScript_Woman::
 Route104_EventScript_Boy2::
 	lock
 	faceplayer
-	goto_if_set FLAG_RECEIVED_TM09, Route104_EventScript_ReceivedBulletSeed
-	msgbox Route104_Text_LikeFillingMouthWithSeedsTakeThis, MSGBOX_DEFAULT
-	giveitem ITEM_TM09
+	goto_if_set FLAG_RECEIVED_TM86, Route104_EventScript_ReceivedGrassKnot
+	msgbox Route104_Text_BigGuyForYou, MSGBOX_DEFAULT
+	giveitem ITEM_TM86
 	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull
-	setflag FLAG_RECEIVED_TM09
+	setflag FLAG_RECEIVED_TM86
 	release
 	end
 
-Route104_EventScript_ReceivedBulletSeed::
+Route104_EventScript_ReceivedGrassKnot::
 	msgbox Route104_Text_TMsAreOneTimeUse, MSGBOX_DEFAULT
 	release
 	end
@@ -788,10 +788,10 @@ Route104_Text_ThrowBallAtWeakenedPokemon:
 	.string "poisoned, burned, or lulled to sleep.$"
 
 Route104_Text_OnlyThrowBallAtWildPokemon:
-	.string "You're a thief if you try to steal\n"
-	.string "someone else's Pokémon.\p"
-	.string "You should throw Poké Balls only at\n"
-	.string "wild Pokémon.$"
+	.string "You're a cheater if you use items\n"
+	.string "during a battle with a Trainer.\p"
+	.string "You should only use items when\n"
+	.string "facing wild Pokémon.$"
 
 Route104_Text_ImNotATrainer:
 	.string "Oh, no, I'm not a Trainer.\p"
@@ -800,12 +800,12 @@ Route104_Text_ImNotATrainer:
 	.string "If you don't want to battle, stay out\n"
 	.string "of their sight.$"
 
-Route104_Text_LikeFillingMouthWithSeedsTakeThis:
-	.string "I like filling my mouth with seeds,\n"
-	.string "then spitting them out fast!\p"
+Route104_Text_BigGuyForYou:
+	.string "I don't like big guys. They bigger they\n"
+	.string "are, the harder they fall!\p"
 	.string "You can have this, so you try it out!\p"
 	.string "Use it on a Pokémon, and it will learn\n"
-	.string "a move for firing seeds rapidly.$"
+	.string "how to trip a big guy for you!$"
 
 Route104_Text_TMsAreOneTimeUse:	
 	.string "By the way, a TM, Technical Machine,\n"

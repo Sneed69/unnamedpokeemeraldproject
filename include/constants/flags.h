@@ -283,7 +283,7 @@
 #define FLAG_RETURNED_RED_OR_BLUE_ORB        0x103
 #define FLAG_RECEIVED_TM49                   0x104
 #define FLAG_RECEIVED_TM28                   0x105
-#define FLAG_RECEIVED_TM09                   0x106
+#define FLAG_RECEIVED_TM86                   0x106
 #define FLAG_ENTERED_ELITE_FOUR              0x107
 #define FLAG_RECEIVED_TM10                   0x108
 #define FLAG_RECEIVED_TM41                   0x109
