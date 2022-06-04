@@ -533,8 +533,6 @@ static void Task_ClearBitWhenSpecialAnimDone(u8 taskId)
 // Check if SE has finished or 30 calls, whichever comes first
 bool8 IsBattleSEPlaying(u8 battlerId)
 {
-    u8 zero = 0;
-
     if (IsSEPlaying())
     {
         gBattleSpritesDataPtr->healthBoxesData[battlerId].soundTimer++;
@@ -544,14 +542,8 @@ bool8 IsBattleSEPlaying(u8 battlerId)
         m4aMPlayStop(&gMPlayInfo_SE1);
         m4aMPlayStop(&gMPlayInfo_SE2);
     }
-    if (zero == 0)
-    {
-        gBattleSpritesDataPtr->healthBoxesData[battlerId].soundTimer = 0;
-        return FALSE;
-    }
-
-    // Never reached
-    return TRUE;
+    gBattleSpritesDataPtr->healthBoxesData[battlerId].soundTimer = 0;
+    return FALSE;
 }
 
 static void BattleLoadMonSpriteGfx(struct Pokemon *mon, u32 battlerId, bool32 opponent)
