@@ -1650,7 +1650,18 @@ static void TryStartRandomMassOutbreak(void)
     {
         if (!rbernoulli(1, 200))
         {
-            sCurTVShowSlot = FindFirstEmptyNormalTVShowSlot(gSaveBlock1Ptr->tvShows);
+            sCurTVShowSlot = -1;
+            for (i = 0; i < NUM_NORMAL_TVSHOW_SLOTS - 1; i++)
+            {
+                if (gSaveBlock1Ptr->tvShows[i].common.kind == TVSHOW_MASS_OUTBREAK)
+                {
+                    sCurTVShowSlot = i;
+                    break;
+                }
+            }
+            if (sCurTVShowSlot == -1)
+                sCurTVShowSlot = FindFirstEmptyNormalTVShowSlot(gSaveBlock1Ptr->tvShows);
+
             if (sCurTVShowSlot != -1)
             {
                 outbreakIdx = Random() % ARRAY_COUNT(sPokeOutbreakSpeciesList);
@@ -1671,7 +1682,7 @@ static void TryStartRandomMassOutbreak(void)
                 show->massOutbreak.unused4 = 0;
                 show->massOutbreak.probability = sPokeOutbreakSpeciesList[outbreakIdx].probability;
                 show->massOutbreak.unused5 = 0;
-                show->massOutbreak.daysLeft = 2;
+                show->massOutbreak.daysLeft = 1;
                 StorePlayerIdInNormalShow(show);
                 show->massOutbreak.language = gGameLanguage;
             }
