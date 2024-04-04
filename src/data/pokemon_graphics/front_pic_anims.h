@@ -10354,6 +10354,8 @@ static const union AnimCmd sAnim_DEOXYS_SPEED_2[] =
 static const union AnimCmd sAnim_SHAYMIN_SKY_1[] =
 {
     ANIMCMD_FRAME(0, 1),
+    ANIMCMD_FRAME(1, 36),
+    ANIMCMD_FRAME(0, 10),
     ANIMCMD_END,
 };
 
@@ -10371,7 +10373,20 @@ static const union AnimCmd sAnim_PALKIA_ORIGIN_1[] =
 
 static const union AnimCmd sAnim_GIRATINA_ORIGIN_1[] =
 {
-    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_FRAME(0, 11),
+    ANIMCMD_FRAME(1, 10),
+    ANIMCMD_FRAME(0, 10),
+    ANIMCMD_FRAME(1, 10),
+    ANIMCMD_FRAME(0, 10),
+    ANIMCMD_END,
+};
+
+static const union AnimCmd sAnim_GIRATINA_ORIGIN_2[] =
+{
+    ANIMCMD_FRAME(0, 20),
+    ANIMCMD_FRAME(2, 20),
+    ANIMCMD_FRAME(0, 20),
+    ANIMCMD_FRAME(2, 20),
     ANIMCMD_END,
 };
 #endif
@@ -10379,7 +10394,8 @@ static const union AnimCmd sAnim_GIRATINA_ORIGIN_1[] =
 #if P_GEN_5_POKEMON == TRUE
 static const union AnimCmd sAnim_DARMANITAN_ZEN_MODE_1[] =
 {
-    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_FRAME(1, 15),
+    ANIMCMD_FRAME(0, 20),
     ANIMCMD_END,
 };
 
@@ -10391,43 +10407,75 @@ static const union AnimCmd sAnim_DARMANITAN_ZEN_MODE_GALARIAN_1[] =
 
 static const union AnimCmd sAnim_TORNADUS_THERIAN_1[] =
 {
-    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_FRAME(0, 5),
+    ANIMCMD_FRAME(1, 10),
+    ANIMCMD_FRAME(0, 10),
+    ANIMCMD_FRAME(1, 35),
+    ANIMCMD_FRAME(0, 5),
     ANIMCMD_END,
 };
 
 static const union AnimCmd sAnim_THUNDURUS_THERIAN_1[] =
 {
-    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_FRAME(0, 5),
+    ANIMCMD_FRAME(1, 5),
+    ANIMCMD_FRAME(0, 5),
+    ANIMCMD_FRAME(1, 5),
+    ANIMCMD_FRAME(0, 5),
+    ANIMCMD_FRAME(1, 5),
+    ANIMCMD_FRAME(0, 5),
+    ANIMCMD_FRAME(1, 5),
+    ANIMCMD_FRAME(0, 5),
+    ANIMCMD_FRAME(1, 5),
+    ANIMCMD_FRAME(0, 20),
+    ANIMCMD_FRAME(0, 5),
+    ANIMCMD_FRAME(1, 5),
+    ANIMCMD_FRAME(0, 5),
+    ANIMCMD_FRAME(1, 5),
+    ANIMCMD_FRAME(0, 5),
     ANIMCMD_END,
 };
 
 static const union AnimCmd sAnim_LANDORUS_THERIAN_1[] =
 {
-    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_FRAME(0, 15),
+    ANIMCMD_FRAME(1, 15),
+    ANIMCMD_FRAME(0, 15),
+    ANIMCMD_FRAME(1, 15),
+    ANIMCMD_FRAME(0, 15),
     ANIMCMD_END,
 };
 
 static const union AnimCmd sAnim_KYUREM_BLACK_1[] =
 {
-    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_FRAME(1, 40),
+    ANIMCMD_FRAME(0, 5),
     ANIMCMD_END,
 };
 
 static const union AnimCmd sAnim_KYUREM_WHITE_1[] =
 {
-    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_FRAME(1, 40),
+    ANIMCMD_FRAME(0, 5),
     ANIMCMD_END,
 };
 
 static const union AnimCmd sAnim_KELDEO_RESOLUTE_1[] =
 {
     ANIMCMD_FRAME(0, 1),
+    ANIMCMD_FRAME(1, 36),
+    ANIMCMD_FRAME(0, 10),
     ANIMCMD_END,
 };
 
 static const union AnimCmd sAnim_MELOETTA_PIROUETTE_1[] =
 {
-    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_FRAME(1, 15),
+    ANIMCMD_FRAME(0, 15),
+    ANIMCMD_FRAME(1, 15),
+    ANIMCMD_FRAME(0, 15),
+    ANIMCMD_FRAME(1, 15),
+    ANIMCMD_FRAME(0, 15),
     ANIMCMD_END,
 };
 #endif
@@ -10435,25 +10483,34 @@ static const union AnimCmd sAnim_MELOETTA_PIROUETTE_1[] =
 #if P_GEN_6_POKEMON == TRUE
 static const union AnimCmd sAnim_AEGISLASH_BLADE_1[] =
 {
-    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_FRAME(0, 18),
+    ANIMCMD_FRAME(1, 18),
+    ANIMCMD_FRAME(0, 18),
+    ANIMCMD_FRAME(1, 18),
+    ANIMCMD_FRAME(0, 10),
     ANIMCMD_END,
 };
 
 static const union AnimCmd sAnim_ZYGARDE_10_1[] =
 {
-    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_FRAME(0, 20),
+    ANIMCMD_FRAME(1, 10),
+    ANIMCMD_FRAME(0, 10),
     ANIMCMD_END,
 };
 
 static const union AnimCmd sAnim_ZYGARDE_COMPLETE_1[] =
 {
-    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_FRAME(0, 12),
+    ANIMCMD_FRAME(1, 45),
+    ANIMCMD_FRAME(0, 15),
     ANIMCMD_END,
 };
 
 static const union AnimCmd sAnim_HOOPA_UNBOUND_1[] =
 {
-    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_FRAME(1, 20),
+    ANIMCMD_FRAME(0, 10),
     ANIMCMD_END,
 };
 #endif
@@ -13260,6 +13317,7 @@ static const union AnimCmd *const sAnims_CHERUBI[] =
 
 static const union AnimCmd *const sAnims_CHERRIM[] =
 {
+    sAnim_GeneralFrame0,
     sAnim_CHERRIM_NORMAL,
     sAnim_CHERRIM_NORMAL_2,
 };
@@ -14739,6 +14797,11 @@ static const union AnimCmd *const sAnims_GRENINJA[] =
 {
     sAnim_GeneralFrame0,
     sAnim_GRENINJA_1,
+};
+
+static const union AnimCmd *const sAnims_GRENINJA_ASH[] ={
+    sAnim_GeneralFrame0,
+    sAnim_GRENINJA_ASH_1,
 };
 
 static const union AnimCmd *const sAnims_BUNNELBY[] =
@@ -16991,6 +17054,7 @@ static const union AnimCmd *const sAnims_GIRATINA_ORIGIN[] =
 {
     sAnim_GeneralFrame0,
     sAnim_GIRATINA_ORIGIN_1,
+    sAnim_GIRATINA_ORIGIN_2,
 };
 
 static const union AnimCmd *const sAnims_SHAYMIN_SKY[] =
@@ -18268,7 +18332,7 @@ const union AnimCmd *const *const gMonFrontAnimsPtrTable[] =
 #endif
 #if P_GEN_6_POKEMON == TRUE
     ANIM_CMD_FULL(GRENINJA_BATTLE_BOND, sAnims_GRENINJA),
-    ANIM_CMD_FULL(GRENINJA_ASH, sAnims_GRENINJA),
+    ANIM_CMD(GRENINJA_ASH),
     ANIM_CMD_FULL(VIVILLON_POLAR, sAnims_VIVILLON),
     ANIM_CMD_FULL(VIVILLON_TUNDRA, sAnims_VIVILLON),
     ANIM_CMD_FULL(VIVILLON_CONTINENTAL, sAnims_VIVILLON),

@@ -1383,7 +1383,7 @@ static void UpdateSubmenuOneOptionValue(u8 taskId, bool8 increment)
 
             UpdateBattlerValue(data);
             ReloadPokemonSprites(data);
-            while (!(gMain.intrCheck & INTR_FLAG_VBLANK));
+            VBlankIntrWait();
             PlaySE(SE_DEX_SCROLL);
         }
         break;
@@ -1502,7 +1502,7 @@ static void Handle_Input_Debug_Pokemon(u8 taskId)
         PrintDigitChars(data);
         UpdateBattlerValue(data);
         ReloadPokemonSprites(data);
-        while (!(gMain.intrCheck & INTR_FLAG_VBLANK));
+        VBlankIntrWait();
         PlaySE(SE_DEX_SCROLL);
     }
 
@@ -1534,7 +1534,7 @@ static void Handle_Input_Debug_Pokemon(u8 taskId)
                 ResetOffsetSpriteValues(data);
             }
             PlaySE(SE_DEX_SCROLL);
-            while (!(gMain.intrCheck & INTR_FLAG_VBLANK));
+            VBlankIntrWait();
         }
         else if (JOY_NEW(DPAD_UP))
         {

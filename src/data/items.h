@@ -1484,7 +1484,7 @@ const struct Item gItems[] =
         .description = sLureDesc,
         .pocket = POCKET_CONSUMABLES,
         .type = ITEM_USE_BAG_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .fieldUseFunc = ItemUseOutOfBattle_Lure,
         .secondaryId = 0,
     },
 
@@ -1497,7 +1497,7 @@ const struct Item gItems[] =
         .description = sSuperLureDesc,
         .pocket = POCKET_CONSUMABLES,
         .type = ITEM_USE_BAG_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .fieldUseFunc = ItemUseOutOfBattle_Lure,
         .secondaryId = 0,
     },
 
@@ -1510,7 +1510,7 @@ const struct Item gItems[] =
         .description = sMaxLureDesc,
         .pocket = POCKET_CONSUMABLES,
         .type = ITEM_USE_BAG_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .fieldUseFunc = ItemUseOutOfBattle_Lure,
         .secondaryId = 0,
     },
 
@@ -1918,8 +1918,8 @@ const struct Item gItems[] =
         .price = 300,
         .description = sHoneyDesc,
         .pocket = POCKET_ITEMS,
-        .type = ITEM_USE_BAG_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .type = ITEM_USE_FIELD,
+        .fieldUseFunc = ItemUseOutOfBattle_Honey,
     },
 
     [ITEM_RARE_BONE] =

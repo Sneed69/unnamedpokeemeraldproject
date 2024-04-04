@@ -2698,7 +2698,6 @@ static const u8 sMonFrontAnimIdsTable[NUM_SPECIES - 1] =
     [SPECIES_DIANCIE - 1]       = ANIM_V_SQUISH_AND_BOUNCE,
     [SPECIES_HOOPA - 1]         = ANIM_ZIGZAG_SLOW,
     [SPECIES_VOLCANION - 1]     = ANIM_V_SHAKE_TWICE,
-
     // Gen 7
     [SPECIES_ROWLET - 1]        = ANIM_V_SQUISH_AND_BOUNCE,
     [SPECIES_DARTRIX - 1]       = ANIM_H_STRETCH,
@@ -2886,16 +2885,16 @@ static const u8 sMonFrontAnimIdsTable[NUM_SPECIES - 1] =
     [SPECIES_SNEASLER - 1]      = ANIM_V_SQUISH_AND_BOUNCE,
     [SPECIES_OVERQWIL - 1]      = ANIM_V_SQUISH_AND_BOUNCE,
     [SPECIES_ENAMORUS - 1]      = ANIM_V_SQUISH_AND_BOUNCE,
-
-    //Gen 4 Forms
     [SPECIES_DEOXYS_ATTACK - 1]          = ANIM_GROW_VIBRATE,
     [SPECIES_DEOXYS_DEFENSE - 1]         = ANIM_GROW_VIBRATE,
     [SPECIES_DEOXYS_SPEED - 1]           = ANIM_GROW_VIBRATE,
+
+    //Gen 4 Forms
     [SPECIES_BURMY_SANDY_CLOAK - 1]      = ANIM_V_STRETCH,
     [SPECIES_BURMY_TRASH_CLOAK - 1]      = ANIM_V_STRETCH,
     [SPECIES_WORMADAM_SANDY_CLOAK - 1]   = ANIM_SWING_CONVEX_FAST_SHORT,
     [SPECIES_WORMADAM_TRASH_CLOAK - 1]   = ANIM_SWING_CONVEX_FAST_SHORT,
-    [SPECIES_CHERRIM_SUNSHINE - 1]          = ANIM_RAPID_H_HOPS,
+    [SPECIES_CHERRIM_SUNSHINE - 1] 	     = ANIM_RAPID_H_HOPS,
     [SPECIES_SHELLOS_EAST_SEA - 1]       = ANIM_V_STRETCH,
     [SPECIES_GASTRODON_EAST_SEA - 1]     = ANIM_CIRCULAR_STRETCH_TWICE,
     [SPECIES_ROTOM_HEAT - 1]             = ANIM_V_SQUISH_AND_BOUNCE,
@@ -4364,6 +4363,13 @@ u8 CountAliveMonsInBattle(u8 caseId)
         for (i = 0; i < MAX_BATTLERS_COUNT; i++)
         {
             if (GetBattlerSide(i) == GetBattlerSide(gBattlerTarget) && !(gAbsentBattlerFlags & gBitTable[i]))
+                retVal++;
+        }
+        break;
+    case BATTLE_ALIVE_EXCEPT_ATTACKER:
+        for (i = 0; i < MAX_BATTLERS_COUNT; i++)
+        {
+            if (i != gBattlerAttacker && !(gAbsentBattlerFlags & gBitTable[i]))
                 retVal++;
         }
         break;
