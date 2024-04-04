@@ -38,7 +38,7 @@ void GameTimeCounter_Update(void)
 {
     if (sGameTimeCounterState != RUNNING)
         return;
-    if (ScriptContext2_IsEnabled())//Check if game is paused
+    if (ArePlayerFieldControlsLocked())//Check if game is paused
         return;
 #if TIME_DEBUG
     if (++debugVBlanks == 60)

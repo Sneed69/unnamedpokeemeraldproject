@@ -220,7 +220,7 @@ void CFile::TryConvertString()
 
     SkipWhitespace();
 
-    std::printf("(const u8[]){ ");
+    std::printf("{ ");
 
     while (1)
     {

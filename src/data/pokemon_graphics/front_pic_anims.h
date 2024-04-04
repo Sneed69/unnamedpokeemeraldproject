@@ -10063,15 +10063,6 @@ static const union AnimCmd sAnim_ARCANINE_HISUIAN_1[] =
     ANIMCMD_END,
 };
 
-static const union AnimCmd sAnim_GIRATINA_ORIGIN_2[] =
-{
-    ANIMCMD_FRAME(0, 20),
-    ANIMCMD_FRAME(2, 20),
-    ANIMCMD_FRAME(0, 20),
-    ANIMCMD_FRAME(2, 20),
-    ANIMCMD_END,
-};
-
 static const union AnimCmd sAnim_VOLTORB_HISUIAN_1[] =
 {
     ANIMCMD_FRAME(1, 15),

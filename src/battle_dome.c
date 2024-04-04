@@ -2769,8 +2769,11 @@ static int GetTypeEffectivenessPoints(int move, int targetSpecies, int mode)
     }
     else if (defAbility == ABILITY_PURE_HEART && moveType == TYPE_FAIRY)
     {
-        if (arg2 == 1)
+        if (mode == EFFECTIVENESS_MODE_BAD)
             typePower = 8;
+        #ifdef BUGFIX
+            return typePower;
+        #endif
     }
     else
     {
