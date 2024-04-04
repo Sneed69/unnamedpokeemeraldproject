@@ -9,7 +9,6 @@
 #include "bike.h"
 #include "coins.h"
 #include "data.h"
-#include "debug.h"
 #include "event_data.h"
 #include "event_object_lock.h"
 #include "event_object_movement.h"
@@ -44,33 +43,33 @@
 #include "constants/items.h"
 #include "constants/songs.h"
 
-static void SetUpItemUseCallback(u8 taskId);
+static void SetUpItemUseCallback(u8);
 static void FieldCB_UseItemOnField(void);
-static void Task_CallItemUseOnFieldCallback(u8 taskId);
-static void Task_UseItemfinder(u8 taskId);
-static void Task_CloseItemfinderMessage(u8 taskId);
-static void Task_HiddenItemNearby(u8 taskId);
-static void Task_StandingOnHiddenItem(u8 taskId);
+static void Task_CallItemUseOnFieldCallback(u8);
+static void Task_UseItemfinder(u8);
+static void Task_CloseItemfinderMessage(u8);
+static void Task_HiddenItemNearby(u8);
+static void Task_StandingOnHiddenItem(u8);
 static bool8 ItemfinderCheckForHiddenItems(const struct MapEvents *, u8);
-static u8 GetDirectionToHiddenItem(s16 distanceX, s16 distanceY);
-static void PlayerFaceHiddenItem(u8 a);
-static void CheckForHiddenItemsInMapConnection(u8 taskId);
-static void Task_OpenRegisteredPokeblockCase(u8 taskId);
-static void ItemUseOnFieldCB_Bike(u8 taskId);
+static u8 GetDirectionToHiddenItem(s16, s16);
+static void PlayerFaceHiddenItem(u8);
+static void CheckForHiddenItemsInMapConnection(u8);
+static void Task_OpenRegisteredPokeblockCase(u8);
+static void ItemUseOnFieldCB_Bike(u8);
 static void ItemUseOnFieldCB_Rod(u8);
 static void ItemUseOnFieldCB_Itemfinder(u8);
-static void ItemUseOnFieldCB_Berry(u8 taskId);
-static void ItemUseOnFieldCB_WailmerPailBerry(u8 taskId);
-static void ItemUseOnFieldCB_WailmerPailSudowoodo(u8 taskId);
+static void ItemUseOnFieldCB_Berry(u8);
+static void ItemUseOnFieldCB_WailmerPailBerry(u8);
+static void ItemUseOnFieldCB_WailmerPailSudowoodo(u8);
 static bool8 TryToWaterSudowoodo(void);
-static void BootUpSoundTMHM(u8 taskId);
-static void Task_ShowTMHMContainedMessage(u8 taskId);
-static void UseTMHMYesNo(u8 taskId);
-static void UseTMHM(u8 taskId);
-static void Task_StartUseRepel(u8 taskId);
-static void Task_UseRepel(u8 taskId);
-static void Task_CloseCantUseKeyItemMessage(u8 taskId);
-static void SetDistanceOfClosestHiddenItem(u8 taskId, s16 x, s16 y);
+static void BootUpSoundTMHM(u8);
+static void Task_ShowTMHMContainedMessage(u8);
+static void UseTMHMYesNo(u8);
+static void UseTMHM(u8);
+static void Task_StartUseRepel(u8);
+static void Task_UseRepel(u8);
+static void Task_CloseCantUseKeyItemMessage(u8);
+static void SetDistanceOfClosestHiddenItem(u8, s16, s16);
 static void CB2_OpenPokeblockFromBag(void);
 
 // EWRAM variables
@@ -165,10 +164,10 @@ static void DisplayCannotDismountBikeMessage(u8 taskId, bool8 isUsingRegisteredK
 
 static void Task_CloseCantUseKeyItemMessage(u8 taskId)
 {
-    ClearDialogWindowAndFrame(0, 1);
+    ClearDialogWindowAndFrame(0, TRUE);
     DestroyTask(taskId);
     ScriptUnfreezeObjectEvents();
-    ScriptContext2_Disable();
+    UnlockPlayerFieldControls();
 }
 
 u8 CheckIfItemIsTMHMOrEvolutionStone(u16 itemId)
@@ -186,7 +185,7 @@ static void CB2_CheckMail(void)
 {
     struct Mail mail;
     mail.itemId = gSpecialVar_ItemId;
-    ReadMail(&mail, CB2_ReturnToBagMenuPocket, 0);
+    ReadMail(&mail, CB2_ReturnToBagMenuPocket, FALSE);
 }
 
 void ItemUseOutOfBattle_Mail(u8 taskId)
@@ -218,7 +217,7 @@ void ItemUseOutOfBattle_ExpShare(u8 taskId)
 
 void ItemUseOutOfBattle_Bike(u8 taskId)
 {
-    s16* data = gTasks[taskId].data;
+    s16 *data = gTasks[taskId].data;
     s16 coordsY;
     s16 coordsX;
     u8 behavior;
@@ -245,7 +244,7 @@ static void ItemUseOnFieldCB_Bike(u8 taskId)
     else // ACRO_BIKE
         GetOnOffBike(PLAYER_AVATAR_FLAG_ACRO_BIKE);
     ScriptUnfreezeObjectEvents();
-    ScriptContext2_Disable();
+    UnlockPlayerFieldControls();
     DestroyTask(taskId);
 }
 
@@ -270,7 +269,7 @@ static bool32 CanFish(void)
     }
     else
     {
-        if (MetatileBehavior_IsSurfableWaterOrUnderwater(tileBehavior) && !MapGridIsImpassableAt(x, y))
+        if (MetatileBehavior_IsSurfableWaterOrUnderwater(tileBehavior) && MapGridGetCollisionAt(x, y) == 0)
             return TRUE;
         if (MetatileBehavior_IsBridgeOverWaterNoEdge(tileBehavior))
             return TRUE;
@@ -324,7 +323,7 @@ static void Task_UseItemfinder(u8 taskId)
     u8 playerDir;
     u8 playerDirToItem;
     u8 i;
-    s16* data = gTasks[taskId].data;
+    s16 *data = gTasks[taskId].data;
     if (tCounter == 0)
     {
         if (tItemfinderBeeps == 4)
@@ -358,9 +357,9 @@ static void Task_UseItemfinder(u8 taskId)
 
 static void Task_CloseItemfinderMessage(u8 taskId)
 {
-    ClearDialogWindowAndFrame(0, 1);
+    ClearDialogWindowAndFrame(0, TRUE);
     ScriptUnfreezeObjectEvents();
-    ScriptContext2_Disable();
+    UnlockPlayerFieldControls();
     DestroyTask(taskId);
 }
 
@@ -479,7 +478,7 @@ static void CheckForHiddenItemsInMapConnection(u8 taskId)
              || var2 > y
              || y >= height)
             {
-                struct MapConnection *conn = GetConnectionAtCoords(x, y);
+                struct MapConnection *conn = GetMapConnectionAtPos(x, y);
                 if (conn && IsHiddenItemPresentInConnection(conn, x, y))
                     SetDistanceOfClosestHiddenItem(taskId, x - playerX, y - playerY);
             }
@@ -715,8 +714,8 @@ void ItemUseOutOfBattle_Berry(u8 taskId)
 static void ItemUseOnFieldCB_Berry(u8 taskId)
 {
     RemoveBagItem(gSpecialVar_ItemId, 1);
-    ScriptContext2_Enable();
-    ScriptContext1_SetupScript(BerryTree_EventScript_ItemUsePlantBerry);
+    LockPlayerFieldControls();
+    ScriptContext_SetupScript(BerryTree_EventScript_ItemUsePlantBerry);
     DestroyTask(taskId);
 }
 
@@ -740,8 +739,8 @@ void ItemUseOutOfBattle_WailmerPail(u8 taskId)
 
 static void ItemUseOnFieldCB_WailmerPailBerry(u8 taskId)
 {
-    ScriptContext2_Enable();
-    ScriptContext1_SetupScript(BerryTree_EventScript_ItemUseWailmerPail);
+    LockPlayerFieldControls();
+    ScriptContext_SetupScript(BerryTree_EventScript_ItemUseWailmerPail);
     DestroyTask(taskId);
 }
 
@@ -761,8 +760,8 @@ static bool8 TryToWaterSudowoodo(void)
 
 static void ItemUseOnFieldCB_WailmerPailSudowoodo(u8 taskId)
 {
-    ScriptContext2_Enable();
-    ScriptContext1_SetupScript(BattleFrontier_OutsideEast_EventScript_WaterSudowoodo);
+    LockPlayerFieldControls();
+    ScriptContext_SetupScript(BattleFrontier_OutsideEast_EventScript_WaterSudowoodo);
     DestroyTask(taskId);
 }
 
@@ -775,6 +774,12 @@ void ItemUseOutOfBattle_Medicine(u8 taskId)
 void ItemUseOutOfBattle_AbilityCapsule(u8 taskId)
 {
     gItemUseCB = ItemUseCB_AbilityCapsule;
+    SetUpItemUseCallback(taskId);
+}
+
+void ItemUseOutOfBattle_AbilityPatch(u8 taskId)
+{
+    gItemUseCB = ItemUseCB_AbilityPatch;
     SetUpItemUseCallback(taskId);
 }
 
@@ -869,7 +874,7 @@ void ItemUseOutOfBattle_Repel(u8 taskId)
 
 static void Task_StartUseRepel(u8 taskId)
 {
-    s16* data = gTasks[taskId].data;
+    s16 *data = gTasks[taskId].data;
 
     if (++data[8] > 7)
     {
@@ -935,6 +940,9 @@ static void ItemUseOnFieldCB_EscapeRope(u8 taskId)
     Overworld_ResetStateAfterDigEscRope();
     #if I_KEY_ESCAPE_ROPE < GEN_8
         RemoveUsedItem();
+    #else
+        CopyItemName(gSpecialVar_ItemId, gStringVar2);
+        StringExpandPlaceholders(gStringVar4, gText_PlayerUsedVar2);
     #endif
     gTasks[taskId].data[0] = 0;
     DisplayItemMessageOnField(taskId, gStringVar4, Task_UseDigEscapeRopeOnField);
@@ -978,6 +986,8 @@ static u32 GetBallThrowableState(void)
     else if (gStatuses3[GetCatchingBattler()] & STATUS3_SEMI_INVULNERABLE)
         return BALL_THROW_UNABLE_SEMI_INVULNERABLE;
 #endif
+    else if (FlagGet(B_FLAG_NO_CATCHING))
+        return BALL_THROW_UNABLE_DISABLED_FLAG;
 
     return BALL_THROW_ABLE;
 }
@@ -989,6 +999,7 @@ bool32 CanThrowBall(void)
 
 static const u8 sText_CantThrowPokeBall_TwoMons[] = _("Cannot throw a ball!\nThere are two Pokémon out there!\p");
 static const u8 sText_CantThrowPokeBall_SemiInvulnerable[] = _("Cannot throw a ball!\nThere's no Pokémon in sight!\p");
+static const u8 sText_CantThrowPokeBall_Disabled[] = _("POKé BALLS cannot be used\nright now!\p");
 void ItemUseInBattle_PokeBall(u8 taskId)
 {
     switch (GetBallThrowableState())
@@ -1013,14 +1024,20 @@ void ItemUseInBattle_PokeBall(u8 taskId)
         else
             DisplayItemMessageInBattlePyramid(taskId, gText_BoxFull, Task_CloseBattlePyramidBagMessage);
         break;
-    #if B_SEMI_INVULNERABLE_CATCH >= GEN_4
+#if B_SEMI_INVULNERABLE_CATCH >= GEN_4
     case BALL_THROW_UNABLE_SEMI_INVULNERABLE:
         if (!InBattlePyramid())
             DisplayItemMessage(taskId, FONT_NORMAL, sText_CantThrowPokeBall_SemiInvulnerable, CloseItemMessage);
         else
             DisplayItemMessageInBattlePyramid(taskId, sText_CantThrowPokeBall_SemiInvulnerable, Task_CloseBattlePyramidBagMessage);
         break;
-    #endif
+#endif
+    case BALL_THROW_UNABLE_DISABLED_FLAG:
+        if (!InBattlePyramid())
+            DisplayItemMessage(taskId, FONT_NORMAL, sText_CantThrowPokeBall_Disabled, CloseItemMessage);
+        else
+            DisplayItemMessageInBattlePyramid(taskId, sText_CantThrowPokeBall_Disabled, Task_CloseBattlePyramidBagMessage);
+        break;
     }
 }
 

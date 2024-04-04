@@ -315,8 +315,8 @@ static void Task_RecordMixing_Main(u8 taskId)
     switch (tState)
     {
     case 0: // init
-        sSentRecord = malloc(sizeof(*sSentRecord));
-        sReceivedRecords = malloc(sizeof(*sReceivedRecords) * MAX_LINK_PLAYERS);
+        sSentRecord = Alloc(sizeof(*sSentRecord));
+        sReceivedRecords = Alloc(sizeof(*sReceivedRecords) * MAX_LINK_PLAYERS);
         SetLocalLinkPlayerId(gSpecialVar_0x8005);
         VarSet(VAR_TEMP_0, 1);
         sReadyToReceive = FALSE;
@@ -358,14 +358,14 @@ static void Task_RecordMixing_Main(u8 taskId)
     case 5: // Wait for the task created by CreateTask_ReestablishCableClubLink
         if (!gTasks[tLinkTaskId].isActive)
         {
-            free(sReceivedRecords);
-            free(sSentRecord);
+            Free(sReceivedRecords);
+            Free(sSentRecord);
             SetLinkWaitingForScript();
             if (gWirelessCommType != 0)
                 CreateTask(Task_ReturnToFieldRecordMixing, 10);
-            ClearDialogWindowAndFrame(0, 1);
+            ClearDialogWindowAndFrame(0, TRUE);
             DestroyTask(taskId);
-            EnableBothScriptContexts();
+            ScriptContext_Enable();
         }
         break;
     }
@@ -444,7 +444,7 @@ static void Task_MixingRecordsRecv(u8 taskId)
         }
         break;
     case 1: // wait for handshake
-        if (gReceivedRemoteLinkPlayers != 0)
+        if (gReceivedRemoteLinkPlayers)
         {
             ConvertIntToDecimalStringN(gStringVar1, GetMultiplayerId_(), STR_CONV_MODE_LEADING_ZEROS, 2);
             task->tState = 5;
@@ -689,7 +689,7 @@ static void ReceiveLilycoveLadyData(LilycoveLady *records, size_t recordSize, u8
 
     if (GetLilycoveLadyId() == 0)
     {
-        lilycoveLady = malloc(sizeof(*lilycoveLady));
+        lilycoveLady = Alloc(sizeof(*lilycoveLady));
         if (lilycoveLady == NULL)
             return;
 
@@ -705,7 +705,7 @@ static void ReceiveLilycoveLadyData(LilycoveLady *records, size_t recordSize, u8
     if (lilycoveLady != NULL)
     {
         QuizLadyClearQuestionForRecordMix(lilycoveLady);
-        free(lilycoveLady);
+        Free(lilycoveLady);
     }
 }
 
@@ -1174,7 +1174,7 @@ static void ReceiveApprenticeData(struct Apprentice *records, size_t recordSize,
     u32 apprenticeSaveId;
 
     ShufflePlayerIndices(mixIndices);
-    mixApprentice = (void*)records + (recordSize * mixIndices[multiplayerId]);
+    mixApprentice = (void *)records + (recordSize * mixIndices[multiplayerId]);
     numApprentices = 0;
     apprenticeId = 0;
     for (i = 0; i < 2; i++)

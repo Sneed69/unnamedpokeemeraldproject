@@ -813,7 +813,7 @@ const struct Item gItems[] =
 
     [ITEM_CASTELIACONE] =
     {
-        .name = _("CasteliaCone"),
+        .name = _("Casteliacone"),
         .itemId = ITEM_CASTELIACONE,
         .price = 350,
         .description = sCasteliaconeDesc,
@@ -1044,7 +1044,7 @@ const struct Item gItems[] =
         .description = sAbilityPatchDesc,
         .pocket = POCKET_CONSUMABLES,
         .type = ITEM_USE_PARTY_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_CannotUse, // Todo
+        .fieldUseFunc = ItemUseOutOfBattle_AbilityPatch,
     },
 
 // Mints
@@ -1299,10 +1299,12 @@ const struct Item gItems[] =
         .name = _("Exp.Candy XS"),
         .itemId = ITEM_EXP_CANDY_XS,
         .price = 20,
+        .holdEffectParam = EXP_100,
         .description = sExpCandyXSDesc,
         .pocket = POCKET_CONSUMABLES,
-        .type = ITEM_USE_BAG_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_CannotUse, // Todo
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_RareCandy,
+        .flingPower = 30,
     },
 
     [ITEM_EXP_CANDY_S] =
@@ -1310,10 +1312,12 @@ const struct Item gItems[] =
         .name = _("Exp.Candy S"),
         .itemId = ITEM_EXP_CANDY_S,
         .price = 240,
+        .holdEffectParam = EXP_800,
         .description = sExpCandyXSDesc,
         .pocket = POCKET_CONSUMABLES,
-        .type = ITEM_USE_BAG_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_CannotUse, // Todo
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_RareCandy,
+        .flingPower = 30,
     },
 
     [ITEM_EXP_CANDY_M] =
@@ -1321,10 +1325,12 @@ const struct Item gItems[] =
         .name = _("Exp.Candy M"),
         .itemId = ITEM_EXP_CANDY_M,
         .price = 1000,
+        .holdEffectParam = EXP_3000,
         .description = sExpCandyMDesc,
         .pocket = POCKET_CONSUMABLES,
-        .type = ITEM_USE_BAG_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_CannotUse, // Todo
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_RareCandy,
+        .flingPower = 30,
     },
 
     [ITEM_EXP_CANDY_L] =
@@ -1332,10 +1338,12 @@ const struct Item gItems[] =
         .name = _("Exp.Candy L"),
         .itemId = ITEM_EXP_CANDY_L,
         .price = 3000,
+        .holdEffectParam = EXP_10000,
         .description = sExpCandyLDesc,
         .pocket = POCKET_CONSUMABLES,
-        .type = ITEM_USE_BAG_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_CannotUse, // Todo
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_RareCandy,
+        .flingPower = 30,
     },
 
     [ITEM_EXP_CANDY_XL] =
@@ -1343,10 +1351,12 @@ const struct Item gItems[] =
         .name = _("Exp.Candy XL"),
         .itemId = ITEM_EXP_CANDY_XL,
         .price = 10000,
+        .holdEffectParam = EXP_30000,
         .description = sExpCandyXLDesc,
         .pocket = POCKET_CONSUMABLES,
-        .type = ITEM_USE_BAG_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_CannotUse, // Todo
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_RareCandy,
+        .flingPower = 30,
     },
 
     [ITEM_DYNAMAX_CANDY] =
@@ -1469,7 +1479,7 @@ const struct Item gItems[] =
     {
         .name = _("Lure"),
         .itemId = ITEM_LURE,
-        .price = 350,
+        .price = 400,
         .holdEffectParam = 100,
         .description = sLureDesc,
         .pocket = POCKET_CONSUMABLES,
@@ -1482,7 +1492,7 @@ const struct Item gItems[] =
     {
         .name = _("Super Lure"),
         .itemId = ITEM_SUPER_LURE,
-        .price = 500,
+        .price = 700,
         .holdEffectParam = 200,
         .description = sSuperLureDesc,
         .pocket = POCKET_CONSUMABLES,
@@ -1495,7 +1505,7 @@ const struct Item gItems[] =
     {
         .name = _("Max Lure"),
         .itemId = ITEM_MAX_LURE,
-        .price = 700,
+        .price = 900,
         .holdEffectParam = 250,
         .description = sMaxLureDesc,
         .pocket = POCKET_CONSUMABLES,
@@ -2971,14 +2981,9 @@ const struct Item gItems[] =
         .holdEffectParam = 0,
         .description = sRedNectarDesc,
         .pocket = POCKET_ITEMS,
-        #ifdef POKEMON_EXPANSION
-            .type = ITEM_USE_PARTY_MENU,
-            .fieldUseFunc = ItemUseOutOfBattle_FormChange_ConsumedOnUse,
-            .secondaryId = FORM_ITEM_USE,
-        #else
-            .type = ITEM_USE_BAG_MENU,
-            .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-        #endif
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_FormChange_ConsumedOnUse,
+        .secondaryId = FORM_ITEM_USE,
     },
 
     [ITEM_YELLOW_NECTAR] =
@@ -2989,14 +2994,9 @@ const struct Item gItems[] =
         .holdEffectParam = 0,
         .description = sYellowNectarDesc,
         .pocket = POCKET_ITEMS,
-        #ifdef POKEMON_EXPANSION
-            .type = ITEM_USE_PARTY_MENU,
-            .fieldUseFunc = ItemUseOutOfBattle_FormChange_ConsumedOnUse,
-            .secondaryId = FORM_ITEM_USE,
-        #else
-            .type = ITEM_USE_BAG_MENU,
-            .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-        #endif
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_FormChange_ConsumedOnUse,
+        .secondaryId = FORM_ITEM_USE,
     },
 
     [ITEM_PINK_NECTAR] =
@@ -3007,14 +3007,9 @@ const struct Item gItems[] =
         .holdEffectParam = 0,
         .description = sPinkNectarDesc,
         .pocket = POCKET_ITEMS,
-        #ifdef POKEMON_EXPANSION
-            .type = ITEM_USE_PARTY_MENU,
-            .fieldUseFunc = ItemUseOutOfBattle_FormChange_ConsumedOnUse,
-            .secondaryId = FORM_ITEM_USE,
-        #else
-            .type = ITEM_USE_BAG_MENU,
-            .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-        #endif
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_FormChange_ConsumedOnUse,
+        .secondaryId = FORM_ITEM_USE,
     },
 
     [ITEM_PURPLE_NECTAR] =
@@ -3025,14 +3020,9 @@ const struct Item gItems[] =
         .holdEffectParam = 0,
         .description = sPurpleNectarDesc,
         .pocket = POCKET_ITEMS,
-        #ifdef POKEMON_EXPANSION
-            .type = ITEM_USE_PARTY_MENU,
-            .fieldUseFunc = ItemUseOutOfBattle_FormChange_ConsumedOnUse,
-            .secondaryId = FORM_ITEM_USE,
-        #else
-            .type = ITEM_USE_BAG_MENU,
-            .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-        #endif
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_FormChange_ConsumedOnUse,
+        .secondaryId = FORM_ITEM_USE,
     },
 
 // Plates
@@ -4998,7 +4988,7 @@ const struct Item gItems[] =
         .itemId = ITEM_SOUL_DEW,
         .price = 0,
         .holdEffect = HOLD_EFFECT_SOUL_DEW,
-        #if defined(BATTLE_ENGINE) && B_SOUL_DEW_BOOST >= GEN_7
+        #if B_SOUL_DEW_BOOST >= GEN_7
             .holdEffectParam = 20,
         #else
             .holdEffectParam = 50,
@@ -6586,7 +6576,7 @@ const struct Item gItems[] =
         .name = _("Sitrus Berry"),
         .itemId = ITEM_SITRUS_BERRY,
         .price = 500,
-        #if defined(BATTLE_ENGINE) && I_SITRUS_BERRY_HEAL >= GEN_4
+        #if I_SITRUS_BERRY_HEAL >= GEN_4
             .holdEffect = HOLD_EFFECT_RESTORE_PCT_HP,
             .holdEffectParam = 25,
         #else
@@ -6601,13 +6591,21 @@ const struct Item gItems[] =
         .battleUseFunc = ItemUseInBattle_Medicine,
     },
 
+#if B_CONFUSE_BERRIES_HEAL >= GEN_8
+    #define CONFUSE_BERRY_HEAL_FRACTION 3
+#elif B_CONFUSE_BERRIES_HEAL == GEN_7
+    #define CONFUSE_BERRY_HEAL_FRACTION 2
+#else
+    #define CONFUSE_BERRY_HEAL_FRACTION 8
+#endif
+
     [ITEM_FIGY_BERRY] =
     {
         .name = _("Figy Berry"),
         .itemId = ITEM_FIGY_BERRY,
         .price = 500,
         .holdEffect = HOLD_EFFECT_CONFUSE_SPICY,
-        .holdEffectParam = 2,
+        .holdEffectParam = CONFUSE_BERRY_HEAL_FRACTION,
         .description = sFigyBerryDesc,
         .pocket = POCKET_BERRIES,
         .type = ITEM_USE_BAG_MENU,
@@ -6620,7 +6618,7 @@ const struct Item gItems[] =
         .itemId = ITEM_WIKI_BERRY,
         .price = 500,
         .holdEffect = HOLD_EFFECT_CONFUSE_DRY,
-        .holdEffectParam = 2,
+        .holdEffectParam = CONFUSE_BERRY_HEAL_FRACTION,
         .description = sWikiBerryDesc,
         .pocket = POCKET_BERRIES,
         .type = ITEM_USE_BAG_MENU,
@@ -6633,7 +6631,7 @@ const struct Item gItems[] =
         .itemId = ITEM_MAGO_BERRY,
         .price = 500,
         .holdEffect = HOLD_EFFECT_CONFUSE_SWEET,
-        .holdEffectParam = 2,
+        .holdEffectParam = CONFUSE_BERRY_HEAL_FRACTION,
         .description = sMagoBerryDesc,
         .pocket = POCKET_BERRIES,
         .type = ITEM_USE_BAG_MENU,
@@ -6646,7 +6644,7 @@ const struct Item gItems[] =
         .itemId = ITEM_AGUAV_BERRY,
         .price = 500,
         .holdEffect = HOLD_EFFECT_CONFUSE_BITTER,
-        .holdEffectParam = 2,
+        .holdEffectParam = CONFUSE_BERRY_HEAL_FRACTION,
         .description = sAguavBerryDesc,
         .pocket = POCKET_BERRIES,
         .type = ITEM_USE_BAG_MENU,
@@ -6659,12 +6657,14 @@ const struct Item gItems[] =
         .itemId = ITEM_IAPAPA_BERRY,
         .price = 500,
         .holdEffect = HOLD_EFFECT_CONFUSE_SOUR,
-        .holdEffectParam = 2,
+        .holdEffectParam = CONFUSE_BERRY_HEAL_FRACTION,
         .description = sIapapaBerryDesc,
         .pocket = POCKET_BERRIES,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
     },
+
+#undef CONFUSE_BERRY_HEAL_FRACTION
 
     [ITEM_RAZZ_BERRY] =
     {
@@ -7310,7 +7310,7 @@ const struct Item gItems[] =
         .battleUseFunc = ItemUseInBattle_EnigmaBerry,
     },
 
-// TMs/HMs
+// TMs/HMs. They don't have a set flingPower, as that's handled by GetFlingPowerFromItemId.
 
     [ITEM_TM01_FOCUS_PUNCH] =
     {
@@ -8823,14 +8823,9 @@ const struct Item gItems[] =
         .price = 0,
         .description = sGracideaDesc,
         .pocket = POCKET_KEY_ITEMS,
-        #ifdef POKEMON_EXPANSION
-            .type = ITEM_USE_PARTY_MENU,
-            .fieldUseFunc = ItemUseOutOfBattle_FormChange,
-            .secondaryId = FORM_ITEM_USE_TIME,
-        #else
-            .type = ITEM_USE_BAG_MENU,
-            .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-        #endif
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_FormChange,
+        .secondaryId = FORM_ITEM_USE,
     },
 
     [ITEM_REVEAL_GLASS] =
@@ -8840,14 +8835,9 @@ const struct Item gItems[] =
         .price = 0,
         .description = sRevealGlassDesc,
         .pocket = POCKET_KEY_ITEMS,
-        #ifdef POKEMON_EXPANSION
-            .type = ITEM_USE_PARTY_MENU,
-            .fieldUseFunc = ItemUseOutOfBattle_FormChange,
-            .secondaryId = FORM_ITEM_USE,
-        #else
-            .type = ITEM_USE_BAG_MENU,
-            .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-        #endif
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_FormChange,
+        .secondaryId = FORM_ITEM_USE,
     },
 
     [ITEM_DNA_SPLICERS] =
@@ -8857,14 +8847,9 @@ const struct Item gItems[] =
         .price = 0,
         .description = sDNASplicersDesc,
         .pocket = POCKET_KEY_ITEMS,
-        #ifdef POKEMON_EXPANSION
-            .type = ITEM_USE_PARTY_MENU,
-            .fieldUseFunc = ItemUseOutOfBattle_FormChange,
-            .secondaryId = FORM_ITEM_USE,
-        #else
-            .type = ITEM_USE_BAG_MENU,
-            .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-        #endif
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_FormChange,
+        .secondaryId = FORM_ITEM_USE,
     },
 
     [ITEM_ZYGARDE_CUBE] =
@@ -8886,14 +8871,9 @@ const struct Item gItems[] =
         .price = 0,
         .description = sPrisonBottleDesc,
         .pocket = POCKET_KEY_ITEMS,
-        #ifdef POKEMON_EXPANSION
-            .type = ITEM_USE_PARTY_MENU,
-            .fieldUseFunc = ItemUseOutOfBattle_FormChange,
-            .secondaryId = FORM_ITEM_USE,
-        #else
-            .type = ITEM_USE_BAG_MENU,
-            .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-        #endif
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_FormChange,
+        .secondaryId = FORM_ITEM_USE,
     },
 
     [ITEM_N_SOLARIZER] =
@@ -8903,14 +8883,9 @@ const struct Item gItems[] =
         .price = 0,
         .description = sNSolarizerDesc,
         .pocket = POCKET_KEY_ITEMS,
-        #ifdef POKEMON_EXPANSION
-            .type = ITEM_USE_PARTY_MENU,
-            .fieldUseFunc = ItemUseOutOfBattle_FormChange,
-            .secondaryId = FORM_ITEM_USE,
-        #else
-            .type = ITEM_USE_BAG_MENU,
-            .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-        #endif
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_FormChange,
+        .secondaryId = FORM_ITEM_USE,
     },
 
     [ITEM_N_LUNARIZER] =
@@ -8920,14 +8895,9 @@ const struct Item gItems[] =
         .price = 0,
         .description = sNLunarizerDesc,
         .pocket = POCKET_KEY_ITEMS,
-        #ifdef POKEMON_EXPANSION
-            .type = ITEM_USE_PARTY_MENU,
-            .fieldUseFunc = ItemUseOutOfBattle_FormChange,
-            .secondaryId = FORM_ITEM_USE,
-        #else
-            .type = ITEM_USE_BAG_MENU,
-            .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-        #endif
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_FormChange,
+        .secondaryId = FORM_ITEM_USE,
     },
 
     [ITEM_REINS_OF_UNITY] =
@@ -8937,14 +8907,9 @@ const struct Item gItems[] =
         .price = 0,
         .description = sReinsOfUnityDesc,
         .pocket = POCKET_KEY_ITEMS,
-        #ifdef POKEMON_EXPANSION
-            .type = ITEM_USE_PARTY_MENU,
-            .fieldUseFunc = ItemUseOutOfBattle_FormChange,
-            .secondaryId = FORM_ITEM_USE,
-        #else
-            .type = ITEM_USE_BAG_MENU,
-            .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-        #endif
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_FormChange,
+        .secondaryId = FORM_ITEM_USE,
     },
 
 // Battle Mechanic Key Items

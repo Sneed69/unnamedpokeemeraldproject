@@ -67,7 +67,7 @@ struct TextPrinterSubStruct
 
 struct TextPrinterTemplate
 {
-    const u8* currentChar;
+    const u8 *currentChar;
     u8 windowId;
     u8 fontId;
     u8 x;
@@ -151,7 +151,6 @@ void RestoreTextColors(u8 *fgColor, u8 *bgColor, u8 *shadowColor);
 void DecompressGlyphTile(const void *src_, void *dest_);
 void CopyGlyphToWindow(struct TextPrinter *x);
 void ClearTextSpan(struct TextPrinter *textPrinter, u32 width);
-u8 GetMenuCursorDimensionByFont(u8, u8);
 
 void TextPrinterInitDownArrowCounters(struct TextPrinter *textPrinter);
 void TextPrinterDrawDownArrow(struct TextPrinter *textPrinter);

@@ -605,7 +605,7 @@ static bool8 IsReelTimeSmokeAnimFinished(void);
 static void DestroyReelTimeSmokeSprite(void);
 static u8 CreatePikaPowerBoltSprite(s16, s16);
 static void DestroyPikaPowerBoltSprite(u8);
-static u8 CreateDigitalDisplaySprite(u8, void (*callback)(struct Sprite*), s16, s16, s16);
+static u8 CreateDigitalDisplaySprite(u8, void (*callback)(struct Sprite *), s16, s16, s16);
 static void LoadSlotMachineGfx(void);
 static void LoadReelBackground(void);
 static void LoadMenuGfx(void);
@@ -3861,21 +3861,15 @@ static void ReelTime_EndFailure(struct Task *task)
 static void LoadReelTimeWindowTilemap(s16 a0, s16 a1)
 {
     s16 i;
-
     for (i = 4; i < 15; i++)
-    {
         LoadBgTilemap(1, &sReelTimeWindow_Tilemap[a1 + (i - 4) * 20], 2, 32 * i + a0);
-    }
 }
 
 static void ClearReelTimeWindowTilemap(s16 a0)
 {
     u8 i;
-
     for (i = 4; i < 15; i++)
-    {
         LoadBgTilemap(1, sEmptyTilemap, 2, 32 * i + a0);
-    }
 }
 
 #undef tState
@@ -4112,31 +4106,43 @@ static void CreateCreditPayoutNumberSprites(void)
         CreateCoinNumberSprite(x, 23, TRUE, i);
 }
 
-static void CreateCoinNumberSprite(s16 x, s16 y, bool8 isPayout, s16 a3)
+#define sIsPayout data[0]
+#define sDigitMin data[1]
+#define sDigitMax data[2]
+#define sCurNum   data[3] // Only used to determine whether the sprite has already been updated to show the correct digit
+
+static void CreateCoinNumberSprite(s16 x, s16 y, bool8 isPayout, s16 digitMult)
 {
     struct Sprite *sprite = &gSprites[CreateSprite(&sSpriteTemplate_CoinNumber, x, y, 13)];
     sprite->oam.priority = 2;
-    sprite->data[0] = isPayout;
-    sprite->data[1] = a3;
-    sprite->data[2] = a3 * 10;
-    sprite->data[3] = -1;
+    sprite->sIsPayout = isPayout;
+    sprite->sDigitMin = digitMult;
+    sprite->sDigitMax = digitMult * 10;
+    sprite->sCurNum = -1;
 }
 
 static void SpriteCB_CoinNumber(struct Sprite *sprite)
 {
     u16 tag = sSlotMachine->coins;
-    if (sprite->data[0])
+    if (sprite->sIsPayout)
         tag = sSlotMachine->payout;
-    if (sprite->data[3] != tag)
+    if (sprite->sCurNum != tag)
     {
-        sprite->data[3] = tag;
-        tag %= (u16)sprite->data[2];
-        tag /= (u16)sprite->data[1];
-        tag += 7;
+        // Convert total to current digit
+        sprite->sCurNum = tag;
+        tag %= (u16)sprite->sDigitMax;
+        tag /= (u16)sprite->sDigitMin;
+
+        tag += GFXTAG_NUM_0;
         sprite->sheetTileStart = GetSpriteTileStartByTag(tag);
         SetSpriteSheetFrameTileNum(sprite);
     }
 }
+
+#undef sIsPayout
+#undef sDigitMin
+#undef sDigitMax
+#undef sCurNum
 
 static void CreateReelBackgroundSprite(void)
 {
@@ -5666,7 +5672,7 @@ static const struct OamData sOam_8x8 =
     .y = 0,
     .affineMode = ST_OAM_AFFINE_OFF,
     .objMode = ST_OAM_OBJ_NORMAL,
-    .mosaic = 0,
+    .mosaic = FALSE,
     .bpp = ST_OAM_4BPP,
     .shape = SPRITE_SHAPE(8x8),
     .x = 0,
@@ -5683,7 +5689,7 @@ static const struct OamData sOam_8x16 =
     .y = 0,
     .affineMode = ST_OAM_AFFINE_OFF,
     .objMode = ST_OAM_OBJ_NORMAL,
-    .mosaic = 0,
+    .mosaic = FALSE,
     .bpp = ST_OAM_4BPP,
     .shape = SPRITE_SHAPE(8x16),
     .x = 0,
@@ -5700,7 +5706,7 @@ static const struct OamData sOam_16x16 =
     .y = 0,
     .affineMode = ST_OAM_AFFINE_OFF,
     .objMode = ST_OAM_OBJ_NORMAL,
-    .mosaic = 0,
+    .mosaic = FALSE,
     .bpp = ST_OAM_4BPP,
     .shape = SPRITE_SHAPE(16x16),
     .x = 0,
@@ -5717,7 +5723,7 @@ static const struct OamData sOam_16x32 =
     .y = 0,
     .affineMode = ST_OAM_AFFINE_OFF,
     .objMode = ST_OAM_OBJ_NORMAL,
-    .mosaic = 0,
+    .mosaic = FALSE,
     .bpp = ST_OAM_4BPP,
     .shape = SPRITE_SHAPE(16x32),
     .x = 0,
@@ -5734,7 +5740,7 @@ static const struct OamData sOam_32x32 =
     .y = 0,
     .affineMode = ST_OAM_AFFINE_OFF,
     .objMode = ST_OAM_OBJ_NORMAL,
-    .mosaic = 0,
+    .mosaic = FALSE,
     .bpp = ST_OAM_4BPP,
     .shape = SPRITE_SHAPE(32x32),
     .x = 0,
@@ -5751,7 +5757,7 @@ static const struct OamData sOam_32x64 =
     .y = 0,
     .affineMode = ST_OAM_AFFINE_OFF,
     .objMode = ST_OAM_OBJ_NORMAL,
-    .mosaic = 0,
+    .mosaic = FALSE,
     .bpp = ST_OAM_4BPP,
     .shape = SPRITE_SHAPE(32x64),
     .x = 0,
@@ -5768,7 +5774,7 @@ static const struct OamData sOam_64x32 =
     .y = 0,
     .affineMode = ST_OAM_AFFINE_OFF,
     .objMode = ST_OAM_OBJ_NORMAL,
-    .mosaic = 0,
+    .mosaic = FALSE,
     .bpp = ST_OAM_4BPP,
     .shape = SPRITE_SHAPE(64x32),
     .x = 0,
@@ -5785,7 +5791,7 @@ static const struct OamData sOam_64x64 =
     .y = 0,
     .affineMode = ST_OAM_AFFINE_OFF,
     .objMode = ST_OAM_OBJ_NORMAL,
-    .mosaic = 0,
+    .mosaic = FALSE,
     .bpp = ST_OAM_4BPP,
     .shape = SPRITE_SHAPE(64x64),
     .x = 0,
@@ -6427,6 +6433,20 @@ static const struct SpriteTemplate sSpriteTemplate_PikaPowerBolt =
     .callback = SpriteCB_PikaPowerBolt
 };
 
+/*
+[0             ][1             ]
+[              ][              ]
+[              ][              ]
+[              ][              ]
+[              ][              ]
+[______________][______________]   128x128
+[              ]+ <- Origin    ]
+[              ][              ]
+[              ][              ]
+[              ][              ]
+[              ][              ]
+[2             ][3             ]
+*/
 static const struct Subsprite sSubsprites_ReelBackground[] =
 {
     {
@@ -6468,6 +6488,11 @@ static const struct SubspriteTable sSubspriteTable_ReelBackground[] =
     ARRAY_COUNT(sSubsprites_ReelBackground), sSubsprites_ReelBackground
 };
 
+/*      v-- Origin on 3
+[0_____][1_____]
+[2_____][3_____]   64x24
+[4     ][5     ]
+*/
 static const struct Subsprite sSubsprites_ReelTimeMachineAntennae[] =
 {
     {
@@ -6525,6 +6550,13 @@ static const struct SubspriteTable sSubspriteTable_ReelTimeMachineAntennae[] =
     ARRAY_COUNT(sSubsprites_ReelTimeMachineAntennae), sSubsprites_ReelTimeMachineAntennae
 };
 
+/*
+[0             ]
+[              ]
+[      + Origin]
+[______________]   64x40
+[1     ][2     ]
+*/
 static const struct Subsprite sSubsprites_ReelTimeMachine[] =
 {
     {
@@ -6558,6 +6590,14 @@ static const struct SubspriteTable sSubspriteTable_ReelTimeMachine[] =
     ARRAY_COUNT(sSubsprites_ReelTimeMachine), sSubsprites_ReelTimeMachine
 };
 
+/*
+[0             ]
+[              ]
+[      + Origin]
+[______________]   64x48
+[1     ][2     ]
+[3     ][4     ]
+*/
 static const struct Subsprite sSubsprites_BrokenReelTimeMachine[] =
 {
     {
@@ -6607,6 +6647,10 @@ static const struct SubspriteTable sSubspriteTable_BrokenReelTimeMachine[] =
     ARRAY_COUNT(sSubsprites_BrokenReelTimeMachine), sSubsprites_BrokenReelTimeMachine
 };
 
+/*      v-- Origin on 3
+[0_____][1_____]
+[2     ][3     ]   64x16
+*/
 static const struct Subsprite sSubsprites_ReelTimeShadow[] =
 {
     {
@@ -6648,6 +6692,11 @@ static const struct SubspriteTable sSubspriteTable_ReelTimeShadow[] =
     ARRAY_COUNT(sSubsprites_ReelTimeShadow), sSubsprites_ReelTimeShadow
 };
 
+/*
+[0_]    16x24
+[1+] <--Origin
+[2_]
+*/
 static const struct Subsprite sSubsprites_ReelTimeNumberGap[] =
 {
     {
@@ -6681,6 +6730,14 @@ static const struct SubspriteTable sSubspriteTable_ReelTimeNumberGap[] =
     ARRAY_COUNT(sSubsprites_ReelTimeNumberGap), sSubsprites_ReelTimeNumberGap
 };
 
+/*
+[0             ]
+[              ]
+[      + Origin]
+[______________]   64x48
+[1     ][2     ]
+[3     ][4     ]
+*/
 static const struct Subsprite sSubsprites_DigitalDisplay_Reel[] =
 {
     {
@@ -6730,6 +6787,10 @@ static const struct SubspriteTable sSubspriteTable_DigitalDisplay_Reel[] =
     ARRAY_COUNT(sSubsprites_DigitalDisplay_Reel), sSubsprites_DigitalDisplay_Reel
 };
 
+/*      v-- Origin on 3
+[0_____][1_____]
+[2     ][3     ]   64x16
+*/
 static const struct Subsprite sSubsprites_DigitalDisplay_Time[] =
 {
     {
@@ -6771,6 +6832,10 @@ static const struct SubspriteTable sSubspriteTable_DigitalDisplay_Time[] =
     ARRAY_COUNT(sSubsprites_DigitalDisplay_Time), sSubsprites_DigitalDisplay_Time
 };
 
+/*      v-- Origin on 3
+[0_____][1_____]
+[2     ][3     ]   64x16
+*/
 static const struct Subsprite sSubsprites_DigitalDisplay_Insert[] =
 {
     {
@@ -6812,6 +6877,10 @@ static const struct SubspriteTable sSubspriteTable_DigitalDisplay_Insert[] =
     ARRAY_COUNT(sSubsprites_DigitalDisplay_Insert), sSubsprites_DigitalDisplay_Insert
 };
 
+/*      v-- Origin on 3
+[0_____][1_____]
+[2     ][3     ]   64x16
+*/
 static const struct Subsprite sSubsprites_DigitalDisplay_Unused1[] =
 {
     {
@@ -6853,6 +6922,11 @@ static const struct SubspriteTable sSubspriteTable_DigitalDisplay_Unused1[] =
     ARRAY_COUNT(sSubsprites_DigitalDisplay_Unused1), sSubsprites_DigitalDisplay_Unused1
 };
 
+/*      v-- Origin on 3
+[0_____][1_____]
+[2_____][3_____]
+[4     ][5     ]   64x24
+*/
 static const struct Subsprite sSubsprites_DigitalDisplay_Win[] =
 {
     {
@@ -6944,6 +7018,14 @@ static const struct SubspriteTable sSubspriteTable_DigitalDisplay_Unused2[] =
     ARRAY_COUNT(sSubsprites_DigitalDisplay_Unused2), sSubsprites_DigitalDisplay_Unused2
 };
 
+/*
+[0_____][1_]
+[2_____][3_]
+[4_____][5_]
+[6_____][7+] <-- Origin
+[8_____][9_]
+[10____][11]
+*/
 static const struct Subsprite sSubsprites_DigitalDisplay_Pokeball[] =
 {
     {
@@ -6956,7 +7038,7 @@ static const struct Subsprite sSubsprites_DigitalDisplay_Pokeball[] =
     },
     {
         .x = 8,
-        -24,
+        .y = -24,
         .shape = SPRITE_SHAPE(16x8),
         .size = SPRITE_SIZE(16x8),
         .tileOffset = 4,
@@ -7049,6 +7131,11 @@ static const struct SubspriteTable sSubspriteTable_DigitalDisplay_Pokeball[] =
     ARRAY_COUNT(sSubsprites_DigitalDisplay_Pokeball), sSubsprites_DigitalDisplay_Pokeball
 };
 
+/*
+[0     ]   32x24
+[   +  ] <- Origin
+[1 ][2 ]
+*/
 static const struct Subsprite sSubsprites_DigitalDisplay_DPad[] =
 {
     {
@@ -7082,6 +7169,10 @@ static const struct SubspriteTable sSubspriteTable_DigitalDisplay_DPad[] =
     ARRAY_COUNT(sSubsprites_DigitalDisplay_DPad), sSubsprites_DigitalDisplay_DPad
 };
 
+/*
+[0 ]   16x16
+[1+] <- Origin
+*/
 static const struct Subsprite sSubsprites_DigitalDisplay_StopS[] =
 {
     {
@@ -7107,6 +7198,10 @@ static const struct SubspriteTable sSubspriteTable_DigitalDisplay_StopS[] =
     ARRAY_COUNT(sSubsprites_DigitalDisplay_StopS), sSubsprites_DigitalDisplay_StopS
 };
 
+/*
+[0 ]   16x16
+[1+] <- Origin
+*/
 static const struct Subsprite sSubsprites_DigitalDisplay_StopT[] =
 {
     {
@@ -7132,6 +7227,10 @@ static const struct SubspriteTable sSubspriteTable_DigitalDisplay_StopT[] =
     ARRAY_COUNT(sSubsprites_DigitalDisplay_StopT), sSubsprites_DigitalDisplay_StopT
 };
 
+/*
+[0 ]   16x16
+[1+] <- Origin
+*/
 static const struct Subsprite sSubsprites_DigitalDisplay_StopO[] =
 {
     {
@@ -7157,6 +7256,10 @@ static const struct SubspriteTable sSubspriteTable_DigitalDisplay_StopO[] =
     ARRAY_COUNT(sSubsprites_DigitalDisplay_StopO), sSubsprites_DigitalDisplay_StopO
 };
 
+/*
+[0 ]   16x16
+[1+] <- Origin
+*/
 static const struct Subsprite sSubsprites_DigitalDisplay_StopP[] =
 {
     {
@@ -7182,6 +7285,10 @@ static const struct SubspriteTable sSubspriteTable_DigitalDisplay_StopP[] =
     ARRAY_COUNT(sSubsprites_DigitalDisplay_StopP), sSubsprites_DigitalDisplay_StopP
 };
 
+/*
+[0 ]   16x16
+[1+] <- Origin
+*/
 static const struct Subsprite sSubsprites_DigitalDisplay_BonusB[] =
 {
     {
@@ -7207,6 +7314,10 @@ static const struct SubspriteTable sSubspriteTable_DigitalDisplay_BonusB[] =
     ARRAY_COUNT(sSubsprites_DigitalDisplay_BonusB), sSubsprites_DigitalDisplay_BonusB
 };
 
+/*
+[]<-0   16x16
+[]<-1 <- Origin
+*/
 static const struct Subsprite sSubsprites_DigitalDisplay_BonusO[] =
 {
     {
@@ -7232,6 +7343,10 @@ static const struct SubspriteTable sSubspriteTable_DigitalDisplay_BonusO[] =
     ARRAY_COUNT(sSubsprites_DigitalDisplay_BonusO), sSubsprites_DigitalDisplay_BonusO
 };
 
+/*
+[0 ]   16x16
+[1+] <- Origin
+*/
 static const struct Subsprite sSubsprites_DigitalDisplay_BonusN[] =
 {
     {
@@ -7257,6 +7372,10 @@ static const struct SubspriteTable sSubspriteTable_DigitalDisplay_BonusN[] =
     ARRAY_COUNT(sSubsprites_DigitalDisplay_BonusN), sSubsprites_DigitalDisplay_BonusN
 };
 
+/*
+[]<-0   16x16
+[]<-1 <- Origin
+*/
 static const struct Subsprite sSubsprites_DigitalDisplay_BonusU[] =
 {
     {
@@ -7282,6 +7401,10 @@ static const struct SubspriteTable sSubspriteTable_DigitalDisplay_BonusU[] =
     ARRAY_COUNT(sSubsprites_DigitalDisplay_BonusU), sSubsprites_DigitalDisplay_BonusU
 };
 
+/*
+[0 ]   16x16
+[1+] <- Origin
+*/
 static const struct Subsprite sSubsprites_DigitalDisplay_BonusS[] =
 {
     {
@@ -7307,6 +7430,12 @@ static const struct SubspriteTable sSubspriteTable_DigitalDisplay_BonusS[] =
     ARRAY_COUNT(sSubsprites_DigitalDisplay_BonusS), sSubsprites_DigitalDisplay_BonusS
 };
 
+/*
+[0_][] <-1
+[2_][] <-3
+[4_][] <-5
+    ^-- Origin on 3
+*/
 static const struct Subsprite sSubsprites_DigitalDisplay_BigB[] =
 {
     {
@@ -7364,6 +7493,11 @@ static const struct SubspriteTable sSubspriteTable_DigitalDisplay_BigB[] =
     ARRAY_COUNT(sSubsprites_DigitalDisplay_BigB), sSubsprites_DigitalDisplay_BigB
 };
 
+/*
+[0_]    16x24
+[1+] <--Origin
+[2_]
+*/
 static const struct Subsprite sSubsprites_DigitalDisplay_BigI[] =
 {
     {
@@ -7397,6 +7531,12 @@ static const struct SubspriteTable sSubspriteTable_DigitalDisplay_BigI[] =
     ARRAY_COUNT(sSubsprites_DigitalDisplay_BigI), sSubsprites_DigitalDisplay_BigI
 };
 
+/*
+[0_][] <-1
+[2_][] <-3
+[4_][] <-5
+    ^-- Origin on 3
+*/
 static const struct Subsprite sSubsprites_DigitalDisplay_BigG[] =
 {
     {
@@ -7454,6 +7594,12 @@ static const struct SubspriteTable sSubspriteTable_DigitalDisplay_BigG[] =
     ARRAY_COUNT(sSubsprites_DigitalDisplay_BigG), sSubsprites_DigitalDisplay_BigG
 };
 
+/*
+[0_][] <-1
+[2_][] <-3
+[4_][] <-5
+    ^-- Origin on 3
+*/
 static const struct Subsprite sSubsprites_DigitalDisplay_RegR[] =
 {
     {
@@ -7511,6 +7657,11 @@ static const struct SubspriteTable sSubspriteTable_DigitalDisplay_RegR[] =
     ARRAY_COUNT(sSubsprites_DigitalDisplay_RegR), sSubsprites_DigitalDisplay_RegR
 };
 
+/*
+[0_]    16x24
+[1+] <--Origin
+[2_]
+*/
 static const struct Subsprite sSubsprites_DigitalDisplay_RegE[] =
 {
     {
@@ -7544,6 +7695,12 @@ static const struct SubspriteTable sSubspriteTable_DigitalDisplay_RegE[] =
     ARRAY_COUNT(sSubsprites_DigitalDisplay_RegE), sSubsprites_DigitalDisplay_RegE
 };
 
+/*
+[0_][] <-1
+[2_][] <-3
+[4_][] <-5
+    ^-- Origin on 3
+*/
 static const struct Subsprite sSubsprites_DigitalDisplay_RegG[] =
 {
     {

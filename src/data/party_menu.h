@@ -1,9 +1,3 @@
-enum {
-    TAG_POKEBALL = 1200,
-    TAG_POKEBALL_SMALL,
-    TAG_STATUS_ICONS,
-};
-
 static const struct BgTemplate sPartyMenuBgTemplates[] =
 {
     {
@@ -796,44 +790,6 @@ static const u16 sUnusedData[] =
     0x0121, 0x013b, 0x000f, 0x0013, 0x0039, 0x0046, 0x0094, 0x00f9, 0x007f, 0x0123,
 };
 
-enum
-{
-    MENU_SUMMARY,
-    MENU_NICKNAME,
-    MENU_SWITCH,
-    MENU_CANCEL1,
-    MENU_ITEM,
-    MENU_GIVE,
-    MENU_TAKE_ITEM,
-    MENU_MAIL,
-    MENU_TAKE_MAIL,
-    MENU_READ,
-    MENU_CANCEL2,
-    MENU_SHIFT,
-    MENU_SEND_OUT,
-    MENU_ENTER,
-    MENU_NO_ENTRY,
-    MENU_STORE,
-    MENU_REGISTER,
-    MENU_TRADE1,
-    MENU_TRADE2,
-    MENU_TOSS,
-    MENU_FIELD_MOVES,
-};
-
-enum
-{
-    FIELD_MOVE_FLY,
-    FIELD_MOVE_TELEPORT,
-    FIELD_MOVE_DIG,
-    FIELD_MOVE_MILK_DRINK,
-    FIELD_MOVE_SOFT_BOILED,
-    FIELD_MOVE_SWEET_SCENT,
-};
-
-// What a weird choice of table termination;
-#define FIELD_MOVE_TERMINATOR MOVE_SWORDS_DANCE
-
 struct
 {
     const u8 *text;
@@ -882,25 +838,6 @@ static const u8 sPartyMenuAction_TradeSummaryCancel1[] = {MENU_TRADE1, MENU_SUMM
 static const u8 sPartyMenuAction_TradeSummaryCancel2[] = {MENU_TRADE2, MENU_SUMMARY, MENU_CANCEL1};
 static const u8 sPartyMenuAction_TakeItemTossCancel[] = {MENU_TAKE_ITEM, MENU_TOSS, MENU_CANCEL1};
 
-// IDs for the action lists that appear when a party mon is selected
-enum
-{
-    ACTIONS_NONE,
-    ACTIONS_SWITCH,
-    ACTIONS_SHIFT,
-    ACTIONS_SEND_OUT,
-    ACTIONS_ENTER,
-    ACTIONS_NO_ENTRY,
-    ACTIONS_STORE,
-    ACTIONS_SUMMARY_ONLY,
-    ACTIONS_ITEM,
-    ACTIONS_MAIL,
-    ACTIONS_REGISTER,
-    ACTIONS_TRADE,
-    ACTIONS_SPIN_TRADE,
-    ACTIONS_TAKEITEM_TOSS
-};
-
 static const u8 *const sPartyMenuActions[] =
 {
     [ACTIONS_NONE]          = NULL,
@@ -937,17 +874,21 @@ static const u8 sPartyMenuActionCounts[] =
     [ACTIONS_TAKEITEM_TOSS] = ARRAY_COUNT(sPartyMenuAction_TakeItemTossCancel)
 };
 
-static const u16 sFieldMoves[] =
+static const u16 sFieldMoves[FIELD_MOVES_COUNT] =
 {
-    MOVE_FLY,MOVE_TELEPORT,
-    MOVE_DIG, MOVE_MILK_DRINK, MOVE_SOFT_BOILED, MOVE_SWEET_SCENT, FIELD_MOVE_TERMINATOR
+    [FIELD_MOVE_FLY]          = MOVE_FLY,
+    [FIELD_MOVE_TELEPORT]     = MOVE_TELEPORT,
+    [FIELD_MOVE_DIG]          = MOVE_DIG,
+    [FIELD_MOVE_MILK_DRINK]   = MOVE_MILK_DRINK,
+    [FIELD_MOVE_SOFT_BOILED]  = MOVE_SOFT_BOILED,
+    [FIELD_MOVE_SWEET_SCENT]  = MOVE_SWEET_SCENT,
 };
 
 struct
 {
     bool8 (*fieldMoveFunc)(void);
     u8 msgId;
-} static const sFieldMoveCursorCallbacks[] =
+} static const sFieldMoveCursorCallbacks[FIELD_MOVES_COUNT] =
 {
     [FIELD_MOVE_FLY]          = {SetUpFieldMove_Fly,         PARTY_MSG_CANT_USE_HERE},
     [FIELD_MOVE_TELEPORT]     = {SetUpFieldMove_Teleport,    PARTY_MSG_CANT_USE_HERE},
@@ -961,8 +902,8 @@ static const u8 *const sUnionRoomTradeMessages[] =
 {
     [UR_TRADE_MSG_NOT_MON_PARTNER_WANTS - 1]       = gText_NotPkmnOtherTrainerWants,
     [UR_TRADE_MSG_NOT_EGG - 1]                     = gText_ThatIsntAnEgg,
-    [UR_TRADE_MSG_MON_CANT_BE_TRADED_1 - 1]        = gText_PkmnCantBeTradedNow,
-    [UR_TRADE_MSG_MON_CANT_BE_TRADED_2 - 1]        = gText_PkmnCantBeTradedNow,
+    [UR_TRADE_MSG_MON_CANT_BE_TRADED_NOW - 1]      = gText_PkmnCantBeTradedNow,
+    [UR_TRADE_MSG_MON_CANT_BE_TRADED - 1]          = gText_PkmnCantBeTraded,
     [UR_TRADE_MSG_PARTNERS_MON_CANT_BE_TRADED - 1] = gText_OtherTrainersPkmnCantBeTraded,
     [UR_TRADE_MSG_EGG_CANT_BE_TRADED -1]           = gText_EggCantBeTradedNow,
     [UR_TRADE_MSG_PARTNER_CANT_ACCEPT_MON - 1]     = gText_OtherTrainerCantAcceptPkmn,
@@ -978,7 +919,7 @@ static const struct OamData sOamData_HeldItem =
     .y = 0,
     .affineMode = ST_OAM_AFFINE_OFF,
     .objMode = ST_OAM_OBJ_NORMAL,
-    .mosaic = 0,
+    .mosaic = FALSE,
     .bpp = ST_OAM_4BPP,
     .shape = SPRITE_SHAPE(8x8),
     .x = 0,
@@ -1010,23 +951,23 @@ static const union AnimCmd *const sSpriteAnimTable_HeldItem[] =
 
 static const struct SpriteSheet sSpriteSheet_HeldItem =
 {
-    sHeldItemGfx, sizeof(sHeldItemGfx), 0xd750
+    .data = sHeldItemGfx, .size = sizeof(sHeldItemGfx), .tag = TAG_HELD_ITEM
 };
 
 static const struct SpritePalette sSpritePalette_HeldItem =
 {
-    sHeldItemPalette, 0xd750
+    .data = sHeldItemPalette, .tag = TAG_HELD_ITEM
 };
 
 static const struct SpriteTemplate sSpriteTemplate_HeldItem =
 {
-    0xd750,
-    0xd750,
-    &sOamData_HeldItem,
-    sSpriteAnimTable_HeldItem,
-    NULL,
-    gDummySpriteAffineAnimTable,
-    SpriteCallbackDummy
+    .tileTag = TAG_HELD_ITEM,
+    .paletteTag = TAG_HELD_ITEM,
+    .oam = &sOamData_HeldItem,
+    .anims = sSpriteAnimTable_HeldItem,
+    .images = NULL,
+    .affineAnims = gDummySpriteAffineAnimTable,
+    .callback = SpriteCallbackDummy
 };
 
 static const struct OamData sOamData_MenuPokeball =
@@ -1034,7 +975,7 @@ static const struct OamData sOamData_MenuPokeball =
     .y = 0,
     .affineMode = ST_OAM_AFFINE_OFF,
     .objMode = ST_OAM_OBJ_NORMAL,
-    .mosaic = 0,
+    .mosaic = FALSE,
     .bpp = ST_OAM_4BPP,
     .shape = SPRITE_SHAPE(32x32),
     .x = 0,
@@ -1091,7 +1032,7 @@ static const struct OamData sOamData_MenuPokeballSmall =
     .y = 0,
     .affineMode = ST_OAM_AFFINE_OFF,
     .objMode = ST_OAM_OBJ_NORMAL,
-    .mosaic = 0,
+    .mosaic = FALSE,
     .bpp = ST_OAM_4BPP,
     .shape = SPRITE_SHAPE(16x16),
     .x = 0,
@@ -1172,7 +1113,7 @@ static const struct OamData sOamData_StatusCondition =
     .y = 0,
     .affineMode = ST_OAM_AFFINE_OFF,
     .objMode = ST_OAM_OBJ_NORMAL,
-    .mosaic = 0,
+    .mosaic = FALSE,
     .bpp = ST_OAM_4BPP,
     .shape = SPRITE_SHAPE(32x8),
     .x = 0,
@@ -1254,7 +1195,7 @@ static const struct CompressedSpritePalette sSpritePalette_StatusIcons =
     gStatusPal_Icons, TAG_STATUS_ICONS
 };
 
-static const struct SpriteTemplate sSpriteTemplate_StatusIcons =
+const struct SpriteTemplate gSpriteTemplate_StatusIcons =
 {
     .tileTag = TAG_STATUS_ICONS,
     .paletteTag = TAG_STATUS_ICONS,
