@@ -630,21 +630,30 @@
 #define STRINGID_ATTACKERHEALEDITSBURN                628
 #define STRINGID_ATTACKERMELTEDTHEICE                 629
 #define STRINGID_TARGETTOUGHEDITOUT                   630
-#define STRINGID_LEGENDARYFENDEDBALLOFF               631
-#define STRINGID_YOUMUSTWEAKENIT                      632
-#define STRINGID_PKMNHURTBYFROSTBITE                  633
-#define STRINGID_PKMNALREADYFROZEN                    634
-#define STRINGID_PKMNPREVENTSFREEZINGWITH             635
-#define STRINGID_TEAMGAINEDEXP                        636
-#define STRINGID_PKMNLOWEREDGUARD                     637
-#define STRINGID_PKMNGUARDWASNOTLOWERED               638
-#define STRINGID_PKMNMAKESFAIRYMISS                   639
-#define STRINGID_PKMNRAISEDICEPOWERWITH               640
-#define STRINGID_PKMNDROPPEDITEM                      641
-#define STRINGID_BAGISFULL                            642
-#define STRINGID_OVERTURNENTERS                       643
+#define STRINGID_ATTACKERLOSTELECTRICTYPE             631
+#define STRINGID_ATTACKERSWITCHEDSTATWITHTARGET       632
+#define STRINGID_BEINGHITCHARGEDPKMNWITHPOWER         633
+#define STRINGID_SUNLIGHTACTIVATEDABILITY             634
+#define STRINGID_STATWASHEIGHTENED                    635
+#define STRINGID_ELECTRICTERRAINACTIVATEDABILITY      636
+#define STRINGID_ABILITYWEAKENEDFSURROUNDINGMONSSTAT  637
+#define STRINGID_ATTACKERGAINEDSTRENGTHFROMTHEFALLEN  638
+#define STRINGID_PKMNSABILITYPREVENTSABILITY          639
+#define STRINGID_LEGENDARYFENDEDBALLOFF               640
+#define STRINGID_YOUMUSTWEAKENIT                      641
+#define STRINGID_PKMNHURTBYFROSTBITE                  642
+#define STRINGID_PKMNALREADYFROZEN                    643
+#define STRINGID_PKMNPREVENTSFREEZINGWITH             644
+#define STRINGID_TEAMGAINEDEXP                        645
+#define STRINGID_PKMNLOWEREDGUARD                     646
+#define STRINGID_PKMNGUARDWASNOTLOWERED               647
+#define STRINGID_PKMNMAKESFAIRYMISS                   648
+#define STRINGID_PKMNRAISEDICEPOWERWITH               649
+#define STRINGID_PKMNDROPPEDITEM                      650
+#define STRINGID_BAGISFULL                            651
+#define STRINGID_OVERTURNENTERS                       652
 
-#define BATTLESTRINGS_COUNT                           644
+#define BATTLESTRINGS_COUNT                           653
 
 // This is the string id that gBattleStringsTable starts with.
 // String ids before this (e.g. STRINGID_INTROMSG) are not in the table,
@@ -746,7 +755,6 @@
 // gUproarAwakeStringIds
 #define B_MSG_CANT_SLEEP_UPROAR  0
 #define B_MSG_UPROAR_KEPT_AWAKE  1
-#define B_MSG_STAYED_AWAKE_USING 2
 
 // gUproarOverTurnStringIds
 #define B_MSG_UPROAR_CONTINUES  0

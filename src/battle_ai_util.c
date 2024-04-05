@@ -568,9 +568,9 @@ void SetBattlerData(u8 battlerId)
         if (BATTLE_HISTORY->abilities[battlerId] != ABILITY_NONE)
             gBattleMons[battlerId].ability = BATTLE_HISTORY->abilities[battlerId];
         // Check if mon can only have one ability.
-        else if (gBaseStats[gBattleMons[battlerId].species].abilities[1] == ABILITY_NONE
-                 || gBaseStats[gBattleMons[battlerId].species].abilities[1] == gBaseStats[gBattleMons[battlerId].species].abilities[0])
-            gBattleMons[battlerId].ability = gBaseStats[gBattleMons[battlerId].species].abilities[0];
+        else if (gSpeciesInfo[gBattleMons[battlerId].species].abilities[1] == ABILITY_NONE
+                 || gSpeciesInfo[gBattleMons[battlerId].species].abilities[1] == gSpeciesInfo[gBattleMons[battlerId].species].abilities[0])
+            gBattleMons[battlerId].ability = gSpeciesInfo[gBattleMons[battlerId].species].abilities[0];
         // The ability is unknown.
         else
             gBattleMons[battlerId].ability = ABILITY_NONE;
@@ -644,12 +644,12 @@ bool32 IsBattlerTrapped(u8 battler, bool8 checkSwitch)
 
 u32 GetTotalBaseStat(u32 species)
 {
-    return gBaseStats[species].baseHP
-        + gBaseStats[species].baseAttack
-        + gBaseStats[species].baseDefense
-        + gBaseStats[species].baseSpeed
-        + gBaseStats[species].baseSpAttack
-        + gBaseStats[species].baseSpDefense;
+    return gSpeciesInfo[species].baseHP
+        + gSpeciesInfo[species].baseAttack
+        + gSpeciesInfo[species].baseDefense
+        + gSpeciesInfo[species].baseSpeed
+        + gSpeciesInfo[species].baseSpAttack
+        + gSpeciesInfo[species].baseSpDefense;
 }
 
 bool32 IsTruantMonVulnerable(u32 battlerAI, u32 opposingBattler)
@@ -1203,12 +1203,12 @@ s32 AI_GetAbility(u32 battlerId)
         return knownAbility;
 
     // Else, guess the ability
-    if (gBaseStats[gBattleMons[battlerId].species].abilities[0] != ABILITY_NONE)
+    if (gSpeciesInfo[gBattleMons[battlerId].species].abilities[0] != ABILITY_NONE)
     {
         u16 abilityGuess = ABILITY_NONE;
         while (abilityGuess == ABILITY_NONE)
         {
-            abilityGuess = gBaseStats[gBattleMons[battlerId].species].abilities[Random() % NUM_ABILITY_SLOTS];
+            abilityGuess = gSpeciesInfo[gBattleMons[battlerId].species].abilities[Random() % NUM_ABILITY_SLOTS];
         }
 
         return abilityGuess;
@@ -1655,7 +1655,8 @@ bool32 ShouldLowerStat(u8 battler, u16 battlerAbility, u8 stat)
     if ((gBattleMons[battler].statStages[stat] > MIN_STAT_STAGE && battlerAbility != ABILITY_CONTRARY)
       || (battlerAbility == ABILITY_CONTRARY && gBattleMons[battler].statStages[stat] < MAX_STAT_STAGE))
     {
-        if (battlerAbility == ABILITY_CLEAR_BODY
+        if (AI_DATA->holdEffects[battler] == HOLD_EFFECT_CLEAR_AMULET
+         || battlerAbility == ABILITY_CLEAR_BODY
          || battlerAbility == ABILITY_WHITE_SMOKE
          || battlerAbility == ABILITY_FULL_METAL_BODY)
             return FALSE;
@@ -1732,7 +1733,8 @@ bool32 ShouldLowerAttack(u8 battlerAtk, u8 battlerDef, u16 defAbility)
       && defAbility != ABILITY_CLEAR_BODY
       && defAbility != ABILITY_WHITE_SMOKE
       && defAbility != ABILITY_FULL_METAL_BODY
-      && defAbility != ABILITY_HYPER_CUTTER)
+      && defAbility != ABILITY_HYPER_CUTTER
+      && AI_DATA->holdEffects[battlerDef] != HOLD_EFFECT_CLEAR_AMULET)
         return TRUE;
     return FALSE;
 }
@@ -1748,7 +1750,8 @@ bool32 ShouldLowerDefense(u8 battlerAtk, u8 battlerDef, u16 defAbility)
       && defAbility != ABILITY_CLEAR_BODY
       && defAbility != ABILITY_WHITE_SMOKE
       && defAbility != ABILITY_FULL_METAL_BODY
-      && defAbility != ABILITY_BIG_PECKS)
+      && defAbility != ABILITY_BIG_PECKS
+      && AI_DATA->holdEffects[battlerDef] != HOLD_EFFECT_CLEAR_AMULET)
         return TRUE;
     return FALSE;
 }
@@ -1762,7 +1765,8 @@ bool32 ShouldLowerSpeed(u8 battlerAtk, u8 battlerDef, u16 defAbility)
       && defAbility != ABILITY_CONTRARY
       && defAbility != ABILITY_CLEAR_BODY
       && defAbility != ABILITY_FULL_METAL_BODY
-      && defAbility != ABILITY_WHITE_SMOKE)
+      && defAbility != ABILITY_WHITE_SMOKE
+      && AI_DATA->holdEffects[battlerDef] != HOLD_EFFECT_CLEAR_AMULET)
         return TRUE;
     return FALSE;
 }
@@ -1777,7 +1781,8 @@ bool32 ShouldLowerSpAtk(u8 battlerAtk, u8 battlerDef, u16 defAbility)
       && defAbility != ABILITY_CONTRARY
       && defAbility != ABILITY_CLEAR_BODY
       && defAbility != ABILITY_FULL_METAL_BODY
-      && defAbility != ABILITY_WHITE_SMOKE)
+      && defAbility != ABILITY_WHITE_SMOKE
+      && AI_DATA->holdEffects[battlerDef] != HOLD_EFFECT_CLEAR_AMULET)
         return TRUE;
     return FALSE;
 }
@@ -1792,7 +1797,8 @@ bool32 ShouldLowerSpDef(u8 battlerAtk, u8 battlerDef, u16 defAbility)
       && defAbility != ABILITY_CONTRARY
       && defAbility != ABILITY_CLEAR_BODY
       && defAbility != ABILITY_FULL_METAL_BODY
-      && defAbility != ABILITY_WHITE_SMOKE)
+      && defAbility != ABILITY_WHITE_SMOKE
+      && AI_DATA->holdEffects[battlerDef] != HOLD_EFFECT_CLEAR_AMULET)
         return TRUE;
     return FALSE;
 }
@@ -1806,7 +1812,8 @@ bool32 ShouldLowerAccuracy(u8 battlerAtk, u8 battlerDef, u16 defAbility)
       && defAbility != ABILITY_CLEAR_BODY
       && defAbility != ABILITY_WHITE_SMOKE
       && defAbility != ABILITY_FULL_METAL_BODY
-      && defAbility != ABILITY_KEEN_EYE)
+      && defAbility != ABILITY_KEEN_EYE
+      && AI_DATA->holdEffects[battlerDef] != HOLD_EFFECT_CLEAR_AMULET)
         return TRUE;
     return FALSE;
 }
@@ -1820,7 +1827,8 @@ bool32 ShouldLowerEvasion(u8 battlerAtk, u8 battlerDef, u16 defAbility)
       && defAbility != ABILITY_CONTRARY
       && defAbility != ABILITY_CLEAR_BODY
       && defAbility != ABILITY_FULL_METAL_BODY
-      && defAbility != ABILITY_WHITE_SMOKE)
+      && defAbility != ABILITY_WHITE_SMOKE
+      && AI_DATA->holdEffects[battlerDef] != HOLD_EFFECT_CLEAR_AMULET)
         return TRUE;
     return FALSE;
 }
@@ -2112,6 +2120,7 @@ bool32 IsStatRaisingEffect(u16 effect)
     case EFFECT_BULK_UP:
     case EFFECT_GEOMANCY:
     case EFFECT_STOCKPILE:
+    case EFFECT_VICTORY_DANCE:
         return TRUE;
     default:
         return FALSE;
@@ -2453,8 +2462,8 @@ static bool32 PartyBattlerShouldAvoidHazards(u8 currBattler, u8 switchBattler)
     u16 species = GetMonData(mon, MON_DATA_SPECIES);
     u32 flags = gSideStatuses[GetBattlerSide(currBattler)] & (SIDE_STATUS_SPIKES | SIDE_STATUS_STEALTH_ROCK | SIDE_STATUS_STICKY_WEB | SIDE_STATUS_TOXIC_SPIKES);
     s32 hazardDamage = 0;
-    u8 type1 = gBaseStats[species].type1;
-    u8 type2 = gBaseStats[species].type2;
+    u8 type1 = gSpeciesInfo[species].types[0];
+    u8 type2 = gSpeciesInfo[species].types[1];
     u32 maxHp = GetMonData(mon, MON_DATA_MAX_HP);
 
     if (flags == 0)

@@ -201,7 +201,7 @@ void NewGameInitData(void)
     WipeTrainerNameRecords();
     ResetTrainerHillResults();
     ResetContestLinkResults();
-    gSaveBlock2Ptr->expShare = 0;
+    //gSaveBlock2Ptr->expShare = 0;
     
     gSaveBlock1Ptr->registeredItemSelect = 0;
     gSaveBlock1Ptr->registeredItemL = 0;

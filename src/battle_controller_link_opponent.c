@@ -596,6 +596,7 @@ static u32 CopyLinkOpponentMonData(u8 monId, u8 *dst)
         battleMon.abilityNum = GetMonData(&gEnemyParty[monId], MON_DATA_ABILITY_NUM);
         battleMon.hiddenPowerType = GetMonData(&gEnemyParty[monId], MON_DATA_HIDDEN_POWER_TYPE);
         battleMon.otId = GetMonData(&gEnemyParty[monId], MON_DATA_OT_ID);
+        battleMon.metLevel = GetMonData(&gEnemyParty[monId], MON_DATA_MET_LEVEL);
         GetMonData(&gEnemyParty[monId], MON_DATA_NICKNAME, nickname);
         StringCopy_Nickname(battleMon.nickname, nickname);
         GetMonData(&gEnemyParty[monId], MON_DATA_OT_NAME, battleMon.otName);
@@ -1149,7 +1150,9 @@ static void StartSendOutAnim(u8 battlerId, bool8 dontClearSubstituteBit)
 
     ClearTemporarySpeciesSpriteData(battlerId, dontClearSubstituteBit);
     gBattlerPartyIndexes[battlerId] = gBattleResources->bufferA[battlerId][1];
-    species = GetMonData(&gEnemyParty[gBattlerPartyIndexes[battlerId]], MON_DATA_SPECIES);
+    species = GetIllusionMonSpecies(battlerId);
+    if (species == SPECIES_NONE)
+        species = GetMonData(&gEnemyParty[gBattlerPartyIndexes[battlerId]], MON_DATA_SPECIES);
     gBattleControllerData[battlerId] = CreateInvisibleSpriteWithCallback(SpriteCB_WaitForBattlerBallReleaseAnim);
     BattleLoadOpponentMonSpriteGfx(&gEnemyParty[gBattlerPartyIndexes[battlerId]], battlerId);
     SetMultiuseSpriteTemplateToPokemon(species, GetBattlerPosition(battlerId));

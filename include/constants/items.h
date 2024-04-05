@@ -1124,7 +1124,13 @@
 #define ITEM_N_SOLARIZER 769
 #define ITEM_N_LUNARIZER 770
 
-#define ITEMS_COUNT 771
+#define ITEM_ABILITY_SHIELD 771
+#define ITEM_CLEAR_AMULET 772
+#define ITEM_PUNCHING_GLOVE 775
+#define ITEM_COVERT_CLOAK 774
+#define ITEM_LOADED_DICE 775
+
+#define ITEMS_COUNT 776
 #define ITEM_FIELD_ARROW ITEMS_COUNT
 
 // A special item id associated with "Cancel"/"Exit" etc. in a list of items or decorations

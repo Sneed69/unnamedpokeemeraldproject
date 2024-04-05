@@ -1,7 +1,6 @@
 #ifndef GUARD_BATTLE_BG_H
 #define GUARD_BATTLE_BG_H
 
-#if P_ENABLE_DEBUG == TRUE
 #include "constants/day_night.h"
 
 struct BattleBackground
@@ -12,7 +11,6 @@ struct BattleBackground
     const void *entryTilemap;
     const void *palette[TIMES_OF_DAY_COUNT];
 };
-#endif
 
 void BattleInitBgsAndWindows(void);
 void InitBattleBgsVideo(void);
