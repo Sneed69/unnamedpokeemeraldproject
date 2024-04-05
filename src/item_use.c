@@ -200,7 +200,7 @@ void ItemUseOutOfBattle_Mail(u8 taskId)
 
 void ItemUseOutOfBattle_ExpShare(u8 taskId)
 {
-    if (!gSaveBlock2Ptr->expShare)
+    /*if (!gSaveBlock2Ptr->expShare)
     {
         PlaySE(SE_EXP_MAX);
         if (gTasks[taskId].tUsingRegisteredKeyItem) // to account for pressing select in the overworld
@@ -216,7 +216,7 @@ void ItemUseOutOfBattle_ExpShare(u8 taskId)
         else
             DisplayItemMessage(taskId, 1, gText_ExpShareOff, CloseItemMessage);
     }
-    gSaveBlock2Ptr->expShare = !gSaveBlock2Ptr->expShare;
+    gSaveBlock2Ptr->expShare = !gSaveBlock2Ptr->expShare;*/
 }
 
 void ItemUseOutOfBattle_Bike(u8 taskId)

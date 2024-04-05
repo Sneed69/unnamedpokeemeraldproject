@@ -462,7 +462,7 @@ static void CB2_EggMoveTutorMain(void)
 static void FormatAndPrintText(const u8 *src)
 {
     StringExpandPlaceholders(gStringVar4, src);
-    MoveRelearnerPrintText(gStringVar4);
+    MoveRelearnerPrintMessage(gStringVar4);
 }
 
 // See the state machine doc at the top of the file.
@@ -807,7 +807,7 @@ static void HandleInput(bool8 showContest)
         RemoveScrollArrows();
         sEggMoveTutorStruct->state = MENU_STATE_PRINT_GIVE_UP_PROMPT;
         StringExpandPlaceholders(gStringVar4, gText_MoveRelearnerGiveUp);
-        MoveRelearnerPrintText(gStringVar4);
+        MoveRelearnerPrintMessage(gStringVar4);
         break;
     default:
         PlaySE(SE_SELECT);
@@ -815,7 +815,7 @@ static void HandleInput(bool8 showContest)
         sEggMoveTutorStruct->state = MENU_STATE_PRINT_TEACH_MOVE_PROMPT;
         StringCopy(gStringVar2, gMoveNames[itemId]);
         StringExpandPlaceholders(gStringVar4, gText_MoveRelearnerTeachMoveConfirm);
-        MoveRelearnerPrintText(gStringVar4);
+        MoveRelearnerPrintMessage(gStringVar4);
         break;
     }
 }

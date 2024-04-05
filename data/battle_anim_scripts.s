@@ -854,6 +854,14 @@ gBattleAnims_Moves::
 	.4byte Move_NOXIOUS_TORQUE
 	.4byte Move_COMBAT_TORQUE
 	.4byte Move_MAGICAL_TORQUE
+@@@@@@@@@@@@ CUSTOM @@@@@@@@@@@@
+	.4byte Move_MYSTIC_BLADES
+	.4byte Move_FAIRY_TAIL
+	.4byte Move_COLD_SNAP
+	.4byte Move_BLISTERING_COLD
+	.4byte Move_HOWLING_GALE
+	.4byte Move_ACID_RAIN
+	.4byte Move_MAGIC_FANG
 @@@@ Z MOVES
 	.4byte Move_BREAKNECK_BLITZ
 	.4byte Move_ALL_OUT_PUMMELING
@@ -890,14 +898,6 @@ gBattleAnims_Moves::
 	.4byte Move_MENACING_MOONRAZE_MAELSTROM
 	.4byte Move_LIGHT_THAT_BURNS_THE_SKY
 	.4byte Move_SOUL_STEALING_7_STAR_STRIKE
-@@@@@@@@@@@@ CUSTOM @@@@@@@@@@@@
-	.4byte Move_MYSTIC_BLADES
-	.4byte Move_FAIRY_TAIL
-	.4byte Move_COLD_SNAP
-	.4byte Move_BLISTERING_COLD
-	.4byte Move_HOWLING_GALE
-	.4byte Move_ACID_RAIN
-	.4byte Move_MAGIC_FANG
 @@@ Last Move - cannot be reached
 	.4byte Move_COUNT
 

@@ -2150,6 +2150,18 @@ static void Cmd_adjustdamage(void)
         gSpecialStatuses[gBattlerTarget].sturdied = TRUE;
     }
     #endif
+    else if (GetBattlerAbility(gBattlerTarget) == ABILITY_NINE_LIVES && !gBattleStruct->nineLivesUsed[gBattlerPartyIndexes[gBattlerTarget]][GetBattlerSide(gBattlerTarget)])
+    {
+        gBattleMoveDamage /= 10;
+        if (gBattleMoveDamage == 0)
+            gBattleMoveDamage = 1;
+        if (gBattleMons[gBattlerTarget].hp > gBattleMoveDamage)
+        {
+            gMoveResultFlags |= MOVE_RESULT_STURDIED;
+            gBattleStruct->nineLivesUsed[gBattlerPartyIndexes[gBattlerTarget]][GetBattlerSide(gBattlerTarget)] = TRUE;
+            RecordAbilityBattle(gBattlerTarget, ABILITY_NINE_LIVES);
+        }
+    }
     else if (holdEffect == HOLD_EFFECT_FOCUS_SASH && BATTLER_MAX_HP(gBattlerTarget))
     {
         RecordItemEffectBattle(gBattlerTarget, holdEffect);
@@ -15475,7 +15487,7 @@ static void Cmd_handleballthrow(void)
             }
             break;
         case ITEM_FAST_BALL:
-            if (gBaseStats[gBattleMons[gBattlerTarget].species].baseSpeed >= 100)
+            if (gSpeciesInfo[gBattleMons[gBattlerTarget].species].baseSpeed >= 100)
                 ballMultiplier = 400;
             break;
         case ITEM_HEAVY_BALL:

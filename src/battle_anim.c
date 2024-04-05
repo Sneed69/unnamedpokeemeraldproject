@@ -279,6 +279,7 @@ void LaunchBattleAnimation(u32 animType, u32 animId)
             break;
         default:
             hideHpBoxes = FALSE;
+        }
     }
 
     if (!IsContest())

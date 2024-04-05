@@ -428,10 +428,10 @@ BattleScript_EffectColdSnap::
 	jumpifstatus BS_TARGET, STATUS1_FREEZE, BattleScript_AlreadyFrozen
 	jumpiftype BS_TARGET, TYPE_ICE, BattleScript_NotAffected
 	jumpifability BS_TARGET, ABILITY_MAGMA_ARMOR, BattleScript_MagmaArmorPrevents
-	jumpifability BS_TARGET, ABILITY_COMATOSE, BattleScript_LeafGuardProtects
+	jumpifability BS_TARGET, ABILITY_COMATOSE, BattleScript_AbilityProtectsDoesntAffect
 	jumpifflowerveil BattleScript_FlowerVeilProtects
-	jumpifleafguardprotected BS_TARGET, BattleScript_LeafGuardProtects
-	jumpifshieldsdown BS_TARGET, BattleScript_LeafGuardProtects
+	jumpifleafguardprotected BS_TARGET, BattleScript_AbilityProtectsDoesntAffect
+	jumpifshieldsdown BS_TARGET, BattleScript_AbilityProtectsDoesntAffect
 	jumpifstatus BS_TARGET, STATUS1_ANY, BattleScript_ButItFailed
 	jumpifterrainaffected BS_TARGET, STATUS_FIELD_MISTY_TERRAIN, BattleScript_MistyTerrainPrevents
 	accuracycheck BattleScript_ButItFailed, ACC_CURR_MOVE
@@ -8722,13 +8722,21 @@ BattleScript_UnthreateningLoop:
 	jumpifability BS_TARGET, ABILITY_SCRAPPY, BattleScript_UnthreateningPrevented
 	jumpifability BS_TARGET, ABILITY_OWN_TEMPO, BattleScript_UnthreateningPrevented
 	jumpifability BS_TARGET, ABILITY_OBLIVIOUS, BattleScript_UnthreateningPrevented
+	jumpifstat BS_TARGET, CMP_GREATER_THAN, STAT_SPDEF, MIN_STAT_STAGE, BattleScript_UnthreateningEffect
+	jumpifability BS_TARGET, ABILITY_BIG_PECKS, BattleScript_UnthreateningPrevented
+	jumpifstat BS_TARGET, CMP_EQUAL, STAT_DEF, MIN_STAT_STAGE, BattleScript_UnthreateningLoopIncrement
 BattleScript_UnthreateningEffect:
 	copybyte sBATTLER, gBattlerAttacker
+	setstatchanger STAT_SPDEF, 1, TRUE
+	statbuffchange STAT_CHANGE_NOT_PROTECT_AFFECTED | STAT_CHANGE_ALLOW_PTR, BattleScript_UnthreateningTryDef
+BattleScript_UnthreateningTryDef:
+	jumpifstat BS_TARGET, CMP_EQUAL, STAT_DEF, MIN_STAT_STAGE, BattleScript_UnthreateningPrint
+	setstatchanger STAT_DEF, 1, TRUE
 	statbuffchange STAT_CHANGE_NOT_PROTECT_AFFECTED | STAT_CHANGE_ALLOW_PTR, BattleScript_UnthreateningLoopIncrement
-	setgraphicalstatchangevalues
-	playanimation BS_TARGET, B_ANIM_STATS_CHANGE, sB_ANIM_ARG1
+BattleScript_UnthreateningPrint:
+	playstatchangeanimation BS_TARGET, BIT_DEF | BIT_SPDEF, 1
 	printstring STRINGID_PKMNLOWEREDGUARD
-	waitmessage B_WAIT_TIME_LONG
+	waitmessage B_WAIT_TIME_MED
 	copybyte sBATTLER, gBattlerTarget
 BattleScript_UnthreateningLoopIncrement:
 	addbyte gBattlerTarget, 1

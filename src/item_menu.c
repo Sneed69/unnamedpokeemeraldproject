@@ -997,8 +997,14 @@ static void BagMenu_ItemPrintCallback(u8 windowId, u32 itemIndex, u8 y)
         else
         {
             // Print registered icon
-            if (gSaveBlock1Ptr->registeredItem != ITEM_NONE && gSaveBlock1Ptr->registeredItem == itemId)
-                BlitBitmapToWindow(windowId, sRegisteredSelect_Gfx, 96, y - 1, 24, 16);
+            if (gSaveBlock1Ptr->registeredItemSelect && gSaveBlock1Ptr->registeredItemSelect == itemId)
+                BlitBitmapToWindow(windowId, sSelectButtonGfx, 96, y - 1, 24, 16);
+
+            if (gSaveBlock1Ptr->registeredItemL && gSaveBlock1Ptr->registeredItemL == itemId)
+                BlitBitmapToWindow(windowId, sLButtonGfx, 96, y - 1, 24, 16);
+
+            if (gSaveBlock1Ptr->registeredItemR && gSaveBlock1Ptr->registeredItemR == itemId)
+                BlitBitmapToWindow(windowId, sRButtonGfx, 96, y - 1, 24, 16);
         }
     }
 }

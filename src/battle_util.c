@@ -4810,8 +4810,6 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             if (!gSpecialStatuses[battler].switchInAbilityDone)
             {
                 gSpecialStatuses[battler].switchInAbilityDone = TRUE;
-                SET_STATCHANGER(STAT_DEF, 1, TRUE);
-                SET_STATCHANGER(STAT_SPDEF, 1, TRUE);
                 BattleScriptPushCursorAndCallback(BattleScript_UnthreateningActivates);
                 effect++;
             }

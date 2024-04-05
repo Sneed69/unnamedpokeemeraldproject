@@ -1034,8 +1034,8 @@ static u32 GetWonderGuardCounter(struct Pokemon *party, int firstId, int lastId,
                     return i;
                 case EFFECT_CURSE:
                     species = GetMonData(&party[i], MON_DATA_SPECIES);
-                    type1 = gBaseStats[species].type1;
-                    type2 = gBaseStats[species].type2;
+                    type1 = gSpeciesInfo[species].types[0];
+                    type2 = gSpeciesInfo[species].types[1];
                     if (type1 == TYPE_GHOST || type2 == TYPE_GHOST)
                         return i;
                 case EFFECT_HAIL:

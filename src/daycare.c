@@ -536,9 +536,20 @@ static void InheritIVs(struct Pokemon *egg, struct DayCare *daycare)
     // Select which IVs that will be inherited.
     for (i = 0; i < howManyIVs; i++)
     {
-        index = Random() % (NUM_STATS - i);
+        // Randomly pick an IV from the available list and stop from being chosen again.
+        // BUG: Instead of removing the IV that was just picked, this
+        // removes position 0 (HP) then position 1 (DEF), then position 2. This is why HP and DEF
+        // have a lower chance to be inherited in Emerald and why the IV picked for inheritance can
+        // be repeated. Amusingly, FRLG and RS also got this wrong. They remove selectedIvs[i], which
+        // is not an index! This means that it can sometimes remove the wrong stat.
+        #ifndef BUGFIX
+        selectedIvs[i] = availableIVs[Random() % (NUM_STATS - i)];
+        RemoveIVIndexFromList(availableIVs, i);
+        #else
+        u8 index = Random() % (NUM_STATS - i);
         selectedIvs[i] = availableIVs[index];
         RemoveIVIndexFromList(availableIVs, index);
+        #endif
     }
 
     // Determine which parent each of the selected IVs should inherit from.
@@ -550,8 +561,33 @@ static void InheritIVs(struct Pokemon *egg, struct DayCare *daycare)
     // Set each of inherited IVs on the egg mon.
     for (i = 0; i < howManyIVs; i++)
     {
-        iv = GetBoxMonData(&daycare->mons[whichParents[i]].mon, MON_DATA_HP_IV + selectedIvs[i]);
-        SetMonData(egg, MON_DATA_HP_IV + selectedIvs[i], &iv);
+        switch (selectedIvs[i])
+        {
+            case 0:
+                iv = GetBoxMonData(&daycare->mons[whichParents[i]].mon, MON_DATA_HP_IV);
+                SetMonData(egg, MON_DATA_HP_IV, &iv);
+                break;
+            case 1:
+                iv = GetBoxMonData(&daycare->mons[whichParents[i]].mon, MON_DATA_ATK_IV);
+                SetMonData(egg, MON_DATA_ATK_IV, &iv);
+                break;
+            case 2:
+                iv = GetBoxMonData(&daycare->mons[whichParents[i]].mon, MON_DATA_DEF_IV);
+                SetMonData(egg, MON_DATA_DEF_IV, &iv);
+                break;
+            case 3:
+                iv = GetBoxMonData(&daycare->mons[whichParents[i]].mon, MON_DATA_SPEED_IV);
+                SetMonData(egg, MON_DATA_SPEED_IV, &iv);
+                break;
+            case 4:
+                iv = GetBoxMonData(&daycare->mons[whichParents[i]].mon, MON_DATA_SPATK_IV);
+                SetMonData(egg, MON_DATA_SPATK_IV, &iv);
+                break;
+            case 5:
+                iv = GetBoxMonData(&daycare->mons[whichParents[i]].mon, MON_DATA_SPDEF_IV);
+                SetMonData(egg, MON_DATA_SPDEF_IV, &iv);
+                break;
+        }
     }
 }
 
@@ -805,7 +841,7 @@ static const struct {
     { SPECIES_MARILL,       ITEM_SEA_INCENSE,  SPECIES_AZURILL },
     { SPECIES_SNORLAX,      ITEM_FULL_INCENSE, SPECIES_MUNCHLAX },
     { SPECIES_CHANSEY,      ITEM_LUCK_INCENSE, SPECIES_HAPPINY },
-    { SPECIES_MR_MIME,      ITEM_ODD_INCENSE,  SPECIES_MIME_JR },
+    { SPECIES_MR_MIME,      ITEM_ROSE_INCENSE,  SPECIES_MIME_JR },
     { SPECIES_CHIMECHO,     ITEM_PURE_INCENSE, SPECIES_CHINGLING },
     { SPECIES_SUDOWOODO,    ITEM_ROCK_INCENSE, SPECIES_BONSLY },
     { SPECIES_ROSELIA,      ITEM_ROSE_INCENSE, SPECIES_BUDEW },

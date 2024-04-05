@@ -2729,8 +2729,8 @@ static bool8 CanMonFly(struct Pokemon *mon)
         case SPECIES_GOLURK:
             return TRUE;
     }
-    eggGroup[0] = gBaseStats[species].eggGroup1;
-    eggGroup[1] = gBaseStats[species].eggGroup2;
+    eggGroup[0] = gSpeciesInfo[species].eggGroups[0];
+    eggGroup[1] = gSpeciesInfo[species].eggGroups[1];
     if (eggGroup[0] == EGG_GROUP_FLYING || eggGroup[1] == EGG_GROUP_FLYING)
         return TRUE;
     return FALSE;
