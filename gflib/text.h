@@ -3,8 +3,6 @@
 
 #include "characters.h"
 
-#define NUM_TEXT_PRINTERS 32
-
 #define CAPITALIZE_CHAR(c) (c += CHAR_A - CHAR_a)
 
 // Given as a text speed when all the text should be

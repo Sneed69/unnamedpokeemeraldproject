@@ -829,6 +829,8 @@ const u8 gMoveNames[MOVES_COUNT][MOVE_NAME_LENGTH + 1] =
     [MOVE_NOXIOUS_TORQUE] = _("Noxious Torque"),
     [MOVE_COMBAT_TORQUE] = _("Combat Torque"),
     [MOVE_MAGICAL_TORQUE] = _("Magical Torque"),
+    [MOVE_PSYBLADE] = _("Psyblade"),
+    [MOVE_HYDRO_STEAM] = _("Hydro Steam"),
     [MOVE_MYSTIC_BLADES] = _("Mystic Blades"),
     [MOVE_FAIRY_TAIL] = _("Fairy Tail"),
     [MOVE_COLD_SNAP] = _("Cold Snap"),
@@ -1675,6 +1677,8 @@ const u8 gMoveNames[MOVES_COUNT][MOVE_NAME_LENGTH + 1] =
     [MOVE_HOWLING_GALE] = _("Howling Gale"),
     [MOVE_ACID_RAIN] = _("Acid Rain"),
     [MOVE_MAGIC_FANG] = _("Magic Fang"),
+    [MOVE_PSYBLADE] = _("Psyblade"),
+    [MOVE_HYDRO_STEAM] = _("Hydro Steam"),
 };
 #endif
 

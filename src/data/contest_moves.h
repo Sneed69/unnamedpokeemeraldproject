@@ -6059,6 +6059,10 @@ const struct ContestMove gContestMoves[MOVES_COUNT] =
 
     [MOVE_MAGICAL_TORQUE] = {0}, // TODO
     
+    [MOVE_PSYBLADE] = {0}, // TODO
+
+    [MOVE_HYDRO_STEAM] = {0}, // TODO
+    
     [MOVE_MYSTIC_BLADES] =
     {
         .effect = CONTEST_EFFECT_BETTER_IF_SAME_TYPE,

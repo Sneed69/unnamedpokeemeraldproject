@@ -741,7 +741,7 @@ static u16 GetSumOfPlayerPartyLevel(u8 numMons)
 
     for (i = 0; i < PARTY_SIZE; i++)
     {
-        u32 species = GetMonData(&gPlayerParty[i], MON_DATA_SPECIES2);
+        u32 species = GetMonData(&gPlayerParty[i], MON_DATA_SPECIES_OR_EGG);
 
         if (species != SPECIES_EGG && species != SPECIES_NONE && GetMonData(&gPlayerParty[i], MON_DATA_HP) != 0)
         {
@@ -755,18 +755,16 @@ static u16 GetSumOfPlayerPartyLevel(u8 numMons)
 
 static u8 GetSumOfEnemyPartyLevel(u16 opponentId, u8 numMons)
 {
-    const struct TrainerMon *party;
     u8 i;
     u8 sum;
     u32 count = numMons;
-
-    party = gTrainers[opponentId].party.TrainerMon;
+    const struct TrainerMon *party;
 
     if (gTrainers[opponentId].partySize < count)
         count = gTrainers[opponentId].partySize;
 
     sum = 0;
-
+    party = gTrainers[opponentId].party.TrainerMon;
     for (i = 0; i < count; i++)
         sum += party[i].lvl;
 

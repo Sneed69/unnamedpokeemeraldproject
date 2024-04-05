@@ -38,7 +38,11 @@ static const u8 sFirePunchDescription[] = _(
 
 static const u8 sIcePunchDescription[] = _(
     "An icy punch that may\n"
-    "cause frostbite.");
+#if B_USE_FROSTBITE == TRUE
+    "leave the foe with frostbite.");
+#else
+    "freeze the foe.");
+#endif
 
 static const u8 sThunderPunchDescription[] = _(
     "An electrified punch that\n"
@@ -241,12 +245,20 @@ static const u8 sSurfDescription[] = _(
     "crashes it down on the foe.");
 
 static const u8 sIceBeamDescription[] = _(
-    "An icy beam blast that\n"
-    "may cause frostbite.");
+    "Blasts the foe with an icy\n"
+#if B_USE_FROSTBITE == TRUE
+    "beam. May cause frostbite.");
+#else
+    "beam that may freeze it.");
+#endif
 
 static const u8 sBlizzardDescription[] = _(
-    "An icy storm that may\n"
-    "leave foes frostbitten.");
+    "Hits the foe with an icy\n"
+#if B_USE_FROSTBITE == TRUE
+    "storm. May cause frostbite.");
+#else
+    "storm that may freeze it.");
+#endif
 
 static const u8 sPsybeamDescription[] = _(
     "Fires a peculiar ray that\n"
@@ -2935,7 +2947,11 @@ static const u8 sDragonEnergyDescription[] = _(
 
 static const u8 sFreezingGlareDescription[] = _(
     "Shoots psychic power from\n"
-    "the eyes. May cause frostbite.");
+#if B_USE_FROSTBITE == TRUE
+    "the eyes. May frostbite.");
+#else
+    "the eyes. May freeze the foe.");
+#endif
 
 static const u8 sFieryWrathDescription[] = _(
     "An attack fueled by your\n"
@@ -3235,6 +3251,14 @@ static const u8 sCombatTorqueDescription[] = _(
 
 static const u8 sMagicalTorqueDescription[] = _(
     "---");
+
+static const u8 sPsybladeDescription[] = _(
+    "This move's power increases\n"
+    "when on Electric Terrain.");
+
+static const u8 sHydroSteamDescription[] = _(
+    "This move's power increases\n"
+    "under harsh sunlight.");
 
 static const u8 sMysticBladesDescription[] = _(
     "Cuts with two long blades\n"
@@ -4101,6 +4125,8 @@ const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] =
     [MOVE_NOXIOUS_TORQUE - 1] = sNoxiousTorqueDescription,
     [MOVE_COMBAT_TORQUE - 1] = sCombatTorqueDescription,
     [MOVE_MAGICAL_TORQUE - 1] = sMagicalTorqueDescription,
+    [MOVE_PSYBLADE - 1] = sPsybladeDescription,
+    [MOVE_HYDRO_STEAM - 1] = sHydroSteamDescription,
     
     //Custom
     [MOVE_MYSTIC_BLADES - 1] = sMysticBladesDescription,
