@@ -207,16 +207,7 @@ bool8 CheckForTrainersWantingBattle(void)
         if (gObjectEvents[i].trainerType != TRAINER_TYPE_NORMAL && gObjectEvents[i].trainerType != TRAINER_TYPE_BURIED)
             continue;
 
-        numTrainers = CheckTrainer(i);
-        if (numTrainers == 2)
-            break;
-
-        if (numTrainers == 0)
-            continue;
-
-        if (gNoOfApproachingTrainers > 1)
-            break;
-        if (GetMonsStateToDoubles_2() != PLAYER_HAS_TWO_USABLE_MONS) // one trainer found and cant have a double battle
+        if (CheckTrainer(i))
             break;
     }
 
