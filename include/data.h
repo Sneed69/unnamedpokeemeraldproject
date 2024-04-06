@@ -56,19 +56,18 @@ struct TrainerMon
 {
     const u8 *nickname;
     const u8 *ev;
-    u16 iv;
-    u8 ivs[NUM_STATS];
-    u8 lvl;
+    u32 iv;
+    u16 moves[MAX_MON_MOVES];
     u16 species;
     u16 heldItem;
-    u16 moves[MAX_MON_MOVES];
+    u16 ability;
+    u8 lvl;
     u8 ball;
-    u16 ability:2;
-    u16 gender:2;
-    u16 isShiny:1;
-    u16 nature:5;
-    u16 hiddenPowerType:5;
-    u16 unused:1;
+    u8 nature:5;
+    bool8 gender:2;
+    bool8 isShiny:1;
+    u8 hiddenPowerType:5;
+    u8 unused:3;
 };
 
 #define NO_ITEM_DEFAULT_MOVES(party) { .NoItemDefaultMoves = party }, .partySize = ARRAY_COUNT(party), .partyFlags = 0

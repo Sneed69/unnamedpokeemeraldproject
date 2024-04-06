@@ -106,10 +106,6 @@
 #define MAX_EV_SPREAD_TRICK_ROOM          {252, 252, 252,   0, 252, 252}
 #define MAX_EV_SPREAD_SPECIAL_TRICK_ROOM  {252,   0, 252,   0, 252, 252}
 
-#define ABILITY_SLOT_1 3
-#define ABILITY_SLOT_2 1
-#define ABILITY_HIDDEN 2
-
 // Held Item Chances
 #define ITEM_CHANCE_COMMON          25
 #define ITEM_CHANCE_RARE             5
