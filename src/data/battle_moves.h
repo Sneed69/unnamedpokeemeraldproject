@@ -9799,7 +9799,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
 
     [MOVE_DIAMOND_STORM] =
     {
-        #if B_UPDATED_MOVE_DATA >= GEN_4
+        #if B_UPDATED_MOVE_DATA >= GEN_7
             .effect = EFFECT_DEFENSE_UP2_HIT,
         #else
             .effect = EFFECT_DEFENSE_UP_HIT,

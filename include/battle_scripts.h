@@ -172,6 +172,7 @@ extern const u8 BattleScript_FlashFireBoost[];
 extern const u8 BattleScript_HyperboreanBoost_PPLoss[];
 extern const u8 BattleScript_HyperboreanBoost[];
 extern const u8 BattleScript_AbilityNoStatLoss[];
+extern const u8 BattleScript_ItemNoStatLoss[];
 extern const u8 BattleScript_BRNPrevention[];
 extern const u8 BattleScript_PRLZPrevention[];
 extern const u8 BattleScript_PSNPrevention[];
