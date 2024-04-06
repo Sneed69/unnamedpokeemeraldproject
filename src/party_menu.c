@@ -2726,7 +2726,7 @@ static void SetPartyMonSelectionActions(struct Pokemon *mons, u8 slotId, u8 acti
 static bool8 CanMonFly(struct Pokemon *mon)
 {
     u16 eggGroup[EGG_GROUPS_PER_MON];
-    u16 species = GetBoxMonData(mon, MON_DATA_SPECIES);
+    u16 species = GetMonData(mon, MON_DATA_SPECIES);
     
     if (!FlagGet(FLAG_BADGE05_GET))
         return FALSE;
