@@ -1651,6 +1651,7 @@ static void CB2_LoadMapOnReturnToFieldCableClub(void)
 
 void CB2_ReturnToField(void)
 {
+    HealPlayerParty();
     if (IsOverworldLinkActive())
     {
         SetMainCallback2(CB2_ReturnToFieldLink);
