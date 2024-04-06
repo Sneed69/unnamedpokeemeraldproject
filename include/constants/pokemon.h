@@ -341,6 +341,7 @@
 #define EVO_ITEM_HOLD                     41     // Pokémon levels up, holds specified item
 #define EVO_LEVEL_ABILITY_1               42     // Pokémon reaches the specified level and has the first ability.
 #define EVO_LEVEL_ABILITY_2               43     // Pokémon reaches the specified level and has the second ability.
+#define EVO_MOVE_TYPE                     44     // Pokémon levels up, knows move with specified type
 
 #define EVOS_PER_MON 8
 
