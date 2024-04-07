@@ -101,11 +101,11 @@ Route104_EventScript_Woman::
 Route104_EventScript_Boy2::
 	lock
 	faceplayer
-	goto_if_set FLAG_RECEIVED_TM86, Route104_EventScript_ReceivedGrassKnot
+	goto_if_set FLAG_RECEIVED_TM_GRASS_KNOT, Route104_EventScript_ReceivedGrassKnot
 	msgbox Route104_Text_BigGuyForYou, MSGBOX_DEFAULT
-	giveitem ITEM_TM86
+	giveitem ITEM_TM_GRASS_KNOT
 	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull
-	setflag FLAG_RECEIVED_TM86
+	setflag FLAG_RECEIVED_TM_GRASS_KNOT
 	release
 	end
 

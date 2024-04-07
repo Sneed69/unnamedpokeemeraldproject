@@ -450,8 +450,8 @@
       "x": 22,
       "y": 5,
       "elevation": 3,
-      "item": "ITEM_TM57_KNOCK_OFF",
-      "flag": "FLAG_HIDDEN_ITEM_ROUTE_113_TM32"
+      "item": "ITEM_TM_KNOCK_OFF",
+      "flag": "FLAG_RECEIVED_TM_KNOCK_OFF"
     },
     {
       "type": "hidden_item",

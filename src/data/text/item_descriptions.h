@@ -2400,9 +2400,15 @@ static const u8 sWhiteHerbDesc[] = _(
     "lowered stat.");
 
 static const u8 sExpShareDesc[] = _(
+#if I_EXP_SHARE_ITEM >= GEN_6
     "Grants Exp. gains\n"
     "to the entire team\n"
     "when activated.");
+#else
+    "A hold item that\n"
+    "gets Exp. points\n"
+    "from battles.");
+#endif
 
 static const u8 sQuickClawDesc[] = _(
     "A hold item that\n"

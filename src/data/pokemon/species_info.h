@@ -2795,7 +2795,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_ADAPTABILITY, ABILITY_RATTLED},
         .bodyColor = BODY_COLOR_BROWN,
         .noFlip = FALSE,
-        .flags = SPECIES_FLAG_GENDER_DIFFERENCE,
     },
 
     [SPECIES_VAPOREON] =
@@ -6680,7 +6679,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .friendship = 35,
         .growthRate = GROWTH_FAST,
         .eggGroups = { EGG_GROUP_AMORPHOUS, EGG_GROUP_AMORPHOUS },
-        .abilities = {ABILITY_COLD_EMBRACE, ABILITY_GHOST_TOUCH},
+        .abilities = {ABILITY_COLD_EMBRACE, ABILITY_LONG_REACH},
         .bodyColor = BODY_COLOR_BLACK,
         .noFlip = FALSE,
     },
@@ -7387,7 +7386,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_KEEN_EYE, ABILITY_RECKLESS},
         .bodyColor = BODY_COLOR_BROWN,
         .noFlip = FALSE,
-        .flags = SPECIES_FLAG_GENDER_DIFFERENCE,
     },
 
     [SPECIES_STARAVIA] =
@@ -7409,7 +7407,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_INTIMIDATE, ABILITY_RECKLESS},
         .bodyColor = BODY_COLOR_BROWN,
         .noFlip = FALSE,
-        .flags = SPECIES_FLAG_GENDER_DIFFERENCE,
     },
 
     [SPECIES_STARAPTOR] =
@@ -7746,7 +7743,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_SAND_FORCE, ABILITY_THICK_FAT},
         .bodyColor = BODY_COLOR_BROWN,
         .noFlip = FALSE,
-        .flags = SPECIES_FLAG_GENDER_DIFFERENCE,
     },
 
     [SPECIES_HIPPOWDON] =
@@ -7768,7 +7764,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_SAND_STREAM, ABILITY_THICK_FAT},
         .bodyColor = BODY_COLOR_BROWN,
         .noFlip = FALSE,
-        .flags = SPECIES_FLAG_GENDER_DIFFERENCE,
     },
 
     [SPECIES_CROAGUNK] =
@@ -8210,7 +8205,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_CURSED_BODY, ABILITY_WATER_ABSORB},
         .bodyColor = BODY_COLOR_WHITE,
         .noFlip = FALSE,
-        .flags = SPECIES_FLAG_GENDER_DIFFERENCE,
     },
 
     [SPECIES_JELLICENT] =
@@ -8232,7 +8226,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_CURSED_BODY, ABILITY_WATER_ABSORB},
         .bodyColor = BODY_COLOR_WHITE,
         .noFlip = FALSE,
-        .flags = SPECIES_FLAG_GENDER_DIFFERENCE,
     },
 
     [SPECIES_JOLTIK] =

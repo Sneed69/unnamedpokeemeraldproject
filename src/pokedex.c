@@ -2941,7 +2941,7 @@ static u8 CreateMonName(u16 num, u8 left, u8 top)
 
     num = NationalPokedexNumToSpecies(num);
     if (num)
-        str = gSpeciesNames[num];
+        str = GetSpeciesName(num);
     else
         str = sText_TenDashes;
     PrintMonDexNumAndName_2(0, FONT_NARROW, str, left, top);
@@ -4231,7 +4231,7 @@ static void Task_LoadSizeScreen(u8 taskId)
 
             StringCopy(string, gText_SizeComparedTo);
             StringAppend(string, gSaveBlock2Ptr->playerName);
-            PrintInfoScreenText(string, GetStringCenterAlignXOffset(FONT_NORMAL, string, 0xF0), 0x79);
+            PrintInfoScreenText(string, GetStringCenterAlignXOffset(FONT_NORMAL, string, DISPLAY_WIDTH), 121);
             gMain.state++;
         }
         break;
@@ -4575,14 +4575,14 @@ static void Task_ExitCaughtMonPage(u8 taskId)
 
 static void SpriteCB_SlideCaughtMonToCenter(struct Sprite *sprite)
 {
-    if (sprite->x < 0x78)
+    if (sprite->x < DISPLAY_WIDTH / 2)
         sprite->x += 2;
-    if (sprite->x > 0x78)
+    if (sprite->x > DISPLAY_WIDTH / 2)
         sprite->x -= 2;
 
-    if (sprite->y < 0x50)
+    if (sprite->y < DISPLAY_HEIGHT / 2)
         sprite->y += 1;
-    if (sprite->y > 0x50)
+    if (sprite->y > DISPLAY_HEIGHT / 2)
         sprite->y -= 1;
 }
 
@@ -4672,8 +4672,8 @@ static void PrintMonInfo(u32 num, u32 value, u32 owned, u32 newEntry)
     const u8 *category;
     const u8 *description;
 
-    // if (newEntry)
-    //     PrintInfoScreenText(gText_PokedexRegistration, GetStringCenterAlignXOffset(1, gText_PokedexRegistration, 0xF0), 0);
+    //if (newEntry)
+        //PrintInfoScreenText(gText_PokedexRegistration, GetStringCenterAlignXOffset(FONT_NORMAL, gText_PokedexRegistration, DISPLAY_WIDTH), 0);
     if (value == 0)
         value = NationalToHoennOrder(num);
     else
@@ -4682,7 +4682,7 @@ static void PrintMonInfo(u32 num, u32 value, u32 owned, u32 newEntry)
     PrintInfoScreenTextWhite(str, 123, 17); //HGSS_Ui
     species = NationalPokedexNumToSpeciesHGSS(num);
     if (species)
-        name = gSpeciesNames[species];
+        name = GetSpeciesName(species);
     else
         name = sText_TenDashes2;
     PrintInfoScreenTextWhite(name, 157, 17); //HGSS_Ui
@@ -5035,8 +5035,8 @@ static u8 PrintCryScreenSpeciesName(u8 windowId, u16 num, u8 left, u8 top)
     switch (num)
     {
     default:
-        for (i = 0; gSpeciesNames[num][i] != EOS && i < POKEMON_NAME_LENGTH; i++)
-            str[i] = gSpeciesNames[num][i];
+        for (i = 0; GetSpeciesName(num)[i] != EOS && i < POKEMON_NAME_LENGTH; i++)
+            str[i] = GetSpeciesName(num)[i];
         break;
     case 0:
         for (i = 0; i < 5; i++)
@@ -5266,7 +5266,7 @@ static int DoPokedexSearch(u8 dexMode, u8 order, u8 abcGroup, u8 bodyColor, u8 t
             u8 firstLetter;
 
             species = NationalPokedexNumToSpecies(sPokedexView->pokedexList[i].dexNum);
-            firstLetter = gSpeciesNames[species][0];
+            firstLetter = GetSpeciesName(species)[0];
             if (LETTER_IN_RANGE_UPPER(firstLetter, abcGroup) || LETTER_IN_RANGE_LOWER(firstLetter, abcGroup))
             {
                 sPokedexView->pokedexList[resultsCount] = sPokedexView->pokedexList[i];
@@ -6816,7 +6816,6 @@ static void PrintStatsScreen_NameGender(u8 taskId, u32 num, u32 value)
     u8 str2[32];
     u8 strEV[25];
     u16 species = NationalPokedexNumToSpeciesHGSS(sPokedexListItem->dexNum);
-    u16 natNum;
     u8 evVal;
     const u8 *category;
     const u8 *description;

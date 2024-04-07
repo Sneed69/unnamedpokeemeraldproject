@@ -3171,7 +3171,4 @@ extern const u8 gText_TellHimTheWords[];
 extern const u8 gText_ExpShareOn[];
 extern const u8 gText_ExpShareOff[];
 
-extern const u8 gText_SoldOut[];
-extern const u8 gText_SoldOut2[];
-
 #endif // GUARD_STRINGS_H
