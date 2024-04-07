@@ -4,67 +4,126 @@
 #define FOREACH_TM(F) \
     F(FOCUS_PUNCH) \
     F(DRAGON_CLAW) \
-    F(WATER_PULSE) \
+    F(THUNDER_FANG) \
     F(CALM_MIND) \
     F(ROAR) \
     F(TOXIC) \
     F(HAIL) \
     F(BULK_UP) \
-    F(BULLET_SEED) \
+    F(SEED_BOMB) \
     F(HIDDEN_POWER) \
     F(SUNNY_DAY) \
     F(TAUNT) \
     F(ICE_BEAM) \
     F(BLIZZARD) \
-    F(HYPER_BEAM) \
+    F(ICE_FANG) \
     F(LIGHT_SCREEN) \
     F(PROTECT) \
     F(RAIN_DANCE) \
     F(GIGA_DRAIN) \
-    F(SAFEGUARD) \
-    F(FRUSTRATION) \
+    F(FIRE_FANG) \
+    F(THUNDER_PUNCH) \
     F(SOLAR_BEAM) \
     F(IRON_TAIL) \
     F(THUNDERBOLT) \
     F(THUNDER) \
     F(EARTHQUAKE) \
-    F(RETURN) \
+    F(FIRE_PUNCH) \
     F(DIG) \
     F(PSYCHIC) \
     F(SHADOW_BALL) \
     F(BRICK_BREAK) \
-    F(DOUBLE_TEAM) \
+    F(ICE_PUNCH) \
     F(REFLECT) \
-    F(SHOCK_WAVE) \
+    F(VOLT_SWITCH) \
     F(FLAMETHROWER) \
     F(SLUDGE_BOMB) \
     F(SANDSTORM) \
     F(FIRE_BLAST) \
     F(ROCK_TOMB) \
     F(AERIAL_ACE) \
-    F(TORMENT) \
+    F(COUNTER) \
     F(FACADE) \
-    F(SECRET_POWER) \
+    F(PSYSHOCK) \
     F(REST) \
-    F(ATTRACT) \
+    F(NASTY_PLOT) \
     F(THIEF) \
     F(STEEL_WING) \
-    F(SKILL_SWAP) \
-    F(SNATCH) \
-    F(OVERHEAT)
-
-#define FOREACH_HM(F) \
-    F(CUT) \
-    F(FLY) \
+    F(ZEN_HEADBUTT) \
+    F(WAVE_CRASH) \
+    F(OVERHEAT) \
+    F(ROOST) \
+    F(FOCUS_BLAST) \
+    F(ENERGY_BALL) \
+    F(FALSE_SWIPE) \
+    F(SCALD) \
+    F(TAILWIND) \
+    F(KNOCK_OFF) \
+    F(SIGNAL_BEAM) \
+    F(DRAGON_PULSE) \
+    F(DRAIN_PUNCH) \
+    F(WILL_O_WISP) \
+    F(ACROBATICS) \
+    F(HEAL_BELL) \
+    F(EXPLOSION) \
+    F(SHADOW_CLAW) \
+    F(EARTH_POWER) \
+    F(IRON_DEFENSE) \
+    F(ENCORE) \
+    F(ROCK_POLISH) \
+    F(IRON_HEAD) \
+    F(STONE_EDGE) \
+    F(AVALANCHE) \
+    F(THUNDER_WAVE) \
+    F(GYRO_BALL) \
+    F(SWORDS_DANCE) \
+    F(STEALTH_ROCK) \
+    F(SPIKES) \
+    F(HYPER_BEAM) \
+    F(DARK_PULSE) \
+    F(ROCK_SLIDE) \
+    F(X_SCISSOR) \
+    F(SLEEP_TALK) \
+    F(TOXIC_SPIKES) \
+    F(POISON_JAB) \
+    F(CRUNCH) \
+    F(GRASS_KNOT) \
+    F(HYPER_VOICE) \
+    F(BODY_PRESS) \
+    F(U_TURN) \
+    F(SUBSTITUTE) \
+    F(FLASH_CANNON) \
+    F(TRICK_ROOM) \
+    F(WILD_CHARGE) \
+    F(BUG_BUZZ) \
+    F(AIR_SLASH) \
+    F(HURRICANE) \
+    F(PLAY_ROUGH) \
+    F(GIGA_IMPACT) \
+    F(DAZZLING_GLEAM) \
+    F(GUNK_SHOT) \
+    F(CLOSE_COMBAT) \
+    F(DRACO_METEOR) \
     F(SURF) \
     F(STRENGTH) \
-    F(FLASH) \
-    F(ROCK_SMASH) \
+    F(SUPERPOWER) \
+    F(OUTRAGE) \
     F(WATERFALL) \
-    F(DIVE)
+    F(FOUL_PLAY) \
+    F(SEISMIC_TOSS) \
+    F(VENOSHOCK) \
+    F(AMNESIA) \
+    F(SLUDGE_WAVE) \
+    F(SOLAR_BLADE) \
+    F(HEX) \
+    F(HOWLING_GALE) \
+    F(GRASSY_TERRAIN) \
+    F(ELECTRIC_TERRAIN) \
+    F(PSYCHIC_TERRAIN) \
+    F(MISTY_TERRAIN) \
+    F(DEFOG)
 
 #define FOREACH_TMHM(F) \
-    FOREACH_TM(F) \
-    FOREACH_HM(F)
+    FOREACH_TM(F)
 
 #endif

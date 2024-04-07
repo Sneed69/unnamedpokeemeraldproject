@@ -717,6 +717,7 @@ STATIC_ASSERT(sizeof(((struct BattleStruct *)0)->palaceFlags) * 8 >= MAX_BATTLER
                           || gBattleMoves[move].effect == EFFECT_RECOIL_IF_MISS     \
                           || gBattleMoves[move].effect == EFFECT_RECOIL_50          \
                           || gBattleMoves[move].effect == EFFECT_RECOIL_33          \
+                          || gBattleMoves[move].effect == EFFECT_RECOIL_33_SPEED_UP \
                           || gBattleMoves[move].effect == EFFECT_RECOIL_33_STATUS)
 
 #define BATTLER_MAX_HP(battlerId)(gBattleMons[battlerId].hp == gBattleMons[battlerId].maxHP)

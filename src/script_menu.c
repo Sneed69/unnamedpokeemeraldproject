@@ -35,8 +35,6 @@ static void CreateLilycoveSSTidalMultichoice(void);
 static bool8 IsPicboxClosed(void);
 static void CreateStartMenuForPokenavTutorial(void);
 static void InitMultichoiceNoWrap(bool8 ignoreBPress, u8 unusedCount, u8 windowId, u8 multichoiceId);
-void HandleRepelMenuChoice(void);
-void TryDrawRepelMenu(void);
 
 bool8 ScriptMenu_Multichoice(u8 left, u8 top, u8 multichoiceId, bool8 ignoreBPress)
 {

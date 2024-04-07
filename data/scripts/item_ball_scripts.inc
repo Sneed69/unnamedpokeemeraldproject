@@ -507,7 +507,7 @@ MtPyre_Exterior_EventScript_ItemMaxPotion::
 	end
 
 MtPyre_Exterior_EventScript_ItemTMSkillSwap::
-	finditem ITEM_TM_SKILL_SWAP
+	@finditem ITEM_TM_SKILL_SWAP
 	end
 
 AquaHideout_B1F_EventScript_ItemMasterBall::

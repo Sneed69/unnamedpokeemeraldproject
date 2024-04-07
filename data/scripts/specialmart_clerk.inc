@@ -7,7 +7,7 @@ SpecialMart_Clerk::
 	goto_if_set FLAG_VISITED_MOSSDEEP_CITY, SpecialMart_Mossdeep
 	goto_if_set FLAG_VISITED_FORTREE_CITY, SpecialMart_Fortree
 	goto_if_set FLAG_VISITED_FALLARBOR_TOWN, SpecialMart_Fallarbor
-	goto_if_set FLAG_RECEIVED_HM04, SpecialMart_Strength
+	goto_if_set FLAG_RECEIVED_TM_STRENGTH, SpecialMart_Strength
 	goto_if_set FLAG_VISITED_VERDANTURF_TOWN, SpecialMart_Verdanturf
 	goto_if_set FLAG_VISITED_SLATEPORT_CITY, SpecialMart_Slateport
 	goto_if_set FLAG_ADVENTURE_STARTED, SpecialMart_Start
