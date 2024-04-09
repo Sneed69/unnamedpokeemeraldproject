@@ -12,9 +12,11 @@
 #include "wallclock.h"
 #include "game_time.h"
 #include "roamer.h"
+#include "constants/form_change_types.h"
 
 static void UpdatePerDay(struct Time *localTime);
 static void UpdatePerMinute(struct Time *localTime);
+static void FormChangeTimeUpdate();
 
 void InitTimeBasedEvents(void)
 {
@@ -65,10 +67,27 @@ static void UpdatePerMinute(struct Time *localTime)
 
     CalculateTimeDifference(&difference, &gSaveBlock2Ptr->lastBerryTreeUpdate, localTime);
     minutes = 24 * 60 * difference.days + 60 * difference.hours + difference.minutes;
-    if (minutes > 0)
+    if (minutes >= 0)
     {
         BerryTreeTimeUpdate(minutes);
         gSaveBlock2Ptr->lastBerryTreeUpdate = *localTime;
+        FormChangeTimeUpdate();
+    }
+}
+
+static void FormChangeTimeUpdate()
+{
+    s32 i;
+    for (i = 0; i < PARTY_SIZE; i++)
+    {
+        struct Pokemon *mon = &gPlayerParty[i];
+        u16 targetSpecies = GetFormChangeTargetSpecies(mon, FORM_CHANGE_TIME_OF_DAY, 0);
+        
+        if (targetSpecies != SPECIES_NONE)
+        {
+            SetMonData(mon, MON_DATA_SPECIES, &targetSpecies);
+            CalculateMonStats(mon);
+        }
     }
 }
 

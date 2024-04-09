@@ -1760,8 +1760,8 @@ const struct ContestPokemon gContestOpponents[] =
         .otId = CONTEST_AI_TRAINER_ID,
     },
     [CONTEST_OPPONENT_FELICIA] = {
-        .species = SPECIES_NIDOKING,
-        .nickname = _("Roy"),
+        .species = SPECIES_CASTFORM_NORMAL,
+        .nickname = _("Caster"),
         .trainerName = _("Felicia"),
         .trainerGfxId = OBJ_EVENT_GFX_LASS,
         .aiFlags = CONTEST_AI_SET_16,

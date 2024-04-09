@@ -28,6 +28,7 @@
 #include "start_menu.h"
 #include "trainer_see.h"
 #include "trainer_hill.h"
+#include "vs_seeker.h"
 #include "wild_encounter.h"
 #include "constants/event_bg.h"
 #include "constants/event_objects.h"
@@ -68,7 +69,9 @@ static bool8 TryStartWarpEventScript(struct MapPosition *, u16);
 static bool8 TryStartMiscWalkingScripts(u16);
 static bool8 TryStartStepCountScript(u16);
 static void UpdateFriendshipStepCounter(void);
+#if OW_POISON_DAMAGE < GEN_5
 static bool8 UpdatePoisonStepCounter(void);
+#endif // OW_POISON_DAMAGE
 
 static EWRAM_DATA u8 sCurrentDirection = 0;
 static EWRAM_DATA u8 sPreviousDirection = 0;
@@ -613,6 +616,11 @@ static bool8 TryStartStepCountScript(u16 metatileBehavior)
             ScriptContext_SetupScript(MossdeepCity_SpaceCenter_2F_EventScript_RivalRayquazaCall);
             return TRUE;
         }
+        if (UpdateVsSeekerStepCounter())
+        {
+            ScriptContext_SetupScript(EventScript_VsSeekerChargingDone);
+            return TRUE;
+        }
     }
 
     //if (SafariZoneTakeStep())
@@ -627,8 +635,7 @@ static bool8 TryStartStepCountScript(u16 metatileBehavior)
     return FALSE;
 }
 
-// Unused
-static void ClearFriendshipStepCounter(void)
+static void UNUSED ClearFriendshipStepCounter(void)
 {
     VarSet(VAR_FRIENDSHIP_STEP_COUNTER, 0);
 }
@@ -656,6 +663,7 @@ void ClearPoisonStepCounter(void)
     VarSet(VAR_POISON_STEP_COUNTER, 0);
 }
 
+#if OW_POISON_DAMAGE < GEN_5
 static bool8 UpdatePoisonStepCounter(void)
 {
     u16 *ptr;
@@ -680,6 +688,7 @@ static bool8 UpdatePoisonStepCounter(void)
     }
     return FALSE;
 }
+#endif // OW_POISON_DAMAGE
 
 void RestartWildEncounterImmunitySteps(void)
 {

@@ -539,3 +539,9 @@ gSpecials::
 	def_special TeachEggMoveTutorMove
 	def_special ChooseMonForEggMoveTutor
 	def_special TrySpecialOverworldEvo
+	def_special GetNumberSprayStrength
+	def_special GetSprayId
+	def_special GetLastUsedSprayType
+	def_special TrySkyBattle
+	def_special VsSeekerResetObjectMovementAfterChargeComplete
+	def_special VsSeekerFreezeObjectsAfterChargeComplete

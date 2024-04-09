@@ -448,6 +448,15 @@ const u32 gBattleAnimSpritePal_SpinningBall2[] = INCBIN_U32("graphics/battle_ani
 const u32 gBattleAnimSpriteGfx_WoodHammerHammer[] = INCBIN_U32("graphics/battle_anims/sprites/wood_hammer_hammer.4bpp.lz");
 const u32 gBattleAnimSpritePal_WoodHammerHammer[] = INCBIN_U32("graphics/battle_anims/sprites/wood_hammer_hammer.gbapal.lz");
 
+const u32 gBattleAnimSpriteGfx_Snowflakes[] = INCBIN_U32("graphics/battle_anims/sprites/snowflakes.4bpp.lz");
+const u32 gBattleAnimSpritePal_Snowflakes[] = INCBIN_U32("graphics/battle_anims/sprites/snowflakes.gbapal.lz");
+
+const u32 gBattleAnimSpriteGfx_SyrupBlob[] = INCBIN_U32("graphics/battle_anims/sprites/syrup_bomb_blob.4bpp.lz");
+const u32 gBattleAnimSpriteGfx_SyrupShell[] = INCBIN_U32("graphics/battle_anims/sprites/syrup_bomb_shell.4bpp.lz");
+const u32 gBattleAnimSpriteGfx_SyrupSplat[] = INCBIN_U32("graphics/battle_anims/sprites/syrup_bomb_splat.4bpp.lz");
+const u32 gBattleAnimSpritePal_SyrupRed[] = INCBIN_U32("graphics/battle_anims/sprites/syrup_red.gbapal.lz");
+const u32 gBattleAnimSpritePal_SyrupYellow[] = INCBIN_U32("graphics/battle_anims/sprites/syrup_yellow.gbapal.lz");
+
 // old battle interface data, unused
 
 const u32 gOldBattleInterfaceGfx[] = INCBIN_U32("graphics/unused/obi1.4bpp.lz");
@@ -1251,7 +1260,6 @@ const u32 gBattleAnimSpritePal_FlatRock[] = INCBIN_U32("graphics/battle_anims/sp
 
 const u32 gBattleAnimUnusedPal_Unknown2[] = INCBIN_U32("graphics/battle_anims/unused/unknown_2.gbapal.lz");
 
-#include "data/graphics/pokemon.h"
 #include "data/graphics/trainers.h"
 
 const u32 gBattleVSFrame_Gfx[] = INCBIN_U32("graphics/battle_transitions/vs_frame.4bpp.lz");
@@ -1597,6 +1605,11 @@ const u32 gBattleAnimSpritePal_Slash2[] = INCBIN_U32("graphics/battle_anims/spri
 const u32 gBattleAnimSpriteGfx_WhiteShadow[] = INCBIN_U32("graphics/battle_anims/sprites/white_shadow.4bpp.lz");
 const u32 gBattleAnimSpritePal_WhiteShadow[] = INCBIN_U32("graphics/battle_anims/sprites/white_shadow.gbapal.lz");
 
+// Pledge Effect field status - Rainbow
+const u32 gBattleAnimBgImage_Rainbow[] = INCBIN_U32("graphics/battle_anims/backgrounds/rainbow.4bpp.lz");
+const u32 gBattleAnimBGPalette_Rainbow[] = INCBIN_U32("graphics/battle_anims/backgrounds/rainbow.gbapal.lz");
+const u32 gBattleAnimBgTilemap_Rainbow[] = INCBIN_U32("graphics/battle_anims/backgrounds/rainbow.bin.lz");
+
 const u32 gPartyMenuBg_Gfx[] = INCBIN_U32("graphics/party_menu/bg.4bpp.lz");
 const u32 gPartyMenuBg_Pal[] = INCBIN_U32("graphics/party_menu/bg.gbapal.lz");
 const u32 gPartyMenuBg_Tilemap[] = INCBIN_U32("graphics/party_menu/bg.bin.lz");
@@ -1720,43 +1733,26 @@ const u16 gFrontierPassMedalsSilver_Pal[] = INCBIN_U16("graphics/frontier_pass/s
 const u16 gFrontierPassMedalsGold_Pal[] = INCBIN_U16("graphics/frontier_pass/gold.gbapal");
 
 // Pokedex
-const u16 gPokedexDefault_Pal[]             = INCBIN_U16("graphics/pokedex/HGSS_palette_default.gbapal");
-const u16 gPokedexNational_Pal[]            = INCBIN_U16("graphics/pokedex/HGSS_palette_national.gbapal");
-const u16 gPokedexMenuSearch_Pal[]          = INCBIN_U16("graphics/pokedex/HGSS_palette_search_menu.gbapal");
-const u16 gPokedexSearchResults_Pal[]       = INCBIN_U16("graphics/pokedex/HGSS_palette_search_results.gbapal");
-const u16 gPokedexDefault_dark_Pal[]             = INCBIN_U16("graphics/pokedex/HGSS_palette_default_dark.gbapal");
-const u16 gPokedexNational_dark_Pal[]            = INCBIN_U16("graphics/pokedex/HGSS_palette_national_dark.gbapal");
-const u16 gPokedexMenuSearch_dark_Pal[]          = INCBIN_U16("graphics/pokedex/HGSS_palette_search_menu_dark.gbapal");
-const u16 gPokedexSearchResults_dark_Pal[]       = INCBIN_U16("graphics/pokedex/HGSS_palette_search_results_dark.gbapal");
-
-const u32 gPokedexMenuList_Gfx[]        = INCBIN_U32("graphics/pokedex/HGSS_tileset_menu_list.4bpp.lz");
-const u32 gPokedexMenuList_DECA_Gfx[]   = INCBIN_U32("graphics/pokedex/HGSS_tileset_menu_list_DECA.4bpp.lz");
-const u32 gPokedexInterface_Gfx[]       = INCBIN_U32("graphics/pokedex/HGSS_tileset_interface.4bpp.lz");
-const u32 gPokedexInterface_DECA_Gfx[]  = INCBIN_U32("graphics/pokedex/HGSS_tileset_interface_DECA.4bpp.lz");
-const u32 gPokedexMenu_1_Gfx[]      = INCBIN_U32("graphics/pokedex/HGSS_tileset_menu1.4bpp.lz");
-const u32 gPokedexMenu_2_Gfx[]      = INCBIN_U32("graphics/pokedex/HGSS_tileset_menu2.4bpp.lz");
-const u32 gPokedexMenu_3_Gfx[]      = INCBIN_U32("graphics/pokedex/HGSS_tileset_menu3.4bpp.lz");
-const u32 gPokedexMenuSearch_Gfx[]          = INCBIN_U32("graphics/pokedex/HGSS_tileset_menu_search.4bpp.lz");
-const u32 gPokedexMenuSearch_DECA_Gfx[]     = INCBIN_U32("graphics/pokedex/HGSS_tileset_menu_search_DECA.4bpp.lz");
-const u32 gPokedexStartMenuMain_Tilemap[]           = INCBIN_U32("graphics/pokedex/HGSS_tilemap_start_menu.bin.lz");
-const u32 gPokedexStartMenuSearchResults_Tilemap[]  = INCBIN_U32("graphics/pokedex/HGSS_tilemap_start_menu_search_results.bin.lz");
-const u32 gUnused_PokedexNoBall[]                   = INCBIN_U32("graphics/pokedex/noball_unused.4bpp.lz");
-const u32 gPokedexScreenSelectBarSubmenu_Tilemap[]          = INCBIN_U32("graphics/pokedex/HGSS_SelectBar.bin.lz");
-const u32 gPokedexScreenSelectBarSubmenu_Tilemap_Clear[]    = INCBIN_U32("graphics/pokedex/HGSS_SelectBar_clear.bin.lz");
-
-const u32 gPokedexScreenList_Tilemap[]          = INCBIN_U32("graphics/pokedex/HGSS_tilemap_list_screen.bin.lz");
-const u32 gPokedexScreenListUnderlay_Tilemap[]  = INCBIN_U32("graphics/pokedex/HGSS_tilemap_list_screen_underlay.bin.lz");
-const u32 gPokedexScreenInfo_Tilemap[]          = INCBIN_U32("graphics/pokedex/HGSS_tilemap_info_screen.bin.lz");
-const u32 gPokedexScreenStats_Tilemap[]         = INCBIN_U32("graphics/pokedex/HGSS_tilemap_stats_screen.bin.lz");
-const u32 gPokedexScreenEvolution_Tilemap[]     = INCBIN_U32("graphics/pokedex/HGSS_tilemap_evo_screen.bin.lz");
-const u32 gPokedexScreenEvolution_Tilemap_PE[]  = INCBIN_U32("graphics/pokedex/HGSS_tilemap_evo_screen_PE.bin.lz");
-const u32 gPokedexScreenForms_Tilemap[]         = INCBIN_U32("graphics/pokedex/HGSS_tilemap_forms_screen.bin.lz");
-const u32 gPokedexScreenCry_Tilemap[]           = INCBIN_U32("graphics/pokedex/HGSS_tilemap_cry_screen.bin.lz");
-const u32 gPokedexScreenSize_Tilemap[]          = INCBIN_U32("graphics/pokedex/HGSS_tilemap_size_screen.bin.lz");
-const u32 gPokedexScreenSearchHoenn_Tilemap[]   = INCBIN_U32("graphics/pokedex/HGSS_tilemap_search_screen_hoenn.bin.lz");
-const u32 gPokedexScreenSearchNational_Tilemap[] = INCBIN_U32("graphics/pokedex/HGSS_tilemap_search_screen_national.bin.lz");
-
-
+const u16 gPokedexBgHoenn_Pal[] = INCBIN_U16("graphics/pokedex/bg_hoenn.gbapal");
+const u16 gPokedexCaughtScreen_Pal[] = INCBIN_U16("graphics/pokedex/caught_screen.gbapal");
+const u16 gPokedexSearchResults_Pal[] = INCBIN_U16("graphics/pokedex/search_results_bg.gbapal");
+const u16 gPokedexBgNational_Pal[] = INCBIN_U16("graphics/pokedex/bg_national.gbapal");
+const u32 gPokedexMenu_Gfx[] = INCBIN_U32("graphics/pokedex/menu.4bpp.lz");
+const u32 gPokedexInterface_Gfx[] = INCBIN_U32("graphics/pokedex/interface.4bpp.lz");
+const u32 gUnused_PokedexNoBall[] = INCBIN_U32("graphics/pokedex/noball_unused.4bpp.lz");
+const u32 gPokedexStartMenuMain_Tilemap[] = INCBIN_U32("graphics/pokedex/start_menu_main.bin.lz");
+const u32 gPokedexStartMenuSearchResults_Tilemap[] = INCBIN_U32("graphics/pokedex/start_menu_search_results.bin.lz");
+const u32 gPokedexList_Tilemap[] = INCBIN_U32("graphics/pokedex/list.bin.lz");
+const u32 gPokedexListUnderlay_Tilemap[] = INCBIN_U32("graphics/pokedex/list_underlay.bin.lz");
+const u32 gPokedexSizeScreen_Tilemap[] = INCBIN_U32("graphics/pokedex/size_screen.bin.lz");
+const u32 gPokedexScreenSelectBarMain_Tilemap[] = INCBIN_U32("graphics/pokedex/screen_select_bar_main.bin.lz");
+const u32 gPokedexScreenSelectBarSubmenu_Tilemap[] = INCBIN_U32("graphics/pokedex/screen_select_bar_submenu.bin.lz");
+const u32 gPokedexInfoScreen_Tilemap[] = INCBIN_U32("graphics/pokedex/info_screen.bin.lz");
+const u32 gPokedexCryScreen_Tilemap[] = INCBIN_U32("graphics/pokedex/cry_screen.bin.lz");
+const u16 gPokedexSearchMenu_Pal[] = INCBIN_U16("graphics/pokedex/search_menu.gbapal");
+const u32 gPokedexSearchMenu_Gfx[] = INCBIN_U32("graphics/pokedex/search_menu.4bpp.lz");
+const u32 gPokedexSearchMenuNational_Tilemap[] = INCBIN_U32("graphics/pokedex/search_menu_national.bin.lz");
+const u32 gPokedexSearchMenuHoenn_Tilemap[] = INCBIN_U32("graphics/pokedex/search_menu_hoenn.bin.lz");
 
 const u16 gSummaryScreen_MoveEffect_Battle_Tilemap[] = INCBIN_U16("graphics/summary_screen/effect_battle.bin");
 const u16 gSummaryScreen_MoveEffect_Contest_Tilemap[] = INCBIN_U16("graphics/summary_screen/effect_contest.bin");
@@ -2026,7 +2022,7 @@ const u16 gTitleScreenPressStartPal[]      = INCBIN_U16("graphics/title_screen/p
 const u32 gTitleScreenPressStartGfx[]      = INCBIN_U32("graphics/title_screen/press_start.4bpp.lz");
 const u32 gTitleScreenPokemonLogoTilemap[] = INCBIN_U32("graphics/title_screen/pokemon_logo.bin.lz");
 
-const u16 gFrontierPassBg_Pal[][16]                      = INCBIN_U16("graphics/frontier_pass/bg.gbapal");
+const u16 gFrontierPassBg_Pal[]                          = INCBIN_U16("graphics/frontier_pass/bg.gbapal"); // 8 x 16
 const u32 gFrontierPassBg_Gfx[]                          = INCBIN_U32("graphics/frontier_pass/bg.4bpp.lz");
 const u32 gFrontierPassMapAndCard_Gfx[]                  = INCBIN_U32("graphics/frontier_pass/map_and_card.8bpp.lz");
 const u32 gFrontierPassBg_Tilemap[]                      = INCBIN_U32("graphics/frontier_pass/bg.bin.lz");
