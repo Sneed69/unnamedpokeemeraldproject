@@ -701,6 +701,7 @@ void TryAddDailyRoamer(void)
             species = SPECIES_TREECKO;
             break;
         case 2:
+        default:
             species = SPECIES_TORCHIC;
             break;
         }
@@ -714,6 +715,7 @@ void TryAddDailyRoamer(void)
             species = SPECIES_MUDKIP;
             break;
         case 2:
+        default:
             species = SPECIES_TREECKO;
             break;
         }
@@ -727,6 +729,7 @@ void TryAddDailyRoamer(void)
             species = SPECIES_TORCHIC;
             break;
         case 2:
+        default:
             species = SPECIES_MUDKIP;
             break;
         }

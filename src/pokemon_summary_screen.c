@@ -3929,7 +3929,7 @@ static void Task_PrintBattleMoves(u8 taskId)
 static void PrintMoveNameAndPP(u8 moveIndex)
 {
     u8 pp;
-    int ppState, x;
+    int ppState;
     const u8 *text;
     struct PokeSummary *summary = &sMonSummaryScreen->summary;
     u8 moveNameWindowId = AddWindowFromTemplateList(sPageMovesTemplate, PSS_DATA_WINDOW_MOVE_NAMES);

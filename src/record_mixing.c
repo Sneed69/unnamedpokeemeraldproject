@@ -1161,7 +1161,7 @@ static bool32 IsApprenticeAlreadySaved(struct Apprentice *mixApprentice, struct 
 }
 
 static void ReceiveApprenticeData(struct Apprentice *records, size_t recordSize, u32 multiplayerId)
-{
+{/*
     s32 i, numApprentices, apprenticeId;
     struct Apprentice *mixApprentice;
     u32 mixIndices[MAX_LINK_PLAYERS];
@@ -1195,7 +1195,7 @@ static void ReceiveApprenticeData(struct Apprentice *records, size_t recordSize,
         }
         gSaveBlock2Ptr->playerApprentice.saveId = (gSaveBlock2Ptr->playerApprentice.saveId + 2);
         break;
-    }
+    }*/
 }
 
 static void GetNewHallRecords(struct RecordMixingHallRecords *dst, void *records, size_t recordSize, u32 multiplayerId, s32 linkPlayerCount)
