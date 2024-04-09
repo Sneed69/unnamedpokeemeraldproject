@@ -22,7 +22,7 @@ MauvilleCity_BikeShop_EventScript_NotFar::
 	msgbox MauvilleCity_BikeShop_Text_GuessYouDontNeedBike, MSGBOX_DEFAULT
 	release
 	end
-	
+
 MauvilleCity_BikeShop_EventScript_MakeSurePeopleKnow::
 	msgbox MauvilleCity_BikeShop_Text_MakeSurePeopleKnow, MSGBOX_DEFAULT
 	release
