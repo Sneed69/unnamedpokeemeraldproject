@@ -404,6 +404,7 @@ struct BattleMove
     u32 encoreBanned:1;
     u32 parentalBondBanned:1;
     u32 skyBattleBanned:1;
+    u32 sketchBanned:1;
     u32 ignoresGroundImmunity:1;
     u32 ignoresPoisonImmunity:1;
 };
