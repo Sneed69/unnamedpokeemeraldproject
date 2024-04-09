@@ -8436,10 +8436,9 @@ void AnimTask_GetTimeOfDay(u8 taskId)
 {
     gBattleAnimArgs[0] = 0; //Daytime is default
 
-    RtcCalcLocalTime();
-    if (gLocalTime.hours >= 20 || gLocalTime.hours < 4)
+    if (gSaveBlock1Ptr->gameTime.hours >= 20 || gSaveBlock1Ptr->gameTime.hours < 4)
         gBattleAnimArgs[0] = 1;
-    else if (gLocalTime.hours >= 17 && gLocalTime.hours < 20)
+    else if (gSaveBlock1Ptr->gameTime.hours >= 17 && gSaveBlock1Ptr->gameTime.hours < 20)
         gBattleAnimArgs[0] = 2;
 
     DestroyAnimVisualTask(taskId);

@@ -341,7 +341,7 @@
 #define FLAG_RECEIVED_OLD_SEA_MAP            0x13C
 #define FLAG_LEFTOVER_STARTER_ROAMING        0x13D
 #define FLAG_RIVAL_STARTER_ROAMING           0x13E
-#define FLAG_HOOTHOOT_ROAMING                0x13F
+#define FLAG_UNUSED_ROAMING                  0x13F
 #define FLAG_GASTLY_ROAMING                  0x140
 #define FLAG_SNEASEL_ROAMING                 0x141
 #define FLAG_CLEFFA_ROAMING                  0x142

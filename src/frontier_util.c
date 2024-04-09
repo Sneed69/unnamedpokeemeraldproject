@@ -2263,19 +2263,6 @@ void ScrollRankingHallRecordsWindow(void)
     CopyWindowToVram(gRecordsWindowId, COPYWIN_GFX);
 }
 
-void ClearRankingHallRecords(void)
-{
-    s32 i, j, k;
-
-    // UB: Passing 0 as a pointer instead of a pointer holding a value of 0.
-#ifdef UBFIX
-    u8 emptyId[TRAINER_ID_LENGTH] = {0};
-    #define ZERO emptyId
-#else
-    #define ZERO 0
-#endif
-}
-
 void SaveGameFrontier(void)
 {
     s32 i;

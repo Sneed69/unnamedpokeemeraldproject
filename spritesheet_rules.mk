@@ -481,9 +481,6 @@ $(OBJEVENTGFXDIR)/berry_trees/cheri.4bpp: %.4bpp: %.png
 
 $(OBJEVENTGFXDIR)/berry_trees/chesto.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 2 -mheight 4
-	
-$(OBJEVENTGFXDIR)/berry_trees/custap.4bpp: %.4bpp: %.png
-	$(GFX) $< $@ -mwidth 2 -mheight 4
 
 $(OBJEVENTGFXDIR)/berry_trees/cornn.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 2 -mheight 4

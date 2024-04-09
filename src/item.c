@@ -1150,6 +1150,19 @@ static void ShowItemIconSprite(u16 item, bool8 firstTime, bool8 flash)
     u8 iconSpriteId;   
     u8 spriteId2 = MAX_SPRITES;
 
+    if (!firstTime)
+    {
+        //show in message box
+        x = 225;
+        y = 145;
+    }
+    else
+    {
+        // show in header box
+        x = ITEM_ICON_X;
+        y = ITEM_ICON_Y;
+    }
+
     if (flash)
     {
         SetGpuRegBits(REG_OFFSET_DISPCNT, DISPCNT_OBJWIN_ON);
@@ -1161,18 +1174,6 @@ static void ShowItemIconSprite(u16 item, bool8 firstTime, bool8 flash)
         spriteId2 = AddItemIconSprite(ITEM_TAG, ITEM_TAG, item);
     if (iconSpriteId != MAX_SPRITES)
     {
-        if (!firstTime)
-        {
-            //show in message box
-            x = 225;
-            y = 145;
-        }
-        else
-        {
-            // show in header box
-            x = ITEM_ICON_X;
-            y = ITEM_ICON_Y;
-        }
 
         gSprites[iconSpriteId].x2 = x;
         gSprites[iconSpriteId].y2 = y;

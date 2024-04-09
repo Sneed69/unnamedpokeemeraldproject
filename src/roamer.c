@@ -588,13 +588,6 @@ static const struct {
         .flagToSet = FLAG_SNEASEL_ROAMING,
     },  // Other Roamers
     {
-        .species = SPECIES_HOOTHOOT,
-        .isTerrestrial = FALSE,
-        .doesNotFlee = TRUE,
-        .nocturnality = NOCTURNAL,
-        .flagToSet = FLAG_HOOTHOOT_ROAMING,
-    },
-    {
         .species = SPECIES_INKAY,
         .isTerrestrial = FALSE,
         .doesNotFlee = TRUE,
