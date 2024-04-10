@@ -27,7 +27,6 @@
 #include "test_runner.h"
 #include "constants/rgb.h"
 #include "game_time.h"
-#include "mgba.h"
 
 static void VBlankIntr(void);
 static void HBlankIntr(void);
@@ -119,7 +118,6 @@ void AgbMain()
     ClearDma3Requests();
     ResetBgs();
     SetDefaultFontsPointer();
-    mgba_open();
     InitHeap(gHeap, HEAP_SIZE);
 
     gSoftResetDisabled = FALSE;

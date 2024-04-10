@@ -3969,7 +3969,6 @@ static void PrintMovePowerAndAccuracy(u16 moveIndex)
     const u8 *text;
     if (moveIndex != 0)
     {
-        mgba_printf(MGBA_LOG_DEBUG, "PRINTING");
         FillWindowPixelRect(PSS_LABEL_WINDOW_MOVES_POWER_ACC, PIXEL_FILL(0), 53, 0, 19, 32);
 
         if (gBattleMoves[moveIndex].power < 2)

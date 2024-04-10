@@ -347,7 +347,6 @@ SECTIONS {
         src/international_string_util.o(.text);
         src/pokemon_debug.o(.text);
         src/expansion_intro.o(.text);
-        src/mgba.o(.text);
 		src/printf.o(.text);
     } > ROM =0
 
