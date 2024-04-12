@@ -1953,7 +1953,7 @@ static void InitDomeTrainers(void)
         for (j = 0; j < NUM_STATS; j++)
             gSaveBlock2Ptr->frontier.domePlayerPartyData[i].evs[j] = GetMonData(&gPlayerParty[gSaveBlock2Ptr->frontier.selectedPartyMons[i] - 1], MON_DATA_HP_EV + j, NULL);
 
-        gSaveBlock2Ptr->frontier.domePlayerPartyData[i].nature = GetNature(&gPlayerParty[gSaveBlock2Ptr->frontier.selectedPartyMons[i] - 1], FALSE);
+        gSaveBlock2Ptr->frontier.domePlayerPartyData[i].nature = GetNature(&gPlayerParty[gSaveBlock2Ptr->frontier.selectedPartyMons[i] - 1]);
     }
 
     // Populate the tourney roster with random frontier trainers (dependent on streak)
@@ -2131,7 +2131,7 @@ static void InitDomeTrainers(void)
 #define CALC_STAT(base, statIndex)                                                          \
 {                                                                                           \
     u8 baseStat = gSpeciesInfo[species].base;                                                 \
-    stats[statIndex] = (((2 * baseStat + ivs + evs[statIndex] / 4) * level) / 100) + 5;     \
+    stats[statIndex] = (2 * baseStat * level / 100) + 5;     \
     stats[statIndex] = (u8) ModifyStatByNature(nature, stats[statIndex], statIndex);        \
 }
 
@@ -2164,7 +2164,7 @@ static void CalcDomeMonStats(u16 species, int level, int ivs, u8 evBits, u8 natu
     else
     {
         int n = 2 * gSpeciesInfo[species].baseHP;
-        stats[STAT_HP] = (((n + ivs + evs[STAT_HP] / 4) * level) / 100) + level + 10;
+        stats[STAT_HP] = (n * level / 100) + level + 10;
     }
 
     CALC_STAT(baseAttack, STAT_ATK);

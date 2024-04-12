@@ -71,7 +71,6 @@
 #define NATURE_CAREFUL  23
 #define NATURE_QUIRKY   24
 #define NUM_NATURES     25
-#define MINT_NATURE_NONE      26  // 25 natures. not 0xFF to conserve bits
 
 // Pokémon Stats
 #define STAT_HP      0

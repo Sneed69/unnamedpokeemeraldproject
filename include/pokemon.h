@@ -109,7 +109,6 @@ enum {
     MON_DATA_GIGANTAMAX_FACTOR,
     MON_DATA_TERA_TYPE,
     MON_DATA_EVOLUTION_TRACKER,
-    MON_DATA_MINT_NATURE,
     MON_DATA_HIDDEN_POWER_TYPE,
 };
 
@@ -119,54 +118,33 @@ struct BoxPokemon
     /*0x04*/ u32 otId;
     /*0x08*/ u8 otName[PLAYER_NAME_LENGTH];
     /*0x12*/ u8 nickname[min(10, POKEMON_NAME_LENGTH)];
+    /*0x1C*/ u16 moves[MAX_MON_MOVES];
+    /*0x24*/ u8 pp[MAX_MON_MOVES];
 
-    /*0x1C*/ u32 species:11; // 2047 species
+    /*0x28*/ u32 species:11; // 2047 species
              u32 experience:21;
              
-    /*0x20*/ u16 unused_16;
-             u8 friendship;
-             u8 metLocation;
-
-    /*0x24*/ u32 metLevel:7;
+             u32 metLevel:7;
              u32 heldItem:10; // 1023 items.
              u32 pokeball:5; // 31 balls
              u32 shinyModifier:1;
-             u32 mintNature:5;  // 31 natures
-             u32 unused_4:4;
-
-    /*0x28*/ u16 moves[MAX_MON_MOVES];
-    /*0x30*/ u8 pp[MAX_MON_MOVES];
-
-    /*0x34*/ u32 hpIV:4;
-             u32 attackIV:4;
-             u32 defenseIV:4;
-             u32 speedIV:4;
-             u32 spAttackIV:4;
-             u32 spDefenseIV:4;
-             u32 abilityNum:1;
-             u32 hiddenPowerType:5;
-             u32 otGender:1;
-             u32 unused:1;
-
-    /*0x38*/ u8 hpEV;
-    /*0x39*/ u8 attackEV;
-    /*0x3A*/ u8 defenseEV;
-    /*0x3B*/ u8 speedEV;
-
-    /*0x3C*/ u8 spAttackEV;
-    /*0x3D*/ u8 spDefenseEV;
-    /*0x3E*/ u8 cool;
-    /*0x3F*/ u8 beauty;
-
-    /*0x40*/ u8 cute;
-    /*0x41*/ u8 smart;
-    /*0x42*/ u8 tough;
-    /*0x43*/ u8 sheen;
-
-    /*0x44*/ u32 isBadEgg:1;
+             u32 isBadEgg:1;
              u32 hasSpecies:1;
              u32 isEgg:1;
              u32 markings:4;
+             u32 abilityNum:1;
+             u32 otGender:1;
+
+             u8 friendship;
+             u8 metLocation;
+             u8 cool;
+             u8 beauty;
+
+             u8 cute;
+             u8 smart;
+             u8 tough;
+             u8 sheen;
+
              u32 coolRibbon:3;
              u32 beautyRibbon:3;
              u32 cuteRibbon:3;
@@ -177,10 +155,11 @@ struct BoxPokemon
              u32 victoryRibbon:1;
              u32 artistRibbon:1;
              u32 effortRibbon:1;
-             u32 unused_5:5;
-
-    /*0x48*/
-}; // size 0x48 (72)
+             u32 hiddenPowerType:5;
+             u32 majorProficiency:3;
+             u32 minorProficiency:3;
+             u32 unused_1:1;
+}; // size 0x3C (60)
 
 struct Pokemon
 {
@@ -647,7 +626,7 @@ bool8 PokemonUseItemEffects(struct Pokemon *mon, u16 item, u8 partyIndex, u8 mov
 bool8 HealStatusConditions(struct Pokemon *mon, u32 healMask, u8 battlerId);
 u8 GetItemEffectParamOffset(u32 battler, u16 itemId, u8 effectByte, u8 effectBit);
 u8 *UseStatIncreaseItem(u16 itemId);
-u8 GetNature(struct Pokemon *mon, bool32 checkMint);
+u8 GetNature(struct Pokemon *mon);
 u8 GetNatureFromPersonality(u32 personality);
 u16 GetEvolutionTargetSpecies(struct Pokemon *mon, u8 type, u16 evolutionItem, struct Pokemon *tradePartner);
 bool8 IsMonPastEvolutionLevel(struct Pokemon *mon);
