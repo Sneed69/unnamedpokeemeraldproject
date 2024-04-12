@@ -98,7 +98,7 @@ struct ShopData
     u16 itemsShowed;
     u16 selectedRow;
     u16 scrollOffset;
-    u8 maxQuantity;
+    u16 maxQuantity;
     u8 scrollIndicatorsTaskId;
     u8 iconSlot;
     u8 itemSpriteIds[2];
@@ -173,7 +173,6 @@ static const u16 sShopInventory_Rustboro[] = {
     ITEM_PARALYZE_HEAL,
     ITEM_AWAKENING,
     ITEM_REPEL,
-    ITEM_ESCAPE_ROPE,
     ITEM_NONE
 };
 
@@ -186,7 +185,6 @@ static const u16 sShopInventory_Slateport[] = {
     ITEM_PARALYZE_HEAL,
     ITEM_AWAKENING,
     ITEM_REPEL,
-    ITEM_ESCAPE_ROPE,
     ITEM_NONE
 };
 
@@ -201,7 +199,6 @@ static const u16 sShopInventory_Mauville[] = {
     ITEM_BURN_HEAL,
     ITEM_ICE_HEAL,
     ITEM_REPEL,
-    ITEM_ESCAPE_ROPE,
     ITEM_NONE
 };
 
@@ -216,7 +213,6 @@ static const u16 sShopInventory_Fallarbor[] = {
     ITEM_BURN_HEAL,
     ITEM_ICE_HEAL,
     ITEM_SUPER_REPEL,
-    ITEM_ESCAPE_ROPE,
     ITEM_NONE
 };
 
@@ -233,7 +229,6 @@ static const u16 sShopInventory_Lavaridge[] = {
     ITEM_REVIVE,
     ITEM_ETHER,
     ITEM_SUPER_REPEL,
-    ITEM_ESCAPE_ROPE,
     ITEM_NONE
 };
 
@@ -252,7 +247,6 @@ static const u16 sShopInventory_Fortree[] = {
     ITEM_REVIVE,
     ITEM_ETHER,
     ITEM_SUPER_REPEL,
-    ITEM_ESCAPE_ROPE,
     ITEM_NONE
 };
 
@@ -264,7 +258,6 @@ static const u16 sShopInventory_Lilycove[] = {
     ITEM_REVIVE,
     ITEM_ETHER,
     ITEM_MAX_REPEL,
-    ITEM_ESCAPE_ROPE,
     ITEM_NONE
 };
 
@@ -277,7 +270,6 @@ static const u16 sShopInventory_Mossdeep[] = {
     ITEM_MAX_ETHER,
     ITEM_ELIXIR,
     ITEM_MAX_REPEL,
-    ITEM_ESCAPE_ROPE,
     ITEM_NONE
 };
 
@@ -291,7 +283,6 @@ static const u16 sShopInventory_League[] = {
     ITEM_MAX_ETHER,
     ITEM_ELIXIR,
     ITEM_MAX_REPEL,
-    ITEM_ESCAPE_ROPE,
     ITEM_NONE
 };
 
@@ -750,7 +741,7 @@ static void BuyMenuSetListEntry(struct ListMenuItem *menuItem, u16 item, u8 *nam
         if (ItemId_GetPocket(item) != POCKET_TM_HM)
             CopyItemName(item, name);
         else
-            StringCopy(name, gMoveNames[ItemIdToBattleMoveId(item)]);
+            StringCopy(name, gMovesInfo[ItemIdToBattleMoveId(item)].name);
     else
         StringCopy(name, gDecorations[item].name);
 
@@ -1185,7 +1176,7 @@ static void Task_BuyMenu(u8 taskId)
                     else if (ItemId_GetPocket(itemId) == POCKET_TM_HM)
                     {
                         StringAppend(gStringVar1, gText_Space);
-                        StringAppend(gStringVar1, gMoveNames[ItemIdToBattleMoveId(itemId)]);
+                        StringAppend(gStringVar1, GetMoveName(ItemIdToBattleMoveId(itemId)));
                         ConvertIntToDecimalStringN(gStringVar2, sShopData->totalCost, STR_CONV_MODE_LEFT_ALIGN, 6);
                         StringExpandPlaceholders(gStringVar4, gText_YouWantedVar1ThatllBeVar2);
                         tItemCount = 1;
@@ -1261,7 +1252,7 @@ static void Task_BuyHowManyDialogueHandleInput(u8 taskId)
             ClearWindowTilemap(WIN_QUANTITY_IN_BAG);
             PutWindowTilemap(WIN_ITEM_LIST);
             CopyItemName(tItemId, gStringVar1);
-            ConvertIntToDecimalStringN(gStringVar2, tItemCount, STR_CONV_MODE_LEFT_ALIGN, BAG_ITEM_CAPACITY_DIGITS);
+            ConvertIntToDecimalStringN(gStringVar2, tItemCount, STR_CONV_MODE_LEFT_ALIGN, MAX_ITEM_DIGITS);
             ConvertIntToDecimalStringN(gStringVar3, sShopData->totalCost, STR_CONV_MODE_LEFT_ALIGN, 6);
             BuyMenuDisplayMessage(taskId, gText_Var1AndYouWantedVar2, BuyMenuConfirmPurchase);
         }
@@ -1339,20 +1330,31 @@ static void Task_ReturnToItemListAfterItemPurchase(u8 taskId)
 
     if (JOY_NEW(A_BUTTON | B_BUTTON))
     {
-        PlaySE(SE_SELECT);
-        if ((ItemId_GetPocket(tItemId) == POCKET_POKE_BALLS) && tItemCount > 9 && AddBagItem(ITEM_PREMIER_BALL, tItemCount / 10))
+        u16 premierBallsToAdd = tItemCount / 10;
+        if (premierBallsToAdd >= 1
+         && ((I_PREMIER_BALL_BONUS <= GEN_7 && tItemId == ITEM_POKE_BALL)
+          || (I_PREMIER_BALL_BONUS >= GEN_8 && (ItemId_GetPocket(tItemId) == POCKET_POKE_BALLS))))
         {
-            if (tItemCount > 19)
-            {
-                BuyMenuDisplayMessage(taskId, gText_ThrowInPremierBalls, BuyMenuReturnToItemList);
-            }
-            else
-            {
-               BuyMenuDisplayMessage(taskId, gText_ThrowInPremierBall, BuyMenuReturnToItemList);
-            }
+            u32 spaceAvailable = GetFreeSpaceForItemInBag(ITEM_PREMIER_BALL);
+            if (spaceAvailable < premierBallsToAdd)
+                premierBallsToAdd = spaceAvailable;
         }
         else
+        {
+            premierBallsToAdd = 0;
+        }
+
+        PlaySE(SE_SELECT);
+        AddBagItem(ITEM_PREMIER_BALL, premierBallsToAdd);
+        if (premierBallsToAdd > 0)
+        {
+            ConvertIntToDecimalStringN(gStringVar1, premierBallsToAdd, STR_CONV_MODE_LEFT_ALIGN, MAX_ITEM_DIGITS);
+            BuyMenuDisplayMessage(taskId, (premierBallsToAdd >= 2 ? gText_ThrowInPremierBalls : gText_ThrowInPremierBall), BuyMenuReturnToItemList);
+        }
+        else
+        {
             BuyMenuReturnToItemList(taskId);
+        }
     }
 }
 
@@ -1385,7 +1387,7 @@ static void BuyMenuPrintItemQuantityAndPrice(u8 taskId)
 
     FillWindowPixelBuffer(WIN_QUANTITY_PRICE, PIXEL_FILL(1));
     PrintMoneyAmount(WIN_QUANTITY_PRICE, 38, 1, sShopData->totalCost, TEXT_SKIP_DRAW);
-    ConvertIntToDecimalStringN(gStringVar1, tItemCount, STR_CONV_MODE_LEADING_ZEROS, BAG_ITEM_CAPACITY_DIGITS);
+    ConvertIntToDecimalStringN(gStringVar1, tItemCount, STR_CONV_MODE_LEADING_ZEROS, MAX_ITEM_DIGITS);
     StringExpandPlaceholders(gStringVar4, gText_xVar1);
     BuyMenuPrint(WIN_QUANTITY_PRICE, gStringVar4, 0, 1, 0, COLORID_NORMAL);
 }

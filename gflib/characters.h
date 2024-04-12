@@ -77,6 +77,9 @@
 #define CHAR_DOWN_ARROW        0x7A
 #define CHAR_LEFT_ARROW        0x7B
 #define CHAR_RIGHT_ARROW       0x7C
+// Case-fixing characters
+#define CHAR_FIXED_CASE        0x7D
+#define CHAR_UNFIX_CASE        0x7E
 //
 #define CHAR_SUPER_E           0x84
 #define CHAR_LESS_THAN         0x85
@@ -266,6 +269,10 @@
 #define PLACEHOLDER_ID_SUBJECTIVE    0xE
 #define PLACEHOLDER_ID_OBJECTIVE     0xF
 #define PLACEHOLDER_ID_POSSESSIVE    0x10
+// Fixed-case placeholders
+// These behave the same as their (id & 0x7F),
+// but prepend CHAR_FIXED_CASE
+#define PLACEHOLDER_FIXED_MASK       0x80
 
 // battle placeholders are located in battle_message.h
 
