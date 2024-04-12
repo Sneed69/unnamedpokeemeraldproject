@@ -143,9 +143,10 @@ struct BoxPokemon
              u32 speedIV:4;
              u32 spAttackIV:4;
              u32 spDefenseIV:4;
-             u32 abilityNum:2;
+             u32 abilityNum:1;
              u32 hiddenPowerType:5;
              u32 otGender:1;
+             u32 unused:1;
 
     /*0x38*/ u8 hpEV;
     /*0x39*/ u8 attackEV;
@@ -178,7 +179,7 @@ struct BoxPokemon
              u32 effortRibbon:1;
              u32 unused_5:5;
 
-    /*0x48*/ //u32 freeSpace;
+    /*0x48*/
 }; // size 0x48 (72)
 
 struct Pokemon
@@ -237,9 +238,9 @@ struct BattlePokemon
     /*0x15*/ u32 speedIV:4;
     /*0x16*/ u32 spAttackIV:4;
     /*0x16*/ u32 spDefenseIV:4;
-    /*0x17*/ u32 abilityNum:2;
+    /*0x17*/ u32 abilityNum:1;
     /*0x17*/ u32 hiddenPowerType:5;
-    /*0x17*/ u32 unused:1;
+    /*0x17*/ u32 unused:2;
     /*0x18*/ s8 statStages[NUM_BATTLE_STATS];
     /*0x20*/ u16 ability;
     /*0x22*/ u8 type1;
