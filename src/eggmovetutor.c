@@ -594,7 +594,7 @@ static void DoEggMoveTutorMain(void)
         }
         break;
     case MENU_STATE_PRINT_STOP_TEACHING:
-        StringCopy(gStringVar2, gMoveNames[GetCurrentSelectedMove()]);
+        StringCopy(gStringVar2, gMovesInfo[GetCurrentSelectedMove()].name);
         FormatAndPrintText(gText_MoveRelearnerStopTryingToTeachMove);
         sEggMoveTutorStruct->state++;
         break;
@@ -701,10 +701,10 @@ static void DoEggMoveTutorMain(void)
             {
                 u16 moveId = GetMonData(&gPlayerParty[sEggMoveTutorStruct->partyMon], MON_DATA_MOVE1 + sEggMoveTutorStruct->moveSlot);
 
-                StringCopy(gStringVar3, gMoveNames[moveId]);
+                StringCopy(gStringVar3, gMovesInfo[moveId].name);
                 RemoveMonPPBonus(&gPlayerParty[sEggMoveTutorStruct->partyMon], sEggMoveTutorStruct->moveSlot);
                 SetMonMoveSlot(&gPlayerParty[sEggMoveTutorStruct->partyMon], GetCurrentSelectedMove(), sEggMoveTutorStruct->moveSlot);
-                StringCopy(gStringVar2, gMoveNames[GetCurrentSelectedMove()]);
+                StringCopy(gStringVar2, gMovesInfo[GetCurrentSelectedMove()].name);
                 FormatAndPrintText(gText_MoveRelearnerAndPoof);
                 sEggMoveTutorStruct->state = MENU_STATE_DOUBLE_FANFARE_FORGOT_MOVE;
                 gSpecialVar_0x8004 = TRUE;
@@ -813,7 +813,7 @@ static void HandleInput(bool8 showContest)
         PlaySE(SE_SELECT);
         RemoveScrollArrows();
         sEggMoveTutorStruct->state = MENU_STATE_PRINT_TEACH_MOVE_PROMPT;
-        StringCopy(gStringVar2, gMoveNames[itemId]);
+        StringCopy(gStringVar2, gMovesInfo[itemId].name);
         StringExpandPlaceholders(gStringVar4, gText_MoveRelearnerTeachMoveConfirm);
         MoveRelearnerPrintMessage(gStringVar4);
         break;
@@ -908,7 +908,7 @@ static void CreateLearnableMovesList(void)
 
     for (i = 0; i < sEggMoveTutorStruct->numMenuChoices; i++)
     {
-        sEggMoveTutorStruct->menuItems[i].name = gMoveNames[sEggMoveTutorStruct->movesToLearn[i]];
+        sEggMoveTutorStruct->menuItems[i].name = gMovesInfo[sEggMoveTutorStruct->movesToLearn[i]].name;
         sEggMoveTutorStruct->menuItems[i].id = sEggMoveTutorStruct->movesToLearn[i];
     }
 
@@ -934,7 +934,7 @@ void EggMoveTutorShowHideHearts(s32 moveId)
     }
     else
     {
-        numHearts = (u8)(gContestEffects[gContestMoves[moveId].effect].appeal / 10);
+        numHearts = (u8)(gContestEffects[gMovesInfo[moveId].effect].appeal / 10);
 
         if (numHearts == 0xFF)
         {
@@ -954,7 +954,7 @@ void EggMoveTutorShowHideHearts(s32 moveId)
             gSprites[sEggMoveTutorStruct->heartSpriteIds[i]].invisible = FALSE;
         }
 
-        numHearts = (u8)(gContestEffects[gContestMoves[moveId].effect].jam / 10);
+        numHearts = (u8)(gContestEffects[gMovesInfo[moveId].effect].jam / 10);
 
         if (numHearts == 0xFF)
         {

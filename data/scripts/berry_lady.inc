@@ -63,6 +63,7 @@ BerriesTwins:
     .2byte ITEM_MAGO_BERRY
     .2byte ITEM_AGUAV_BERRY
     .2byte ITEM_IAPAPA_BERRY
+    .2byte ITEM_ORAN_BERRY
     .2byte ITEM_CHESTO_BERRY
     .2byte ITEM_CHERI_BERRY
     .2byte ITEM_PECHA_BERRY
@@ -85,6 +86,7 @@ BerriesWinona:
     .2byte ITEM_MAGO_BERRY
     .2byte ITEM_AGUAV_BERRY
     .2byte ITEM_IAPAPA_BERRY
+    .2byte ITEM_ORAN_BERRY
     .2byte ITEM_CHESTO_BERRY
     .2byte ITEM_CHERI_BERRY
     .2byte ITEM_PECHA_BERRY
@@ -102,6 +104,7 @@ BerriesNorman:
     .2byte ITEM_LIECHI_BERRY
     .2byte ITEM_PETAYA_BERRY
     .2byte ITEM_SALAC_BERRY
+    .2byte ITEM_ORAN_BERRY
     .2byte ITEM_CHESTO_BERRY
     .2byte ITEM_CHERI_BERRY
     .2byte ITEM_PECHA_BERRY
@@ -116,6 +119,7 @@ BerriesNorman:
 BerriesWattson:
     .2byte ITEM_SITRUS_BERRY
     .2byte ITEM_LUM_BERRY
+    .2byte ITEM_ORAN_BERRY
     .2byte ITEM_CHESTO_BERRY
     .2byte ITEM_CHERI_BERRY
     .2byte ITEM_PECHA_BERRY

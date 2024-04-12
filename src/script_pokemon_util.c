@@ -56,21 +56,19 @@ static void HealPlayerBoxes(void)
     }
 }
 
-u8 ScriptGiveMonWithIvsAndNature(u16 species, u8 level, u16 item, u8 *IVs, u8 nature)
+u8 ScriptGiveStarter(u16 species, u8 level, u16 item, u8 nature)
 {
     u16 nationalDexNum;
     int sentToPc;
     u8 heldItem[2];
     struct Pokemon mon;
-    u8 i=0;
+    u8 i = 0;
     
     CreateMonWithNature(&mon, species, level, 0, nature);
     heldItem[0] = item;
     heldItem[1] = item >> 8;
     SetMonData(&mon, MON_DATA_HELD_ITEM, heldItem);
     SetMonData(&mon, MON_DATA_ABILITY_NUM, &i);
-    for (i = 0; i < NUM_STATS; i++)
-        SetMonData(&mon, MON_DATA_HP_IV + i, &IVs[i]);
     sentToPc = GiveMonToPlayer(&mon);
     nationalDexNum = SpeciesToNationalPokedexNum(species);
 
@@ -342,7 +340,7 @@ u32 ScriptGiveMonParameterized(u16 species, u8 level, u16 item, u8 ball, u8 natu
     if ((gender == MON_MALE && genderRatio != MON_FEMALE && genderRatio != MON_GENDERLESS)
      || (gender == MON_FEMALE && genderRatio != MON_MALE && genderRatio != MON_GENDERLESS)
      || (gender == MON_GENDERLESS && genderRatio == MON_GENDERLESS))
-        CreateMonWithGenderNatureLetter(&mon, species, level, 32, gender, nature, 0);
+        CreateMonWithGenderNatureLetter(&mon, species, level, 32, gender, nature, 0, 0);
     else
         CreateMonWithNature(&mon, species, level, 32, nature);
 
@@ -387,7 +385,7 @@ u32 ScriptGiveMonParameterized(u16 species, u8 level, u16 item, u8 ball, u8 natu
     {
         abilityNum = GetMonData(&mon, MON_DATA_PERSONALITY) & 1;
     }
-    else if (abilityNum > NUM_NORMAL_ABILITY_SLOTS || GetAbilityBySpecies(species, abilityNum) == ABILITY_NONE)
+    else if (abilityNum > 2 || GetAbilityBySpecies(species, abilityNum) == ABILITY_NONE)
     {
         do {
             abilityNum = Random() % NUM_ABILITY_SLOTS; // includes hidden abilities

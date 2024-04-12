@@ -225,7 +225,6 @@ bool8 CheckForTrainersWantingBattle(void)
 
     for (i = 0; i < OBJECT_EVENTS_COUNT; i++)
     {
-        u8 numTrainers;
 
         if (!gObjectEvents[i].active)
             continue;

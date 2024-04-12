@@ -52,7 +52,7 @@ LilycoveCity_DepartmentStore_3F_Pokemart_StatBoosters:
 	.2byte ITEM_DRAGON_FANG
 	.2byte ITEM_BLACK_GLASSES
 	.2byte ITEM_METAL_COAT
-	.2byte ITEM_LOVELY_INCENSE
+	.2byte ITEM_FAIRY_FEATHER
 	.2byte ITEM_NONE
 	release
 	end

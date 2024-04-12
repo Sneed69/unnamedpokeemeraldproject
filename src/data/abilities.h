@@ -503,7 +503,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_OVERGROW] =
     {
         .name = _("Overgrow"),
-        .description = COMPOUND_STRING("Ups Grass moves in a pinch."),
+        .description = COMPOUND_STRING("Grass-type moves increase\nin power as HP decreases."),
         .aiRating = 5,
     },
 
@@ -2598,5 +2598,113 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
         .cantBeCopied = TRUE,
         .cantBeSwapped = TRUE,
         .cantBeTraced = TRUE,
+    },
+
+    [ABILITY_TRANSCENDENCE] =
+    {
+        .name = _("Transcendence"),
+        .description = COMPOUND_STRING("Can hit Dark-type foes\nwith Psychic attacks."),
+        .aiRating = 6,
+    },
+
+    [ABILITY_IONIZATION] =
+    {
+        .name = _("Ionization"),
+        .description = COMPOUND_STRING("Can hit Ground-type foes\nwith Electric attacks."),
+        .aiRating = 6,
+    },
+
+    [ABILITY_HYPERBOREAN] =
+    {
+        .name = _("Hyperborean"),
+        .description = COMPOUND_STRING("Powers up Ice-type moves\nif hit by one."),
+        .aiRating = 6,
+        .breakable = TRUE,
+    },
+
+    [ABILITY_UNBREAKABLE] =
+    {
+        .name = _("Unbreakable"),
+        .description = COMPOUND_STRING("Incoming physical attacks\nare never super effective."),
+        .aiRating = 10,
+        .breakable = TRUE,
+    },
+
+    [ABILITY_UNTHREATENING] =
+    {
+        .name = _("Unthreatening"),
+        .description = COMPOUND_STRING("Lowers the Defense and\nSp. Def of opposing Pokémon."),
+        .aiRating = 7,
+    },
+
+    [ABILITY_NINE_LIVES] =
+    {
+        .name = _("Nine Lives"),
+        .description = COMPOUND_STRING("Resists one incoming\nfinishing blow per battle."),
+        .aiRating = 10,
+        .breakable = TRUE,
+    },
+
+    [ABILITY_PURE_HEART] =
+    {
+        .name = _("Pure Heart"),
+        .description = COMPOUND_STRING("Grants full immunity to\nall Fairy-type attacks."),
+        .aiRating = 7,
+        .breakable = TRUE,
+    },
+
+    [ABILITY_TECTONIC_BALANCE] =
+    {
+        .name = _("Tectonic Balance"),
+        .description = COMPOUND_STRING("Weakness to Ground-Type\nattacks becomes resistance."),
+        .aiRating = 5,
+        .breakable = TRUE,
+    },
+
+    [ABILITY_ABSOLUTE_ZERO] =
+    {
+        .name = _("Absolute Zero"),
+        .description = COMPOUND_STRING("Weakness to Fire-Type\nattacks becomes resistance."),
+        .aiRating = 5,
+        .breakable = TRUE,
+    },
+
+    [ABILITY_PERFECT_ALLOY] =
+    {
+        .name = _("Absolute Zero"),
+        .description = COMPOUND_STRING("Weakness to Fighting-Type\nattacks becomes resistance."),
+        .aiRating = 5,
+        .breakable = TRUE,
+    },
+
+    [ABILITY_MASTER_OF_THE_AGES] =
+    {
+        .name = _("Absolute Zero"),
+        .description = COMPOUND_STRING("Powers up and resists Ice,\nRock and Steel-type moves."),
+        .aiRating = 10,
+        .breakable = TRUE,
+    },
+
+    [ABILITY_CONDENSED_ENERGY] =
+    {
+        .name = _("Condensed_Energy"),
+        .description = COMPOUND_STRING("Boosts Sp. Atk and Sp. Def\nat the end of each turn."),
+        .aiRating = 9,
+    },
+
+    [ABILITY_OVERTURN] =
+    {
+        .name = _("Overturn"),
+        .description = COMPOUND_STRING("Inverts the type based\neffectiveness of all moves."),
+        .aiRating = 2,
+        .breakable = TRUE,
+    },
+
+    [ABILITY_PRISTINE_PLUMAGE] =
+    {
+        .name = _("Pristine Plumage"),
+        .description = COMPOUND_STRING("Doubles Sp. Def."),
+        .aiRating = 9,
+        .breakable = TRUE,
     },
 };

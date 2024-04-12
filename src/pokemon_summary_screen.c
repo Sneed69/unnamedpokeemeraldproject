@@ -3574,7 +3574,7 @@ static void PrintRibbonCount(void)
 static void BufferStat(u8 *dst, s8 natureMod, u32 stat, u32 strId, u32 n)
 {
     static const u8 sTextNatureUp[] = _("{COLOR 5}{SHADOW 6}");
-    static const u8 sTextNatureNeutral[] = _("{COLOR 1}{SHADOW 0}");
+    static const u8 sTextNatureNeutral[] = _("{COLOR 1}{SHADOW 2}");
     static const u8 sTextNatureDown[] = _("{COLOR 1}{SHADOW 9}");
     u8 *txtPtr;
 

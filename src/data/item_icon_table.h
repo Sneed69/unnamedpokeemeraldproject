@@ -435,7 +435,7 @@ const u32 *const gItemIconTable[ITEMS_COUNT + 1][2] =
     // Incenses
     [ITEM_SEA_INCENSE] = {gItemIcon_SeaIncense, gItemIconPalette_SeaIncense},
     [ITEM_LAX_INCENSE] = {gItemIcon_LaxIncense, gItemIconPalette_LaxIncense},
-    [ITEM_LOVELY_INCENSE] = {gItemIcon_OddIncense, gItemIconPalette_OddIncense},
+    [ITEM_ODD_INCENSE] = {gItemIcon_OddIncense, gItemIconPalette_OddIncense},
     [ITEM_ROCK_INCENSE] = {gItemIcon_RockIncense, gItemIconPalette_RockIncense},
     [ITEM_FULL_INCENSE] = {gItemIcon_FullIncense, gItemIconPalette_FullIncense},
     [ITEM_WAVE_INCENSE] = {gItemIcon_WaveIncense, gItemIconPalette_WaveIncense},

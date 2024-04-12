@@ -977,7 +977,7 @@ static void Task_UseLure(u8 taskId)
 {
     if (!IsSEPlaying())
     {
-        VarSet(VAR_REPEL_STEP_COUNT, ItemId_GetHoldEffectParam(gSpecialVar_ItemId) | REPEL_LURE_MASK);
+        VarSet(VAR_REPEL_STEP_COUNT, (REPEL_STEP_MULTIPLIER * ItemId_GetHoldEffectParam(gSpecialVar_ItemId)) | REPEL_LURE_MASK);
     #if VAR_LAST_REPEL_LURE_USED != 0
         VarSet(VAR_LAST_REPEL_LURE_USED, gSpecialVar_ItemId);
     #endif
@@ -1436,12 +1436,6 @@ void ItemUseOutOfBattle_Honey(u8 taskId)
 void ItemUseOutOfBattle_CannotUse(u8 taskId)
 {
     DisplayDadsAdviceCannotUseItemMessage(taskId, gTasks[taskId].tUsingRegisteredKeyItem);
-}
-
-void ItemUseOutOfBattle_Mints(u8 taskId)
-{
-    gItemUseCB = ItemUseCB_Mints;
-    SetUpItemUseCallback(taskId);
 }
 
 static bool32 IsValidLocationForVsSeeker(void)

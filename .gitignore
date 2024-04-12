@@ -39,3 +39,8 @@ prefabs.json
 *.sym
 *.js
 src/data/map_group_count.h
+*.vsidx
+.vs/myemerald/v17/.wsuo
+.vs/myemerald/v17/workspaceFileList.bin
+.vs/slnx.sqlite
+.vs/VSWorkspaceState.json
