@@ -811,6 +811,11 @@ void CreateMon(struct Pokemon *mon, u16 species, u8 level, u8 fixedIV, u8 hasFix
     u32 mail;
     ZeroMonData(mon);
     CreateBoxMon(&mon->box, species, level, fixedIV, hasFixedPersonality, fixedPersonality, otIdType, fixedOtId);
+    for (u32 i = 0; i < MAX_MON_MOVES; i++)
+    {
+        u8 pp = gMovesInfo[GetMonData(mon, MON_DATA_MOVE1 + i)].pp;
+        SetMonData(mon, MON_DATA_PP1 + i, &pp);
+    }
     SetMonData(mon, MON_DATA_LEVEL, &level);
     mail = MAIL_NONE;
     SetMonData(mon, MON_DATA_MAIL, &mail);
@@ -1516,6 +1521,12 @@ void BoxMonToMon(const struct BoxPokemon *src, struct Pokemon *dest)
     CalculateMonStats(dest);
     value = GetMonData(dest, MON_DATA_MAX_HP) - value;
     SetMonData(dest, MON_DATA_HP, &value);
+
+    for (u32 i = 0; i < MAX_MON_MOVES; i++)
+    {
+        u8 pp = gMovesInfo[GetBoxMonData(&dest->box, MON_DATA_MOVE1 + i)].pp;
+        SetMonData(dest, MON_DATA_PP1 + i, &pp);
+    }
 }
 
 u8 GetLevelFromMonExp(struct Pokemon *mon)
@@ -1726,26 +1737,19 @@ void DeleteFirstMoveAndGiveMoveToBoxMon(struct BoxPokemon *boxMon, u16 move)
     s32 i;
     u16 moves[MAX_MON_MOVES];
     u8 pp[MAX_MON_MOVES];
-    u8 ppBonuses;
 
     for (i = 0; i < MAX_MON_MOVES - 1; i++)
     {
         moves[i] = GetBoxMonData(boxMon, MON_DATA_MOVE2 + i, NULL);
-        pp[i] = GetBoxMonData(boxMon, MON_DATA_PP2 + i, NULL);
     }
 
-    ppBonuses = GetBoxMonData(boxMon, MON_DATA_PP_BONUSES, NULL);
-    ppBonuses >>= 2;
     moves[MAX_MON_MOVES - 1] = move;
     pp[MAX_MON_MOVES - 1] = gMovesInfo[move].pp;
 
     for (i = 0; i < MAX_MON_MOVES; i++)
     {
         SetBoxMonData(boxMon, MON_DATA_MOVE1 + i, &moves[i]);
-        SetBoxMonData(boxMon, MON_DATA_PP1 + i, &pp[i]);
     }
-
-    SetBoxMonData(boxMon, MON_DATA_PP_BONUSES, &ppBonuses);
 }
 
 u8 CountAliveMonsInBattle(u8 caseId, u32 battler)
@@ -1946,6 +1950,12 @@ u32 GetMonData3(struct Pokemon *mon, s32 field, u8* data)
     case MON_DATA_MAIL:
         ret = mon->mail;
         break;
+    case MON_DATA_PP1:
+    case MON_DATA_PP2:
+    case MON_DATA_PP3:
+    case MON_DATA_PP4:
+        ret = mon->pp[field - MON_DATA_PP1];
+        break;
     default:
         ret = GetBoxMonData(&mon->box, field, data);
         break;
@@ -2062,7 +2072,7 @@ u32 GetBoxMonData3(struct BoxPokemon *boxMon, s32 field, u8 *data)
     case MON_DATA_PP2:
     case MON_DATA_PP3:
     case MON_DATA_PP4:
-        retVal = boxMon->pp[field - MON_DATA_PP1];
+        retVal = gMovesInfo[boxMon->moves[field - MON_DATA_PP1]].pp;
         break;
     case MON_DATA_HP_EV:
         break;
@@ -2279,6 +2289,12 @@ void SetMonData(struct Pokemon *mon, s32 field, const void *dataArg)
         break;
     case MON_DATA_SPECIES_OR_EGG:
         break;
+    case MON_DATA_PP1:
+    case MON_DATA_PP2:
+    case MON_DATA_PP3:
+    case MON_DATA_PP4:
+        SET8(mon->pp[field - MON_DATA_PP1]);
+        break;
     default:
         SetBoxMonData(&mon->box, field, data);
         break;
@@ -2351,7 +2367,6 @@ void SetBoxMonData(struct BoxPokemon *boxMon, s32 field, const void *dataArg)
     case MON_DATA_PP2:
     case MON_DATA_PP3:
     case MON_DATA_PP4:
-        SET8(boxMon->pp[field - MON_DATA_PP1]);
         break;
     case MON_DATA_HP_EV:
         break;
@@ -5071,10 +5086,20 @@ bool8 IsOtherTrainer(u32 otId, u8 *otName)
 
 void MonRestorePP(struct Pokemon *mon)
 {
-    BoxMonRestorePP(&mon->box);
+    int i;
+
+    for (i = 0; i < MAX_MON_MOVES; i++)
+    {
+        if (GetMonData(mon, MON_DATA_MOVE1 + i, 0))
+        {
+            u16 move = GetMonData(mon, MON_DATA_MOVE1 + i, 0);
+            u8 pp = gMovesInfo[move].pp;
+            SetMonData(mon, MON_DATA_PP1 + i, &pp);
+        }
+    }
 }
 
-void BoxMonRestorePP(struct BoxPokemon *boxMon)
+/*void BoxMonRestorePP(struct BoxPokemon *boxMon)
 {
     int i;
 
@@ -5088,7 +5113,7 @@ void BoxMonRestorePP(struct BoxPokemon *boxMon)
             SetBoxMonData(boxMon, MON_DATA_PP1 + i, &pp);
         }
     }
-}
+}*/
 
 void SetMonPreventsSwitchingString(void)
 {
@@ -5991,8 +6016,6 @@ void HealBoxPokemon(struct BoxPokemon *boxMon)
 
     data = STATUS1_NONE;
     SetBoxMonData(boxMon, MON_DATA_STATUS, &data);
-
-    BoxMonRestorePP(boxMon);
 }
 
 u16 GetCryIdBySpecies(u16 species)

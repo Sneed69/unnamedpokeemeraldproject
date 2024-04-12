@@ -2137,26 +2137,6 @@ static void InitDomeTrainers(void)
 
 static void CalcDomeMonStats(u16 species, int level, int ivs, u8 evBits, u8 nature, int *stats)
 {
-    int i, count;
-    u8 bits;
-    u16 resultingEvs;
-    int evs[NUM_STATS];
-
-    count = 0, bits = evBits;
-    for (i = 0; i < NUM_STATS; bits >>= 1, i++)
-    {
-        if (bits & 1)
-            count++;
-    }
-
-    resultingEvs = MAX_TOTAL_EVS / count;
-    for (i = 0; i < NUM_STATS; bits <<= 1, i++)
-    {
-        evs[i] = 0;
-        if (evBits & bits)
-            evs[i] = resultingEvs;
-    }
-
     if (species == SPECIES_SHEDINJA)
     {
         stats[STAT_HP] = 1;

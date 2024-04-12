@@ -119,9 +119,8 @@ struct BoxPokemon
     /*0x08*/ u8 otName[PLAYER_NAME_LENGTH];
     /*0x12*/ u8 nickname[min(10, POKEMON_NAME_LENGTH)];
     /*0x1C*/ u16 moves[MAX_MON_MOVES];
-    /*0x24*/ u8 pp[MAX_MON_MOVES];
 
-    /*0x28*/ u32 species:11; // 2047 species
+             u32 species:11; // 2047 species
              u32 experience:21;
              
              u32 metLevel:7;
@@ -159,13 +158,16 @@ struct BoxPokemon
              u32 majorProficiency:3;
              u32 minorProficiency:3;
              u32 unused_1:1;
-}; // size 0x3C (60)
+
+             u16 unused32;
+}; // size 0x40 (64)
 
 struct Pokemon
 {
     struct BoxPokemon box;
     u32 status;
     u8 level;
+    u8 pp[MAX_MON_MOVES];
     u8 mail;
     u16 hp;
     u16 maxHP;
@@ -670,7 +672,7 @@ s8 GetFlavorRelationByPersonality(u32 personality, u8 flavor);
 bool8 IsTradedMon(struct Pokemon *mon);
 bool8 IsOtherTrainer(u32 otId, u8 *otName);
 void MonRestorePP(struct Pokemon *mon);
-void BoxMonRestorePP(struct BoxPokemon *boxMon);
+//void BoxMonRestorePP(struct BoxPokemon *boxMon);
 void SetMonPreventsSwitchingString(void);
 void SetWildMonHeldItem(void);
 bool8 IsMonShiny(struct Pokemon *mon);
