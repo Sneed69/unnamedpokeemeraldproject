@@ -5127,6 +5127,114 @@ void ItemUseCB_Mint(u8 taskId, TaskFunc task)
 #undef tNewNature
 #undef tOldFunc
 
+#define tState               data[0]
+#define tMonId               data[1]
+#define tOldProficiency      data[2]
+#define tNewProficiency      data[3]
+#define tMajorOrMinor        data[4]
+#define tOldFunc             5
+
+void Task_Proficiency(u8 taskId)
+{
+    static const u8 askText[] = _("This will affect {STR_VAR_1}'s stats.\nAre you sure you want to use it?");
+    static const u8 doneText[] = _("{STR_VAR_1}'s stats have changed due to\nthe effects of the {STR_VAR_2}!{PAUSE_UNTIL_PRESS}");
+    s16 *data = gTasks[taskId].data;
+
+    switch (tState)
+    {
+    case 0:
+        // Can't use if:
+        if (tOldProficiency == tNewProficiency // it has the same proficiency already
+         || (tMajorOrMinor == MON_DATA_MINOR_PROFICIENCY //minor prof and it has the same one as it's major
+         && GetMonData(&gPlayerParty[tMonId], MON_DATA_MAJOR_PROFICIENCY) == tNewProficiency))
+        {
+            gPartyMenuUseExitCallback = FALSE;
+            PlaySE(SE_SELECT);
+            DisplayPartyMenuMessage(gText_WontHaveEffect, 1);
+            ScheduleBgCopyTilemapToVram(2);
+            gTasks[taskId].func = Task_ClosePartyMenuAfterText;
+            return;
+        }
+        gPartyMenuUseExitCallback = TRUE;
+        GetMonNickname(&gPlayerParty[tMonId], gStringVar1);
+        CopyItemName(gSpecialVar_ItemId, gStringVar2);
+        StringExpandPlaceholders(gStringVar4, askText);
+        PlaySE(SE_SELECT);
+        DisplayPartyMenuMessage(gStringVar4, 1);
+        ScheduleBgCopyTilemapToVram(2);
+        tState++;
+        break;
+    case 1:
+        if (!IsPartyMenuTextPrinterActive())
+        {
+            PartyMenuDisplayYesNoMenu();
+            tState++;
+        }
+        break;
+    case 2:
+        switch (Menu_ProcessInputNoWrapClearOnChoose())
+        {
+        case 0:
+            tState++;
+            break;
+        case 1:
+        case MENU_B_PRESSED:
+            gPartyMenuUseExitCallback = FALSE;
+            PlaySE(SE_SELECT);
+            ScheduleBgCopyTilemapToVram(2);
+            // Don't exit party selections screen, return to choosing a mon.
+            ClearStdWindowAndFrameToTransparent(6, 0);
+            ClearWindowTilemap(6);
+            DisplayPartyMenuStdMessage(5);
+            gTasks[taskId].func = (void *)GetWordTaskArg(taskId, tOldFunc);
+            return;
+        }
+        break;
+    case 3:
+        PlaySE(SE_USE_ITEM);
+        StringExpandPlaceholders(gStringVar4, doneText);
+        DisplayPartyMenuMessage(gStringVar4, 1);
+        ScheduleBgCopyTilemapToVram(2);
+        tState++;
+        break;
+    case 4:
+        if (!IsPartyMenuTextPrinterActive())
+            tState++;
+        break;
+    case 5:
+        SetMonData(&gPlayerParty[tMonId], tMajorOrMinor, &tNewProficiency);
+        // Swap minor with major    
+        if (tMajorOrMinor == MON_DATA_MAJOR_PROFICIENCY
+         && tNewProficiency == GetMonData(&gPlayerParty[tMonId], MON_DATA_MINOR_PROFICIENCY))
+            SetMonData(&gPlayerParty[tMonId], MON_DATA_MINOR_PROFICIENCY, &tOldProficiency);
+
+        CalculateMonStats(&gPlayerParty[tMonId]);
+        RemoveBagItem(gSpecialVar_ItemId, 1);
+        gTasks[taskId].func = Task_ClosePartyMenu;
+        break;
+    }
+}
+
+void ItemUseCB_Proficiency(u8 taskId, TaskFunc task)
+{
+    s16 *data = gTasks[taskId].data;
+    u16 *itemPtr = &gSpecialVar_ItemId;
+
+    tState = 0;
+    tMajorOrMinor = ItemId_GetHoldEffectParam(*itemPtr);
+    tMonId = gPartyMenu.slotId;
+    tOldProficiency = GetMonData(&gPlayerParty[tMonId], tMajorOrMinor);
+    tNewProficiency = ItemId_GetSecondaryId(gSpecialVar_ItemId);
+    SetWordTaskArg(taskId, tOldFunc, (uintptr_t)(gTasks[taskId].func));
+    gTasks[taskId].func = Task_Proficiency;
+}
+
+#undef tState
+#undef tMonId
+#undef tOldProficiency
+#undef tNewProficiency
+#undef tOldFunc
+
 static void Task_DisplayHPRestoredMessage(u8 taskId)
 {
     GetMonNickname(&gPlayerParty[gPartyMenu.slotId], gStringVar1);
@@ -5763,7 +5871,9 @@ void ItemUseCB_RareCandy(u8 taskId, TaskFunc task)
 
             DisplayPartyMenuMessage(gStringVar4, TRUE);
             ScheduleBgCopyTilemapToVram(2);
-            gTasks[taskId].func = Task_DisplayLevelUpStatsPg1;
+            gTasks[taskId].func = task;
+            sInitialLevel += 1; // so the Pokemon doesn't learn a move meant for its previous level
+            gTasks[taskId].func = Task_TryLearnNewMoves;
         }
         else
         {

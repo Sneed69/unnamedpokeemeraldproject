@@ -160,7 +160,12 @@ const s8 gPokeblockFlavorCompatibilityTable[NUM_NATURES * FLAVOR_COUNT] =
           0,      0,    0,     1,    -1, // Gentle
           0,      0,   -1,     1,     0, // Sassy
           0,     -1,    0,     1,     0, // Careful
-          0,      0,    0,     0,     0  // Quirky
+          0,      0,    0,     0,     0, // Quirky
+         -1,     -1,   -1,     1,     1, // Grumpy
+          0,      1,   -1,    -1,     1, // Collected
+          0,      0,    0,     0,     0, // Skittish
+         -1,      1,    1,    -1,    -1, // Regal
+          1,     -1,    0,     1,    -1, // Free-spirited
 };
 
 static const struct BgTemplate sBgTemplatesForPokeblockMenu[] =

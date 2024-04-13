@@ -383,35 +383,45 @@ const u8 *const gNatureNamePointers[NUM_NATURES] =
     [NATURE_SASSY] = COMPOUND_STRING("Sassy"),
     [NATURE_CAREFUL] = COMPOUND_STRING("Careful"),
     [NATURE_QUIRKY] = COMPOUND_STRING("Quirky"),
+    [NATURE_GRUMPY] = COMPOUND_STRING("Grumpy"),
+    [NATURE_COLLECTED] = COMPOUND_STRING("Collected"),
+    [NATURE_SKITTISH] = COMPOUND_STRING("Skittish"),
+    [NATURE_REGAL] = COMPOUND_STRING("Regal"),
+    [NATURE_FREE_SPIRITED] = COMPOUND_STRING("Free-spirited"),
 };
 
-const s8 gNatureStatTable[NUM_NATURES][NUM_NATURE_STATS] =
-{                      // Attack  Defense  Speed  Sp.Atk  Sp. Def
-    [NATURE_HARDY]   = {    0,      0,      0,      0,      0   },
-    [NATURE_LONELY]  = {   +1,     -1,      0,      0,      0   },
-    [NATURE_BRAVE]   = {   +1,      0,     -1,      0,      0   },
-    [NATURE_ADAMANT] = {   +1,      0,      0,     -1,      0   },
-    [NATURE_NAUGHTY] = {   +1,      0,      0,      0,     -1   },
-    [NATURE_BOLD]    = {   -1,     +1,      0,      0,      0   },
-    [NATURE_DOCILE]  = {    0,      0,      0,      0,      0   },
-    [NATURE_RELAXED] = {    0,     +1,     -1,      0,      0   },
-    [NATURE_IMPISH]  = {    0,     +1,      0,     -1,      0   },
-    [NATURE_LAX]     = {    0,     +1,      0,      0,     -1   },
-    [NATURE_TIMID]   = {   -1,      0,     +1,      0,      0   },
-    [NATURE_HASTY]   = {    0,     -1,     +1,      0,      0   },
-    [NATURE_SERIOUS] = {    0,      0,      0,      0,      0   },
-    [NATURE_JOLLY]   = {    0,      0,     +1,     -1,      0   },
-    [NATURE_NAIVE]   = {    0,      0,     +1,      0,     -1   },
-    [NATURE_MODEST]  = {   -1,      0,      0,     +1,      0   },
-    [NATURE_MILD]    = {    0,     -1,      0,     +1,      0   },
-    [NATURE_QUIET]   = {    0,      0,     -1,     +1,      0   },
-    [NATURE_BASHFUL] = {    0,      0,      0,      0,      0   },
-    [NATURE_RASH]    = {    0,      0,      0,     +1,     -1   },
-    [NATURE_CALM]    = {   -1,      0,      0,      0,     +1   },
-    [NATURE_GENTLE]  = {    0,     -1,      0,      0,     +1   },
-    [NATURE_SASSY]   = {    0,      0,     -1,      0,     +1   },
-    [NATURE_CAREFUL] = {    0,      0,      0,     -1,     +1   },
-    [NATURE_QUIRKY]  = {    0,      0,      0,      0,      0   },
+const s8 gNatureStatTable[NUM_NATURES][NUM_STATS] =
+{                              // HP Attack  Defense  Speed  Sp.Atk  Sp. Def
+    [NATURE_HARDY]          = {   1,   2,      0,      0,      0,      0   },
+    [NATURE_LONELY]         = {   0,   2,      0,      0,      1,      0   },
+    [NATURE_BRAVE]          = {   0,   2,      0,      0,      0,      1   },
+    [NATURE_ADAMANT]        = {   0,   2,      1,      0,      0,      0   },
+    [NATURE_NAUGHTY]        = {   0,   2,      0,      0,      0,      1   },
+    [NATURE_BOLD]           = {   1,   0,      2,      0,      0,      0   },
+    [NATURE_DOCILE]         = {   0,   0,      2,      0,      0,      1   },
+    [NATURE_RELAXED]        = {   0,   0,      2,      0,      1,      0   },
+    [NATURE_IMPISH]         = {   0,   1,      2,      0,      0,      0   },
+    [NATURE_LAX]            = {   0,   0,      2,      1,      0,      0   },
+    [NATURE_TIMID]          = {   0,   0,      1,      2,      0,      0   },
+    [NATURE_HASTY]          = {   0,   0,      0,      2,      1,      0   },
+    [NATURE_SERIOUS]        = {   1,   0,      0,      2,      0,      0   },
+    [NATURE_JOLLY]          = {   0,   0,      0,      2,      0,      1   },
+    [NATURE_NAIVE]          = {   0,   1,      0,      2,      0,      0   },
+    [NATURE_MODEST]         = {   0,   0,      0,      0,      2,      1   },
+    [NATURE_MILD]           = {   1,   0,      0,      0,      2,      0   },
+    [NATURE_QUIET]          = {   1,   0,      0,      0,      2,      0   },
+    [NATURE_BASHFUL]        = {   0,   1,      0,      0,      2,      0   },
+    [NATURE_RASH]           = {   0,   0,      0,      0,      2,      1   },
+    [NATURE_CALM]           = {   0,   0,      0,      0,      1,      2   },
+    [NATURE_GENTLE]         = {   1,   0,      0,      0,      0,      2   },
+    [NATURE_SASSY]          = {   0,   1,      0,      0,      0,      2   },
+    [NATURE_CAREFUL]        = {   0,   0,      1,      0,      0,      2   },
+    [NATURE_QUIRKY]         = {   0,   0,      0,      1,      0,      2   },
+    [NATURE_GRUMPY]         = {   2,   0,      1,      0,      0,      0   },
+    [NATURE_COLLECTED]      = {   2,   0,      0,      0,      0,      1   },
+    [NATURE_SKITTISH]       = {   2,   0,      0,      1,      0,      0   },
+    [NATURE_REGAL]          = {   2,   0,      0,      0,      1,      0   },
+    [NATURE_FREE_SPIRITED]  = {   2,   1,      0,      0,      0,      0   },
 };
 
 #include "data/graphics/pokemon.h"
@@ -1000,6 +1010,13 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, 
         value++;
     SetBoxMonData(boxMon, MON_DATA_HIDDEN_POWER_TYPE, &value);
 
+    for (value = STAT_HP; value < NUM_STATS; value++)
+    {
+        if (gNatureStatTable[personality % NUM_NATURES][value] == 2)
+            SetBoxMonData(boxMon, MON_DATA_MAJOR_PROFICIENCY, &value);
+        else if (gNatureStatTable[personality % NUM_NATURES][value] == 1)
+            SetBoxMonData(boxMon, MON_DATA_MINOR_PROFICIENCY, &value);
+    }
     GiveBoxMonInitialMoveset(boxMon);
 }
 
@@ -1211,6 +1228,10 @@ void CreateBattleTowerMon_HandleLevel(struct Pokemon *mon, struct BattleTowerPok
     SetMonData(mon, MON_DATA_SPDEF_IV, &value);
     value = src->hiddenPowerType;
     SetMonData(mon, MON_DATA_HIDDEN_POWER_TYPE, &value);
+    value = src->minorProficiency;
+    SetMonData(mon, MON_DATA_MINOR_PROFICIENCY, &value);
+    value = src->majorProficiency;
+    SetMonData(mon, MON_DATA_MAJOR_PROFICIENCY, &value);
     MonRestorePP(mon);
     CalculateMonStats(mon);
 }
@@ -1314,6 +1335,8 @@ void ConvertPokemonToBattleTowerPokemon(struct Pokemon *mon, struct BattleTowerP
     dest->spDefenseIV  = GetMonData(mon, MON_DATA_SPDEF_IV, NULL);
     dest->abilityNum = GetMonData(mon, MON_DATA_ABILITY_NUM, NULL);
     dest->hiddenPowerType = GetMonData(mon, MON_DATA_HIDDEN_POWER_TYPE, NULL);
+    dest->majorProficiency = GetMonData(mon, MON_DATA_MAJOR_PROFICIENCY, NULL);
+    dest->minorProficiency = GetMonData(mon, MON_DATA_MINOR_PROFICIENCY, NULL);
     dest->personality = GetMonData(mon, MON_DATA_PERSONALITY, NULL);
     GetMonData(mon, MON_DATA_NICKNAME, dest->nickname);
 }
@@ -1435,11 +1458,14 @@ void CreateEnemyEventMon(void)
     return 0;
 }*/
 
-#define CALC_STAT(base, statIndex, field)               \
+#define CALC_STAT(base, statIndex, field)                       \
 {                                                               \
-    u8 baseStat = gSpeciesInfo[species].base;                   \
-    s32 n = (2 * baseStat * level / 100) + 5; \
-    n = ModifyStatByNature(nature, n, statIndex);               \
+    s32 n;                                                      \
+    n = gSpeciesInfo[species].base + STATS_BASE;                \
+    if (majorProf == statIndex)                                 \
+        n += PROFICIENCY_BONUS_MAJOR;                           \
+    else if (minorProf == statIndex)                            \
+        n += PROFICIENCY_BONUS_MINOR;                           \
     SetMonData(mon, field, &n);                                 \
 }
 
@@ -1448,32 +1474,12 @@ void CalculateMonStats(struct Pokemon *mon)
     s32 oldMaxHP = GetMonData(mon, MON_DATA_MAX_HP, NULL);
     s32 currentHP = GetMonData(mon, MON_DATA_HP, NULL);
     u16 species = GetMonData(mon, MON_DATA_SPECIES, NULL);
-    u8 friendship = GetMonData(mon, MON_DATA_FRIENDSHIP, NULL);
     s32 level = GetLevelFromMonExp(mon);
     s32 newMaxHP = 0;
-
-    u8 nature = GetNature(mon);
+    u32 majorProf = GetMonData(mon, MON_DATA_MAJOR_PROFICIENCY, NULL);
+    u32 minorProf = GetMonData(mon, MON_DATA_MINOR_PROFICIENCY, NULL);
 
     SetMonData(mon, MON_DATA_LEVEL, &level);
-
-    if (species == SPECIES_SHEDINJA)
-    {
-        SetMonData(mon, MON_DATA_HP_EV, &newMaxHP);
-        SetMonData(mon, MON_DATA_DEF_EV, &newMaxHP);
-        SetMonData(mon, MON_DATA_SPDEF_EV, &newMaxHP);
-        newMaxHP = 3;
-    }
-    else
-    {
-        s32 n = 2 * gSpeciesInfo[species].baseHP;
-        newMaxHP = (n * level / 100) + level + 10;
-    }
-
-    gBattleScripting.levelUpHP = newMaxHP - oldMaxHP;
-    if (gBattleScripting.levelUpHP == 0)
-        gBattleScripting.levelUpHP = 1;
-
-    SetMonData(mon, MON_DATA_MAX_HP, &newMaxHP);
 
     CALC_STAT(baseAttack, STAT_ATK, MON_DATA_ATK)
     CALC_STAT(baseDefense, STAT_DEF, MON_DATA_DEF)
@@ -1481,29 +1487,26 @@ void CalculateMonStats(struct Pokemon *mon)
     CALC_STAT(baseSpAttack, STAT_SPATK, MON_DATA_SPATK)
     CALC_STAT(baseSpDefense, STAT_SPDEF, MON_DATA_SPDEF)
 
-    if (species == SPECIES_SHEDINJA)
+    newMaxHP = gSpeciesInfo[species].baseHP + HP_BASE;
+    if (majorProf == STAT_HP)
+        newMaxHP += PROFICIENCY_BONUS_MAJOR;
+    if (minorProf == STAT_HP)
+        newMaxHP += PROFICIENCY_BONUS_MINOR;
+    SetMonData(mon, MON_DATA_MAX_HP, &newMaxHP);
+    
+    if (currentHP == 0 && oldMaxHP == 0)
+            currentHP = newMaxHP;
+    else if (currentHP != 0)
     {
-        if (currentHP != 0 || oldMaxHP == 0)
+        if (newMaxHP > oldMaxHP)
+            currentHP += newMaxHP - oldMaxHP;
+        if (currentHP <= 0)
             currentHP = 1;
-        else
-            return;
+        if (currentHP > newMaxHP)
+            currentHP = newMaxHP;
     }
     else
-    {
-        if (currentHP == 0 && oldMaxHP == 0)
-            currentHP = newMaxHP;
-        else if (currentHP != 0)
-        {
-            if (newMaxHP > oldMaxHP)
-                currentHP += newMaxHP - oldMaxHP;
-            if (currentHP <= 0)
-                currentHP = 1;
-            if (currentHP > newMaxHP)
-                currentHP = newMaxHP;
-        }
-        else
-            return;
-    }
+        return;
 
     SetMonData(mon, MON_DATA_HP, &currentHP);
 }
@@ -1736,7 +1739,6 @@ void DeleteFirstMoveAndGiveMoveToBoxMon(struct BoxPokemon *boxMon, u16 move)
 {
     s32 i;
     u16 moves[MAX_MON_MOVES];
-    u8 pp[MAX_MON_MOVES];
 
     for (i = 0; i < MAX_MON_MOVES - 1; i++)
     {
@@ -1744,7 +1746,6 @@ void DeleteFirstMoveAndGiveMoveToBoxMon(struct BoxPokemon *boxMon, u16 move)
     }
 
     moves[MAX_MON_MOVES - 1] = move;
-    pp[MAX_MON_MOVES - 1] = gMovesInfo[move].pp;
 
     for (i = 0; i < MAX_MON_MOVES; i++)
     {
@@ -2229,6 +2230,12 @@ u32 GetBoxMonData3(struct BoxPokemon *boxMon, s32 field, u8 *data)
     case MON_DATA_HIDDEN_POWER_TYPE:
         retVal = boxMon->hiddenPowerType;
         break;
+    case MON_DATA_MAJOR_PROFICIENCY:
+        retVal = boxMon->majorProficiency;
+        break;
+    case MON_DATA_MINOR_PROFICIENCY:
+        retVal = boxMon->minorProficiency;
+        break;
     default:
         break;
     }
@@ -2476,6 +2483,12 @@ void SetBoxMonData(struct BoxPokemon *boxMon, s32 field, const void *dataArg)
     }
     case MON_DATA_HIDDEN_POWER_TYPE:
         SET8(boxMon->hiddenPowerType);
+        break;
+    case MON_DATA_MAJOR_PROFICIENCY:
+        SET8(boxMon->majorProficiency);
+        break;
+    case MON_DATA_MINOR_PROFICIENCY:
+        SET8(boxMon->minorProficiency);
         break;
     case MON_DATA_HP_LOST:
         break;
@@ -2831,6 +2844,8 @@ void PokemonToBattleMon(struct Pokemon *src, struct BattlePokemon *dst, bool8 re
     dst->spDefense = GetMonData(src, MON_DATA_SPDEF, NULL);
     dst->abilityNum = GetMonData(src, MON_DATA_ABILITY_NUM, NULL);
     dst->hiddenPowerType = GetMonData(src, MON_DATA_HIDDEN_POWER_TYPE, NULL);
+    dst->majorProficiency = GetMonData(src, MON_DATA_MAJOR_PROFICIENCY, NULL);
+    dst->minorProficiency = GetMonData(src, MON_DATA_MINOR_PROFICIENCY, NULL);
     dst->otId = GetMonData(src, MON_DATA_OT_ID, NULL);
     dst->type1 = gSpeciesInfo[dst->species].types[0];
     dst->type2 = gSpeciesInfo[dst->species].types[1];
@@ -4235,42 +4250,6 @@ u8 GetTrainerEncounterMusicId(u16 trainerOpponentId)
         return GetTrainerEncounterMusicIdInTrainerHill(trainerOpponentId);
     else
         return gTrainers[SanitizeTrainerId(trainerOpponentId)].encounterMusic_gender & (F_TRAINER_FEMALE - 1);
-}
-
-u16 ModifyStatByNature(u8 nature, u16 stat, u8 statIndex)
-{
-// Because this is a u16 it will be unable to store the
-// result of the multiplication for any stat > 595 for a
-// positive nature and > 728 for a negative nature.
-// Neither occur in the base game, but this can happen if
-// any Nature-affected base stat is increased to a value
-// above 248. The closest by default is Shuckle at 230.
-#ifdef BUGFIX
-    u32 retVal;
-#else
-    u16 retVal;
-#endif
-
-    // Don't modify HP, Accuracy, or Evasion by nature
-    if (statIndex <= STAT_HP || statIndex > NUM_NATURE_STATS)
-        return stat;
-
-    switch (gNatureStatTable[nature][statIndex - 1])
-    {
-    case 1:
-        retVal = stat * 110;
-        retVal /= 100;
-        break;
-    case -1:
-        retVal = stat * 90;
-        retVal /= 100;
-        break;
-    default:
-        retVal = stat;
-        break;
-    }
-
-    return retVal;
 }
 
 #define IS_LEAGUE_BATTLE(trainerClass)              \

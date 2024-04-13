@@ -70,7 +70,12 @@
 #define NATURE_SASSY    22
 #define NATURE_CAREFUL  23
 #define NATURE_QUIRKY   24
-#define NUM_NATURES     25
+#define NATURE_GRUMPY   25
+#define NATURE_COLLECTED   26
+#define NATURE_SKITTISH   27
+#define NATURE_REGAL   28
+#define NATURE_FREE_SPIRITED   29
+#define NUM_NATURES     30
 
 // Pokémon Stats
 #define STAT_HP      0
@@ -90,8 +95,6 @@
 #define MIN_STAT_STAGE     0
 #define DEFAULT_STAT_STAGE 6
 #define MAX_STAT_STAGE    12
-
-#define STARTER_NATURE                       NATURE_HARDY
 
 // Held Item Chances
 #define ITEM_CHANCE_COMMON          25
@@ -342,6 +345,12 @@
 #define NUM_ABILITY_PERSONALITY 0xFF
 
 #define LEGENDARY_PERFECT_IV_COUNT 3
+
+#define PROFICIENCY_BONUS_MAJOR 50
+#define PROFICIENCY_BONUS_MINOR 25
+
+#define STATS_BASE 20
+#define HP_BASE 75
 
 #endif // GUARD_CONSTANTS_POKEMON_H
 

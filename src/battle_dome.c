@@ -2137,7 +2137,7 @@ static void InitDomeTrainers(void)
 
 static void CalcDomeMonStats(u16 species, int level, int ivs, u8 evBits, u8 nature, int *stats)
 {
-    if (species == SPECIES_SHEDINJA)
+    /*if (species == SPECIES_SHEDINJA)
     {
         stats[STAT_HP] = 1;
     }
@@ -2151,7 +2151,7 @@ static void CalcDomeMonStats(u16 species, int level, int ivs, u8 evBits, u8 natu
     CALC_STAT(baseDefense, STAT_DEF);
     CALC_STAT(baseSpeed, STAT_SPEED);
     CALC_STAT(baseSpAttack, STAT_SPATK);
-    CALC_STAT(baseSpDefense, STAT_SPDEF);
+    CALC_STAT(baseSpDefense, STAT_SPDEF);*/
 }
 
 static void SwapDomeTrainers(int id1, int id2, u16 *statsArray)
@@ -4148,7 +4148,7 @@ static void DisplayTrainerInfoOnCard(u8 flags, u8 trainerTourneyId)
     struct TextPrinterTemplate textPrinter;
     int i, j, k;
     int trainerId = 0;
-    u8 nature = 0;
+    //u8 nature = 0;
     int arrId = 0;
     int windowId = WIN_TRAINER_NAME;
     int x = 0, y = 0;
@@ -4419,7 +4419,7 @@ static void DisplayTrainerInfoOnCard(u8 flags, u8 trainerTourneyId)
             allocatedArray[NUM_STATS] += allocatedArray[STAT_HP];
 
             // Add the EVs with the nature modifier for this mon and and track number of negative natures
-            for (j = 0; j < NUM_NATURE_STATS; j++)
+            /*for (j = 0; j < NUM_NATURE_STATS; j++)
             {
                 if (trainerId == TRAINER_FRONTIER_BRAIN)
                     nature = GetFrontierBrainMonNature(i);
@@ -4439,7 +4439,7 @@ static void DisplayTrainerInfoOnCard(u8 flags, u8 trainerTourneyId)
                 {
                     allocatedArray[j + NUM_STATS + 1] += allocatedArray[j + 1];
                 }
-            }
+            }*/
         }
         for (j = 0, i = 0; i < NUM_STATS; i++)
             j += allocatedArray[NUM_STATS + i];
@@ -4468,7 +4468,7 @@ static void DisplayTrainerInfoOnCard(u8 flags, u8 trainerTourneyId)
                 evBits >>= 1;
             }
 
-            allocatedArray[NUM_STATS] += allocatedArray[STAT_HP];
+            /*allocatedArray[NUM_STATS] += allocatedArray[STAT_HP];
             for (j = 0; j < NUM_NATURE_STATS; j++)
             {
                 nature = gFacilityTrainerMons[DOME_MONS[trainerTourneyId][i]].nature;
@@ -4485,7 +4485,7 @@ static void DisplayTrainerInfoOnCard(u8 flags, u8 trainerTourneyId)
                 {
                     allocatedArray[j + NUM_STATS + 1] += allocatedArray[j + 1];
                 }
-            }
+            }*/
         }
         for (j = 0, i = 0; i < NUM_STATS; i++)
             j += allocatedArray[i + NUM_STATS];

@@ -109,6 +109,13 @@ const u32 *const gItemIconTable[ITEMS_COUNT + 1][2] =
     [ITEM_JOLLY_MINT] = {gItemIcon_Mint, gItemIconPalette_GreenMint},
     [ITEM_NAIVE_MINT] = {gItemIcon_Mint, gItemIconPalette_GreenMint},
     [ITEM_SERIOUS_MINT] = {gItemIcon_Mint, gItemIconPalette_YellowMint},
+    //Proficiency Mints
+    [ITEM_SALTY_MINT] = {gItemIcon_Mint, gItemIconPalette_LightBlueMint},
+    [ITEM_SPICY_MINT] = {gItemIcon_Mint, gItemIconPalette_RedMint},
+    [ITEM_DRY_MINT] = {gItemIcon_Mint, gItemIconPalette_BlueMint},
+    [ITEM_SWEET_MINT] = {gItemIcon_Mint, gItemIconPalette_PinkMint},
+    [ITEM_BITTER_MINT] = {gItemIcon_Mint, gItemIconPalette_GreenMint},
+    [ITEM_SOUR_MINT] = {gItemIcon_Mint, gItemIconPalette_YellowMint},
     // Candy
     [ITEM_RARE_CANDY] = {gItemIcon_RareCandy, gItemIconPalette_RareCandy},
     [ITEM_EXP_CANDY_XS] = {gItemIcon_ExpCandyXS, gItemIconPalette_ExpCandies},

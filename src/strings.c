@@ -538,8 +538,8 @@ const u8 gText_EggAboutToHatch[] = _("It's making sounds.\nIt's about to hatch!"
 const u8 gText_HMMovesCantBeForgotten2[] = _("HM moves can't be\nforgotten now.");
 
 const u8 gText_XNatureMetAtYZ[] = _(
-    "{DYNAMIC 0}{DYNAMIC 2}{DYNAMIC 1}{DYNAMIC 5} nature, met at {LV_2}{DYNAMIC 0}{DYNAMIC 3}{DYNAMIC 1},\n"
-    "{DYNAMIC 0}{DYNAMIC 4}{DYNAMIC 1}.");
+    "{DYNAMIC 0}{DYNAMIC 2}{DYNAMIC 1}{DYNAMIC 5} nature, met in\n"
+    "{DYNAMIC 0}{DYNAMIC 4}{DYNAMIC 1}, at {LV_2}{DYNAMIC 0}{DYNAMIC 3}{DYNAMIC 1}.");
         
 const u8 gText_XNatureHatchedAtYZ[] = _(
     "{DYNAMIC 0}{DYNAMIC 2}{DYNAMIC 1}{DYNAMIC 5} nature,\n"

@@ -72,6 +72,8 @@ struct TrainerMon
     bool8 shouldDynamax:1;
     bool8 shouldTerastal:1;
     u8 hiddenPowerType:5;
+    u8 majorProficiency:3;
+    u8 minorProficiency:3;
 };
 
 #define TRAINER_PARTY(partyArray) partyArray, .partySize = ARRAY_COUNT(partyArray)

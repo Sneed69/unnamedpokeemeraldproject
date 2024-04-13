@@ -56,18 +56,24 @@ static void HealPlayerBoxes(void)
     }
 }
 
-u8 ScriptGiveStarter(u16 species, u8 level, u16 item, u8 nature)
+u8 ScriptGiveStarter(u16 species, u8 level)
 {
     u16 nationalDexNum;
     int sentToPc;
     u8 heldItem[2];
     struct Pokemon mon;
     u8 i = 0;
+    u8 nature;
+
+    if (species == SPECIES_TREECKO)
+        nature = NATURE_NAIVE;
+    else if (species == SPECIES_TORCHIC)
+        nature = NATURE_LONELY;
+    else
+        nature = NATURE_FREE_SPIRITED;
+
     
     CreateMonWithNature(&mon, species, level, 0, nature);
-    heldItem[0] = item;
-    heldItem[1] = item >> 8;
-    SetMonData(&mon, MON_DATA_HELD_ITEM, heldItem);
     SetMonData(&mon, MON_DATA_ABILITY_NUM, &i);
     sentToPc = GiveMonToPlayer(&mon);
     nationalDexNum = SpeciesToNationalPokedexNum(species);

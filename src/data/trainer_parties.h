@@ -5829,6 +5829,7 @@ static const struct TrainerMon sParty_RivalRoute103Mudkip[] = {
     {
     .lvl = 5,
     .species = SPECIES_TREECKO,
+    .nature = NATURE_NAIVE,
     }
 };
 
@@ -5836,6 +5837,7 @@ static const struct TrainerMon sParty_RivalRoute103Treecko[] = {
     {
     .lvl = 5,
     .species = SPECIES_TORCHIC,
+    .nature = NATURE_LONELY,
     }
 };
 
@@ -5843,6 +5845,7 @@ static const struct TrainerMon sParty_RivalRoute103Torchic[] = {
     {
     .lvl = 5,
     .species = SPECIES_MUDKIP,
+    .nature = NATURE_FREE_SPIRITED,
     }
 };
 

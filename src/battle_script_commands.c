@@ -12688,9 +12688,9 @@ static void Cmd_dmgtolevel(void)
     CMD_ARGS();
 
     if (gBattleTypeFlags & BATTLE_TYPE_LEGENDARY && GetBattlerSide(gBattlerTarget) == B_SIDE_OPPONENT)
-        gBattleMoveDamage = gBattleMons[gBattlerAttacker].level / 4;
+        gBattleMoveDamage = 12;
     else
-        gBattleMoveDamage = gBattleMons[gBattlerAttacker].level;
+        gBattleMoveDamage = 50;
         
     gBattlescriptCurrInstr = cmd->nextInstr;
 }
@@ -12702,9 +12702,9 @@ static void Cmd_psywavedamageeffect(void)
     s32 randDamage = (Random() % 101 + 50);
 
     if (gBattleTypeFlags & BATTLE_TYPE_LEGENDARY && GetBattlerSide(gBattlerTarget) == B_SIDE_OPPONENT)
-        gBattleMoveDamage = gBattleMons[gBattlerAttacker].level * randDamage / 400;
+        gBattleMoveDamage = 50 * randDamage / 400;
     else
-        gBattleMoveDamage = gBattleMons[gBattlerAttacker].level * randDamage / 100;
+        gBattleMoveDamage = 50 * randDamage / 100;
     gBattlescriptCurrInstr = cmd->nextInstr;
 }
 

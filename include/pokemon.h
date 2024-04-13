@@ -110,6 +110,8 @@ enum {
     MON_DATA_TERA_TYPE,
     MON_DATA_EVOLUTION_TRACKER,
     MON_DATA_HIDDEN_POWER_TYPE,
+    MON_DATA_MAJOR_PROFICIENCY,
+    MON_DATA_MINOR_PROFICIENCY,
 };
 
 struct BoxPokemon
@@ -243,6 +245,8 @@ struct BattlePokemon
     /*0x55*/ u32 otId;
     /*0x59*/ u8 metLevel;
     /*0x5A*/ bool8 isShiny;
+             u8 majorProficiency;
+             u8 minorProficiency;
 };
 
 struct Evolution
@@ -527,7 +531,7 @@ extern const u8 gPPUpAddValues[];
 extern const u8 gStatStageRatios[MAX_STAT_STAGE + 1][2];
 extern const u16 gUnionRoomFacilityClasses[];
 extern const struct SpriteTemplate gBattlerSpriteTemplates[];
-extern const s8 gNatureStatTable[][5];
+extern const s8 gNatureStatTable[][NUM_STATS];
 extern const u32 sExpCandyExperienceTable[];
 extern const struct Ability gAbilitiesInfo[];
 
@@ -643,7 +647,7 @@ u8 GetPlayerFlankId(void);
 u16 GetLinkTrainerFlankId(u8 id);
 s32 GetBattlerMultiplayerId(u16 id);
 u8 GetTrainerEncounterMusicId(u16 trainerOpponentId);
-u16 ModifyStatByNature(u8 nature, u16 n, u8 statIndex);
+//u16 ModifyStatByNature(u8 nature, u16 n, u8 statIndex);
 void AdjustFriendship(struct Pokemon *mon, u8 event);
 void MonGainEVs(struct Pokemon *mon, u16 defeatedSpecies);
 u16 GetMonEVCount(struct Pokemon *mon);

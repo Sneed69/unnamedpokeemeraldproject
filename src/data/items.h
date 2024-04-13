@@ -1118,85 +1118,92 @@ const struct Item gItemsInfo[] =
     [ITEM_HP_UP] =
     {
         .name = _("HP Up"),
-        .price = (I_PRICE >= GEN_7) ? 10000 : 9800,
+        .price = 6900,
         .description = COMPOUND_STRING(
-            "Raises the base HP\n"
-            "of one Pokémon."),
+            "Makes the user's\n"
+            "minor proficiency\n"
+            "switch to HP."),
         .pocket = POCKET_CONSUMABLES,
         .type = ITEM_USE_PARTY_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_Medicine,
-        .effect = gItemEffect_HPUp,
+        .fieldUseFunc = ItemUseOutOfBattle_Proficiency,
+        .secondaryId = STAT_HP,
+        .holdEffectParam = MON_DATA_MINOR_PROFICIENCY,
     },
 
     [ITEM_PROTEIN] =
     {
         .name = _("Protein"),
-        .price = (I_PRICE >= GEN_7) ? 10000 : 9800,
+        .price = 6900,
         .description = COMPOUND_STRING(
-            "Raises the base\n"
-            "Attack stat of one\n"
-            "Pokémon."),
+            "Makes the user's\n"
+            "minor proficiency\n"
+            "switch to Attack."),
         .pocket = POCKET_CONSUMABLES,
         .type = ITEM_USE_PARTY_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_Medicine,
-        .effect = gItemEffect_Protein,
+        .fieldUseFunc = ItemUseOutOfBattle_Proficiency,
+        .secondaryId = STAT_ATK,
+        .holdEffectParam = MON_DATA_MINOR_PROFICIENCY,
     },
 
     [ITEM_IRON] =
     {
         .name = _("Iron"),
-        .price = (I_PRICE >= GEN_7) ? 10000 : 9800,
+        .price = 6900,
         .description = COMPOUND_STRING(
-            "Raises the base\n"
-            "Defense stat of\n"
-            "one Pokémon."),
+            "Makes the user's\n"
+            "minor proficiency\n"
+            "switch to Defense."),
         .pocket = POCKET_CONSUMABLES,
         .type = ITEM_USE_PARTY_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_Medicine,
-        .effect = gItemEffect_Iron,
+        .fieldUseFunc = ItemUseOutOfBattle_Proficiency,
+        .secondaryId = STAT_DEF,
+        .holdEffectParam = MON_DATA_MINOR_PROFICIENCY,
     },
 
     [ITEM_CALCIUM] =
     {
         .name = _("Calcium"),
-        .price = (I_PRICE >= GEN_7) ? 10000 : 9800,
+        .price = 6900,
         .description = COMPOUND_STRING(
-            "Raises the base\n"
-            "Sp. Atk stat of one\n"
-            "Pokémon."),
+            "Makes the user's\n"
+            "minor proficiency\n"
+            "switch to Sp. Atk."),
         .pocket = POCKET_CONSUMABLES,
         .type = ITEM_USE_PARTY_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_Medicine,
-        .effect = gItemEffect_Calcium,
+        .fieldUseFunc = ItemUseOutOfBattle_Proficiency,
+        .secondaryId = STAT_SPATK,
+        .holdEffectParam = MON_DATA_MINOR_PROFICIENCY,
     },
 
     [ITEM_ZINC] =
     {
         .name = _("Zinc"),
-        .price = (I_PRICE >= GEN_7) ? 10000 : 9800,
+        .price = 6900,
         .description = COMPOUND_STRING(
-            "Raises the base\n"
-            "Sp. Def stat of one\n"
-            "Pokémon."),
+            "Makes the user's\n"
+            "minor proficiency\n"
+            "switch to Sp. Def."),
         .pocket = POCKET_CONSUMABLES,
         .type = ITEM_USE_PARTY_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_Medicine,
-        .effect = gItemEffect_Zinc,
+        .fieldUseFunc = ItemUseOutOfBattle_Proficiency,
+        .secondaryId = STAT_SPDEF,
+        .holdEffectParam = MON_DATA_MINOR_PROFICIENCY,
     },
 
     [ITEM_CARBOS] =
     {
         .name = _("Carbos"),
         .pluralName = _("Carbos"),
-        .price = (I_PRICE >= GEN_7) ? 10000 : 9800,
+        .price = 6900,
         .description = COMPOUND_STRING(
-            "Raises the base\n"
-            "Speed stat of one\n"
-            "Pokémon."),
+            "Makes the user's\n"
+            "minor proficiency\n"
+            "switch to Speed."),
         .pocket = POCKET_CONSUMABLES,
         .type = ITEM_USE_PARTY_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_Medicine,
-        .effect = gItemEffect_Carbos,
+        .fieldUseFunc = ItemUseOutOfBattle_Proficiency,
+        .secondaryId = STAT_SPEED,
+        .holdEffectParam = MON_DATA_MINOR_PROFICIENCY,
     },
 
     [ITEM_PP_UP] =
@@ -12428,5 +12435,95 @@ const struct Item gItemsInfo[] =
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+    },
+
+    [ITEM_SALTY_MINT] =
+    {
+        .name = _("Salty Mint"),
+        .price = 9900,
+        .description = COMPOUND_STRING(
+            "Makes the smeller's\n"
+            "major proficiency\n"
+            "switch to HP."),
+        .pocket = POCKET_CONSUMABLES,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_Proficiency,
+        .secondaryId = STAT_HP,
+        .holdEffectParam = MON_DATA_MAJOR_PROFICIENCY,
+    },
+
+    [ITEM_SPICY_MINT] =
+    {
+        .name = _("Spicy Mint"),
+        .price = 9900,
+        .description = COMPOUND_STRING(
+            "Makes the smeller's\n"
+            "major proficiency\n"
+            "switch to Attack."),
+        .pocket = POCKET_CONSUMABLES,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_Proficiency,
+        .secondaryId = STAT_ATK,
+        .holdEffectParam = MON_DATA_MAJOR_PROFICIENCY,
+    },
+
+    [ITEM_DRY_MINT] =
+    {
+        .name = _("Dry Mint"),
+        .price = 9900,
+        .description = COMPOUND_STRING(
+            "Makes the smeller's\n"
+            "major proficiency\n"
+            "switch to Sp. Atk."),
+        .pocket = POCKET_CONSUMABLES,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_Proficiency,
+        .secondaryId = STAT_SPATK,
+        .holdEffectParam = MON_DATA_MAJOR_PROFICIENCY,
+    },
+
+    [ITEM_SWEET_MINT] =
+    {
+        .name = _("Sweet Mint"),
+        .price = 9900,
+        .description = COMPOUND_STRING(
+            "Makes the smeller's\n"
+            "major proficiency\n"
+            "switch to Speed."),
+        .pocket = POCKET_CONSUMABLES,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_Proficiency,
+        .secondaryId = STAT_SPEED,
+        .holdEffectParam = MON_DATA_MAJOR_PROFICIENCY,
+    },
+
+    [ITEM_BITTER_MINT] =
+    {
+        .name = _("Bitter Mint"),
+        .price = 9900,
+        .description = COMPOUND_STRING(
+            "Makes the smeller's\n"
+            "major proficiency\n"
+            "switch to Sp. Def."),
+        .pocket = POCKET_CONSUMABLES,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_Proficiency,
+        .secondaryId = STAT_SPDEF,
+        .holdEffectParam = MON_DATA_MAJOR_PROFICIENCY,
+    },
+
+    [ITEM_SOUR_MINT] =
+    {
+        .name = _("Sour Mint"),
+        .price = 9900,
+        .description = COMPOUND_STRING(
+            "Makes the smeller's\n"
+            "major proficiency\n"
+            "switch to Defense."),
+        .pocket = POCKET_CONSUMABLES,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_Proficiency,
+        .secondaryId = STAT_DEF,
+        .holdEffectParam = MON_DATA_MAJOR_PROFICIENCY,
     },
 };

@@ -190,6 +190,8 @@ static EWRAM_DATA struct PokemonSummaryScreenData
         u8 spAtkEV;
         u8 spDefEV;
         u8 teraType;
+        u8 majorProficiency;
+        u8 minorProficiency;
     } summary;
     u16 bgTilemapBuffers[PSS_PAGE_COUNT][2][0x400];
     u8 mode;
@@ -299,7 +301,7 @@ static void PrintHeldItemName(void);
 static void PrintSkillsPageText(void);
 static void PrintIVsEVsPageText(void);
 static void PrintRibbonCount(void);
-static void BufferStat(u8 *dst, s8 natureMod, u32 stat, u32 strId, u32 n);
+static void BufferStat(u8 *dst, u32 statIndex, u32 stat, u32 strId, u32 n);
 static void BufferLeftColumnStats(void);
 static void PrintLeftColumnStats(void);
 static void BufferRightColumnStats(void);
@@ -344,7 +346,7 @@ static void DestroyMoveSelectorSprites(u8);
 static void SetMainMoveSelectorColor(u8);
 static void KeepMoveSelectorVisible(u8);
 static void SummaryScreen_DestroyAnimDelayTask(void);
-static void BufferIvOrEvStats(u8 mode);
+//static void BufferIvOrEvStats(u8 mode);
 
 static const struct BgTemplate sBgTemplates[] =
 {
@@ -1552,7 +1554,7 @@ static bool8 ExtractMonDataToSummaryStruct(struct Pokemon *mon)
         sum->spatk = GetMonData(mon, MON_DATA_SPATK);
         sum->spdef = GetMonData(mon, MON_DATA_SPDEF);
         sum->speed = GetMonData(mon, MON_DATA_SPEED);
-        sum->hpIV = GetMonData(mon, MON_DATA_HP_IV);
+        /*sum->hpIV = GetMonData(mon, MON_DATA_HP_IV);
         sum->atkIV = GetMonData(mon, MON_DATA_ATK_IV);
         sum->defIV = GetMonData(mon, MON_DATA_DEF_IV);
         sum->spAtkIV = GetMonData(mon, MON_DATA_SPATK_IV);
@@ -1563,7 +1565,7 @@ static bool8 ExtractMonDataToSummaryStruct(struct Pokemon *mon)
         sum->defEV = GetMonData(mon, MON_DATA_DEF_EV);
         sum->spAtkEV = GetMonData(mon, MON_DATA_SPATK_EV);
         sum->spDefEV = GetMonData(mon, MON_DATA_SPDEF_EV);
-        sum->speedEV = GetMonData(mon, MON_DATA_SPEED_EV);
+        sum->speedEV = GetMonData(mon, MON_DATA_SPEED_EV);*/
         break;
     case 3:
         GetMonData(mon, MON_DATA_OT_NAME, sum->OTName);
@@ -1580,6 +1582,8 @@ static bool8 ExtractMonDataToSummaryStruct(struct Pokemon *mon)
         sum->ribbonCount = GetMonData(mon, MON_DATA_RIBBON_COUNT);
         sum->teraType = GetMonData(mon, MON_DATA_TERA_TYPE);
         sum->isShiny = GetMonData(mon, MON_DATA_IS_SHINY);
+        sum->majorProficiency = GetMonData(mon, MON_DATA_MAJOR_PROFICIENCY);
+        sum->minorProficiency = GetMonData(mon, MON_DATA_MINOR_PROFICIENCY);
         return TRUE;
     }
     sMonSummaryScreen->switchCounter++;
@@ -3553,19 +3557,19 @@ static void PrintRibbonCount(void)
     PrintTextOnWindow(AddWindowFromTemplateList(sPageSkillsTemplate, PSS_DATA_WINDOW_SKILLS_RIBBON_COUNT), text, x, 1, 0, 0);
 }
 
-static void BufferStat(u8 *dst, s8 natureMod, u32 stat, u32 strId, u32 n)
+static void BufferStat(u8 *dst, u32 statIndex, u32 stat, u32 strId, u32 n)
 {
-    static const u8 sTextNatureUp[] = _("{COLOR 5}{SHADOW 6}");
-    static const u8 sTextNatureNeutral[] = _("{COLOR 1}{SHADOW 2}");
-    static const u8 sTextNatureDown[] = _("{COLOR 1}{SHADOW 9}");
+    static const u8 sTextNeutral[] = _("{COLOR 1}{SHADOW 2}");
+    static const u8 sTextMajor[] = _("{COLOR 5}{SHADOW 9}");
+    static const u8 sTextMinor[] = _("{COLOR 1}{SHADOW 9}");
     u8 *txtPtr;
 
-    if (natureMod == 0 || !SUMMARY_SCREEN_NATURE_COLORS)
-        txtPtr = StringCopy(dst, sTextNatureNeutral);
-    else if (natureMod > 0)
-        txtPtr = StringCopy(dst, sTextNatureUp);
+    if (statIndex == sMonSummaryScreen->summary.majorProficiency)
+        txtPtr = StringCopy(dst, sTextMajor);
+    else if (statIndex == sMonSummaryScreen->summary.minorProficiency)
+        txtPtr = StringCopy(dst, sTextMinor);
     else
-        txtPtr = StringCopy(dst, sTextNatureDown);
+        txtPtr = StringCopy(dst, sTextNeutral);
 
     ConvertIntToDecimalStringN(txtPtr, stat, STR_CONV_MODE_RIGHT_ALIGN, n);
     DynamicPlaceholderTextUtil_SetPlaceholderPtr(strId, dst);
@@ -3577,13 +3581,12 @@ static void BufferLeftColumnStats(void)
     u8 *maxHPString = Alloc(20);
     u8 *attackString = Alloc(20);
     u8 *defenseString = Alloc(20);
-    const s8 *natureMod = gNatureStatTable[sMonSummaryScreen->summary.nature];
 
     DynamicPlaceholderTextUtil_Reset();
-    BufferStat(currentHPString, 0, sMonSummaryScreen->summary.currentHP, 0, 3);
-    BufferStat(maxHPString, 0, sMonSummaryScreen->summary.maxHP, 1, 3);
-    BufferStat(attackString, natureMod[STAT_ATK - 1], sMonSummaryScreen->summary.atk, 2, 7);
-    BufferStat(defenseString, natureMod[STAT_DEF - 1], sMonSummaryScreen->summary.def, 3, 7);
+    BufferStat(currentHPString, STAT_HP, sMonSummaryScreen->summary.currentHP, 0, 3);
+    BufferStat(maxHPString, STAT_HP, sMonSummaryScreen->summary.maxHP, 1, 3);
+    BufferStat(attackString, STAT_ATK, sMonSummaryScreen->summary.atk, 2, 7);
+    BufferStat(defenseString, STAT_DEF, sMonSummaryScreen->summary.def, 3, 7);
     DynamicPlaceholderTextUtil_ExpandPlaceholders(gStringVar4, sStatsLeftColumnLayout);
 
     Free(currentHPString);
@@ -3599,12 +3602,10 @@ static void PrintLeftColumnStats(void)
 
 static void BufferRightColumnStats(void)
 {
-    const s8 *natureMod = gNatureStatTable[sMonSummaryScreen->summary.nature];
-
     DynamicPlaceholderTextUtil_Reset();
-    BufferStat(gStringVar1, natureMod[STAT_SPATK - 1], sMonSummaryScreen->summary.spatk, 0, 3);
-    BufferStat(gStringVar2, natureMod[STAT_SPDEF - 1], sMonSummaryScreen->summary.spdef, 1, 3);
-    BufferStat(gStringVar3, natureMod[STAT_SPEED - 1], sMonSummaryScreen->summary.speed, 2, 3);
+    BufferStat(gStringVar1, STAT_SPATK, sMonSummaryScreen->summary.spatk, 0, 3);
+    BufferStat(gStringVar2, STAT_SPDEF, sMonSummaryScreen->summary.spdef, 1, 3);
+    BufferStat(gStringVar3, STAT_SPEED, sMonSummaryScreen->summary.speed, 2, 3);
     DynamicPlaceholderTextUtil_ExpandPlaceholders(gStringVar4, sStatsRightColumnLayout);
 }
 
@@ -3619,7 +3620,7 @@ enum{
     BUFFERS_EVS,
 };
 
-static void BufferIvOrEvStats(u8 mode)
+/*static void BufferIvOrEvStats(u8 mode)
 {
     u16 hp, hp2, atk, def, spA, spD, spe;
     u8 *currHPString = Alloc(20);
@@ -3694,7 +3695,7 @@ static void BufferIvOrEvStats(u8 mode)
     }
 
     Free(currHPString);
-}
+}*/
 
 static void PrintExpPointsNextLevel(void)
 {
