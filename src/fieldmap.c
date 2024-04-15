@@ -893,13 +893,14 @@ static void LoadTilesetPalette(struct Tileset const *tileset, u16 destOffset, u1
         }
         else if (tileset->isSecondary)
         {
+            gPaletteOverrides[1] = tileset->paletteOverrides;
             LoadPaletteDayNight(tileset->palettes[NUM_PALS_IN_PRIMARY], destOffset, size);
             ApplyGlobalTintToPaletteEntries(destOffset, size >> 1);
         }
         else
         {
             gPaletteOverrides[2] = tileset->paletteOverrides;
-            LoadCompressedPalette((const u32 *)tileset->palettes, destOffset, size);
+            LoadCompressedPaletteDayNight((const u32 *)tileset->palettes, destOffset, size);
             ApplyGlobalTintToPaletteEntries(destOffset, size >> 1);
         }
     }
