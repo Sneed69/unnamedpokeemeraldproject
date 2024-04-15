@@ -73,6 +73,7 @@ void SetUpBattleVarsAndBirchZigzagoon(void)
     HandleLinkBattleSetup();
     gBattleControllerExecFlags = 0;
     ClearBattleAnimationVars();
+	BattleAI_SetupFlags();
 
     if (gBattleTypeFlags & BATTLE_TYPE_FIRST_BATTLE)
     {
