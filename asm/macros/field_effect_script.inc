@@ -43,17 +43,17 @@
 	.4byte \function_address
 	.endm
 
-	.macro field_eff_loadfadedpalnotint address
+	.macro field_eff_loadfadedpalnotint address:req
 	.byte 8
 	.4byte \address
 	.endm
 
-	.macro field_eff_loadpalnotint address
+	.macro field_eff_loadpalnotint address:req
 	.byte 9
 	.4byte \address
 	.endm
 
-	.macro field_eff_loadfadedpalnotint_callnative palette_address, function_address
+	.macro field_eff_loadfadedpalnotint_callnative palette_address:req, function_address:req
 	.byte 0xA
 	.4byte \palette_address
 	.4byte \function_address

@@ -176,7 +176,7 @@ void AgbMainLoop(void)
 
         PlayTimeCounter_Update();
         GameTimeCounter_Update();
-#if !B_ENABLE_DEBUG
+#ifdef NDEBUG
         AntiSaveStateUpdate();
 #endif
         MapMusicMain();
