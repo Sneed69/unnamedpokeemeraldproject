@@ -1887,7 +1887,11 @@ s32 CalcCritChanceStageArgs(u32 battlerAtk, u32 battlerDef, u32 move, bool32 rec
 {
     s32 critChance = 0;
 
-    if (gSideStatuses[battlerDef] & SIDE_STATUS_LUCKY_CHANT
+    if (gBattleTypeFlags & BATTLE_TYPE_LEGENDARY && GetBattlerSide(battlerDef) == B_SIDE_OPPONENT)
+    {
+        critChance = -1;
+    }
+    else if (gSideStatuses[battlerDef] & SIDE_STATUS_LUCKY_CHANT
         || abilityDef == ABILITY_BATTLE_ARMOR || abilityDef == ABILITY_SHELL_ARMOR)
     {
         critChance = -1;
@@ -1913,9 +1917,6 @@ s32 CalcCritChanceStageArgs(u32 battlerAtk, u32 battlerDef, u32 move, bool32 rec
         // Record ability only if move had at least +3 chance to get a crit
         if (critChance >= 3 && recordAbility && (abilityDef == ABILITY_BATTLE_ARMOR || abilityDef == ABILITY_SHELL_ARMOR))
             RecordAbilityBattle(battlerDef, abilityDef);
-
-        if (gBattleTypeFlags & BATTLE_TYPE_LEGENDARY && GetBattlerSide(gBattlerTarget) == B_SIDE_OPPONENT)
-            critChance = -1;
 
         if (critChance >= ARRAY_COUNT(sCriticalHitChance))
             critChance = ARRAY_COUNT(sCriticalHitChance) - 1;

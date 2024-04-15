@@ -2005,7 +2005,7 @@ bool32 IsStatRaisingEffect(u32 effect)
     case EFFECT_EVASION_UP_2:
     case EFFECT_MINIMIZE:
     case EFFECT_DEFENSE_CURL:
-	case EFFECT_CALM_MIND:
+    case EFFECT_CALM_MIND:
     case EFFECT_COSMIC_POWER:
     case EFFECT_DRAGON_DANCE:
     case EFFECT_ACUPRESSURE:

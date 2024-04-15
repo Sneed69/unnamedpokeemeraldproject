@@ -20,8 +20,6 @@
 #include "constants/battle_move_effects.h"
 #include "constants/items.h"
 #include "constants/moves.h"
-#include "constants/battle_move_effects.h"
-#include "constants/hold_effects.h"
 
 // this file's functions
 static bool32 HasSuperEffectiveMoveAgainstOpponents(u32 battler, bool32 noRng);
