@@ -35,7 +35,6 @@ MarineCave_End_EventScript_Kyogre::
 	delay 40
 	waitmoncry
 	setvar VAR_LAST_TALKED, LOCALID_KYOGRE
-	settotemboost B_POSITION_OPPONENT_LEFT, 2, 6, 1, 1, 3
 	setwildbattle SPECIES_KYOGRE, 80
 	setflag FLAG_SYS_CTRL_OBJ_DELETE
 	special BattleSetup_StartLegendaryBattle

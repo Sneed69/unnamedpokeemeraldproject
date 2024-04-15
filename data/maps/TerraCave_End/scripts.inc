@@ -34,7 +34,6 @@ TerraCave_End_EventScript_Groudon::
 	playmoncry SPECIES_GROUDON, CRY_MODE_ENCOUNTER
 	delay 40
 	waitmoncry
-	settotemboost B_POSITION_OPPONENT_LEFT, 1, 3, 3, 6, 6
 	setvar VAR_LAST_TALKED, LOCALID_GROUDON
 	setwildbattle SPECIES_GROUDON, 80
 	setflag FLAG_SYS_CTRL_OBJ_DELETE

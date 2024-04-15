@@ -1847,6 +1847,10 @@ static void Cmd_ppreduce(void)
              ppToDeduct++;
     }
 
+    if (gBattleTypeFlags & BATTLE_TYPE_LEGENDARY && GetBattlerSide(gBattlerAttacker) == B_SIDE_OPPONENT)
+        ppToDeduct = 0;
+
+
     if (!(gHitMarker & (HITMARKER_NO_PPDEDUCT | HITMARKER_NO_ATTACKSTRING)) && gBattleMons[gBattlerAttacker].pp[gCurrMovePos])
     {
         gProtectStructs[gBattlerAttacker].notFirstStrike = TRUE;
@@ -2263,6 +2267,11 @@ static void Cmd_healthbarupdate(void)
     if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT) || (gHitMarker & HITMARKER_PASSIVE_DAMAGE))
     {
         u32 battler = GetBattlerForBattleScript(cmd->battler);
+
+        if (gBattleTypeFlags & BATTLE_TYPE_LEGENDARY && GetBattlerSide(battler) == B_SIDE_OPPONENT && gBattleMoveDamage > 1)
+        {
+            gBattleMoveDamage = 1 + gBattleMoveDamage / 6;
+        }
 
         if (DoesSubstituteBlockMove(gBattlerAttacker, battler, gCurrentMove) && gDisableStructs[battler].substituteHP && !(gHitMarker & HITMARKER_IGNORE_SUBSTITUTE))
         {
@@ -11211,11 +11220,7 @@ static void Cmd_manipulatedamage(void)
         gBattleMoveDamage = GetNonDynamaxHP(gBattlerAttacker);
         break;
     case DMG_CURR_ATTACKER_HP_TARGET:
-        if (gBattleTypeFlags & BATTLE_TYPE_LEGENDARY && GetBattlerSide(gBattlerTarget) == B_SIDE_OPPONENT)
-            gBattleMoveDamage = gBattleMons[gBattlerAttacker].hp / 4;
-        else
-            gBattleMoveDamage = gBattleMons[gBattlerAttacker].hp;
-        break;
+        gBattleMoveDamage = gBattleMons[gBattlerAttacker].hp;
     case DMG_BIG_ROOT:
         gBattleMoveDamage = GetDrainedBigRootHp(gBattlerAttacker, gBattleMoveDamage);
         break;
@@ -11226,11 +11231,7 @@ static void Cmd_manipulatedamage(void)
         gBattleMoveDamage = GetNonDynamaxMaxHP(gBattlerTarget) / 2;
         break;
     case DMG_40_FLAT:
-        if (gBattleTypeFlags & BATTLE_TYPE_LEGENDARY && GetBattlerSide(gBattlerTarget) == B_SIDE_OPPONENT)
-            gBattleMoveDamage = 10;
-        else
-            gBattleMoveDamage = 40;
-        break;
+        gBattleMoveDamage = 40;
     }
 
     gBattlescriptCurrInstr = cmd->nextInstr;
@@ -12318,10 +12319,7 @@ static void Cmd_damagetohalftargethp(void)
 {
     CMD_ARGS();
     
-    if (gBattleTypeFlags & BATTLE_TYPE_LEGENDARY && GetBattlerSide(gBattlerTarget) == B_SIDE_OPPONENT)
-        gBattleMoveDamage = GetNonDynamaxHP(gBattlerTarget) / 8;
-    else
-        gBattleMoveDamage = GetNonDynamaxHP(gBattlerTarget) / 2;
+    gBattleMoveDamage = GetNonDynamaxHP(gBattlerTarget) / 2;
     if (gBattleMoveDamage == 0)
         gBattleMoveDamage = 1;
 
@@ -12687,12 +12685,7 @@ static void Cmd_metronome(void)
 static void Cmd_dmgtolevel(void)
 {
     CMD_ARGS();
-
-    if (gBattleTypeFlags & BATTLE_TYPE_LEGENDARY && GetBattlerSide(gBattlerTarget) == B_SIDE_OPPONENT)
-        gBattleMoveDamage = 12;
-    else
-        gBattleMoveDamage = 50;
-        
+    gBattleMoveDamage = 50;        
     gBattlescriptCurrInstr = cmd->nextInstr;
 }
 
@@ -12701,11 +12694,7 @@ static void Cmd_psywavedamageeffect(void)
     CMD_ARGS();
 
     s32 randDamage = (Random() % 101 + 50);
-
-    if (gBattleTypeFlags & BATTLE_TYPE_LEGENDARY && GetBattlerSide(gBattlerTarget) == B_SIDE_OPPONENT)
-        gBattleMoveDamage = 50 * randDamage / 400;
-    else
-        gBattleMoveDamage = 50 * randDamage / 100;
+    gBattleMoveDamage = 50 * randDamage / 100;
     gBattlescriptCurrInstr = cmd->nextInstr;
 }
 
@@ -12720,10 +12709,7 @@ static void Cmd_counterdamagecalculator(void)
         && sideAttacker != sideTarget
         && gBattleMons[gProtectStructs[gBattlerAttacker].physicalBattlerId].hp)
     {
-        if (gBattleTypeFlags & BATTLE_TYPE_LEGENDARY && GetBattlerSide(gBattlerTarget) == B_SIDE_OPPONENT)
-            gBattleMoveDamage = gProtectStructs[gBattlerAttacker].physicalDmg / 2;
-        else
-            gBattleMoveDamage = gProtectStructs[gBattlerAttacker].physicalDmg * 2;
+        gBattleMoveDamage = gProtectStructs[gBattlerAttacker].physicalDmg * 2;
 
         if (IsAffectedByFollowMe(gBattlerAttacker, sideTarget, gCurrentMove))
             gBattlerTarget = gSideTimers[sideTarget].followmeTarget;
@@ -12750,10 +12736,7 @@ static void Cmd_mirrorcoatdamagecalculator(void)
         && sideAttacker != sideTarget
         && gBattleMons[gProtectStructs[gBattlerAttacker].specialBattlerId].hp)
     {
-        if (gBattleTypeFlags & BATTLE_TYPE_LEGENDARY && GetBattlerSide(gBattlerTarget) == B_SIDE_OPPONENT)
-            gBattleMoveDamage = gProtectStructs[gBattlerAttacker].specialDmg / 2;
-        else
-            gBattleMoveDamage = gProtectStructs[gBattlerAttacker].specialDmg * 2;
+        gBattleMoveDamage = gProtectStructs[gBattlerAttacker].specialDmg * 2;
 
         if (IsAffectedByFollowMe(gBattlerAttacker, sideTarget, gCurrentMove))
             gBattlerTarget = gSideTimers[sideTarget].followmeTarget;
@@ -12853,15 +12836,16 @@ static void Cmd_painsplitdmgcalc(void)
         s32 painSplitHp = gBattleMoveDamage = GetNonDynamaxHP(gBattlerTarget) - hpDiff;
         u8 *storeLoc = (void *)(&gBattleScripting.painSplitHp);
 
-        if (gBattleTypeFlags & BATTLE_TYPE_LEGENDARY && GetBattlerSide(gBattlerTarget) == B_SIDE_OPPONENT)
-            painSplitHp = gBattleMoveDamage = gBattleMoveDamage / 2;
-
         storeLoc[0] = (painSplitHp);
         storeLoc[1] = (painSplitHp & 0x0000FF00) >> 8;
         storeLoc[2] = (painSplitHp & 0x00FF0000) >> 16;
         storeLoc[3] = (painSplitHp & 0xFF000000) >> 24;
 
         gBattleMoveDamage = gBattleMons[gBattlerAttacker].hp - hpDiff;
+
+        if (gBattleTypeFlags & BATTLE_TYPE_LEGENDARY && GetBattlerSide(gBattlerAttacker) == B_SIDE_PLAYER)
+            gBattleMoveDamage = 1 + gBattleMoveDamage / 6;
+
         gSpecialStatuses[gBattlerTarget].shellBellDmg = IGNORE_SHELL_BELL;
 
         gBattlescriptCurrInstr = cmd->nextInstr;
@@ -14335,10 +14319,7 @@ static void Cmd_setdamagetohealthdifference(void)
     }
     else
     {
-        if (gBattleTypeFlags & BATTLE_TYPE_LEGENDARY && GetBattlerSide(gBattlerTarget) == B_SIDE_OPPONENT)
-            gBattleMoveDamage = (GetNonDynamaxHP(gBattlerTarget) - gBattleMons[gBattlerAttacker].hp) / 4;
-        else
-            gBattleMoveDamage = GetNonDynamaxHP(gBattlerTarget) - gBattleMons[gBattlerAttacker].hp;
+        gBattleMoveDamage = GetNonDynamaxHP(gBattlerTarget) - gBattleMons[gBattlerAttacker].hp;
         gBattlescriptCurrInstr = cmd->nextInstr;
     }
 }
@@ -15666,10 +15647,7 @@ void BS_CalcMetalBurstDmg(void)
         && sideAttacker != (sideTarget = GetBattlerSide(gProtectStructs[gBattlerAttacker].physicalBattlerId))
         && gBattleMons[gProtectStructs[gBattlerAttacker].physicalBattlerId].hp)
     {
-        if (gBattleTypeFlags & BATTLE_TYPE_LEGENDARY && GetBattlerSide(gBattlerTarget) == B_SIDE_OPPONENT)
-            gBattleMoveDamage = gProtectStructs[gBattlerAttacker].physicalDmg * 375 / 1000;
-        else
-            gBattleMoveDamage = gProtectStructs[gBattlerAttacker].physicalDmg * 150 / 100;
+        gBattleMoveDamage = gProtectStructs[gBattlerAttacker].physicalDmg * 150 / 100;
 
         if (IsAffectedByFollowMe(gBattlerAttacker, sideTarget, gCurrentMove))
             gBattlerTarget = gSideTimers[sideTarget].followmeTarget;
@@ -15682,10 +15660,7 @@ void BS_CalcMetalBurstDmg(void)
              && sideAttacker != (sideTarget = GetBattlerSide(gProtectStructs[gBattlerAttacker].specialBattlerId))
              && gBattleMons[gProtectStructs[gBattlerAttacker].specialBattlerId].hp)
     {
-        if (gBattleTypeFlags & BATTLE_TYPE_LEGENDARY && GetBattlerSide(gBattlerTarget) == B_SIDE_OPPONENT)
-            gBattleMoveDamage = gProtectStructs[gBattlerAttacker].specialDmg * 375 / 1000;
-        else
-            gBattleMoveDamage = gProtectStructs[gBattlerAttacker].specialDmg * 150 / 100;
+        gBattleMoveDamage = gProtectStructs[gBattlerAttacker].specialDmg * 150 / 100;
 
         if (IsAffectedByFollowMe(gBattlerAttacker, sideTarget, gCurrentMove))
             gBattlerTarget = gSideTimers[sideTarget].followmeTarget;
