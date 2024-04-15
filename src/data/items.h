@@ -8021,13 +8021,12 @@ const struct Item gItemsInfo[] =
         .pluralName = _("Pomeg Berries"),
         .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
         .description = COMPOUND_STRING(
-            "Makes a Pokémon\n"
-            "friendly but lowers\n"
-            "base HP."),
+            "{POKEBLOCK} ingredient.\n"
+            "Plant in loamy soil\n"
+            "to grow Pomeg."),
         .pocket = POCKET_BERRIES,
         .type = ITEM_USE_PARTY_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_ReduceEV,
-        .effect = gItemEffect_PomegBerry,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
     },
 
     [ITEM_KELPSY_BERRY] =
@@ -8036,13 +8035,12 @@ const struct Item gItemsInfo[] =
         .pluralName = _("Kelpsy Berries"),
         .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
         .description = COMPOUND_STRING(
-            "Makes a Pokémon\n"
-            "friendly but lowers\n"
-            "base Attack."),
+            "{POKEBLOCK} ingredient.\n"
+            "Plant in loamy soil\n"
+            "to grow Kelpsy."),
         .pocket = POCKET_BERRIES,
         .type = ITEM_USE_PARTY_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_ReduceEV,
-        .effect = gItemEffect_KelpsyBerry,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
     },
 
     [ITEM_QUALOT_BERRY] =
@@ -8051,13 +8049,12 @@ const struct Item gItemsInfo[] =
         .pluralName = _("Qualot Berries"),
         .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
         .description = COMPOUND_STRING(
-            "Makes a Pokémon\n"
-            "friendly but lowers\n"
-            "base Defense."),
+            "{POKEBLOCK} ingredient.\n"
+            "Plant in loamy soil\n"
+            "to grow Qualot."),
         .pocket = POCKET_BERRIES,
         .type = ITEM_USE_PARTY_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_ReduceEV,
-        .effect = gItemEffect_QualotBerry,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
     },
 
     [ITEM_HONDEW_BERRY] =
@@ -8066,13 +8063,12 @@ const struct Item gItemsInfo[] =
         .pluralName = _("Hondew Berries"),
         .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
         .description = COMPOUND_STRING(
-            "Makes a Pokémon\n"
-            "friendly but lowers\n"
-            "base Sp. Atk."),
+            "{POKEBLOCK} ingredient.\n"
+            "Plant in loamy soil\n"
+            "to grow Hondew."),
         .pocket = POCKET_BERRIES,
         .type = ITEM_USE_PARTY_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_ReduceEV,
-        .effect = gItemEffect_HondewBerry,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
     },
 
     [ITEM_GREPA_BERRY] =
@@ -8081,13 +8077,12 @@ const struct Item gItemsInfo[] =
         .pluralName = _("Grepa Berries"),
         .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
         .description = COMPOUND_STRING(
-            "Makes a Pokémon\n"
-            "friendly but lowers\n"
-            "base Sp. Def."),
+            "{POKEBLOCK} ingredient.\n"
+            "Plant in loamy soil\n"
+            "to grow Grepa."),
         .pocket = POCKET_BERRIES,
         .type = ITEM_USE_PARTY_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_ReduceEV,
-        .effect = gItemEffect_GrepaBerry,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
     },
 
     [ITEM_TAMATO_BERRY] =
@@ -8096,13 +8091,11 @@ const struct Item gItemsInfo[] =
         .pluralName = _("Tamato Berries"),
         .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
         .description = COMPOUND_STRING(
-            "Makes a Pokémon\n"
-            "friendly but lowers\n"
-            "base Speed."),
+            "{POKEBLOCK} ingredient.\n"
+            "Plant in loamy soil\n"
+            "to grow Tamato."),
         .pocket = POCKET_BERRIES,
-        .type = ITEM_USE_PARTY_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_ReduceEV,
-        .effect = gItemEffect_TamatoBerry,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
     },
 
     [ITEM_CORNN_BERRY] =
