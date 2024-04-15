@@ -665,7 +665,7 @@ const struct BattleBackground sBattleTerrainTable[] =
         .tilemap = gBattleTerrainTilemap_Rock,
         .entryTileset = gBattleTerrainAnimTiles_Rock,
         .entryTilemap = gBattleTerrainAnimTilemap_Rock,
-        .palette = {gBattleTerrainPalette_Rock, gBattleTerrainPalette_Rock, gBattleTerrainPalette_Rock},
+        .palette = {gBattleTerrainPalette_RockMorning, gBattleTerrainPalette_Rock, gBattleTerrainPalette_RockNight},
     },
 
     [BATTLE_TERRAIN_CAVE] =
@@ -688,12 +688,21 @@ const struct BattleBackground sBattleTerrainTable[] =
 
     [BATTLE_TERRAIN_PLAIN] =
     {
-        .tileset = gBattleTerrainTiles_Building,
-        .tilemap = gBattleTerrainTilemap_Building,
+        .tileset = gBattleTerrainTiles_Plain,
+        .tilemap = gBattleTerrainTilemap_Plain,
         .entryTileset = gBattleTerrainAnimTiles_Building,
         .entryTilemap = gBattleTerrainAnimTilemap_Building,
         .palette = {gBattleTerrainPalette_Plain_Morning, gBattleTerrainPalette_Plain_Day, gBattleTerrainPalette_Plain_Night},
     },
+};
+
+const struct BattleBackground sRayquazaTerrainPallettes = 
+{
+        .tileset = gBattleTerrainTiles_Plain,
+        .tilemap = gBattleTerrainTilemap_Plain,
+        .entryTileset = gBattleTerrainAnimTiles_Building,
+        .entryTilemap = gBattleTerrainAnimTilemap_Building,
+        .palette = {gBattleTerrainPalette_RayquazaMorning, gBattleTerrainPalette_Rayquaza, gBattleTerrainPalette_RayquazaNight},
 };
 
 static void UNUSED CB2_UnusedBattleInit(void);
@@ -786,7 +795,7 @@ void DrawMainBattleBackground(void)
         case SPECIES_RAYQUAZA:
             LZDecompressVram(gBattleTerrainTiles_Rayquaza, (void*)(BG_CHAR_ADDR(2)));
             LZDecompressVram(gBattleTerrainTilemap_Rayquaza, (void*)(BG_SCREEN_ADDR(26)));
-            LoadCompressedPalette(gBattleTerrainPalette_Rayquaza, BG_PLTT_ID(2), 3 * PLTT_SIZE_4BPP);
+            LoadCompressedPalette(sRayquazaTerrainPallettes.palette[GetCurrentTimeOfDay()], BG_PLTT_ID(2), 3 * PLTT_SIZE_4BPP);
             break;
         default:
             LZDecompressVram(sBattleTerrainTable[gBattleTerrain].tileset, (void *)(BG_CHAR_ADDR(2)));
@@ -802,9 +811,9 @@ void DrawMainBattleBackground(void)
             u32 trainerClass = GetTrainerClassFromId(gTrainerBattleOpponent_A);
             if (trainerClass == TRAINER_CLASS_LEADER)
             {
-                LZDecompressVram(gBattleTerrainTiles_Building, (void *)(BG_CHAR_ADDR(2)));
-                LZDecompressVram(gBattleTerrainTilemap_Building, (void *)(BG_SCREEN_ADDR(26)));
-                LoadCompressedPalette(gBattleTerrainPalette_BuildingLeader, BG_PLTT_ID(2), 3 * PLTT_SIZE_4BPP);
+                LZDecompressVram(gBattleTerrainTiles_Stadium, (void *)(BG_CHAR_ADDR(2)));
+                LZDecompressVram(gBattleTerrainTilemap_Stadium, (void *)(BG_SCREEN_ADDR(26)));
+                LoadCompressedPalette(gBattleTerrainPalette_StadiumLeader, BG_PLTT_ID(2), 3 * PLTT_SIZE_4BPP);
                 return;
             }
             else if (trainerClass == TRAINER_CLASS_CHAMPION)
@@ -830,14 +839,14 @@ void DrawMainBattleBackground(void)
             LoadCompressedPalette(gBattleTerrainPalette_BuildingGym, BG_PLTT_ID(2), 3 * PLTT_SIZE_4BPP);
             break;
         case MAP_BATTLE_SCENE_MAGMA:
-            LZDecompressVram(gBattleTerrainTiles_Stadium, (void *)(BG_CHAR_ADDR(2)));
-            LZDecompressVram(gBattleTerrainTilemap_Stadium, (void *)(BG_SCREEN_ADDR(26)));
-            LoadCompressedPalette(gBattleTerrainPalette_StadiumMagma, BG_PLTT_ID(2), 3 * PLTT_SIZE_4BPP);
+            LZDecompressVram(gBattleTerrainTilemap_Building, (void *)(BG_CHAR_ADDR(2)));
+            LZDecompressVram(gBattleTerrainTilemap_Building, (void *)(BG_SCREEN_ADDR(26)));
+            LoadCompressedPalette(gBattleTerrainPalette_BuildingMagma, BG_PLTT_ID(2), 3 * PLTT_SIZE_4BPP);
             break;
         case MAP_BATTLE_SCENE_AQUA:
-            LZDecompressVram(gBattleTerrainTiles_Stadium, (void *)(BG_CHAR_ADDR(2)));
-            LZDecompressVram(gBattleTerrainTilemap_Stadium, (void *)(BG_SCREEN_ADDR(26)));
-            LoadCompressedPalette(gBattleTerrainPalette_StadiumAqua, BG_PLTT_ID(2), 3 * PLTT_SIZE_4BPP);
+            LZDecompressVram(gBattleTerrainTiles_Building, (void *)(BG_CHAR_ADDR(2)));
+            LZDecompressVram(gBattleTerrainTilemap_Building, (void *)(BG_SCREEN_ADDR(26)));
+            LoadCompressedPalette(gBattleTerrainPalette_BuildingAqua, BG_PLTT_ID(2), 3 * PLTT_SIZE_4BPP);
             break;
         case MAP_BATTLE_SCENE_SIDNEY:
             LZDecompressVram(gBattleTerrainTiles_Stadium, (void *)(BG_CHAR_ADDR(2)));
@@ -1270,7 +1279,7 @@ bool8 LoadChosenBattleElement(u8 caseId)
                 u32 trainerClass = GetTrainerClassFromId(gTrainerBattleOpponent_A);
                 if (trainerClass == TRAINER_CLASS_LEADER)
                 {
-                    LZDecompressVram(gBattleTerrainTiles_Building, (void *)(BG_CHAR_ADDR(2)));
+                    LZDecompressVram(gBattleTerrainPalette_StadiumLeader, (void *)(BG_CHAR_ADDR(2)));
                     break;
                 }
                 else if (trainerClass == TRAINER_CLASS_CHAMPION)
@@ -1394,7 +1403,7 @@ bool8 LoadChosenBattleElement(u8 caseId)
                 u32 trainerClass = GetTrainerClassFromId(gTrainerBattleOpponent_A);
                 if (trainerClass == TRAINER_CLASS_LEADER)
                 {
-                    LoadCompressedPalette(gBattleTerrainPalette_BuildingLeader, BG_PLTT_ID(2), 3 * PLTT_SIZE_4BPP);
+                    LoadCompressedPalette(gBattleTerrainTilemap_Stadium, BG_PLTT_ID(2), 3 * PLTT_SIZE_4BPP);
                     break;
                 }
                 else if (trainerClass == TRAINER_CLASS_CHAMPION)
@@ -1414,10 +1423,10 @@ bool8 LoadChosenBattleElement(u8 caseId)
                 LoadCompressedPalette(gBattleTerrainPalette_BuildingGym, BG_PLTT_ID(2), 3 * PLTT_SIZE_4BPP);
                 break;
             case MAP_BATTLE_SCENE_MAGMA:
-                LoadCompressedPalette(gBattleTerrainPalette_StadiumMagma, BG_PLTT_ID(2), 3 * PLTT_SIZE_4BPP);
+                LoadCompressedPalette(gBattleTerrainPalette_BuildingMagma, BG_PLTT_ID(2), 3 * PLTT_SIZE_4BPP);
                 break;
             case MAP_BATTLE_SCENE_AQUA:
-                LoadCompressedPalette(gBattleTerrainPalette_StadiumAqua, BG_PLTT_ID(2), 3 * PLTT_SIZE_4BPP);
+                LoadCompressedPalette(gBattleTerrainPalette_BuildingAqua, BG_PLTT_ID(2), 3 * PLTT_SIZE_4BPP);
                 break;
             case MAP_BATTLE_SCENE_SIDNEY:
                 LoadCompressedPalette(gBattleTerrainPalette_StadiumSidney, BG_PLTT_ID(2), 3 * PLTT_SIZE_4BPP);
