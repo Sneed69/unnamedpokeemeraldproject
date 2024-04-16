@@ -10061,7 +10061,7 @@ BattleScript_WildBattleVictory::
 	setbyte gBattleCommunication, 0
 	yesnobox
 	jumpifbyte CMP_NOT_EQUAL, gBattleCommunication + 1, 0, BattleScript_FaintWildMon
-	catchraidboss
+	catchaftervictory
 	end2
 
 BattleScript_FaintWildMon::

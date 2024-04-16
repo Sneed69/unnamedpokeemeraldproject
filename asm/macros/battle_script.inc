@@ -2515,7 +2515,7 @@
 	.4byte \ptr
 	.endm
 
-	.macro catchraidboss
+	.macro catchaftervictory
 	various 0, VARIOUS_CATCH_AFTER_VICTORY
 	.endm
 

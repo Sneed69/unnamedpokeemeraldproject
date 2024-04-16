@@ -240,9 +240,9 @@
 #define VARIOUS_TRY_REVIVAL_BLESSING                 148
 #define VARIOUS_SAVE_DROPPED_ITEMS                   149
 #define VARIOUS_GIVE_DROPPED_ITEMS                   150
-#define VARIOUS_JUMP_IF_NO_BALLS                     181
-#define VARIOUS_CATCH_AFTER_VICTORY                  182
-#define VARIOUS_HIDE_HEALTHBOXES                     183
+#define VARIOUS_JUMP_IF_NO_BALLS                     151
+#define VARIOUS_CATCH_AFTER_VICTORY                  152
+#define VARIOUS_HIDE_HEALTHBOXES                     153
 
 // Cmd_manipulatedamage
 #define DMG_CHANGE_SIGN            0

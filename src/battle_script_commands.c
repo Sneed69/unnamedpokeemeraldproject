@@ -10898,7 +10898,7 @@ static void Cmd_various(void)
             battler = GetBattlerAtPosition(B_POSITION_PLAYER_LEFT);
             gBattlerTarget = GetBattlerAtPosition(B_POSITION_OPPONENT_LEFT);
 
-            BtlController_EmitBallThrowAnim(gBattlerAttacker, BUFFER_A, BALL_3_SHAKES_SUCCESS);
+            BtlController_EmitBallThrowAnim(battler, BUFFER_A, BALL_3_SHAKES_SUCCESS);
             MarkBattlerForControllerExec(battler);
             // UndoFormChange(gBattlerPartyIndexes[gBattlerTarget], GET_BATTLER_SIDE(gBattlerTarget), FALSE);
             gBattlescriptCurrInstr = BattleScript_SuccessBallThrow;
