@@ -78,8 +78,8 @@ gFieldEffectScriptPointers::
 	.4byte gFldEffScript_DoubleExclMarkIcon             @ FLDEFF_DOUBLE_EXCL_MARK_ICON
 
 gFieldEffectScript_ExclamationMarkIcon1::
-	field_eff_callnative FldEff_ExclamationMarkIcon
-	@field_eff_loadfadedpalnotint_callnative gSpritePalette_ArrowEmotionsFieldEffect, FldEff_ExclamationMarkIcon
+	@field_eff_callnative FldEff_ExclamationMarkIcon
+	field_eff_loadfadedpalnotint_callnative gSpritePalette_ArrowEmotionsFieldEffect, FldEff_ExclamationMarkIcon
 	field_eff_end
 
 gFieldEffectScript_UseCutOnTallGrass::
