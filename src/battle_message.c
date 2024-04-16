@@ -421,7 +421,7 @@ static const u8 sText_TwoLinkTrainersSentOutPkmn[] = _("{B_LINK_OPPONENT1_NAME} 
 static const u8 sText_LinkTrainerSentOutPkmn2[] = _("{B_LINK_OPPONENT1_NAME} sent out\n{B_BUFF1}!");
 static const u8 sText_LinkTrainerMultiSentOutPkmn[] = _("{B_LINK_SCR_TRAINER_NAME} sent out\n{B_BUFF1}!");
 static const u8 sText_GoPkmn[] = _("Go! {B_PLAYER_MON1_NAME}!");
-static const u8 sText_BeCarefulPkmn[] = _("Be careful, {B_PLAYER_MON1_NAME}!");
+static const u8 sText_GoPkmnBeCareful[] = _("Go, {B_PLAYER_MON1_NAME}!\nBe careful!");
 static const u8 sText_GoTwoPkmn[] = _("Go! {B_PLAYER_MON1_NAME} and\n{B_PLAYER_MON2_NAME}!");
 static const u8 sText_GoPkmn2[] = _("Go! {B_BUFF1}!");
 static const u8 sText_DoItPkmn[] = _("Do it! {B_BUFF1}!");
@@ -2799,7 +2799,7 @@ void BufferStringBattle(u16 stringID, u32 battler)
             }
             else if (gBattleTypeFlags & BATTLE_TYPE_LEGENDARY)
             {
-                stringPtr = sText_BeCarefulPkmn;
+                stringPtr = sText_GoPkmnBeCareful;
             }
             else
             {
