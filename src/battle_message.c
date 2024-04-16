@@ -404,8 +404,9 @@ static const u8 sText_PkmnIgnoredX[] = _("{B_OPPONENT_MON1_NAME} completely igno
 static const u8 sText_ThrewPokeblockAtPkmn[] = _("{B_PLAYER_NAME} threw a {POKEBLOCK}\nat the {B_OPPONENT_MON1_NAME}!");
 static const u8 sText_OutOfSafariBalls[] = _("{PLAY_SE SE_DING_DONG}Announcer: You're out of\nSafari Balls! Game over!\p");
 static const u8 sText_OpponentMon1Appeared[] = _("{B_OPPONENT_MON1_NAME} appeared!\p");
-static const u8 sText_WildPkmnAppeared[] = _("Wild {B_OPPONENT_MON1_NAME} appeared!\p");
-static const u8 sText_LegendaryPkmnAppeared[] = _("{B_OPPONENT_MON1_NAME}'s aura is overwhelming!\nIts power is undeniable!\p");
+static const u8 sText_WildPkmnAppeared[] = _("A wild {B_OPPONENT_MON1_NAME} appeared!\p");
+static const u8 sText_LegendaryPkmnAppeared[] = _("{B_OPPONENT_MON1_NAME} wants to battle!\p{B_OPPONENT_MON1_NAME}'s aura is overwhelming!\nIts power is undeniable!\p");
+static const u8 sText_VictoryCatch[] = _("{B_OPPONENT_MON1_NAME} submits.\nWill {B_PLAYER_NAME} capture it?");
 static const u8 sText_WildPkmnAppearedPause[] = _("Wild {B_OPPONENT_MON1_NAME} appeared!{PAUSE 127}");
 static const u8 sText_TwoWildPkmnAppeared[] = _("Wild {B_OPPONENT_MON1_NAME} and\n{B_OPPONENT_MON2_NAME} appeared!\p");
 static const u8 sText_Trainer1WantsToBattle[] = _("{B_TRAINER1_CLASS} {B_TRAINER1_NAME}\nwould like to battle!\p");
@@ -1563,6 +1564,7 @@ const u8 *const gBattleStringsTable[BATTLESTRINGS_COUNT] =
     [STRINGID_PKMNMAKESFAIRYMISS - BATTLESTRINGS_TABLE_START] = sText_PkmnMakesFairyMiss,
     [STRINGID_PKMNRAISEDICEPOWERWITH - BATTLESTRINGS_TABLE_START] = sText_PkmnRaisedIcePowerWith,
     [STRINGID_OVERTURNENTERS - BATTLESTRINGS_TABLE_START] = sText_PkmnTurnedTheTables,
+    [STRINGID_VICTORYCATCH - BATTLESTRINGS_TABLE_START] = sText_VictoryCatch,
 };
 
 const u16 gTrainerUsedItemStringIds[] =

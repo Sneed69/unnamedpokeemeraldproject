@@ -716,10 +716,11 @@
 #define STRINGID_PKMNMAKESFAIRYMISS                   714
 #define STRINGID_PKMNRAISEDICEPOWERWITH               715
 #define STRINGID_PKMNDROPPEDITEM                      716
-#define STRINGID_OVERTURNENTERS                       718
-#define STRINGID_BAGISFULL                            717
+#define STRINGID_OVERTURNENTERS                       717
+#define STRINGID_BAGISFULL                            718
+#define STRINGID_VICTORYCATCH                         719
 
-#define BATTLESTRINGS_COUNT                           (STRINGID_BAGISFULL + 1)
+#define BATTLESTRINGS_COUNT                           720
 
 // This is the string id that gBattleStringsTable starts with.
 // String ids before this (e.g. STRINGID_INTROMSG) are not in the table,

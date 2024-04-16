@@ -2509,3 +2509,16 @@
 	.macro givedroppeditems
 	various BS_FAINTED, VARIOUS_GIVE_DROPPED_ITEMS
 	.endm
+
+	.macro jumpifnoballs, ptr:req
+	various 0, VARIOUS_JUMP_IF_NO_BALLS
+	.4byte \ptr
+	.endm
+
+	.macro catchraidboss
+	various 0, VARIOUS_CATCH_AFTER_VICTORY
+	.endm
+
+	.macro hidehealthboxes
+	various 0, VARIOUS_HIDE_HEALTHBOXES
+	.endm
