@@ -10065,6 +10065,7 @@ BattleScript_WildBattleVictory::
 	end2
 
 BattleScript_FaintWildMon::
+	savedroppeditem BS_TARGET
 	pause B_WAIT_TIME_SHORT
 	dofaintanimation BS_TARGET
 	printstring STRINGID_TARGETFAINTED

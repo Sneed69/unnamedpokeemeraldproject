@@ -280,8 +280,6 @@ static void CreateHealthboxSprite(u32 battler)
             healthboxSpriteId = CreateSafariPlayerHealthboxSprites();
         else if (gBattleTypeFlags & BATTLE_TYPE_WALLY_TUTORIAL && battler == B_POSITION_PLAYER_LEFT)
             return;
-        else if (gBattleStruct->victoryCatchState)
-            return;
         else
             healthboxSpriteId = CreateBattlerHealthboxSprites(battler);
 
