@@ -14986,8 +14986,8 @@ static void Cmd_handleballthrow(void)
     }
     else if (gBattleTypeFlags & BATTLE_TYPE_LEGENDARY && gBattleMons[gBattlerTarget].hp * 3 > gBattleMons[gBattlerTarget].maxHP)
     {
-        BtlController_EmitBallThrowAnim(BUFFER_A, BUFFER_A, BALL_TRAINER_BLOCK);
-        MarkBattlerForControllerExec(gBattlerTarget);
+        BtlController_EmitBallThrowAnim(gBattlerAttacker, BUFFER_A, BALL_TRAINER_BLOCK);
+        MarkBattlerForControllerExec(gBattlerAttacker);
         gBattlescriptCurrInstr = BattleScript_LegendaryBallBlock;
     }
     else
