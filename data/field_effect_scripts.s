@@ -212,8 +212,8 @@ gFieldEffectScript_FlyIn::
 	field_eff_end
 
 gFieldEffectScript_QuestionMarkIcon::
-	field_eff_callnative FldEff_QuestionMarkIcon
-	@field_eff_loadfadedpalnotint_callnative gSpritePalette_ArrowEmotionsFieldEffect, FldEff_QuestionMarkIcon
+	@field_eff_callnative FldEff_QuestionMarkIcon
+	field_eff_loadfadedpalnotint_callnative gSpritePalette_ArrowEmotionsFieldEffect, FldEff_QuestionMarkIcon
 	field_eff_end
 
 gFieldEffectScript_FeetInFlowingWater::
@@ -241,7 +241,7 @@ gFieldEffectScript_UseDig::
 	field_eff_end
 
 gFieldEffectScript_SandPile::
-	field_eff_loadfadedpalnotint_callnative gSpritePalette_GeneralFieldEffect0, FldEff_SandPile
+	field_eff_loadfadedpal_callnative gSpritePalette_GeneralFieldEffect0, FldEff_SandPile
 	field_eff_end
 
 gFieldEffectScript_ShortGrass::
