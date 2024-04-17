@@ -164,10 +164,15 @@ void SetNextWeather(u8 weather)
     if (gWeatherPtr->nextWeather != gWeatherPtr->currWeather)
     {
         #if DYNAMIC_OW_PALS
+            u32 fogPalettes = 0x7FFF0000;   // all but last sprite palette
+            u16 fogIdx = IndexOfSpritePaletteTag(PALTAG_WEATHER);
+            if (fogIdx < 15) {
+                fogPalettes &= ~(1 << fogIdx); // remove fog sprites from blend bits
+            }
             if (gWeatherPtr->nextWeather == WEATHER_FOG_HORIZONTAL)
-                BlendPalettesGradually(0x7FFFFFFF, 12, 3, 8, RGB_WHITEALPHA, 0, 0);  //all but last sprite pal
+                BlendPalettesGradually(fogPalettes, 12, 3, 8, RGB_WHITEALPHA, 0, 0);  //all but last sprite pal
             else if (gWeatherPtr->currWeather == WEATHER_FOG_HORIZONTAL)
-                BlendPalettesGradually(0x7FFFFFFF, 12, 8, 0, RGB_WHITEALPHA, 0, 0);  //undo fog pal blend
+                BlendPalettesGradually(fogPalettes, 12, 8, 0, RGB_WHITEALPHA, 0, 0);  //undo fog pal blend
         #else
             if (gWeatherPtr->nextWeather == WEATHER_FOG_HORIZONTAL)
                 BlendPalettesGradually(0x3FF0000, 12, 3, 8, RGB_WHITEALPHA, 0, 0);  //blend first 10 sprite palette slots
@@ -843,7 +848,7 @@ static bool8 UNUSED IsFirstFrameOfWeatherFadeIn(void)
 
 void LoadCustomWeatherSpritePalette(const struct SpritePalette *palette)
 {
-    LoadCustomWeatherSpritePalette(palette);
+    LoadSpritePaletteDayNight(palette);
     UpdateSpritePaletteWithWeather(IndexOfSpritePaletteTag(palette->tag));
 }
 
