@@ -10053,7 +10053,6 @@ BattleScript_ItemDropped::
 	return
 
 BattleScript_WildBattleVictory::
-	@hidehealthboxes @cant get hp bar hiding to work :(
 	playfaintcry BS_TARGET
 	waitcry BS_TARGET
 	jumpifnoballs BattleScript_FaintWildMon
