@@ -9,7 +9,7 @@ struct BattleBackground
     const void *tilemap;
     const void *entryTileset;
     const void *entryTilemap;
-    const void *palette[TIMES_OF_DAY_COUNT];
+    const void *palette;
 };
 
 void BattleInitBgsAndWindows(void);
