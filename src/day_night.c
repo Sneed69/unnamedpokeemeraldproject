@@ -8,6 +8,7 @@
 #include "palette.h"
 #include "constants/day_night.h"
 #include "constants/rgb.h"
+#include "constants/map_types.h"
 #include "strings.h"
 #include "string_util.h"
 #include "fieldmap.h"
@@ -158,14 +159,22 @@ static void TintPalette_CustomToneWithCopy(const u16 *src, u16 *dest, u16 count,
 
 static void TintPaletteForDayNight(u16 offset, u16 size)
 {
-    if (IsMapTypeOutdoors(gMapHeader.mapType))
+    if (IsMapTypeOutdoors(gMapHeader.mapType) || gMapHeader.mapType == MAP_TYPE_UNDERGROUND)
     {
         s8 hour, nextHour;
         u8 hourPhase;
         u32 period;
 
-        hour = gSaveBlock1Ptr->gameTime.hours;
-        hourPhase = gSaveBlock1Ptr->gameTime.minutes / MINUTES_PER_TINT_PERIOD;
+        if (gMapHeader.mapType == MAP_TYPE_UNDERGROUND)
+        {
+            hour = TIME_NIGHT;
+            hourPhase = 0;
+        }
+        else
+        {
+            hour = gSaveBlock1Ptr->gameTime.hours;
+            hourPhase = gSaveBlock1Ptr->gameTime.minutes / MINUTES_PER_TINT_PERIOD;
+        }
 
         period = (hour * TINT_PERIODS_PER_HOUR) + hourPhase;
 
