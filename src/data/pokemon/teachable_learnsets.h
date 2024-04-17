@@ -15008,6 +15008,7 @@ static const u16 sCastformTeachableLearnset[] = {
     MOVE_HIDDEN_POWER,
     MOVE_SUNNY_DAY,
     MOVE_ICE_BEAM,
+    MOVE_ROCK_POLISH,
     MOVE_BLIZZARD,
     MOVE_PROTECT,
     MOVE_RAIN_DANCE,
