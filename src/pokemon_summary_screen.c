@@ -1433,6 +1433,9 @@ static void InitBGs(void)
     ShowBg(3);
 }
 
+const u16 sPPTextPalette[] = INCBIN_U16("graphics/battle_interface/text_pp2.gbapal");
+
+
 static bool8 DecompressGraphics(void)
 {
     switch (sMonSummaryScreen->switchCounter)
@@ -1467,7 +1470,7 @@ static bool8 DecompressGraphics(void)
         break;
     case 6:
         LoadCompressedPalette(gSummaryScreen_Pal, BG_PLTT_ID(0), 8 * PLTT_SIZE_4BPP);
-        LoadPalette(&gPPTextPalette, BG_PLTT_ID(8) + 1, PLTT_SIZEOF(16 - 1));
+        LoadPalette(&sPPTextPalette, BG_PLTT_ID(8) + 1, PLTT_SIZEOF(16 - 1));
         sMonSummaryScreen->switchCounter++;
         break;
     case 7:
