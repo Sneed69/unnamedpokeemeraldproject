@@ -1263,7 +1263,7 @@ bool32 CastformTriggerWeatherChange(u32 battler, u32 ability, u32 move)
                 SetCurrentAndNextWeather(WEATHER_DROUGHT);
                 return TRUE;
             }
-            if (moveType == TYPE_ICE || move == MOVE_THUNDER || move == MOVE_HURRICANE) {
+            if (moveType == TYPE_ICE) {
                 SetCurrentAndNextWeather(WEATHER_SNOW);
                 return TRUE;
             }
