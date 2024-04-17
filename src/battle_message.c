@@ -295,7 +295,7 @@ static const u8 sText_PkmnRaisedIcePowerWith[] = _("{B_DEF_NAME_WITH_PREFIX}'s {
 static const u8 sText_PkmnAnchorsItselfWith[] = _("{B_DEF_NAME_WITH_PREFIX} anchors\nitself with {B_DEF_ABILITY}!");
 static const u8 sText_PkmnCutsAttackWith[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX}'s {B_SCR_ACTIVE_ABILITY}\ncuts {B_DEF_NAME_WITH_PREFIX}'s Attack!");
 static const u8 sText_PkmnLoweredGuard[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX}'s {B_SCR_ACTIVE_ABILITY}\nlowers {B_DEF_NAME_WITH_PREFIX}'s guard!");
-static const u8 sText_PkmnGuardNotLowered[] = _("{B_DEF_NAME_WITH_PREFIX}'s guard\nwas not lowered!");
+static const u8 sText_PkmnGuardNotLowered[] = _("{B_DEF_NAME_WITH_PREFIX}'s Defense\nand Sp. Def rose!");
 static const u8 sText_PkmnPreventsStatLossWith[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX}'s {B_SCR_ACTIVE_ABILITY}\nprevents stat loss!");
 static const u8 sText_PkmnHurtsWith[] = _("{B_ATK_NAME_WITH_PREFIX} was hurt by\n{B_DEF_NAME_WITH_PREFIX}'s {B_BUFF1}!");
 static const u8 sText_PkmnTraced[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX} Traced\n{B_BUFF1}'s {B_BUFF2}!");
@@ -331,6 +331,7 @@ static const u8 sText_AttackersStatFell[] = _("{B_ATK_NAME_WITH_PREFIX}'s {B_BUF
 static const u8 sText_DefendersStatFell[] = _("{B_DEF_NAME_WITH_PREFIX}'s {B_BUFF1}\n{B_BUFF2}");
 static const u8 sText_StatsWontIncrease2[] = _("{B_ATK_NAME_WITH_PREFIX}'s stats won't\ngo any higher!");
 static const u8 sText_StatsWontDecrease2[] = _("{B_DEF_NAME_WITH_PREFIX}'s stats won't\ngo any lower!");
+static const u8 sText_TargetStatsWontIncrease[] = _("{B_DEF_NAME_WITH_PREFIX}'s stats won't\ngo any higher!");
 static const u8 sText_CriticalHit[] = _("A critical hit!");
 static const u8 sText_OneHitKO[] = _("It's a one-hit KO!");
 static const u8 sText_123Poof[] = _("{PAUSE 32}1, {PAUSE 15}2, and{PAUSE 15}… {PAUSE 15}… {PAUSE 15}… {PAUSE 15}{PLAY_SE SE_BALL_BOUNCE_1}Poof!\p");
@@ -1565,6 +1566,7 @@ const u8 *const gBattleStringsTable[BATTLESTRINGS_COUNT] =
     [STRINGID_PKMNRAISEDICEPOWERWITH - BATTLESTRINGS_TABLE_START] = sText_PkmnRaisedIcePowerWith,
     [STRINGID_OVERTURNENTERS - BATTLESTRINGS_TABLE_START] = sText_PkmnTurnedTheTables,
     [STRINGID_VICTORYCATCH - BATTLESTRINGS_TABLE_START] = sText_VictoryCatch,
+    [STRINGID_TARGETSTATSWONTINCREASE - BATTLESTRINGS_TABLE_START] = sText_TargetStatsWontIncrease,
 };
 
 const u16 gTrainerUsedItemStringIds[] =

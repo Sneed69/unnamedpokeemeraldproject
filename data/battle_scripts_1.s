@@ -7867,25 +7867,20 @@ BattleScript_IntimidateInReverse:
 	goto BattleScript_IntimidateLoopIncrement
 
 BattleScript_UnthreateningActivates::
+	copybyte sSAVED_BATTLER, gBattlerTarget
+.if B_ABILITY_POP_UP == TRUE
 	showabilitypopup BS_ATTACKER
 	pause B_WAIT_TIME_LONG
 	destroyabilitypopup
+.endif
 	setbyte gBattlerTarget, 0
 BattleScript_UnthreateningLoop:
 	jumpifbyteequal gBattlerTarget, gBattlerAttacker, BattleScript_UnthreateningLoopIncrement
 	jumpiftargetally BattleScript_UnthreateningLoopIncrement
-	jumpifabsent BS_TARGET, BattleScript_IntimidateLoopIncrement
+	jumpifabsent BS_TARGET, BattleScript_UnthreateningLoopIncrement
 	jumpifstatus2 BS_TARGET, STATUS2_SUBSTITUTE, BattleScript_UnthreateningLoopIncrement
-	jumpifholdeffect BS_TARGET, HOLD_EFFECT_CLEAR_AMULET, BattleScript_UnthreateningPrevented_Item
-	jumpifability BS_TARGET, ABILITY_CLEAR_BODY, BattleScript_UnthreateningPrevented
-	jumpifability BS_TARGET, ABILITY_WHITE_SMOKE, BattleScript_UnthreateningPrevented
-	jumpifability BS_TARGET, ABILITY_INNER_FOCUS, BattleScript_UnthreateningPrevented
-	jumpifability BS_TARGET, ABILITY_SCRAPPY, BattleScript_UnthreateningPrevented
-	jumpifability BS_TARGET, ABILITY_OWN_TEMPO, BattleScript_UnthreateningPrevented
-	jumpifability BS_TARGET, ABILITY_OBLIVIOUS, BattleScript_UnthreateningPrevented
 	jumpifstat BS_TARGET, CMP_GREATER_THAN, STAT_SPDEF, MIN_STAT_STAGE, BattleScript_UnthreateningEffect
-	jumpifability BS_TARGET, ABILITY_BIG_PECKS, BattleScript_UnthreateningPrevented
-	jumpifstat BS_TARGET, CMP_EQUAL, STAT_DEF, MIN_STAT_STAGE, BattleScript_UnthreateningLoopIncrement
+	jumpifstat BS_TARGET, CMP_EQUAL, STAT_DEF, MIN_STAT_STAGE, BattleScript_UnthreateningWontDecrease
 BattleScript_UnthreateningEffect:
 	copybyte sBATTLER, gBattlerAttacker
 	setstatchanger STAT_SPDEF, 1, TRUE
@@ -7895,25 +7890,36 @@ BattleScript_UnthreateningTryDef:
 	setstatchanger STAT_DEF, 1, TRUE
 	statbuffchange STAT_CHANGE_NOT_PROTECT_AFFECTED | STAT_CHANGE_ALLOW_PTR, BattleScript_UnthreateningLoopIncrement
 BattleScript_UnthreateningPrint:
-	playstatchangeanimation BS_TARGET, BIT_DEF | BIT_SPDEF, 1
+	jumpifability BS_TARGET, ABILITY_CONTRARY, BattleScript_UnthreateningContrary
+	playstatchangeanimation BS_TARGET, BIT_SPDEF | BIT_DEF, STAT_CHANGE_NEGATIVE
 	printstring STRINGID_PKMNLOWEREDGUARD
+BattleScript_Unthreatening_WaitString:
 	waitmessage B_WAIT_TIME_MED
 	copybyte sBATTLER, gBattlerTarget
 BattleScript_UnthreateningLoopIncrement:
 	addbyte gBattlerTarget, 1
 	jumpifbytenotequal gBattlerTarget, gBattlersCount, BattleScript_UnthreateningLoop
 BattleScript_UnthreateningEnd:
+	copybyte sBATTLER, gBattlerAttacker
 	destroyabilitypopup
+	copybyte gBattlerTarget, sSAVED_BATTLER
 	pause B_WAIT_TIME_MED
 	end3
 
-BattleScript_UnthreateningPrevented:
-	call BattleScript_AbilityPopUp
-	pause B_WAIT_TIME_LONG
-BattleScript_UnthreateningPrevented_Item:
+BattleScript_UnthreateningWontDecrease:
+	jumpifability BS_TARGET, ABILITY_CONTRARY, BattleScript_UnthreateningContrary_WontIncrease
+	printstring STRINGID_STATSWONTDECREASE2
+	goto BattleScript_Unthreatening_WaitString
+
+BattleScript_UnthreateningContrary:
+	call BattleScript_AbilityPopUpTarget
+	jumpifbyte CMP_EQUAL, cMULTISTRING_CHOOSER, B_MSG_STAT_WONT_INCREASE, BattleScript_UnthreateningContrary_WontIncrease
+	playstatchangeanimation BS_TARGET, BIT_SPDEF | BIT_DEF, STAT_CHANGE_NEGATIVE
 	printstring STRINGID_PKMNGUARDWASNOTLOWERED
-	waitmessage B_WAIT_TIME_LONG
-	goto BattleScript_UnthreateningLoopIncrement
+	goto BattleScript_Unthreatening_WaitString
+BattleScript_UnthreateningContrary_WontIncrease:
+	printstring STRINGID_TARGETSTATSWONTINCREASE
+	goto BattleScript_Unthreatening_WaitString
 
 BattleScript_SupersweetSyrupActivates::
  	copybyte sSAVED_BATTLER, gBattlerTarget
