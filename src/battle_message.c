@@ -524,7 +524,7 @@ static const u8 sText_ItemAllowsOnlyYMove[] = _("{B_LAST_ITEM} allows the\nuse o
 static const u8 sText_PkmnHungOnWithX[] = _("{B_DEF_NAME_WITH_PREFIX} hung on\nusing its {B_LAST_ITEM}!");
 const u8 gText_EmptyString3[] = _("");
 static const u8 sText_YouThrowABallNowRight[] = _("You throw a Ball now, right?\nI… I'll do my best!");
-static const u8 sText_CastformChangedWeather[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX} changes the weather\nwith {B_CURRENT_MOVE}!");
+static const u8 sText_CastformChangedWeather[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX} changes the weather\nwith {B_CURRENT_MOVE}.");
 
 // early declaration of strings
 static const u8 sText_PkmnIncapableOfPower[];

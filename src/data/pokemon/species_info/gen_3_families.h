@@ -7023,63 +7023,6 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .formSpeciesIdTable = sCastformFormSpeciesIdTable,
         .formChangeTable = sCastformFormChangeTable,
     },
-
-    [SPECIES_CASTFORM_SANDSTORM] =
-    {
-        .baseHP        = 70,
-        .baseAttack    = 70,
-        .baseDefense   = 70,
-        .baseSpeed     = 70,
-        .baseSpAttack  = 70,
-        .baseSpDefense = 70,
-        .types = MON_TYPES(TYPE_ROCK),
-        .catchRate = 45,
-        .expYield = (P_UPDATED_EXP_YIELDS >= GEN_5) ? 147 : 145,
-        .evYield_HP = 1,
-        .itemCommon = ITEM_MYSTIC_WATER,
-        .itemRare = ITEM_MYSTIC_WATER,
-        .genderRatio = PERCENT_FEMALE(50),
-        .eggCycles = 25,
-        .friendship = STANDARD_FRIENDSHIP,
-        .growthRate = GROWTH_MEDIUM_FAST,
-        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FAIRY, EGG_GROUP_AMORPHOUS),
-        .abilities = { ABILITY_FORECAST, ABILITY_NONE },
-        .bodyColor = BODY_COLOR_BROWN,
-        .speciesName = _("Castform"),
-        .cryId = CRY_CASTFORM,
-        .natDexNum = NATIONAL_DEX_CASTFORM,
-        .categoryName = _("Weather"),
-        .height = 3,
-        .weight = 8,
-        .description = COMPOUND_STRING(
-            "This is Castform's form in a sandstorm.\n"
-            "In an experiment where it was buried\n"
-            "in the sand, it didn't change to this form.\n"
-            "Its dry skin is rough as stone."),
-        .pokemonScale = 435,
-        .pokemonOffset = -5,
-        .trainerScale = 256,
-        .trainerOffset = 0,
-        .frontPic = gMonFrontPic_CastformSandstorm,
-        .frontPicSize = MON_COORDS_SIZE(40, 56),
-        .frontPicYOffset = 8,
-        .frontAnimFrames = sAnims_CastformSandstorm,
-        .frontAnimId = ANIM_V_STRETCH,
-        .enemyMonElevation = 5,
-        .backPic = gMonBackPic_CastformSandstorm,
-        .backPicSize = MON_COORDS_SIZE(56, 64),
-        .backPicYOffset = 0,
-        .backAnimId = BACK_ANIM_TRIANGLE_DOWN,
-        .palette = gMonPalette_CastformSandstorm,
-        .shinyPalette = gMonShinyPalette_CastformSandstorm,
-        .iconSprite = gMonIcon_CastformSandstorm,
-        .iconPalIndex = 1,
-        FOOTPRINT(Castform)
-        .levelUpLearnset = sCastformLevelUpLearnset,
-        .teachableLearnset = sCastformTeachableLearnset,
-        .formSpeciesIdTable = sCastformFormSpeciesIdTable,
-        .formChangeTable = sCastformFormChangeTable,
-    },
 #endif //P_FAMILY_CASTFORM
 
 #if P_FAMILY_KECLEON
