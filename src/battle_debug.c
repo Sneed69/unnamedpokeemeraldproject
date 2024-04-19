@@ -487,7 +487,7 @@ static const struct ListMenuTemplate sMainListTemplate =
     .cursor_X = 0,
     .upText_Y = 1,
     .cursorPal = 2,
-    .fillValue = 1,
+    .fillValue = 3,
     .cursorShadowPal = 3,
     .lettersSpacing = 1,
     .itemVerticalPadding = 0,
@@ -509,7 +509,7 @@ static const struct ListMenuTemplate sSecondaryListTemplate =
     .cursor_X = 0,
     .upText_Y = 1,
     .cursorPal = 2,
-    .fillValue = 1,
+    .fillValue = 3,
     .cursorShadowPal = 3,
     .lettersSpacing = 1,
     .itemVerticalPadding = 0,
@@ -609,7 +609,7 @@ static const bool8 sHasChangeableEntries[LIST_ITEM_COUNT] =
     [LIST_ITEM_STAT_STAGES] = TRUE,
 };
 
-static const u16 sBgColor[] = {RGB_WHITE};
+static const u16 sBgColor[] = {RGB(9, 9, 9)};
 
 // this file's functions
 static void Task_DebugMenuFadeOut(u8 taskId);
