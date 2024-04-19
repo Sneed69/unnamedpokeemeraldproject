@@ -71,8 +71,6 @@
 #include "constants/egg_hatch.h"
 #include "cable_club.h"
 #include "reshow_battle_screen.h"
-#include "field_weather.h" //added wiz1989
-#include "constants/weather.h" //added wiz1989
 
 extern const struct BgTemplate gBattleBgTemplates[];
 extern const struct WindowTemplate *const gBattleWindowTemplates[];

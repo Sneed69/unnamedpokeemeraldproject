@@ -5132,12 +5132,6 @@ const u8 gMonFootprint_QuestionMark[] = INCBIN_U8("graphics/pokemon/question_mar
     const u32 gMonBackPic_CastformSnowy[] = INCBIN_U32("graphics/pokemon/castform/snowy/back.4bpp.lz");
     const u32 gMonShinyPalette_CastformSnowy[] = INCBIN_U32("graphics/pokemon/castform/snowy/shiny.gbapal.lz");
     const u8 gMonIcon_CastformSnowy[] = INCBIN_U8("graphics/pokemon/castform/snowy/icon.4bpp");
-
-    const u32 gMonFrontPic_CastformSandstorm[] = INCBIN_U32("graphics/pokemon/castform/sandstorm/anim_front.4bpp.lz");
-    const u32 gMonPalette_CastformSandstorm[] = INCBIN_U32("graphics/pokemon/castform/sandstorm/normal.gbapal.lz");
-    const u32 gMonBackPic_CastformSandstorm[] = INCBIN_U32("graphics/pokemon/castform/sandstorm/back.4bpp.lz");
-    const u32 gMonShinyPalette_CastformSandstorm[] = INCBIN_U32("graphics/pokemon/castform/sandstorm/shiny.gbapal.lz");
-    const u8 gMonIcon_CastformSandstorm[] = INCBIN_U8("graphics/pokemon/castform/sandstorm/icon.4bpp");
 #endif //P_FAMILY_CASTFORM
 
 #if P_FAMILY_KECLEON

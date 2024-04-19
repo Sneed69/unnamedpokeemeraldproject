@@ -504,9 +504,6 @@ extern const u8 BattleScript_ItemRestoreHP_Party[];
 extern const u8 BattleScript_EffectPsychicNoise[];
 extern const u8 BattleScript_AromaVeilProtectsRet[];
 
-extern const u8 BattleScript_CastformWeatherStarts[];
-extern const u8 BattleScript_CastformWeatherStartsEarly[];
-extern const u8 BattleScript_CastformFormChangeWithStringEnd3[];
 // zmoves
 extern const u8 BattleScript_ZMoveActivateDamaging[];
 extern const u8 BattleScript_ZMoveActivateStatus[];
