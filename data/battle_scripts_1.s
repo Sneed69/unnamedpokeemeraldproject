@@ -10059,8 +10059,8 @@ BattleScript_ItemDropped::
 	return
 
 BattleScript_WildBattleVictory::
-	playfaintcry BS_TARGET
-	waitcry BS_TARGET
+	playfaintcry BS_SCRIPTING
+	waitcry BS_SCRIPTING
 	jumpifnoballs BattleScript_FaintWildMon
 	printstring STRINGID_VICTORYCATCH
 	setbyte gBattleCommunication, 0
@@ -10070,12 +10070,13 @@ BattleScript_WildBattleVictory::
 	end2
 
 BattleScript_FaintWildMon::
-	savedroppeditem BS_TARGET
+	savedroppeditem BS_SCRIPTING
 	pause B_WAIT_TIME_SHORT
-	dofaintanimation BS_TARGET
+	dofaintanimation BS_SCRIPTING
 	printstring STRINGID_TARGETFAINTED
 	setbyte sGIVEEXP_STATE, 0
-	getexp BS_TARGET
+	getexp BS_SCRIPTING
+	cleareffectsonfaint BS_SCRIPTING
 	setbyte gBattleOutcome, B_OUTCOME_WON
 	finishturn
 

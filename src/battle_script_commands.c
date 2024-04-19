@@ -4067,6 +4067,7 @@ static void Cmd_tryfaintmon(void)
             {
                 u8 hp = 1;
                 SetMonData(&gEnemyParty[gBattlerPartyIndexes[battler]], MON_DATA_HP, &hp);
+                gBattleScripting.battler = battler;
                 gBattlescriptCurrInstr = BattleScript_WildBattleVictory;
                 return;
             }
@@ -10929,8 +10930,11 @@ static void Cmd_various(void)
     case VARIOUS_JUMP_IF_NO_BALLS:
     {
         VARIOUS_ARGS(const u8 *jumpInstr);
-        if (IsBagPocketNonEmpty(POCKET_POKE_BALLS))
+        if (IsBagPocketNonEmpty(POCKET_POKE_BALLS) && !IsPokemonStorageFull())
+        {
             gBattlescriptCurrInstr = cmd->nextInstr;
+            gBattleStruct->victoryCatchState = VICTORY_CATCH_START;
+        }
         else
             gBattlescriptCurrInstr = cmd->jumpInstr;
         return;
@@ -10938,9 +10942,9 @@ static void Cmd_various(void)
     case VARIOUS_CATCH_AFTER_VICTORY:
     {
         VARIOUS_ARGS();
-        if (!(gBattleStruct->victoryCatchState)) // open bag if end sequence just began
+        if (gBattleStruct->victoryCatchState == VICTORY_CATCH_START) // open bag if end sequence just began
         {
-            gBattleStruct->victoryCatchState = 1;
+            gBattleStruct->victoryCatchState = VICTORY_CATCH_OPEN_BAG;
             gSpecialVar_ItemId = ITEM_NONE;
             battler = GetBattlerAtPosition(B_POSITION_PLAYER_LEFT);
             RecalcBattlerStats(battler, &gEnemyParty[0]);
@@ -10974,6 +10978,10 @@ static void Cmd_various(void)
         }
         else // no item selected
         {
+            gHitMarker |= HITMARKER_FAINTED(battler);
+            if (gBattleResults.opponentFaintCounter < 255)
+                gBattleResults.opponentFaintCounter++;
+            gBattleResults.lastOpponentSpecies = GetMonData(&gEnemyParty[gBattlerPartyIndexes[battler]], MON_DATA_SPECIES, NULL);
             gBattlescriptCurrInstr = BattleScript_FaintWildMon;
         }
         return;
