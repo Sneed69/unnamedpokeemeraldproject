@@ -12557,10 +12557,10 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             "Shoots boiling water at the\n"
             "foe. May inflict a burn."),
         .effect = EFFECT_HIT,
-        .power = 80,
+        .power = 70,
         .type = TYPE_WATER,
         .accuracy = 100,
-        .pp = 24,
+        .pp = 16,
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
         .category = DAMAGE_CATEGORY_SPECIAL,
