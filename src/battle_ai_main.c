@@ -118,7 +118,7 @@ static u32 GetAiFlags(u16 trainerId)
             flags = GetAiScriptsInRecordedBattle();
         else if (gBattleTypeFlags & BATTLE_TYPE_SAFARI)
             flags = AI_FLAG_SAFARI;
-        else if (gBattleTypeFlags & BATTLE_TYPE_ROAMER)
+        else if (gBattleTypeFlags & BATTLE_TYPE_ROAMER && DoesRoamerFlee())
             flags = AI_FLAG_ROAMING;
         else if (gBattleTypeFlags & BATTLE_TYPE_FIRST_BATTLE)
             flags = AI_FLAG_FIRST_BATTLE;
