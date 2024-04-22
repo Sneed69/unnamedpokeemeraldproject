@@ -1868,7 +1868,7 @@ static void ValidateAndReceivePokemonSioInfo(void *recvBuffer)
 
 // Equivalent to Task_PlayerExchange, but for when new children arrive after the first exchange
 static void Task_PlayerExchangeUpdate(u8 taskId)
-{
+{/*
     s32 i;
     struct LinkPlayerBlock *playerBlock;
     struct SioInfo *sio;
@@ -1943,7 +1943,7 @@ static void Task_PlayerExchangeUpdate(u8 taskId)
             DestroyTask(taskId);
         }
         break;
-    }
+    }*/
 }
 
 // Equivalent to Task_PlayerExchange but for chatting with a Union Room partner
