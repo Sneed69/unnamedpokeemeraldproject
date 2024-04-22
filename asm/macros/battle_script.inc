@@ -2522,3 +2522,8 @@
 	.macro hidehealthboxes
 	various 0, VARIOUS_HIDE_HEALTHBOXES
 	.endm
+
+	.macro setweatherafterattack failInstr:req
+	callnative BS_SetWeatherAfterAttack
+	.4byte \failInstr
+	.endm

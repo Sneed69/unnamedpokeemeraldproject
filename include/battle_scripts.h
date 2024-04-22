@@ -834,5 +834,7 @@ extern const u8 BattleScript_EffectUpperHand[];
 extern const u8 BattleScript_EffectTidyUp[];
 extern const u8 BattleScript_WildBattleVictory[];
 extern const u8 BattleScript_FaintWildMon[];
+extern const u8 BattleScript_EffectColdSnap[];
+extern const u8 BattleScript_EffectHitSetWeather[];
 
 #endif // GUARD_BATTLE_SCRIPTS_H

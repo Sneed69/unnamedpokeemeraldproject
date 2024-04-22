@@ -335,5 +335,14 @@
 #define ARG_SET_PSYCHIC_TERRAIN        0
 #define ARG_TRY_REMOVE_TERRAIN_HIT     1
 #define ARG_TRY_REMOVE_TERRAIN_FAIL    2
+#define ARG_SET_ELECTRIC_TERRAIN       3
+#define ARG_SET_MISTY_TERRAIN          4
+#define ARG_SET_GRASSY_TERRAIN         5
+
+// Argument labels for EFFECT_HIT_SET_REMOVE_WEATHER
+#define ARG_SET_RAIN         0
+#define ARG_SET_SUN          1
+#define ARG_SET_SANDSTORM    2
+#define ARG_SET_SNOW         3
 
 #endif // GUARD_CONSTANTS_BATTLE_SCRIPT_COMMANDS_H

@@ -3059,6 +3059,7 @@ bool32 IsMoveEffectWeather(u32 move)
     if (move != MOVE_NONE
      && (gMovesInfo[move].effect == EFFECT_SUNNY_DAY
       || gMovesInfo[move].effect == EFFECT_RAIN_DANCE
+      || gMovesInfo[move].effect == EFFECT_HIT_SET_WEATHER
       || gMovesInfo[move].effect == EFFECT_SANDSTORM
       || gMovesInfo[move].effect == EFFECT_HAIL
       || gMovesInfo[move].effect == EFFECT_SNOWSCAPE))
@@ -3075,6 +3076,7 @@ bool32 PartnerMoveEffectIsTerrain(u32 battlerAtkPartner, u32 partnerMove)
     if (partnerMove != MOVE_NONE
      && (gMovesInfo[partnerMove].effect == EFFECT_GRASSY_TERRAIN
       || gMovesInfo[partnerMove].effect == EFFECT_MISTY_TERRAIN
+      || gMovesInfo[partnerMove].effect == EFFECT_HIT_SET_REMOVE_TERRAIN
       || gMovesInfo[partnerMove].effect == EFFECT_ELECTRIC_TERRAIN
       || gMovesInfo[partnerMove].effect == EFFECT_PSYCHIC_TERRAIN))
         return TRUE;

@@ -7770,9 +7770,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
     [MOVE_BLAST_BURN] =
     {
         .name = COMPOUND_STRING("Blast Burn"),
-        .description = COMPOUND_STRING(
-            "Powerful, but leaves the\n"
-            "user immobile the next turn."),
+        .description = sHyperBeamDescription,
         .effect = EFFECT_HIT,
         .power = 135,
         .type = TYPE_FIRE,
@@ -7795,9 +7793,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
     [MOVE_HYDRO_CANNON] =
     {
         .name = COMPOUND_STRING("Hydro Cannon"),
-        .description = COMPOUND_STRING(
-            "Powerful, but leaves the\n"
-            "user immobile the next turn."),
+        .description = sHyperBeamDescription,
         .effect = EFFECT_HIT,
         .power = 135,
         .type = TYPE_WATER,
@@ -8528,9 +8524,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
     [MOVE_FRENZY_PLANT] =
     {
         .name = COMPOUND_STRING("Frenzy Plant"),
-        .description = COMPOUND_STRING(
-            "Powerful, but leaves the\n"
-            "user immobile the next turn."),
+        .description = sHyperBeamDescription,
         .effect = EFFECT_HIT,
         .power = 135,
         .type = TYPE_GRASS,
@@ -20730,6 +20724,174 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = 0,
         .contestComboMoves = {COMBO_STARTER_MISTY_TERRAIN}
+    },
+
+    [MOVE_STARFALL] =
+    {
+        .name = COMPOUND_STRING("Starfall"),
+        .description = COMPOUND_STRING(
+            "Stars come crashing down,\n"
+            "making the terrain misty."),
+        .effect = EFFECT_HIT_SET_REMOVE_TERRAIN,
+        .power = 60,
+        .type = TYPE_FAIRY,
+        .accuracy = 100,
+        .pp = 8,
+        .target = MOVE_TARGET_BOTH,
+        .priority = 0,
+        .category = DAMAGE_CATEGORY_SPECIAL,
+        .argument = ARG_SET_MISTY_TERRAIN,
+
+        .contestEffect = CONTEST_EFFECT_BETTER_WHEN_LATER,
+        .contestCategory = CONTEST_CATEGORY_BEAUTY,
+        .contestComboStarterId = 0,
+    },
+
+    [MOVE_OVERLOAD] =
+    {
+        .name = COMPOUND_STRING("Overload"),
+        .description = COMPOUND_STRING(
+            "Shocks enemies and\n"
+            "electrifies the terrain."),
+        .effect = EFFECT_HIT_SET_REMOVE_TERRAIN,
+        .power = 60,
+        .type = TYPE_ELECTRIC,
+        .accuracy = 100,
+        .pp = 8,
+        .target = MOVE_TARGET_BOTH,
+        .priority = 0,
+        .category = DAMAGE_CATEGORY_SPECIAL,
+        .argument = ARG_SET_ELECTRIC_TERRAIN,
+
+        .contestEffect = CONTEST_EFFECT_BETTER_WHEN_LATER,
+        .contestCategory = CONTEST_CATEGORY_COOL,
+        .contestComboStarterId = 0,
+    },
+
+    [MOVE_BLOOM] =
+    {
+        .name = COMPOUND_STRING("Bloom"),
+        .description = COMPOUND_STRING(
+            "Rapidly grows plants to\n"
+            "cover the terrain."),
+        .effect = EFFECT_HIT_SET_REMOVE_TERRAIN,
+        .power = 60,
+        .type = TYPE_GRASS,
+        .accuracy = 100,
+        .pp = 8,
+        .target = MOVE_TARGET_BOTH,
+        .priority = 0,
+        .category = DAMAGE_CATEGORY_SPECIAL,
+        .argument = ARG_SET_GRASSY_TERRAIN,
+
+        .contestEffect = CONTEST_EFFECT_BETTER_WHEN_LATER,
+        .contestCategory = CONTEST_CATEGORY_COOL,
+        .contestComboStarterId = 0,
+    },
+
+    [MOVE_MINDSTORM] =
+    {
+        .name = COMPOUND_STRING("Mindstorm"),
+        .description = COMPOUND_STRING(
+            "A chaotic mind attack\n"
+            "that warps the terrain."),
+        .effect = EFFECT_HIT_SET_REMOVE_TERRAIN,
+        .power = 60,
+        .type = TYPE_PSYCHIC,
+        .accuracy = 100,
+        .pp = 8,
+        .target = MOVE_TARGET_BOTH,
+        .priority = 0,
+        .category = DAMAGE_CATEGORY_SPECIAL,
+        .argument = ARG_SET_PSYCHIC_TERRAIN,
+
+        .contestEffect = CONTEST_EFFECT_BETTER_WHEN_LATER,
+        .contestCategory = CONTEST_CATEGORY_SMART,
+        .contestComboStarterId = 0,
+    },
+
+    [MOVE_GEYSER] =
+    {
+        .name = COMPOUND_STRING("Geyser"),
+        .description = COMPOUND_STRING(
+            "Turbulently ejects water to\n"
+            "strike foes and start rain."),
+        .effect = EFFECT_HIT_SET_WEATHER,
+        .power = 40,
+        .type = TYPE_WATER,
+        .accuracy = 100,
+        .pp = 8,
+        .target = MOVE_TARGET_BOTH,
+        .priority = 0,
+        .category = DAMAGE_CATEGORY_SPECIAL,
+        .argument = ARG_SET_RAIN,
+
+        .contestEffect = CONTEST_EFFECT_BETTER_WHEN_LATER,
+        .contestCategory = CONTEST_CATEGORY_SMART,
+        .contestComboStarterId = 0,
+    },
+
+    [MOVE_FLARE] =
+    {
+        .name = COMPOUND_STRING("Flare"),
+        .description = COMPOUND_STRING(
+            "A flashing display of flame\n"
+            "that disperses clouds."),
+        .effect = EFFECT_HIT_SET_WEATHER,
+        .power = 50,
+        .type = TYPE_FIRE,
+        .accuracy = 100,
+        .pp = 8,
+        .target = MOVE_TARGET_BOTH,
+        .priority = 0,
+        .category = DAMAGE_CATEGORY_SPECIAL,
+        .argument = ARG_SET_SUN,
+
+        .contestEffect = CONTEST_EFFECT_BETTER_WHEN_LATER,
+        .contestCategory = CONTEST_CATEGORY_BEAUTY,
+        .contestComboStarterId = 0,
+    },
+
+    [MOVE_SNOWSTORM] =
+    {
+        .name = COMPOUND_STRING("Snowstorm"),
+        .description = COMPOUND_STRING(
+            "Strike foes with a\n"
+            "snowstorm that persists."),
+        .effect = EFFECT_HIT_SET_WEATHER,
+        .power = 60,
+        .type = TYPE_ICE,
+        .accuracy = 100,
+        .pp = 8,
+        .target = MOVE_TARGET_BOTH,
+        .priority = 0,
+        .category = DAMAGE_CATEGORY_SPECIAL,
+        .argument = ARG_SET_SNOW,
+
+        .contestEffect = CONTEST_EFFECT_BETTER_WHEN_LATER,
+        .contestCategory = CONTEST_CATEGORY_BEAUTY,
+        .contestComboStarterId = 0,
+    },
+
+    [MOVE_LANDSLIDE] =
+    {
+        .name = COMPOUND_STRING("Landslide"),
+        .description = COMPOUND_STRING(
+            "Scatters sand and rock,\n"
+            "whipping up a sandstorm."),
+        .effect = EFFECT_HIT_SET_WEATHER,
+        .power = 60,
+        .type = TYPE_ROCK,
+        .accuracy = 100,
+        .pp = 8,
+        .target = MOVE_TARGET_BOTH,
+        .priority = 0,
+        .category = DAMAGE_CATEGORY_SPECIAL,
+        .argument = ARG_SET_SANDSTORM,
+
+        .contestEffect = CONTEST_EFFECT_BETTER_WHEN_LATER,
+        .contestCategory = CONTEST_CATEGORY_BEAUTY,
+        .contestComboStarterId = 0,
     },
 
     // Z-Moves

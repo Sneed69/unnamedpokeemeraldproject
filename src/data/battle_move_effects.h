@@ -2230,4 +2230,17 @@ const struct BattleMoveEffect gBattleMoveEffects[NUM_BATTLE_MOVE_EFFECTS] =
         .battleTvScore = 0, // TODO: Assign points
         .encourageEncore = TRUE,
     },
+
+    [EFFECT_COLD_SNAP] =
+    {
+        .battleScript = BattleScript_EffectColdSnap,
+        .battleTvScore = 0, // TODO: Assign points
+        .encourageEncore = TRUE,
+    },
+
+    [EFFECT_HIT_SET_WEATHER] =
+    {
+        .battleScript = BattleScript_EffectHitSetWeather,
+        .battleTvScore = 0, // TODO: Assign points
+    },
 };

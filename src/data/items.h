@@ -6711,8 +6711,8 @@ const struct Item gItemsInfo[] =
         .holdEffect = HOLD_EFFECT_DAMP_ROCK,
         .description = COMPOUND_STRING(
             "Extends the length\n"
-            "of Rain Dance if\n"
-            "used by the holder."),
+            "of rain weather\n"
+            "the holder causes."),
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
@@ -6725,8 +6725,8 @@ const struct Item gItemsInfo[] =
         .holdEffect = HOLD_EFFECT_HEAT_ROCK,
         .description = COMPOUND_STRING(
             "Extends the length\n"
-            "of Sunny Day if\n"
-            "used by the holder."),
+            "of sunny weather\n"
+            "the holder causes."),
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
@@ -6739,8 +6739,8 @@ const struct Item gItemsInfo[] =
         .holdEffect = HOLD_EFFECT_SMOOTH_ROCK,
         .description = COMPOUND_STRING(
             "Extends the length\n"
-            "of Sandstorm if\n"
-            "used by the holder."),
+            "of sandstorms\n"
+            "the holder causes."),
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
@@ -6753,8 +6753,8 @@ const struct Item gItemsInfo[] =
         .holdEffect = HOLD_EFFECT_ICY_ROCK,
         .description = COMPOUND_STRING(
             "Extends the length\n"
-            "of the move Hail\n"
-            "used by the holder."),
+            "of snow weather\n"
+            "the holder causes."),
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,

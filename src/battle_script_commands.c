@@ -3739,6 +3739,7 @@ void SetMoveEffect(bool32 primary, bool32 certain)
                         gBattlescriptCurrInstr++;
                     else
                         gBattlescriptCurrInstr = BattleScript_SpikesActivates;
+                    break;
                 }
             case MOVE_EFFECT_SYRUP_BOMB:
                 if (!(gStatuses4[gEffectBattler] & STATUS4_SYRUP_BOMB))
@@ -16404,7 +16405,19 @@ void BS_SetRemoveTerrain(void)
     case EFFECT_HIT_SET_REMOVE_TERRAIN:
         switch (gMovesInfo[gCurrentMove].argument)
         {
-        case ARG_SET_PSYCHIC_TERRAIN: // Genesis Supernova
+        case ARG_SET_ELECTRIC_TERRAIN:
+            statusFlag = STATUS_FIELD_ELECTRIC_TERRAIN;
+            gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_TERRAIN_SET_ELECTRIC;
+            break;
+        case ARG_SET_GRASSY_TERRAIN:
+            statusFlag = STATUS_FIELD_GRASSY_TERRAIN;
+            gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_TERRAIN_SET_GRASSY;
+            break;
+        case ARG_SET_MISTY_TERRAIN:
+            statusFlag = STATUS_FIELD_MISTY_TERRAIN;
+            gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_TERRAIN_SET_MISTY;
+            break;
+        case ARG_SET_PSYCHIC_TERRAIN:
             statusFlag = STATUS_FIELD_PSYCHIC_TERRAIN;
             gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_TERRAIN_SET_PSYCHIC;
             break;
@@ -16912,4 +16925,40 @@ void BS_TryGulpMissile(void)
         gBattlescriptCurrInstr = BattleScript_GulpMissileFormChange;
     else
         gBattlescriptCurrInstr = cmd->nextInstr;
+}
+
+
+void BS_SetWeatherAfterAttack(void)
+{
+    NATIVE_ARGS(const u8 *jumpInstr);
+    u32 message;
+    u32 weather = ENUM_WEATHER_NONE;
+    
+    switch (gMovesInfo[gCurrentMove].argument)
+    {
+    case ARG_SET_RAIN:
+        weather = ENUM_WEATHER_RAIN;
+        message = B_MSG_STARTED_RAIN;
+        break;
+    case ARG_SET_SUN:
+        weather = ENUM_WEATHER_SUN;
+        message = B_MSG_STARTED_SUNLIGHT;
+        break;
+    case ARG_SET_SNOW:
+        weather = ENUM_WEATHER_SNOW;
+        message = B_MSG_STARTED_SNOW;
+        break;
+    case ARG_SET_SANDSTORM:
+        weather = ENUM_WEATHER_SANDSTORM;
+        message = B_MSG_STARTED_SANDSTORM;
+        break;
+    default:
+        break;
+    }
+    if (weather == ENUM_WEATHER_NONE || !TryChangeBattleWeather(gBattlerAttacker, weather, FALSE))
+        gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_WEATHER_FAILED;
+    else
+        gBattleCommunication[MULTISTRING_CHOOSER] = message;
+
+    gBattlescriptCurrInstr = cmd->nextInstr;
 }

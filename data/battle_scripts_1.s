@@ -363,7 +363,7 @@ BattleScript_EffectColdSnap::
 	jumpifsafeguard BattleScript_SafeguardProtected
 	attackanimation
 	waitanimation
-	seteffectprimary MOVE_EFFECT_FREEZE
+	seteffectprimary MOVE_EFFECT_FROSTBITE
 	goto BattleScript_MoveEnd
 
 BattleScript_MagmaArmorPrevents::
@@ -9475,9 +9475,9 @@ BattleScript_ExtremeEvoboostEnd::
 
 BattleScript_EffectHitSetRemoveTerrain::
 	attackcanceler
-	accuracycheck BattleScript_PrintMoveMissed, ACC_CURR_MOVE
 	attackstring
 	ppreduce
+	accuracycheck BattleScript_TerrainMoveMissed, ACC_CURR_MOVE
 	jumpifargument ARG_TRY_REMOVE_TERRAIN_FAIL, BattleScript_RemoveTerrain
 	critcalc
 	damagecalc
@@ -9499,6 +9499,16 @@ BattleScript_EffectHitSetRemoveTerrain::
 	waitmessage B_WAIT_TIME_LONG
 BattleScript_TryFaint:
 	tryfaintmon BS_TARGET
+	goto BattleScript_MoveEnd
+
+BattleScript_TerrainMoveMissed::
+	pause B_WAIT_TIME_SHORT
+	effectivenesssound
+	resultmessage
+	setremoveterrain BattleScript_MoveEnd
+	playanimation BS_ATTACKER, B_ANIM_RESTORE_BG
+	printfromtable gTerrainStringIds
+	waitmessage B_WAIT_TIME_LONG
 	goto BattleScript_MoveEnd
 
 BattleScript_RemoveTerrain:
@@ -10079,3 +10089,61 @@ BattleScript_FaintWildMon::
 	cleareffectsonfaint BS_SCRIPTING
 	setbyte gBattleOutcome, B_OUTCOME_WON
 	finishturn
+
+BattleScript_EffectHitSetWeather::
+	attackcanceler
+	attackstring
+	ppreduce
+	accuracycheck BattleScript_WeatherMoveMissed, ACC_CURR_MOVE
+	critcalc
+	damagecalc
+	adjustdamage
+	attackanimation
+	waitanimation
+	effectivenesssound
+	hitanimation BS_TARGET
+	waitstate
+	healthbarupdate BS_TARGET
+	datahpupdate BS_TARGET
+	critmessage
+	waitmessage B_WAIT_TIME_LONG
+	resultmessage
+	waitmessage B_WAIT_TIME_LONG
+	call BattleScript_CheckPrimalWeather
+	setweatherafterattack BattleScript_HitSetWeatherTryFaint
+	call BattleScript_PlayWeatherAnimation
+BattleScript_HitSetWeatherTryFaint:
+	tryfaintmon BS_TARGET
+	goto BattleScript_MoveEnd
+
+BattleScript_WeatherMoveMissed:
+	pause B_WAIT_TIME_SHORT
+	effectivenesssound
+	resultmessage
+	call BattleScript_CheckPrimalWeather
+	setweatherafterattack BattleScript_MoveEnd
+	call BattleScript_PlayWeatherAnimation
+	waitmessage B_WAIT_TIME_LONG
+	goto BattleScript_MoveEnd
+
+BattleScript_PlayWeatherAnimation:
+	jumpifbyte CMP_EQUAL, cMULTISTRING_CHOOSER, B_MSG_WEATHER_FAILED, BattleScript_PlayWeatherAnimationRet
+	jumpifargument ARG_SET_SUN, BattleScript_SunAnim
+	jumpifargument ARG_SET_SNOW, BattleScript_SnowAnim
+	jumpifargument ARG_SET_SANDSTORM, BattleScript_SandstormAnim
+	playmoveanimation BS_ATTACKER MOVE_RAIN_DANCE
+	goto BattleScript_PlayWeatherAnimationPrint
+	BattleScript_SunAnim:
+	playmoveanimation BS_ATTACKER MOVE_SUNNY_DAY
+	goto BattleScript_PlayWeatherAnimationPrint
+	BattleScript_SnowAnim:
+	playmoveanimation BS_ATTACKER MOVE_SNOWSCAPE
+	goto BattleScript_PlayWeatherAnimationPrint
+	BattleScript_SandstormAnim:
+	playmoveanimation BS_ATTACKER MOVE_SANDSTORM
+	BattleScript_PlayWeatherAnimationPrint:
+	printfromtable gMoveWeatherChangeStringIds
+	waitmessage B_WAIT_TIME_LONG
+	BattleScript_PlayWeatherAnimationRet:
+	call BattleScript_ActivateWeatherAbilities
+	return
