@@ -55,6 +55,7 @@ match the ROM; this is also why sSoundMovesTable's declaration is in the middle 
 functions instead of at the top of the file with the other declarations.
 */
 
+static uq4_12_t getBlazeMult(u32 maxHP, u32 hp);
 static bool32 TryRemoveScreens(u32 battler);
 static bool32 IsUnnerveAbilityOnOpposingSide(u32 battler);
 static u32 GetFlingPowerFromItemId(u32 itemId);
@@ -9302,63 +9303,19 @@ static inline u32 CalcAttackStat(u32 move, u32 battlerAtk, u32 battlerDef, u32 m
         break;
     case ABILITY_SWARM:
         if (moveType == TYPE_BUG)
-        {
-            if (gBattleMons[battlerAtk].hp <= (gBattleMons[battlerAtk].maxHP / 3))// 5  / 15
-                modifier = uq4_12_multiply_half_down(modifier, UQ_4_12(1.5));
-            else if (gBattleMons[battlerAtk].hp <= ((gBattleMons[battlerAtk].maxHP * 7) / 15))
-                modifier = uq4_12_multiply_half_down(modifier, UQ_4_12(1.4));
-            else if (gBattleMons[battlerAtk].hp <= ((gBattleMons[battlerAtk].maxHP * 9) / 15))
-                modifier = uq4_12_multiply_half_down(modifier, UQ_4_12(1.3));
-            else if (gBattleMons[battlerAtk].hp <= ((gBattleMons[battlerAtk].maxHP * 11) / 15))
-                modifier = uq4_12_multiply_half_down(modifier, UQ_4_12(1.2));
-            else if (gBattleMons[battlerAtk].hp <= ((gBattleMons[battlerAtk].maxHP * 13) /15))
-                modifier = uq4_12_multiply_half_down(modifier, UQ_4_12(1.1));
-        }
+            modifier = uq4_12_multiply_half_down(modifier, getBlazeMult(gBattleMons[battlerAtk].maxHP, gBattleMons[battlerAtk].hp));
         break;
     case ABILITY_TORRENT:
         if (moveType == TYPE_WATER)
-        {
-            if (gBattleMons[battlerAtk].hp <= (gBattleMons[battlerAtk].maxHP / 3))// 5  / 15
-                modifier = uq4_12_multiply_half_down(modifier, UQ_4_12(1.5));
-            else if (gBattleMons[battlerAtk].hp <= ((gBattleMons[battlerAtk].maxHP * 7) / 15))
-                modifier = uq4_12_multiply_half_down(modifier, UQ_4_12(1.4));
-            else if (gBattleMons[battlerAtk].hp <= ((gBattleMons[battlerAtk].maxHP * 9) / 15))
-                modifier = uq4_12_multiply_half_down(modifier, UQ_4_12(1.3));
-            else if (gBattleMons[battlerAtk].hp <= ((gBattleMons[battlerAtk].maxHP * 11) / 15))
-                modifier = uq4_12_multiply_half_down(modifier, UQ_4_12(1.2));
-            else if (gBattleMons[battlerAtk].hp <= ((gBattleMons[battlerAtk].maxHP * 13) /15))
-                modifier = uq4_12_multiply_half_down(modifier, UQ_4_12(1.1));
-        }
+            modifier = uq4_12_multiply_half_down(modifier, getBlazeMult(gBattleMons[battlerAtk].maxHP, gBattleMons[battlerAtk].hp));
         break;
     case ABILITY_BLAZE:
         if (moveType == TYPE_FIRE)
-        {
-            if (gBattleMons[battlerAtk].hp <= (gBattleMons[battlerAtk].maxHP / 3))// 5  / 15
-                modifier = uq4_12_multiply_half_down(modifier, UQ_4_12(1.5));
-            else if (gBattleMons[battlerAtk].hp <= ((gBattleMons[battlerAtk].maxHP * 7) / 15))
-                modifier = uq4_12_multiply_half_down(modifier, UQ_4_12(1.4));
-            else if (gBattleMons[battlerAtk].hp <= ((gBattleMons[battlerAtk].maxHP * 9) / 15))
-                modifier = uq4_12_multiply_half_down(modifier, UQ_4_12(1.3));
-            else if (gBattleMons[battlerAtk].hp <= ((gBattleMons[battlerAtk].maxHP * 11) / 15))
-                modifier = uq4_12_multiply_half_down(modifier, UQ_4_12(1.2));
-            else if (gBattleMons[battlerAtk].hp <= ((gBattleMons[battlerAtk].maxHP * 13) /15))
-                modifier = uq4_12_multiply_half_down(modifier, UQ_4_12(1.1));
-        }
+            modifier = uq4_12_multiply_half_down(modifier, getBlazeMult(gBattleMons[battlerAtk].maxHP, gBattleMons[battlerAtk].hp));
         break;
     case ABILITY_OVERGROW:
         if (moveType == TYPE_GRASS)
-        {
-            if (gBattleMons[battlerAtk].hp <= (gBattleMons[battlerAtk].maxHP / 3))// 5  / 15
-                modifier = uq4_12_multiply_half_down(modifier, UQ_4_12(1.5));
-            else if (gBattleMons[battlerAtk].hp <= ((gBattleMons[battlerAtk].maxHP * 7) / 15))
-                modifier = uq4_12_multiply_half_down(modifier, UQ_4_12(1.4));
-            else if (gBattleMons[battlerAtk].hp <= ((gBattleMons[battlerAtk].maxHP * 9) / 15))
-                modifier = uq4_12_multiply_half_down(modifier, UQ_4_12(1.3));
-            else if (gBattleMons[battlerAtk].hp <= ((gBattleMons[battlerAtk].maxHP * 11) / 15))
-                modifier = uq4_12_multiply_half_down(modifier, UQ_4_12(1.2));
-            else if (gBattleMons[battlerAtk].hp <= ((gBattleMons[battlerAtk].maxHP * 13) /15))
-                modifier = uq4_12_multiply_half_down(modifier, UQ_4_12(1.1));
-        }
+            modifier = uq4_12_multiply_half_down(modifier, getBlazeMult(gBattleMons[battlerAtk].maxHP, gBattleMons[battlerAtk].hp));
         break;
     case ABILITY_PLUS:
         if (IS_MOVE_SPECIAL(move) && IsBattlerAlive(BATTLE_PARTNER(battlerAtk)))
@@ -11525,4 +11482,20 @@ void RemoveBattlerType(u32 battler, u8 type)
         if (*(u8 *)(&gBattleMons[battler].type1 + i) == type)
             *(u8 *)(&gBattleMons[battler].type1 + i) = TYPE_MYSTERY;
     }
+}
+
+static uq4_12_t getBlazeMult(u32 maxHP, u32 hp)
+{
+        uq4_12_t mult;
+
+        if (hp <= (maxHP / 3))
+            mult = UQ_4_12(1.5);
+        else
+        {
+            mult = uq4_12_divide(UQ_4_12(maxHP - hp), UQ_4_12(maxHP));
+            mult = uq4_12_multiply(mult, UQ_4_12(0.75));
+            mult = uq4_12_add(mult, UQ_4_12(1));
+        }
+
+        return mult;
 }
