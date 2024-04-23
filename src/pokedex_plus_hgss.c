@@ -131,11 +131,11 @@ static const u16 sSizeScreenSilhouette_Pal[] = INCBIN_U16("graphics/pokedex/size
 static const u8 sText_Stats_Buttons[] = _("{DPAD_UPDOWN} BROWSE MOVES");
 static const u8 sText_Stats_Buttons_Decapped[] = _("{DPAD_UPDOWN} Browse Moves");
 static const u8 sText_Stats_HP[] = _("HP");
-static const u8 sText_Stats_Attack[] = _("Atk");
-static const u8 sText_Stats_Defense[] = _("Def");
-static const u8 sText_Stats_Speed[] = _("Spe");
-static const u8 sText_Stats_SpAttack[] = _("Sp.A");
-static const u8 sText_Stats_SpDefense[] = _("Sp.D");
+static const u8 sText_Stats_Attack[] = _("Attack");
+static const u8 sText_Stats_Defense[] = _("Defense");
+static const u8 sText_Stats_Speed[] = _("Speed");
+static const u8 sText_Stats_SpAttack[] = _("Sp.Attack");
+static const u8 sText_Stats_SpDefense[] = _("Sp.Defense");
 static const u8 sText_Stats_EV_Plus1[] = _("{UP_ARROW_2}");
 static const u8 sText_Stats_EV_Plus2[] = _("{UP_ARROW_2}{UP_ARROW_2}");
 static const u8 sText_Stats_EV_Plus3[] = _("{UP_ARROW_2}{UP_ARROW_2}{UP_ARROW_2}");
@@ -143,39 +143,22 @@ static const u8 sText_Stats_EvStr1Str2[] = _("{STR_VAR_1}{STR_VAR_2}");
 static const u8 sText_Stats_MoveSelectedMax[] = _("{STR_VAR_1} / {STR_VAR_2}");
 static const u8 sText_Stats_MoveLevel[] = _("Lvl");
 static const u8 sText_Stats_Gender_0[] = _("♂");
-static const u8 sText_Stats_Gender_12_5[] = _("♀ 1/7 ♂"); //_("♀ 12.5 / 87.5 ♂");
-static const u8 sText_Stats_Gender_25[] = _("♀ 1/3 ♂");     //_("♀ 25 / 75 ♂");
-static const u8 sText_Stats_Gender_50[] = _("♀ 1/1 ♂");     //_("♀ 50 / 50 ♂");
-static const u8 sText_Stats_Gender_75[] = _("♀ 3/1 ♂");     //_("♀ 75 / 25 ♂");
-static const u8 sText_Stats_Gender_87_5[] = _("♀ 7/1 ♂");
-static const u8 sText_Stats_Gender_100[] = _("♀");
-static const u8 sText_Stats_CatchRate[] = _("CATCH{0x5B}: ");
-static const u8 sText_Stats_CatchRate_Legend[] = _("Legendary");
-static const u8 sText_Stats_CatchRate_VeryHard[] = _("Very Hard");
-static const u8 sText_Stats_CatchRate_Difficult[] = _("Difficult");
-static const u8 sText_Stats_CatchRate_Medium[] = _("Medium");
-static const u8 sText_Stats_CatchRate_Relaxed[] = _("Relaxed");
-static const u8 sText_Stats_CatchRate_Easy[] = _("Easy");
-static const u8 sText_Stats_ExpYield[] = _("Exp Yield: ");
-static const u8 sText_Stats_EggCycles[] = _("Hatch Steps:");
-static const u8 sText_Stats_EggCycles_VeryFast[] = _("{EMOJI_BOLT}{EMOJI_DIZZYEGG}");
-static const u8 sText_Stats_EggCycles_Fast[] = _("{EMOJI_DIZZYEGG}");
-static const u8 sText_Stats_EggCycles_Normal[] = _("{EMOJI_DIZZYEGG}{EMOJI_DIZZYEGG}");
-static const u8 sText_Stats_EggCycles_Slow[] = _("{EMOJI_DIZZYEGG}{EMOJI_DIZZYEGG}{EMOJI_DIZZYEGG}");
+static const u8 sText_Stats_Gender_12_5[] = _("♀ 1:7 ♂"); //_("♀ 12.5 / 87.5 ♂");
+static const u8 sText_Stats_Gender_25[] = _("♀ 1:3 ♂");     //_("♀ 25 / 75 ♂");
+static const u8 sText_Stats_Gender_50[] = _("♀ 1:1 ♂");     //_("♀ 50 / 50 ♂");
+static const u8 sText_Stats_Gender_75[] = _("♀ 3:1 ♂");     //_("♀ 75 / 25 ♂");
+static const u8 sText_Stats_Gender_87_5[] = _("♀ 7:1 ♂");
+static const u8 sText_Stats_Gender_100[] = _("1♀");
 static const u8 sText_Stats_Growthrate[] = _("Growth Rate:");
 static const u8 sText_Stats_Friendship[] = _("Friendship:");
-static const u8 sText_Stats_Friendship_BigAnger[] = _("{EMOJI_BIGANGER}");
-static const u8 sText_Stats_Friendship_Neutral[] = _("{EMOJI_NEUTRAL}");
-static const u8 sText_Stats_Friendship_Happy[] = _("{EMOJI_HAPPY}");
-static const u8 sText_Stats_Friendship_BigSmile[] = _("{EMOJI_BIGSMILE}");
 static const u8 sText_Stats_MEDIUM_FAST[] = _("Medium Fast");
 static const u8 sText_Stats_ERRATIC[] = _("Erratic");
 static const u8 sText_Stats_FLUCTUATING[] = _("Fluctuating");
 static const u8 sText_Stats_MEDIUM_SLOW[] = _("Medium Slow");
 static const u8 sText_Stats_FAST[] = _("Fast");
 static const u8 sText_Stats_SLOW[] = _("Slow");
-static const u8 sText_Stats_ContestHeart[] = _("H");
-static const u8 sText_Stats_Minus[] = _("-");
+static const u8 sText_Stats_Ability[] = _("Ability:");
+static const u8 sText_Stats_Abilities[] = _("Abilities:");
 static const u8 sText_Stats_EggGroup[] = _("Egg Group:");
 static const u8 sText_Stats_EggGroups[] = _("Egg Groups:");
 static const u8 sText_Stats_eggGroup_Groups[] = _("{STR_VAR_1}/{STR_VAR_2}");
@@ -193,9 +176,7 @@ static const u8 sText_Stats_eggGroup_AMORPHOUS[] = _("Amorphous");
 static const u8 sText_Stats_eggGroup_WATER_2[] = _("Water {CIRCLE_2}");
 static const u8 sText_Stats_eggGroup_DITTO[] = _("Ditto");
 static const u8 sText_Stats_eggGroup_DRAGON[] = _("Dragon");
-static const u8 sText_Stats_eggGroup_NO_EGGS_DISCOVERED[] = _("---");
-static const u8 sText_Dex_SEEN[] = _("Seen");
-static const u8 sText_Dex_OWN[] = _("Own");
+static const u8 sText_Stats_eggGroup_NO_EGGS_DISCOVERED[] = _("Undiscovered");
 
 static const u8 sText_EVO_Buttons[] = _("{DPAD_UPDOWN}EVOs  {A_BUTTON}CHECK");
 static const u8 sText_EVO_Buttons_Decapped[] = _("{DPAD_UPDOWN} Browse  {A_BUTTON} Info");
@@ -1406,7 +1387,7 @@ static const struct WindowTemplate sInfoScreen_WindowTemplates[] =
 #define WIN_STATS_MOVES_TOP 5
 #define WIN_STATS_MOVES_DESCRIPTION 7
 #define WIN_STATS_MOVES_BOTTOM 8
-#define WIN_STATS_ABILITIES 9
+#define WIN_STATS_BOTTOM_RIGHT 9
 #define WIN_STATS_LEFT_UNUSED 10
 #define WIN_STATS_END WIN_STATS_LEFT_UNUSED
 static const struct WindowTemplate sStatsScreen_WindowTemplates[] =
@@ -1491,7 +1472,7 @@ static const struct WindowTemplate sStatsScreen_WindowTemplates[] =
         .paletteNum = 0,
         .baseBlock = 1 + 60 + 40 + 48 + 192 + 24 + 72 + 72,
     },
-    [WIN_STATS_ABILITIES] =
+    [WIN_STATS_BOTTOM_RIGHT] =
     {
         .bg = 2,
         .tilemapLeft = 12,
@@ -5203,55 +5184,25 @@ static void PrintStatsScreen_Moves_Bottom(u8 taskId)
     u8 moves_y = 3;
     u8 selected = sPokedexView->moveSelected;
     u16 move;
-    //Contest
-    u8 contest_effectValue;
-    u8 contest_appeal = 0;
-    u8 contest_jam = 0;
 
     //Move
     move = sStatsMoves[selected];
 
-    //Power + Accuracy
-    if (gTasks[taskId].data[5] == 0)
-    {
-        //Power
-        if (gMovesInfo[move].power < 2)
-            StringCopy(gStringVar1, gText_ThreeDashes);
-        else
-            ConvertIntToDecimalStringN(gStringVar1, gMovesInfo[move].power, STR_CONV_MODE_RIGHT_ALIGN, 3);
-        PrintStatsScreenTextSmall(WIN_STATS_MOVES_BOTTOM, gStringVar1, moves_x + 45, moves_y);
-        //Physical/Special/Status Category
-        DestroyCategoryIcon();
-        ShowCategoryIcon(GetBattleMoveCategory(move));
-        //Accuracy
-        if (gMovesInfo[move].accuracy == 0)
-            StringCopy(gStringVar1, gText_ThreeDashes);
-        else
-            ConvertIntToDecimalStringN(gStringVar1, gMovesInfo[move].accuracy, STR_CONV_MODE_RIGHT_ALIGN, 3);
-        PrintStatsScreenTextSmall(WIN_STATS_MOVES_BOTTOM, gStringVar1,  moves_x + 114, moves_y);
-    }
-    else //Appeal + Jam
-    {
-        DestroyCategoryIcon();
-        gSprites[sPokedexView->categoryIconSpriteId].invisible = TRUE;
-        //Appeal
-        contest_effectValue = gContestEffects[gMovesInfo[move].contestEffect].appeal;
-        if (contest_effectValue != 0xFF)
-            contest_appeal = contest_effectValue / 10;
-        ConvertIntToDecimalStringN(gStringVar1, contest_appeal, STR_CONV_MODE_RIGHT_ALIGN, 1);
-        StringCopy(gStringVar2, sText_PlusSymbol);
-        StringAppend(gStringVar2, gStringVar1);
-        PrintStatsScreenTextSmall(WIN_STATS_MOVES_BOTTOM, gStringVar2, moves_x + 45, moves_y);
-
-        //Jam
-        contest_effectValue = gContestEffects[gMovesInfo[move].contestEffect].jam;
-        if (contest_effectValue != 0xFF)
-            contest_jam = contest_effectValue / 10;
-        ConvertIntToDecimalStringN(gStringVar1, contest_jam, STR_CONV_MODE_RIGHT_ALIGN, 1);
-        StringCopy(gStringVar2, sText_Stats_Minus);
-        StringAppend(gStringVar2, gStringVar1);
-        PrintStatsScreenTextSmall(WIN_STATS_MOVES_BOTTOM, gStringVar2,  moves_x + 119, moves_y);
-    }
+    //Power
+    if (gMovesInfo[move].power < 2)
+        StringCopy(gStringVar1, gText_ThreeDashes);
+    else
+        ConvertIntToDecimalStringN(gStringVar1, gMovesInfo[move].power, STR_CONV_MODE_RIGHT_ALIGN, 3);
+    PrintStatsScreenTextSmall(WIN_STATS_MOVES_BOTTOM, gStringVar1, moves_x + 45, moves_y);
+    //Physical/Special/Status Category
+    DestroyCategoryIcon();
+    ShowCategoryIcon(GetBattleMoveCategory(move));
+    //Accuracy
+    if (gMovesInfo[move].accuracy == 0)
+        StringCopy(gStringVar1, gText_ThreeDashes);
+    else
+        ConvertIntToDecimalStringN(gStringVar1, gMovesInfo[move].accuracy, STR_CONV_MODE_RIGHT_ALIGN, 3);
+    PrintStatsScreenTextSmall(WIN_STATS_MOVES_BOTTOM, gStringVar1,  moves_x + 114, moves_y);
 }
 
 static void PrintStatsScreen_NameGender(u8 taskId, u32 num, u32 value)
@@ -5301,52 +5252,41 @@ static void PrintStatsScreen_NameGender(u8 taskId, u32 num, u32 value)
         PrintStatsScreenTextSmall(WIN_STATS_NAME_GENDER, sText_Stats_Gender_100, gender_x, gender_y);
         break;
     default:
-        PrintStatsScreenTextSmall(WIN_STATS_NAME_GENDER, gText_ThreeDashes, gender_x, gender_y);
+        PrintStatsScreenTextSmall(WIN_STATS_NAME_GENDER, COMPOUND_STRING("Sex Unknown"), gender_x, gender_y);
         break;
     }
 }
 
 static void PrintStatsScreen_Left(u8 taskId)
 {
-    u8 base_x = 8;
-    u8 base_x_offset = 70;
-    u8 base_x_first_row = 23;
-    u8 base_x_second_row = 43;
-    u8 base_y_offset = 11;
-    u8 base_i = 0;
-    u8 base_y = 5;
+    u32 base_x = 8;
+    u32 base_y_offset = 11;
+    u32 base_i = 0;
+    u32 base_y = 5;
     u32 align_x;
     u8 strEV[25];
-    u8 strBase[14];
+    u32 ability0 = sPokedexView->sPokemonStats.ability0;
+    u32 ability1 = sPokedexView->sPokemonStats.ability1;
 
-    //Base stats
-    PrintStatsScreenTextSmall(WIN_STATS_LEFT, sText_Stats_HP, base_x, base_y + base_y_offset*base_i);
-    ConvertIntToDecimalStringN(strBase, sPokedexView->sPokemonStats.baseHP, STR_CONV_MODE_RIGHT_ALIGN, 3);
-    PrintStatsScreenTextSmall(WIN_STATS_LEFT, strBase, base_x+base_x_first_row, base_y + base_y_offset*base_i);
+    //Abilities
 
-    PrintStatsScreenTextSmall(WIN_STATS_LEFT, sText_Stats_Speed, base_x+base_x_second_row, base_y + base_y_offset*base_i);
-    ConvertIntToDecimalStringN(strBase, sPokedexView->sPokemonStats.baseSpeed, STR_CONV_MODE_RIGHT_ALIGN, 3);
-    PrintStatsScreenTextSmall(WIN_STATS_LEFT, strBase, base_x+base_x_offset, base_y + base_y_offset*base_i);
-
-    base_i++;
-    PrintStatsScreenTextSmall(WIN_STATS_LEFT, sText_Stats_Attack, base_x, base_y + base_y_offset*base_i);
-    ConvertIntToDecimalStringN(strBase, sPokedexView->sPokemonStats.baseAttack, STR_CONV_MODE_RIGHT_ALIGN, 3);
-    PrintStatsScreenTextSmall(WIN_STATS_LEFT, strBase, base_x+base_x_first_row, base_y + base_y_offset*base_i);
-
-    PrintStatsScreenTextSmall(WIN_STATS_LEFT, sText_Stats_SpAttack, base_x+base_x_second_row, base_y + base_y_offset*base_i);
-    ConvertIntToDecimalStringN(strBase, sPokedexView->sPokemonStats.baseSpAttack, STR_CONV_MODE_RIGHT_ALIGN, 3);
-    PrintStatsScreenTextSmall(WIN_STATS_LEFT, strBase, base_x+base_x_offset, base_y + base_y_offset*base_i);
-
-    base_i++;
-    PrintStatsScreenTextSmall(WIN_STATS_LEFT, sText_Stats_Defense, base_x, base_y + base_y_offset*base_i);
-    ConvertIntToDecimalStringN(strBase, sPokedexView->sPokemonStats.baseDefense, STR_CONV_MODE_RIGHT_ALIGN, 3);
-    PrintStatsScreenTextSmall(WIN_STATS_LEFT, strBase, base_x+base_x_first_row, base_y + base_y_offset*base_i);
-
-    PrintStatsScreenTextSmall(WIN_STATS_LEFT, sText_Stats_SpDefense, base_x+base_x_second_row, base_y + base_y_offset*base_i);
-    ConvertIntToDecimalStringN(strBase, sPokedexView->sPokemonStats.baseSpDefense, STR_CONV_MODE_RIGHT_ALIGN, 3);
-    PrintStatsScreenTextSmall(WIN_STATS_LEFT, strBase, base_x+base_x_offset, base_y + base_y_offset*base_i);
-    base_i++;
-    
+    if (ability1 != ABILITY_NONE && ability1 != ability0)
+    {
+        PrintStatsScreenTextSmall(WIN_STATS_LEFT, sText_Stats_Abilities, base_x, base_y + base_y_offset*base_i);
+        base_i++;
+        PrintStatsScreenTextSmall(WIN_STATS_LEFT, gAbilitiesInfo[ability0].name, base_x + 3, base_y + base_y_offset*base_i);
+        base_i++;
+        PrintStatsScreenTextSmall(WIN_STATS_LEFT, gAbilitiesInfo[ability1].name, base_x + 3, base_y + base_y_offset*base_i);
+        base_i++;
+    }
+    else
+    {
+        PrintStatsScreenTextSmall(WIN_STATS_LEFT, sText_Stats_Ability, base_x, base_y + base_y_offset*base_i);
+        base_i++;
+        PrintStatsScreenTextSmall(WIN_STATS_LEFT, gAbilitiesInfo[ability0].name, base_x + 3, base_y + base_y_offset*base_i);
+        base_i++;
+    }
+        
     PrintStatsScreenTextSmall(WIN_STATS_LEFT, sText_Stats_Growthrate, base_x, base_y + base_y_offset*base_i);
     base_i++;
     switch (sPokedexView->sPokemonStats.growthRate)
@@ -5372,7 +5312,7 @@ static void PrintStatsScreen_Left(u8 taskId)
     default:
         break;
     }
-    align_x = base_x + 8;
+    align_x = base_x + 3;
     PrintStatsScreenTextSmall(WIN_STATS_LEFT, strEV, align_x, base_y + base_y_offset*base_i);
     base_i++;
 
@@ -5431,7 +5371,7 @@ static void PrintStatsScreen_Left(u8 taskId)
         StringCopy(gStringVar1, sText_Stats_eggGroup_NO_EGGS_DISCOVERED);
         break;
     }
-    PrintStatsScreenTextSmall(WIN_STATS_LEFT, gStringVar1, base_x + 8, base_y + base_y_offset*base_i);
+    PrintStatsScreenTextSmall(WIN_STATS_LEFT, gStringVar1, base_x + 3, base_y + base_y_offset*base_i);
     base_i++;
 
     //Egg group 2
@@ -5485,7 +5425,7 @@ static void PrintStatsScreen_Left(u8 taskId)
             StringCopy(gStringVar2, sText_Stats_eggGroup_NO_EGGS_DISCOVERED);
             break;
         }
-        PrintStatsScreenTextSmall(WIN_STATS_LEFT, gStringVar2, base_x + 8, base_y + base_y_offset*base_i);
+        PrintStatsScreenTextSmall(WIN_STATS_LEFT, gStringVar2, base_x + 3, base_y + base_y_offset*base_i);
         base_i++;
     }
     base_i++;
@@ -5493,22 +5433,43 @@ static void PrintStatsScreen_Left(u8 taskId)
 
 static void PrintStatsScreen_Abilities(u8 taskId)
 {
-    u8 abilities_x = 5;
-    u8 abilities_y = 3;
-    u16 ability0;
-    u16 ability1;
+    u32 base_x = 8;
+    u32 base_x_offset = 115;
+    u32 base_x_first_row = 40;
+    u32 base_x_second_row = 60;
+    u32 base_y = 6;
+    u32 base_y_offset = 11;
+    u8 strBase[14];
+    u32 base_i = 0;
 
-    //Abilities
-    ability0 = sPokedexView->sPokemonStats.ability0;
-    PrintStatsScreenTextSmallWhite(WIN_STATS_ABILITIES, gAbilitiesInfo[ability0].name, abilities_x, abilities_y);
-    PrintStatsScreenTextSmall(WIN_STATS_ABILITIES, gAbilitiesInfo[ability0].description, abilities_x, abilities_y + 14);
+    PrintStatsScreenTextSmallWhite(WIN_STATS_BOTTOM_RIGHT, (const u8[])_("Stats"), base_x - 2, base_y - 3);
+    base_i++;
+    PrintStatsScreenTextSmall(WIN_STATS_BOTTOM_RIGHT, sText_Stats_HP, base_x, base_y + base_y_offset*base_i);
+    ConvertIntToDecimalStringN(strBase, sPokedexView->sPokemonStats.baseHP, STR_CONV_MODE_RIGHT_ALIGN, 3);
+    PrintStatsScreenTextSmall(WIN_STATS_BOTTOM_RIGHT, strBase, base_x+base_x_first_row, base_y + base_y_offset*base_i);
 
-    ability1 = sPokedexView->sPokemonStats.ability1;
-    if (ability1 != ABILITY_NONE && ability1 != ability0)
-    {
-        PrintStatsScreenTextSmallWhite(WIN_STATS_ABILITIES, gAbilitiesInfo[ability1].name, abilities_x, abilities_y + 30);
-        PrintStatsScreenTextSmall(WIN_STATS_ABILITIES, gAbilitiesInfo[ability1].description, abilities_x, abilities_y + 44);
-    }
+    PrintStatsScreenTextSmall(WIN_STATS_BOTTOM_RIGHT, sText_Stats_Speed, base_x+base_x_second_row, base_y + base_y_offset*base_i);
+    ConvertIntToDecimalStringN(strBase, sPokedexView->sPokemonStats.baseSpeed, STR_CONV_MODE_RIGHT_ALIGN, 3);
+    PrintStatsScreenTextSmall(WIN_STATS_BOTTOM_RIGHT, strBase, base_x+base_x_offset, base_y + base_y_offset*base_i);
+
+    base_i++;
+    PrintStatsScreenTextSmall(WIN_STATS_BOTTOM_RIGHT, sText_Stats_Attack, base_x, base_y + base_y_offset*base_i);
+    ConvertIntToDecimalStringN(strBase, sPokedexView->sPokemonStats.baseAttack, STR_CONV_MODE_RIGHT_ALIGN, 3);
+    PrintStatsScreenTextSmall(WIN_STATS_BOTTOM_RIGHT, strBase, base_x+base_x_first_row, base_y + base_y_offset*base_i);
+
+    PrintStatsScreenTextSmall(WIN_STATS_BOTTOM_RIGHT, sText_Stats_SpAttack, base_x+base_x_second_row, base_y + base_y_offset*base_i);
+    ConvertIntToDecimalStringN(strBase, sPokedexView->sPokemonStats.baseSpAttack, STR_CONV_MODE_RIGHT_ALIGN, 3);
+    PrintStatsScreenTextSmall(WIN_STATS_BOTTOM_RIGHT, strBase, base_x+base_x_offset, base_y + base_y_offset*base_i);
+
+    base_i++;
+    PrintStatsScreenTextSmall(WIN_STATS_BOTTOM_RIGHT, sText_Stats_Defense, base_x, base_y + base_y_offset*base_i);
+    ConvertIntToDecimalStringN(strBase, sPokedexView->sPokemonStats.baseDefense, STR_CONV_MODE_RIGHT_ALIGN, 3);
+    PrintStatsScreenTextSmall(WIN_STATS_BOTTOM_RIGHT, strBase, base_x+base_x_first_row, base_y + base_y_offset*base_i);
+
+    PrintStatsScreenTextSmall(WIN_STATS_BOTTOM_RIGHT, sText_Stats_SpDefense, base_x+base_x_second_row, base_y + base_y_offset*base_i);
+    ConvertIntToDecimalStringN(strBase, sPokedexView->sPokemonStats.baseSpDefense, STR_CONV_MODE_RIGHT_ALIGN, 3);
+    PrintStatsScreenTextSmall(WIN_STATS_BOTTOM_RIGHT, strBase, base_x+base_x_offset, base_y + base_y_offset*base_i);
+    base_i++;
 }
 
 static void Task_SwitchScreensFromStatsScreen(u8 taskId)
