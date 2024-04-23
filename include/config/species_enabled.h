@@ -91,7 +91,7 @@
 #define P_FAMILY_MAGNEMITE               P_GEN_1_POKEMON
 #define P_FAMILY_FARFETCHD               0
 #define P_FAMILY_DODUO                   P_GEN_1_POKEMON
-#define P_FAMILY_SEEL                    P_GEN_1_POKEMON
+#define P_FAMILY_SEEL                    0
 #define P_FAMILY_GRIMER                  P_GEN_1_POKEMON
 #define P_FAMILY_SHELLDER                P_GEN_1_POKEMON
 #define P_FAMILY_GASTLY                  P_GEN_1_POKEMON
@@ -205,8 +205,8 @@
 #define P_FAMILY_MAKUHITA                P_GEN_3_POKEMON
 #define P_FAMILY_NOSEPASS                0
 #define P_FAMILY_SKITTY                  P_GEN_3_POKEMON
-#define P_FAMILY_SABLEYE                 P_GEN_3_POKEMON
-#define P_FAMILY_MAWILE                  P_GEN_3_POKEMON
+#define P_FAMILY_SABLEYE                 0
+#define P_FAMILY_MAWILE                  0
 #define P_FAMILY_ARON                    P_GEN_3_POKEMON
 #define P_FAMILY_MEDITITE                P_GEN_3_POKEMON
 #define P_FAMILY_ELECTRIKE               P_GEN_3_POKEMON
@@ -289,7 +289,7 @@
 #define P_FAMILY_CARNIVINE               P_GEN_4_POKEMON
 #define P_FAMILY_FINNEON                 P_GEN_4_POKEMON
 #define P_FAMILY_SNOVER                  TRUE
-#define P_FAMILY_ROTOM                   P_GEN_4_POKEMON
+#define P_FAMILY_ROTOM                   TRUE
 #define P_FAMILY_UXIE                    P_GEN_4_POKEMON
 #define P_FAMILY_MESPRIT                 P_GEN_4_POKEMON
 #define P_FAMILY_AZELF                   P_GEN_4_POKEMON
@@ -553,7 +553,7 @@
 #define P_FAMILY_CAPSAKID                P_GEN_9_POKEMON
 #define P_FAMILY_RELLOR                  P_GEN_9_POKEMON
 #define P_FAMILY_FLITTLE                 P_GEN_9_POKEMON
-#define P_FAMILY_TINKATINK               P_GEN_9_POKEMON
+#define P_FAMILY_TINKATINK               TRUE
 #define P_FAMILY_WIGLETT                 P_GEN_9_POKEMON
 #define P_FAMILY_BOMBIRDIER              P_GEN_9_POKEMON
 #define P_FAMILY_FINIZEN                 P_GEN_9_POKEMON

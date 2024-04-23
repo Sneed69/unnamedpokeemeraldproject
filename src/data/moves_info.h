@@ -3743,7 +3743,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             "confuse the foe."),
         .effect = EFFECT_HIT,
         .power = 70,
-        .type = TYPE_NORMAL,
+        .type = TYPE_FAIRY,
         .accuracy = 100,
         .pp = 16,
         .target = MOVE_TARGET_SELECTED,
@@ -19965,7 +19965,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             "Swings a huge hammer. Can't\n"
             "be used twice in a row."),
         .effect = EFFECT_HIT,
-        .power = 160,
+        .power = 140,
         .type = TYPE_STEEL,
         .accuracy = 100,
         .pp = 8,

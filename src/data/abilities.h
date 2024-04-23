@@ -510,21 +510,21 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_BLAZE] =
     {
         .name = _("Blaze"),
-        .description = COMPOUND_STRING("Ups Fire moves in a pinch."),
+        .description = COMPOUND_STRING("Fire-type moves increase\nin power as HP decreases."),
         .aiRating = 5,
     },
 
     [ABILITY_TORRENT] =
     {
         .name = _("Torrent"),
-        .description = COMPOUND_STRING("Ups Water moves in a pinch."),
+        .description = COMPOUND_STRING("Water-type moves increase\nin power as HP decreases."),
         .aiRating = 5,
     },
 
     [ABILITY_SWARM] =
     {
         .name = _("Swarm"),
-        .description = COMPOUND_STRING("Ups Bug moves in a pinch."),
+        .description = COMPOUND_STRING("Bug-type moves increase\nin power as HP decreases."),
         .aiRating = 5,
     },
 
@@ -1230,7 +1230,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
 
     [ABILITY_TURBOBLAZE] =
     {
-        .name = _("Turboblaze"),
+        .name = _("Mold Destroyer"),
         .description = COMPOUND_STRING("Moves hit through abilities."),
         .aiRating = 7,
     },
@@ -2681,7 +2681,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
 
     [ABILITY_MASTER_OF_THE_AGES] =
     {
-        .name = _("Absolute Zero"),
+        .name = _("Master of the Ages"),
         .description = COMPOUND_STRING("Powers up and resists Ice,\nRock and Steel-type moves."),
         .aiRating = 10,
         .breakable = TRUE,
