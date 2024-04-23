@@ -1231,8 +1231,8 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_TURBOBLAZE] =
     {
         .name = _("Mold Destroyer"),
-        .description = COMPOUND_STRING("Moves hit through abilities."),
-        .aiRating = 7,
+        .description = COMPOUND_STRING("Moves ignore Rock, Steel\nand ability protections."),
+        .aiRating = 10,
     },
 
     [ABILITY_TERAVOLT] =
