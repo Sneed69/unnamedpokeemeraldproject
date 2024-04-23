@@ -781,6 +781,7 @@ u8 GetExtCtrlCodeLength(u8 code)
         [EXT_CTRL_CODE_JPN]                    = 1,
         [EXT_CTRL_CODE_ENG]                    = 1,
         [EXT_CTRL_CODE_PAUSE_MUSIC]            = 1,
+        [EXT_CTRL_CODE_RESUME_MUSIC]           = 1,
         [EXT_CTRL_CODE_CAPITALIZE]             = 1,
     };
 
