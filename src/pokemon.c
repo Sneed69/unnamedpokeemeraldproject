@@ -757,7 +757,7 @@ STATIC_ASSERT(MAX_DYNAMAX_LEVEL < (1 << 4), PokemonSubstruct3_dynamaxLevel_TooSm
 STATIC_ASSERT(MAX_PER_STAT_IVS < (1 << 5), PokemonSubstruct3_ivs_TooSmall);
 STATIC_ASSERT(NUM_NATURES <= (1 << 5), BoxPokemon_hiddenNatureModifier_TooSmall);
 
-static u32 CompressStatus(u32 status)
+static u32 UNUSED CompressStatus(u32 status)
 {
     s32 i;
     for (i = 0; i < ARRAY_COUNT(sCompressedStatuses); i++)
@@ -768,7 +768,7 @@ static u32 CompressStatus(u32 status)
     return 0; // STATUS1_NONE
 }
 
-static u32 UncompressStatus(u32 compressedStatus)
+static u32 UNUSED UncompressStatus(u32 compressedStatus)
 {
     if (compressedStatus < ARRAY_COUNT(sCompressedStatuses))
         return sCompressedStatuses[compressedStatus];
