@@ -391,6 +391,26 @@ const u8 *const gNatureNamePointers[NUM_NATURES] =
     [NATURE_FREESPIRITED] = COMPOUND_STRING("Free-spirited"),
 };
 
+static const u8 hiddenPowerTypes[] =
+{
+    TYPE_BUG,
+    TYPE_DARK,
+    TYPE_ELECTRIC,
+    TYPE_FAIRY,
+    TYPE_FIGHTING,
+    TYPE_FIRE,
+    TYPE_FLYING,
+    TYPE_GHOST,
+    TYPE_GRASS,
+    TYPE_GROUND,
+    TYPE_ICE,
+    TYPE_POISON,
+    TYPE_PSYCHIC,
+    TYPE_ROCK,
+    TYPE_STEEL,
+    TYPE_WATER,
+};
+
 const s8 gNatureStatTable[NUM_NATURES][NUM_STATS] =
 {                              // HP Attack  Defense  Speed  Sp.Atk  Sp. Def
     [NATURE_HARDY]          = {   1,   2,      0,      0,      0,      0   },
@@ -1020,11 +1040,7 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, 
         SetBoxMonData(boxMon, MON_DATA_ABILITY_NUM, &value);
     }
 
-    value = 1 + Random() % (NUMBER_OF_MON_TYPES - 3); //exlude normal (0) and mystery and dragon
-    if (value >= TYPE_DRAGON)
-        value += 2;
-    else if (value >= TYPE_MYSTERY)
-        value++;
+    value = RandomElement(RNG_HIDDEN_POWER, hiddenPowerTypes);
     SetBoxMonData(boxMon, MON_DATA_HIDDEN_POWER_TYPE, &value);
 
     for (value = STAT_HP; value < NUM_STATS; value++)
