@@ -2270,8 +2270,6 @@ u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer 
             if (partyData[i].gender == TRAINER_MON_MALE)
                 personalityValue = (personalityValue & 0xFFFFFF00) | GeneratePersonalityForGender(MON_MALE, partyData[i].species);
             else if (partyData[i].gender == TRAINER_MON_FEMALE)
-                personalityValue = (personalityValue & 0xFFFFFF00) | GeneratePersonalityForGender(MON_FEMALE, partyData[i].species);
-            else if (partyData[i].gender == TRAINER_MON_RANDOM_GENDER)
                 personalityValue = (personalityValue & 0xFFFFFF00) | GeneratePersonalityForGender(Random() & 1 ? MON_MALE : MON_FEMALE, partyData[i].species);
             ModifyPersonalityForNature(&personalityValue, partyData[i].nature);
             if (partyData[i].isShiny)
@@ -2315,12 +2313,15 @@ u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer 
                 u32 data = TRUE;
                 SetMonData(&party[i], MON_DATA_IS_SHINY, &data);
             }
-            if (partyData[i].majorProficiency || partyData[i].majorProficiency)
+            if (partyData[i].majorProficiency || partyData[i].minorProficiency)
             {
                 u32 data = partyData[i].majorProficiency;
                 SetMonData(&party[i], MON_DATA_MAJOR_PROFICIENCY, &data);
                 data = partyData[i].minorProficiency;
-                SetMonData(&party[i], MON_DATA_MINOR_PROFICIENCY, &data);
+                if (partyData[i].majorProficiency != data)
+                    SetMonData(&party[i], MON_DATA_MINOR_PROFICIENCY, &data);
+                else
+                    DebugPrintf("proficiency error!");
             }
             CalculateMonStats(&party[i]);
 
