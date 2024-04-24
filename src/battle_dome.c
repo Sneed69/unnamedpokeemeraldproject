@@ -4428,7 +4428,7 @@ static void DisplayTrainerInfoOnCard(u8 flags, u8 trainerTourneyId)
     // Same as above but for regular trainers instead of the frontier brain or player
     else
     {
-        for (i = 0; i < FRONTIER_PARTY_SIZE; i++)
+        /*for (i = 0; i < FRONTIER_PARTY_SIZE; i++)
         {
             for (j = 0; j < NUM_STATS; j++)
             {
@@ -4436,7 +4436,7 @@ static void DisplayTrainerInfoOnCard(u8 flags, u8 trainerTourneyId)
                     allocatedArray[j] = gFacilityTrainerMons[DOME_MONS[trainerTourneyId][i]].ev[j];
                 else
                     allocatedArray[j] = 0;
-            }
+            }*/
 
             /*allocatedArray[NUM_STATS] += allocatedArray[STAT_HP];
             for (j = 0; j < NUM_NATURE_STATS; j++)
@@ -4455,12 +4455,12 @@ static void DisplayTrainerInfoOnCard(u8 flags, u8 trainerTourneyId)
                 {
                     allocatedArray[j + NUM_STATS + 1] += allocatedArray[j + 1];
                 }
-            }*/
-        }
-        for (j = 0, i = 0; i < NUM_STATS; i++)
+            }
+        }*/
+        /*for (j = 0, i = 0; i < NUM_STATS; i++)
             j += allocatedArray[i + NUM_STATS];
         for (i = 0; i < NUM_STATS; i++)
-            allocatedArray[i] = (allocatedArray[NUM_STATS + i] * 100) / j;
+            allocatedArray[i] = (allocatedArray[NUM_STATS + i] * 100) / j;*/
     }
 
     // Count the number of good/bad stats for the party

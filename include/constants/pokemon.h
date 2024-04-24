@@ -70,12 +70,12 @@
 #define NATURE_SASSY    22
 #define NATURE_CAREFUL  23
 #define NATURE_QUIRKY   24
-#define NATURE_GRUMPY   25
-#define NATURE_COLLECTED   26
-#define NATURE_SKITTISH   27
-#define NATURE_REGAL   28
-#define NATURE_FREE_SPIRITED   29
-#define NUM_NATURES     30
+#define NATURE_GRUMPY       25
+#define NATURE_COLLECTED    26
+#define NATURE_SKITTISH     27
+#define NATURE_REGAL        28
+#define NATURE_FREESPIRITED 29
+#define NUM_NATURES         30
 
 // Pokémon Stats
 #define STAT_HP      0

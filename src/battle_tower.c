@@ -1612,33 +1612,10 @@ void CreateFacilityMon(const struct TrainerMon *fmon, u16 level, u8 fixedIV, u32
         SetMonData(dst, MON_DATA_ABILITY_NUM, &ability);
     }
     
-    if (fmon->ev != NULL)
-    {
-        SetMonData(dst, MON_DATA_HP_EV, &(fmon->ev[0]));
-        SetMonData(dst, MON_DATA_ATK_EV, &(fmon->ev[1]));
-        SetMonData(dst, MON_DATA_DEF_EV, &(fmon->ev[2]));
-        SetMonData(dst, MON_DATA_SPATK_EV, &(fmon->ev[3]));
-        SetMonData(dst, MON_DATA_SPDEF_EV, &(fmon->ev[4]));
-        SetMonData(dst, MON_DATA_SPEED_EV, &(fmon->ev[5]));
-    }
-    
-    if (fmon->iv)
-        SetMonData(dst, MON_DATA_IVS, &(fmon->iv));
-    
     if (fmon->isShiny)
     {
         u32 data = TRUE;
         SetMonData(dst, MON_DATA_IS_SHINY, &data);
-    }
-    if (fmon->dynamaxLevel > 0)
-    {
-        u32 data = fmon->dynamaxLevel;
-        SetMonData(dst, MON_DATA_DYNAMAX_LEVEL, &data);
-    }
-    if (fmon->gigantamaxFactor)
-    {
-        u32 data = fmon->gigantamaxFactor;
-        SetMonData(dst, MON_DATA_GIGANTAMAX_FACTOR, &data);
     }
     
     
@@ -3042,16 +3019,6 @@ static void FillPartnerParty(u16 trainerId)
             SetMonData(&gPlayerParty[i + 3], MON_DATA_HELD_ITEM, &partyData[i].heldItem);
             CustomTrainerPartyAssignMoves(&gPlayerParty[i + 3], &partyData[i]);
 
-            SetMonData(&gPlayerParty[i + 3], MON_DATA_IVS, &(partyData[i].iv));
-            if (partyData[i].ev != NULL)
-            {
-                SetMonData(&gPlayerParty[i + 3], MON_DATA_HP_EV, &(partyData[i].ev[0]));
-                SetMonData(&gPlayerParty[i + 3], MON_DATA_ATK_EV, &(partyData[i].ev[1]));
-                SetMonData(&gPlayerParty[i + 3], MON_DATA_DEF_EV, &(partyData[i].ev[2]));
-                SetMonData(&gPlayerParty[i + 3], MON_DATA_SPATK_EV, &(partyData[i].ev[3]));
-                SetMonData(&gPlayerParty[i + 3], MON_DATA_SPDEF_EV, &(partyData[i].ev[4]));
-                SetMonData(&gPlayerParty[i + 3], MON_DATA_SPEED_EV, &(partyData[i].ev[5]));
-            }
             if (partyData[i].ability != ABILITY_NONE)
             {
                 const struct SpeciesInfo *speciesInfo = &gSpeciesInfo[partyData[i].species];
@@ -3068,10 +3035,6 @@ static void FillPartnerParty(u16 trainerId)
             {
                 ball = partyData[i].ball;
                 SetMonData(&gPlayerParty[i + 3], MON_DATA_POKEBALL, &ball);
-            }
-            if (partyData[i].nickname != NULL)
-            {
-                SetMonData(&gPlayerParty[i + 3], MON_DATA_NICKNAME, partyData[i].nickname);
             }
             CalculateMonStats(&gPlayerParty[i + 3]);
 

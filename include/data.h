@@ -57,9 +57,6 @@ struct TrainerBacksprite
 // See CreateNPCTrainerPartyFromTrainer and CreateFacilityMon
 struct TrainerMon
 {
-    const u8 *nickname;
-    const u8 *ev;
-    u32 iv;
     u16 moves[MAX_MON_MOVES];
     u16 species;
     u16 heldItem;
@@ -69,10 +66,6 @@ struct TrainerMon
     u8 nature:5;
     bool8 gender:2;
     bool8 isShiny:1;
-    u8 dynamaxLevel:4;
-    bool8 gigantamaxFactor:1;
-    bool8 shouldDynamax:1;
-    bool8 shouldTerastal:1;
     u8 hiddenPowerType:5;
     u8 majorProficiency:3;
     u8 minorProficiency:3;

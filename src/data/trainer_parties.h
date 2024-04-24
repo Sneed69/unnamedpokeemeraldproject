@@ -5859,7 +5859,7 @@ static const struct TrainerMon sParty_RivalRoute103Torchic[] = {
     {
     .lvl = 5,
     .species = SPECIES_MUDKIP,
-    .nature = NATURE_FREE_SPIRITED,
+    .nature = NATURE_FREESPIRITED,
     .moves = {MOVE_TACKLE, MOVE_GROWL}
     }
 };

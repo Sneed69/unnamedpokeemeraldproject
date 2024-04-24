@@ -388,7 +388,7 @@ const u8 *const gNatureNamePointers[NUM_NATURES] =
     [NATURE_COLLECTED] = COMPOUND_STRING("Collected"),
     [NATURE_SKITTISH] = COMPOUND_STRING("Skittish"),
     [NATURE_REGAL] = COMPOUND_STRING("Regal"),
-    [NATURE_FREE_SPIRITED] = COMPOUND_STRING("Free-spirited"),
+    [NATURE_FREESPIRITED] = COMPOUND_STRING("Free-spirited"),
 };
 
 const s8 gNatureStatTable[NUM_NATURES][NUM_STATS] =
@@ -422,7 +422,7 @@ const s8 gNatureStatTable[NUM_NATURES][NUM_STATS] =
     [NATURE_COLLECTED]      = {   2,   0,      0,      0,      0,      1   },
     [NATURE_SKITTISH]       = {   2,   0,      0,      1,      0,      0   },
     [NATURE_REGAL]          = {   2,   0,      0,      0,      1,      0   },
-    [NATURE_FREE_SPIRITED]  = {   2,   1,      0,      0,      0,      0   },
+    [NATURE_FREESPIRITED]  = {   2,   1,      0,      0,      0,      0   },
 };
 
 #include "data/graphics/pokemon.h"

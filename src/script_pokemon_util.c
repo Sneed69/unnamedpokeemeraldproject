@@ -70,7 +70,7 @@ u8 ScriptGiveStarter(u16 species, u8 level)
     else if (species == SPECIES_TORCHIC)
         nature = NATURE_LONELY;
     else
-        nature = NATURE_FREE_SPIRITED;
+        nature = NATURE_FREESPIRITED;
 
     
     CreateMonWithNature(&mon, species, level, 0, nature);
