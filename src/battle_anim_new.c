@@ -5,7 +5,6 @@
 #include "random.h"
 #include "gpu_regs.h"
 #include "item.h"
-#include "rtc.h"
 #include "item_icon.h"
 #include "sound.h"
 #include "menu.h"
