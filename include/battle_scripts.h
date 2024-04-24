@@ -54,6 +54,9 @@ extern const u8 BattleScript_DamagingWeatherContinues[];
 extern const u8 BattleScript_SandStormHailSnowEnds[];
 extern const u8 BattleScript_SunlightContinues[];
 extern const u8 BattleScript_SunlightFaded[];
+extern const u8 BattleScript_FogContinues[];
+extern const u8 BattleScript_FogEnded_Ret[];
+extern const u8 BattleScript_FogEnded[];
 extern const u8 BattleScript_OverworldStatusStarts[];
 extern const u8 BattleScript_OverworldWeatherStarts[];
 extern const u8 BattleScript_OverworldTerrain[];
@@ -503,6 +506,7 @@ extern const u8 BattleScript_CondensedEnergyActivates[];
 extern const u8 BattleScript_ItemRestoreHP_Party[];
 extern const u8 BattleScript_EffectPsychicNoise[];
 extern const u8 BattleScript_AromaVeilProtectsRet[];
+extern const u8 BattleScript_BoosterEnergyEnd2[];
 
 // zmoves
 extern const u8 BattleScript_ZMoveActivateDamaging[];

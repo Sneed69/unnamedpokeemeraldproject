@@ -707,21 +707,25 @@
 #define STRINGID_BIZARREARENACREATED                  705
 #define STRINGID_BIZARREAREACREATED                   706
 #define STRINGID_TIDYINGUPCOMPLETE                    707
-#define STRINGID_LEGENDARYFENDEDBALLOFF               708
-#define STRINGID_YOUMUSTWEAKENIT                      709
-#define STRINGID_PKMNALREADYFROSTBITTEN               710
-#define STRINGID_PKMNPREVENTSFROSTBITEWITH            711
-#define STRINGID_PKMNLOWEREDGUARD                     712
-#define STRINGID_PKMNGUARDWASNOTLOWERED               713
-#define STRINGID_PKMNMAKESFAIRYMISS                   714
-#define STRINGID_PKMNRAISEDICEPOWERWITH               715
-#define STRINGID_PKMNDROPPEDITEM                      716
-#define STRINGID_OVERTURNENTERS                       717
-#define STRINGID_BAGISFULL                            718
-#define STRINGID_VICTORYCATCH                         719
-#define STRINGID_TARGETSTATSWONTINCREASE              720
+#define STRINGID_BOOSTERENERGYACTIVATES               708
+#define STRINGID_FOGCREPTUP                           709
+#define STRINGID_FOGISDEEP                            710
+#define STRINGID_FOGLIFTED                            711
+#define STRINGID_LEGENDARYFENDEDBALLOFF               712
+#define STRINGID_YOUMUSTWEAKENIT                      713
+#define STRINGID_PKMNALREADYFROSTBITTEN               714
+#define STRINGID_PKMNPREVENTSFROSTBITEWITH            715
+#define STRINGID_PKMNLOWEREDGUARD                     716
+#define STRINGID_PKMNGUARDWASNOTLOWERED               717
+#define STRINGID_PKMNMAKESFAIRYMISS                   718
+#define STRINGID_PKMNRAISEDICEPOWERWITH               719
+#define STRINGID_PKMNDROPPEDITEM                      720
+#define STRINGID_OVERTURNENTERS                       721
+#define STRINGID_BAGISFULL                            722
+#define STRINGID_VICTORYCATCH                         723
+#define STRINGID_TARGETSTATSWONTINCREASE              724
 
-#define BATTLESTRINGS_COUNT                           721
+#define BATTLESTRINGS_COUNT                           725
 
 // This is the string id that gBattleStringsTable starts with.
 // String ids before this (e.g. STRINGID_INTROMSG) are not in the table,
@@ -774,6 +778,7 @@
 #define B_MSG_STARTED_SUNLIGHT  4
 #define B_MSG_STARTED_HAIL      5
 #define B_MSG_STARTED_SNOW      6
+#define B_MSG_STARTED_FOG       7
 
 // gRainContinuesStringIds
 #define B_MSG_RAIN_CONTINUES     0

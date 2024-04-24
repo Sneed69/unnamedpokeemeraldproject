@@ -5980,6 +5980,23 @@ BattleScript_SunlightFaded::
 	call BattleScript_ActivateWeatherAbilities
 	end2
 
+BattleScript_FogContinues::
+	printstring STRINGID_FOGISDEEP
+	waitmessage B_WAIT_TIME_LONG
+	playanimation BS_ATTACKER, B_ANIM_FOG_CONTINUES
+	call BattleScript_ActivateWeatherAbilities
+	end2
+
+BattleScript_FogEnded_Ret::
+	printstring STRINGID_FOGLIFTED
+	waitmessage B_WAIT_TIME_LONG
+	call BattleScript_ActivateWeatherAbilities
+	return
+
+BattleScript_FogEnded::
+	call BattleScript_FogEnded_Ret
+	end2
+
 BattleScript_OverworldStatusStarts::
 	printfromtable gStartingStatusStringIds
 	waitmessage B_WAIT_TIME_LONG
@@ -10064,6 +10081,16 @@ BattleScript_BerserkGeneRet_End:
 	restoretarget
 	removeitem BS_SCRIPTING
 	end3
+
+BattleScript_BoosterEnergyEnd2::
+	playanimation BS_SCRIPTING, B_ANIM_HELD_ITEM_EFFECT, sB_ANIM_ARG1
+	call BattleScript_AbilityPopUp
+	printstring STRINGID_BOOSTERENERGYACTIVATES
+	waitmessage B_WAIT_TIME_MED
+	printstring STRINGID_STATWASHEIGHTENED
+	waitmessage B_WAIT_TIME_MED
+	removeitem BS_SCRIPTING
+	end2
 
 BattleScript_EffectSnow::
 	attackcanceler
