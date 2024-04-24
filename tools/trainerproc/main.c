@@ -46,12 +46,6 @@ struct Pokemon
     struct String item;
     int header_line;
 
-    struct Stats evs;
-    int evs_line;
-
-    struct Stats ivs;
-    int ivs_line;
-
     struct String ability;
     int ability_line;
 
@@ -61,23 +55,20 @@ struct Pokemon
     struct String ball;
     int ball_line;
 
-    int friendship;
-    int friendship_line;
-
     struct String nature;
     int nature_line;
 
     bool shiny;
     int shiny_line;
 
-    int dynamax_level;
-    int dynamax_level_line;
+    struct String hidden_power_type;
+    int hidden_power_type_line;
 
-    bool gigantamax_factor;
-    bool gigantamax_factor_line;
+    struct String major_proficiency;
+    int major_proficiency_line;
 
-    struct String tera_type;
-    int tera_type_line;
+    struct String minor_proficiency;
+    int minor_proficiency_line;
 
     struct String moves[MAX_MON_MOVES];
     int moves_n;
@@ -1254,24 +1245,7 @@ static bool parse_trainer(struct Parser *p, const struct Parsed *parsed, struct 
         // Parse Pokemon attributes.
         while (parse_attribute(p, &key, &value))
         {
-            if (is_literal_token(&key, "EVs"))
-            {
-                if (pokemon->evs_line)
-                    any_error = !set_show_parse_error(p, key.location, "duplicate 'EVs'");
-                pokemon->evs_line = value.location.line;
-                if (!token_stats(p, &value, &pokemon->evs, false))
-                    any_error = !show_parse_error(p);
-            }
-            else if (is_literal_token(&key, "IVs"))
-            {
-                if (pokemon->ivs_line)
-                    any_error = !set_show_parse_error(p, key.location, "duplicate 'IVs'");
-                pokemon->ivs_line = value.location.line;
-                pokemon->ivs = parsed->default_ivs;
-                if (!token_stats(p, &value, &pokemon->ivs, parsed->default_ivs_off))
-                    any_error = !show_parse_error(p);
-            }
-            else if (is_literal_token(&key, "Ability"))
+            if (is_literal_token(&key, "Ability"))
             {
                 if (pokemon->ability_line)
                     any_error = !set_show_parse_error(p, key.location, "duplicate 'Ability'");
@@ -1293,14 +1267,6 @@ static bool parse_trainer(struct Parser *p, const struct Parsed *parsed, struct 
                 pokemon->ball_line = value.location.line;
                 pokemon->ball = token_string(&value);
             }
-            else if (is_literal_token(&key, "Happiness"))
-            {
-                if (pokemon->friendship_line)
-                    any_error = !set_show_parse_error(p, key.location, "duplicate 'Happiness'");
-                pokemon->friendship_line = value.location.line;
-                if (!token_int(p, &value, &pokemon->friendship))
-                    any_error = !show_parse_error(p);
-            }
             else if (is_literal_token(&key, "Nature"))
             {
                 if (pokemon->nature_line)
@@ -1316,32 +1282,30 @@ static bool parse_trainer(struct Parser *p, const struct Parsed *parsed, struct 
                 if (!token_bool(p, &value, &pokemon->shiny))
                     any_error = !show_parse_error(p);
             }
-            else if (is_literal_token(&key, "Dynamax Level"))
+            else if (is_literal_token(&key, "Hidden Power"))
             {
-                if (pokemon->dynamax_level_line)
-                    any_error = !set_show_parse_error(p, key.location, "duplicate 'Dynamax Level'");
-                pokemon->dynamax_level_line = value.location.line;
-                if (!token_int(p, &value, &pokemon->dynamax_level))
-                    any_error = !show_parse_error(p);
+                if (pokemon->hidden_power_type_line)
+                    any_error = !set_show_parse_error(p, key.location, "duplicate 'Hidden Power'");
+                pokemon->hidden_power_type_line = value.location.line;
+                pokemon->hidden_power_type = token_string(&value);
             }
-            else if (is_literal_token(&key, "Gigantamax"))
+            else if (is_literal_token(&key, "Major"))
             {
-                if (pokemon->gigantamax_factor_line)
-                    any_error = !set_show_parse_error(p, key.location, "duplicate 'Gigantamax'");
-                pokemon->gigantamax_factor_line = value.location.line;
-                if (!token_bool(p, &value, &pokemon->gigantamax_factor))
-                    any_error = !show_parse_error(p);
+                if (pokemon->hidden_power_type_line)
+                    any_error = !set_show_parse_error(p, key.location, "duplicate 'Major'");
+                pokemon->major_proficiency_line = value.location.line;
+                pokemon->major_proficiency = token_string(&value);
             }
-            else if (is_literal_token(&key, "Tera Type"))
+            else if (is_literal_token(&key, "Minor"))
             {
-                if (pokemon->tera_type_line)
-                    any_error = !set_show_parse_error(p, key.location, "duplicate 'Tera Type'");
-                pokemon->tera_type_line = value.location.line;
-                pokemon->tera_type = token_string(&value);
+                if (pokemon->hidden_power_type_line)
+                    any_error = !set_show_parse_error(p, key.location, "duplicate 'Minor'");
+                pokemon->minor_proficiency_line = value.location.line;
+                pokemon->minor_proficiency = token_string(&value);
             }
             else
             {
-                any_error = !set_show_parse_error(p, key.location, "expected one of 'EVs', 'IVs', 'Ability', 'Level', 'Ball', 'Happiness', 'Nature', 'Shiny', 'Dynamax Level', 'Gigantamax', or 'Tera Type'");
+                any_error = !set_show_parse_error(p, key.location, "expected one of 'Ability', 'Level', 'Ball','Nature', 'Shiny', 'Hidden Power', 'Major', 'Minor'");
             }
         }
 
@@ -1355,18 +1319,6 @@ static bool parse_trainer(struct Parser *p, const struct Parsed *parsed, struct 
             else
             {
                 any_error = !set_show_parse_error(p, p->location, "expected 'Level' before moves");
-            }
-        }
-        if (!pokemon->ivs_line)
-        {
-            if (!parsed->default_ivs_off)
-            {
-                pokemon->ivs = parsed->default_ivs;
-                pokemon->ivs_line = p->location.line;
-            }
-            else
-            {
-                any_error = !set_show_parse_error(p, p->location, "expected 'IVs' before moves");
             }
         }
 
@@ -1458,11 +1410,6 @@ static void fprint_string(FILE *f, struct String s)
 static void fprint_bool(FILE *f, bool b)
 {
     fprintf(f, b ? "TRUE" : "FALSE");
-}
-
-static void fprint_stats(FILE *f, const char *macro, struct Stats stats)
-{
-    fprintf(f, "%s(%d, %d, %d, %d, %d, %d)", macro, stats.hp, stats.attack, stats.defense, stats.speed, stats.special_attack, stats.special_defense);
 }
 
 static bool is_constant(struct String s, const char *prefix)
@@ -1740,22 +1687,6 @@ static void fprint_trainers(const char *output_path, FILE *f, struct Parsed *par
                 fprintf(f, ",\n");
             }
 
-            if (pokemon->evs_line)
-            {
-                fprintf(f, "#line %d\n", pokemon->evs_line);
-                fprintf(f, "            .ev = ");
-                fprint_stats(f, "TRAINER_PARTY_EVS", pokemon->evs);
-                fprintf(f, ",\n");
-            }
-
-            if (pokemon->ivs_line)
-            {
-                fprintf(f, "#line %d\n", pokemon->ivs_line);
-                fprintf(f, "            .iv = ");
-                fprint_stats(f, "TRAINER_PARTY_IVS", pokemon->ivs);
-                fprintf(f, ",\n");
-            }
-
             if (pokemon->ability_line)
             {
                 fprintf(f, "#line %d\n", pokemon->ability_line);
@@ -1777,13 +1708,6 @@ static void fprint_trainers(const char *output_path, FILE *f, struct Parsed *par
                 fprint_constant(f, "ITEM", pokemon->ball);
                 fprintf(f, ",\n");
             }
-
-            if (pokemon->friendship_line)
-            {
-                fprintf(f, "#line %d\n", pokemon->friendship_line);
-                fprintf(f, "            .friendship = %d,\n", pokemon->friendship);
-            }
-
             if (pokemon->nature_line)
             {
                 fprintf(f, "#line %d\n", pokemon->nature_line);
@@ -1804,36 +1728,28 @@ static void fprint_trainers(const char *output_path, FILE *f, struct Parsed *par
                 fprintf(f, ",\n");
             }
 
-            if (pokemon->dynamax_level_line)
+            if (pokemon->hidden_power_type_line)
             {
-                fprintf(f, "#line %d\n", pokemon->dynamax_level_line);
-                fprintf(f, "            .dynamaxLevel = %d,\n", pokemon->dynamax_level);
-            }
-            else
-            {
-                fprintf(f, "            .dynamaxLevel = MAX_DYNAMAX_LEVEL,\n");
-            }
-
-            if (pokemon->gigantamax_factor_line)
-            {
-                fprintf(f, "#line %d\n", pokemon->gigantamax_factor_line);
-                fprintf(f, "            .gigantamaxFactor = ");
-                fprint_bool(f, pokemon->gigantamax_factor);
+                fprintf(f, "#line %d\n", pokemon->hidden_power_type_line);
+                fprintf(f, "            .hiddenPowerType = ");
+                fprint_constant(f, "TYPE", pokemon->hidden_power_type);
                 fprintf(f, ",\n");
             }
 
-            if (pokemon->dynamax_level_line || pokemon->gigantamax_factor_line)
+            if (pokemon->major_proficiency_line)
             {
-                fprintf(f, "            .shouldDynamax = TRUE,\n");
+                fprintf(f, "#line %d\n", pokemon->major_proficiency_line);
+                fprintf(f, "            .majorProficiency = ");
+                fprint_constant(f, "STAT", pokemon->major_proficiency);
+                fprintf(f, ",\n");
             }
 
-            if (pokemon->tera_type_line)
+            if (pokemon->minor_proficiency_line)
             {
-                fprintf(f, "#line %d\n", pokemon->tera_type_line);
-                fprintf(f, "            .teraType = ");
-                fprint_constant(f, "TYPE", pokemon->tera_type);
+                fprintf(f, "#line %d\n", pokemon->minor_proficiency_line);
+                fprintf(f, "            .minorProficiency = ");
+                fprint_constant(f, "STAT", pokemon->minor_proficiency);
                 fprintf(f, ",\n");
-                fprintf(f, "            .shouldTerastal = TRUE,\n");
             }
 
             if (pokemon->moves_n > 0)

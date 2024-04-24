@@ -4370,12 +4370,15 @@ Level: 29
 - Safeguard
 - Aerial Ace
 
-Tropius
+Swellow @ Toxic Orb
+Shiny: Yes
+Major: Attack
+Minor: Speed
 Level: 29
-- Sunny Day
-- Aerial Ace
-- Solar Beam
-- Synthesis
+- Facade
+- Protect
+- Brave Bird
+- U-turn
 
 Pelipper
 Level: 30
@@ -8427,7 +8430,7 @@ Pic: Brendan
 Gender: Male
 Music: Male
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Setup First Turn
+AI: Check Bad Move / Try To Faint / Check Viability
 
 Torchic
 Lonely Nature

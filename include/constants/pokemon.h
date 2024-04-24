@@ -96,6 +96,11 @@
 #define DEFAULT_STAT_STAGE 6
 #define MAX_STAT_STAGE    12
 
+#define STAT_ATTACK    1
+#define STAT_DEFENSE   2
+#define STAT_SPATTACK  4
+#define STAT_SPDEFENSE 5
+
 // Held Item Chances
 #define ITEM_CHANCE_COMMON          25
 #define ITEM_CHANCE_RARE             5
