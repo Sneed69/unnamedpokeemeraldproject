@@ -2709,4 +2709,11 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
         .aiRating = 9,
         .breakable = TRUE,
     },
+
+    [ABILITY_HEAVILY_ARMED] =
+    {
+        .name = _("Heavily Armed"),
+        .description = COMPOUND_STRING("Punching moves strike an\nextra time for half damage."),
+        .aiRating = 9,
+    },
 };
