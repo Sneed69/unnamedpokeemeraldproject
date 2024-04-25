@@ -1656,6 +1656,9 @@ u32 GetTotalAccuracy(u32 battlerAtk, u32 battlerDef, u32 move, u32 atkAbility, u
     // Attacker's ability
     switch (atkAbility)
     {
+    case ABILITY_SHINING_BEACON:
+        calc = (calc * 120) / 100;
+        break;
     case ABILITY_COMPOUND_EYES:
         calc = (calc * 130) / 100; // 1.3 compound eyes boost
         break;

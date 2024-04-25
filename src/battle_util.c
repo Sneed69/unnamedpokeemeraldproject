@@ -4456,6 +4456,15 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
                 }
             }
             break;
+        case ABILITY_SHINING_BEACON:
+            if (!gSpecialStatuses[battler].switchInAbilityDone)
+            {
+                gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SWITCHIN_SHININGBEACON;
+                gSpecialStatuses[battler].switchInAbilityDone = TRUE;
+                BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
+                effect++;
+            }
+            break;
         case ABILITY_PRESSURE:
             if (!gSpecialStatuses[battler].switchInAbilityDone)
             {
@@ -9170,6 +9179,9 @@ static inline u32 CalcMoveBasePowerAfterModifiers(u32 move, u32 battlerAtk, u32 
         else
             modifier = uq4_12_multiply(modifier, UQ_4_12(1.33));
     }
+
+    if (IsAbilityOnField(ABILITY_SHINING_BEACON) && (moveType == TYPE_DARK || moveType == TYPE_GHOST))
+        modifier = uq4_12_multiply(modifier, UQ_4_12(0.5));
 
     // attacker partner's abilities
     if (IsBattlerAlive(BATTLE_PARTNER(battlerAtk)))

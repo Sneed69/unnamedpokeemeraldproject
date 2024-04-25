@@ -785,6 +785,7 @@ static const u8 sText_PkmnBecameWeakerToFire[] = _("{B_DEF_NAME_WITH_PREFIX} bec
 static const u8 sText_PkmnAboutToBeAttackedByItsItem[] = _("{B_DEF_NAME_WITH_PREFIX} is about\nto be attacked by its {B_BUFF1}!");
 static const u8 sText_CantEscapeBecauseOfCurrentMove[] = _("{B_DEF_NAME_WITH_PREFIX} can no longer escape\nbecause of {B_CURRENT_MOVE}!");
 static const u8 sText_PkmnTurnedTheTables[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX} turns the tables!");
+static const u8 sText_PkmnShinesBrightly[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX} shines brightly!");
 static const u8 sText_NeutralizingGasEnters[] = _("Neutralizing Gas filled the area!");
 static const u8 sText_NeutralizingGasOver[] = _("The effects of Neutralizing\nGas wore off!");
 static const u8 sText_TeamGainedEXP[] = _("The rest of the team\ngains Experience!\p");
@@ -1575,6 +1576,7 @@ const u8 *const gBattleStringsTable[BATTLESTRINGS_COUNT] =
     [STRINGID_OVERTURNENTERS - BATTLESTRINGS_TABLE_START] = sText_PkmnTurnedTheTables,
     [STRINGID_VICTORYCATCH - BATTLESTRINGS_TABLE_START] = sText_VictoryCatch,
     [STRINGID_TARGETSTATSWONTINCREASE - BATTLESTRINGS_TABLE_START] = sText_TargetStatsWontIncrease,
+    [STRINGID_SHININGBEACONENTERS - BATTLESTRINGS_TABLE_START] = sText_PkmnShinesBrightly,
 };
 
 const u16 gTrainerUsedItemStringIds[] =
@@ -1675,6 +1677,7 @@ const u16 gSwitchInAbilityStringIds[] =
     [B_MSG_SWITCHIN_PASTEL_VEIL] = STRINGID_PASTELVEILENTERS,
     [B_MSG_SWITCHIN_NEUTRALIZING_GAS] = STRINGID_NEUTRALIZINGGASENTERS,
     [B_MSG_SWITCHIN_OVERTURN] = STRINGID_OVERTURNENTERS,
+    [B_MSG_SWITCHIN_SHININGBEACON] = STRINGID_SHININGBEACONENTERS,
 };
 
 const u16 gMissStringIds[] =

@@ -2723,4 +2723,11 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
         .description = COMPOUND_STRING("Foes take more damage from\nstatus conditions & curses."),
         .aiRating = 6,
     },
+
+    [ABILITY_SHINING_BEACON] =
+    {
+        .name = _("Shining Beacon"),
+        .description = COMPOUND_STRING("Boosts accuracy & weakens\nDark- & Ghost-type moves."),
+        .aiRating = 6,
+    },
 };
