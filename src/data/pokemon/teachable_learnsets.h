@@ -8178,6 +8178,7 @@ static const u16 sLanturnTeachableLearnset[] = {
     MOVE_WAVE_CRASH,
     MOVE_AMNESIA,
     MOVE_STRENGTH,
+    MOVE_DAZZLING_GLEAM,
     MOVE_UNAVAILABLE,
 };
 #endif //P_FAMILY_CHINCHOU
@@ -8469,6 +8470,7 @@ static const u16 sAmpharosTeachableLearnset[] = {
     MOVE_OUTRAGE,
     MOVE_SEISMIC_TOSS,
     MOVE_ELECTRIC_TERRAIN,
+    MOVE_DAZZLING_GLEAM,
     MOVE_UNAVAILABLE,
 };
 #endif //P_FAMILY_MAREEP
