@@ -5330,29 +5330,29 @@ static void PrintStatsScreen_Abilities(u8 taskId)
     PrintStatsScreenTextSmallWhite(WIN_STATS_BOTTOM_RIGHT, (const u8[])_("Stats"), base_x - 2, base_y - 3);
     base_i++;
     PrintStatsScreenTextSmall(WIN_STATS_BOTTOM_RIGHT, sText_Stats_HP, base_x, base_y + base_y_offset*base_i);
-    ConvertIntToDecimalStringN(strBase, sPokedexView->sPokemonStats.baseHP, STR_CONV_MODE_RIGHT_ALIGN, 3);
+    ConvertIntToDecimalStringN(strBase, sPokedexView->sPokemonStats.baseHP + HP_BASE, STR_CONV_MODE_RIGHT_ALIGN, 3);
     PrintStatsScreenTextSmall(WIN_STATS_BOTTOM_RIGHT, strBase, base_x+base_x_first_row, base_y + base_y_offset*base_i);
 
     PrintStatsScreenTextSmall(WIN_STATS_BOTTOM_RIGHT, sText_Stats_Speed, base_x+base_x_second_row, base_y + base_y_offset*base_i);
-    ConvertIntToDecimalStringN(strBase, sPokedexView->sPokemonStats.baseSpeed, STR_CONV_MODE_RIGHT_ALIGN, 3);
+    ConvertIntToDecimalStringN(strBase, sPokedexView->sPokemonStats.baseSpeed + STATS_BASE, STR_CONV_MODE_RIGHT_ALIGN, 3);
     PrintStatsScreenTextSmall(WIN_STATS_BOTTOM_RIGHT, strBase, base_x+base_x_offset, base_y + base_y_offset*base_i);
 
     base_i++;
     PrintStatsScreenTextSmall(WIN_STATS_BOTTOM_RIGHT, sText_Stats_Attack, base_x, base_y + base_y_offset*base_i);
-    ConvertIntToDecimalStringN(strBase, sPokedexView->sPokemonStats.baseAttack, STR_CONV_MODE_RIGHT_ALIGN, 3);
+    ConvertIntToDecimalStringN(strBase, sPokedexView->sPokemonStats.baseAttack + STATS_BASE, STR_CONV_MODE_RIGHT_ALIGN, 3);
     PrintStatsScreenTextSmall(WIN_STATS_BOTTOM_RIGHT, strBase, base_x+base_x_first_row, base_y + base_y_offset*base_i);
 
     PrintStatsScreenTextSmall(WIN_STATS_BOTTOM_RIGHT, sText_Stats_SpAttack, base_x+base_x_second_row, base_y + base_y_offset*base_i);
-    ConvertIntToDecimalStringN(strBase, sPokedexView->sPokemonStats.baseSpAttack, STR_CONV_MODE_RIGHT_ALIGN, 3);
+    ConvertIntToDecimalStringN(strBase, sPokedexView->sPokemonStats.baseSpAttack + STATS_BASE, STR_CONV_MODE_RIGHT_ALIGN, 3);
     PrintStatsScreenTextSmall(WIN_STATS_BOTTOM_RIGHT, strBase, base_x+base_x_offset, base_y + base_y_offset*base_i);
 
     base_i++;
     PrintStatsScreenTextSmall(WIN_STATS_BOTTOM_RIGHT, sText_Stats_Defense, base_x, base_y + base_y_offset*base_i);
-    ConvertIntToDecimalStringN(strBase, sPokedexView->sPokemonStats.baseDefense, STR_CONV_MODE_RIGHT_ALIGN, 3);
+    ConvertIntToDecimalStringN(strBase, sPokedexView->sPokemonStats.baseDefense + STATS_BASE, STR_CONV_MODE_RIGHT_ALIGN, 3);
     PrintStatsScreenTextSmall(WIN_STATS_BOTTOM_RIGHT, strBase, base_x+base_x_first_row, base_y + base_y_offset*base_i);
 
     PrintStatsScreenTextSmall(WIN_STATS_BOTTOM_RIGHT, sText_Stats_SpDefense, base_x+base_x_second_row, base_y + base_y_offset*base_i);
-    ConvertIntToDecimalStringN(strBase, sPokedexView->sPokemonStats.baseSpDefense, STR_CONV_MODE_RIGHT_ALIGN, 3);
+    ConvertIntToDecimalStringN(strBase, sPokedexView->sPokemonStats.baseSpDefense + STATS_BASE, STR_CONV_MODE_RIGHT_ALIGN, 3);
     PrintStatsScreenTextSmall(WIN_STATS_BOTTOM_RIGHT, strBase, base_x+base_x_offset, base_y + base_y_offset*base_i);
     base_i++;
 }

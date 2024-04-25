@@ -2716,4 +2716,11 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
         .description = COMPOUND_STRING("Punching moves strike an\nextra time for half damage."),
         .aiRating = 9,
     },
+
+    [ABILITY_MALEDICTION] =
+    {
+        .name = _("Malediction"),
+        .description = COMPOUND_STRING("Foes take more damage from\nstatus conditions & curses."),
+        .aiRating = 6,
+    },
 };

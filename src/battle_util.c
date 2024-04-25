@@ -2485,7 +2485,10 @@ u8 DoBattlerEndTurnEffects(void)
                 }
                 else
                 {
-                    gBattleMoveDamage = GetNonDynamaxMaxHP(battler) / 8;
+                    if (IsAbilityOnOpposingSide(battler, ABILITY_MALEDICTION))
+                        gBattleMoveDamage = GetNonDynamaxMaxHP(battler) / 6;
+                    else
+                        gBattleMoveDamage = GetNonDynamaxMaxHP(battler) / 8;
                     if (gBattleMoveDamage == 0)
                         gBattleMoveDamage = 1;
                     BattleScriptExecute(BattleScript_PoisonTurnDmg);
@@ -2514,7 +2517,10 @@ u8 DoBattlerEndTurnEffects(void)
                 }
                 else
                 {
-                    gBattleMoveDamage = GetNonDynamaxMaxHP(battler) / 16;
+                    if (IsAbilityOnOpposingSide(battler, ABILITY_MALEDICTION))
+                        gBattleMoveDamage = GetNonDynamaxMaxHP(battler) / 12;
+                    else
+                        gBattleMoveDamage = GetNonDynamaxMaxHP(battler) / 16;
                     if (gBattleMoveDamage == 0)
                         gBattleMoveDamage = 1;
                     if ((gBattleMons[battler].status1 & STATUS1_TOXIC_COUNTER) != STATUS1_TOXIC_TURN(15)) // not 16 turns
@@ -2531,7 +2537,10 @@ u8 DoBattlerEndTurnEffects(void)
                 && gBattleMons[battler].hp != 0)
             {
                 MAGIC_GUARD_CHECK;
-                gBattleMoveDamage = GetNonDynamaxMaxHP(battler) / (B_BURN_DAMAGE >= GEN_7 ? 16 : 8);
+                if (IsAbilityOnOpposingSide(battler, ABILITY_MALEDICTION))
+                    gBattleMoveDamage = GetNonDynamaxMaxHP(battler) / (B_BURN_DAMAGE >= GEN_7 ? 12 : 6);
+                else
+                    gBattleMoveDamage = GetNonDynamaxMaxHP(battler) / (B_BURN_DAMAGE >= GEN_7 ? 16 : 8);
                 if (ability == ABILITY_HEATPROOF)
                 {
                     if (gBattleMoveDamage > (gBattleMoveDamage / 2) + 1) // Record ability if the burn takes less damage than it normally would.
@@ -2550,7 +2559,10 @@ u8 DoBattlerEndTurnEffects(void)
                 && gBattleMons[battler].hp != 0)
             {
                 MAGIC_GUARD_CHECK;
-                gBattleMoveDamage = GetNonDynamaxMaxHP(battler) / (B_BURN_DAMAGE >= GEN_7 ? 16 : 8);
+                if (IsAbilityOnOpposingSide(battler, ABILITY_MALEDICTION))
+                    gBattleMoveDamage = GetNonDynamaxMaxHP(battler) / (B_BURN_DAMAGE >= GEN_7 ? 12 : 6);
+                else
+                    gBattleMoveDamage = GetNonDynamaxMaxHP(battler) / (B_BURN_DAMAGE >= GEN_7 ? 16 : 8);
                 if (gBattleMoveDamage == 0)
                     gBattleMoveDamage = 1;
                 BattleScriptExecute(BattleScript_FrostbiteTurnDmg);
@@ -2585,7 +2597,10 @@ u8 DoBattlerEndTurnEffects(void)
                 && gBattleMons[battler].hp != 0)
             {
                 MAGIC_GUARD_CHECK;
-                gBattleMoveDamage = GetNonDynamaxMaxHP(battler) / 4;
+                if (IsAbilityOnOpposingSide(battler, ABILITY_MALEDICTION))
+                    gBattleMoveDamage = GetNonDynamaxMaxHP(battler) / 3;
+                else
+                    gBattleMoveDamage = GetNonDynamaxMaxHP(battler) / 4;
                 if (gBattleMoveDamage == 0)
                     gBattleMoveDamage = 1;
                 BattleScriptExecute(BattleScript_CurseTurnDmg);
