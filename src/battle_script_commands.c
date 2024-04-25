@@ -3134,7 +3134,8 @@ void SetMoveEffect(bool32 primary, bool32 certain)
             if (gBattleScripting.moveEffect == MOVE_EFFECT_POISON
              || gBattleScripting.moveEffect == MOVE_EFFECT_TOXIC
              || gBattleScripting.moveEffect == MOVE_EFFECT_PARALYSIS
-             || gBattleScripting.moveEffect == MOVE_EFFECT_FREEZE
+             || gBattleScripting.moveEffect == MOVE_EFFECT_FROSTBITE
+             || gBattleScripting.moveEffect == MOVE_EFFECT_SLEEP
              || gBattleScripting.moveEffect == MOVE_EFFECT_BURN)
              {
                 gBattleStruct->synchronizeMoveEffect = gBattleScripting.moveEffect;
