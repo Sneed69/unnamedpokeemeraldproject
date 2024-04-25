@@ -1274,7 +1274,7 @@ static void Cmd_attackcanceler(void)
 
     if (WEATHER_HAS_EFFECT && gMovesInfo[gCurrentMove].power)
     {
-        if (moveType == TYPE_FIRE && (gBattleWeather & B_WEATHER_RAIN_PRIMAL))
+        if (moveType == TYPE_GROUND && (gBattleWeather & B_WEATHER_RAIN_PRIMAL))
         {
             gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_PRIMAL_WEATHER_FIZZLED_BY_RAIN;
             BattleScriptPushCursor();
