@@ -1,4 +1,12 @@
 #include "constants/moves.h"
+#ifdef __INTELLISENSE__
+#include "global.h"
+#include "item.h"
+#include "item_use.h"
+#include "pokemon/item_effects.h"
+#include "constants/item_effects.h"
+#include "constants/hold_effects.h"
+#endif
 
 #if I_USE_EVO_HELD_ITEMS_FROM_BAG == TRUE
     #define EVO_HELD_ITEM_TYPE ITEM_USE_PARTY_MENU
@@ -543,11 +551,10 @@ const struct Item gItemsInfo[] =
     {
         .name = _("Potion"),
         .price = 100,
-        .holdEffectParam = 20,
         .description = COMPOUND_STRING(
-            "Restores the HP of\n"
-            "a Pokémon by\n"
-            "20 points."),
+            "Restores half of\n"
+            "a Pokémon's\n"
+            "maximum HP."),
         .pocket = POCKET_CONSUMABLES,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_Medicine,
@@ -559,15 +566,10 @@ const struct Item gItemsInfo[] =
     {
         .name = _("Super Potion"),
         .price = 250,
-        .holdEffectParam = 60,
         .description = COMPOUND_STRING(
-            "Restores the HP of\n"
-            "a Pokémon by\n"
-        #if I_HEALTH_RECOVERY >= GEN_7
-            "60 points."),
-        #else
-            "50 points."),
-        #endif
+            "Restores 65% of\n"
+            "a Pokémon's\n"
+            "maximum HP."),
         .pocket = POCKET_CONSUMABLES,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_Medicine,
@@ -579,15 +581,10 @@ const struct Item gItemsInfo[] =
     {
         .name = _("Hyper Potion"),
         .price = 475,
-        .holdEffectParam = 120,
         .description = COMPOUND_STRING(
-            "Restores the HP of\n"
-            "a Pokémon by\n"
-        #if I_HEALTH_RECOVERY >= GEN_7
-            "120 points."),
-        #else
-            "200 points."),
-        #endif
+            "Restores 80% of\n"
+            "a Pokémon's\n"
+            "maximum HP."),
         .pocket = POCKET_CONSUMABLES,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_Medicine,
@@ -657,15 +654,10 @@ const struct Item gItemsInfo[] =
     {
         .name = _("Fresh Water"),
         .price = 100,
-        .holdEffectParam = 30,
         .description = COMPOUND_STRING(
             "A mineral water\n"
             "that restores HP\n"
-        #if I_HEALTH_RECOVERY >= GEN_7
-            "by 30 points."),
-        #else
-            "by 50 points."),
-        #endif
+            "by half."),
         .pocket = POCKET_CONSUMABLES,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_Medicine,
@@ -677,15 +669,10 @@ const struct Item gItemsInfo[] =
     {
         .name = _("Soda Pop"),
         .price = 150,
-        .holdEffectParam = 50,
         .description = COMPOUND_STRING(
             "A fizzy soda drink\n"
             "that restores HP\n"
-        #if I_HEALTH_RECOVERY >= GEN_7
-            "by 50 points."),
-        #else
-            "by 60 points."),
-        #endif
+            "by 65%."),
         .pocket = POCKET_CONSUMABLES,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_Medicine,
@@ -697,18 +684,10 @@ const struct Item gItemsInfo[] =
     {
         .name = _("Lemonade"),
         .price = 200,
-        .holdEffectParam = 70,
-#if I_HEALTH_RECOVERY >= GEN_7
         .description = COMPOUND_STRING(
             "A very sweet drink\n"
             "that restores HP\n"
-            "by 70 points."),
-#else
-        .description = COMPOUND_STRING(
-            "A very sweet drink\n"
-            "that restores HP\n"
-            "by 80 points."),
-#endif
+            "by 65%."),
         .pocket = POCKET_CONSUMABLES,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_Medicine,
@@ -721,11 +700,10 @@ const struct Item gItemsInfo[] =
         .name = _("Moomoo Milk"),
         .pluralName = _("Moomoo Milk"),
         .price = 300,
-        .holdEffectParam = 100,
         .description = COMPOUND_STRING(
             "A nutritious milk\n"
             "that restores HP\n"
-            "by 100 points."),
+            "by 80%."),
         .pocket = POCKET_CONSUMABLES,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_Medicine,
@@ -741,11 +719,7 @@ const struct Item gItemsInfo[] =
         .description = COMPOUND_STRING(
             "A bitter powder\n"
             "that restores HP\n"
-        #if I_HEALTH_RECOVERY >= GEN_7
-            "by 60 points."),
-        #else
-            "by 50 points."),
-        #endif
+            "by 65%."),
         .pocket = POCKET_CONSUMABLES,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_Medicine,
@@ -760,11 +734,7 @@ const struct Item gItemsInfo[] =
         .description = COMPOUND_STRING(
             "A bitter root\n"
             "that restores HP\n"
-        #if I_HEALTH_RECOVERY >= GEN_7
-            "by 120 points."),
-        #else
-            "by 200 points."),
-        #endif
+            "by 80%."),
         .pocket = POCKET_CONSUMABLES,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_Medicine,

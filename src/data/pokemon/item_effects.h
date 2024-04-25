@@ -1,6 +1,11 @@
+#ifdef __INTELLISENSE__
+#include "global.h"
+#include "constants/item_effects.h"
+#endif
+
 const u8 gItemEffect_Potion[7] = {
     [4] = ITEM4_HEAL_HP,
-    [6] = 20, // Amount of HP to recover
+    [6] = ITEM6_HEAL_HP_HALF, // Amount of HP to recover
 };
 
 const u8 gItemEffect_Antidote[6] = {
@@ -36,12 +41,12 @@ const u8 gItemEffect_MaxPotion[7] = {
 
 const u8 gItemEffect_HyperPotion[7] = {
     [4] = ITEM4_HEAL_HP,
-    [6] = I_HEALTH_RECOVERY >= GEN_7 ? 120 : 200, // Amount of HP to recover
+    [6] = ITEM6_HEAL_HP_80P, // Amount of HP to recover
 };
 
 const u8 gItemEffect_SuperPotion[7] = {
     [4] = ITEM4_HEAL_HP,
-    [6] = I_HEALTH_RECOVERY >= GEN_7 ? 60 : 50, // Amount of HP to recover
+    [6] = ITEM6_HEAL_HP_65P, // Amount of HP to recover
 };
 
 const u8 gItemEffect_FullHeal[6] = {
@@ -60,28 +65,28 @@ const u8 gItemEffect_MaxRevive[7] = {
 
 const u8 gItemEffect_FreshWater[7] = {
     [4] = ITEM4_HEAL_HP,
-    [6] = I_HEALTH_RECOVERY >= GEN_7 ? 30 : 50, // Amount of HP to recover
+    [6] = ITEM6_HEAL_HP_HALF, // Amount of HP to recover
 };
 
 const u8 gItemEffect_SodaPop[7] = {
     [4] = ITEM4_HEAL_HP,
-    [6] = I_HEALTH_RECOVERY >= GEN_7 ? 50 : 60, // Amount of HP to recover
+    [6] = ITEM6_HEAL_HP_65P, // Amount of HP to recover
 };
 
 const u8 gItemEffect_Lemonade[7] = {
     [4] = ITEM4_HEAL_HP,
-    [6] = I_HEALTH_RECOVERY >= GEN_7 ? 70 : 80, // Amount of HP to recover
+    [6] = ITEM6_HEAL_HP_65P, // Amount of HP to recover
 };
 
 const u8 gItemEffect_MoomooMilk[7] = {
     [4] = ITEM4_HEAL_HP,
-    [6] = 100, // Amount of HP to recover
+    [6] = ITEM6_HEAL_HP_80P, // Amount of HP to recover
 };
 
 const u8 gItemEffect_EnergyPowder[10] = {
     [4] = ITEM4_HEAL_HP,
     [5] = ITEM5_FRIENDSHIP_ALL,
-    [6] = I_HEALTH_RECOVERY >= GEN_7 ? 60 : 50, // Amount of HP to recover
+    [6] = ITEM6_HEAL_HP_65P, // Amount of HP to recover
     [7] = -5, // Friendship change, low
     [8] = -5, // Friendship change, mid
     [9] = -10, // Friendship change, high
@@ -90,7 +95,7 @@ const u8 gItemEffect_EnergyPowder[10] = {
 const u8 gItemEffect_EnergyRoot[10] = {
     [4] = ITEM4_HEAL_HP,
     [5] = ITEM5_FRIENDSHIP_ALL,
-    [6] = I_HEALTH_RECOVERY >= GEN_7 ? 120 : 200, // Amount of HP to recover
+    [6] = ITEM6_HEAL_HP_80P, // Amount of HP to recover
     [7] = -10, // Friendship change, low
     [8] = -10, // Friendship change, mid
     [9] = -15, // Friendship change, high

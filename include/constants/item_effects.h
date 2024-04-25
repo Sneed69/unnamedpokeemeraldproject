@@ -58,6 +58,8 @@
 #define ITEM6_HEAL_HP_HALF    ((u8) -2)
 #define ITEM6_HEAL_HP_LVL_UP  ((u8) -3)
 #define ITEM6_HEAL_HP_QUARTER ((u8) -4)
+#define ITEM6_HEAL_HP_65P     ((u8) -5)
+#define ITEM6_HEAL_HP_80P     ((u8) -6)
 
 // Special PP recovery amounts for ITEM4_HEAL_PP
 #define ITEM6_HEAL_PP_FULL   0x7F
