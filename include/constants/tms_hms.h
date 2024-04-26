@@ -12,7 +12,7 @@
     F(BULK_UP) \
     F(SEED_BOMB) \
     F(HIDDEN_POWER) \
-    F(SUNNY_DAY) \
+    F(FLARE) \
     F(TAUNT) \
     F(ICE_BEAM) \
     F(BLIZZARD) \

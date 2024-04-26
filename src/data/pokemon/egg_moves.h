@@ -1306,7 +1306,6 @@ const u16 gEggMoves[] = {
     egg_moves(TREECKO,
         MOVE_ENDEAVOR,
         MOVE_LEECH_SEED,
-        MOVE_SHED_TAIL,
         MOVE_DRAGON_BREATH,
         MOVE_CRUSH_CLAW,
         MOVE_DOUBLE_KICK,

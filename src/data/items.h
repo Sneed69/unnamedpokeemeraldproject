@@ -8781,7 +8781,7 @@ const struct Item gItemsInfo[] =
             "varies among\n"
             "different Pokémon."),
 
-    TM_ITEM(11, MOVE_SUNNY_DAY, 2000,
+    TM_ITEM(11, MOVE_FLARE, 2000,
             "Raises the power of\n"
             "Fire-type moves\n"
             "for 5 turns."),
@@ -9324,6 +9324,8 @@ const struct Item gItemsInfo[] =
             "Clears the terrain,\n"
             "hazards & barriers\n"
             "on both sides."),
+
+    #undef TM_ITEM
 
 // Charms
 
