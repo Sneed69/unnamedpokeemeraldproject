@@ -29,7 +29,7 @@
     F(THUNDER) \
     F(EARTHQUAKE) \
     F(FIRE_PUNCH) \
-    /**/F(DIG) \
+    F(TRAILBLAZE) \
     F(PSYCHIC) \
     F(SHADOW_BALL) \
     F(BRICK_BREAK) \

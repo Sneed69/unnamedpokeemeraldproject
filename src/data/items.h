@@ -8874,10 +8874,9 @@ const struct Item gItemsInfo[] =
             "leave the victim\n"
             "with a burn."),
 
-    TM_ITEM(28, MOVE_DIG, 2000,
-            "Digs underground\n"
-            "the 1st turn, then\n"
-            "strikes next turn."),
+    TM_ITEM(28, MOVE_TRAILBLAZE, 2000,
+            "A nimble attack\n"
+            "that raises Speed."),
 
     TM_ITEM(29, MOVE_PSYCHIC, 2000,
             "A powerful psychic\n"

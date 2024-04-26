@@ -52,7 +52,7 @@
 //#define P_GEN_5_CROSS_EVOS             // Gen 5 didn't introduce any cross-gen evos.
 #define P_GEN_6_CROSS_EVOS               P_CROSS_GENERATION_EVOS // Just Sylveon.
 //#define P_GEN_7_CROSS_EVOS             // Alolan evolutions handled by P_ALOLAN_FORMS.
-#define P_GEN_8_CROSS_EVOS               P_CROSS_GENERATION_EVOS // Regional evolutions handled by P_GALARIAN_FORMS and P_HISUIAN_FORMS.
+#define P_GEN_8_CROSS_EVOS               FALSE // Regional evolutions handled by P_GALARIAN_FORMS and P_HISUIAN_FORMS.
 #define P_GEN_9_CROSS_EVOS               P_CROSS_GENERATION_EVOS // Clodsire handled by P_PALDEAN_FORMS.
 
 // To disable specific families, replace P_GEN_x_POKEMON with FALSE.
@@ -234,7 +234,7 @@
 #define P_FAMILY_LILEEP                  P_GEN_3_POKEMON
 #define P_FAMILY_ANORITH                 P_GEN_3_POKEMON
 #define P_FAMILY_FEEBAS                  P_GEN_3_POKEMON
-#define P_FAMILY_CASTFORM                P_GEN_3_POKEMON
+#define P_FAMILY_CASTFORM                0
 #define P_FAMILY_KECLEON                 P_GEN_3_POKEMON
 #define P_FAMILY_SHUPPET                 P_GEN_3_POKEMON
 #define P_FAMILY_DUSKULL                 P_GEN_3_POKEMON
