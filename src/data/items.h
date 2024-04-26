@@ -8919,7 +8919,7 @@ const struct Item gItemsInfo[] =
             "foe. It may poison\n"
             "the foe."),
 
-    TM_ITEM(37, MOVE_SANDSTORM, 2000,
+    TM_ITEM(37, MOVE_LANDSLIDE, 2000,
             "Causes a sandstorm\n"
             "that hits the foe\n"
             "over several turns."),

@@ -38,7 +38,7 @@
     F(VOLT_SWITCH) \
     F(FLAMETHROWER) \
     F(SLUDGE_BOMB) \
-    /*r*/F(SANDSTORM) \
+    F(LANDSLIDE) \
     F(FIRE_BLAST) \
     F(ROCK_TOMB) \
     F(AERIAL_ACE) \
