@@ -1591,7 +1591,17 @@ u8 GetLevelFromBoxMonExp(struct BoxPokemon *boxMon)
 
 u16 GiveMoveToMon(struct Pokemon *mon, u16 move)
 {
-    return GiveMoveToBoxMon(&mon->box, move);
+    u32 result = GiveMoveToBoxMon(&mon->box, move);
+    if (result == move)
+    {
+        s32 i;
+        for (i = 0; i < MAX_MON_MOVES; i++)
+        {
+            if (GetMonData(mon, MON_DATA_MOVE1 + i) == move)
+                SetMonData(mon, MON_DATA_PP1 + i, &gMovesInfo[move].pp);
+        }
+    }
+    return result;
 }
 
 u16 GiveMoveToBoxMon(struct BoxPokemon *boxMon, u16 move)
@@ -1603,7 +1613,6 @@ u16 GiveMoveToBoxMon(struct BoxPokemon *boxMon, u16 move)
         if (existingMove == MOVE_NONE)
         {
             SetBoxMonData(boxMon, MON_DATA_MOVE1 + i, &move);
-            SetBoxMonData(boxMon, MON_DATA_PP1 + i, &gMovesInfo[move].pp);
             return move;
         }
         if (existingMove == move)
