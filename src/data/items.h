@@ -8736,10 +8736,10 @@ const struct Item gItemsInfo[] =
             "the user flinch if\n"
             "hit by the foe."),
 
-    TM_ITEM(02, MOVE_DRAGON_CLAW, 3000,
-            "Hooks and slashes\n"
-            "the foe with long,\n"
-            "sharp claws."),
+    TM_ITEM(02, MOVE_DRACO_METEOR, 0,
+            "Enables full-power\n"
+            "attack, but sharply\n"
+            "lowers Sp. Atk."),
 
     TM_ITEM(03, MOVE_THUNDER_FANG, 10000,
             "A bite attack that\n"

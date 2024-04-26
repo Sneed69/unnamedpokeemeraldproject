@@ -4630,7 +4630,7 @@ static const struct LevelUpMove sDragonairLevelUpLearnset[] = {
 };
 
 static const struct LevelUpMove sDragoniteLevelUpLearnset[] = {
-    LEVEL_UP_MOVE( 0, MOVE_WING_ATTACK),
+    LEVEL_UP_MOVE( 0, MOVE_DRAGON_CLAW),
     LEVEL_UP_MOVE( 1, MOVE_SAFEGUARD),
     LEVEL_UP_MOVE( 1, MOVE_WRAP),
     LEVEL_UP_MOVE( 1, MOVE_LEER),
@@ -8647,6 +8647,7 @@ static const struct LevelUpMove sFlygonLevelUpLearnset[] = {
     LEVEL_UP_MOVE(40, MOVE_UPROAR),
     LEVEL_UP_MOVE(43, MOVE_HYPER_BEAM),
     LEVEL_UP_MOVE(47, MOVE_DRAGON_RUSH),
+    LEVEL_UP_MOVE(51, MOVE_BOOMBURST),
     LEVEL_UP_END
 };
 #endif //P_FAMILY_TRAPINCH

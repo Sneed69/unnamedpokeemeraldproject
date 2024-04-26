@@ -3,7 +3,7 @@
 
 #define FOREACH_TM(F) \
     F(FOCUS_PUNCH) \
-    /**/F(DRAGON_CLAW) \
+    F(DRACO_METEOR) \
     F(THUNDER_FANG) \
     F(CALM_MIND) \
     F(ROAR) \
@@ -103,7 +103,7 @@
     F(DAZZLING_GLEAM) \
     F(GUNK_SHOT) \
     F(CLOSE_COMBAT) \
-    F(DRACO_METEOR) \
+    /**/F(DRAGON_CLAW) \
     F(SURF) \
     F(STRENGTH) \
     F(SUPERPOWER) \
