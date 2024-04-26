@@ -2901,7 +2901,6 @@ const u16 gEggMoves[] = {
     egg_moves(AMAURA,
         MOVE_HAZE,
         MOVE_BARRIER,
-        MOVE_AURORA_VEIL,
         MOVE_DRAGON_TAIL,
         MOVE_MIRROR_COAT,
         MOVE_MAGNET_RISE,

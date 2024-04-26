@@ -8761,10 +8761,10 @@ const struct Item gItemsInfo[] =
             "with a toxin that\n"
             "gradually worsens."),
 
-    TM_ITEM(07, MOVE_HAIL, 3000,
-            "Creates a hailstorm\n"
-            "that damages all\n"
-            "types except Ice."),
+    TM_ITEM(07, MOVE_SNOWSTORM, 3000,
+            "Raises the defense\n"
+            "of Ice-type {PKMN}\n"
+            "for 5 turns."),
 
     TM_ITEM(08, MOVE_BULK_UP, 3000,
             "Bulks up the body\n"

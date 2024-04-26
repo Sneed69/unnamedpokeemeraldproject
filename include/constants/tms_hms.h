@@ -3,12 +3,12 @@
 
 #define FOREACH_TM(F) \
     F(FOCUS_PUNCH) \
-    F(DRAGON_CLAW) \
+    /**/F(DRAGON_CLAW) \
     F(THUNDER_FANG) \
     F(CALM_MIND) \
     F(ROAR) \
     F(TOXIC) \
-    F(HAIL) \
+    F(SNOWSTORM) \
     F(BULK_UP) \
     F(SEED_BOMB) \
     F(HIDDEN_POWER) \
@@ -29,7 +29,7 @@
     F(THUNDER) \
     F(EARTHQUAKE) \
     F(FIRE_PUNCH) \
-    F(DIG) \
+    /**/F(DIG) \
     F(PSYCHIC) \
     F(SHADOW_BALL) \
     F(BRICK_BREAK) \
@@ -38,7 +38,7 @@
     F(VOLT_SWITCH) \
     F(FLAMETHROWER) \
     F(SLUDGE_BOMB) \
-    F(SANDSTORM) \
+    /*r*/F(SANDSTORM) \
     F(FIRE_BLAST) \
     F(ROCK_TOMB) \
     F(AERIAL_ACE) \
@@ -47,20 +47,20 @@
     F(PSYSHOCK) \
     F(REST) \
     F(NASTY_PLOT) \
-    F(THIEF) \
+    /**/F(THIEF) \
     F(STEEL_WING) \
     F(ZEN_HEADBUTT) \
-    F(WAVE_CRASH) \
+    /**/F(WAVE_CRASH) \
     F(OVERHEAT) \
     F(ROOST) \
     F(FOCUS_BLAST) \
     F(ENERGY_BALL) \
-    F(FALSE_SWIPE) \
+    /**/F(FALSE_SWIPE) \
     F(SCALD) \
     F(TAILWIND) \
     F(KNOCK_OFF) \
     F(SIGNAL_BEAM) \
-    F(DRAGON_PULSE) \
+    /**/F(DRAGON_PULSE) \
     F(DRAIN_PUNCH) \
     F(WILL_O_WISP) \
     F(ACROBATICS) \
@@ -73,9 +73,9 @@
     F(ROCK_POLISH) \
     F(IRON_HEAD) \
     F(STONE_EDGE) \
-    F(AVALANCHE) \
+    /**/F(AVALANCHE) \
     F(THUNDER_WAVE) \
-    F(GYRO_BALL) \
+    /**/F(GYRO_BALL) \
     F(SWORDS_DANCE) \
     F(STEALTH_ROCK) \
     F(SPIKES) \
@@ -95,7 +95,7 @@
     F(FLASH_CANNON) \
     F(TRICK_ROOM) \
     F(WILD_CHARGE) \
-    F(BUG_BUZZ) \
+    /**/F(BUG_BUZZ) \
     F(AIR_SLASH) \
     F(HURRICANE) \
     F(PLAY_ROUGH) \
@@ -113,14 +113,14 @@
     F(SEISMIC_TOSS) \
     F(VENOSHOCK) \
     F(AMNESIA) \
-    F(SLUDGE_WAVE) \
+    /**/F(SLUDGE_WAVE) \
     F(SOLAR_BLADE) \
     F(HEX) \
     F(HOWLING_GALE) \
-    F(GRASSY_TERRAIN) \
-    F(ELECTRIC_TERRAIN) \
-    F(PSYCHIC_TERRAIN) \
-    F(MISTY_TERRAIN) \
+    /*r*/F(GRASSY_TERRAIN) \
+    /*r*/F(ELECTRIC_TERRAIN) \
+    /*r*/F(PSYCHIC_TERRAIN) \
+    /*r*/F(MISTY_TERRAIN) \
     F(DEFOG)
 
 #define FOREACH_TMHM(F) \
