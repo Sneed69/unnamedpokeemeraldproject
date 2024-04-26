@@ -8824,7 +8824,7 @@ const struct Item gItemsInfo[] =
             "but may fail if used\n"
             "in succession."),
 
-    TM_ITEM(18, MOVE_RAIN_DANCE, 2000,
+    TM_ITEM(18, MOVE_GEYSER, 2000,
             "Raises the power of\n"
             "Water-type moves\n"
             "for 5 turns."),

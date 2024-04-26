@@ -19,7 +19,7 @@
     F(ICE_FANG) \
     F(LIGHT_SCREEN) \
     F(PROTECT) \
-    F(RAIN_DANCE) \
+    F(GEYSER) \
     F(GIGA_DRAIN) \
     F(FIRE_FANG) \
     F(THUNDER_PUNCH) \
