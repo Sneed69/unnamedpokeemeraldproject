@@ -2843,7 +2843,6 @@ BattleScript_EffectDarkVoid::
 BattleScript_EffectSleep::
 	attackcanceler
 	attackstring
-	ppreduce
 	jumpifsubstituteblocks BattleScript_ButItFailed
 	jumpifstatus BS_TARGET, STATUS1_SLEEP, BattleScript_AlreadyAsleep
 	jumpifuproarwakes BattleScript_CantMakeAsleep
@@ -2859,6 +2858,7 @@ BattleScript_EffectSleep::
 	jumpifterrainaffected BS_TARGET, STATUS_FIELD_ELECTRIC_TERRAIN, BattleScript_ElectricTerrainPrevents
 	jumpifterrainaffected BS_TARGET, STATUS_FIELD_MISTY_TERRAIN, BattleScript_MistyTerrainPrevents
 	accuracycheck BattleScript_ButItFailed, ACC_CURR_MOVE
+	ppreduce
 	jumpifsafeguard BattleScript_SafeguardProtected
 	attackanimation
 	waitanimation
