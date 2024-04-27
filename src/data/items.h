@@ -8977,10 +8977,10 @@ const struct Item gItemsInfo[] =
             "strong headbutt.\n"
             "May cause flinching."),
 
-    TM_ITEM(49, MOVE_WAVE_CRASH, 3000,
-            "A water shrouded\n"
-            "slam that also hurts\n"
-            "the user"),
+    TM_ITEM(49, MOVE_FLIP_TURN, 3000,
+            "Deals damage then\n"
+            "switches out the\n"
+            "user."),
 
     TM_ITEM(50, MOVE_OVERHEAT, 3000,
             "Enables full-power\n"
@@ -9251,10 +9251,10 @@ const struct Item gItemsInfo[] =
             "that lowers own\n"
             "Attack and Defense."),
 
-    TM_ITEM(106, MOVE_OUTRAGE, 0,
-            "A rampage of 2-3\n"
-            "turns that leaves\n"
-            "the user confused."),
+    TM_ITEM(106, MOVE_HOWLING_GALE, 0,
+            "A frigid wind\n"
+            "attack that may\n"
+            "cause frostbite."),
 
     TM_ITEM(107, MOVE_WATERFALL, 0,
             "Charges the foe\n"
@@ -9293,11 +9293,6 @@ const struct Item gItemsInfo[] =
             "Double power versus\n"
             "foes afflicted\n"
             "with status."),
-
-    TM_ITEM(115, MOVE_HOWLING_GALE, 0,
-            "A frigid wind\n"
-            "attack that may\n"
-            "cause frostbite."),
 
     #undef TM_ITEM
 

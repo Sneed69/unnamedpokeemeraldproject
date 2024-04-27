@@ -588,7 +588,7 @@ const u16 gEggMoves[] = {
         MOVE_WRING_OUT,
         MOVE_BODY_SLAM,
         MOVE_REFRESH,
-        MOVE_HEAL_PULSE),
+        MOVE_OUTRAGE),
 
     egg_moves(CYNDAQUIL,
         MOVE_QUICK_ATTACK,
@@ -1934,6 +1934,7 @@ const u16 gEggMoves[] = {
     egg_moves(TYRUNT,
         MOVE_DRAGON_DANCE,
         MOVE_POISON_FANG,
+        MOVE_OUTRAGE,
         MOVE_SCALE_SHOT,
         MOVE_CURSE),
 
@@ -1944,7 +1945,9 @@ const u16 gEggMoves[] = {
         MOVE_MIRROR_COAT,
         MOVE_MAGNET_RISE,
         MOVE_SCALE_SHOT,
+        MOVE_OUTRAGE,
         MOVE_DISCHARGE),
+
     egg_moves(GOOMY,
         MOVE_ACID_ARMOR,
         MOVE_ACID_RAIN,
