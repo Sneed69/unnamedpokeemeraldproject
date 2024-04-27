@@ -73,7 +73,7 @@
     F(ROCK_POLISH) \
     F(IRON_HEAD) \
     F(STONE_EDGE) \
-    /**/F(AVALANCHE) \
+    F(OVERLOAD) \
     F(THUNDER_WAVE) \
     /**/F(GYRO_BALL) \
     F(SWORDS_DANCE) \
@@ -117,10 +117,6 @@
     F(SOLAR_BLADE) \
     F(HEX) \
     F(HOWLING_GALE) \
-    /*r*/F(GRASSY_TERRAIN) \
-    /*r*/F(ELECTRIC_TERRAIN) \
-    /*r*/F(PSYCHIC_TERRAIN) \
-    /*r*/F(MISTY_TERRAIN)
 
 #define FOREACH_TMHM(F) \
     FOREACH_TM(F)

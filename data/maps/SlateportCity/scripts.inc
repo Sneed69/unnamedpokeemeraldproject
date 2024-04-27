@@ -583,9 +583,9 @@ SlateportCity_EventScript_PowerTMClerk::
 
 	.align 2
 SlateportCity_Pokemart_PowerTMs:
-	.2byte ITEM_TM17  @ Protect
-	.2byte ITEM_TM73  @ Thunder Wave
-	.2byte ITEM_TM68  @ Encore
+	.2byte ITEM_TM_PROTECT
+	.2byte ITEM_TM_THUNDER_WAVE
+	.2byte ITEM_TM_ENCORE
 	.2byte ITEM_TM_SIGNAL_BEAM
 	.2byte ITEM_TM_GYRO_BALL
 	.2byte ITEM_TM_SEISMIC_TOSS

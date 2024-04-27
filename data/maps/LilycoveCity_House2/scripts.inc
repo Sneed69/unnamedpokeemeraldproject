@@ -10,10 +10,10 @@ LilycoveCity_House2_EventScript_FatMan::
 	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull
 	setflag FLAG_RECEIVED_TM_REST
 LilycoveCity_House2_EventScript_ReceivedRest::
-	goto_if_set FLAG_RECEIVED_TM82, LilycoveCity_House2_EventScript_ReceivedBoth
-	giveitem ITEM_TM82
+	goto_if_set FLAG_RECEIVED_TM_SLEEP_TALK, LilycoveCity_House2_EventScript_ReceivedBoth
+	giveitem ITEM_TM_SLEEP_TALK
 	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull
-	setflag FLAG_RECEIVED_TM82
+	setflag FLAG_RECEIVED_TM_SLEEP_TALK
 LilycoveCity_House2_EventScript_ReceivedBoth::
 	msgbox LilycoveCity_House2_Text_SleepIsEssential, MSGBOX_DEFAULT
 	release

@@ -9088,10 +9088,10 @@ const struct Item gItemsInfo[] =
             "stones. High\n"
             "critical-hit ratio."),
 
-    TM_ITEM(72, MOVE_AVALANCHE, 3000,
-            "Double power if\n"
-            "damaged this turn.\n"
-            "Low priority."),
+    TM_ITEM(72, MOVE_OVERLOAD, 3000,
+            "Raises the power of\n"
+            "Electric-type\n"
+            "moves for 5 turns."),
 
     TM_ITEM(73, MOVE_THUNDER_WAVE, 10000, "Paralyzes the foe."),
 
@@ -9298,26 +9298,6 @@ const struct Item gItemsInfo[] =
             "A frigid wind\n"
             "attack that may\n"
             "cause frostbite."),
-
-    TM_ITEM(116, MOVE_GRASSY_TERRAIN, 0,
-            "Raises the power of\n"
-            "Grass-type moves\n"
-            "for 5 turns."),
-
-    TM_ITEM(117, MOVE_ELECTRIC_TERRAIN, 0,
-            "Raises the power of\n"
-            "Electric-type\n"
-            "moves for 5 turns."),
-
-    TM_ITEM(118, MOVE_PSYCHIC_TERRAIN, 0,
-            "Raises the power of\n"
-            "Psychic-type moves\n"
-            "for 5 turns."),
-
-    TM_ITEM(119, MOVE_MISTY_TERRAIN, 0,
-            "Lowers the power of\n"
-            "Dragon-type moves\n"
-            "for 5 turns."),
 
     #undef TM_ITEM
 
