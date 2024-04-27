@@ -391,7 +391,7 @@ const u8 *const gNatureNamePointers[NUM_NATURES] =
     [NATURE_FREESPIRITED] = COMPOUND_STRING("Free-spirited"),
 };
 
-static const u8 hiddenPowerTypes[] =
+static const u8 sHiddenPowerTypes[] =
 {
     TYPE_BUG,
     TYPE_DARK,
@@ -1040,7 +1040,11 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, 
         SetBoxMonData(boxMon, MON_DATA_ABILITY_NUM, &value);
     }
 
-    value = RandomElement(RNG_HIDDEN_POWER, hiddenPowerTypes);
+    do
+    {
+        value = RandomElement(RNG_HIDDEN_POWER, sHiddenPowerTypes);
+    }
+    while (value == gSpeciesInfo[species].types[0]);
     SetBoxMonData(boxMon, MON_DATA_HIDDEN_POWER_TYPE, &value);
 
     for (value = STAT_HP; value < NUM_STATS; value++)
