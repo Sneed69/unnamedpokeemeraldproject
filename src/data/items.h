@@ -9002,10 +9002,10 @@ const struct Item gItemsInfo[] =
             "power to attack.\n"
             "May lower Sp. Def."),
 
-    TM_ITEM(54, MOVE_FALSE_SWIPE, 3000,
-            "An attack that\n"
-            "leaves the victim\n"
-            "with at least 1 HP."),
+    TM_ITEM(54, MOVE_DEFOG, 12000,
+            "Clears the terrain,\n"
+            "hazards & barriers\n"
+            "on both sides."),
 
     TM_ITEM(55, MOVE_SCALD, 3000,
             "Blasts the target\n"
@@ -9318,11 +9318,6 @@ const struct Item gItemsInfo[] =
             "Lowers the power of\n"
             "Dragon-type moves\n"
             "for 5 turns."),
-
-    TM_ITEM(120, MOVE_DEFOG, 12000,
-            "Clears the terrain,\n"
-            "hazards & barriers\n"
-            "on both sides."),
 
     #undef TM_ITEM
 

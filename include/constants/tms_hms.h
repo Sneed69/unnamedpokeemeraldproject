@@ -55,7 +55,7 @@
     F(ROOST) \
     F(FOCUS_BLAST) \
     F(ENERGY_BALL) \
-    /**/F(FALSE_SWIPE) \
+    F(DEFOG) \
     F(SCALD) \
     F(TAILWIND) \
     F(KNOCK_OFF) \
@@ -107,7 +107,7 @@
     F(SURF) \
     F(STRENGTH) \
     F(SUPERPOWER) \
-    F(OUTRAGE) \
+    /**/F(OUTRAGE) \
     F(WATERFALL) \
     /**/F(THIEF) \
     F(SEISMIC_TOSS) \
@@ -120,8 +120,7 @@
     /*r*/F(GRASSY_TERRAIN) \
     /*r*/F(ELECTRIC_TERRAIN) \
     /*r*/F(PSYCHIC_TERRAIN) \
-    /*r*/F(MISTY_TERRAIN) \
-    F(DEFOG)
+    /*r*/F(MISTY_TERRAIN)
 
 #define FOREACH_TMHM(F) \
     FOREACH_TM(F)

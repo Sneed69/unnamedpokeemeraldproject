@@ -25,14 +25,14 @@ LilycoveCity_DepartmentStore_4F_EventScript_ClerkLeft::
 
 	.align 2
 LilycoveCity_DepartmentStore_4F_Pokemart_AttackTMs:
-	.2byte ITEM_TM14  @ Blizzard
-	.2byte ITEM_TM25  @ Thunder
-	.2byte ITEM_TM38  @ Fire Blast
-	.2byte ITEM_TM96  @ Hurricane
-	.2byte ITEM_TM52  @ Focus Blast
-	.2byte ITEM_TM71  @ Stone Edge
-	.2byte ITEM_TM98  @ Giga Impact
-	.2byte ITEM_TM78  @ Hyper Beam
+	.2byte ITEM_TM_BLIZZARD
+	.2byte ITEM_TM_THUNDER
+	.2byte ITEM_TM_FIRE_BLAST
+	.2byte ITEM_TM_HURRICANE
+	.2byte ITEM_TM_FOCUS_BLAST
+	.2byte ITEM_TM_STONE_EDGE
+	.2byte ITEM_TM_GIGA_IMPACT
+	.2byte ITEM_TM_HYPER_BEAM
 	.2byte ITEM_NONE
 	release
 	end
@@ -49,13 +49,13 @@ LilycoveCity_DepartmentStore_4F_EventScript_ClerkRight::
 
 	.align 2
 LilycoveCity_DepartmentStore_4F_Pokemart_DefenseTMs:
-	.2byte ITEM_TM33  @ Reflect
-	.2byte ITEM_TM16  @ Light Screen
-	.2byte ITEM_TM56  @ Tailwind
-	.2byte ITEM_TM63  @ Heal Bell
-	.2byte ITEM_TM51  @ Roost
-	.2byte ITEM_TM92  @ Trick Room
-	.2byte ITEM_TM120 @ Defog
+	.2byte ITEM_TM_REFLECT
+	.2byte ITEM_TM_LIGHT_SCREEN
+	.2byte ITEM_TM_TAILWIND
+	.2byte ITEM_TM_HEAL_BELL
+	.2byte ITEM_TM_ROOST
+	.2byte ITEM_TM_TRICK_ROOM
+	.2byte ITEM_TM_DEFOG
 	.2byte ITEM_NONE
 	release
 	end
@@ -72,13 +72,13 @@ LilycoveCity_DepartmentStore_4F_EventScript_ClerkNew::
 
 	.align 2
 LilycoveCity_DepartmentStore_4F_Pokemart_StatusTMs:
-	.2byte ITEM_TM61  @ Will-o-Wisp
+	.2byte ITEM_TM_WILL_O_WISP
 	.2byte ITEM_TM_SPIKES
-	.2byte ITEM_TM83  @ Toxic Spikes
-	.2byte ITEM_TM75  @ Swords Dance
-	.2byte ITEM_TM45  @ Nasty Plot
-	.2byte ITEM_TM67  @ Iron Defense
-	.2byte ITEM_TM111 @ Amnesia
+	.2byte ITEM_TM_TOXIC_SPIKES
+	.2byte ITEM_TM_SWORDS_DANCE
+	.2byte ITEM_TM_NASTY_PLOT
+	.2byte ITEM_TM_IRON_DEFENSE
+	.2byte ITEM_TM_AMNESIA
 	.2byte ITEM_NONE
 	release
 	end
