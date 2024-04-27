@@ -2181,7 +2181,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .evolutions = EVOLUTION({EVO_FRIENDSHIP, 0, SPECIES_PIKACHU}),
     },
 
-    [SPECIES_PICHU_SPIKY_EARED] =
+    /*[SPECIES_PICHU_SPIKY_EARED] =
     {
         .baseHP        = 20,
         .baseAttack    = 40,
@@ -2229,7 +2229,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .levelUpLearnset = sPichuLevelUpLearnset,
         .teachableLearnset = sPichuTeachableLearnset,
         .formSpeciesIdTable = sPichuFormSpeciesIdTable,
-    },
+    },*/
 #endif //P_GEN_2_CROSS_EVOS
 
 #if P_UPDATED_EXP_YIELDS >= GEN_6
@@ -2296,10 +2296,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         FOOTPRINT(Pikachu)
         .levelUpLearnset = sPikachuLevelUpLearnset,
         .teachableLearnset = sPikachuTeachableLearnset,
-        .formSpeciesIdTable = sPikachuFormSpeciesIdTable,
-        .formChangeTable = sPikachuFormChangeTable,
-        .evolutions = EVOLUTION({EVO_ITEM, ITEM_THUNDER_STONE, SPECIES_RAICHU},
-                                {EVO_NONE, 0, SPECIES_RAICHU_ALOLAN}),
+        .evolutions = EVOLUTION({EVO_ITEM, ITEM_THUNDER_STONE, SPECIES_RAICHU})
     },
 
 #if P_COSPLAY_PIKACHU_FORMS
@@ -3102,7 +3099,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
     },
 #endif //P_GIGANTAMAX_FORMS
 
-    [SPECIES_PIKACHU_PARTNER] =
+    /*[SPECIES_PIKACHU_PARTNER] =
     {
         .baseHP        = 45,
         .baseAttack    = 80,
@@ -3161,7 +3158,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .levelUpLearnset = sPikachuLevelUpLearnset,
         .teachableLearnset = sPikachuTeachableLearnset,
         .formSpeciesIdTable = sPikachuFormSpeciesIdTable,
-    },
+    },*/
 
 #define RAICHU_SPEED (P_UPDATED_STATS >= GEN_6 ? 110 : 100)
 
@@ -13696,7 +13693,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
     },
 #endif //P_GIGANTAMAX_FORMS
 
-    [SPECIES_EEVEE_PARTNER] =
+    /*[SPECIES_EEVEE_PARTNER] =
     {
         .baseHP        = 65,
         .baseAttack    = 75,
@@ -13753,7 +13750,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .levelUpLearnset = sEeveeLevelUpLearnset,
         .teachableLearnset = sEeveeTeachableLearnset,
         .formSpeciesIdTable = sEeveeFormSpeciesIdTable,
-    },
+    },*/
 
     [SPECIES_VAPOREON] =
     {

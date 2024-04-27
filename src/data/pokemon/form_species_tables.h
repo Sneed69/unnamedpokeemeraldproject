@@ -91,7 +91,7 @@ static const u16 sRaticateFormSpeciesIdTable[] = {
 #if P_GEN_2_CROSS_EVOS
 static const u16 sPichuFormSpeciesIdTable[] = {
     SPECIES_PICHU,
-    SPECIES_PICHU_SPIKY_EARED,
+    //SPECIES_PICHU_SPIKY_EARED,
     FORM_SPECIES_END,
 };
 #endif //P_GEN_2_CROSS_EVOS
@@ -119,7 +119,7 @@ static const u16 sPikachuFormSpeciesIdTable[] = {
 #if P_GIGANTAMAX_FORMS
     SPECIES_PIKACHU_GIGANTAMAX,
 #endif
-    SPECIES_PIKACHU_PARTNER,
+    //SPECIES_PIKACHU_PARTNER,
     FORM_SPECIES_END,
 };
 
@@ -515,7 +515,7 @@ static const u16 sEeveeFormSpeciesIdTable[] = {
 #if P_GIGANTAMAX_FORMS
     SPECIES_EEVEE_GIGANTAMAX,
 #endif
-    SPECIES_EEVEE_PARTNER,
+    //SPECIES_EEVEE_PARTNER,
     FORM_SPECIES_END,
 };
 #endif //P_FAMILY_EEVEE
