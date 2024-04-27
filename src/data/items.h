@@ -9192,10 +9192,10 @@ const struct Item gItemsInfo[] =
             "that also damages\n"
             "the user."),
 
-    TM_ITEM(94, MOVE_BUG_BUZZ, 3000,
+    TM_ITEM(94, MOVE_SHOCK_WAVE, 3000,
             "A damaging sound\n"
-            "wave that may\n"
-            "lower Sp. Def."),
+            "wave that usually\n"
+            "goes first."),
 
     TM_ITEM(95, MOVE_AIR_SLASH, 3000,
             "Releases a blade\n"

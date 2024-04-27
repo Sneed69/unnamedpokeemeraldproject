@@ -95,7 +95,7 @@
     F(FLASH_CANNON) \
     F(TRICK_ROOM) \
     F(WILD_CHARGE) \
-    /**/F(BUG_BUZZ) \
+    F(SHOCK_WAVE) \
     F(AIR_SLASH) \
     F(HURRICANE) \
     F(PLAY_ROUGH) \

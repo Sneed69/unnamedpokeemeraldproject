@@ -638,7 +638,6 @@ const u16 gEggMoves[] = {
         MOVE_WHIRLPOOL,
         MOVE_AGILITY,
         MOVE_MIST,
-        MOVE_SHOCK_WAVE,
         MOVE_BRINE,
         MOVE_WATER_PULSE,
         MOVE_SOAK),
@@ -1243,7 +1242,6 @@ const u16 gEggMoves[] = {
         MOVE_DISCHARGE,
         MOVE_SWITCHEROO,
         MOVE_ELECTRO_BALL,
-        MOVE_SHOCK_WAVE,
         MOVE_FLAME_BURST,
         MOVE_EERIE_IMPULSE),
 
@@ -1838,6 +1836,9 @@ const u16 gEggMoves[] = {
         MOVE_BEAT_UP,
         MOVE_SWITCHEROO,
         MOVE_WORRY_SEED),
+
+    egg_moves(ROTOM,
+        MOVE_COLD_SNAP),
 
     egg_moves(SANDILE,
         MOVE_DOUBLE_EDGE,
