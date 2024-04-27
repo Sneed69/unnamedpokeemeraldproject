@@ -9026,10 +9026,10 @@ const struct Item gItemsInfo[] =
             "leave the foe\n"
             "confused."),
 
-    TM_ITEM(59, MOVE_DRAGON_PULSE, 3000,
-            "Generates a shock\n"
-            "wave to damage the\n"
-            "target."),
+    TM_ITEM(59, MOVE_BLOOM, 3000,
+            "Raises the power of\n"
+            "Grass-type moves\n"
+            "for 5 turns."),
 
     TM_ITEM(60, MOVE_DRAIN_PUNCH, 15000,
             "Recovers half the\n"

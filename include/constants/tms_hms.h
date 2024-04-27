@@ -60,7 +60,7 @@
     F(TAILWIND) \
     F(KNOCK_OFF) \
     F(SIGNAL_BEAM) \
-    /**/F(DRAGON_PULSE) \
+    F(BLOOM) \
     F(DRAIN_PUNCH) \
     F(WILL_O_WISP) \
     F(ACROBATICS) \

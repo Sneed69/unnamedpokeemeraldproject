@@ -569,6 +569,7 @@ const u16 gEggMoves[] = {
         MOVE_EXTREME_SPEED,
         MOVE_WATER_PULSE,
         MOVE_AQUA_JET,
+        MOVE_DRAGON_PULSE,
         MOVE_SCALE_SHOT),
 
     egg_moves(CHIKORITA,
@@ -1601,6 +1602,7 @@ const u16 gEggMoves[] = {
         MOVE_DRAGON_DANCE,
         MOVE_DRAGON_RUSH,
         MOVE_ENDURE,
+        MOVE_DRAGON_PULSE,
         MOVE_DEFENSE_CURL),
 
     egg_moves(LATIAS,
@@ -1711,6 +1713,8 @@ const u16 gEggMoves[] = {
         MOVE_SAND_TOMB,
         MOVE_BODY_SLAM,
         MOVE_SCALE_SHOT,
+        MOVE_DRAGON_RAGE,
+        MOVE_DRAGON_PULSE,
         MOVE_MUD_SHOT),
 
     egg_moves(MUNCHLAX,
