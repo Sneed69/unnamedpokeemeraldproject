@@ -5,6 +5,7 @@
 #include "malloc.h"
 #include "sprite.h"
 #include "constants/items.h"
+#include "item.h"
 
 // EWRAM vars
 EWRAM_DATA u8 *gItemIconDecompressionBuffer = NULL;
@@ -157,12 +158,41 @@ u8 AddCustomItemIconSprite(const struct SpriteTemplate *customSpriteTemplate, u1
     }
 }
 
+const u32 *const sTMTypePalettes[] =
+{
+    [TYPE_NORMAL] = gItemIconPalette_NormalTMHM,
+    [TYPE_FIGHTING] = gItemIconPalette_FightingTMHM,
+    [TYPE_FLYING] = gItemIconPalette_FlyingTMHM,
+    [TYPE_POISON] = gItemIconPalette_PoisonTMHM,
+    [TYPE_GROUND] = gItemIconPalette_GroundTMHM,
+    [TYPE_ROCK] = gItemIconPalette_RockTMHM,
+    [TYPE_BUG] = gItemIconPalette_BugTMHM,
+    [TYPE_GHOST] = gItemIconPalette_GhostTMHM,
+    [TYPE_STEEL] = gItemIconPalette_SteelTMHM,
+    [TYPE_FIRE] = gItemIconPalette_FireTMHM,
+    [TYPE_WATER] = gItemIconPalette_WaterTMHM,
+    [TYPE_GRASS] = gItemIconPalette_GrassTMHM,
+    [TYPE_ELECTRIC] = gItemIconPalette_ElectricTMHM,
+    [TYPE_PSYCHIC] = gItemIconPalette_PsychicTMHM,
+    [TYPE_ICE] = gItemIconPalette_IceTMHM,
+    [TYPE_DRAGON] = gItemIconPalette_DragonTMHM,
+    [TYPE_DARK] = gItemIconPalette_DarkTMHM,
+    [TYPE_FAIRY] = gItemIconPalette_FairyTMHM,
+};
+
 const void *GetItemIconPicOrPalette(u16 itemId, u8 which)
 {
     if (itemId == ITEM_LIST_END)
         itemId = ITEMS_COUNT; // Use last icon, the "return to field" arrow
     else if (itemId >= ITEMS_COUNT)
         itemId = 0;
+    else if (itemId >= ITEM_TM01 && itemId <= LAST_TM)
+    {
+        if (which)
+            return sTMTypePalettes[gMovesInfo[gItemsInfo[itemId].secondaryId].type];
+        else
+            return gItemIcon_TM;
+    }
 
     return gItemIconTable[itemId][which];
 }
