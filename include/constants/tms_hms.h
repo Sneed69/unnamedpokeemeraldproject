@@ -103,7 +103,7 @@
     F(DAZZLING_GLEAM) \
     F(GUNK_SHOT) \
     F(CLOSE_COMBAT) \
-    /**/F(DRAGON_CLAW) \
+    F(MINDSTORM) \
     F(SURF) \
     F(STRENGTH) \
     F(SUPERPOWER) \

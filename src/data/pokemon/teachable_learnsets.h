@@ -1332,7 +1332,7 @@ static const u16 sVulpixTeachableLearnset[] = {
     MOVE_SUBSTITUTE,
     MOVE_FOUL_PLAY,
     MOVE_HEX,
-    MOVE_PSYCHIC_TERRAIN,
+    MOVE_MINDSTORM,
     MOVE_PSYCHIC,
     MOVE_PSYSHOCK,
     MOVE_FLARE,
@@ -1367,7 +1367,7 @@ static const u16 sNinetalesTeachableLearnset[] = {
     MOVE_GIGA_IMPACT,
     MOVE_FOUL_PLAY,
     MOVE_HEX,
-    MOVE_PSYCHIC_TERRAIN,
+    MOVE_MINDSTORM,
     MOVE_PSYCHIC,
     MOVE_STRENGTH,
     MOVE_FLARE,
@@ -2467,7 +2467,7 @@ static const u16 sAbraTeachableLearnset[] = {
     MOVE_DAZZLING_GLEAM,
     MOVE_FOUL_PLAY,
     MOVE_SEISMIC_TOSS,
-    MOVE_PSYCHIC_TERRAIN,
+    MOVE_MINDSTORM,
     MOVE_UNAVAILABLE,
 };
 
@@ -2504,7 +2504,7 @@ static const u16 sKadabraTeachableLearnset[] = {
     MOVE_DAZZLING_GLEAM,
     MOVE_FOUL_PLAY,
     MOVE_SEISMIC_TOSS,
-    MOVE_PSYCHIC_TERRAIN,
+    MOVE_MINDSTORM,
     MOVE_UNAVAILABLE,
 };
 
@@ -2545,7 +2545,7 @@ static const u16 sAlakazamTeachableLearnset[] = {
     MOVE_DAZZLING_GLEAM,
     MOVE_FOUL_PLAY,
     MOVE_SEISMIC_TOSS,
-    MOVE_PSYCHIC_TERRAIN,
+    MOVE_MINDSTORM,
     MOVE_UNAVAILABLE,
 };
 #endif //P_FAMILY_ABRA
@@ -3075,7 +3075,7 @@ static const u16 sSlowpokeTeachableLearnset[] = {
     MOVE_SURF,
     MOVE_STRENGTH,
     MOVE_AMNESIA,
-    MOVE_PSYCHIC_TERRAIN,
+    MOVE_MINDSTORM,
     MOVE_GEYSER,
     MOVE_UNAVAILABLE,
 };
@@ -3123,7 +3123,7 @@ static const u16 sSlowbroTeachableLearnset[] = {
     MOVE_FOUL_PLAY,
     MOVE_SEISMIC_TOSS,
     MOVE_AMNESIA,
-    MOVE_PSYCHIC_TERRAIN,
+    MOVE_MINDSTORM,
     MOVE_GEYSER,
     MOVE_UNAVAILABLE,
 };
@@ -3169,7 +3169,7 @@ static const u16 sSlowkingTeachableLearnset[] = {
     MOVE_FOUL_PLAY,
     MOVE_SEISMIC_TOSS,
     MOVE_AMNESIA,
-    MOVE_PSYCHIC_TERRAIN,
+    MOVE_MINDSTORM,
     MOVE_GEYSER,
     MOVE_UNAVAILABLE,
 };
@@ -4117,6 +4117,7 @@ static const u16 sExeggcuteTeachableLearnset[] = {
     MOVE_TRICK_ROOM,
     MOVE_STRENGTH,
     MOVE_BLOOM,
+    MOVE_MINDSTORM,
     MOVE_UNAVAILABLE,
 };
 
@@ -4147,6 +4148,7 @@ static const u16 sExeggutorTeachableLearnset[] = {
     MOVE_GIGA_IMPACT,
     MOVE_STRENGTH,
     MOVE_BLOOM,
+    MOVE_MINDSTORM,
     MOVE_UNAVAILABLE,
 };
 
@@ -5152,6 +5154,7 @@ static const u16 sStaryuTeachableLearnset[] = {
     MOVE_WATERFALL,
     MOVE_GEYSER,
     MOVE_FLIP_TURN,
+    MOVE_MINDSTORM,
     MOVE_UNAVAILABLE,
 };
 
@@ -5184,6 +5187,7 @@ static const u16 sStarmieTeachableLearnset[] = {
     MOVE_WATERFALL,
     MOVE_GEYSER,
     MOVE_FLIP_TURN,
+    MOVE_MINDSTORM,
     MOVE_UNAVAILABLE,
 };
 #endif //P_FAMILY_STARYU
@@ -5507,7 +5511,7 @@ static const u16 sJynxTeachableLearnset[] = {
     MOVE_TRICK_ROOM,
     MOVE_GIGA_IMPACT,
     MOVE_SEISMIC_TOSS,
-    MOVE_PSYCHIC_TERRAIN,
+    MOVE_MINDSTORM,
     MOVE_HOWLING_GALE,
     MOVE_DAZZLING_GLEAM,
     MOVE_UNAVAILABLE,
@@ -6110,6 +6114,7 @@ static const u16 sEspeonTeachableLearnset[] = {
     MOVE_GIGA_IMPACT,
     MOVE_DAZZLING_GLEAM,
     MOVE_TRAILBLAZE,
+    MOVE_MINDSTORM,
     MOVE_UNAVAILABLE,
 };
 
@@ -8694,7 +8699,7 @@ static const u16 sGirafarigTeachableLearnset[] = {
     MOVE_STRENGTH,
     MOVE_FOUL_PLAY,
     MOVE_AMNESIA,
-    MOVE_PSYCHIC_TERRAIN,
+    MOVE_MINDSTORM,
     MOVE_UNAVAILABLE,
 };
 
@@ -8730,7 +8735,7 @@ static const u16 sFarigirafTeachableLearnset[] = {
     MOVE_STRENGTH,
     MOVE_FOUL_PLAY,
     MOVE_AMNESIA,
-    MOVE_PSYCHIC_TERRAIN,
+    MOVE_MINDSTORM,
     MOVE_UNAVAILABLE,
 };
 #endif //P_GEN_9_CROSS_EVOS
@@ -11112,7 +11117,7 @@ static const u16 sDustoxTeachableLearnset[] = {
     MOVE_GIGA_IMPACT,
     MOVE_VENOSHOCK,
     MOVE_DEFOG,
-    MOVE_PSYCHIC_TERRAIN,
+    MOVE_MINDSTORM,
     MOVE_PSYSHOCK,
     MOVE_UNAVAILABLE,
 };
@@ -11524,7 +11529,7 @@ static const u16 sGardevoirTeachableLearnset[] = {
     MOVE_TRICK_ROOM,
     MOVE_GIGA_IMPACT,
     MOVE_DAZZLING_GLEAM,
-    MOVE_PSYCHIC_TERRAIN,
+    MOVE_MINDSTORM,
     MOVE_STARFALL,
     MOVE_SHOCK_WAVE,
     MOVE_UNAVAILABLE,
@@ -12434,6 +12439,7 @@ static const u16 sMedititeTeachableLearnset[] = {
     MOVE_DAZZLING_GLEAM,
     MOVE_HEX,
     MOVE_TRAILBLAZE,
+    MOVE_MINDSTORM,
     MOVE_UNAVAILABLE,
 };
 
@@ -12474,6 +12480,7 @@ static const u16 sMedichamTeachableLearnset[] = {
     MOVE_DAZZLING_GLEAM,
     MOVE_HEX,
     MOVE_TRAILBLAZE,
+    MOVE_MINDSTORM,
     MOVE_UNAVAILABLE,
 };
 #endif //P_FAMILY_MEDITITE
@@ -13105,6 +13112,7 @@ static const u16 sSpoinkTeachableLearnset[] = {
     MOVE_TRICK_ROOM,
     MOVE_AMNESIA,
     MOVE_TRAILBLAZE,
+    MOVE_MINDSTORM,
     MOVE_UNAVAILABLE,
 };
 
@@ -13146,6 +13154,7 @@ static const u16 sGrumpigTeachableLearnset[] = {
     MOVE_STRENGTH,
     MOVE_SUPERPOWER,
     MOVE_TRAILBLAZE,
+    MOVE_MINDSTORM,
     MOVE_UNAVAILABLE,
 };
 #endif //P_FAMILY_SPOINK
@@ -13538,7 +13547,7 @@ static const u16 sLunatoneTeachableLearnset[] = {
     MOVE_SUBSTITUTE,
     MOVE_TRICK_ROOM,
     MOVE_GIGA_IMPACT,
-    MOVE_PSYCHIC_TERRAIN,
+    MOVE_MINDSTORM,
     MOVE_UNAVAILABLE,
 };
 #endif //P_FAMILY_LUNATONE
@@ -13582,7 +13591,7 @@ static const u16 sSolrockTeachableLearnset[] = {
     MOVE_SUBSTITUTE,
     MOVE_TRICK_ROOM,
     MOVE_GIGA_IMPACT,
-    MOVE_PSYCHIC_TERRAIN,
+    MOVE_MINDSTORM,
     MOVE_SOLAR_BLADE,
     MOVE_FLARE,
     MOVE_UNAVAILABLE,
@@ -13743,7 +13752,7 @@ static const u16 sBaltoyTeachableLearnset[] = {
     MOVE_TRICK_ROOM,
     MOVE_DAZZLING_GLEAM,
     MOVE_HEX,
-    MOVE_PSYCHIC_TERRAIN,
+    MOVE_MINDSTORM,
     MOVE_UNAVAILABLE,
 };
 
@@ -13784,7 +13793,7 @@ static const u16 sClaydolTeachableLearnset[] = {
     MOVE_DAZZLING_GLEAM,
     MOVE_STRENGTH,
     MOVE_HEX,
-    MOVE_PSYCHIC_TERRAIN,
+    MOVE_MINDSTORM,
     MOVE_UNAVAILABLE,
 };
 #endif //P_FAMILY_BALTOY
@@ -14801,6 +14810,7 @@ static const u16 sMetangTeachableLearnset[] = {
     MOVE_FLASH_CANNON,
     MOVE_STRENGTH,
     MOVE_TRAILBLAZE,
+    MOVE_MINDSTORM,
     MOVE_UNAVAILABLE,
 };
 
@@ -14839,6 +14849,7 @@ static const u16 sMetagrossTeachableLearnset[] = {
     MOVE_GIGA_IMPACT,
     MOVE_STRENGTH,
     MOVE_TRAILBLAZE,
+    MOVE_MINDSTORM,
     MOVE_UNAVAILABLE,
 };
 #endif //P_FAMILY_BELDUM
@@ -16872,6 +16883,7 @@ static const u16 sBronzorTeachableLearnset[] = {
     MOVE_FLASH_CANNON,
     MOVE_TRICK_ROOM,
     MOVE_HEX,
+    MOVE_MINDSTORM,
     MOVE_UNAVAILABLE,
 };
 
@@ -16908,7 +16920,7 @@ static const u16 sBronzongTeachableLearnset[] = {
     MOVE_GIGA_IMPACT,
     MOVE_STRENGTH,
     MOVE_HEX,
-    MOVE_PSYCHIC_TERRAIN,
+    MOVE_MINDSTORM,
     MOVE_HEAL_BELL,
     MOVE_UNAVAILABLE,
 };
@@ -24465,6 +24477,7 @@ static const u16 sInkayTeachableLearnset[] = {
     MOVE_SUPERPOWER,
     MOVE_FOUL_PLAY,
     MOVE_FLIP_TURN,
+    MOVE_MINDSTORM,
     MOVE_UNAVAILABLE,
 };
 
@@ -24495,6 +24508,7 @@ static const u16 sMalamarTeachableLearnset[] = {
     MOVE_FOUL_PLAY,
     MOVE_TRAILBLAZE,
     MOVE_FLIP_TURN,
+    MOVE_MINDSTORM,
     MOVE_UNAVAILABLE,
 };
 #endif //P_FAMILY_INKAY
@@ -31063,7 +31077,7 @@ static const u16 sArmarougeTeachableLearnset[] = {
     MOVE_PROTECT,
     MOVE_PSYBEAM,
     MOVE_PSYCHIC,
-    MOVE_PSYCHIC_TERRAIN,
+    MOVE_MINDSTORM,
     MOVE_PSYSHOCK,
     MOVE_REFLECT,
     MOVE_REST,
@@ -31681,7 +31695,7 @@ static const u16 sRabscaTeachableLearnset[] = {
     MOVE_PROTECT,
     MOVE_PSYBEAM,
     MOVE_PSYCHIC,
-    MOVE_PSYCHIC_TERRAIN,
+    MOVE_MINDSTORM,
     MOVE_PSYSHOCK,
     MOVE_REFLECT,
     MOVE_REST,
@@ -31720,7 +31734,7 @@ static const u16 sFlittleTeachableLearnset[] = {
     MOVE_PROTECT,
     MOVE_PSYBEAM,
     MOVE_PSYCHIC,
-    MOVE_PSYCHIC_TERRAIN,
+    MOVE_MINDSTORM,
     MOVE_PSYSHOCK,
     MOVE_REFLECT,
     MOVE_REST,
@@ -31767,7 +31781,7 @@ static const u16 sEspathraTeachableLearnset[] = {
     MOVE_PROTECT,
     MOVE_PSYBEAM,
     MOVE_PSYCHIC,
-    MOVE_PSYCHIC_TERRAIN,
+    MOVE_MINDSTORM,
     MOVE_PSYSHOCK,
     MOVE_REFLECT,
     MOVE_REST,
@@ -32436,7 +32450,7 @@ static const u16 sVeluzaTeachableLearnset[] = {
     MOVE_PROTECT,
     MOVE_PSYCHIC,
     MOVE_PSYCHIC_FANGS,
-    MOVE_PSYCHIC_TERRAIN,
+    MOVE_MINDSTORM,
     MOVE_REST,
     MOVE_SLEEP_TALK,
     MOVE_SNOWSCAPE,
@@ -32598,7 +32612,7 @@ static const u16 sScreamTailTeachableLearnset[] = {
     MOVE_PSYBEAM,
     MOVE_PSYCHIC,
     MOVE_PSYCHIC_FANGS,
-    MOVE_PSYCHIC_TERRAIN,
+    MOVE_MINDSTORM,
     MOVE_PSYSHOCK,
     MOVE_REFLECT,
     MOVE_REST,
@@ -33455,7 +33469,7 @@ static const u16 sIronValiantTeachableLearnset[] = {
     MOVE_PROTECT,
     MOVE_PSYBEAM,
     MOVE_PSYCHIC,
-    MOVE_PSYCHIC_TERRAIN,
+    MOVE_MINDSTORM,
     MOVE_PSYSHOCK,
     MOVE_REFLECT,
     MOVE_REST,
@@ -33650,7 +33664,7 @@ static const u16 sIronLeavesTeachableLearnset[] = {
     MOVE_LEAF_STORM,
     MOVE_MAGICAL_LEAF,
     MOVE_PROTECT,
-    MOVE_PSYCHIC_TERRAIN,
+    MOVE_MINDSTORM,
     MOVE_REST,
     MOVE_REVERSAL,
     MOVE_SCARY_FACE,
