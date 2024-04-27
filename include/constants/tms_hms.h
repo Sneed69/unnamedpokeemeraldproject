@@ -50,7 +50,7 @@
     F(FOUL_PLAY) \
     F(STEEL_WING) \
     F(ZEN_HEADBUTT) \
-    /**/F(WAVE_CRASH) \
+    F(FLIP_TURN) \
     F(OVERHEAT) \
     F(ROOST) \
     F(FOCUS_BLAST) \
