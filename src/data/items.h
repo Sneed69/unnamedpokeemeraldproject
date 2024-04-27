@@ -9095,10 +9095,10 @@ const struct Item gItemsInfo[] =
 
     TM_ITEM(73, MOVE_THUNDER_WAVE, 10000, "Paralyzes the foe."),
 
-    TM_ITEM(74, MOVE_GYRO_BALL, 10000,
-            "Slower users deal\n"
-            "more damage to\n"
-            "faster foes."),
+    TM_ITEM(74, MOVE_STARFALL, 10000,
+            "Prevents all \n"
+            "status conditions\n"
+            "for 5 turns."),
 
     TM_ITEM(75, MOVE_SWORDS_DANCE, 20000,
             "Sharply raises\n"
@@ -9154,7 +9154,7 @@ const struct Item gItemsInfo[] =
             "sharp fangs.\n"
             "May lower Defense."),
 
-    TM_ITEM(86, MOVE_GRASS_KNOT, 3000,
+    TM_ITEM(86, MOVE_GRASS_KNOT, 10000,
             "Deals more damage\n"
             "the heavier the\n"
             "foe weighs."),

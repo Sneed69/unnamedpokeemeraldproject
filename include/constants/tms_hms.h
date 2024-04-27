@@ -75,7 +75,7 @@
     F(STONE_EDGE) \
     F(OVERLOAD) \
     F(THUNDER_WAVE) \
-    /**/F(GYRO_BALL) \
+    F(STARFALL) \
     F(SWORDS_DANCE) \
     F(STEALTH_ROCK) \
     F(SPIKES) \
