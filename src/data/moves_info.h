@@ -8859,15 +8859,16 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .name = COMPOUND_STRING("Shock Wave"),
         .description = COMPOUND_STRING(
             "A fast and unavoidable\n"
-            "electric attack."),
+            "electric sound attack."),
         .effect = EFFECT_HIT,
-        .power = 60,
+        .power = 40,
         .type = TYPE_ELECTRIC,
         .accuracy = 0,
         .pp = 32,
         .target = MOVE_TARGET_SELECTED,
-        .priority = 0,
+        .priority = 1,
         .category = DAMAGE_CATEGORY_SPECIAL,
+        .soundMove = TRUE,
 
         .contestEffect = CONTEST_EFFECT_BETTER_IF_FIRST,
         .contestCategory = CONTEST_CATEGORY_COOL,
