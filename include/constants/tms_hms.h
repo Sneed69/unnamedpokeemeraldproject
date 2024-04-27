@@ -47,7 +47,7 @@
     F(PSYSHOCK) \
     F(REST) \
     F(NASTY_PLOT) \
-    /**/F(THIEF) \
+    F(FOUL_PLAY) \
     F(STEEL_WING) \
     F(ZEN_HEADBUTT) \
     /**/F(WAVE_CRASH) \
@@ -109,7 +109,7 @@
     F(SUPERPOWER) \
     F(OUTRAGE) \
     F(WATERFALL) \
-    F(FOUL_PLAY) \
+    /**/F(THIEF) \
     F(SEISMIC_TOSS) \
     F(VENOSHOCK) \
     F(AMNESIA) \

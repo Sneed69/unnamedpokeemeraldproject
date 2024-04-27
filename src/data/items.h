@@ -8962,10 +8962,10 @@ const struct Item gItemsInfo[] =
             "Sharply raises\n"
             "Special Attack."),
 
-    TM_ITEM(46, MOVE_THIEF, 3000,
-            "While attacking,\n"
-            "it may steal the\n"
-            "foe's held item."),
+    TM_ITEM(46, MOVE_FOUL_PLAY, 3000,
+            "A move that uses\n"
+            "the foe's own\n"
+            "Attack against it."),
 
     TM_ITEM(47, MOVE_STEEL_WING, 3000,
             "Spreads hard-\n"
@@ -9261,7 +9261,7 @@ const struct Item gItemsInfo[] =
             "at a high speed.\n"
             "May cause flinching."),
 
-    TM_ITEM(108, MOVE_FOUL_PLAY, 0,
+    TM_ITEM(108, MOVE_THIEF, 0,
             "A move that uses\n"
             "the foe's own\n"
             "Attack against it."),
