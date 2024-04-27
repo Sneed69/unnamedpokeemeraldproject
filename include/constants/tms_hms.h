@@ -109,13 +109,11 @@
     F(SUPERPOWER) \
     F(HOWLING_GALE) \
     F(WATERFALL) \
-    /**/F(THIEF) \
+    F(HEX) \
     F(SEISMIC_TOSS) \
     F(VENOSHOCK) \
     F(AMNESIA) \
-    /**/F(SLUDGE_WAVE) \
-    F(SOLAR_BLADE) \
-    F(HEX)
+    F(SOLAR_BLADE)
 
 #define FOREACH_TMHM(F) \
     FOREACH_TM(F)

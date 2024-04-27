@@ -97,6 +97,7 @@ const u16 gEggMoves[] = {
         MOVE_POISON_TAIL,
         MOVE_ENDURE,
         MOVE_CHIP_AWAY,
+        MOVE_SLUDGE_WAVE,
         MOVE_VENOM_DRENCH),
 
     egg_moves(NIDORAN_M,
@@ -111,6 +112,7 @@ const u16 gEggMoves[] = {
         MOVE_POISON_TAIL,
         MOVE_ENDURE,
         MOVE_CHIP_AWAY,
+        MOVE_SLUDGE_WAVE,
         MOVE_VENOM_DRENCH),
 
     egg_moves(VULPIX,

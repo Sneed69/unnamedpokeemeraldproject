@@ -848,7 +848,7 @@
 #define ITEM_TM119 701
 #define ITEM_TM120 702
 
-#define LAST_TM ITEM_TM120
+#define LAST_TM ITEM_TM112
 
 // Battle Mechanic Key Items
 #define ITEM_MEGA_RING 703

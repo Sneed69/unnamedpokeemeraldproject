@@ -9231,11 +9231,11 @@ const struct Item gItemsInfo[] =
             "that lowers own\n"
             "Defense and Sp. Def."),
 
-    TM_ITEM(102, MOVE_DRACO_METEOR, 0,
-            "Enables full-power\n"
-            "attack, but sharply\n"
-            "lowers Sp. Atk."),
-
+    TM_ITEM(102, MOVE_MINDSTORM, 0,
+            "Raises the power of\n"
+            "Psychic-type moves\n"
+            "for 5 turns."),
+    
     TM_ITEM(103, MOVE_SURF, 0,
             "Creates a huge\n"
             "wave, then crashes\n"
@@ -9261,10 +9261,10 @@ const struct Item gItemsInfo[] =
             "at a high speed.\n"
             "May cause flinching."),
 
-    TM_ITEM(108, MOVE_THIEF, 0,
-            "A move that uses\n"
-            "the foe's own\n"
-            "Attack against it."),
+    TM_ITEM(108, MOVE_HEX, 0,
+            "Double power versus\n"
+            "foes afflicted\n"
+            "with status."),
 
     TM_ITEM(109, MOVE_SEISMIC_TOSS, 10000,
             "Inflicts 50 damage\n"
@@ -9279,20 +9279,10 @@ const struct Item gItemsInfo[] =
             "Sharply raises\n"
             "Special Defense."),
 
-    TM_ITEM(112, MOVE_SLUDGE_WAVE, 0,
-            "Hurls sludge at all\n"
-            "foes. Might cause\n"
-            "poison."),
-
-    TM_ITEM(113, MOVE_SOLAR_BLADE, 0,
+    TM_ITEM(112, MOVE_SOLAR_BLADE, 0,
             "Absorbs sunlight in\n"
             "the 1st turn, then\n"
             "attacks next turn."),
-
-    TM_ITEM(114, MOVE_HEX, 0,
-            "Double power versus\n"
-            "foes afflicted\n"
-            "with status."),
 
     #undef TM_ITEM
 
