@@ -2729,5 +2729,14 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
         .name = _("Shining Beacon"),
         .description = COMPOUND_STRING("Boosts accuracy & weakens\nDark- & Ghost-type moves."),
         .aiRating = 6,
+        .breakable = TRUE,
+    },
+
+    [ABILITY_FLIGHTLESS] =
+    {
+        .name = _("Flightless"),
+        .description = COMPOUND_STRING("Grounded but eliminates the\nFlying-type's weaknesses."),
+        .aiRating = 6,
+        .breakable = TRUE,
     },
 };

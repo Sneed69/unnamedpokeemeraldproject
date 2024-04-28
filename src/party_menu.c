@@ -2902,6 +2902,9 @@ static bool8 CanMonFly(struct Pokemon *mon)
     
     switch (species)
     {
+        case SPECIES_DODUO:
+        case SPECIES_DODRIO:
+            return FALSE;
         case SPECIES_RAYQUAZA:
         case SPECIES_LATIAS:
         case SPECIES_LATIOS:
@@ -2913,8 +2916,8 @@ static bool8 CanMonFly(struct Pokemon *mon)
         //case SPECIES_ZAPDOS:
         case SPECIES_DRAGONITE:
         case SPECIES_DRAGONAIR:
-        case SPECIES_LUGIA:
-        case SPECIES_HO_OH:
+        //case SPECIES_LUGIA:
+        //case SPECIES_HO_OH:
         //case SPECIES_TROPIUS:
         case SPECIES_FLYGON:
         case SPECIES_VIBRAVA:
