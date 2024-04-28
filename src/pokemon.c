@@ -1375,7 +1375,7 @@ void ConvertPokemonToBattleTowerPokemon(struct Pokemon *mon, struct BattleTowerP
     dest->majorProficiency = GetMonData(mon, MON_DATA_MAJOR_PROFICIENCY, NULL);
     dest->minorProficiency = GetMonData(mon, MON_DATA_MINOR_PROFICIENCY, NULL);
     dest->personality = GetMonData(mon, MON_DATA_PERSONALITY, NULL);
-    GetMonData(mon, MON_DATA_NICKNAME, dest->nickname);
+    GetMonData(mon, MON_DATA_NICKNAME10, dest->nickname);
 }
 
 static void CreateEventMon(struct Pokemon *mon, u16 species, u8 level, u8 fixedIV, u8 hasFixedPersonality, u32 fixedPersonality, u8 otIdType, u32 fixedOtId)
@@ -2065,6 +2065,7 @@ u32 GetBoxMonData3(struct BoxPokemon *boxMon, s32 field, u8 *data)
         retVal = boxMon->otId;
         break;
     case MON_DATA_NICKNAME:
+    case MON_DATA_NICKNAME10:
     {
         if (boxMon->isBadEgg)
         {
@@ -2395,7 +2396,14 @@ void SetBoxMonData(struct BoxPokemon *boxMon, s32 field, const void *dataArg)
     case MON_DATA_NICKNAME:
     {
         s32 i;
-        for (i = 0; i < POKEMON_NAME_LENGTH; i++)
+        for (i = 0; i < min(sizeof(boxMon->nickname), POKEMON_NAME_LENGTH); i++)
+            boxMon->nickname[i] = data[i];
+        break;
+    }
+    case MON_DATA_NICKNAME10:
+    {
+        s32 i;
+        for (i = 0; i < min(sizeof(boxMon->nickname), 10); i++)
             boxMon->nickname[i] = data[i];
         break;
     }

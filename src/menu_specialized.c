@@ -185,8 +185,9 @@ static const struct ListMenuTemplate sMoveRelearnerMovesListTemplate =
     .lettersSpacing = 0,
     .itemVerticalPadding = 0,
     .scrollMultiple = LIST_NO_MULTIPLE_SCROLL,
-    .fontId = FONT_NARROW,
-    .cursorKind = CURSOR_BLACK_ARROW
+    .fontId = FONT_NORMAL,
+    .cursorKind = CURSOR_BLACK_ARROW,
+    .textNarrowWidth = 68,
 };
 
 //--------------
