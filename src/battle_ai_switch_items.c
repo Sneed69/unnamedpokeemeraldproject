@@ -1460,10 +1460,10 @@ static u32 GetSwitchinStatusDamage(u32 battler)
     {
         if (status & STATUS1_BURN)
         {
-            if (B_BURN_DAMAGE >= GEN_7)
-                statusDamage = maxHP / 16;
+            if (IsAbilityOnOpposingSide(battler, ABILITY_MALEDICTION))
+                statusDamage = maxHP / (B_BURN_DAMAGE >= GEN_7 ? 12 : 6);
             else
-                statusDamage = maxHP / 8;
+                statusDamage = maxHP / (B_BURN_DAMAGE >= GEN_7 ? 16 : 8);
             if(ability == ABILITY_HEATPROOF)
                 statusDamage = statusDamage / 2;
             if (statusDamage == 0)
@@ -1471,10 +1471,10 @@ static u32 GetSwitchinStatusDamage(u32 battler)
         }
         else if (status & STATUS1_FROSTBITE)
         {
-            if (B_BURN_DAMAGE >= GEN_7)
-                statusDamage = maxHP / 16;
+            if (IsAbilityOnOpposingSide(battler, ABILITY_MALEDICTION))
+                statusDamage = maxHP / (B_BURN_DAMAGE >= GEN_7 ? 12 : 6);
             else
-                statusDamage = maxHP / 8;
+                statusDamage = maxHP / (B_BURN_DAMAGE >= GEN_7 ? 16 : 8);
             if (statusDamage == 0)
                 statusDamage = 1;
         }
