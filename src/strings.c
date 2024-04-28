@@ -527,7 +527,6 @@ const u8 gText_Events[] = _("Events"); // Unused
 const u8 gText_Switch[] = _("Switch");
 const u8 gText_PkmnInfo[] = _("Pokémon info");
 const u8 gText_PkmnSkills[] = _("Pokémon skills");
-const u8 gText_PkmnIVsEVs[] = _("IVs and EVs");
 const u8 gText_BattleMoves[] = _("Battle moves");
 const u8 gText_ContestMoves[] = _("Contest moves");
 const u8 gText_Info[] = _("Info");
