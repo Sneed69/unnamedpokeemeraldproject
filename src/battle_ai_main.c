@@ -364,12 +364,12 @@ static void SetBattlerAiGimmickData(u32 battler, struct AiLogicData *aiData)
     bool32 isSecondTrainer = (GetBattlerPosition(battler) == B_POSITION_OPPONENT_RIGHT) && (gBattleTypeFlags & BATTLE_TYPE_TWO_OPPONENTS) && !BATTLE_TWO_VS_ONE_OPPONENT;
     u16 trainerId = isSecondTrainer ? gTrainerBattleOpponent_B : gTrainerBattleOpponent_A;
     const struct TrainerMon *party = GetTrainerPartyFromId(trainerId);
-    if (party != NULL)
+    /*if (party != NULL)
     {
         aiData->shouldDynamax[battler] = CanDynamax(battler) && (party[isSecondTrainer ? gBattlerPartyIndexes[battler] - MULTI_PARTY_SIZE : gBattlerPartyIndexes[battler]].shouldDynamax);
         aiData->shouldTerastal[battler] = CanTerastallize(battler) && (party[isSecondTrainer ? gBattlerPartyIndexes[battler] - MULTI_PARTY_SIZE : gBattlerPartyIndexes[battler]].shouldTerastal);
     }
-    else
+    else*/
     {
         aiData->shouldDynamax[battler] = FALSE;
         aiData->shouldTerastal[battler] = FALSE;

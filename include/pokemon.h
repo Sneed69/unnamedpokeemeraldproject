@@ -120,8 +120,10 @@ struct BoxPokemon
     /*0x00*/ u32 personality;
     /*0x04*/ u32 otId;
     /*0x08*/ u8 otName[PLAYER_NAME_LENGTH];
-    /*0x12*/ u8 nickname[min(10, POKEMON_NAME_LENGTH)];
-    /*0x1C*/ u16 moves[MAX_MON_MOVES];
+    /*0x12*/ u8 nickname[POKEMON_NAME_LENGTH];
+             u16 unused16;
+             
+             u16 moves[MAX_MON_MOVES];
 
              u32 species:11; // 2047 species
              u32 experience:21;
@@ -161,8 +163,6 @@ struct BoxPokemon
              u32 majorProficiency:3;
              u32 minorProficiency:3;
              u32 unused_1:1;
-
-             u16 unused32;
 }; // size 0x40 (64)
 
 struct Pokemon
