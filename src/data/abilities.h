@@ -902,7 +902,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_RECKLESS] =
     {
         .name = _("Reckless"),
-        .description = COMPOUND_STRING("Boosts the powers of moves\nthat have recoil damage."),
+        .description = COMPOUND_STRING("Boosts the power of recoil\nand explosion moves."),
         .aiRating = 6,
     },
 

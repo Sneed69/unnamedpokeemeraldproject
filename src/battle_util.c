@@ -9038,7 +9038,7 @@ static inline u32 CalcMoveBasePowerAfterModifiers(u32 move, u32 battlerAtk, u32 
            modifier = uq4_12_multiply(modifier, UQ_4_12(1.5));
         break;
     case ABILITY_RECKLESS:
-        if (IS_MOVE_RECOIL(move))
+        if (IS_MOVE_RECOIL(move) || gMovesInfo[move].effect == EFFECT_EXPLOSION)
            modifier = uq4_12_multiply(modifier, UQ_4_12(1.2));
         break;
     case ABILITY_IRON_FIST:
