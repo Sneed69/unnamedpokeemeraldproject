@@ -936,7 +936,7 @@ u32 GetEggStepMultiplier(void)
                 || ability == ABILITY_FLAME_BODY
                 || ability == ABILITY_STEAM_ENGINE)
             {
-                multiplier = multiplier * EGG_STEP_MULTIPLIER_ABILITY;
+                multiplier = EGG_STEP_MULTIPLIER_ABILITY(multiplier);
                 break;
             }
         }
@@ -945,22 +945,22 @@ u32 GetEggStepMultiplier(void)
     if (GetCurrentRegionMapSectionId() == MAPSEC_FIERY_PATH
         || GetCurrentRegionMapSectionId() == MAPSEC_MAGMA_HIDEOUT
         || GetCurrentRegionMapSectionId() == MAPSEC_MT_CHIMNEY)
-        multiplier = multiplier * EGG_STEP_MULTIPLIER_VOLCANO;
+        multiplier = EGG_STEP_MULTIPLIER_VOLCANO(multiplier);
     else if (gMapHeader.mapType == MAP_TYPE_UNDERGROUND)
-        multiplier = multiplier * EGG_STEP_MULTIPLIER_UNDERGROUND;
+        multiplier = EGG_STEP_MULTIPLIER_UNDERGROUND(multiplier);
     else if (gMapHeader.mapType == MAP_TYPE_UNDERWATER)
-        multiplier = multiplier * EGG_STEP_MULTIPLIER_UNDERWATER;
+        multiplier = EGG_STEP_MULTIPLIER_UNDERWATER(multiplier);
     
     switch (GetCurrentTimeOfDay())
     {
     case TIME_MORNING:
-        multiplier = multiplier * EGG_STEP_MULTIPLIER_MORNING;
+        multiplier = EGG_STEP_MULTIPLIER_MORNING(multiplier);
         break;
     case TIME_DAY:
-        multiplier = multiplier * EGG_STEP_MULTIPLIER_DAY;
+        multiplier = EGG_STEP_MULTIPLIER_DAY(multiplier);
         break;
     case TIME_NIGHT:
-        multiplier = multiplier * EGG_STEP_MULTIPLIER_NIGHT;
+        multiplier = EGG_STEP_MULTIPLIER_NIGHT(multiplier);
         break;
     }
     return multiplier;
