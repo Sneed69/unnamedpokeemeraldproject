@@ -4092,7 +4092,7 @@ static void DebugAction_PCBag_Fill_PCBoxes_Fast(u8 taskId) //Credit: Sierraffini
     {
         for (boxPosition = 0; boxPosition < IN_BOX_COUNT; boxPosition++, natDex++)
         {
-            if (natDex == MY_DEX_COUNT)
+            if (natDex > MY_DEX_COUNT)
                 natDex = 1;
             if (!GetBoxMonData(&gPokemonStoragePtr->boxes[boxId][boxPosition], MON_DATA_SANITY_HAS_SPECIES))
             {
