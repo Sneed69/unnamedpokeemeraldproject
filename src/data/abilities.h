@@ -1276,6 +1276,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
         .name = _("Fur Coat"),
         .description = COMPOUND_STRING("Doubles Defense."),
         .aiRating = 7,
+        .breakable = TRUE,
     },
 
     [ABILITY_MAGICIAN] =
