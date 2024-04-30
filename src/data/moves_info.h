@@ -430,10 +430,9 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             "A 2-turn move that strikes\n"
             "the foe on the 2nd turn."),
         .effect = EFFECT_TWO_TURNS_ATTACK,
-        .power = 130,
+        .power = 120,
         .type = TYPE_FLYING,
         .accuracy = 100,
-        .criticalHitStage = 1,
         .pp = 16,
         .target = MOVE_TARGET_BOTH,
         .priority = 0,
@@ -441,7 +440,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .sleepTalkBanned = TRUE,
         .instructBanned = TRUE,
         .windMove = B_EXTRAPOLATED_MOVE_FLAGS,
-        .argument = TWO_TURN_ARG(STRINGID_PKMNWHIPPEDWHIRLWIND),
+        .argument = TWO_TURN_ARG(STRINGID_PKMNWHIPPEDWHIRLWIND, B_WEATHER_WINDY),
 
         .contestEffect = CONTEST_EFFECT_AFFECTED_BY_PREV_APPEAL,
         .contestCategory = CONTEST_CATEGORY_COOL,
