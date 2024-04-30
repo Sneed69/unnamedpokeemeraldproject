@@ -2747,4 +2747,11 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
         .description = COMPOUND_STRING("Summons strong winds upon\nentering a battle."),
         .aiRating = 9,
     },
+
+    [ABILITY_SOARING_GLIDE] =
+    {
+        .name = _("Soaring Glide"),
+        .description = COMPOUND_STRING("Doubles Speed in\nwindy weather."),
+        .aiRating = 6,
+    },
 };
