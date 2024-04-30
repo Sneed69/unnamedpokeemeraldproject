@@ -2740,4 +2740,11 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
         .aiRating = 6,
         .breakable = TRUE,
     },
+
+    [ABILITY_JET_STREAM] =
+    {
+        .name = _("Jet Stream"),
+        .description = COMPOUND_STRING("Summons strong winds upon\nentering a battle."),
+        .aiRating = 9,
+    },
 };

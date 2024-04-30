@@ -1688,6 +1688,7 @@ enum
     ENDTURN_HAIL,
     ENDTURN_SNOW,
     ENDTURN_FOG,
+    ENDTURN_WINDY,
     ENDTURN_DAMAGE_NON_TYPES,
     ENDTURN_GRAVITY,
     ENDTURN_WATER_SPORT,
@@ -2084,6 +2085,28 @@ u8 DoFieldEndTurnEffects(void)
                 else
                 {
                     gBattlescriptCurrInstr = BattleScript_FogContinues;
+                }
+
+                BattleScriptExecute(gBattlescriptCurrInstr);
+                effect++;
+            }
+            gBattleStruct->turnCountersTracker++;
+            break;
+        case ENDTURN_WINDY:
+            if (gBattleWeather & B_WEATHER_WINDY)
+            {
+                if (!(gBattleWeather & B_WEATHER_WINDY_PERMANENT)
+                 && !(gBattleWeather & B_WEATHER_STRONG_WINDS)
+                 && --gWishFutureKnock.weatherDuration == 0)
+                {
+                    gBattleWeather &= ~B_WEATHER_WINDY_TEMPORARY;
+                    for (i = 0; i < gBattlersCount; i++)
+                        gDisableStructs[i].weatherAbilityDone = FALSE;
+                    gBattlescriptCurrInstr = BattleScript_WindyFaded;
+                }
+                else
+                {
+                    gBattlescriptCurrInstr = BattleScript_WindyContinues;
                 }
 
                 BattleScriptExecute(gBattlescriptCurrInstr);
@@ -3849,7 +3872,7 @@ bool32 HasNoMonsToSwitch(u32 battler, u8 partyIdBattlerOn1, u8 partyIdBattlerOn2
     }
 }
 
-static const u16 sWeatherFlagsInfo[][3] =
+static const u32 sWeatherFlagsInfo[][3] =
 {
     [ENUM_WEATHER_RAIN] = {B_WEATHER_RAIN_TEMPORARY, B_WEATHER_RAIN_PERMANENT, HOLD_EFFECT_DAMP_ROCK},
     [ENUM_WEATHER_RAIN_PRIMAL] = {B_WEATHER_RAIN_PRIMAL, B_WEATHER_RAIN_PRIMAL, HOLD_EFFECT_DAMP_ROCK},
@@ -3860,6 +3883,7 @@ static const u16 sWeatherFlagsInfo[][3] =
     [ENUM_WEATHER_STRONG_WINDS] = {B_WEATHER_STRONG_WINDS, B_WEATHER_STRONG_WINDS, HOLD_EFFECT_NONE},
     [ENUM_WEATHER_SNOW] = {B_WEATHER_SNOW_TEMPORARY, B_WEATHER_SNOW_PERMANENT, HOLD_EFFECT_ICY_ROCK},
     [ENUM_WEATHER_FOG] = {B_WEATHER_FOG_TEMPORARY, B_WEATHER_FOG_PERMANENT, HOLD_EFFECT_NONE},
+    [ENUM_WEATHER_WINDY] = {B_WEATHER_WINDY_TEMPORARY, B_WEATHER_WINDY_PERMANENT, HOLD_EFFECT_DAMP_ROCK},
 };
 
 static void ShouldChangeFormInWeather(u32 battler)
@@ -4587,6 +4611,19 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
             else if (B_SNOW_WARNING < GEN_9 && TryChangeBattleWeather(battler, ENUM_WEATHER_HAIL, TRUE))
             {
                 BattleScriptPushCursorAndCallback(BattleScript_SnowWarningActivatesHail);
+                effect++;
+            }
+            else if (gBattleWeather & B_WEATHER_PRIMAL_ANY && WEATHER_HAS_EFFECT && !gSpecialStatuses[battler].switchInAbilityDone)
+            {
+                gSpecialStatuses[battler].switchInAbilityDone = TRUE;
+                BattleScriptPushCursorAndCallback(BattleScript_BlockedByPrimalWeatherEnd3);
+                effect++;
+            }
+            break;
+        case ABILITY_JET_STREAM:
+            if (TryChangeBattleWeather(battler, ENUM_WEATHER_WINDY, TRUE))
+            {
+                BattleScriptPushCursorAndCallback(BattleScript_JetStreamActivates);
                 effect++;
             }
             else if (gBattleWeather & B_WEATHER_PRIMAL_ANY && WEATHER_HAS_EFFECT && !gSpecialStatuses[battler].switchInAbilityDone)
@@ -9843,6 +9880,11 @@ static uq4_12_t GetWeatherDamageModifier(u32 battlerAtk, u32 move, u32 moveType,
             return UQ_4_12(1.0);
         return (moveType == TYPE_WATER) ? UQ_4_12(0.5) : UQ_4_12(1.5);
     }
+    if (weather & B_WEATHER_WINDY)
+    {
+        if (gMovesInfo[move].windMove)
+            return UQ_4_12(1.5);
+    }
     return UQ_4_12(1.0);
 }
 
@@ -9927,6 +9969,13 @@ static inline uq4_12_t GetCollisionCourseElectroDriftModifier(u32 move, uq4_12_t
 {
     if (gMovesInfo[move].effect == EFFECT_COLLISION_COURSE && typeEffectivenessModifier >= UQ_4_12(2.0))
         return UQ_4_12(1.3333);
+    return UQ_4_12(1.0);
+}
+
+static inline uq4_12_t GetWindyWeatherModifier(u32 battlerDef)
+{
+    if (gBattleStruct->windyWeatherProtection & gBitTable[battlerDef])
+        return UQ_4_12(0.75);
     return UQ_4_12(1.0);
 }
 
@@ -10062,6 +10111,7 @@ static inline uq4_12_t GetOtherModifiers(u32 move, u32 moveType, u32 battlerAtk,
     DAMAGE_MULTIPLY_MODIFIER(GetAirborneModifier(move, battlerDef));
     DAMAGE_MULTIPLY_MODIFIER(GetScreensModifier(move, battlerAtk, battlerDef, isCrit, abilityAtk));
     DAMAGE_MULTIPLY_MODIFIER(GetCollisionCourseElectroDriftModifier(move, typeEffectivenessModifier));
+    DAMAGE_MULTIPLY_MODIFIER(GetWindyWeatherModifier(battlerDef));
 
     if (unmodifiedAttackerSpeed >= unmodifiedDefenderSpeed)
     {
@@ -10305,10 +10355,12 @@ static inline void MulByTypeEffectiveness(uq4_12_t *modifier, u32 move, u32 move
         mod = UQ_4_12(2.0);
 
     // B_WEATHER_STRONG_WINDS weakens Super Effective moves against Flying-type Pokémon
-    if (gBattleWeather & B_WEATHER_STRONG_WINDS && WEATHER_HAS_EFFECT)
+    if (WEATHER_HAS_EFFECT && mod >= UQ_4_12(2.0) && defType == TYPE_FLYING)
     {
-        if (defType == TYPE_FLYING && mod >= UQ_4_12(2.0))
+        if (gBattleWeather & B_WEATHER_STRONG_WINDS)
             mod = UQ_4_12(1.0);
+        else if (gBattleWeather & B_WEATHER_WINDY)
+            gBattleStruct->windyWeatherProtection |= gBitTable[battlerDef];
     }
 
     if (abilityDef == ABILITY_UNBREAKABLE && mod >= UQ_4_12(2.0) && gMovesInfo[move].category == DAMAGE_CATEGORY_PHYSICAL)
@@ -10317,9 +10369,10 @@ static inline void MulByTypeEffectiveness(uq4_12_t *modifier, u32 move, u32 move
         if (recordAbilities)
             RecordAbilityBattle(battlerDef, ABILITY_UNBREAKABLE);
     }
-    else if ((moveType == TYPE_GROUND && abilityDef == ABILITY_TECTONIC_BALANCE && mod == UQ_4_12(2.0))
-            || (moveType == TYPE_FIRE && abilityDef == ABILITY_ABSOLUTE_ZERO && mod == UQ_4_12(2.0))
-            || (moveType == TYPE_FIGHTING && abilityDef == ABILITY_PERFECT_ALLOY && mod == UQ_4_12(2.0)))
+    else if (((moveType == TYPE_GROUND && abilityDef == ABILITY_TECTONIC_BALANCE)
+            || (moveType == TYPE_FIRE && abilityDef == ABILITY_ABSOLUTE_ZERO)
+            || (moveType == TYPE_FIGHTING && abilityDef == ABILITY_PERFECT_ALLOY))
+            && mod == UQ_4_12(2.0))
     {
         mod = UQ_4_12(0.5);
         if (recordAbilities)

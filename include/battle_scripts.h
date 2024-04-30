@@ -54,6 +54,9 @@ extern const u8 BattleScript_DamagingWeatherContinues[];
 extern const u8 BattleScript_SandStormHailSnowEnds[];
 extern const u8 BattleScript_SunlightContinues[];
 extern const u8 BattleScript_SunlightFaded[];
+extern const u8 BattleScript_SandStormHailSnowEnds[];
+extern const u8 BattleScript_WindyContinues[];
+extern const u8 BattleScript_WindyFaded[];
 extern const u8 BattleScript_FogContinues[];
 extern const u8 BattleScript_FogEnded_Ret[];
 extern const u8 BattleScript_FogEnded[];
@@ -847,5 +850,6 @@ extern const u8 BattleScript_WildBattleVictory[];
 extern const u8 BattleScript_FaintWildMon[];
 extern const u8 BattleScript_EffectColdSnap[];
 extern const u8 BattleScript_EffectHitSetWeather[];
+extern const u8 BattleScript_JetStreamActivates[];
 
 #endif // GUARD_BATTLE_SCRIPTS_H

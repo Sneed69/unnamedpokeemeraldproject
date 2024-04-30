@@ -729,8 +729,12 @@
 #define STRINGID_SHININGBEACONENTERS                  727
 #define STRINGID_PKMNFROSTBITTENBY                    728
 #define STRINGID_MALEDICTIONENTERS                    729
+#define STRINGID_PKMNKICKEDUPSTORM                    730
+#define STRINGID_STRONGWINDSGATHERING                 731
+#define STRINGID_STORMCONTINUESTOBLOW                 732
+#define STRINGID_WINDCALMEDDOWN                       733
 
-#define BATTLESTRINGS_COUNT                           730
+#define BATTLESTRINGS_COUNT                           734
 
 // This is the string id that gBattleStringsTable starts with.
 // String ids before this (e.g. STRINGID_INTROMSG) are not in the table,
@@ -784,6 +788,7 @@
 #define B_MSG_STARTED_HAIL      5
 #define B_MSG_STARTED_SNOW      6
 #define B_MSG_STARTED_FOG       7
+#define B_MSG_STARTED_WINDY     8
 
 // gWeatherEndsStringIds
 #define B_MSG_WEATHER_END_RAIN         0
@@ -793,7 +798,8 @@
 #define B_MSG_WEATHER_END_STRONG_WINDS 4
 #define B_MSG_WEATHER_END_SNOW         5
 #define B_MSG_WEATHER_END_FOG          6
-#define B_MSG_WEATHER_END_COUNT        7
+#define B_MSG_WEATHER_END_WINDY        7
+#define B_MSG_WEATHER_END_COUNT        8
 
 // gRainContinuesStringIds
 #define B_MSG_RAIN_CONTINUES     0

@@ -343,5 +343,6 @@
 #define ARG_SET_SUN          1
 #define ARG_SET_SANDSTORM    2
 #define ARG_SET_SNOW         3
+#define ARG_SET_WINDY        4
 
 #endif // GUARD_CONSTANTS_BATTLE_SCRIPT_COMMANDS_H

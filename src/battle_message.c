@@ -365,6 +365,9 @@ static const u8 sText_RainContinues[] = _("Rain continues to fall.");
 static const u8 sText_DownpourContinues[] = _("The downpour continues."); // unused
 static const u8 sText_RainStopped[] = _("The rain stopped.");
 static const u8 sText_SandstormBrewed[] = _("A sandstorm brewed!");
+static const u8 sText_StrongWindsGathering[] = _("Strong winds are gathering!");
+static const u8 sText_StormContinuesToBlow[] = _("Strong winds continue to blow.");
+static const u8 sText_WindCalmedDown[] = _("The wind calmed down.");
 static const u8 sText_SandstormRages[] = _("The sandstorm rages.");
 static const u8 sText_SandstormSubsided[] = _("The sandstorm subsided.");
 static const u8 sText_SunlightGotBright[] = _("The sunlight got bright!");
@@ -768,9 +771,10 @@ static const u8 sText_HeavyRainLifted[] = _("The heavy rain has lifted!{PAUSE 64
 static const u8 sText_MoveFizzledOutInTheHeavyRain[] = _("The Ground-type attack fizzled out\nin the heavy rain!");
 static const u8 sText_NoReliefFromHeavyRain[] = _("There is no relief from\nthis heavy rain!");
 static const u8 sText_MysteriousAirCurrent[] = _("A mysterious air current is\nprotecting Flying-type Pokémon!");
+static const u8 sText_PkmnKickedUpStorm[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX}'s {B_SCR_ACTIVE_ABILITY}\nkicked up a storm!");
 static const u8 sText_StrongWindsDissipated[] = _("The mysterious strong winds\nhave dissipated!{PAUSE 64}");
 static const u8 sText_MysteriousAirCurrentBlowsOn[] = _("The mysterious air current\nblows on regardless!");
-static const u8 sText_AttackWeakenedByStrongWinds[] = _("The mysterious strong winds\nweakened the attack!");
+static const u8 sText_AttackWeakenedByStrongWinds[] = _("The strong winds\nweakened the attack!");
 static const u8 sText_StuffCheeksCantSelect[] = _("Stuff Cheeks cannot be\nselected without a Berry!\p");
 static const u8 sText_PkmnRevertedToPrimal[] = _("{B_ATK_NAME_WITH_PREFIX}'s Primal Reversion!\nIt reverted to its primal form!");
 static const u8 sText_ButPokemonCantUseTheMove[] = _("But {B_ATK_NAME_WITH_PREFIX} can't\nuse the move!");
@@ -1585,6 +1589,10 @@ const u8 *const gBattleStringsTable[BATTLESTRINGS_COUNT] =
     [STRINGID_TARGETSTATSWONTINCREASE - BATTLESTRINGS_TABLE_START] = sText_TargetStatsWontIncrease,
     [STRINGID_SHININGBEACONENTERS - BATTLESTRINGS_TABLE_START] = sText_PkmnShinesBrightly,
     [STRINGID_MALEDICTIONENTERS - BATTLESTRINGS_TABLE_START] = sText_EvilRadiatesFromPkmn,
+    [STRINGID_PKMNKICKEDUPSTORM - BATTLESTRINGS_TABLE_START] = sText_PkmnKickedUpStorm,
+    [STRINGID_STRONGWINDSGATHERING - BATTLESTRINGS_TABLE_START] = sText_StrongWindsGathering,
+    [STRINGID_STORMCONTINUESTOBLOW - BATTLESTRINGS_TABLE_START] = sText_StormContinuesToBlow,
+    [STRINGID_WINDCALMEDDOWN - BATTLESTRINGS_TABLE_START] = sText_WindCalmedDown,
 };
 
 const u16 gTrainerUsedItemStringIds[] =
@@ -1718,6 +1726,7 @@ const u16 gMoveWeatherChangeStringIds[] =
     [B_MSG_STARTED_HAIL]      = STRINGID_STARTEDHAIL,
     [B_MSG_STARTED_SNOW]      = STRINGID_STARTEDSNOW,
     [B_MSG_STARTED_FOG]       = STRINGID_FOGCREPTUP, // Unused, can use for custom moves that set fog
+    [B_MSG_STARTED_WINDY]     = STRINGID_STRONGWINDSGATHERING,
 };
 
 const u16 gWeatherEndsStringIds[B_MSG_WEATHER_END_COUNT] =
@@ -1729,6 +1738,7 @@ const u16 gWeatherEndsStringIds[B_MSG_WEATHER_END_COUNT] =
     [B_MSG_WEATHER_END_STRONG_WINDS] = STRINGID_STRONGWINDSDISSIPATED,
     [B_MSG_WEATHER_END_SNOW] = STRINGID_SNOWSTOPPED,
     [B_MSG_WEATHER_END_FOG] = STRINGID_FOGLIFTED,
+    [B_MSG_WEATHER_END_WINDY] = STRINGID_WINDCALMEDDOWN,
 };
 
 const u16 gSandStormHailSnowContinuesStringIds[] =

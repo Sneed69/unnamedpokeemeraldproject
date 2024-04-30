@@ -6008,6 +6008,19 @@ BattleScript_SunlightFaded::
 	call BattleScript_ActivateWeatherAbilities
 	end2
 
+BattleScript_WindyContinues::
+	printstring STRINGID_STORMCONTINUESTOBLOW
+	waitmessage B_WAIT_TIME_LONG
+	playanimation BS_ATTACKER, B_ANIM_STRONG_WINDS
+	call BattleScript_ActivateWeatherAbilities
+	end2
+
+BattleScript_WindyFaded::
+	printstring STRINGID_WINDCALMEDDOWN
+	waitmessage B_WAIT_TIME_LONG
+	call BattleScript_ActivateWeatherAbilities
+	end2
+
 BattleScript_FogContinues::
 	printstring STRINGID_FOGISDEEP
 	waitmessage B_WAIT_TIME_LONG
@@ -8052,6 +8065,15 @@ BattleScript_DroughtActivates::
 	printstring STRINGID_PKMNSXINTENSIFIEDSUN
 	waitstate
 	playanimation BS_BATTLER_0, B_ANIM_SUN_CONTINUES
+	call BattleScript_ActivateWeatherAbilities
+	end3
+
+BattleScript_JetStreamActivates::
+	pause B_WAIT_TIME_SHORT
+	call BattleScript_AbilityPopUp
+	printstring STRINGID_PKMNKICKEDUPSTORM
+	waitstate
+	playanimation BS_BATTLER_0, B_ANIM_STRONG_WINDS
 	call BattleScript_ActivateWeatherAbilities
 	end3
 

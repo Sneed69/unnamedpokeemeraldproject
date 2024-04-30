@@ -2146,7 +2146,7 @@ END:
 
     // B_WEATHER_STRONG_WINDS prints a string when it's about to reduce the power
     // of a move that is Super Effective against a Flying-type Pokémon.
-    if (gBattleWeather & B_WEATHER_STRONG_WINDS)
+    if (gBattleWeather & B_WEATHER_WINDY)
     {
         if ((GetBattlerType(gBattlerTarget, 0, FALSE) == TYPE_FLYING
          && GetTypeModifier(moveType, GetBattlerType(gBattlerTarget, 0, FALSE)) >= UQ_4_12(2.0))
@@ -6391,6 +6391,7 @@ static void Cmd_moveend(void)
             gBattleStruct->additionalEffectsCounter = 0;
             gBattleStruct->poisonPuppeteerConfusion = FALSE;
             gBattleStruct->distortedTypeMatchups = 0;
+            gBattleStruct->windyWeatherProtection = 0;
             gBattleScripting.moveendState++;
             break;
         case MOVEEND_COUNT:
@@ -8471,6 +8472,8 @@ static void RemoveAllWeather(void)
         gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_WEATHER_END_SNOW;
     else if(gBattleWeather & B_WEATHER_FOG)
         gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_WEATHER_END_FOG;
+    else if(gBattleWeather & B_WEATHER_WINDY)
+        gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_WEATHER_END_WINDY;
     else
         gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_WEATHER_END_COUNT;  // failsafe
 
@@ -11281,6 +11284,9 @@ static void Cmd_setfieldweather(void)
     case ENUM_WEATHER_SNOW:
         gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_STARTED_SNOW;
         break;
+    case ENUM_WEATHER_WINDY:
+        gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_STARTED_WINDY;
+        break;
     }
 
     gBattlescriptCurrInstr = cmd->nextInstr;
@@ -13207,7 +13213,10 @@ static void Cmd_settailwind(void)
     {
         gSideStatuses[side] |= SIDE_STATUS_TAILWIND;
         gSideTimers[side].tailwindBattlerId = gBattlerAttacker;
-        gSideTimers[side].tailwindTimer = B_TAILWIND_TURNS >= GEN_5 ? 4 : 3;
+        if (WEATHER_HAS_EFFECT && gBattleWeather & B_WEATHER_WINDY)
+            gSideTimers[side].tailwindTimer = 6;
+        else
+            gSideTimers[side].tailwindTimer = 4;
         gBattlescriptCurrInstr = cmd->nextInstr;
     }
     else
@@ -17008,6 +17017,10 @@ void BS_SetWeatherAfterAttack(void)
     case ARG_SET_SANDSTORM:
         weather = ENUM_WEATHER_SANDSTORM;
         message = B_MSG_STARTED_SANDSTORM;
+        break;
+    case ARG_SET_WINDY:
+        weather = ENUM_WEATHER_WINDY;
+        message = B_MSG_STARTED_WINDY;
         break;
     default:
         break;
