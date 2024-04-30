@@ -1306,6 +1306,8 @@ const u32 gItemIconPalette_SmoothRock[] = INCBIN_U32("graphics/items/icon_palett
 const u32 gItemIcon_IcyRock[] = INCBIN_U32("graphics/items/icons/icy_rock.4bpp.lz");
 const u32 gItemIconPalette_IcyRock[] = INCBIN_U32("graphics/items/icon_palettes/icy_rock.gbapal.lz");
 
+const u32 gItemIconPalette_WeatherStone[] = INCBIN_U32("graphics/items/icon_palettes/weather_stone.gbapal.lz");
+
 // Terrain Seeds
 
 const u32 gItemIcon_ElectricSeed[] = INCBIN_U32("graphics/items/icons/electric_seed.4bpp.lz");

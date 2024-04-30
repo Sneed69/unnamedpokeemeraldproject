@@ -11274,4 +11274,18 @@ const struct Item gItemsInfo[] =
         .secondaryId = STAT_DEF,
         .holdEffectParam = MON_DATA_MAJOR_PROFICIENCY,
     },
+
+    [ITEM_WEATHER_STONE] =
+    {
+        .name = _("Weather Stone"),
+        .price = 8000,
+        .holdEffect = HOLD_EFFECT_SMOOTH_ROCK,
+        .description = COMPOUND_STRING(
+            "Weather caused by\n"
+            "the holder persists\n"
+            "for a longer time.."),
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+    },
 };

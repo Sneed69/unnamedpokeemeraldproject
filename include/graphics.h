@@ -1212,6 +1212,7 @@ extern const u32 gItemIcon_SmoothRock[];
 extern const u32 gItemIconPalette_SmoothRock[];
 extern const u32 gItemIcon_IcyRock[];
 extern const u32 gItemIconPalette_IcyRock[];
+extern const u32 gItemIconPalette_WeatherStone[];
 // Terrain Seeds
 extern const u32 gItemIcon_ElectricSeed[];
 extern const u32 gItemIconPalette_ElectricSeed[];
