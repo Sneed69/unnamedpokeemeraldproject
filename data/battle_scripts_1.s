@@ -10282,6 +10282,7 @@ BattleScript_PlayWeatherAnimation:
 	jumpifargument ARG_SET_SUN, BattleScript_SunAnim
 	jumpifargument ARG_SET_SNOW, BattleScript_SnowAnim
 	jumpifargument ARG_SET_SANDSTORM, BattleScript_SandstormAnim
+	jumpifargument ARG_SET_WINDY, BattleScript_WindyAnim
 	playmoveanimation BS_ATTACKER MOVE_RAIN_DANCE
 	goto BattleScript_PlayWeatherAnimationPrint
 	BattleScript_SunAnim:
@@ -10292,6 +10293,9 @@ BattleScript_PlayWeatherAnimation:
 	goto BattleScript_PlayWeatherAnimationPrint
 	BattleScript_SandstormAnim:
 	playmoveanimation BS_ATTACKER MOVE_SANDSTORM
+	goto BattleScript_PlayWeatherAnimationPrint
+	BattleScript_WindyAnim:
+	playanimation BS_ATTACKER B_ANIM_STRONG_WINDS
 	BattleScript_PlayWeatherAnimationPrint:
 	printfromtable gMoveWeatherChangeStringIds
 	waitmessage B_WAIT_TIME_LONG

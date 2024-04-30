@@ -20901,6 +20901,28 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .contestComboStarterId = 0,
     },
 
+    [MOVE_TORNADO] =
+    {
+        .name = COMPOUND_STRING("Tornado"),
+        .description = COMPOUND_STRING(
+            "A rotating column of air\n"
+            "that summons strong winds."),
+        .effect = EFFECT_HIT_SET_WEATHER,
+        .power = 50,
+        .type = TYPE_FLYING,
+        .accuracy = 100,
+        .pp = 8,
+        .target = MOVE_TARGET_BOTH,
+        .priority = 0,
+        .category = DAMAGE_CATEGORY_SPECIAL,
+        .argument = ARG_SET_WINDY,
+        .windMove = TRUE,
+
+        .contestEffect = CONTEST_EFFECT_BETTER_WHEN_LATER,
+        .contestCategory = CONTEST_CATEGORY_COOL,
+        .contestComboStarterId = 0,
+    },
+
     // Z-Moves
     [MOVE_BREAKNECK_BLITZ] =
     {
