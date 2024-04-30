@@ -65,7 +65,6 @@ u8 ScriptGiveStarter(u16 species, u8 level)
 {
     u16 nationalDexNum;
     int sentToPc;
-    u8 heldItem[2];
     struct Pokemon mon;
     u8 i = 0;
     u8 nature;

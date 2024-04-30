@@ -4304,9 +4304,8 @@ static bool32 BattleTypeAllowsExp(void)
         return TRUE;
 }
 
-static u32 GetMonHoldEffect(struct Pokemon *mon)
+/*static u32 GetMonHoldEffect(struct Pokemon *mon)
 {
-    u32 holdEffect;
     u32 item = GetMonData(mon, MON_DATA_HELD_ITEM);
 
     if (item == ITEM_ENIGMA_BERRY_E_READER)
@@ -4319,13 +4318,13 @@ static u32 GetMonHoldEffect(struct Pokemon *mon)
         holdEffect = ItemId_GetHoldEffect(item);
 
     return holdEffect;
-}
+}*/
 
 static void Cmd_getexp(void)
 {
     CMD_ARGS(u8 battler);
 
-    u32 holdEffect;
+    //u32 holdEffect;
     s32 i; // also used as stringId
     u8 *expMonId = &gBattleStruct->expGetterMonId;
 

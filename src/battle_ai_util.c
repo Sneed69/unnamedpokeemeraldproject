@@ -1464,6 +1464,22 @@ bool32 ShouldSetSnow(u32 battler, u32 ability, u32 holdEffect)
     return FALSE;
 }
 
+bool32 ShouldSetWindy(u32 battler, u32 ability, u32 holdEffect)
+{
+    u32 weather = AI_GetWeather(AI_DATA);
+    if (weather & B_WEATHER_WINDY)
+        return FALSE;
+
+    if (ability == ABILITY_SOARING_GLIDE
+      || IS_BATTLER_OF_TYPE(battler, TYPE_FLYING)
+      || HasWindMove(battler)
+      || HasMoveEffect(battler, EFFECT_WEATHER_BALL))
+    {
+        return TRUE;
+    }
+    return FALSE;
+}
+
 void ProtectChecks(u32 battlerAtk, u32 battlerDef, u32 move, u32 predictedMove, s32 *score)
 {
     // TODO more sophisticated logic
@@ -1788,6 +1804,21 @@ bool32 HasMoveEffect(u32 battlerId, u32 effect)
     {
         if (moves[i] != MOVE_NONE && moves[i] != MOVE_UNAVAILABLE
             && gMovesInfo[moves[i]].effect == effect)
+            return TRUE;
+    }
+
+    return FALSE;
+}
+
+bool32 HasWindMove(u32 battlerId)
+{
+    s32 i;
+    u16 *moves = GetMovesArray(battlerId);
+
+    for (i = 0; i < MAX_MON_MOVES; i++)
+    {
+        if (moves[i] != MOVE_NONE && moves[i] != MOVE_UNAVAILABLE
+            && gMovesInfo[moves[i]].windMove)
             return TRUE;
     }
 

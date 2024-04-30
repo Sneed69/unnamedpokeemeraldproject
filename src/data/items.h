@@ -6684,7 +6684,7 @@ const struct Item gItemsInfo[] =
     {
         .name = _("Damp Rock"),
         .price = (I_PRICE >= GEN_9) ? 8000 : ((I_PRICE >= GEN_7) ? 4000 : 200),
-        .holdEffect = HOLD_EFFECT_DAMP_ROCK,
+        .holdEffect = HOLD_EFFECT_DAMP_ROCK_UNUSED,
         .description = COMPOUND_STRING(
             "Extends the length\n"
             "of rain weather\n"
@@ -6698,7 +6698,7 @@ const struct Item gItemsInfo[] =
     {
         .name = _("Heat Rock"),
         .price = (I_PRICE >= GEN_9) ? 8000 : ((I_PRICE >= GEN_7) ? 4000 : 200),
-        .holdEffect = HOLD_EFFECT_HEAT_ROCK,
+        .holdEffect = HOLD_EFFECT_HEAT_ROCK_UNUSED,
         .description = COMPOUND_STRING(
             "Extends the length\n"
             "of sunny weather\n"
@@ -6712,7 +6712,7 @@ const struct Item gItemsInfo[] =
     {
         .name = _("Smooth Rock"),
         .price = (I_PRICE >= GEN_9) ? 8000 : ((I_PRICE >= GEN_7) ? 4000 : 200),
-        .holdEffect = HOLD_EFFECT_SMOOTH_ROCK,
+        .holdEffect = HOLD_EFFECT_WEATHER_STONE,
         .description = COMPOUND_STRING(
             "Extends the length\n"
             "of sandstorms\n"
@@ -6726,7 +6726,7 @@ const struct Item gItemsInfo[] =
     {
         .name = _("Icy Rock"),
         .price = (I_PRICE >= GEN_9) ? 8000 : ((I_PRICE >= GEN_7) ? 4000 : 200),
-        .holdEffect = HOLD_EFFECT_ICY_ROCK,
+        .holdEffect = HOLD_EFFECT_ICY_ROCK_UNUSED,
         .description = COMPOUND_STRING(
             "Extends the length\n"
             "of snow weather\n"
@@ -11279,7 +11279,7 @@ const struct Item gItemsInfo[] =
     {
         .name = _("Weather Stone"),
         .price = 8000,
-        .holdEffect = HOLD_EFFECT_SMOOTH_ROCK,
+        .holdEffect = HOLD_EFFECT_WEATHER_STONE,
         .description = COMPOUND_STRING(
             "Weather caused by\n"
             "the holder persists\n"

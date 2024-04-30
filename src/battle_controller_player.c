@@ -1739,8 +1739,8 @@ static void MoveSelectionDisplayPpNumber(u32 battler)
 
 static void MoveSelectionDisplayMoveType(u32 battler)
 {
-    struct Pokemon *mon;
-    u32 speciesId;
+    //struct Pokemon *mon;
+    //u32 speciesId;
     u8 type;
     struct ChooseMoveStruct *moveInfo = (struct ChooseMoveStruct *)(&gBattleResources->bufferA[battler][4]);
 
