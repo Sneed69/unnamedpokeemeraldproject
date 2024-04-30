@@ -7875,7 +7875,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             "change with the weather."),
         .effect = EFFECT_WEATHER_BALL,
         .power = 50,
-        .type = TYPE_FLYING,
+        .type = TYPE_NORMAL,
         .accuracy = 100,
         .pp = 16,
         .target = MOVE_TARGET_SELECTED,
