@@ -113,7 +113,8 @@
     F(SEISMIC_TOSS) \
     F(VENOSHOCK) \
     F(AMNESIA) \
-    F(SOLAR_BLADE)
+    F(SOLAR_BLADE) \
+    F(TORNADO)
 
 #define FOREACH_TMHM(F) \
     FOREACH_TM(F)

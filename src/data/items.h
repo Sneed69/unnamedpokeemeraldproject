@@ -9290,6 +9290,11 @@ const struct Item gItemsInfo[] =
             "the 1st turn, then\n"
             "attacks next turn."),
 
+    TM_ITEM(113, MOVE_TORNADO, 0,
+            "Summons strong\n"
+            "winds that protect\n"
+            "Flying-type {PKMN}."),
+
     #undef TM_ITEM
 
 // Charms
