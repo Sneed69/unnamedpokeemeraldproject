@@ -3467,6 +3467,7 @@ void SetMoveEffect(bool32 primary, bool32 certain)
                             | BATTLE_TYPE_FRONTIER
                             | BATTLE_TYPE_LINK
                             | BATTLE_TYPE_RECORDED_LINK
+                            | BATTLE_TYPE_TRAINER
                             | BATTLE_TYPE_SECRET_BASE))
                         && (gWishFutureKnock.knockedOffMons[side] & gBitTable[gBattlerPartyIndexes[gBattlerAttacker]]))
                     {
