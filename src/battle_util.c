@@ -9154,6 +9154,10 @@ static inline u32 CalcMoveBasePowerAfterModifiers(u32 move, u32 battlerAtk, u32 
         if (IsMoveMakingContact(move, battlerAtk))
            modifier = uq4_12_multiply(modifier, UQ_4_12(1.3));
         break;
+    case ABILITY_POWER_GLIDE:
+        if (IsMoveMakingContact(move, battlerAtk) && gBattleWeather & B_WEATHER_WINDY)
+           modifier = uq4_12_multiply(modifier, UQ_4_12(1.5));
+        break;
     case ABILITY_STRONG_JAW:
         if (gMovesInfo[move].bitingMove)
            modifier = uq4_12_multiply(modifier, UQ_4_12(1.5));

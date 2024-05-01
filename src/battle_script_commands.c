@@ -5623,6 +5623,15 @@ static void Cmd_moveend(void)
                     gBattlescriptCurrInstr = BattleScript_MoveEffectRecoil;
                     effect = TRUE;
                 }
+                else if (GetBattlerAbility(gBattlerAttacker) == ABILITY_POWER_GLIDE
+                         && gBattleWeather & B_WEATHER_WINDY
+                         && IsMoveMakingContact(gCurrentMove, gBattlerAttacker))
+                {
+                    gBattleMoveDamage = max(1, gBattleScripting.savedDmg / 6);
+                    BattleScriptPushCursor();
+                    gBattlescriptCurrInstr = BattleScript_MoveEffectRecoil;
+                    effect = TRUE;
+                }
             }
             gBattleScripting.moveendState++;
             break;

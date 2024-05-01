@@ -2754,4 +2754,11 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
         .description = COMPOUND_STRING("Doubles Speed in\nwindy weather."),
         .aiRating = 6,
     },
+
+    [ABILITY_POWER_GLIDE] =
+    {
+        .name = _("Power Glide"),
+        .description = COMPOUND_STRING("Contact moves gain power\nand recoil in windy weather."),
+        .aiRating = 3,
+    },
 };
