@@ -5064,7 +5064,7 @@ u32 GetBattlerTotalSpeedStatArgs(u32 battler, u32 ability, u32 holdEffect)
             speed *= 2;
         else if (ability == ABILITY_SLUSH_RUSH  && (gBattleWeather & (B_WEATHER_HAIL | B_WEATHER_SNOW)))
             speed *= 2;
-        else if (ability == ABILITY_SOARING_GLIDE && gBattleWeather & B_WEATHER_WINDY)
+        else if (ability == ABILITY_AERODYNAMIC && gBattleWeather & B_WEATHER_WINDY)
             speed *= 2;
     }
 

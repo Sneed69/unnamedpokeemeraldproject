@@ -1470,7 +1470,7 @@ bool32 ShouldSetWindy(u32 battler, u32 ability, u32 holdEffect)
     if (weather & B_WEATHER_WINDY)
         return FALSE;
 
-    if (ability == ABILITY_SOARING_GLIDE
+    if (ability == ABILITY_AERODYNAMIC
       || IS_BATTLER_OF_TYPE(battler, TYPE_FLYING)
       || HasWindMove(battler)
       || HasMoveEffect(battler, EFFECT_WEATHER_BALL))

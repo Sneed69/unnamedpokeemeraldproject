@@ -2748,9 +2748,9 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
         .aiRating = 9,
     },
 
-    [ABILITY_SOARING_GLIDE] =
+    [ABILITY_AERODYNAMIC] =
     {
-        .name = _("Soaring Glide"),
+        .name = _("Aerodynamic"),
         .description = COMPOUND_STRING("Doubles Speed in\nwindy weather."),
         .aiRating = 6,
     },

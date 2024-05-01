@@ -3961,7 +3961,7 @@ static u32 AI_CalcMoveScore(u32 battlerAtk, u32 battlerDef, u32 move)
                     if (AI_GetWeather(aiData) & B_WEATHER_RAIN)
                         ADJUST_SCORE(DECENT_EFFECT); // Slow 'em down
                     break;
-                case ABILITY_SOARING_GLIDE:
+                case ABILITY_AERODYNAMIC:
                     if (AI_GetWeather(aiData) & B_WEATHER_WINDY)
                         ADJUST_SCORE(DECENT_EFFECT); // Slow 'em down
                     break;
