@@ -102,7 +102,7 @@ void LoadMessageBoxAndFrameGfx(u8 windowId, bool8 copyToVram);
 void AddTextPrinterForMessage_2(bool8 allowSkippingDelayWithButtonPress);
 void RemoveStartMenuWindow(void);
 void DisplayYesNoMenuWithDefault(u8 initialCursorPos);
-void BufferSaveMenuText(u8 textId, u8 *dest, u8 color);
+void BufferSaveMenuText(u8 textId, u8 *dest, u8 fgColor, u8 shadowColor);
 void RemoveMapNamePopUpWindow(void);
 u8 GetMapNamePopUpWindowId(void);
 u8 AddMapNamePopUpWindow(void);

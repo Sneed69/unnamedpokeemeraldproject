@@ -2100,7 +2100,7 @@ void BlitMenuInfoIcon(u8 windowId, u8 iconId, u16 x, u16 y)
     BlitBitmapRectToWindow(windowId, &gMenuInfoElements_Gfx[sMenuInfoIcons[iconId].offset * 32], 0, 0, 128, 128, x, y, sMenuInfoIcons[iconId].width, sMenuInfoIcons[iconId].height);
 }
 
-void BufferSaveMenuText(u8 textId, u8 *dest, u8 color)
+void BufferSaveMenuText(u8 textId, u8 *dest, u8 fgColor, u8 shadowColor)
 {
     s32 curFlag;
     s32 flagCount;
@@ -2109,10 +2109,10 @@ void BufferSaveMenuText(u8 textId, u8 *dest, u8 color)
 
     *(string++) = EXT_CTRL_CODE_BEGIN;
     *(string++) = EXT_CTRL_CODE_COLOR;
-    *(string++) = color;
+    *(string++) = fgColor;
     *(string++) = EXT_CTRL_CODE_BEGIN;
     *(string++) = EXT_CTRL_CODE_SHADOW;
-    *(string++) = color + 1;
+    *(string++) = shadowColor;
 
     switch (textId)
     {
