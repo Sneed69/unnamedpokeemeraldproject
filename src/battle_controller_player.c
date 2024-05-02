@@ -887,6 +887,7 @@ static void HandleInputChooseMove(u32 battler)
 
             MoveSelectionCreateCursorAt(gMultiUsePlayerCursor, 27);
             BattlePutTextOnWindow(gText_BattleSwitchWhich, B_WIN_SWITCH_PROMPT);
+            DestroyTypeIcon();
             gBattlerControllerFuncs[battler] = HandleMoveSwitching;
         }
     }
@@ -1772,6 +1773,8 @@ static void MoveSelectionDisplayMoveType(u32 battler)
     {
         type = gMovesInfo[moveInfo->moves[gMoveSelectionCursor[battler]]].type;
     }
+
+    BattlePutTextOnWindow(gText_Space2, B_WIN_MOVE_TYPE);
 
     if (gBattleMoveTypeSpriteId == MAX_SPRITES)
         LoadTypeIcon(type);
