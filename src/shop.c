@@ -168,58 +168,55 @@ static const u16 sShopInventory_Base[] = {
 
 static const u16 sShopInventory_Rustboro[] = {
     ITEM_POKE_BALL,
+    ITEM_REPEL,
     ITEM_POTION,
     ITEM_ANTIDOTE,
     ITEM_PARALYZE_HEAL,
     ITEM_AWAKENING,
-    ITEM_REPEL,
     ITEM_NONE
 };
 
 static const u16 sShopInventory_Slateport[] = {
     ITEM_POKE_BALL,
     ITEM_GREAT_BALL,
-    ITEM_POTION,
+    ITEM_REPEL,
     ITEM_SUPER_POTION,
     ITEM_ANTIDOTE,
     ITEM_PARALYZE_HEAL,
     ITEM_AWAKENING,
-    ITEM_REPEL,
     ITEM_NONE
 };
 
 static const u16 sShopInventory_Mauville[] = {
     ITEM_POKE_BALL,
     ITEM_GREAT_BALL,
-    ITEM_POTION,
+    ITEM_REPEL,
     ITEM_SUPER_POTION,
     ITEM_ANTIDOTE,
     ITEM_PARALYZE_HEAL,
     ITEM_AWAKENING,
     ITEM_BURN_HEAL,
     ITEM_ICE_HEAL,
-    ITEM_REPEL,
     ITEM_NONE
 };
 
 static const u16 sShopInventory_Fallarbor[] = {
     ITEM_POKE_BALL,
     ITEM_GREAT_BALL,
-    ITEM_POTION,
+    ITEM_SUPER_REPEL,
     ITEM_SUPER_POTION,
     ITEM_ANTIDOTE,
     ITEM_PARALYZE_HEAL,
     ITEM_AWAKENING,
     ITEM_BURN_HEAL,
     ITEM_ICE_HEAL,
-    ITEM_SUPER_REPEL,
     ITEM_NONE
 };
 
 static const u16 sShopInventory_Lavaridge[] = {
     ITEM_POKE_BALL,
     ITEM_GREAT_BALL,
-    ITEM_POTION,
+    ITEM_SUPER_REPEL,
     ITEM_SUPER_POTION,
     ITEM_ANTIDOTE,
     ITEM_PARALYZE_HEAL,
@@ -228,7 +225,6 @@ static const u16 sShopInventory_Lavaridge[] = {
     ITEM_ICE_HEAL,
     ITEM_REVIVE,
     ITEM_ETHER,
-    ITEM_SUPER_REPEL,
     ITEM_NONE
 };
 
@@ -236,8 +232,7 @@ static const u16 sShopInventory_Fortree[] = {
     ITEM_POKE_BALL,
     ITEM_GREAT_BALL,
     ITEM_ULTRA_BALL,
-    ITEM_POTION,
-    ITEM_SUPER_POTION,
+    ITEM_SUPER_REPEL,
     ITEM_HYPER_POTION,
     ITEM_ANTIDOTE,
     ITEM_PARALYZE_HEAL,
@@ -246,43 +241,41 @@ static const u16 sShopInventory_Fortree[] = {
     ITEM_ICE_HEAL,
     ITEM_REVIVE,
     ITEM_ETHER,
-    ITEM_SUPER_REPEL,
     ITEM_NONE
 };
 
 static const u16 sShopInventory_Lilycove[] = {
+    ITEM_POKE_BALL,
     ITEM_ULTRA_BALL,
-    ITEM_HYPER_POTION,
+    ITEM_MAX_REPEL,
     ITEM_MAX_POTION,
     ITEM_FULL_HEAL,
     ITEM_REVIVE,
     ITEM_ETHER,
-    ITEM_MAX_REPEL,
     ITEM_NONE
 };
 
 static const u16 sShopInventory_Mossdeep[] = {
+    ITEM_POKE_BALL,
     ITEM_ULTRA_BALL,
-    ITEM_HYPER_POTION,
+    ITEM_MAX_REPEL,
     ITEM_MAX_POTION,
     ITEM_FULL_HEAL,
     ITEM_REVIVE,
     ITEM_MAX_ETHER,
     ITEM_ELIXIR,
-    ITEM_MAX_REPEL,
     ITEM_NONE
 };
 
 static const u16 sShopInventory_League[] = {
+    ITEM_POKE_BALL,
     ITEM_ULTRA_BALL,
-    ITEM_HYPER_POTION,
+    ITEM_MAX_REPEL,
     ITEM_MAX_POTION,
     ITEM_FULL_RESTORE,
     ITEM_FULL_HEAL,
     ITEM_MAX_REVIVE,
-    ITEM_MAX_ETHER,
-    ITEM_ELIXIR,
-    ITEM_MAX_REPEL,
+    ITEM_MAX_ELIXIR,
     ITEM_NONE
 };
 

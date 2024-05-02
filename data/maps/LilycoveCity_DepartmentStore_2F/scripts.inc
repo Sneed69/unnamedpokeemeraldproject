@@ -28,7 +28,6 @@ LilycoveCity_DepartmentStore_2F_Pokemart1:
 	.2byte ITEM_POKE_BALL
 	.2byte ITEM_GREAT_BALL
 	.2byte ITEM_ULTRA_BALL
-	.2byte ITEM_ESCAPE_ROPE
 	.2byte ITEM_MAX_REPEL
 	.2byte ITEM_SUPER_REPEL
 	.2byte ITEM_REPEL
