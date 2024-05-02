@@ -707,7 +707,6 @@ void TryToSetBattleFormChangeMoves(struct Pokemon *mon, u16 method);
 u32 GetMonFriendshipScore(struct Pokemon *pokemon);
 u32 GetMonAffectionHearts(struct Pokemon *pokemon);
 void UpdateMonPersonality(struct BoxPokemon *boxMon, u32 personality);
-u8 GetEggMoveTutorMoves(struct Pokemon *mon, u16 *moves);
 u8 GetNumberOfEggMoveTutorMoves(struct Pokemon *mon);
 u8 CalculatePartyCount(struct Pokemon *party);
 u16 SanitizeSpeciesId(u16 species);
