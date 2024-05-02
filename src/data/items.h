@@ -1096,9 +1096,9 @@ const struct Item gItemsInfo[] =
         .name = _("HP Up"),
         .price = 6900,
         .description = COMPOUND_STRING(
-            "Makes the user's\n"
+            "Switches a {PKMN}'s\n"
             "minor proficiency\n"
-            "switch to HP."),
+            "to HP."),
         .pocket = POCKET_CONSUMABLES,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_Proficiency,
@@ -1111,9 +1111,9 @@ const struct Item gItemsInfo[] =
         .name = _("Protein"),
         .price = 6900,
         .description = COMPOUND_STRING(
-            "Makes the user's\n"
+            "Switches a {PKMN}'s\n"
             "minor proficiency\n"
-            "switch to Attack."),
+            "to Attack."),
         .pocket = POCKET_CONSUMABLES,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_Proficiency,
@@ -1126,9 +1126,9 @@ const struct Item gItemsInfo[] =
         .name = _("Iron"),
         .price = 6900,
         .description = COMPOUND_STRING(
-            "Makes the user's\n"
+            "Switches a {PKMN}'s\n"
             "minor proficiency\n"
-            "switch to Defense."),
+            "to Defense."),
         .pocket = POCKET_CONSUMABLES,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_Proficiency,
@@ -1141,9 +1141,9 @@ const struct Item gItemsInfo[] =
         .name = _("Calcium"),
         .price = 6900,
         .description = COMPOUND_STRING(
-            "Makes the user's\n"
+            "Switches a {PKMN}'s\n"
             "minor proficiency\n"
-            "switch to Sp. Atk."),
+            "to Special Attack."),
         .pocket = POCKET_CONSUMABLES,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_Proficiency,
@@ -1156,9 +1156,9 @@ const struct Item gItemsInfo[] =
         .name = _("Zinc"),
         .price = 6900,
         .description = COMPOUND_STRING(
-            "Makes the user's\n"
+            "Switches a {PKMN}'s\n"
             "minor proficiency\n"
-            "switch to Sp. Def."),
+            "to Special Defense."),
         .pocket = POCKET_CONSUMABLES,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_Proficiency,
@@ -1172,9 +1172,9 @@ const struct Item gItemsInfo[] =
         .pluralName = _("Carbos"),
         .price = 6900,
         .description = COMPOUND_STRING(
-            "Makes the user's\n"
+            "Switches a {PKMN}'s\n"
             "minor proficiency\n"
-            "switch to Speed."),
+            "to Speed."),
         .pocket = POCKET_CONSUMABLES,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_Proficiency,
@@ -1287,8 +1287,9 @@ const struct Item gItemsInfo[] =
         .price = 6000,
         .holdEffectParam = 0,
         .description = COMPOUND_STRING(
-            "Switches a Poké-\n"
-            "mon's ability."),
+            "Allows {PKMN} with two\n"
+            "abilities to switch\n"
+            "between them."),
         .pocket = POCKET_CONSUMABLES,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_AbilityCapsule,
@@ -11190,9 +11191,9 @@ const struct Item gItemsInfo[] =
         .name = _("Salty Mint"),
         .price = 9900,
         .description = COMPOUND_STRING(
-            "Makes the smeller's\n"
+            "Switches a {PKMN}'s\n"
             "major proficiency\n"
-            "switch to HP."),
+            "to HP."),
         .pocket = POCKET_CONSUMABLES,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_Proficiency,
@@ -11205,9 +11206,9 @@ const struct Item gItemsInfo[] =
         .name = _("Spicy Mint"),
         .price = 9900,
         .description = COMPOUND_STRING(
-            "Makes the smeller's\n"
+            "Switches a {PKMN}'s\n"
             "major proficiency\n"
-            "switch to Attack."),
+            "to Attack."),
         .pocket = POCKET_CONSUMABLES,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_Proficiency,
@@ -11220,9 +11221,9 @@ const struct Item gItemsInfo[] =
         .name = _("Dry Mint"),
         .price = 9900,
         .description = COMPOUND_STRING(
-            "Makes the smeller's\n"
+            "Switches a {PKMN}'s\n"
             "major proficiency\n"
-            "switch to Sp. Atk."),
+            "to Special Attack."),
         .pocket = POCKET_CONSUMABLES,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_Proficiency,
@@ -11235,9 +11236,9 @@ const struct Item gItemsInfo[] =
         .name = _("Sweet Mint"),
         .price = 9900,
         .description = COMPOUND_STRING(
-            "Makes the smeller's\n"
+            "Switches a {PKMN}'s\n"
             "major proficiency\n"
-            "switch to Speed."),
+            "to Speed."),
         .pocket = POCKET_CONSUMABLES,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_Proficiency,
@@ -11250,9 +11251,9 @@ const struct Item gItemsInfo[] =
         .name = _("Bitter Mint"),
         .price = 9900,
         .description = COMPOUND_STRING(
-            "Makes the smeller's\n"
+            "Switches a {PKMN}'s\n"
             "major proficiency\n"
-            "switch to Sp. Def."),
+            "to Special Defense."),
         .pocket = POCKET_CONSUMABLES,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_Proficiency,
@@ -11265,9 +11266,9 @@ const struct Item gItemsInfo[] =
         .name = _("Sour Mint"),
         .price = 9900,
         .description = COMPOUND_STRING(
-            "Makes the smeller's\n"
+            "Switches a {PKMN}'s\n"
             "major proficiency\n"
-            "switch to Defense."),
+            "to Defense."),
         .pocket = POCKET_CONSUMABLES,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_Proficiency,
