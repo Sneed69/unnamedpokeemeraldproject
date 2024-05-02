@@ -4775,6 +4775,38 @@ u8 GetMoveRelearnerMoves(struct Pokemon *mon, u16 *moves)
     return numMoves;
 }
 
+u8 GetEggTutorMoves(struct Pokemon *mon, u16 *moves)
+{
+    u16 learnedMoves[MAX_MON_MOVES];
+    u8 numMoves = 0;
+    u16 species = GetMonData(mon, MON_DATA_SPECIES);
+    u8 eggMovesTotal;
+    u16 allEggMoves[EGG_MOVES_ARRAY_COUNT];
+    int i, j, k;
+
+    eggMovesTotal = GetFirstStageEggMovesBySpecies(species, allEggMoves);
+
+    for (i = 0; i < MAX_MON_MOVES; i++)
+        learnedMoves[i] = GetMonData(mon, MON_DATA_MOVE1 + i, 0);
+
+    for (i = 0; i < eggMovesTotal; i++)
+    {
+        for (j = 0; j < MAX_MON_MOVES && learnedMoves[j] != allEggMoves[i]; j++)
+            ;
+
+        if (j == MAX_MON_MOVES)
+        {
+            for (k = 0; k < numMoves && moves[k] != allEggMoves[i]; k++)
+                ;
+
+            if (k == numMoves)
+                moves[numMoves++] = allEggMoves[i];
+        }
+    }
+
+    return numMoves;
+}
+
 u8 GetLevelUpMovesBySpecies(u16 species, u16 *moves)
 {
     u8 numMoves = 0;
@@ -4838,7 +4870,7 @@ u8 GetNumberOfEggMoveTutorMoves(struct Pokemon *mon)
 
     if (species == SPECIES_EGG)
         return 0;
-    return GetEggMoveTutorMoves(mon, moves);
+    return GetEggTutorMoves(mon, moves);
 }
 
 u16 SpeciesToPokedexNum(u16 species)

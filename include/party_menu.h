@@ -105,6 +105,5 @@ void MoveDeleterForgetMove(void);
 void BufferMoveDeleterNicknameAndMove(void);
 void GetNumMovesSelectedMonHas(void);
 void MoveDeleterChooseMoveToForget(void);
-void ChooseMonForEggMoveTutor(void);
 
 #endif // GUARD_PARTY_MENU_H

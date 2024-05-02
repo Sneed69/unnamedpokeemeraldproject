@@ -24,7 +24,8 @@ EventScript_EggMoveTutor_AskTeachMove::
 
 EventScript_EggMoveTutor_ChooseMon::
 	msgbox EggMoveTutor_Text_TutorWhichMon, MSGBOX_DEFAULT
-	special ChooseMonForEggMoveTutor
+	setvar VAR_TUTOR_TYPE TUTOR_EGG_MOVE
+	special ChooseMonForMoveRelearner
 	waitstate
 	goto_if_eq VAR_0x8004, PARTY_NOTHING_CHOSEN, EventScript_EggMoveTutor_Farewell
 	special IsSelectedMonEgg
@@ -35,7 +36,7 @@ EventScript_EggMoveTutor_ChooseMon::
 
 EventScript_EggMoveTutor_ChooseMove::
 	msgbox EggMoveTutor_Text_TeachWhichMove, MSGBOX_DEFAULT
-	special TeachEggMoveTutorMove
+	special TeachMoveRelearnerMove
 	waitstate
 	goto_if_eq VAR_0x8004, 0, EventScript_EggMoveTutor_ChooseMon
 	goto EventScript_EggMoveTutor_Farewell

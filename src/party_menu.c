@@ -498,9 +498,6 @@ static bool8 SetUpFieldMove_Fly(void);
 //static bool8 SetUpFieldMove_Waterfall(void);
 //static bool8 SetUpFieldMove_Dive(void);
 void TryItemHoldFormChange(struct Pokemon *mon);
-static void Task_ChooseMonForEggMoveTutor(u8);
-static void CB2_ChooseMonForEggMoveTutor(void);
-static void DisplayPartyPokemonDataForEggMoveTutor(u8);
 static void ShowMoveSelectWindow(u8 slot);
 static void Task_HandleWhichMoveInput(u8 taskId);
 
@@ -994,8 +991,6 @@ static void RenderPartyMenuBox(u8 slot)
         {
             if (gPartyMenu.menuType == PARTY_MENU_TYPE_MOVE_RELEARNER)
                 DisplayPartyPokemonDataForRelearner(slot);
-            else if (gPartyMenu.menuType == PARTY_MENU_TYPE_EGG_MOVE_TUTOR)
-                DisplayPartyPokemonDataForEggMoveTutor(slot);
             else if (gPartyMenu.menuType == PARTY_MENU_TYPE_CONTEST)
                 DisplayPartyPokemonDataForContest(slot);
             else if (gPartyMenu.menuType == PARTY_MENU_TYPE_CHOOSE_HALF)
@@ -1095,15 +1090,19 @@ static void DisplayPartyPokemonDataForContest(u8 slot)
 
 static void DisplayPartyPokemonDataForRelearner(u8 slot)
 {
-    if (GetNumberOfRelearnableMoves(&gPlayerParty[slot]) == 0)
-        DisplayPartyPokemonDescriptionData(slot, PARTYBOX_DESC_NOT_ABLE_2);
-    else
-        DisplayPartyPokemonDescriptionData(slot, PARTYBOX_DESC_ABLE_2);
-}
-
-static void DisplayPartyPokemonDataForEggMoveTutor(u8 slot)
-{
-    if (GetNumberOfEggMoveTutorMoves(&gPlayerParty[slot]) == 0)
+    u32 moveCount = 0;   
+    switch(VarGet(VAR_TUTOR_TYPE))
+    {
+        case TUTOR_REMINDER:
+            moveCount = GetNumberOfRelearnableMoves(&gPlayerParty[slot]);
+            break;
+        case TUTOR_EGG_MOVE:
+            moveCount = GetNumberOfEggMoveTutorMoves(&gPlayerParty[slot]);
+            break;
+        case TUTOR_TM:
+            break;
+    }
+    if (moveCount == 0)
         DisplayPartyPokemonDescriptionData(slot, PARTYBOX_DESC_NOT_ABLE_2);
     else
         DisplayPartyPokemonDescriptionData(slot, PARTYBOX_DESC_ABLE_2);
@@ -7917,37 +7916,23 @@ static void CB2_ChooseMonForMoveRelearner(void)
 {
     gSpecialVar_0x8004 = GetCursorSelectionMonId();
     if (gSpecialVar_0x8004 >= PARTY_SIZE)
-        gSpecialVar_0x8004 = PARTY_NOTHING_CHOSEN;
-    else
-        gSpecialVar_0x8005 = GetNumberOfRelearnableMoves(&gPlayerParty[gSpecialVar_0x8004]);
-    gFieldCallback2 = CB2_FadeFromPartyMenu;
-    SetMainCallback2(CB2_ReturnToField);
-}
-
-void ChooseMonForEggMoveTutor(void)
-{
-    LockPlayerFieldControls();
-    FadeScreen(FADE_TO_BLACK, 0);
-    CreateTask(Task_ChooseMonForEggMoveTutor, 10);
-}
-
-static void Task_ChooseMonForEggMoveTutor(u8 taskId)
-{
-    if (!gPaletteFade.active)
     {
-        CleanupOverworldWindowsAndTilemaps();
-        InitPartyMenu(PARTY_MENU_TYPE_EGG_MOVE_TUTOR, PARTY_LAYOUT_SINGLE, PARTY_ACTION_CHOOSE_AND_CLOSE, FALSE, PARTY_MSG_CHOOSE_MON, Task_HandleChooseMonInput, CB2_ChooseMonForEggMoveTutor);
-        DestroyTask(taskId);
-    }
-}
-
-static void CB2_ChooseMonForEggMoveTutor(void)
-{
-    gSpecialVar_0x8004 = GetCursorSelectionMonId();
-    if (gSpecialVar_0x8004 >= PARTY_SIZE)
         gSpecialVar_0x8004 = PARTY_NOTHING_CHOSEN;
+    }
     else
-        gSpecialVar_0x8005 = GetNumberOfEggMoveTutorMoves(&gPlayerParty[gSpecialVar_0x8004]);
+    {
+        switch(VarGet(VAR_TUTOR_TYPE))
+        {
+            case TUTOR_REMINDER:
+                gSpecialVar_0x8005 = GetNumberOfRelearnableMoves(&gPlayerParty[gSpecialVar_0x8004]);
+                break;
+            case TUTOR_EGG_MOVE:
+                gSpecialVar_0x8005 = GetNumberOfEggMoveTutorMoves(&gPlayerParty[gSpecialVar_0x8004]);
+                break;
+            case TUTOR_TM:
+                break;
+        }
+    }
     gFieldCallback2 = CB2_FadeFromPartyMenu;
     SetMainCallback2(CB2_ReturnToField);
 }
