@@ -2820,6 +2820,7 @@ void PokemonToBattleMon(struct Pokemon *src, struct BattlePokemon *dst, bool8 re
     dst->spDefense = GetMonData(src, MON_DATA_SPDEF, NULL);
     dst->abilityNum = GetMonData(src, MON_DATA_ABILITY_NUM, NULL);
     dst->hiddenPowerType = GetMonData(src, MON_DATA_HIDDEN_POWER_TYPE, NULL);
+    dst->isShiny = GetMonData(src, MON_DATA_IS_SHINY, NULL);
     dst->majorProficiency = GetMonData(src, MON_DATA_MAJOR_PROFICIENCY, NULL);
     dst->minorProficiency = GetMonData(src, MON_DATA_MINOR_PROFICIENCY, NULL);
     dst->otId = GetMonData(src, MON_DATA_OT_ID, NULL);
