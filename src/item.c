@@ -150,6 +150,11 @@ bool8 IsBagPocketNonEmpty(u8 pocket)
     return FALSE;
 }
 
+bool32 PlayerHasTMs(void)
+{
+    return IsBagPocketNonEmpty(POCKET_TM_HM);
+}
+
 bool8 CheckBagHasItem(u16 itemId, u16 count)
 {
     u8 i;

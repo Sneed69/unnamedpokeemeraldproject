@@ -1,17 +1,56 @@
 Common_EventScript_PkmnCenterNurse::
 	lock
 	faceplayer
-	setvar VAR_0x8004, 0
-	specialvar VAR_RESULT, CountPlayerTrainerStars
-	goto_if_eq VAR_RESULT, 4, EventScript_PkmnCenterNurse_GoldCard
-	msgbox gText_WouldYouLikeToRestYourPkmn, MSGBOX_YESNO
-	goto_if_eq VAR_RESULT, YES, EventScript_PkmnCenterNurse_HealPkmn
-	goto_if_eq VAR_RESULT, NO, EventScript_PkmnCenterNurse_Goodbye
+	goto_if_unset FLAG_TEMP_1, EventScript_PkmnCenterNurse_HelloAndWelcome
+	message gText_WouldYouLikeToTeachMove
+	goto_if_set FLAG_TEMP_1, EventScript_PkmnCenterNurse_WaitMessage
+EventScript_PkmnCenterNurse_HelloAndWelcome:
+	message gText_HelloAndWelcome
+	setflag FLAG_TEMP_1
+EventScript_PkmnCenterNurse_WaitMessage:
+	waitmessage
+	dynmultipush gText_RemindMoves, TUTOR_REMINDER
+	specialvar VAR_RESULT, PlayerHasTMs
+	goto_if_eq VAR_RESULT, FALSE, EventScript_PkmnCenterNurse_CheckForEggMoveItem
+	dynmultipush gText_TeachTMs, TUTOR_TM
+EventScript_PkmnCenterNurse_CheckForEggMoveItem:
+	checkitem ITEM_MIND_EXPANDER
+	goto_if_eq VAR_RESULT, FALSE, EventScript_PkmnCenterNurse_ShowMultichoice
+	dynmultipush gText_SpecialMoves, TUTOR_EGG_MOVE
+EventScript_PkmnCenterNurse_ShowMultichoice:
+	dynmultipush gText_Quit, TUTOR_TYPE_COUNT
+	dynmultistack 0, 0, 0, 4, 0, 0, DYN_MULTICHOICE_CB_NONE
+	goto_if_ge VAR_RESULT, TUTOR_TYPE_COUNT, EventScript_PkmnCenterNurse_Goodbye
+	copyvar VAR_TUTOR_TYPE VAR_RESULT
+EventScript_PkmnCenterNurse_ChooseMon:
+	msgbox gText_ChooseMon, MSGBOX_DEFAULT
+	special ChooseMonForMoveRelearner
+	waitstate
+	goto_if_eq VAR_0x8004, PARTY_NOTHING_CHOSEN, EventScript_PkmnCenterNurse_Goodbye
+	special IsSelectedMonEgg
+	goto_if_eq VAR_RESULT, TRUE, EventScript_PkmnCenterNurse_CantTeachEgg
+	goto_if_eq VAR_0x8005, 0, EventScript_PkmnCenterNurse_NoMoveToTeachMon
+EventScript_PkmnCenterNurse_ChooseMove::
+	msgbox gText_ChooseMove, MSGBOX_DEFAULT
+	special TeachMoveRelearnerMove
+	waitstate
+	goto_if_eq VAR_0x8004, 0, EventScript_PkmnCenterNurse_ChooseMon
+EventScript_PkmnCenterNurse_Goodbye::
+	applymovement VAR_0x800B, Movement_PkmnCenterNurse_Bow
+	msgbox gText_WeHopeToSeeYouAgain, MSGBOX_DEFAULT
+	waitmovement 0
+	release
 	end
 
-EventScript_PkmnCenterNurse_Goodbye::
-	message gText_WeHopeToSeeYouAgain
-	return
+EventScript_PkmnCenterNurse_NoMoveToTeachMon::
+	msgbox gTextDontHaveMoveToTeachPokemon, MSGBOX_DEFAULT
+	goto EventScript_PkmnCenterNurse_ChooseMon
+	end
+
+EventScript_PkmnCenterNurse_CantTeachEgg::
+	msgbox gText_CantTeachEgg, MSGBOX_DEFAULT
+	goto EventScript_PkmnCenterNurse_ChooseMon
+	end
 
 @ VAR_0x8004 is 1 when player has Gold Card; jumps are identical
 EventScript_PkmnCenterNurse_HealPkmn::

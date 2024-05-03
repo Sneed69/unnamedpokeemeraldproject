@@ -49,3 +49,33 @@ gText_ThankYouForWaiting::
 
 gText_WeHopeToSeeYouAgain2::
 	.string "We hope to see you again!$"
+
+gText_CantTeachEgg::
+    .string "Eggs cannot learn moves!$"
+
+gText_ChooseMon::
+	.string "Which Pokémon needs tutoring?$"
+
+gText_ChooseMove::
+	.string "Which move should it learn?$"
+
+gText_RemindMoves::
+    .string "Remind Moves$"
+
+gText_TeachTMs::
+    .string "Teach TMs$"
+    
+gText_SpecialMoves::
+    .string "Special Moves$"
+
+gText_HelloAndWelcome::
+    .string "Hello, and welcome to\n"
+    .string "the Pokémon Center.\p"
+gText_WouldYouLikeToTeachMove::
+    .string "Would you like to teach\n"
+    .string "your Pokémon a move?$"
+
+gTextDontHaveMoveToTeachPokemon:
+	.string "My apologies…\p"
+	.string "It appears that there are no\n"
+	.string "moves this Pokémon can learn.$"

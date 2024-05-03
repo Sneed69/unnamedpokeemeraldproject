@@ -11289,4 +11289,18 @@ const struct Item gItemsInfo[] =
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
     },
+
+    [ITEM_MIND_EXPANDER] =
+    {
+        .name = _("Mind Expander"),
+        .price = 0,
+        .importance = 1,
+        .description = COMPOUND_STRING(
+            "A device that\n"
+            "unlocks the full\n"
+            "potential of {PKMN}."),
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+    },
 };

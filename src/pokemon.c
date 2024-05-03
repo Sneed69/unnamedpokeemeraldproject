@@ -4735,7 +4735,7 @@ u8 GetMoveRelearnerMoves(struct Pokemon *mon, u16 *moves)
             if (j == MAX_MON_MOVES)
             {
                 for (k = 0; k < numMoves && moves[k] != learnset[i].move; k++)
-                    DebugPrintf("%d",k);
+                    ;
 
                 if (k == numMoves)
                     moves[numMoves++] = learnset[i].move;

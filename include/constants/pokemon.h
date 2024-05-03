@@ -361,9 +361,10 @@
 #define HP_BASE 75
 
 // Types of Move Reminder + other tutors. Set to VAR_TUTOR_TYPE
-#define TUTOR_REMINDER 0
-#define TUTOR_EGG_MOVE 1
-#define TUTOR_TM       2
+#define TUTOR_REMINDER   0
+#define TUTOR_TM         1
+#define TUTOR_EGG_MOVE   2
+#define TUTOR_TYPE_COUNT 3
 
 #endif // GUARD_CONSTANTS_POKEMON_H
 
