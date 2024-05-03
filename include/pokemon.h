@@ -117,52 +117,51 @@ enum {
 
 struct BoxPokemon
 {
-    /*0x00*/ u32 personality;
-    /*0x04*/ u32 otId;
-    /*0x08*/ u8 otName[PLAYER_NAME_LENGTH];
-    /*0x12*/ u8 nickname[POKEMON_NAME_LENGTH];
-             u16 unused16;
-             
-             u16 moves[MAX_MON_MOVES];
+    u32 personality;
+    u32 otId;
+    u8 otName[PLAYER_NAME_LENGTH];
+    u8 nickname[POKEMON_NAME_LENGTH];
+    u16 unused16;
+    
+    u16 moves[MAX_MON_MOVES];
 
-             u32 species:11; // 2047 species
-             u32 experience:21;
-             
-             u32 metLevel:7;
-             u32 heldItem:10; // 1023 items.
-             u32 pokeball:5; // 31 balls
-             u32 shinyModifier:1;
-             u32 isBadEgg:1;
-             u32 hasSpecies:1;
-             u32 isEgg:1;
-             u32 markings:4;
-             u32 abilityNum:1;
-             u32 otGender:1;
+    u32 species:11; // 2047 species
+    u32 experience:21;
+    
+    u32 metLevel:7;
+    u32 heldItem:10; // 1023 items.
+    u32 pokeball:5; // 31 balls
+    u32 shinyModifier:1;
+    u32 isBadEgg:1;
+    u32 hasSpecies:1;
+    u32 isEgg:1;
+    u32 markings:4;
+    u32 abilityNum:1;
+    u32 otGender:1;
 
-             u8 friendship;
-             u8 metLocation;
-             u8 cool;
-             u8 beauty;
+    u8 friendship;
+    u8 metLocation;
+    u8 cool;
+    u8 beauty;
 
-             u8 cute;
-             u8 smart;
-             u8 tough;
-             u8 sheen;
+    u8 cute;
+    u8 smart;
+    u8 tough;
+    u8 sheen;
 
-             u32 coolRibbon:3;
-             u32 beautyRibbon:3;
-             u32 cuteRibbon:3;
-             u32 smartRibbon:3;
-             u32 toughRibbon:3;
-             u32 championRibbon:1;
-             u32 winningRibbon:1;
-             u32 victoryRibbon:1;
-             u32 artistRibbon:1;
-             u32 effortRibbon:1;
-             u32 hiddenPowerType:5;
-             u32 majorProficiency:3;
-             u32 minorProficiency:3;
-             u32 unused_1:1;
+    u32 coolRibbon:3;
+    u32 beautyRibbon:3;
+    u32 cuteRibbon:3;
+    u32 smartRibbon:3;
+    u32 toughRibbon:3;
+    u32 championRibbon:1;
+    u32 winningRibbon:1;
+    u32 victoryRibbon:1;
+    u32 artistRibbon:1;
+    u32 hiddenPowerType:5;
+    u32 majorProficiency:3;
+    u32 minorProficiency:3;
+    u32 unused_2:2;
 }; // size 0x40 (64)
 
 struct Pokemon

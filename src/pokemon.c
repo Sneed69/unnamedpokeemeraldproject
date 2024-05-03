@@ -2123,7 +2123,6 @@ u32 GetBoxMonData3(struct BoxPokemon *boxMon, s32 field, u8 *data)
         retVal = boxMon->artistRibbon;
         break;
     case MON_DATA_EFFORT_RIBBON:
-        retVal = boxMon->effortRibbon;
         break;
     case MON_DATA_SPECIES_OR_EGG:
         retVal = boxMon->species;
@@ -2163,7 +2162,6 @@ u32 GetBoxMonData3(struct BoxPokemon *boxMon, s32 field, u8 *data)
             retVal += boxMon->winningRibbon;
             retVal += boxMon->victoryRibbon;
             retVal += boxMon->artistRibbon;
-            retVal += boxMon->effortRibbon;
         }
         break;
     case MON_DATA_RIBBONS:
@@ -2178,8 +2176,7 @@ u32 GetBoxMonData3(struct BoxPokemon *boxMon, s32 field, u8 *data)
                 | (boxMon->toughRibbon << 13)
                 | (boxMon->winningRibbon << 16)
                 | (boxMon->victoryRibbon << 17)
-                | (boxMon->artistRibbon << 18)
-                | (boxMon->effortRibbon << 19);
+                | (boxMon->artistRibbon << 18);
         }
         break;
     case MON_DATA_IS_SHINY:
@@ -2443,7 +2440,6 @@ void SetBoxMonData(struct BoxPokemon *boxMon, s32 field, const void *dataArg)
         SET8(boxMon->artistRibbon);
         break;
     case MON_DATA_EFFORT_RIBBON:
-        SET8(boxMon->effortRibbon);
         break;
     case MON_DATA_IVS:
     {
