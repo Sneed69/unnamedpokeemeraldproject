@@ -45,3 +45,4 @@ src/data/map_group_count.h
 .vs/slnx.sqlite
 .vs/VSWorkspaceState.json
 makeoutput.txt
+tools/trainerproc/trainerproc
