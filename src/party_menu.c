@@ -1100,6 +1100,7 @@ static void DisplayPartyPokemonDataForRelearner(u8 slot)
             moveCount = GetNumberOfEggMoveTutorMoves(&gPlayerParty[slot]);
             break;
         case TUTOR_TM:
+            moveCount = GetNumberOfTMTutorMoves(&gPlayerParty[slot]);
             break;
     }
     if (moveCount == 0)
@@ -7930,6 +7931,7 @@ static void CB2_ChooseMonForMoveRelearner(void)
                 gSpecialVar_0x8005 = GetNumberOfEggMoveTutorMoves(&gPlayerParty[gSpecialVar_0x8004]);
                 break;
             case TUTOR_TM:
+                gSpecialVar_0x8005 = GetNumberOfTMTutorMoves(&gPlayerParty[gSpecialVar_0x8004]);
                 break;
         }
     }
