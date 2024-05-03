@@ -685,10 +685,6 @@ bool8 ScrCmd_delay(struct ScriptContext *ctx)
 
 bool8 ScrCmd_initclock(struct ScriptContext *ctx)
 {
-    u8 hour = VarGet(ScriptReadHalfword(ctx));
-    u8 minute = VarGet(ScriptReadHalfword(ctx));
-
-    //RtcInitLocalTimeOffset(hour, minute);
     return FALSE;
 }
 

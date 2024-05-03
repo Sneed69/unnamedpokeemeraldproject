@@ -22,15 +22,15 @@ static u8 CalcBerryYieldInternal(u16 max, u16 min, u8 water);
 static u8 CalcBerryYield(struct BerryTree *tree);
 static u8 GetBerryCountByBerryTreeId(u8 id);
 static u16 GetStageDurationByBerryType(u8);
-static u8 GetDrainRateByBerryType(u8);
+//static u8 GetDrainRateByBerryType(u8);
 static u8 GetWaterBonusByBerryType(u8);
 static u8 GetWeedingBonusByBerryType(u8);
 static u8 GetPestsBonusByBerryType(u8);
 static void SetTreeMutations(u8 id, u8 berry);
 static u8 GetTreeMutationValue(u8 id);
 static u16 GetBerryPestSpecies(u8 berryId);
-static void TryForWeeds(struct BerryTree *tree);
-static void TryForPests(struct BerryTree *tree);
+//static void TryForWeeds(struct BerryTree *tree);
+//static void TryForPests(struct BerryTree *tree);
 static void AddTreeBonus(struct BerryTree *tree, u8 bonus);
 
 // Check include/config/overworld.h configs and throw an error if illegal
@@ -2025,12 +2025,12 @@ static u16 GetStageDurationByBerryType(u8 berry)
 {
     return GetBerryInfo(berry)->growthDuration * 60 / (OW_BERRY_SIX_STAGES ? 6 : 4);
 }
-
+/*
 static u8 GetDrainRateByBerryType(u8 berry)
 {
     return GetBerryInfo(berry)->drainRate;
 }
-
+*/
 static u8 GetWaterBonusByBerryType(u8 berry)
 {
     return GetBerryInfo(berry)->waterBonus;
@@ -2381,7 +2381,7 @@ static u16 GetBerryPestSpecies(u8 berryId)
 
 #define BERRY_WEEDS_CHANCE 15
 #define BERRY_PESTS_CHANCE 15
-
+/*
 static void TryForWeeds(struct BerryTree *tree)
 {
     if (!OW_BERRY_WEEDS)
@@ -2401,7 +2401,7 @@ static void TryForPests(struct BerryTree *tree)
     if (Random() % 100 < BERRY_PESTS_CHANCE && tree->stage > BERRY_STAGE_PLANTED)
         tree->pests = TRUE;
 }
-
+*/
 static void AddTreeBonus(struct BerryTree *tree, u8 bonus)
 {
     if (OW_BERRY_MOISTURE) // use watered field to save track of intermediate bonuses

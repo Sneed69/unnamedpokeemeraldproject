@@ -71,7 +71,7 @@ struct SpeciesItem
 //static u16 CalculateBoxMonChecksum(struct BoxPokemon *boxMon);
 static void Task_PlayMapChosenOrBattleBGM(u8 taskId);
 static bool8 ShouldSkipFriendshipChange(void);
-static void RemoveIVIndexFromList(u8 *ivs, u8 selectedIv);
+//static void RemoveIVIndexFromList(u8 *ivs, u8 selectedIv);
 void TrySpecialOverworldEvo();
 
 EWRAM_DATA static u8 sLearningMoveTableID = 0;
@@ -872,9 +872,6 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, 
     u8 speciesName[POKEMON_NAME_LENGTH + 1];
     u32 personality;
     u32 value;
-    u8 i;
-    u8 availableIVs[NUM_STATS];
-    u8 selectedIvs[LEGENDARY_PERFECT_IV_COUNT];
     bool32 isShiny;
 
     ZeroBoxMonData(boxMon);
@@ -5871,7 +5868,7 @@ u16 MonTryLearningNewMoveEvolution(struct Pokemon *mon, bool8 firstMove)
     return 0;
 }
 
-static void RemoveIVIndexFromList(u8 *ivs, u8 selectedIv)
+/*static void RemoveIVIndexFromList(u8 *ivs, u8 selectedIv)
 {
     s32 i, j;
     u8 temp[NUM_STATS];
@@ -5888,7 +5885,7 @@ static void RemoveIVIndexFromList(u8 *ivs, u8 selectedIv)
         if (temp[i] != 0xFF)
             ivs[j++] = temp[i];
     }
-}
+}*/
 
 // Attempts to perform non-level/item related overworld evolutions; called by tryspecialevo command.
 void TrySpecialOverworldEvo(void)
