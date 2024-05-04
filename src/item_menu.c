@@ -309,6 +309,10 @@ static const u8 sContextMenuItems_KeyItemsPocket[] = {
     ACTION_DUMMY,       ACTION_CANCEL
 };
 
+static const u8 sContextMenuItems_KeyItemsPocketNoRegister[] = {
+    ACTION_USE,         ACTION_CANCEL
+};
+
 static const u8 sContextMenuItems_BallsPocket[] = {
     ACTION_TOSS,        ACTION_CANCEL
 };
@@ -1662,11 +1666,15 @@ static void OpenContextMenu(u8 taskId)
                 gBagMenu->contextMenuItemsPtr = gBagMenu->contextMenuItemsBuffer;
                 if (sRegisterSubMenu == FALSE)
                 {
-                    gBagMenu->contextMenuNumItems = ARRAY_COUNT(sContextMenuItems_KeyItemsPocket);
                     if (ItemId_GetFieldFunc(gSpecialVar_ItemId) == ItemUseOutOfBattle_CannotUse)
                     {
                         gBagMenu->contextMenuNumItems = ARRAY_COUNT(sContextMenuItems_Cancel);
                         memcpy(&gBagMenu->contextMenuItemsBuffer, &sContextMenuItems_Cancel, sizeof(sContextMenuItems_Cancel));
+                    }
+                    if (ItemId_GetFieldFunc(gSpecialVar_ItemId) == ItemUseOutOfBattle_RotomCatalog)
+                    {
+                        gBagMenu->contextMenuNumItems = ARRAY_COUNT(sContextMenuItems_KeyItemsPocketNoRegister);
+                        memcpy(&gBagMenu->contextMenuItemsBuffer, &sContextMenuItems_KeyItemsPocketNoRegister, sizeof(sContextMenuItems_KeyItemsPocketNoRegister));
                     }
                     else
                     {

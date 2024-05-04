@@ -848,7 +848,7 @@
 #define ITEM_TM119 701
 #define ITEM_TM120 702
 
-#define LAST_TM ITEM_TM113
+#define LAST_TM ITEM_TM01 + NUM_TECHNICAL_MACHINES - 1
 
 // Battle Mechanic Key Items
 #define ITEM_MEGA_RING 703
@@ -1053,7 +1053,7 @@
 #define MAIL_NONE 0xFF
 #define ITEM_TO_MULCH(itemId)(((itemId) - ITEM_GROWTH_MULCH) + 1)
 
-#define NUM_TECHNICAL_MACHINES 120
+#define NUM_TECHNICAL_MACHINES 113
 #define NUM_HIDDEN_MACHINES 0
 
 #define MAX_BAG_ITEM_CAPACITY         999

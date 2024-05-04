@@ -162,9 +162,9 @@ u8 AddCustomItemIconSprite(const struct SpriteTemplate *customSpriteTemplate, u1
 const void *GetItemIconPicOrPalette(u16 itemId, u8 which)
 {
     if (itemId == ITEM_LIST_END)
-        itemId = ITEMS_COUNT; // Use last icon, the "return to field" arrow
-    else if (itemId >= ITEMS_COUNT)
-        itemId = 0;
+        return gItemIconTable[ITEMS_COUNT][which]; // Use last icon, the "return to field" arrow
+    if (itemId >= ITEMS_COUNT)
+        return gItemIconTable[0][which];
     else if (itemId >= ITEM_TM01 && itemId <= LAST_TM)
     {
         if (which)
