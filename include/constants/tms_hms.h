@@ -114,7 +114,8 @@
     F(VENOSHOCK) \
     F(AMNESIA) \
     F(SOLAR_BLADE) \
-    F(TORNADO)
+    F(TORNADO) \
+    F(SKY_ATTACK)
 
 #define FOREACH_TMHM(F) \
     FOREACH_TM(F)

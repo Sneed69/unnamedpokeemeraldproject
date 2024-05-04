@@ -9296,6 +9296,12 @@ const struct Item gItemsInfo[] =
             "winds that protect\n"
             "Flying-type {PKMN}."),
 
+    TM_ITEM(114, MOVE_SKY_ATTACK, 0,
+            "Searches out weak\n"
+            "spots then attacks\n"
+            "on the next turn."),
+
+    // UPDATE NUM_TECHNICAL_MACHINES
     #undef TM_ITEM
 
 // Charms

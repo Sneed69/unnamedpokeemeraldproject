@@ -3655,23 +3655,16 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             "Searches out weak spots,\n"
             "then strikes the next turn."),
         .effect = EFFECT_TWO_TURNS_ATTACK,
-        .power = 140,
+        .power = 125,
         .type = TYPE_FLYING,
-        .accuracy = 90,
+        .accuracy = 100,
         .pp = 8,
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
         .category = DAMAGE_CATEGORY_PHYSICAL,
-        .criticalHitStage = B_UPDATED_MOVE_DATA >= GEN_3,
         .sleepTalkBanned = TRUE,
         .instructBanned = TRUE,
-        .argument = TWO_TURN_ARG(B_UPDATED_MOVE_DATA >= GEN_4 ? STRINGID_CLOAKEDINAHARSHLIGHT : STRINGID_PKMNISGLOWING),
-    #if B_UPDATED_MOVE_DATA >= GEN_3
-        .additionalEffects = ADDITIONAL_EFFECTS({
-            .moveEffect = MOVE_EFFECT_FLINCH,
-            .chance = 30,
-        }),
-    #endif
+        .argument = TWO_TURN_ARG(STRINGID_CLOAKEDINAHARSHLIGHT, B_WEATHER_WINDY),
 
         .contestEffect = CONTEST_EFFECT_AFFECTED_BY_PREV_APPEAL,
         .contestCategory = CONTEST_CATEGORY_COOL,
