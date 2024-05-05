@@ -14421,10 +14421,10 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_GRASSY_TERRAIN] =
     {
-        .name = HANDLE_EXPANDED_MOVE_NAME("GrssyTerrain", "Grassy Terrain"),
+        .name = COMPOUND_STRING("Verdant Aura"),
         .description = COMPOUND_STRING(
-            "The ground turns to grass\n"
-            "for 5 turns. Restores HP."),
+            "Boosts Grass moves and\n"
+            "heals Pokémon for 5 turns."),
         .effect = EFFECT_GRASSY_TERRAIN,
         .power = 0,
         .type = TYPE_GRASS,
@@ -14446,10 +14446,10 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_MISTY_TERRAIN] =
     {
-        .name = HANDLE_EXPANDED_MOVE_NAME("MistyTerrain", "Misty Terrain"),
+        .name = COMPOUND_STRING("Mystifying Aura"),
         .description = COMPOUND_STRING(
-            "Covers the ground with mist\n"
-            "for 5 turns. Blocks status."),
+            "Boosts Fairy moves and\n"
+            "blocks status for 5 turns."),
         .effect = EFFECT_MISTY_TERRAIN,
         .power = 0,
         .type = TYPE_FAIRY,
@@ -15013,10 +15013,10 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_ELECTRIC_TERRAIN] =
     {
-        .name = HANDLE_EXPANDED_MOVE_NAME("ElctrcTrrain", "Electric Terrain"),
+        .name = COMPOUND_STRING("Electrifying Aura"),
         .description = COMPOUND_STRING(
-            "Electrifies the ground for\n"
-            "5 turns. Prevents sleep."),
+            "Boosts Electric moves and\n"
+            "prevents sleep for 5 turns."),
         .effect = EFFECT_ELECTRIC_TERRAIN,
         .power = 0,
         .type = TYPE_ELECTRIC,
@@ -15927,10 +15927,10 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_PSYCHIC_TERRAIN] =
     {
-        .name = HANDLE_EXPANDED_MOVE_NAME("PsychcTrrain", "Psychic Terrain"),
+        .name = COMPOUND_STRING("Telepathic Aura"),
         .description = COMPOUND_STRING(
-            "The ground turns weird for\n"
-            "5 turns. Blocks priority."),
+            "Stops priority and boosts\n"
+            "Psychic moves for 5 turns."),
         .effect = EFFECT_PSYCHIC_TERRAIN,
         .power = 0,
         .type = TYPE_PSYCHIC,
@@ -17956,8 +17956,8 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
     {
         .name = HANDLE_EXPANDED_MOVE_NAME("ExpandngForc", "Expanding Force"),
         .description = COMPOUND_STRING(
-            "Power goes up and damages\n"
-            "all foes on Psychic Terrain."),
+            "This move's power doubles\n"
+            "under Telepathic Aura."),
         .effect = EFFECT_EXPANDING_FORCE,
         .power = 80,
         .type = TYPE_PSYCHIC,
@@ -18076,8 +18076,8 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
     {
         .name = HANDLE_EXPANDED_MOVE_NAME("MstyExplsion", "Misty Explosion"),
         .description = COMPOUND_STRING(
-            "Hit everything and faint.\n"
-            "Powers up on Misty Terrain."),
+            "The user faint. Powers up\n"
+            "under Mystifying Aura."),
         .effect = EFFECT_EXPLOSION,
         .power = 100,
         .type = TYPE_FAIRY,
@@ -18097,8 +18097,8 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
     {
         .name = COMPOUND_STRING("Grassy Glide"),
         .description = COMPOUND_STRING(
-            "Gliding on ground, hits. Goes\n"
-            "first on Grassy Terrain."),
+            "Usually strikes first\n"
+            "under Verdant Aura."),
         .effect = EFFECT_GRASSY_GLIDE,
         .power = B_UPDATED_MOVE_DATA >= GEN_9 ? 55 : 70,
         .type = TYPE_GRASS,
@@ -18121,7 +18121,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .name = HANDLE_EXPANDED_MOVE_NAME("RisngVoltage", "Rising Voltage"),
         .description = COMPOUND_STRING(
             "This move's power doubles\n"
-            "when on Electric Terrain."),
+            "under Electrifying Aura."),
         .effect = EFFECT_RISING_VOLTAGE,
         .power = 70,
         .type = TYPE_ELECTRIC,
@@ -18139,10 +18139,10 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_TERRAIN_PULSE] =
     {
-        .name = HANDLE_EXPANDED_MOVE_NAME("TerrainPulse", "Terrain Pulse"),
+        .name = COMPOUND_STRING("Aura Pulse"),
         .description = COMPOUND_STRING(
-            "Type and power changes\n"
-            "depending on the terrain."),
+            "Type and power change\n"
+            "depending on the aura."),
         .effect = EFFECT_TERRAIN_PULSE,
         .power = 50,
         .type = TYPE_NORMAL,
@@ -20156,7 +20156,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .name = COMPOUND_STRING("Psyblade"),
         .description = COMPOUND_STRING(
             "This move's power increases\n"
-            "when on Electric Terrain."),
+            "under Electrifying Aura."),
         .effect = EFFECT_PSYBLADE,
         .power = 80,
         .type = TYPE_PSYCHIC,
@@ -20729,8 +20729,8 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
     {
         .name = COMPOUND_STRING("Starfall"),
         .description = COMPOUND_STRING(
-            "Stars come crashing down,\n"
-            "making the terrain misty."),
+            "Boosts Fairy moves and\n"
+            "blocks status for 5 turns."),
         .effect = EFFECT_HIT_SET_REMOVE_TERRAIN,
         .power = 60,
         .type = TYPE_FAIRY,
@@ -20750,8 +20750,8 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
     {
         .name = COMPOUND_STRING("Overload"),
         .description = COMPOUND_STRING(
-            "Shocks enemies and\n"
-            "electrifies the terrain."),
+            "Boosts Electric moves and\n"
+            "prevents sleep for 5 turns."),
         .effect = EFFECT_HIT_SET_REMOVE_TERRAIN,
         .power = 60,
         .type = TYPE_ELECTRIC,
@@ -20771,8 +20771,8 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
     {
         .name = COMPOUND_STRING("Bloom"),
         .description = COMPOUND_STRING(
-            "Rapidly grows plants to\n"
-            "cover the terrain."),
+            "Boosts Grass moves and\n"
+            "heals Pokémon for 5 turns."),
         .effect = EFFECT_HIT_SET_REMOVE_TERRAIN,
         .power = 60,
         .type = TYPE_GRASS,
@@ -20792,8 +20792,8 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
     {
         .name = COMPOUND_STRING("Mindstorm"),
         .description = COMPOUND_STRING(
-            "A chaotic mind attack\n"
-            "that warps the terrain."),
+            "Stops priority and boosts\n"
+            "Psychic moves for 5 turns."),
         .effect = EFFECT_HIT_SET_REMOVE_TERRAIN,
         .power = 60,
         .type = TYPE_PSYCHIC,

@@ -459,7 +459,6 @@ static bool32 ShouldSwitchIfGameStatePrompt(u32 battler, bool32 emitResult)
                 if (IsBattlerAlive(BATTLE_PARTNER(battler))
                     && (gMovesInfo[AI_DATA->partnerMove].effect == EFFECT_MISTY_TERRAIN
                         || gMovesInfo[AI_DATA->partnerMove].effect == EFFECT_ELECTRIC_TERRAIN)
-                    && IsBattlerGrounded(battler)
                     )
                     switchMon = FALSE;
 
@@ -479,7 +478,6 @@ static bool32 ShouldSwitchIfGameStatePrompt(u32 battler, bool32 emitResult)
                             if (IsValidForBattle(&party[i])
                                 && i != gBattlerPartyIndexes[battler]
                                 && i != gBattlerPartyIndexes[BATTLE_PARTNER(battler)]
-                                && IsBattlerGrounded(battler)
                                 && (GetMonAbility(&party[i]) == ABILITY_MISTY_SURGE
                                     || GetMonAbility(&party[i]) == ABILITY_ELECTRIC_SURGE)) //Ally has Misty or Electric Surge
                                 {
@@ -505,9 +503,8 @@ static bool32 ShouldSwitchIfGameStatePrompt(u32 battler, bool32 emitResult)
                 || holdEffect == (HOLD_EFFECT_CURE_SLP | HOLD_EFFECT_CURE_STATUS)
                 || HasMove(battler, MOVE_SLEEP_TALK)
                 || (HasMoveEffect(battler, MOVE_SNORE) && AI_GetTypeEffectiveness(MOVE_SNORE, battler, opposingBattler) >= UQ_4_12(1.0))
-                || (IsBattlerGrounded(battler)
-                    && (HasMove(battler, MOVE_MISTY_TERRAIN) || HasMove(battler, MOVE_ELECTRIC_TERRAIN)
-                    || HasMove(battler, MOVE_STARFALL) || HasMove(battler, MOVE_OVERLOAD)))
+                || (HasMove(battler, MOVE_MISTY_TERRAIN) || HasMove(battler, MOVE_ELECTRIC_TERRAIN)
+                    || HasMove(battler, MOVE_STARFALL) || HasMove(battler, MOVE_OVERLOAD))
                 )
                 switchMon = FALSE;
 

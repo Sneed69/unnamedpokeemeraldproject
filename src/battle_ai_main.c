@@ -3855,7 +3855,7 @@ static u32 AI_CalcMoveScore(u32 battlerAtk, u32 battlerDef, u32 move)
             ADJUST_SCORE(DECENT_EFFECT);
         break;
     case EFFECT_SAFEGUARD:
-        if (!AI_IsTerrainAffected(battlerAtk, STATUS_FIELD_MISTY_TERRAIN) || !IsBattlerGrounded(battlerAtk))
+        if (!AI_IsTerrainAffected(battlerAtk, STATUS_FIELD_MISTY_TERRAIN))
             ADJUST_SCORE(DECENT_EFFECT); // TODO: check if opp has status move?
         //if (CountUsablePartyMons(battlerDef) != 0)
             //ADJUST_SCORE(8);
@@ -4221,14 +4221,14 @@ static u32 AI_CalcMoveScore(u32 battlerAtk, u32 battlerDef, u32 move)
         break;
     case EFFECT_HIT_SET_REMOVE_TERRAIN:
         if ((arg == ARG_SET_ELECTRIC_TERRAIN || arg == ARG_SET_MISTY_TERRAIN)
-            && gStatuses3[battlerAtk] & STATUS3_YAWN && IsBattlerGrounded(battlerAtk))
+            && gStatuses3[battlerAtk] & STATUS3_YAWN)
             ADJUST_SCORE(BEST_EFFECT);
         if (aiData->holdEffects[battlerAtk] == HOLD_EFFECT_TERRAIN_EXTENDER)
             ADJUST_SCORE(GOOD_EFFECT);
         break;
     case EFFECT_ELECTRIC_TERRAIN:
     case EFFECT_MISTY_TERRAIN:
-        if (gStatuses3[battlerAtk] & STATUS3_YAWN && IsBattlerGrounded(battlerAtk))
+        if (gStatuses3[battlerAtk] & STATUS3_YAWN)
             ADJUST_SCORE(BEST_EFFECT);
     case EFFECT_GRASSY_TERRAIN:
     case EFFECT_PSYCHIC_TERRAIN:

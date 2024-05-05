@@ -1359,7 +1359,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_GRASS_PELT] =
     {
         .name = _("Grass Pelt"),
-        .description = COMPOUND_STRING("Boosts Defense\non Grassy Terrain."),
+        .description = COMPOUND_STRING("Boosts Defense under\nVerdant Aura."),
         .aiRating = 2,
         .breakable = TRUE,
     },
@@ -1581,7 +1581,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_SURGE_SURFER] =
     {
         .name = _("Surge Surfer"),
-        .description = COMPOUND_STRING("Doubles Speed on\nElectric Terrain."),
+        .description = COMPOUND_STRING("Doubles Speed under\nElectrifying Aura."),
         .aiRating = 4,
     },
 
@@ -1772,7 +1772,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     #else
         .name = _("ElectrcSurge"),
     #endif
-        .description = COMPOUND_STRING("Sets Electric Terrain upon\nentering a battle."),
+        .description = COMPOUND_STRING("Sets Electrifying Aura\nupon entering a battle."),
         .aiRating = 8,
     },
 
@@ -1783,21 +1783,21 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     #else
         .name = _("PsychicSurge"),
     #endif
-        .description = COMPOUND_STRING("Sets Psychic Terrain upon\nentering a battle."),
+        .description = COMPOUND_STRING("Sets Telepathic Aura\nupon entering a battle."),
         .aiRating = 8,
     },
 
     [ABILITY_MISTY_SURGE] =
     {
         .name = _("Misty Surge"),
-        .description = COMPOUND_STRING("Sets Misty Terrain upon\nentering a battle."),
+        .description = COMPOUND_STRING("Sets Mystifying Aura\nupon entering a battle."),
         .aiRating = 8,
     },
 
     [ABILITY_GRASSY_SURGE] =
     {
         .name = _("Grassy Surge"),
-        .description = COMPOUND_STRING("Sets Grassy Terrain upon\nentering a battle."),
+        .description = COMPOUND_STRING("Sets Verdant Aura\nupon entering a battle."),
         .aiRating = 8,
     },
 
@@ -1977,7 +1977,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_MIMICRY] =
     {
         .name = _("Mimicry"),
-        .description = COMPOUND_STRING("Changes type depending\non the terrain."),
+        .description = COMPOUND_STRING("Changes type depending\non the aura."),
         .aiRating = 2,
     },
 
@@ -2165,7 +2165,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_SEED_SOWER] =
     {
         .name = _("Seed Sower"),
-        .description = COMPOUND_STRING("Sets Grassy Terrain after\ngetting hit by an attack."),
+        .description = COMPOUND_STRING("Sets Verdant Aura after\ngetting hit by an attack."),
         .aiRating = 5,
     },
 
@@ -2582,7 +2582,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     #else
         .name = _("TeraformZero"),
     #endif
-        .description = COMPOUND_STRING("Removes weather and terrain."),
+        .description = COMPOUND_STRING("Removes weather and aura."),
         .aiRating = 10,
         .cantBeCopied = TRUE,
         .cantBeSwapped = TRUE,

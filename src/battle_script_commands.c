@@ -9096,8 +9096,7 @@ static void Cmd_various(void)
         VARIOUS_ARGS(const u8 *failInstr);
         if ((gStatuses3[battler] & (STATUS3_SEMI_INVULNERABLE | STATUS3_HEAL_BLOCK))
             || BATTLER_MAX_HP(battler)
-            || !gBattleMons[battler].hp
-            || !(IsBattlerGrounded(battler)))
+            || !gBattleMons[battler].hp)
         {
             gBattlescriptCurrInstr = cmd->failInstr;
         }

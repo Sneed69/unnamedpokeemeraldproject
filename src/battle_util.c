@@ -3704,7 +3704,6 @@ u8 AtkCanceller_UnableToUseMove2(void)
             gBattleStruct->atkCancellerTracker++;
         case CANCELLER_PSYCHIC_TERRAIN:
             if (gFieldStatuses & STATUS_FIELD_PSYCHIC_TERRAIN
-                && IsBattlerGrounded(gBattlerTarget)
                 && GetChosenMovePriority(gBattlerAttacker) > 0
                 && gMovesInfo[gCurrentMove].target != MOVE_TARGET_ALL_BATTLERS
                 && gMovesInfo[gCurrentMove].target != MOVE_TARGET_OPPONENTS_FIELD
@@ -6486,7 +6485,7 @@ bool32 IsBattlerTerrainAffected(u32 battler, u32 terrainFlag)
     else if (gStatuses3[battler] & STATUS3_SEMI_INVULNERABLE)
         return FALSE;
 
-    return IsBattlerGrounded(battler);
+    return TRUE;
 }
 
 bool32 CanSleep(u32 battler)
@@ -8954,7 +8953,7 @@ static inline u32 CalcMoveBasePower(u32 move, u32 battlerAtk, u32 battlerDef, u3
             basePower *= 2;
         break;
     case EFFECT_EXPLOSION:
-        if (move == MOVE_MISTY_EXPLOSION && gFieldStatuses & STATUS_FIELD_MISTY_TERRAIN && IsBattlerGrounded(battlerAtk))
+        if (move == MOVE_MISTY_EXPLOSION && gFieldStatuses & STATUS_FIELD_MISTY_TERRAIN)
             basePower = uq4_12_multiply(basePower, UQ_4_12(1.5));
         break;
     case EFFECT_DYNAMAX_DOUBLE_DMG:
@@ -8981,8 +8980,7 @@ static inline u32 CalcMoveBasePower(u32 move, u32 battlerAtk, u32 battlerDef, u3
             basePower = uq4_12_multiply(basePower, UQ_4_12(1.5));
         break;
     case EFFECT_TERRAIN_PULSE:
-        if ((gFieldStatuses & STATUS_FIELD_TERRAIN_ANY)
-            && IsBattlerGrounded(battlerAtk))
+        if ((gFieldStatuses & STATUS_FIELD_TERRAIN_ANY))
             basePower *= 2;
         break;
     case EFFECT_EXPANDING_FORCE:
