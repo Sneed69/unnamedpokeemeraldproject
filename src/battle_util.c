@@ -10327,6 +10327,12 @@ static inline void MulByTypeEffectiveness(uq4_12_t *modifier, u32 move, u32 move
         if (recordAbilities)
             RecordAbilityBattle(battlerAtk, ABILITY_TRANSCENDENCE);
     }
+    else if (moveType == TYPE_PSYCHIC && defType == TYPE_STEEL && abilityAtk == ABILITY_SPOON_BENDER && mod == UQ_4_12(0.5))
+    {
+        mod = UQ_4_12(2.0);
+        if (recordAbilities)
+            RecordAbilityBattle(battlerAtk, ABILITY_SPOON_BENDER);
+    }
 
     if ((defType == TYPE_STEEL || defType == TYPE_ROCK) && abilityAtk == ABILITY_TURBOBLAZE && mod == UQ_4_12(0.5))
     {

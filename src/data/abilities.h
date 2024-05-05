@@ -2761,4 +2761,12 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
         .description = COMPOUND_STRING("Contact moves gain power\nand recoil in windy weather."),
         .aiRating = 3,
     },
+
+    [ABILITY_SPOON_BENDER] =
+    {
+        .name = _("Spoon Bender"),
+        .description = COMPOUND_STRING("Psychic moves hit Steel\n"
+                                       "super-effectively."),
+        .aiRating = 6,
+    },
 };
