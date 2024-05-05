@@ -4766,6 +4766,7 @@ static const u16 sHappinyTeachableLearnset[] = {
     MOVE_HYPER_VOICE,
     MOVE_SUBSTITUTE,
     MOVE_SEISMIC_TOSS,
+    MOVE_STARFALL,
     MOVE_UNAVAILABLE,
 };
 #endif //P_GEN_4_CROSS_EVOS
@@ -4812,6 +4813,7 @@ static const u16 sChanseyTeachableLearnset[] = {
     MOVE_STRENGTH,
     MOVE_SEISMIC_TOSS,
     MOVE_TRAILBLAZE,
+    MOVE_STARFALL,
     MOVE_UNAVAILABLE,
 };
 
@@ -4860,6 +4862,7 @@ static const u16 sBlisseyTeachableLearnset[] = {
     MOVE_STRENGTH,
     MOVE_SEISMIC_TOSS,
     MOVE_TRAILBLAZE,
+    MOVE_STARFALL,
     MOVE_UNAVAILABLE,
 };
 #endif //P_GEN_2_CROSS_EVOS
@@ -6790,6 +6793,7 @@ static const u16 sDratiniTeachableLearnset[] = {
     MOVE_SURF,
     MOVE_WATERFALL,
     MOVE_SHOCK_WAVE,
+    MOVE_STARFALL,
     MOVE_UNAVAILABLE,
 };
 
@@ -6817,6 +6821,7 @@ static const u16 sDragonairTeachableLearnset[] = {
     MOVE_SURF,
     MOVE_WATERFALL,
     MOVE_SHOCK_WAVE,
+    MOVE_STARFALL,
     MOVE_UNAVAILABLE,
 };
 
@@ -6866,6 +6871,7 @@ static const u16 sDragoniteTeachableLearnset[] = {
     MOVE_WATERFALL,
     MOVE_DEFOG,
     MOVE_SHOCK_WAVE,
+    MOVE_STARFALL,
     MOVE_UNAVAILABLE,
 };
 #endif //P_FAMILY_DRATINI
@@ -7597,6 +7603,7 @@ static const u16 sTogepiTeachableLearnset[] = {
     MOVE_PLAY_ROUGH,
     MOVE_DAZZLING_GLEAM,
     MOVE_SEISMIC_TOSS,
+    MOVE_STARFALL,
     MOVE_UNAVAILABLE,
 };
 
@@ -7640,6 +7647,7 @@ static const u16 sTogeticTeachableLearnset[] = {
     MOVE_HOWLING_GALE,
     MOVE_TORNADO,
     MOVE_SKY_ATTACK,
+    MOVE_STARFALL,
     MOVE_UNAVAILABLE,
 };
 
@@ -7686,6 +7694,7 @@ static const u16 sTogekissTeachableLearnset[] = {
     MOVE_HOWLING_GALE,
     MOVE_TORNADO,
     MOVE_SKY_ATTACK,
+    MOVE_STARFALL,
     MOVE_UNAVAILABLE,
 };
 #endif //P_GEN_4_CROSS_EVOS
@@ -7723,6 +7732,7 @@ static const u16 sNatuTeachableLearnset[] = {
     MOVE_HOWLING_GALE,
     MOVE_TORNADO,
     MOVE_SKY_ATTACK,
+    MOVE_MINDSTORM,
     MOVE_UNAVAILABLE,
 };
 
@@ -7762,6 +7772,7 @@ static const u16 sXatuTeachableLearnset[] = {
     MOVE_HOWLING_GALE,
     MOVE_TORNADO,
     MOVE_SKY_ATTACK,
+    MOVE_MINDSTORM,
     MOVE_UNAVAILABLE,
 };
 #endif //P_FAMILY_NATU
@@ -8099,6 +8110,7 @@ static const u16 sJumpluffTeachableLearnset[] = {
     MOVE_AIR_SLASH,
     MOVE_TRAILBLAZE,
     MOVE_SKY_ATTACK,
+    MOVE_STARFALL,
     MOVE_UNAVAILABLE,
 };
 #endif //P_FAMILY_HOPPIP
@@ -8593,6 +8605,7 @@ static const u16 sMisdreavusTeachableLearnset[] = {
     MOVE_FOUL_PLAY,
     MOVE_HEX,
     MOVE_PLAY_ROUGH,
+    MOVE_STARFALL,
     MOVE_UNAVAILABLE,
 };
 
@@ -8625,6 +8638,7 @@ static const u16 sMismagiusTeachableLearnset[] = {
     MOVE_DAZZLING_GLEAM,
     MOVE_FOUL_PLAY,
     MOVE_PLAY_ROUGH,
+    MOVE_STARFALL,
     MOVE_UNAVAILABLE,
 };
 #endif //P_GEN_4_CROSS_EVOS
@@ -11689,6 +11703,7 @@ static const u16 sBreloomTeachableLearnset[] = {
     MOVE_SEISMIC_TOSS,
     MOVE_VENOSHOCK,
     MOVE_TRAILBLAZE,
+    MOVE_STARFALL,
     MOVE_UNAVAILABLE,
 };
 #endif //P_FAMILY_SHROOMISH
@@ -12160,6 +12175,7 @@ static const u16 sSkittyTeachableLearnset[] = {
     MOVE_DAZZLING_GLEAM,
     MOVE_TRAILBLAZE,
     MOVE_SHOCK_WAVE,
+    MOVE_STARFALL,
     MOVE_UNAVAILABLE,
 };
 
@@ -12191,6 +12207,7 @@ static const u16 sDelcattyTeachableLearnset[] = {
     MOVE_DAZZLING_GLEAM,
     MOVE_TRAILBLAZE,
     MOVE_SHOCK_WAVE,
+    MOVE_STARFALL,
     MOVE_UNAVAILABLE,
 };
 #endif //P_FAMILY_SKITTY
@@ -12775,6 +12792,7 @@ static const u16 sRoseradeTeachableLearnset[] = {
     MOVE_VENOSHOCK,
     MOVE_BLOOM,
     MOVE_TRAILBLAZE,
+    MOVE_STARFALL,
     MOVE_UNAVAILABLE,
 };
 #endif //P_GEN_4_CROSS_EVOS
@@ -13424,6 +13442,7 @@ static const u16 sAltariaTeachableLearnset[] = {
     MOVE_HOWLING_GALE,
     MOVE_TRAILBLAZE,
     MOVE_SKY_ATTACK,
+    MOVE_STARFALL,
     MOVE_UNAVAILABLE,
 };
 #endif //P_FAMILY_SWABLU
@@ -14396,6 +14415,7 @@ static const u16 sGlalieTeachableLearnset[] = {
     MOVE_STRENGTH,
     MOVE_HOWLING_GALE,
     MOVE_TRAILBLAZE,
+    MOVE_STARFALL,
     MOVE_UNAVAILABLE,
 };
 
@@ -14430,6 +14450,7 @@ static const u16 sFroslassTeachableLearnset[] = {
     MOVE_HEX,
     MOVE_HOWLING_GALE,
     MOVE_TRAILBLAZE,
+    MOVE_STARFALL,
     MOVE_UNAVAILABLE,
 };
 #endif //P_GEN_4_CROSS_EVOS
@@ -15008,6 +15029,7 @@ static const u16 sLatiasTeachableLearnset[] = {
     MOVE_STRENGTH,
     MOVE_SHOCK_WAVE,
     MOVE_SKY_ATTACK,
+    MOVE_MINDSTORM,
     MOVE_UNAVAILABLE,
 };
 #endif //P_FAMILY_LATIAS
@@ -15053,6 +15075,7 @@ static const u16 sLatiosTeachableLearnset[] = {
     MOVE_FLIP_TURN,
     MOVE_SHOCK_WAVE,
     MOVE_SKY_ATTACK,
+    MOVE_MINDSTORM,
     MOVE_UNAVAILABLE,
 };
 #endif //P_FAMILY_LATIOS
