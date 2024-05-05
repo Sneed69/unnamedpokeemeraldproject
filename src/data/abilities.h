@@ -715,7 +715,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_SOLAR_POWER] =
     {
         .name = _("Solar Power"),
-        .description = COMPOUND_STRING("Raises Sp. Atk in sunshine,\nbut loses HP every turn."),
+        .description = COMPOUND_STRING("Raises Sp. Atk in sunshine,\nbut decreases HP every turn."),
         .aiRating = 3,
     },
 
@@ -2768,5 +2768,12 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
         .description = COMPOUND_STRING("Psychic moves hit Steel\n"
                                        "super-effectively."),
         .aiRating = 6,
+    },
+
+    [ABILITY_OVERFLOW] =
+    {
+        .name = _("Overflow"),
+        .description = COMPOUND_STRING("Electrifying Aura boosts\nAttack but decreases HP."),
+        .aiRating = 3,
     },
 };
