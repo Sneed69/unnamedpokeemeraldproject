@@ -1779,7 +1779,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_PSYCHIC_SURGE] =
     {
     #if B_EXPANDED_ABILITY_NAMES == TRUE
-        .name = _("Psychic Surge"),
+        .name = _("Telepathic Surge"),
     #else
         .name = _("PsychicSurge"),
     #endif
@@ -1789,14 +1789,14 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
 
     [ABILITY_MISTY_SURGE] =
     {
-        .name = _("Misty Surge"),
+        .name = _("Mystifying Surge"),
         .description = COMPOUND_STRING("Sets Mystifying Aura\nupon entering a battle."),
         .aiRating = 8,
     },
 
     [ABILITY_GRASSY_SURGE] =
     {
-        .name = _("Grassy Surge"),
+        .name = _("Verdant Surge"),
         .description = COMPOUND_STRING("Sets Verdant Aura\nupon entering a battle."),
         .aiRating = 8,
     },
