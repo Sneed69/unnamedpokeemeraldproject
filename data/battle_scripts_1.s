@@ -10235,7 +10235,7 @@ BattleScript_FaintWildMon::
 	savedroppeditem BS_SCRIPTING
 	pause B_WAIT_TIME_SHORT
 	dofaintanimation BS_SCRIPTING
-	printstring STRINGID_TARGETFAINTED
+	printstring STRINGID_SCRIPTINGAINTED
 	setbyte sGIVEEXP_STATE, 0
 	getexp BS_SCRIPTING
 	cleareffectsonfaint BS_SCRIPTING
