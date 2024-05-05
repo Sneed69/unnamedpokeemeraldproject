@@ -1158,6 +1158,8 @@ bool32 AI_IsBattlerGrounded(u32 battlerId)
         return FALSE;
     else if (AI_DATA->abilities[battlerId] == ABILITY_LEVITATE)
         return FALSE;
+    else if (AI_DATA->abilities[battlerId] == ABILITY_FLIGHTLESS)
+        return TRUE;
     else if (IS_BATTLER_OF_TYPE(battlerId, TYPE_FLYING))
         return FALSE;
     else
