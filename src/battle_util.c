@@ -9760,6 +9760,7 @@ static inline u32 CalcDefenseStat(u32 move, u32 battlerAtk, u32 battlerDef, u32 
             if (updateFlags)
                 RecordAbilityBattle(battlerDef, ABILITY_GRASS_PELT);
         }
+        break;
     case ABILITY_SAND_VEIL:
         if (WEATHER_HAS_EFFECT && gBattleWeather & B_WEATHER_SANDSTORM && usesDefStat)
         {
@@ -9767,12 +9768,22 @@ static inline u32 CalcDefenseStat(u32 move, u32 battlerAtk, u32 battlerDef, u32 
             if (updateFlags)
                 RecordAbilityBattle(battlerDef, ABILITY_SAND_VEIL);
         }
+        break;
     case ABILITY_SNOW_CLOAK:
         if (WEATHER_HAS_EFFECT && gBattleWeather & (B_WEATHER_HAIL | B_WEATHER_SNOW) && !usesDefStat)
         {
             modifier = uq4_12_multiply_half_down(modifier, UQ_4_12(1.5));
             if (updateFlags)
                 RecordAbilityBattle(battlerDef, ABILITY_SNOW_CLOAK);
+        }
+        break;
+    case ABILITY_CRYSTAL_SHROUD:
+        if ((WEATHER_HAS_EFFECT && gBattleWeather & (B_WEATHER_HAIL | B_WEATHER_SNOW) && !usesDefStat)
+            || (WEATHER_HAS_EFFECT && gBattleWeather & B_WEATHER_SANDSTORM && usesDefStat))
+        {
+            modifier = uq4_12_multiply_half_down(modifier, UQ_4_12(1.5));
+            if (updateFlags)
+                RecordAbilityBattle(battlerDef, ABILITY_CRYSTAL_SHROUD);
         }
         break;
     case ABILITY_FLOWER_GIFT:

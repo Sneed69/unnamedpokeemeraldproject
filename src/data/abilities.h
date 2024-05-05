@@ -2776,4 +2776,12 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
         .description = COMPOUND_STRING("Electrifying Aura boosts\nAttack but decreases HP."),
         .aiRating = 3,
     },
+
+    [ABILITY_CRYSTAL_SHROUD] =
+    {
+        .name = _("Crystal Shroud"),
+        .description = COMPOUND_STRING("Raises Sp. Def under snow\nand Defense in sandstorms."),
+        //.description = COMPOUND_STRING("Acts as Snow Cloak\nand Sand Veil."),
+        .aiRating = 3,
+    },
 };
