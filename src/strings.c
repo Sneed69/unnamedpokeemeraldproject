@@ -542,7 +542,7 @@ const u8 gText_XNatureMetAtYZ[] = _(
         
 const u8 gText_XNatureHatchedAtYZ[] = _(
     "{DYNAMIC 0}{DYNAMIC 2}{DYNAMIC 1}{DYNAMIC 5} nature,\n"
-    "hatched at {DYNAMIC 0}{DYNAMIC 4}{DYNAMIC 1}.");
+    "hatched in {DYNAMIC 0}{DYNAMIC 4}{DYNAMIC 1}.");
 
 const u8 gText_XNatureObtainedInTrade[] = _(
     "{DYNAMIC 0}{DYNAMIC 2}{DYNAMIC 1}{DYNAMIC 5} nature,\n"

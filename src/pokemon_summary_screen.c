@@ -467,7 +467,7 @@ static const struct WindowTemplate sSummaryTemplate[] =
     [PSS_LABEL_WINDOW_POKEMON_INFO_RENTAL] = {
         .bg = 0,
         .tilemapLeft = 11,
-        .tilemapTop = 4,
+        .tilemapTop = 3,
         .width = 18,
         .height = 2,
         .paletteNum = 6,
@@ -599,7 +599,7 @@ static const struct WindowTemplate sPageInfoTemplate[] =
         .tilemapLeft = 11,
         .tilemapTop = 8,
         .width = 19,
-        .height = 6,
+        .height = 9,
         .paletteNum = 6,
         .baseBlock = 593,
     },
@@ -610,7 +610,7 @@ static const struct WindowTemplate sPageInfoTemplate[] =
         .width = 19,
         .height = 5,
         .paletteNum = 6,
-        .baseBlock = 593 + 19 * 6,
+        .baseBlock = 593 + 19 * 9,
     },
 };
 static const struct WindowTemplate sPageSkillsTemplate[] =
@@ -3160,26 +3160,13 @@ static void PrintMonOTID(void)
 static void PrintMonAbilityName(void)
 {
     u16 ability = GetAbilityBySpecies(sMonSummaryScreen->summary.species, sMonSummaryScreen->summary.abilityNum);
-    PrintTextOnWindow(AddWindowFromTemplateList(sPageInfoTemplate, PSS_DATA_WINDOW_INFO_ABILITY), gAbilitiesInfo[ability].name, 0, 1, 0, 1);
+    PrintTextOnWindowWithFont(AddWindowFromTemplateList(sPageInfoTemplate, PSS_DATA_WINDOW_INFO_ABILITY), gAbilitiesInfo[ability].name, 0, 1, 0, 1, FONT_SMALL);
 }
 
 static void PrintMonAbilityDescription(void)
 {
     u16 ability = GetAbilityBySpecies(sMonSummaryScreen->summary.species, sMonSummaryScreen->summary.abilityNum);
-    u32 i = 0;
-    bool32 twoLines = FALSE;
-
-    while (gAbilitiesInfo[ability].description[i] != EOS && !twoLines)
-    {
-        if (gAbilitiesInfo[ability].description[i] == CHAR_NEWLINE)
-            twoLines = TRUE;
-        i++;
-    }
-
-    if (twoLines)
-        PrintTextOnWindow(AddWindowFromTemplateList(sPageInfoTemplate, PSS_DATA_WINDOW_INFO_ABILITY), gAbilitiesInfo[ability].description, 0, 15, 0, 0);
-    else
-        PrintTextOnWindow(AddWindowFromTemplateList(sPageInfoTemplate, PSS_DATA_WINDOW_INFO_ABILITY), gAbilitiesInfo[ability].description, 0, 18, 0, 0);
+    PrintTextOnWindowWithFont(AddWindowFromTemplateList(sPageInfoTemplate, PSS_DATA_WINDOW_INFO_ABILITY), gAbilitiesInfo[ability].description, 0, 15, 0, 0, FONT_SMALL);
 }
 
 static void BufferMonTrainerMemo(void)
@@ -3236,7 +3223,7 @@ static void BufferMonTrainerMemo(void)
 
 static void PrintMonTrainerMemo(void)
 {
-    PrintTextOnWindow(AddWindowFromTemplateList(sPageInfoTemplate, PSS_DATA_WINDOW_INFO_MEMO), gStringVar4, 0, 2, 0, 0);
+    PrintTextOnWindowWithFont(AddWindowFromTemplateList(sPageInfoTemplate, PSS_DATA_WINDOW_INFO_MEMO), gStringVar4, 0, 8, 0, 0, FONT_SMALL);
 }
 
 static void BufferNatureString(void)
@@ -3340,7 +3327,7 @@ static void PrintEggState(void)
     else
         text = gText_EggWillTakeALongTime;
 
-    PrintTextOnWindow(AddWindowFromTemplateList(sPageInfoTemplate, PSS_DATA_WINDOW_INFO_ABILITY), text, 0, 1, 0, 0);
+    PrintTextOnWindowWithFont(AddWindowFromTemplateList(sPageInfoTemplate, PSS_DATA_WINDOW_INFO_ABILITY), text, 0, 1, 0, 0, FONT_SMALL);
 }
 
 static void PrintEggMemo(void)
@@ -3364,7 +3351,7 @@ static void PrintEggMemo(void)
         text = gText_OddEggFoundByCouple;
     }
 
-    PrintTextOnWindow(AddWindowFromTemplateList(sPageInfoTemplate, PSS_DATA_WINDOW_INFO_MEMO), text, 0, 1, 0, 0);
+    PrintTextOnWindowWithFont(AddWindowFromTemplateList(sPageInfoTemplate, PSS_DATA_WINDOW_INFO_MEMO), text, 0, 1, 0, 0, FONT_SMALL);
 }
 
 static void PrintSkillsPageText(void)
