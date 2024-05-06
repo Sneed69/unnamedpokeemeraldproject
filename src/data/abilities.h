@@ -19,14 +19,14 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_DRIZZLE] =
     {
         .name = _("Drizzle"),
-        .description = COMPOUND_STRING("Summons rain upon\nentering a battle."),
+        .description = COMPOUND_STRING("Upon entering a battle,\nsummons rainy weather."),
         .aiRating = 9,
     },
 
     [ABILITY_SPEED_BOOST] =
     {
         .name = _("Speed Boost"),
-        .description = COMPOUND_STRING("Boosts Speed at the end\nof every turn."),
+        .description = COMPOUND_STRING("Raises Speed at the end\nof every turn."),
         .aiRating = 9,
     },
 
@@ -41,7 +41,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_STURDY] =
     {
         .name = _("Sturdy"),
-        .description = COMPOUND_STRING("Cannot be knocked\nout in one hit."),
+        .description = COMPOUND_STRING("Cannot be knocked out by\na single hit while HP is at\nits maximum."),
         .aiRating = 6,
         .breakable = TRUE,
     },
@@ -73,14 +73,14 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_STATIC] =
     {
         .name = _("Static"),
-        .description = COMPOUND_STRING("Contact may inflict\nparalysis on attackers."),
+        .description = COMPOUND_STRING("May paralyze attackers\nthat make direct contact."),
         .aiRating = 4,
     },
 
     [ABILITY_VOLT_ABSORB] =
     {
         .name = _("Volt Absorb"),
-        .description = COMPOUND_STRING("Restores HP when hit by\nElectric-type moves."),
+        .description = COMPOUND_STRING("Takes no damage when hit by\nElectric-type moves.\nInstead, its HP is restored."),
         .aiRating = 7,
         .breakable = TRUE,
     },
@@ -88,7 +88,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_WATER_ABSORB] =
     {
         .name = _("Water Absorb"),
-        .description = COMPOUND_STRING("Restores HP when hit by\nWater-type moves."),
+        .description = COMPOUND_STRING("Takes no damage when hit by\nWater-type moves.\nInstead, its HP is restored."),
         .aiRating = 7,
         .breakable = TRUE,
     },
@@ -96,7 +96,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_OBLIVIOUS] =
     {
         .name = _("Oblivious"),
-        .description = COMPOUND_STRING("Unaffected by Taunt\nand Intimidate."),
+        .description = COMPOUND_STRING("Unaffected by taunts\nand intimidation."),
         .aiRating = 2,
         .breakable = TRUE,
     },
@@ -115,7 +115,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     #else
         .name = _("CompoundEyes"),
     #endif
-        .description = COMPOUND_STRING("Significantly raises base\nmove accuracy."),
+        .description = COMPOUND_STRING("Significantly boosts base\nmove accuracy."),
         .aiRating = 7,
     },
 
@@ -145,7 +145,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_FLASH_FIRE] =
     {
         .name = _("Flash Fire"),
-        .description = COMPOUND_STRING("Absorbs incoming Fire-type\nmoves, powering up its own."),
+        .description = COMPOUND_STRING("Absorbs incoming Fire-type\nmoves, turning them into power\nfor its own Fire-type moves. "),
         .aiRating = 6,
         .breakable = TRUE,
     },
@@ -161,7 +161,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_OWN_TEMPO] =
     {
         .name = _("Own Tempo"),
-        .description = COMPOUND_STRING("Cannot be confused."),
+        .description = COMPOUND_STRING("Prevents confusion\nand intimidation."),
         .aiRating = 3,
         .breakable = TRUE,
     },
@@ -169,7 +169,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_SUCTION_CUPS] =
     {
         .name = _("Suction Cups"),
-        .description = COMPOUND_STRING("Negates all moves and items\nthat force switching out."),
+        .description = COMPOUND_STRING("Protects from all moves and\nitems that force switching out."),
         .aiRating = 2,
         .breakable = TRUE,
     },
@@ -177,7 +177,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_INTIMIDATE] =
     {
         .name = _("Intimidate"),
-        .description = COMPOUND_STRING("Lowers the Attack\nof opposing Pokémon."),
+        .description = COMPOUND_STRING("Upon entering a battle,\nlowers the opposing\nPokémon's Attack."),
         .aiRating = 7,
     },
 
@@ -191,7 +191,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_ROUGH_SKIN] =
     {
         .name = _("Rough Skin"),
-        .description = COMPOUND_STRING("Inflicts damage to\nattackers on contact."),
+        .description = COMPOUND_STRING("Inflicts damage to attackers\nthat make direct contact."),
         .aiRating = 6,
     },
 
@@ -216,7 +216,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_EFFECT_SPORE] =
     {
         .name = _("Effect Spore"),
-        .description = COMPOUND_STRING("Contact may inflict status\nconditions on attackers."),
+        .description = COMPOUND_STRING("May inflict poison, sleep\nor paralysis to attackers\nthat make direct contact."),
         .aiRating = 4,
     },
 
@@ -230,7 +230,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_CLEAR_BODY] =
     {
         .name = _("Clear Body"),
-        .description = COMPOUND_STRING("Prevents stat reduction\nby other Pokémon."),
+        .description = COMPOUND_STRING("Stats cannot be lowered\nby other Pokémon's\nmoves or abilities."),
         .aiRating = 4,
         .breakable = TRUE,
     },
@@ -238,7 +238,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_NATURAL_CURE] =
     {
         .name = _("Natural Cure"),
-        .description = COMPOUND_STRING("Heals all status problems\nupon switching out."),
+        .description = COMPOUND_STRING("Cures all status conditions\nupon switching out."),
         .aiRating = 7,
     },
 
@@ -249,7 +249,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     #else
         .name = _("LightningRod"),
     #endif
-        .description = COMPOUND_STRING("Draws in all Electric-type\nmoves to boost Sp. Atk."),
+        .description = COMPOUND_STRING("Takes no damage when hit by\nElectric-type moves.\nInstead, its Sp. Atk is boosted."),
         .aiRating = 7,
         .breakable = TRUE,
     },
@@ -257,28 +257,28 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_SERENE_GRACE] =
     {
         .name = _("Serene Grace"),
-        .description = COMPOUND_STRING("Doubles the occurrence rate\nof secondary move effects."),
+        .description = COMPOUND_STRING("Doubles the likelihood of\nsecondary move effects\noccurring when attacking."),
         .aiRating = 8,
     },
 
     [ABILITY_SWIFT_SWIM] =
     {
         .name = _("Swift Swim"),
-        .description = COMPOUND_STRING("Doubles Speed in rain."),
+        .description = COMPOUND_STRING("Speed is doubled\nin rainy weather."),
         .aiRating = 6,
     },
 
     [ABILITY_CHLOROPHYLL] =
     {
         .name = _("Chlorophyll"),
-        .description = COMPOUND_STRING("Doubles Speed in sunshine."),
+        .description = COMPOUND_STRING("Speed is doubled\nin harsh sunlight."),
         .aiRating = 6,
     },
 
     [ABILITY_ILLUMINATE] =
     {
         .name = _("Illuminate"),
-        .description = COMPOUND_STRING("Prevents accuracy\nreduction by other Pokémon."),
+        .description = COMPOUND_STRING("Accuracy cannot be lowered\nby other Pokémon's\nmoves or abilities."),
         .aiRating = 0,
         .breakable = TRUE,
     },
@@ -286,7 +286,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_TRACE] =
     {
         .name = _("Trace"),
-        .description = COMPOUND_STRING("Copies an opposing\nPokémon's Ability."),
+        .description = COMPOUND_STRING("Upon entering a battle,\ncopies a foe's ability. "),
         .aiRating = 6,
         .cantBeCopied = TRUE,
         .cantBeTraced = TRUE,
@@ -295,14 +295,14 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_HUGE_POWER] =
     {
         .name = _("Huge Power"),
-        .description = COMPOUND_STRING("Doubles Attack."),
+        .description = COMPOUND_STRING("Deals double damage\nwith physical moves."),
         .aiRating = 10,
     },
 
     [ABILITY_POISON_POINT] =
     {
         .name = _("Poison Point"),
-        .description = COMPOUND_STRING("May poison attackers\non contact."),
+        .description = COMPOUND_STRING("May poison attackers\nthat make direct contact."),
         .aiRating = 4,
     },
 
@@ -317,7 +317,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_MAGMA_ARMOR] =
     {
         .name = _("Magma Armor"),
-        .description = COMPOUND_STRING("Protects against frostbite."),
+        .description = COMPOUND_STRING("Prevents frostbite."),
         .aiRating = 4,
         .breakable = TRUE,
     },
@@ -325,7 +325,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_WATER_VEIL] =
     {
         .name = _("Water Veil"),
-        .description = COMPOUND_STRING("Protects against burns."),
+        .description = COMPOUND_STRING("Prevents burns."),
         .aiRating = 4,
         .breakable = TRUE,
     },
@@ -333,7 +333,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_MAGNET_PULL] =
     {
         .name = _("Magnet Pull"),
-        .description = COMPOUND_STRING("Prevents Steel-type\nfoes from escaping."),
+        .description = COMPOUND_STRING("Prevents opposing Steel-type\nPokémon from escaping."),
         .aiRating = 9,
     },
 
@@ -348,7 +348,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_RAIN_DISH] =
     {
         .name = _("Rain Dish"),
-        .description = COMPOUND_STRING("Gradually regains HP in rain."),
+        .description = COMPOUND_STRING("In rainy weather, restores HP\nat the end of each turn."),
         .aiRating = 3,
     },
 
@@ -362,14 +362,14 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_PRESSURE] =
     {
         .name = _("Pressure"),
-        .description = COMPOUND_STRING("Raises opposing Pokémon's\nPP usage."),
+        .description = COMPOUND_STRING("Makes foes expend twice as\nmuch PP when using moves."),
         .aiRating = 5,
     },
 
     [ABILITY_THICK_FAT] =
     {
         .name = _("Thick Fat"),
-        .description = COMPOUND_STRING("Grants resistance to\nFire- and Ice-type moves."),
+        .description = COMPOUND_STRING("Halves damage taken from\nFire- and Ice-type moves."),
         .aiRating = 7,
         .breakable = TRUE,
     },
@@ -384,7 +384,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_FLAME_BODY] =
     {
         .name = _("Flame Body"),
-        .description = COMPOUND_STRING("Contact may leave attackers\nwith a burn."),
+        .description = COMPOUND_STRING("May burn attackers that\nmake direct contact."),
         .aiRating = 4,
     },
 
@@ -398,7 +398,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_KEEN_EYE] =
     {
         .name = _("Keen Eye"),
-        .description = COMPOUND_STRING("Prevents accuracy\nreduction by other Pokémon."),
+        .description = COMPOUND_STRING("Accuracy cannot be lowered\nby other Pokémon's\nmoves or abilities."),
         .aiRating = 1,
         .breakable = TRUE,
     },
@@ -406,7 +406,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_HYPER_CUTTER] =
     {
         .name = _("Hyper Cutter"),
-        .description = COMPOUND_STRING("Prevents Attack reduction\nby other Pokémon."),
+        .description = COMPOUND_STRING("Attack cannot be lowered\nby other Pokémon's\nmoves or abilities."),
         .aiRating = 3,
         .breakable = TRUE,
     },
@@ -414,14 +414,14 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_PICKUP] =
     {
         .name = _("Pickup"),
-        .description = COMPOUND_STRING("May find items\nafter battle."),
+        .description = COMPOUND_STRING("Chance to find items\nafter every battle."),
         .aiRating = 1,
     },
 
     [ABILITY_TRUANT] =
     {
         .name = _("Truant"),
-        .description = COMPOUND_STRING("Will loaf around if it used\na move on the previous turn."),
+        .description = COMPOUND_STRING("After using a move, spends\nthe next turn loafing around."),
         .aiRating = -2,
         .cantBeOverwritten = TRUE,
     },
@@ -436,7 +436,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_CUTE_CHARM] =
     {
         .name = _("Cute Charm"),
-        .description = COMPOUND_STRING("Contact may leave\nattackers infatuated."),
+        .description = COMPOUND_STRING("Attackers that make direct\ncontact may become infatuated."),
         .aiRating = 2,
     },
 
@@ -457,7 +457,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_FORECAST] =
     {
         .name = _("Forecast"),
-        .description = COMPOUND_STRING("Changes type to reflect\nthe current weather."),
+        .description = COMPOUND_STRING("Changes its type to Water in\nrainy weather, Ice in snowy\nweather or Fire in harsh sunlight."),
         .aiRating = 6,
         .cantBeCopied = TRUE,
         .cantBeTraced = TRUE,
@@ -474,14 +474,14 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_SHED_SKIN] =
     {
         .name = _("Shed Skin"),
-        .description = COMPOUND_STRING("Chance to cure a status\ncondition after each turn."),
+        .description = COMPOUND_STRING("Has a chance to cure any\nnon-volatile status condition\nat the end of each turn."),
         .aiRating = 7,
     },
 
     [ABILITY_GUTS] =
     {
         .name = _("Guts"),
-        .description = COMPOUND_STRING("Suffering from a status\ncondition boosts Attack."),
+        .description = COMPOUND_STRING("Suffering from a status\ncondition boosts Attack.\nBurns don't reduce Attack."),
         .aiRating = 6,
     },
 
@@ -496,7 +496,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_LIQUID_OOZE] =
     {
         .name = _("Liquid Ooze"),
-        .description = COMPOUND_STRING("Damages attackers that\nuse draining moves."),
+        .description = COMPOUND_STRING("Damages attackers that\nuse HP-draining moves."),
         .aiRating = 3,
     },
 
@@ -538,14 +538,14 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_DROUGHT] =
     {
         .name = _("Drought"),
-        .description = COMPOUND_STRING("Summons sunlight upon\nentering a battle."),
+        .description = COMPOUND_STRING("Upon entering a battle,\nsummons harsh sunlight."),
         .aiRating = 9,
     },
 
     [ABILITY_ARENA_TRAP] =
     {
         .name = _("Arena Trap"),
-        .description = COMPOUND_STRING("Prevents grounded opposing\nPokémon from escaping."),
+        .description = COMPOUND_STRING("Prevents opposing grounded\nPokémon from escaping."),
         .aiRating = 9,
     },
 
@@ -560,7 +560,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_WHITE_SMOKE] =
     {
         .name = _("White Smoke"),
-        .description = COMPOUND_STRING("Prevents stat reduction\nby other Pokémon."),
+        .description = COMPOUND_STRING("Stats cannot be lowered\nby other Pokémon's\nmoves or abilities."),
         .aiRating = 4,
         .breakable = TRUE,
     },
@@ -568,7 +568,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_PURE_POWER] =
     {
         .name = _("Pure Power"),
-        .description = COMPOUND_STRING("Doubles Sp. Attack."),
+        .description = COMPOUND_STRING("Deals double damage\nwith special moves."),
         .aiRating = 10,
     },
 
@@ -598,7 +598,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_MOTOR_DRIVE] =
     {
         .name = _("Motor Drive"),
-        .description = COMPOUND_STRING("Absorbs Electric-type moves\nto raise Speed."),
+        .description = COMPOUND_STRING("Takes no damage when hit by\nElectric-type moves.\nInstead, its Speed is boosted."),
         .aiRating = 6,
         .breakable = TRUE,
     },
@@ -606,21 +606,21 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_RIVALRY] =
     {
         .name = _("Rivalry"),
-        .description = COMPOUND_STRING("Deals more damage to\nPokémon of the same gender."),
+        .description = COMPOUND_STRING("Deals more damage to Pokémon of\nthe same gender and less damage\nto those of the opposite gender."),
         .aiRating = 1,
     },
 
     [ABILITY_STEADFAST] =
     {
         .name = _("Steadfast"),
-        .description = COMPOUND_STRING("Flinching raises Speed."),
+        .description = COMPOUND_STRING("Raises its Speed every\ntime it flinches."),
         .aiRating = 2,
     },
 
     [ABILITY_SNOW_CLOAK] =
     {
         .name = _("Snow Cloak"),
-        .description = COMPOUND_STRING("Raises Special Defense\nwhile inside a snowstorm."),
+        .description = COMPOUND_STRING("Boosts Special Defense\nwhile it's snowing."),
         .aiRating = 3,
         .breakable = TRUE,
     },
@@ -628,7 +628,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_GLUTTONY] =
     {
         .name = _("Gluttony"),
-        .description = COMPOUND_STRING("Eats held Berries at half HP,\nwhich is earlier than usual."),
+        .description = COMPOUND_STRING("When holding a Berry to be eaten\nwhen at low HP, it will instead\neat it when HP drops below half."),
         .aiRating = 3,
     },
 
@@ -657,7 +657,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_SIMPLE] =
     {
         .name = _("Simple"),
-        .description = COMPOUND_STRING("Changes to stats are\ntwice as potent."),
+        .description = COMPOUND_STRING("Stat stage changes are\ntwice as potent."),
         .aiRating = 8,
         .breakable = TRUE,
     },
@@ -665,7 +665,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_DRY_SKIN] =
     {
         .name = _("Dry Skin"),
-        .description = COMPOUND_STRING("Hates Fire and sunshine.\nHealed by Water and rain."),
+        .description = COMPOUND_STRING("Weak to Fire-Type moves.\nLoses HP in the sun. Healed\nby rain and Water-type moves."),
         .aiRating = 6,
         .breakable = TRUE,
     },
@@ -673,7 +673,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_DOWNLOAD] =
     {
         .name = _("Download"),
-        .description = COMPOUND_STRING("Raises Attack or Sp. Atk\nbased on a foe's defenses."),
+        .description = COMPOUND_STRING("Raises Attack or Special Attack\nbased on the foe's\nweakest defense."),
         .aiRating = 7,
     },
 
@@ -708,21 +708,21 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_HYDRATION] =
     {
         .name = _("Hydration"),
-        .description = COMPOUND_STRING("Rain restores HP and cures\nstatus conditions."),
+        .description = COMPOUND_STRING("At the end of each turn, in rainy\nweather, restores HP and cures\nnon-volatile status conditions."),
         .aiRating = 4,
     },
 
     [ABILITY_SOLAR_POWER] =
     {
         .name = _("Solar Power"),
-        .description = COMPOUND_STRING("Raises Sp. Atk in sunshine,\nbut decreases HP every turn."),
+        .description = COMPOUND_STRING("Boosts Special Attack in\nharsh sunlight, but HP\ndecreases every turn."),
         .aiRating = 3,
     },
 
     [ABILITY_QUICK_FEET] =
     {
         .name = _("Quick Feet"),
-        .description = COMPOUND_STRING("Suffering from a status\ncondition boosts Speed."),
+        .description = COMPOUND_STRING("Suffering from a status\ncondition boosts Speed.\nParalysis doesn't reduce Speed."),
         .aiRating = 5,
     },
 
@@ -750,7 +750,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_NO_GUARD] =
     {
         .name = _("No Guard"),
-        .description = COMPOUND_STRING("Incoming and outgoing\nattacks always land."),
+        .description = COMPOUND_STRING("Incoming and outgoing\nattacks never miss."),
         .aiRating = 8,
     },
 
@@ -771,7 +771,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_LEAF_GUARD] =
     {
         .name = _("Leaf Guard"),
-        .description = COMPOUND_STRING("Protects from all status\nconditions in sunshine."),
+        .description = COMPOUND_STRING("Avoids all non-volatile\nstatus conditions when\nunder harsh sunlight."),
         .aiRating = 2,
         .breakable = TRUE,
     },
@@ -786,21 +786,21 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_MOLD_BREAKER] =
     {
         .name = _("Mold Breaker"),
-        .description = COMPOUND_STRING("Moves bypass protections\ngranted by other Abilities."),
+        .description = COMPOUND_STRING("Moves are unaffected by\ntheir target's abilities."),
         .aiRating = 7,
     },
 
     [ABILITY_SUPER_LUCK] =
     {
         .name = _("Super Luck"),
-        .description = COMPOUND_STRING("Raises the critical-hit\nratio of moves."),
+        .description = COMPOUND_STRING("Raises the critical-hit\nratio of all moves."),
         .aiRating = 3,
     },
 
     [ABILITY_AFTERMATH] =
     {
         .name = _("Aftermath"),
-        .description = COMPOUND_STRING("Damages attackers that land\nfinishing contact attacks."),
+        .description = COMPOUND_STRING("When knocked out by a move\nthat makes direct contact,\ndamages the attacker."),
         .aiRating = 5,
     },
 
@@ -836,7 +836,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_FILTER] =
     {
         .name = _("Filter"),
-        .description = COMPOUND_STRING("Reduces damage from\nsuper effective attacks."),
+        .description = COMPOUND_STRING("Reduces damage taken from\nsuper effective attacks."),
         .aiRating = 6,
         .breakable = TRUE,
     },
@@ -844,21 +844,21 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_SLOW_START] =
     {
         .name = _("Slow Start"),
-        .description = COMPOUND_STRING("Attack and Speed are\nhalved for five turns."),
+        .description = COMPOUND_STRING("After entering a battle\nAttack and Speed are\nhalved for five turns."),
         .aiRating = -2,
     },
 
     [ABILITY_SCRAPPY] =
     {
         .name = _("Scrappy"),
-        .description = COMPOUND_STRING("Can hit Ghosts with Normal-\nand Fighting-type moves."),
+        .description = COMPOUND_STRING("Can hit Ghost-type Pokémon with\nNormal- and Fighting-type moves.\nCannot be intimidated."),
         .aiRating = 6,
     },
 
     [ABILITY_STORM_DRAIN] =
     {
         .name = _("Storm Drain"),
-        .description = COMPOUND_STRING("Draws in all Water-type\nmoves to boost Sp. Atk."),
+        .description = COMPOUND_STRING("Takes no damage when hit by\nWater-type moves.\nInstead, its Sp. Atk is boosted."),
         .aiRating = 7,
         .breakable = TRUE,
     },
@@ -866,14 +866,14 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_ICE_BODY] =
     {
         .name = _("Ice Body"),
-        .description = COMPOUND_STRING("Summons a snowstorm upon\nentering a battle."),
+        .description = COMPOUND_STRING("In snowy weather, restores HP\nat the end of each turn."),
         .aiRating = 3,
     },
 
     [ABILITY_SOLID_ROCK] =
     {
         .name = _("Solid Rock"),
-        .description = COMPOUND_STRING("Reduces damage from\nsuper effective attacks."),
+        .description = COMPOUND_STRING("Reduces damage taken from\nsuper effective attacks."),
         .aiRating = 6,
         .breakable = TRUE,
     },
@@ -881,14 +881,14 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_SNOW_WARNING] =
     {
         .name = _("Snow Warning"),
-        .description = COMPOUND_STRING("Summons a Hailstorm."),
+        .description = COMPOUND_STRING("Summons snowy weather\nupon entering a battle."),
         .aiRating = 8,
     },
 
     [ABILITY_HONEY_GATHER] =
     {
         .name = _("Honey Gather"),
-        .description = COMPOUND_STRING("May gather Honey\nafter a battle."),
+        .description = COMPOUND_STRING("May gather Honey\nafter every battle."),
         .aiRating = 0,
     },
 
@@ -902,7 +902,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_RECKLESS] =
     {
         .name = _("Reckless"),
-        .description = COMPOUND_STRING("Boosts the power of recoil\nand explosion moves."),
+        .description = COMPOUND_STRING("Boosts the power of recoil,\ncrashing and explosion moves."),
         .aiRating = 6,
     },
 
@@ -921,7 +921,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_FLOWER_GIFT] =
     {
         .name = _("Flower Gift"),
-        .description = COMPOUND_STRING("Boosts the team's Attack\nand Sp. Def in sunshine."),
+        .description = COMPOUND_STRING("Boosts the team's Attack\nand Special Defense when\nunder harsh sunlight."),
         .aiRating = 4,
         .cantBeCopied = TRUE,
         .cantBeTraced = TRUE,
@@ -931,21 +931,21 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_BAD_DREAMS] =
     {
         .name = _("Bad Dreams"),
-        .description = COMPOUND_STRING("At the end of each turn, sleeping foes lose HP."),
+        .description = COMPOUND_STRING("At the end of each turn,\nsleeping foes lose HP."),
         .aiRating = 4,
     },
 
     [ABILITY_PICKPOCKET] =
     {
         .name = _("Pickpocket"),
-        .description = COMPOUND_STRING("Steals items from attackers\nthat make direct contact."),
+        .description = COMPOUND_STRING("Steals items held by attackers\nthat make direct contact."),
         .aiRating = 3,
     },
 
     [ABILITY_SHEER_FORCE] =
     {
         .name = _("Sheer Force"),
-        .description = COMPOUND_STRING("Boosts move power by\nremoving secondary effects."),
+        .description = COMPOUND_STRING("Moves with secondary effects\ndeal more damage but cannot\ncause those effects."),
         .aiRating = 8,
     },
 
@@ -967,7 +967,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_DEFIANT] =
     {
         .name = _("Defiant"),
-        .description = COMPOUND_STRING("Sharply raises Attack when\nany stat is lowered by foes."),
+        .description = COMPOUND_STRING("Sharply raises Attack when\nany stat is lowered by a foe."),
         .aiRating = 5,
     },
 
@@ -1026,7 +1026,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_MULTISCALE] =
     {
         .name = _("Multiscale"),
-        .description = COMPOUND_STRING("Halves damage taken by\nattacks while at full HP."),
+        .description = COMPOUND_STRING("Halves damage taken\nfrom attacks while HP\nis at its maximum."),
         .aiRating = 8,
         .breakable = TRUE,
     },
@@ -1041,14 +1041,14 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_FLARE_BOOST] =
     {
         .name = _("Flare Boost"),
-        .description = COMPOUND_STRING("Boosts Sp. Atk and Speed\nwhile suffering from a burn."),
+        .description = COMPOUND_STRING("Boosts Special Attack and Speed\nwhile suffering from a burn."),
         .aiRating = 5,
     },
 
     [ABILITY_HARVEST] =
     {
         .name = _("Harvest"),
-        .description = COMPOUND_STRING("May replace a used Berry.\nAlways works in sunshine."),
+        .description = COMPOUND_STRING("May replace a used Berry\nat the end of each turn.\nAlways works in harsh sunlight."),
         .aiRating = 5,
     },
 
@@ -1063,14 +1063,14 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_MOODY] =
     {
         .name = _("Moody"),
-        .description = COMPOUND_STRING ("Randomly raises and lowers\ntwo stats after each turn."),
+        .description = COMPOUND_STRING ("At the end of every turn,\nraises a random stat sharply,\nbut lowers another stat."),
         .aiRating = 10,
     },
 
     [ABILITY_OVERCOAT] =
     {
         .name = _("Overcoat"),
-        .description = COMPOUND_STRING("Protects from sand, hail,\nspores and powder."),
+        .description = COMPOUND_STRING("Protects from sandstorms,\nspores and powder."),
         .aiRating = 5,
         .breakable = TRUE,
     },
@@ -1085,14 +1085,14 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_REGENERATOR] =
     {
         .name = _("Regenerator"),
-        .description = COMPOUND_STRING("Restores a little HP when\nwithdrawn from battle."),
+        .description = COMPOUND_STRING("Restores some HP when\nwithdrawn from battle."),
         .aiRating = 8,
     },
 
     [ABILITY_BIG_PECKS] =
     {
         .name = _("Big Pecks"),
-        .description = COMPOUND_STRING("Prevents Defense reduction\nby other Pokémon."),
+        .description = COMPOUND_STRING("Defense cannot be lowered\nby other Pokémon's\nmoves or abilities."),
         .aiRating = 1,
         .breakable = TRUE,
     },
@@ -1100,7 +1100,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_SAND_RUSH] =
     {
         .name = _("Sand Rush"),
-        .description = COMPOUND_STRING("Doubles Speed while\ninside a sandstorm."),
+        .description = COMPOUND_STRING("Speed is doubled while\ninside a sandstorm."),
         .aiRating = 6,
     },
 
@@ -1115,7 +1115,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_ANALYTIC] =
     {
         .name = _("Analytic"),
-        .description = COMPOUND_STRING("Boosts move power when\nmoving after all others."),
+        .description = COMPOUND_STRING("Deals extra damage\nwhen moving last."),
         .aiRating = 5,
     },
 
@@ -1141,14 +1141,14 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_INFILTRATOR] =
     {
         .name = _("Infiltrator"),
-        .description = COMPOUND_STRING("Bypasses substitutes,\nbarriers and similar effects."),
+        .description = COMPOUND_STRING("Moves bypass Substitute,\nMist, Safeguard, Reflect\nLight Screen and Aurora Veil."),
         .aiRating = 6,
     },
 
     [ABILITY_MUMMY] =
     {
         .name = _("Mummy"),
-        .description = COMPOUND_STRING("Attackers gain this Ability\nafter making contact."),
+        .description = COMPOUND_STRING("Attackers gain this ability\nafter making direct contact."),
         .aiRating = 5,
     },
 
@@ -1169,7 +1169,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_RATTLED] =
     {
         .name = _("Rattled"),
-        .description = COMPOUND_STRING("Dark-, Ghost- and Bug-type\ndamage raises Speed."),
+        .description = COMPOUND_STRING("Raises Speed when hit by Dark-,\nGhost- or Bug-type moves."),
         .aiRating = 3,
     },
 
@@ -1184,7 +1184,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_SAP_SIPPER] =
     {
         .name = _("Sap Sipper"),
-        .description = COMPOUND_STRING("Absorbs incoming Grass-\ntype moves, raising Attack."),
+        .description = COMPOUND_STRING("Takes no damage when hit by\nGrass-type moves.\nInstead, its Attack is boosted."),
         .aiRating = 7,
         .breakable = TRUE,
     },
@@ -1192,21 +1192,21 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_PRANKSTER] =
     {
         .name = _("Prankster"),
-        .description = COMPOUND_STRING("Status moves go first, but\nfail against Dark-type foes."),
+        .description = COMPOUND_STRING("Status moves gain\nincreased priority."),
         .aiRating = 8,
     },
 
     [ABILITY_SAND_FORCE] =
     {
         .name = _("Sand Force"),
-        .description = COMPOUND_STRING("Sandstorms raise Rock, Steel\nand Ground-type move power."),
+        .description = COMPOUND_STRING("Boosts Rock-, Steel- and\nGround-type move power\nwhile inside a sandstorm."),
         .aiRating = 4,
     },
 
     [ABILITY_IRON_BARBS] =
     {
         .name = _("Iron Barbs"),
-        .description = COMPOUND_STRING("Inflicts damage to\nattackers on contact."),
+        .description = COMPOUND_STRING("Inflicts damage to attackers\nthat make direct contact."),
         .aiRating = 6,
     },
 
@@ -1231,7 +1231,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_TURBOBLAZE] =
     {
         .name = _("Mold Destroyer"),
-        .description = COMPOUND_STRING("Moves ignore Rock, Steel\nand ability protections."),
+        .description = COMPOUND_STRING("Moves ignore all abilities and\nany resistances granted by\nthe Rock and Steel types."),
         .aiRating = 10,
     },
 
@@ -1245,7 +1245,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_AROMA_VEIL] =
     {
         .name = _("Aroma Veil"),
-        .description = COMPOUND_STRING("Move disabling effects\ncannot affect the team."),
+        .description = COMPOUND_STRING("Protects from Torment,\nTaunt, Encore and Disable."),
         .aiRating = 3,
         .breakable = TRUE,
     },
@@ -1267,14 +1267,14 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_PROTEAN] =
     {
         .name = _("Protean"),
-        .description = COMPOUND_STRING("Changes type to match the\ntype of the move it's using."),
+        .description = COMPOUND_STRING("Before using a move,\nchanges its type to\nmatch the move's type."),
         .aiRating = 8,
     },
 
     [ABILITY_FUR_COAT] =
     {
         .name = _("Fur Coat"),
-        .description = COMPOUND_STRING("Doubles Defense."),
+        .description = COMPOUND_STRING("Halves damage taken from\nmoves that target Defense."),
         .aiRating = 7,
         .breakable = TRUE,
     },
@@ -1282,7 +1282,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_MAGICIAN] =
     {
         .name = _("Magician"),
-        .description = COMPOUND_STRING("Steals items from Pokémon\nit hits with attacks."),
+        .description = COMPOUND_STRING("Steals items held by Pokémon\nit hits with attacks."),
         .aiRating = 3,
     },
 
@@ -1296,7 +1296,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_COMPETITIVE] =
     {
         .name = _("Competitive"),
-        .description = COMPOUND_STRING("Sharply raises Sp. Atk when\nany stat is lowered."),
+        .description = COMPOUND_STRING("Sharply raises Special Attack\nwhen any stat is lowered\nby a foe."),
         .aiRating = 5,
     },
 
@@ -1310,7 +1310,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_REFRIGERATE] =
     {
         .name = _("Refrigerate"),
-        .description = COMPOUND_STRING("Normal-type moves become\nIce-type and gain power."),
+        .description = COMPOUND_STRING("Normal-type moves become\nIce-type and increase in power."),
         .aiRating = 8,
     },
 
@@ -1329,7 +1329,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     #else
         .name = _("StanceChange"),
     #endif
-        .description = COMPOUND_STRING("Transforms as it battles."),
+        .description = COMPOUND_STRING("Changes to Blade form before\nusing attack moves and Shield\nform before it uses King's Shield."),
         .aiRating = 10,
         .cantBeCopied = TRUE,
         .cantBeSwapped = TRUE,
@@ -1341,7 +1341,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_GALE_WINGS] =
     {
         .name = _("Gale Wings"),
-        .description = COMPOUND_STRING("Gives priority to\nFlying-type moves."),
+        .description = COMPOUND_STRING("Flying-type moves gain\nincreased priority."),
         .aiRating = 6,
     },
 
@@ -1359,7 +1359,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_GRASS_PELT] =
     {
         .name = _("Grass Pelt"),
-        .description = COMPOUND_STRING("Boosts Defense under\nVerdant Aura."),
+        .description = COMPOUND_STRING("Boosts Defense while a\nVerdant Aura is active."),
         .aiRating = 2,
         .breakable = TRUE,
     },
@@ -1381,21 +1381,21 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_PIXILATE] =
     {
         .name = _("Pixilate"),
-        .description = COMPOUND_STRING("Normal-type moves become\nFairy-type and gain power."),
+        .description = COMPOUND_STRING("Normal-type moves become\nFairy-type and increase in power."),
         .aiRating = 8,
     },
 
     [ABILITY_GOOEY] =
     {
         .name = _("Gooey"),
-        .description = COMPOUND_STRING("Moves that make contact\nlower the attacker's Speed."),
+        .description = COMPOUND_STRING("Lowers the speed of attackers\nthat make direct contact."),
         .aiRating = 5,
     },
 
     [ABILITY_AERILATE] =
     {
         .name = _("Aerilate"),
-        .description = COMPOUND_STRING("Normal-type moves become\nFlying-type and gain power."),
+        .description = COMPOUND_STRING("Normal-type moves become\nFlying-type and increase in power."),
         .aiRating = 8,
     },
 
@@ -1413,14 +1413,14 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_DARK_AURA] =
     {
         .name = _("Dark Aura"),
-        .description = COMPOUND_STRING("Boosts the power of each\nPokémon's Dark-type moves."),
+        .description = COMPOUND_STRING("Boosts the power of every\nPokémon's Dark-type moves."),
         .aiRating = 6,
     },
 
     [ABILITY_FAIRY_AURA] =
     {
         .name = _("Fairy Aura"),
-        .description = COMPOUND_STRING("Boosts the power of each\nPokémon's Fairy-type moves."),
+        .description = COMPOUND_STRING("Boosts the power of every\nPokémon's Fairy-type moves."),
         .aiRating = 6,
     },
 
@@ -1492,7 +1492,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     #else
         .name = _("WtrCmpaction"),
     #endif
-        .description = COMPOUND_STRING("Sharply raises Defense when\nhurt by Water-type attacks."),
+        .description = COMPOUND_STRING("Sharply raises Defense when\nhurt by a Water-type attack."),
         .aiRating = 4,
     },
 
@@ -1525,7 +1525,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_WATER_BUBBLE] =
     {
         .name = _("Water Bubble"),
-        .description = COMPOUND_STRING("Resists Fire and prevents\nburns. Doubles Water power."),
+        .description = COMPOUND_STRING("Halves damage taken by Fire-\ntype moves and prevents burns.\nDoubles Water-type move power."),
         .aiRating = 8,
     },
 
@@ -1539,14 +1539,14 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_BERSERK] =
     {
         .name = _("Berserk"),
-        .description = COMPOUND_STRING("Doubles Speed while\ninside a snowstorm."),
+        .description = COMPOUND_STRING("ABoosts Special Attack after\ntaking hits that cause HP\nto drop to half or less.");
         .aiRating = 5,
     },
 
     [ABILITY_SLUSH_RUSH] =
     {
         .name = _("Slush Rush"),
-        .description = COMPOUND_STRING("Raises Speed in Hail or Snow."),
+        .description = COMPOUND_STRING("Speed is doubled\nin snowy weather."),
         .aiRating = 5,
     },
 
@@ -1574,14 +1574,14 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_GALVANIZE] =
     {
         .name = _("Galvanize"),
-        .description = COMPOUND_STRING("Normal-type moves become\nElectric and gain power."),
+        .description = COMPOUND_STRING("Normal-type moves become\nElectric and increase in power."),
         .aiRating = 8,
     },
 
     [ABILITY_SURGE_SURFER] =
     {
         .name = _("Surge Surfer"),
-        .description = COMPOUND_STRING("Doubles Speed under\nElectrifying Aura."),
+        .description = COMPOUND_STRING("Speed is doubled while an\nElectrifying Aura is active."),
         .aiRating = 4,
     },
 
@@ -1600,7 +1600,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_DISGUISE] =
     {
         .name = _("Disguise"),
-        .description = COMPOUND_STRING("Once per battle, protects from one damaging attack."),
+        .description = COMPOUND_STRING("Once per battle, protects\nfrom one damaging attack."),
         .aiRating = 8,
         .cantBeCopied = TRUE,
         .cantBeSwapped = TRUE,
@@ -1672,7 +1672,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_INNARDS_OUT] =
     {
         .name = _("Innards Out"),
-        .description = COMPOUND_STRING("When fainting, damages the\nattacker for the same value."),
+        .description = COMPOUND_STRING("When knocked out, damages the\nattacker by an amount equal\nto its HP before it was hit."),
         .aiRating = 5,
     },
 
@@ -1693,7 +1693,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_FLUFFY] =
     {
         .name = _("Fluffy"),
-        .description = COMPOUND_STRING("Resists contact moves.\nWeak to Fire-type moves."),
+        .description = COMPOUND_STRING("Halves damage taken from moves\nthat make direct contact, but\ndoubles that of Fire-type moves."),
         .aiRating = 5,
         .breakable = TRUE,
     },
@@ -1701,7 +1701,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_DAZZLING] =
     {
         .name = _("Dazzling"),
-        .description = COMPOUND_STRING("Protects its partner and\nitself from priority moves."),
+        .description = COMPOUND_STRING("Opponents cannot attack\nwith priority moves."),
         .aiRating = 5,
         .breakable = TRUE,
     },
@@ -1709,7 +1709,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_SOUL_HEART] =
     {
         .name = _("Soul-Heart"),
-        .description = COMPOUND_STRING("Defeating another Pokémon\nraises Sp. Atk."),
+        .description = COMPOUND_STRING("Defeating another Pokémon\nraises Special Attack."),
         .aiRating = 7,
     },
 
@@ -1720,7 +1720,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     #else
         .name = _("TanglingHair"),
     #endif
-        .description = COMPOUND_STRING("Moves that make contact\nlower the attacker's Speed."),
+        .description = COMPOUND_STRING("Lowers the speed of attackers\nthat make direct contact."),,
         .aiRating = 5,
     },
 
@@ -1772,7 +1772,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     #else
         .name = _("ElectrcSurge"),
     #endif
-        .description = COMPOUND_STRING("Sets Electrifying Aura\nupon entering a battle."),
+        .description = COMPOUND_STRING("Summons an Electrifying Aura\nupon entering a battle."),
         .aiRating = 8,
     },
 
@@ -1783,21 +1783,21 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     #else
         .name = _("PsychicSurge"),
     #endif
-        .description = COMPOUND_STRING("Sets Telepathic Aura\nupon entering a battle."),
+        .description = COMPOUND_STRING("Summons a Telepathic Aura\nupon entering a battle."),
         .aiRating = 8,
     },
 
     [ABILITY_MISTY_SURGE] =
     {
         .name = _("Mystifying Surge"),
-        .description = COMPOUND_STRING("Sets Mystifying Aura\nupon entering a battle."),
+        .description = COMPOUND_STRING("Summons a Mystifying Aura\nupon entering a battle."),
         .aiRating = 8,
     },
 
     [ABILITY_GRASSY_SURGE] =
     {
         .name = _("Verdant Surge"),
-        .description = COMPOUND_STRING("Sets Verdant Aura\nupon entering a battle."),
+        .description = COMPOUND_STRING("Summons a Verdant Aura\nupon entering a battle."),
         .aiRating = 8,
     },
 
@@ -1808,7 +1808,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     #else
         .name = _("FullMetalBdy"),
     #endif
-        .description = COMPOUND_STRING("Prevents stat reduction\nby other Pokémon."),
+        .description = COMPOUND_STRING("Stats cannot be lowered\nby other Pokémon's\nmoves or abilities."),
         .aiRating = 4,
     },
 
@@ -1826,14 +1826,14 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_PRISM_ARMOR] =
     {
         .name = _("Prism Armor"),
-        .description = COMPOUND_STRING("Deals more damage with\nsuper effective attacks."),
+        .description = COMPOUND_STRING("filter"),
         .aiRating = 6,
     },
 
     [ABILITY_NEUROFORCE] =
     {
         .name = _("Neuroforce"),
-        .description = COMPOUND_STRING("Ups “supereffective”."),
+        .description = COMPOUND_STRING("Deals more damage with\nsuper effective attacks."),
         .aiRating = 6,
     },
 
@@ -1893,7 +1893,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_MIRROR_ARMOR] =
     {
         .name = _("Mirror Armor"),
-        .description = COMPOUND_STRING("Reflects any stat-lowering\neffects."),
+        .description = COMPOUND_STRING("Reflects any incoming\nstat-lowering effects."),
         .aiRating = 6,
         .breakable = TRUE,
     },
@@ -1926,7 +1926,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_PUNK_ROCK] =
     {
         .name = _("Punk Rock"),
-        .description = COMPOUND_STRING("Powers up and resists\nsound-based moves."),
+        .description = COMPOUND_STRING("Halves damage taken from\nand boosts damage dealt\nwith sound-based moves."),
         .aiRating = 2,
         .breakable = TRUE,
     },
@@ -2165,7 +2165,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_SEED_SOWER] =
     {
         .name = _("Seed Sower"),
-        .description = COMPOUND_STRING("Sets Verdant Aura after\ngetting hit by an attack."),
+        .description = COMPOUND_STRING("Summons a Verdant Aura after\ngetting hit by an attack."),
         .aiRating = 5,
     },
 
@@ -2215,7 +2215,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_WIND_RIDER] =
     {
         .name = _("Wind Rider"),
-        .description = COMPOUND_STRING("Incoming wind moves\nincrease Attack instead."),
+        .description = COMPOUND_STRING("Takes no damage when\nhit by wind moves.\nInstead, its Attack is boosted."),
         .aiRating = 4,
         .breakable = TRUE,
     },
@@ -2223,7 +2223,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_GUARD_DOG] =
     {
         .name = _("Guard Dog"),
-        .description = COMPOUND_STRING("Cannot be forced to switch.\nIntimidation raises Attack."),
+        .description = COMPOUND_STRING("Cannot be forced to switch.\nIntimidation raises Attack instead."),
         .aiRating = 5,
         .breakable = TRUE,
     },
@@ -2242,7 +2242,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_WIND_POWER] =
     {
         .name = _("Wind Power"),
-        .description = COMPOUND_STRING("When hit by wind moves,\ndoubles electric power."),
+        .description = COMPOUND_STRING("Becomes charged when hit by a\nwind move, boosting the power\nof its next Electric-type move."),
         .aiRating = 4,
     },
 
@@ -2277,7 +2277,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     #else
         .name = _("Elecmrphosis"),
     #endif
-        .description = COMPOUND_STRING("When hit by any move,\ndoubles electric power."),
+        .description = COMPOUND_STRING("Becomes charged when hit by\nany move, boosting the power\nof its next Electric-type move."),
         .aiRating = 5,
     },
 
@@ -2395,14 +2395,14 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_CUD_CHEW] =
     {
         .name = _("Cud Chew"),
-        .description = COMPOUND_STRING("After eating a berry, also\neats it on the next turn."),
+        .description = COMPOUND_STRING("After eating a Berry, it\neats that Berry again at\nthe end of the next turn."),
         .aiRating = 4,
     },
 
     [ABILITY_SHARPNESS] =
     {
         .name = _("Sharpness"),
-        .description = COMPOUND_STRING("Powers up slicing moves."),
+        .description = COMPOUND_STRING("Boosts the power\nof slicing moves."),
         .aiRating = 7,
     },
 
@@ -2434,7 +2434,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_ARMOR_TAIL] =
     {
         .name = _("Armor Tail"),
-        .description = COMPOUND_STRING("Protects its partner and\nitself from priority moves."),
+        .description = COMPOUND_STRING("Opponents cannot attack\nwith priority moves."),
         .aiRating = 5,
         .breakable = TRUE,
     },
@@ -2442,7 +2442,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_EARTH_EATER] =
     {
         .name = _("Earth Eater"),
-        .description = COMPOUND_STRING("Restores HP when hit by\nGround-type moves."),
+        .description = COMPOUND_STRING("Takes no damage when hit by\nGround-type moves.\nInstead, its HP is restored."),
         .aiRating = 7,
         .breakable = TRUE,
     },
@@ -2454,7 +2454,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     #else
         .name = _("MceliumMight"),
     #endif
-        .description = COMPOUND_STRING("Status moves are slow but\nignore enemy abilities."),
+        .description = COMPOUND_STRING("Decreases the priority of\nstatus moves but they\nignore enemy abilities."),
         .aiRating = 2,
     },
 
@@ -2620,7 +2620,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_HYPERBOREAN] =
     {
         .name = _("Hyperborean"),
-        .description = COMPOUND_STRING("Absorbs incoming Ice-type\nmoves, powering up its own."),
+        .description = COMPOUND_STRING("Absorbs incoming Ice-type\nmoves, turning them into power\nfor its own Ice-type moves. "),
         .aiRating = 6,
         .breakable = TRUE,
     },
@@ -2636,14 +2636,14 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_UNTHREATENING] =
     {
         .name = _("Unthreatening"),
-        .description = COMPOUND_STRING("Lowers the Defense and\nSp. Def of opposing Pokémon."),
+        .description = COMPOUND_STRING("Upon entering a battle,\nlowers the opposing Pokémon's\nDefense and Special Defense."),
         .aiRating = 7,
     },
 
     [ABILITY_NINE_LIVES] =
     {
         .name = _("Nine Lives"),
-        .description = COMPOUND_STRING("Resists one incoming\nfinishing blow per battle."),
+        .description = COMPOUND_STRING("Once per battle, when a hit\nwould cause fainting, heavily\nreduces that hit's damage."),
         .aiRating = 10,
         .breakable = TRUE,
     },
@@ -2683,7 +2683,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_MASTER_OF_THE_AGES] =
     {
         .name = _("Master of the Ages"),
-        .description = COMPOUND_STRING("Powers up and resists Ice,\nRock and Steel-type moves."),
+        .description = COMPOUND_STRING("Boosts damage dealt with and\nhalves damage taken from Ice-,\nRock- and Steel-type moves."),
         .aiRating = 10,
         .breakable = TRUE,
     },
@@ -2691,7 +2691,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_CONDENSED_ENERGY] =
     {
         .name = _("Condensed_Energy"),
-        .description = COMPOUND_STRING("Boosts Sp. Atk and Sp. Def\nat the end of each turn."),
+        .description = COMPOUND_STRING("Raises Special Attack\nand Special Defense\nat the end of each turn."),
         .aiRating = 9,
     },
 
@@ -2706,7 +2706,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_PRISTINE_PLUMAGE] =
     {
         .name = _("Pristine Plumage"),
-        .description = COMPOUND_STRING("Doubles Sp. Def."),
+        .description = COMPOUND_STRING("Halves damage taken\nfrom moves that target\nSpecial Defense."),
         .aiRating = 9,
         .breakable = TRUE,
     },
@@ -2714,21 +2714,21 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_HEAVILY_ARMED] =
     {
         .name = _("Heavily Armed"),
-        .description = COMPOUND_STRING("Punching moves strike an\nextra time for half damage."),
+        .description = COMPOUND_STRING("Punching moves attack twice,\ndealing half as much damage\non the second strike."),
         .aiRating = 9,
     },
 
     [ABILITY_MALEDICTION] =
     {
         .name = _("Malediction"),
-        .description = COMPOUND_STRING("Foes take more damage from\nstatus conditions & curses."),
+        .description = COMPOUND_STRING("Foes take more damage from\nstatus conditions and curses."),
         .aiRating = 6,
     },
 
     [ABILITY_SHINING_BEACON] =
     {
         .name = _("Shining Beacon"),
-        .description = COMPOUND_STRING("Boosts accuracy & weakens\nDark- & Ghost-type moves."),
+        .description = COMPOUND_STRING("Boosts base move accuracy.\nWeakens all Dark-type\nand Ghost-type moves."),
         .aiRating = 6,
         .breakable = TRUE,
     },
@@ -2736,7 +2736,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_FLIGHTLESS] =
     {
         .name = _("Flightless"),
-        .description = COMPOUND_STRING("Grounded but eliminates the\nFlying-type's weaknesses."),
+        .description = COMPOUND_STRING("Eliminates the Flying-type's\nweaknesses, but takes damage\nfrom Ground-type attacks."),
         .aiRating = 6,
         .breakable = TRUE,
     },
@@ -2744,44 +2744,42 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_JET_STREAM] =
     {
         .name = _("Jet Stream"),
-        .description = COMPOUND_STRING("Summons strong winds upon\nentering a battle."),
+        .description = COMPOUND_STRING("Upon entering a battle,\nsummons windy weather."),
         .aiRating = 9,
     },
 
     [ABILITY_AERODYNAMIC] =
     {
         .name = _("Aerodynamic"),
-        .description = COMPOUND_STRING("Doubles Speed in\nwindy weather."),
+        .description = COMPOUND_STRING("Speed is doubled\nin windy weather."),
         .aiRating = 6,
     },
 
     [ABILITY_POWER_GLIDE] =
     {
         .name = _("Power Glide"),
-        .description = COMPOUND_STRING("Contact moves gain power\nand recoil in windy weather."),
+        .description = COMPOUND_STRING("In windy weather, moves that\nmake direct contact become\nstronger, but deal recoil damage."),
         .aiRating = 3,
     },
 
     [ABILITY_SPOON_BENDER] =
     {
         .name = _("Spoon Bender"),
-        .description = COMPOUND_STRING("Psychic moves hit Steel\n"
-                                       "super-effectively."),
+        .description = COMPOUND_STRING("Can super-effectively hit\nSteel-Type Pokémon\nwith Psychic moves."),
         .aiRating = 6,
     },
 
     [ABILITY_OVERFLOW] =
     {
         .name = _("Overflow"),
-        .description = COMPOUND_STRING("Electrifying Aura boosts\nAttack but decreases HP."),
+        .description = COMPOUND_STRING("While an Electrifying Aura\nis active, boosts Attack,\nbut decreases HP each turn."),
         .aiRating = 3,
     },
 
     [ABILITY_CRYSTAL_SHROUD] =
     {
         .name = _("Crystal Shroud"),
-        .description = COMPOUND_STRING("Raises Sp. Def under snow\nand Defense in sandstorms."),
-        //.description = COMPOUND_STRING("Acts as Snow Cloak\nand Sand Veil."),
+        .description = COMPOUND_STRING("Boosts Special Defense in\nsnowy weather and Defense\nwhile inside a sandstorm."),
         .aiRating = 3,
     },
 };
