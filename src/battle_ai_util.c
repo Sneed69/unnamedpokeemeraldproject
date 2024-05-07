@@ -1365,6 +1365,7 @@ bool32 ShouldSetSandstorm(u32 battler, u32 ability, u32 holdEffect)
 
     if (ability == ABILITY_SAND_VEIL
       || ability == ABILITY_CRYSTAL_SHROUD
+      || ability == ABILITY_DESERT_LURKER
       || ability == ABILITY_SAND_RUSH
       || ability == ABILITY_SAND_FORCE
       || ability == ABILITY_OVERCOAT
@@ -1434,6 +1435,7 @@ bool32 ShouldSetSun(u32 battlerAtk, u32 atkAbility, u32 holdEffect)
 
     if (holdEffect != HOLD_EFFECT_UTILITY_UMBRELLA
      && (atkAbility == ABILITY_CHLOROPHYLL
+      || atkAbility == ABILITY_DESERT_LURKER
       || atkAbility == ABILITY_FLOWER_GIFT
       || atkAbility == ABILITY_FORECAST
       || atkAbility == ABILITY_LEAF_GUARD
@@ -2272,6 +2274,7 @@ static bool32 BattlerAffectedBySandstorm(u32 battlerId, u32 ability)
       && !IS_BATTLER_OF_TYPE(battlerId, TYPE_GROUND)
       && !IS_BATTLER_OF_TYPE(battlerId, TYPE_STEEL)
       && ability != ABILITY_SAND_VEIL
+      && ability != ABILITY_DESERT_LURKER
       && ability != ABILITY_CRYSTAL_SHROUD
       && ability != ABILITY_SAND_FORCE
       && ability != ABILITY_SAND_RUSH

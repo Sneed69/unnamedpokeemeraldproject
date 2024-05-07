@@ -2781,5 +2781,14 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
         .name = _("Crystal Shroud"),
         .description = COMPOUND_STRING("Boosts Special Defense in\nsnowy weather and Defense\nwhile inside a sandstorm."),
         .aiRating = 3,
+        .breakable = TRUE,
+    },
+
+    [ABILITY_DESERT_LURKER] =
+    {
+        .name = _("Desert Lurker"),
+        .description = COMPOUND_STRING("Boosts Special Defense while\ninside a sandstorm and\nDefense in harsh sunlight."),
+        .aiRating = 3,
+        .breakable = TRUE,
     },
 };
