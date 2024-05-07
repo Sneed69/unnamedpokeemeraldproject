@@ -636,6 +636,8 @@ static void ChooseBoxMenu_CreateSprites(u8);
 static void ChooseBoxMenu_DestroySprites(void);
 static void ChooseBoxMenu_MoveLeft(void);
 static void ChooseBoxMenu_MoveRight(void);
+static void ChooseBoxMenu_MoveUp(void);
+static void ChooseBoxMenu_MoveDown(void);
 static void ChooseBoxMenu_PrintInfo(void);
 static void SpriteCB_ChooseBoxArrow(struct Sprite *);
 
@@ -1842,6 +1844,16 @@ static u8 HandleChooseBoxMenuInput(void)
         PlaySE(SE_SELECT);
         ChooseBoxMenu_MoveRight();
     }
+    else if (JOY_NEW(DPAD_UP))
+    {
+        PlaySE(SE_SELECT);
+        ChooseBoxMenu_MoveUp();
+    }
+    else if (JOY_NEW(DPAD_DOWN))
+    {
+        PlaySE(SE_SELECT);
+        ChooseBoxMenu_MoveDown();
+    }
     return BOXID_NONE_CHOSEN;
 }
 
@@ -1932,6 +1944,26 @@ static void ChooseBoxMenu_MoveRight(void)
 static void ChooseBoxMenu_MoveLeft(void)
 {
     sChooseBoxMenu->curBox = (sChooseBoxMenu->curBox == 0 ? TOTAL_BOXES_COUNT - 1 : sChooseBoxMenu->curBox - 1);
+    ChooseBoxMenu_PrintInfo();
+}
+
+static void ChooseBoxMenu_MoveDown(void)
+{
+    int destination = sChooseBoxMenu->curBox - TOTAL_BOXES_COUNT / 4;
+    if (destination >= 0)
+        sChooseBoxMenu->curBox = destination;
+    else
+        sChooseBoxMenu->curBox = TOTAL_BOXES_COUNT + destination;
+    ChooseBoxMenu_PrintInfo();
+}
+
+static void ChooseBoxMenu_MoveUp(void)
+{
+    int destination = sChooseBoxMenu->curBox + TOTAL_BOXES_COUNT / 4;
+    if (destination < TOTAL_BOXES_COUNT)
+        sChooseBoxMenu->curBox = destination;
+    else
+        sChooseBoxMenu->curBox = destination - TOTAL_BOXES_COUNT;
     ChooseBoxMenu_PrintInfo();
 }
 
