@@ -5723,11 +5723,17 @@ static void HandleTargetSpeciesPrint(u8 taskId, u16 targetSpecies, u16 previousT
     if (base_i < iterations)
     {
         u32 personality = GetPokedexMonPersonality(targetSpecies);
-        LoadMonIconPalettePersonality(targetSpecies, personality); //Loads pallete for current mon
+        u32 speciesToPrint;
+
+        if (seen || !HGSS_HIDE_UNSEEN_EVOLUTION_NAMES)
+            speciesToPrint = targetSpecies;
+        else
+            speciesToPrint = SPECIES_NONE;
+        LoadMonIconPalettePersonality(speciesToPrint, personality); //Loads pallete for current mon
             if (isEevee)
-                gTasks[taskId].data[4+base_i] = CreateMonIcon(targetSpecies, SpriteCB_MonIcon, 45 + 26*base_i, 31, 4, personality); //Create pokemon sprite
+                gTasks[taskId].data[4+base_i] = CreateMonIcon(speciesToPrint, SpriteCB_MonIcon, 45 + 26*base_i, 31, 4, personality); //Create pokemon sprite
             else
-                gTasks[taskId].data[4+base_i] = CreateMonIcon(targetSpecies, SpriteCB_MonIcon, 50 + 32*base_i, 31, 4, personality); //Create pokemon sprite
+                gTasks[taskId].data[4+base_i] = CreateMonIcon(speciesToPrint, SpriteCB_MonIcon, 50 + 32*base_i, 31, 4, personality); //Create pokemon sprite
         gSprites[gTasks[taskId].data[4+base_i]].oam.priority = 0;
     }
 }
@@ -5746,15 +5752,18 @@ static void CreateCaughtBallEvolutionScreen(u16 targetSpecies, u8 x, u8 y, u16 u
 
 static void HandlePreEvolutionSpeciesPrint(u8 taskId, u16 preSpecies, u16 species, u8 base_x, u8 base_y, u8 base_y_offset, u8 base_i)
 {
-    bool8 seen = GetSetPokedexFlag(SpeciesToNationalPokedexNum(preSpecies), FLAG_GET_SEEN);
+    bool8 seen = GetSetPokedexFlag(SpeciesToNationalPokedexNum(species), FLAG_GET_SEEN);
 
-    StringCopy(gStringVar1, GetSpeciesName(species)); //evolution mon name
+    if (seen || !HGSS_HIDE_UNSEEN_EVOLUTION_NAMES)
+        StringCopy(gStringVar1, GetSpeciesName(species)); //evolution mon name
+    else
+        StringCopy(gStringVar1, gText_ThreeQuestionMarks); //show questionmarks instead of name
 
     if (sPokedexView->sEvoScreenData.isMega)
         StringExpandPlaceholders(gStringVar3, sText_EVO_PreEvo_PE_Mega);
     else
     {
-
+        seen = GetSetPokedexFlag(SpeciesToNationalPokedexNum(preSpecies), FLAG_GET_SEEN);
         if (seen || !HGSS_HIDE_UNSEEN_EVOLUTION_NAMES)
             StringCopy(gStringVar2, GetSpeciesName(preSpecies)); //evolution mon name
         else
@@ -5769,8 +5778,14 @@ static void HandlePreEvolutionSpeciesPrint(u8 taskId, u16 preSpecies, u16 specie
     if (base_i < 3)
     {
         u32 personality = GetPokedexMonPersonality(preSpecies);
-        LoadMonIconPalettePersonality(preSpecies, personality); //Loads pallete for current mon
-        gTasks[taskId].data[4+base_i] = CreateMonIcon(preSpecies, SpriteCB_MonIcon, 18 + 32*base_i, 31, 4, personality); //Create pokemon sprite
+        u32 speciesToPrint;
+
+        if (seen || !HGSS_HIDE_UNSEEN_EVOLUTION_NAMES)
+            speciesToPrint = preSpecies;
+        else
+            speciesToPrint = SPECIES_NONE;
+        LoadMonIconPalettePersonality(speciesToPrint, personality); //Loads pallete for current mon
+        gTasks[taskId].data[4+base_i] = CreateMonIcon(speciesToPrint, SpriteCB_MonIcon, 18 + 32*base_i, 31, 4, personality); //Create pokemon sprite
         gSprites[gTasks[taskId].data[4+base_i]].oam.priority = 0;
     }
 }
