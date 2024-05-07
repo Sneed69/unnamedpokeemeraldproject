@@ -6243,6 +6243,7 @@ void SetTypeIconPal(u8 typeId, u8 spriteId)
     struct Sprite *sprite;
 
     sprite = &gSprites[spriteId];
+    LoadCompressedPalette(gMoveTypes_Pal, 0x1D0, 0x60);
     StartSpriteAnim(sprite, typeId);
     sprite->oam.paletteNum = gTypesInfo[typeId].palette;
     SetTypeIconSpriteInvisibility(spriteId, FALSE);
