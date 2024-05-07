@@ -5545,9 +5545,13 @@ static void Task_LoadEvolutionScreen(u8 taskId)
         PrintEvolutionTargetSpeciesAndMethod(taskId, NationalPokedexNumToSpeciesHGSS(sPokedexListItem->dexNum), 0, sPokedexView->numPreEvolutions);
         LoadSpritePalette(&gSpritePalette_Arrow);
         GetSeenFlagTargetSpecies();
-        if (sPokedexView->sEvoScreenData.numAllEvolutions != 0 && sPokedexView->sEvoScreenData.numSeen != 0)
+        if (sPokedexView->sEvoScreenData.numAllEvolutions > 0 && sPokedexView->sEvoScreenData.numSeen > 0)
         {
-            sPokedexView->sEvoScreenData.arrowSpriteId = CreateSprite(&gSpriteTemplate_Arrow, 7, 58, 0);
+            u32 pos;
+            for (pos = 0; !sPokedexView->sEvoScreenData.seen[pos]; pos++)
+                ;
+            sPokedexView->sEvoScreenData.menuPos = pos;
+            sPokedexView->sEvoScreenData.arrowSpriteId = CreateSprite(&gSpriteTemplate_Arrow, 7, 58 + 9 * pos, 0);
             gSprites[sPokedexView->sEvoScreenData.arrowSpriteId].animNum = 2;
         }
         gMain.state++;
@@ -5606,34 +5610,37 @@ static void Task_HandleEvolutionScreenInput(u8 taskId)
         PlaySE(SE_PIN);
     }
 
-    if (sPokedexView->sEvoScreenData.numAllEvolutions != 0 && sPokedexView->sEvoScreenData.numSeen != 0)
+    if (sPokedexView->sEvoScreenData.numAllEvolutions > 0 && sPokedexView->sEvoScreenData.numSeen > 0)
     {
         u8 base_y = 58;
         u8 base_y_offset = 9;
         u8 pos = sPokedexView->sEvoScreenData.menuPos;
-        u8 max = sPokedexView->sEvoScreenData.numAllEvolutions;
+        u8 max = sPokedexView->sEvoScreenData.numAllEvolutions - 1;
         if (JOY_NEW(DPAD_DOWN))
         {
-            while (TRUE)
+            do
             {
-                pos += 1;
-                if (pos >= max)
+                if (pos < max)
+                    pos++;
+                else
                     pos = 0;
+            } while (!sPokedexView->sEvoScreenData.seen[pos]);
 
-                if (sPokedexView->sEvoScreenData.seen[pos] == TRUE)
-                    break;
-            }
             gSprites[sPokedexView->sEvoScreenData.arrowSpriteId].y = base_y + base_y_offset * pos;
             sPokedexView->sEvoScreenData.menuPos = pos;
         }
         else if (JOY_NEW(DPAD_UP))
         {
-            if (sPokedexView->sEvoScreenData.menuPos == 0)
-                sPokedexView->sEvoScreenData.menuPos = sPokedexView->sEvoScreenData.numAllEvolutions - 1;
-            else
-                sPokedexView->sEvoScreenData.menuPos -= 1;
+            do
+            {
+                if (pos > 0)
+                    pos--;
+                else
+                    pos = max;
+            } while (!sPokedexView->sEvoScreenData.seen[pos]);
 
-            gSprites[sPokedexView->sEvoScreenData.arrowSpriteId].y = base_y + base_y_offset * sPokedexView->sEvoScreenData.menuPos;
+            gSprites[sPokedexView->sEvoScreenData.arrowSpriteId].y = base_y + base_y_offset * pos;
+            sPokedexView->sEvoScreenData.menuPos = pos;
         }
 
         if (JOY_NEW(A_BUTTON))
