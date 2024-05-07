@@ -1539,7 +1539,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_BERSERK] =
     {
         .name = _("Berserk"),
-        .description = COMPOUND_STRING("ABoosts Special Attack after\ntaking hits that cause HP\nto drop to half or less.");
+        .description = COMPOUND_STRING("ABoosts Special Attack after\ntaking hits that cause HP\nto drop to half or less."),
         .aiRating = 5,
     },
 
@@ -1720,7 +1720,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     #else
         .name = _("TanglingHair"),
     #endif
-        .description = COMPOUND_STRING("Lowers the speed of attackers\nthat make direct contact."),,
+        .description = COMPOUND_STRING("Lowers the speed of attackers\nthat make direct contact."),
         .aiRating = 5,
     },
 
