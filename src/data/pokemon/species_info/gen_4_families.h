@@ -4740,6 +4740,7 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .iconPalIndex = 2,
         FOOTPRINT(Dialga)
         .isLegendary = TRUE,
+        .isFrontierBanned = TRUE,
         .levelUpLearnset = sDialgaLevelUpLearnset,
         .teachableLearnset = sDialgaTeachableLearnset,
         .formSpeciesIdTable = sDialgaFormSpeciesIdTable,
@@ -4795,6 +4796,7 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .iconPalIndex = 0,
         FOOTPRINT(Dialga)
         .isLegendary = TRUE,
+        .isFrontierBanned = TRUE,
         .levelUpLearnset = sDialgaLevelUpLearnset,
         .teachableLearnset = sDialgaTeachableLearnset,
         .formSpeciesIdTable = sDialgaFormSpeciesIdTable,
@@ -4860,6 +4862,7 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .iconPalIndex = 2,
         FOOTPRINT(Palkia)
         .isLegendary = TRUE,
+        .isFrontierBanned = TRUE,
         .levelUpLearnset = sPalkiaLevelUpLearnset,
         .teachableLearnset = sPalkiaTeachableLearnset,
         .formSpeciesIdTable = sPalkiaFormSpeciesIdTable,
@@ -4915,6 +4918,7 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .iconPalIndex = 2,
         FOOTPRINT(Palkia)
         .isLegendary = TRUE,
+        .isFrontierBanned = TRUE,
         .levelUpLearnset = sPalkiaLevelUpLearnset,
         .teachableLearnset = sPalkiaTeachableLearnset,
         .formSpeciesIdTable = sPalkiaFormSpeciesIdTable,
@@ -5102,6 +5106,7 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .iconPalIndex = 0,
         FOOTPRINT(Giratina)
         .isLegendary = TRUE,
+        .isFrontierBanned = TRUE,
         .levelUpLearnset = sGiratinaLevelUpLearnset,
         .teachableLearnset = sGiratinaTeachableLearnset,
         .formSpeciesIdTable = sGiratinaFormSpeciesIdTable,
@@ -5158,6 +5163,7 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .iconPalIndex = 0,
         FOOTPRINT(Giratina)
         .isLegendary = TRUE,
+        .isFrontierBanned = TRUE,
         .levelUpLearnset = sGiratinaLevelUpLearnset,
         .teachableLearnset = sGiratinaTeachableLearnset,
         .formSpeciesIdTable = sGiratinaFormSpeciesIdTable,
@@ -5284,6 +5290,7 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .iconPalIndex = 0,
         FOOTPRINT(Phione)
         .isMythical = TRUE,
+        .isFrontierBanned = TRUE,
         .levelUpLearnset = sPhioneLevelUpLearnset,
         .teachableLearnset = sPhioneTeachableLearnset,
     },
@@ -5344,6 +5351,7 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .iconPalIndex = 0,
         FOOTPRINT(Manaphy)
         .isMythical = TRUE,
+        .isFrontierBanned = TRUE,
         .levelUpLearnset = sManaphyLevelUpLearnset,
         .teachableLearnset = sManaphyTeachableLearnset,
     },
@@ -5407,6 +5415,7 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .iconPalIndex = 0,
         FOOTPRINT(Darkrai)
         .isMythical = TRUE,
+        .isFrontierBanned = TRUE,
         .levelUpLearnset = sDarkraiLevelUpLearnset,
         .teachableLearnset = sDarkraiTeachableLearnset,
     },
@@ -5472,6 +5481,7 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .iconPalIndex = 1,
         FOOTPRINT(Shaymin)
         .isMythical = TRUE,
+        .isFrontierBanned = TRUE,
         .levelUpLearnset = sShayminLandLevelUpLearnset,
         .teachableLearnset = sShayminLandTeachableLearnset,
         .formSpeciesIdTable = sShayminFormSpeciesIdTable,
@@ -5534,6 +5544,7 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .iconPalIndex = 1,
         FOOTPRINT(Shaymin)
         .isMythical = TRUE,
+        .isFrontierBanned = TRUE,
         .levelUpLearnset = sShayminSkyLevelUpLearnset,
         .teachableLearnset = sShayminSkyTeachableLearnset,
         .formSpeciesIdTable = sShayminFormSpeciesIdTable,
@@ -5607,6 +5618,7 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .formSpeciesIdTable = sArceusFormSpeciesIdTable,                \
         .formChangeTable = sArceusFormChangeTable,                      \
         .isMythical = TRUE,                                             \
+        .isFrontierBanned = TRUE,                                       \
     }
 
     [SPECIES_ARCEUS_NORMAL]   = ARCEUS_SPECIES_INFO(TYPE_NORMAL,   Normal,   1),
