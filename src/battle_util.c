@@ -4968,12 +4968,12 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
                         gBattleMoveDamage *= -1;
                         effect++;
                     }
-                    if (gBattleMons[battler].status1 & STATUS1_ANY)
+                    if (gBattleMons[battler].status1 & STATUS1_ANY && !IsBattlerPollutedTerrainAffected(battler))
                         goto ABILITY_HEAL_MON_STATUS;
                 }
                 break;
             case ABILITY_SHED_SKIN:
-                if ((gBattleMons[battler].status1 & STATUS1_ANY) && (Random() % 3) == 0)
+                if ((gBattleMons[battler].status1 & STATUS1_ANY) && (Random() % 3) == 0 && !IsBattlerPollutedTerrainAffected(battler))
                 {
                 ABILITY_HEAL_MON_STATUS:
                     if (gBattleMons[battler].status1 & (STATUS1_POISON | STATUS1_TOXIC_POISON))

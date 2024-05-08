@@ -603,6 +603,9 @@ static bool32 ShouldSwitchIfAbilityBenefit(u32 battler, bool32 emitResult)
     switch(AI_DATA->abilities[battler])
     {
         case ABILITY_NATURAL_CURE:
+            if (IsBattlerPollutedTerrainAffected(battler))
+                return FALSE;
+
             moduloChance = 4; //25%
             //Attempt to cure bad ailment
             if (gBattleMons[battler].status1 & (STATUS1_SLEEP | STATUS1_FREEZE | STATUS1_TOXIC_POISON)
