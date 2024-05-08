@@ -1822,7 +1822,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .description = COMPOUND_STRING(
             "A powerful toss that\n"
             "always inflicts 50 damage."),
-        .effect = EFFECT_LEVEL_DAMAGE,
+        .effect = EFFECT_FIXED_DAMAGE_ARG,
         .power = 1,
         .type = TYPE_FIGHTING,
         .accuracy = 100,
@@ -1832,6 +1832,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = DAMAGE_CATEGORY_PHYSICAL,
         .makesContact = TRUE,
         .skyBattleBanned = TRUE,
+        .argument = 50,
 
         .contestEffect = CONTEST_EFFECT_STARTLE_MONS_SAME_TYPE_APPEAL,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
@@ -2592,7 +2593,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .description = COMPOUND_STRING(
             "A frightening mirage that\n"
             "always inflicts 50 damage."),
-        .effect = EFFECT_LEVEL_DAMAGE,
+        .effect = EFFECT_FIXED_DAMAGE_ARG,
         .power = 1,
         .type = TYPE_GHOST,
         .accuracy = 100,
@@ -2600,6 +2601,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
         .category = DAMAGE_CATEGORY_SPECIAL,
+        .argument = 50,
 
         .contestEffect = CONTEST_EFFECT_STARTLE_MONS_SAME_TYPE_APPEAL,
         .contestCategory = CONTEST_CATEGORY_SMART,
