@@ -980,7 +980,7 @@ static s32 AI_CheckBadMove(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
     if (gDisableStructs[battlerAtk].throatChopTimer && gMovesInfo[move].soundMove)
         return 0; // Can't even select move at all
     // heal block check
-    if ((gStatuses3[battlerAtk] & STATUS3_HEAL_BLOCK && IsHealBlockPreventingMove(battlerAtk, move)) || AI_DATA->abilities[battlerAtk] == ABILITY_WONDER_GUARD)
+    if ((IsHealBlockPreventingMove(battlerAtk, move)))
         return 0; // Can't even select heal blocked move
 
     // primal weather check
