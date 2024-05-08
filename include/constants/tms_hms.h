@@ -109,7 +109,7 @@
     F(SUPERPOWER) \
     F(HOWLING_GALE) \
     F(WATERFALL) \
-    F(HEX) \
+    F(SLUDGE_WAVE) \
     F(SEISMIC_TOSS) \
     F(VENOSHOCK) \
     F(AMNESIA) \

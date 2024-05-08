@@ -9268,10 +9268,10 @@ const struct Item gItemsInfo[] =
             "at a high speed.\n"
             "May cause flinching."),
 
-    TM_ITEM(108, MOVE_HEX, 0,
-            "Double power versus\n"
-            "foes afflicted\n"
-            "with status."),
+    TM_ITEM(108, MOVE_SLUDGE_WAVE, 0,
+            "Raises the power of\n"
+            "Poison-type moves\n"
+            "for 5 turns."),
 
     TM_ITEM(109, MOVE_SEISMIC_TOSS, 10000,
             "Inflicts 50 damage\n"
