@@ -687,7 +687,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_POISON_HEAL] =
     {
         .name = _("Poison Heal"),
-        .description = COMPOUND_STRING("Restores HP if poisoned,\ninstead of losing HP."),
+        .description = COMPOUND_STRING("Restores HP if poisoned,\ninstead of losing HP.\nProtects against noxious auras."),
         .aiRating = 8,
     },
 
@@ -1359,7 +1359,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_GRASS_PELT] =
     {
         .name = _("Grass Pelt"),
-        .description = COMPOUND_STRING("Boosts Defense while a\nVerdant Aura is active."),
+        .description = COMPOUND_STRING("Boosts Defense while a\nverdant aura is active."),
         .aiRating = 2,
         .breakable = TRUE,
     },
@@ -1581,7 +1581,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_SURGE_SURFER] =
     {
         .name = _("Surge Surfer"),
-        .description = COMPOUND_STRING("Speed is doubled while an\nElectrifying Aura is active."),
+        .description = COMPOUND_STRING("Speed is doubled while an\nelectrifying aura is active."),
         .aiRating = 4,
     },
 
@@ -1772,7 +1772,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     #else
         .name = _("ElectrcSurge"),
     #endif
-        .description = COMPOUND_STRING("Summons an Electrifying Aura\nupon entering a battle."),
+        .description = COMPOUND_STRING("Summons an electrifying aura\nupon entering a battle."),
         .aiRating = 8,
     },
 
@@ -1783,21 +1783,21 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     #else
         .name = _("PsychicSurge"),
     #endif
-        .description = COMPOUND_STRING("Summons a Telepathic Aura\nupon entering a battle."),
+        .description = COMPOUND_STRING("Summons a telepathic aura\nupon entering a battle."),
         .aiRating = 8,
     },
 
     [ABILITY_MISTY_SURGE] =
     {
         .name = _("Mystifying Surge"),
-        .description = COMPOUND_STRING("Summons a Mystifying Aura\nupon entering a battle."),
+        .description = COMPOUND_STRING("Summons a mystifying aura\nupon entering a battle."),
         .aiRating = 8,
     },
 
     [ABILITY_GRASSY_SURGE] =
     {
         .name = _("Verdant Surge"),
-        .description = COMPOUND_STRING("Summons a Verdant Aura\nupon entering a battle."),
+        .description = COMPOUND_STRING("Summons a verdant aura\nupon entering a battle."),
         .aiRating = 8,
     },
 
@@ -2165,7 +2165,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_SEED_SOWER] =
     {
         .name = _("Seed Sower"),
-        .description = COMPOUND_STRING("Summons a Verdant Aura after\ngetting hit by an attack."),
+        .description = COMPOUND_STRING("Summons a verdant aura after\ngetting hit by an attack."),
         .aiRating = 5,
     },
 
@@ -2582,7 +2582,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     #else
         .name = _("TeraformZero"),
     #endif
-        .description = COMPOUND_STRING("Removes weather and aura."),
+        .description = COMPOUND_STRING("Removes weather and auras."),
         .aiRating = 10,
         .cantBeCopied = TRUE,
         .cantBeSwapped = TRUE,
@@ -2772,7 +2772,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_OVERFLOW] =
     {
         .name = _("Overflow"),
-        .description = COMPOUND_STRING("While an Electrifying Aura\nis active, boosts Attack,\nbut decreases HP each turn."),
+        .description = COMPOUND_STRING("While an electrifying aura\nis active, boosts Attack,\nbut decreases HP each turn."),
         .aiRating = 3,
     },
 

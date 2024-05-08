@@ -6508,7 +6508,7 @@ bool32 IsBattlerTerrainAffected(u32 battler, u32 terrainFlag)
 
 bool32 IsBattlerPollutedTerrainAffected(u32 battler)
 {
-    return IsBattlerTerrainAffected(battler, STATUS_FIELD_POLLUTED_TERRAIN) && !IS_BATTLER_OF_TYPE(battler, TYPE_POISON);
+    return IsBattlerTerrainAffected(battler, STATUS_FIELD_POLLUTED_TERRAIN) && !IS_BATTLER_OF_TYPE(battler, TYPE_POISON) && GetBattlerAbility(battler) != ABILITY_POISON_HEAL;
 }
 
 bool32 CanSleep(u32 battler)
