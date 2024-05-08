@@ -2982,6 +2982,8 @@ bool32 ShouldAbsorb(u32 battlerAtk, u32 battlerDef, u32 move, s32 damage)
 
         if (gStatuses3[battlerAtk] & STATUS3_HEAL_BLOCK)
             healDmg = 0;
+        if (IsBattlerPollutedTerrainAffected(battlerAtk))
+            healDmg /= 2;
 
         if (CanTargetFaintAi(battlerDef, battlerAtk)
           && !CanTargetFaintAiWithMod(battlerDef, battlerAtk, healDmg, 0))
@@ -3001,20 +3003,38 @@ bool32 ShouldAbsorb(u32 battlerAtk, u32 battlerDef, u32 move, s32 damage)
 
 bool32 ShouldRecover(u32 battlerAtk, u32 battlerDef, u32 move, u32 healPercent)
 {
-    if (move == 0xFFFF || AI_WhoStrikesFirst(battlerAtk, battlerDef, move) == AI_IS_FASTER)
-    {
-        // using item or user going first
-        s32 damage = AI_DATA->simulatedDmg[battlerAtk][battlerDef][AI_THINKING_STRUCT->movesetIndex];
-        s32 healAmount = (healPercent * damage) / 100;
-        if (gStatuses3[battlerAtk] & STATUS3_HEAL_BLOCK)
-            healAmount = 0;
+    s32 healAmount, damage = 0;
+    u32 missingHP;
 
+    if (gStatuses3[battlerAtk] & STATUS3_HEAL_BLOCK)
+        return FALSE;
+
+    healAmount = (healPercent * gBattleMons[battlerAtk].maxHP) / 100;
+    if (IsBattlerPollutedTerrainAffected(battlerAtk))
+        healAmount /= 2;
+
+    for (int i = 0; i < MAX_MON_MOVES; i++)
+    {
+        s32 currDmg = AI_DATA->simulatedDmg[battlerDef][battlerAtk][i];
+        if (currDmg > damage)
+            damage = currDmg;
+    }
+    missingHP = gBattleMons[battlerAtk].maxHP - gBattleMons[battlerAtk].hp;
+
+    if (AI_WhoStrikesFirst(battlerAtk, battlerDef, move) == AI_IS_FASTER)
+    {
         if (CanTargetFaintAi(battlerDef, battlerAtk)
           && !CanTargetFaintAiWithMod(battlerDef, battlerAtk, healAmount, 0))
             return TRUE;    // target can faint attacker unless they heal
-        else if (!CanTargetFaintAi(battlerDef, battlerAtk) && AI_DATA->hpPercents[battlerAtk] < 60 && (Random() % 3))
-            return TRUE;    // target can't faint attacker at all, attacker health is about half, 2/3rds rate of encouraging healing
+        if (!CanTargetFaintAi(battlerDef, battlerAtk) && (Random() % 3) && damage < healAmount
+            && (healPercent <= 50 ? missingHP >= healAmount : missingHP > gBattleMons[battlerAtk].hp))
+            return TRUE;
+        return FALSE;
     }
+    missingHP += damage;
+    if (damage < healAmount
+        && (healPercent <= 50 ? missingHP >= healAmount : missingHP + damage > gBattleMons[battlerAtk].hp))
+        return TRUE;
     return FALSE;
 }
 

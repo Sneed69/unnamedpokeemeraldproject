@@ -2394,6 +2394,8 @@ static s32 AI_CheckBadMove(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
             {
                 if (gStatuses3[battlerDef] & STATUS3_HEAL_BLOCK)
                     return 0;
+                if (IsBattlerPollutedTerrainAffected(battlerDef))
+                    ADJUST_SCORE(-3);
                 if (AtMaxHp(battlerDef))
                     ADJUST_SCORE(-10);
                 else if (gBattleMons[battlerDef].hp > gBattleMons[battlerDef].maxHP / 2)
@@ -4972,6 +4974,9 @@ static s32 AI_HPAware(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
         {
             if (gStatuses3[battlerDef] & STATUS3_HEAL_BLOCK)
                 return 0;
+
+            if (IsBattlerPollutedTerrainAffected(battlerDef))
+                ADJUST_SCORE(-3);
 
             if (CanTargetFaintAi(FOE(battlerAtk), BATTLE_PARTNER(battlerAtk))
               || (CanTargetFaintAi(BATTLE_PARTNER(FOE(battlerAtk)), BATTLE_PARTNER(battlerAtk))))
