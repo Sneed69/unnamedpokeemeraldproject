@@ -337,6 +337,7 @@
 #define ARG_SET_ELECTRIC_TERRAIN       3
 #define ARG_SET_MISTY_TERRAIN          4
 #define ARG_SET_GRASSY_TERRAIN         5
+#define ARG_SET_POLLUTED_TERRAIN       6
 
 // Argument labels for EFFECT_HIT_SET_REMOVE_WEATHER
 #define ARG_SET_RAIN         0

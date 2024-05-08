@@ -2528,3 +2528,9 @@
 	callnative BS_SetWeatherAfterAttack
 	.4byte \failInstr
 	.endm
+
+	.macro jumpifpollutedterrainaffected battler:req jumpInstr:req
+	callnative BS_JumpIfPollutedTerrainAffected
+	.byte \battler
+	.4byte \jumpInstr
+	.endm

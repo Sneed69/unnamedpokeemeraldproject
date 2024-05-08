@@ -12041,20 +12041,17 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
     {
         .name = COMPOUND_STRING("Sludge Wave"),
         .description = COMPOUND_STRING(
-            "Swamps the foe with a wave\n"
-            "of sludge. May also poison."),
-        .effect = EFFECT_HIT,
-        .power = 95,
+            "Boosts Poison moves and\n"
+            "halves healing for 5 turns."),
+        .effect = EFFECT_HIT_SET_REMOVE_TERRAIN,
+        .power = 60,
         .type = TYPE_POISON,
         .accuracy = 100,
-        .pp = 16,
+        .pp = 8,
         .target = MOVE_TARGET_FOES_AND_ALLY,
         .priority = 0,
         .category = DAMAGE_CATEGORY_SPECIAL,
-        .additionalEffects = ADDITIONAL_EFFECTS({
-            .moveEffect = MOVE_EFFECT_POISON,
-            .chance = 10,
-        }),
+        .argument = ARG_SET_POLLUTED_TERRAIN,
 
         .contestEffect = CONTEST_EFFECT_BADLY_STARTLE_PREV_MONS,
         .contestCategory = CONTEST_CATEGORY_TOUGH,

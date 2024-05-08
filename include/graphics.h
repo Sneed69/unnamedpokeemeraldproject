@@ -2959,6 +2959,7 @@ extern const u32 gBattleAnimBgPalette_DynamaxCannon[];
 extern const u32 gBattleAnimBgImage_ElectricTerrain[];
 extern const u32 gBattleAnimBgPalette_ElectricTerrain[];
 extern const u32 gBattleAnimBgTilemap_ElectricTerrain[];
+extern const u32 gBattleAnimBgPalette_PollutedTerrain[];
 extern const u32 gBattleAnimBgImage_Fire1[];
 extern const u32 gBattleAnimBgPalette_Fire1[];
 extern const u32 gBattleAnimBgTilemap_Fire1[];

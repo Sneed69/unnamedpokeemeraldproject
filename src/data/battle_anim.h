@@ -1960,6 +1960,7 @@ const struct BattleAnimBackground gBattleAnimBackgroundTable[] =
     [BG_AEROBLAST]                 = {gBattleAnimBgImage_Aeroblast,               gBattleAnimBgPalette_Aeroblast,               gBattleAnimBgTilemap_Aeroblast},
     [BG_HURRICANE]                 = {gBattleAnimBgImage_Hurricane,               gBattleAnimBgPalette_Hurricane,               gBattleAnimBgTilemap_Hurricane},
     [BG_ELECTRIC_TERRAIN]          = {gBattleAnimBgImage_ElectricTerrain,         gBattleAnimBgPalette_ElectricTerrain,         gBattleAnimBgTilemap_ElectricTerrain},
+    [BG_POLLUTED_TERRAIN]          = {gBattleAnimBgImage_ElectricTerrain,         gBattleAnimBgPalette_PollutedTerrain,         gBattleAnimBgTilemap_ElectricTerrain},
     [BG_GRASSY_TERRAIN]            = {gBattleAnimBgImage_GrassyTerrain,           gBattleAnimBgPalette_GrassyTerrain,           gBattleAnimBgTilemap_GrassyTerrain},
     [BG_MISTY_TERRAIN]             = {gBattleAnimBgImage_MistyTerrain,            gBattleAnimBgPalette_MistyTerrain,            gBattleAnimBgTilemap_MistyTerrain},
     [BG_PSYCHIC_TERRAIN]           = {gBattleAnimBgImage_PsychicTerrain,          gBattleAnimBgPalette_PsychicTerrain,          gBattleAnimBgTilemap_PsychicTerrain},

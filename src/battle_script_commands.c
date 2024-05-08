@@ -2304,6 +2304,11 @@ static void Cmd_healthbarupdate(void)
     {
         u32 battler = GetBattlerForBattleScript(cmd->battler);
 
+        if (IsBattlerPollutedTerrainAffected(battler) && gBattleMoveDamage < -1)
+        {
+            gBattleMoveDamage /= 2;
+        }
+
         if (gBattleTypeFlags & BATTLE_TYPE_LEGENDARY && GetBattlerSide(battler) == B_SIDE_OPPONENT && gBattleMoveDamage > 1)
         {
             gBattleMoveDamage = 1 + gBattleMoveDamage / 6;
@@ -3810,6 +3815,9 @@ void SetMoveEffect(bool32 primary, bool32 certain)
                         break;
                     case STATUS_FIELD_PSYCHIC_TERRAIN:
                         gBattleScripting.moveEffect = MOVE_EFFECT_SPD_MINUS_1;
+                        break;
+                    case STATUS_FIELD_POLLUTED_TERRAIN:
+                        gBattleScripting.moveEffect = MOVE_EFFECT_POISON;
                         break;
                     default:
                         gBattleScripting.moveEffect = MOVE_EFFECT_PARALYSIS;
@@ -8534,6 +8542,9 @@ static void RemoveAllTerrains(void)
         break;
     case STATUS_FIELD_PSYCHIC_TERRAIN:
         gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_TERRAIN_END_PSYCHIC;
+        break;
+    case STATUS_FIELD_POLLUTED_TERRAIN:
+        gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_TERRAIN_END_POLLUTED;
         break;
     default:
         gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_TERRAIN_COUNT;  // failsafe
@@ -14145,6 +14156,8 @@ u16 GetNaturePowerMove(void)
         return MOVE_ENERGY_BALL;
     else if (gFieldStatuses & STATUS_FIELD_PSYCHIC_TERRAIN)
         return MOVE_PSYCHIC;
+    else if (gFieldStatuses & STATUS_FIELD_POLLUTED_TERRAIN)
+        return MOVE_SLUDGE_BOMB;
     else if (sNaturePowerMoves[gBattleTerrain] == MOVE_NONE)
         return MOVE_TRI_ATTACK;
     return sNaturePowerMoves[gBattleTerrain];
@@ -15034,6 +15047,9 @@ static void Cmd_settypetoterrain(void)
         break;
     case STATUS_FIELD_PSYCHIC_TERRAIN:
         terrainType = TYPE_PSYCHIC;
+        break;
+    case STATUS_FIELD_POLLUTED_TERRAIN:
+        terrainType = TYPE_POISON;
         break;
     default:
         terrainType = sTerrainToType[gBattleTerrain];
@@ -16524,6 +16540,10 @@ void BS_SetRemoveTerrain(void)
             statusFlag = STATUS_FIELD_PSYCHIC_TERRAIN;
             gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_TERRAIN_SET_PSYCHIC;
             break;
+        case ARG_SET_POLLUTED_TERRAIN:
+            statusFlag = STATUS_FIELD_POLLUTED_TERRAIN;
+            gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_TERRAIN_SET_POLLUTED;
+            break;
         case ARG_TRY_REMOVE_TERRAIN_HIT: // Splintered Stormshards
         case ARG_TRY_REMOVE_TERRAIN_FAIL: // Steel Roller
             if (!(gFieldStatuses & STATUS_FIELD_TERRAIN_ANY))
@@ -16565,6 +16585,17 @@ void BS_JumpIfTerrainAffected(void)
     u32 battler = GetBattlerForBattleScript(cmd->battler);
 
     if (IsBattlerTerrainAffected(battler, cmd->flags))
+        gBattlescriptCurrInstr = cmd->jumpInstr;
+    else
+        gBattlescriptCurrInstr = cmd->nextInstr;
+}
+
+void BS_JumpIfPollutedTerrainAffected(void)
+{
+    NATIVE_ARGS(u8 battler, const u8 *jumpInstr);
+    u32 battler = GetBattlerForBattleScript(cmd->battler);
+
+    if (IsBattlerPollutedTerrainAffected(battler))
         gBattlescriptCurrInstr = cmd->jumpInstr;
     else
         gBattlescriptCurrInstr = cmd->nextInstr;

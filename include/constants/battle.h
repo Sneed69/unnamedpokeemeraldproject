@@ -262,11 +262,12 @@
 #define STATUS_FIELD_MISTY_TERRAIN                  (1 << 7)
 #define STATUS_FIELD_ELECTRIC_TERRAIN               (1 << 8)
 #define STATUS_FIELD_PSYCHIC_TERRAIN                (1 << 9)
-#define STATUS_FIELD_ION_DELUGE                     (1 << 10)
-#define STATUS_FIELD_FAIRY_LOCK                     (1 << 11)
-#define STATUS_FIELD_TERRAIN_PERMANENT              (1 << 12)   // Overworld thunderstorm generates electric terrain
+#define STATUS_FIELD_POLLUTED_TERRAIN               (1 << 10)
+#define STATUS_FIELD_ION_DELUGE                     (1 << 11)
+#define STATUS_FIELD_FAIRY_LOCK                     (1 << 12)
+#define STATUS_FIELD_TERRAIN_PERMANENT              (1 << 13)   // Overworld thunderstorm generates electric terrain
 
-#define STATUS_FIELD_TERRAIN_ANY        (STATUS_FIELD_GRASSY_TERRAIN | STATUS_FIELD_MISTY_TERRAIN | STATUS_FIELD_ELECTRIC_TERRAIN | STATUS_FIELD_PSYCHIC_TERRAIN)
+#define STATUS_FIELD_TERRAIN_ANY        (STATUS_FIELD_GRASSY_TERRAIN | STATUS_FIELD_MISTY_TERRAIN | STATUS_FIELD_ELECTRIC_TERRAIN | STATUS_FIELD_PSYCHIC_TERRAIN | STATUS_FIELD_POLLUTED_TERRAIN)
 
 // Flags describing move's result
 #define MOVE_RESULT_MISSED                (1 << 0)

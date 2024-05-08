@@ -1696,6 +1696,7 @@ enum
     ENDTURN_WONDER_ROOM,
     ENDTURN_MAGIC_ROOM,
     ENDTURN_ELECTRIC_TERRAIN,
+    ENDTURN_POLLUTED_TERRAIN,
     ENDTURN_MISTY_TERRAIN,
     ENDTURN_GRASSY_TERRAIN,
     ENDTURN_PSYCHIC_TERRAIN,
@@ -2182,6 +2183,10 @@ u8 DoFieldEndTurnEffects(void)
             break;
         case ENDTURN_PSYCHIC_TERRAIN:
             effect = EndTurnTerrain(STATUS_FIELD_PSYCHIC_TERRAIN, B_MSG_TERRAIN_END_PSYCHIC);
+            gBattleStruct->turnCountersTracker++;
+            break;
+        case ENDTURN_POLLUTED_TERRAIN:
+            effect = EndTurnTerrain(STATUS_FIELD_POLLUTED_TERRAIN, B_MSG_TERRAIN_END_POLLUTED);
             gBattleStruct->turnCountersTracker++;
             break;
         case ENDTURN_WATER_SPORT:
@@ -3929,7 +3934,7 @@ static bool32 TryChangeBattleTerrain(u32 battler, u32 statusFlag, u8 *timer)
 {
     if ((!(gFieldStatuses & statusFlag) && (!gBattleStruct->isSkyBattle)))
     {
-        gFieldStatuses &= ~(STATUS_FIELD_MISTY_TERRAIN | STATUS_FIELD_GRASSY_TERRAIN | STATUS_FIELD_ELECTRIC_TERRAIN | STATUS_FIELD_PSYCHIC_TERRAIN);
+        gFieldStatuses &= ~(STATUS_FIELD_MISTY_TERRAIN | STATUS_FIELD_GRASSY_TERRAIN | STATUS_FIELD_ELECTRIC_TERRAIN | STATUS_FIELD_PSYCHIC_TERRAIN | STATUS_FIELD_POLLUTED_TERRAIN);
         gFieldStatuses |= statusFlag;
         gDisableStructs[battler].terrainAbilityDone = FALSE;
 
@@ -4015,6 +4020,8 @@ bool32 ChangeTypeBasedOnTerrain(u32 battler)
         battlerType = TYPE_FAIRY;
     else if (gFieldStatuses & STATUS_FIELD_PSYCHIC_TERRAIN)
         battlerType = TYPE_PSYCHIC;
+    else if (gFieldStatuses & STATUS_FIELD_POLLUTED_TERRAIN)
+        battlerType = TYPE_POISON;
     else // failsafe
         return FALSE;
 
@@ -6497,6 +6504,11 @@ bool32 IsBattlerTerrainAffected(u32 battler, u32 terrainFlag)
         return FALSE;
 
     return TRUE;
+}
+
+bool32 IsBattlerPollutedTerrainAffected(u32 battler)
+{
+    return IsBattlerTerrainAffected(battler, STATUS_FIELD_POLLUTED_TERRAIN) && !IS_BATTLER_OF_TYPE(battler, TYPE_POISON);
 }
 
 bool32 CanSleep(u32 battler)
@@ -9106,6 +9118,8 @@ static inline u32 CalcMoveBasePowerAfterModifiers(u32 move, u32 battlerAtk, u32 
     if (IsBattlerTerrainAffected(battlerAtk, STATUS_FIELD_ELECTRIC_TERRAIN) && moveType == TYPE_ELECTRIC)
         modifier = uq4_12_multiply(modifier, (B_TERRAIN_TYPE_BOOST >= GEN_8 ? UQ_4_12(1.3) : UQ_4_12(1.5)));
     if (IsBattlerTerrainAffected(battlerAtk, STATUS_FIELD_PSYCHIC_TERRAIN) && moveType == TYPE_PSYCHIC)
+        modifier = uq4_12_multiply(modifier, (B_TERRAIN_TYPE_BOOST >= GEN_8 ? UQ_4_12(1.3) : UQ_4_12(1.5)));
+    if (IsBattlerTerrainAffected(battlerAtk, STATUS_FIELD_POLLUTED_TERRAIN) && moveType == TYPE_POISON)
         modifier = uq4_12_multiply(modifier, (B_TERRAIN_TYPE_BOOST >= GEN_8 ? UQ_4_12(1.3) : UQ_4_12(1.5)));
     if (moveType == TYPE_ELECTRIC && ((gFieldStatuses & STATUS_FIELD_MUDSPORT)
     || AbilityBattleEffects(ABILITYEFFECT_FIELD_SPORT, 0, 0, ABILITYEFFECT_MUD_SPORT, 0)))
