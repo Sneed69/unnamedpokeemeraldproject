@@ -140,6 +140,7 @@ enum {
     FIELD_MOVE_FLY,         // FLAG_BADGE06_GET
     FIELD_MOVE_TELEPORT,
     FIELD_MOVE_SWEET_SCENT,
+    FIELD_MOVE_DIG,
     FIELD_MOVES_COUNT
 };
 
@@ -418,10 +419,10 @@ static void Task_HandleStopLearningMoveYesNoInput(u8);
 static void Task_TryLearningNextMoveAfterText(u8);
 static void BufferMonStatsToTaskData(struct Pokemon *, s16 *);
 static void UpdateMonDisplayInfoAfterRareCandy(u8, struct Pokemon *);
-static void Task_DisplayLevelUpStatsPg1(u8);
-static void DisplayLevelUpStatsPg1(u8);
-static void Task_DisplayLevelUpStatsPg2(u8);
-static void DisplayLevelUpStatsPg2(u8);
+//static void Task_DisplayLevelUpStatsPg1(u8);
+//static void DisplayLevelUpStatsPg1(u8);
+//static void Task_DisplayLevelUpStatsPg2(u8);
+//static void DisplayLevelUpStatsPg2(u8);
 static void Task_TryLearnNewMoves(u8);
 static void PartyMenuTryEvolution(u8);
 static void DisplayMonNeedsToReplaceMove(u8);
@@ -2867,14 +2868,14 @@ static void PartyMenuDisplayYesNoMenu(void)
 {
     CreateYesNoMenu(&sPartyMenuYesNoWindowTemplate, 0x4F, 13, 0);
 }
-
+/*
 static u8 CreateLevelUpStatsWindow(void)
 {
     sPartyMenuInternal->windowId[0] = AddWindow(&sLevelUpStatsWindowTemplate);
     DrawStdFrameWithCustomTileAndPalette(sPartyMenuInternal->windowId[0], FALSE, 0x4F, 13);
     return sPartyMenuInternal->windowId[0];
 }
-
+*/
 static void RemoveLevelUpStatsWindow(void)
 {
     ClearWindowTilemap(sPartyMenuInternal->windowId[0]);
@@ -4115,6 +4116,13 @@ static void CursorCb_FieldMove(u8 taskId)
             case FIELD_MOVE_FLY:
                 gPartyMenu.exitCallback = CB2_OpenFlyMap;
                 Task_ClosePartyMenu(taskId);
+                break;
+            case FIELD_MOVE_DIG:
+                mapHeader = Overworld_GetMapHeaderByGroupAndId(gSaveBlock1Ptr->escapeWarp.mapGroup, gSaveBlock1Ptr->escapeWarp.mapNum);
+                GetMapNameGeneric(gStringVar1, mapHeader->regionMapSectionId);
+                StringExpandPlaceholders(gStringVar4, gText_EscapeFromHere);
+                DisplayFieldMoveExitAreaMessage(taskId);
+                sPartyMenuInternal->data[0] = fieldMove;
                 break;
             default:
                 gPartyMenu.exitCallback = CB2_ReturnToField;
@@ -5917,7 +5925,7 @@ static void UpdateMonDisplayInfoAfterRareCandy(u8 slot, struct Pokemon *mon)
     AnimatePartySlot(slot, 1);
     ScheduleBgCopyTilemapToVram(0);
 }
-
+/*
 static void Task_DisplayLevelUpStatsPg1(u8 taskId)
 {
     if (WaitFanfare(FALSE) && IsPartyMenuTextPrinterActive() != TRUE && ((JOY_NEW(A_BUTTON)) || (JOY_NEW(B_BUTTON))))
@@ -5957,7 +5965,7 @@ static void DisplayLevelUpStatsPg2(u8 taskId)
     CopyWindowToVram(arrayPtr[12], COPYWIN_GFX);
     ScheduleBgCopyTilemapToVram(2);
 }
-
+*/
 static void Task_TryLearnNewMoves(u8 taskId)
 {
     u16 learnMove;

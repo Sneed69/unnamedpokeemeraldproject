@@ -924,6 +924,7 @@ static const u16 sFieldMoves[FIELD_MOVES_COUNT] =
     [FIELD_MOVE_FLY]          = MOVE_FLY,
     [FIELD_MOVE_TELEPORT]     = MOVE_TELEPORT,
     [FIELD_MOVE_SWEET_SCENT]  = MOVE_SWEET_SCENT,
+    [FIELD_MOVE_DIG]          = MOVE_DIG,
 };
 
 struct
@@ -935,6 +936,7 @@ struct
     [FIELD_MOVE_FLY]          = {SetUpFieldMove_Fly,         PARTY_MSG_CANT_USE_HERE},
     [FIELD_MOVE_TELEPORT]     = {SetUpFieldMove_Teleport,    PARTY_MSG_CANT_USE_HERE},
     [FIELD_MOVE_SWEET_SCENT]  = {SetUpFieldMove_SweetScent,  PARTY_MSG_CANT_USE_HERE},
+    [FIELD_MOVE_DIG]          = {SetUpFieldMove_Dig,         PARTY_MSG_CANT_USE_HERE},
 };
 
 static const u8 *const sUnionRoomTradeMessages[] =
