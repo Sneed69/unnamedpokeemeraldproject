@@ -1752,10 +1752,14 @@ static s32 AI_CheckBadMove(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
                 ADJUST_SCORE(-10);
             break;
         case EFFECT_REFRESH:
+            if (IsBattlerPollutedTerrainAffected(battlerAtk))
+                ADJUST_SCORE(-20);
             if (!(gBattleMons[battlerDef].status1 & (STATUS1_PSN_ANY | STATUS1_BURN | STATUS1_PARALYSIS | STATUS1_FROSTBITE)))
                 ADJUST_SCORE(-10);
             break;
         case EFFECT_PSYCHO_SHIFT:
+            if (IsBattlerPollutedTerrainAffected(battlerAtk))
+                ADJUST_SCORE(-20);
             if (gBattleMons[battlerAtk].status1 & STATUS1_PSN_ANY && !AI_CanPoison(battlerAtk, battlerDef, aiData->abilities[battlerDef], move, aiData->partnerMove))
                 ADJUST_SCORE(-10);
             else if (gBattleMons[battlerAtk].status1 & STATUS1_BURN && !AI_CanBurn(battlerAtk, battlerDef,
@@ -1907,6 +1911,8 @@ static s32 AI_CheckBadMove(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
                 ADJUST_SCORE(-10);
             break;
         case EFFECT_HEAL_BELL:
+            if (IsBattlerPollutedTerrainAffected(battlerAtk))
+                ADJUST_SCORE(-20);
             if (!AnyPartyMemberStatused(battlerAtk, gMovesInfo[move].soundMove) || PartnerHasSameMoveEffectWithoutTarget(BATTLE_PARTNER(battlerAtk), move, aiData->partnerMove))
                 ADJUST_SCORE(-10);
             break;
@@ -2566,13 +2572,17 @@ static s32 AI_CheckBadMove(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
                 ADJUST_SCORE(-10);
             break;
         case EFFECT_JUNGLE_HEALING:
-           if (AtMaxHp(battlerAtk)
+            if (IsBattlerPollutedTerrainAffected(battlerAtk))
+                ADJUST_SCORE(-20);
+            if (AtMaxHp(battlerAtk)
             && AtMaxHp(BATTLE_PARTNER(battlerAtk))
             && !(gBattleMons[battlerAtk].status1 & STATUS1_ANY)
             && !(gBattleMons[BATTLE_PARTNER(battlerAtk)].status1 & STATUS1_ANY))
                 ADJUST_SCORE(-10);
             break;
         case EFFECT_TAKE_HEART:
+            if (IsBattlerPollutedTerrainAffected(battlerAtk))
+                ADJUST_SCORE(-20);
             if ((!(gBattleMons[battlerAtk].status1 & STATUS1_ANY)
              || PartnerMoveIs(BATTLE_PARTNER(battlerAtk), aiData->partnerMove, MOVE_JUNGLE_HEALING)
              || PartnerMoveIs(BATTLE_PARTNER(battlerAtk), aiData->partnerMove, MOVE_HEAL_BELL)

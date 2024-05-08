@@ -363,6 +363,7 @@ BattleScript_EffectTakeHeart::
 	attackcanceler
 	attackstring
 	ppreduce
+	jumpifpollutedterrainaffected BS_ATTACKER, BattleScript_CalmMindTryToRaiseStats
 	cureifburnedparalysedorpoisoned BattleScript_CalmMindTryToRaiseStats
 	attackanimation
 	waitanimation
@@ -950,6 +951,7 @@ BattleScript_EffectPlasmaFists::
 BattleScript_EffectSparklySwirl::
 	call BattleScript_EffectHit_Ret
 	tryfaintmon BS_TARGET
+	jumpifpollutedterrainaffected BS_ATTACKER, BattleScript_PollutedTerrainPrevents
 	healpartystatus
 	waitstate
 	updatestatusicon BS_ATTACKER_WITH_PARTNER
@@ -1090,6 +1092,7 @@ JungleHealing_RestoreTargetHealth:
 	printstring STRINGID_PKMNREGAINEDHEALTH
 	waitmessage B_WAIT_TIME_LONG
 BattleScript_JungleHealing_TryCureStatus:
+	jumpifpollutedterrainaffected BS_ATTACKER, BattleScript_JungleHealingTryRestoreAlly
 	jumpifmove MOVE_LIFE_DEW, BattleScript_JungleHealingTryRestoreAlly  @ life dew only heals
 	jumpifstatus BS_TARGET, STATUS1_ANY, BattleScript_JungleHealingCureStatus
 	goto BattleScript_JungleHealingTryRestoreAlly
@@ -1172,6 +1175,7 @@ BattleScript_EffectPurify::
 	attackstring
 	ppreduce
 	accuracycheck BattleScript_ButItFailed, NO_ACC_CALC_CHECK_LOCK_ON
+	jumpifpollutedterrainaffected BS_ATTACKER, BattleScript_PollutedTerrainPrevents
 	jumpifstatus BS_TARGET, STATUS1_ANY, BattleScript_PurifyWorks
 	goto BattleScript_ButItFailed
 BattleScript_PurifyWorks:
@@ -1637,6 +1641,7 @@ BattleScript_EffectPsychoShift::
 	accuracycheck BattleScript_PrintMoveMissed, ACC_CURR_MOVE
 	attackstring
 	ppreduce
+	jumpifpollutedterrainaffected BS_ATTACKER, BattleScript_PollutedTerrainPrevents
 	jumpifstatus BS_ATTACKER, STATUS1_ANY, BattleScript_EffectPsychoShiftCanWork
 	goto BattleScript_ButItFailed
 BattleScript_EffectPsychoShiftCanWork:
@@ -2913,6 +2918,13 @@ BattleScript_MistyTerrainPrevents::
 	orhalfword gMoveResultFlags, MOVE_RESULT_FAILED
 	goto BattleScript_MoveEnd
 
+BattleScript_PollutedTerrainPrevents::
+	pause B_WAIT_TIME_SHORT
+	printstring STRINGID_POLLUTEDTERRAINPREVENTS
+	waitmessage B_WAIT_TIME_LONG
+	orhalfword gMoveResultFlags, MOVE_RESULT_FAILED
+	goto BattleScript_MoveEnd
+
 BattleScript_FlowerVeilProtectsRet::
 	pause B_WAIT_TIME_SHORT
 	call BattleScript_AbilityPopUp
@@ -4181,6 +4193,7 @@ BattleScript_EffectHealBell::
 	attackcanceler
 	attackstring
 	ppreduce
+	jumpifpollutedterrainaffected BS_ATTACKER, BattleScript_PollutedTerrainPrevents
 	healpartystatus
 	waitstate
 	attackanimation
@@ -5315,6 +5328,7 @@ BattleScript_EffectRefresh::
 	attackcanceler
 	attackstring
 	ppreduce
+	jumpifpollutedterrainaffected BS_ATTACKER, BattleScript_PollutedTerrainPrevents
 	cureifburnedparalysedorpoisoned BattleScript_ButItFailed
 	attackanimation
 	waitanimation
