@@ -1342,7 +1342,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     {
         .name = _("Gale Wings"),
         .description = COMPOUND_STRING("Flying-type moves gain\nincreased priority."),
-        .aiRating = 6,
+        .aiRating = 9,
     },
 
     [ABILITY_MEGA_LAUNCHER] =
@@ -2797,5 +2797,12 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
         .name = _("Noxious Surge"),
         .description = COMPOUND_STRING("Summons a noxious aura\nupon entering a battle."),
         .aiRating = 8,
+    },
+
+    [ABILITY_MISCHIEVOUS] =
+    {
+        .name = _("Mischievous"),
+        .description = COMPOUND_STRING("Moves gain increased\npriority while affected\nby a mystifying aura."),
+        .aiRating = 5,
     },
 };
