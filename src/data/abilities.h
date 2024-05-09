@@ -2791,4 +2791,11 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
         .aiRating = 3,
         .breakable = TRUE,
     },
+
+    [ABILITY_NOXIOUS_SURGE] =
+    {
+        .name = _("Noxious Surge"),
+        .description = COMPOUND_STRING("Summons a noxious aura\nupon entering a battle."),
+        .aiRating = 8,
+    },
 };
