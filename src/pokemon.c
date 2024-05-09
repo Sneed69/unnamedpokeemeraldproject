@@ -909,7 +909,7 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, 
         }
         else
         {
-            u32 totalRerolls = 0;
+            u32 totalRerolls = gSaveBlock1Ptr->daysWithoutCheating;
             if (CheckBagHasItem(ITEM_SHINY_CHARM, 1))
                 totalRerolls += I_SHINY_CHARM_ADDITIONAL_ROLLS;
             if (LURE_STEP_COUNT != 0)

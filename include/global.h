@@ -505,8 +505,9 @@ struct SaveBlock2
              u16 optionsSound:1; // OPTIONS_SOUND_[MONO/STEREO]
              u16 optionsBattleStyle:1; // OPTIONS_BATTLE_STYLE_[SHIFT/SET]
              u16 optionsBattleSceneOff:1; // whether battle animations are disabled
+             u16 optionsAntiCheat:1;
              u16 regionMapZoom:1; // whether the map is zoomed in
-             //u16 padding1:4;
+             //u16 padding1:3;
     /*0x18*/ struct Pokedex pokedex;
     /*0x98*/ struct Time localTimeOffset;
     /*0xA0*/ struct Time lastBerryTreeUpdate;
@@ -982,7 +983,7 @@ struct SaveBlock1
     /*0x2E*/ u8 weather;
     /*0x2F*/ u8 weatherCycleStage;
     /*0x30*/ u8 flashLevel;
-    /*0x31*/ //u8 padding1;
+    /*0x31*/ u8 daysWithoutCheating;
     /*0x32*/ u16 mapLayoutId;
     /*0x34*/ u16 mapView[0x100];
     /*0x234*/ u8 playerPartyCount;
