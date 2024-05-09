@@ -921,7 +921,7 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, 
         isShiny = FALSE;
         for (; totalRolls > 0 && !isShiny; totalRolls--)
         {
-            if (RandomWeighted(RNG_SHININESS, SHINY_ODDS - 1, 1))
+            if (!RandomUniform(RNG_SHININESS, 0, SHINY_ODDS - 1))
                 isShiny = TRUE;
         };
     }
