@@ -131,7 +131,7 @@ struct BoxPokemon
     u32 metLevel:7;
     u32 heldItem:10; // 1023 items.
     u32 pokeball:5; // 31 balls
-    u32 shinyModifier:1;
+    u32 isShiny:1;
     u32 isBadEgg:1;
     u32 hasSpecies:1;
     u32 isEgg:1;

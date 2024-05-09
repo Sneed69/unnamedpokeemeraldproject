@@ -112,7 +112,7 @@
 #define ITEM_CHANCE_EVOLUTION_STONE  3
 
 // Shiny odds
-#define SHINY_ODDS 16 // Actual probability is SHINY_ODDS/65536
+#define SHINY_ODDS 4096
 
 // Ribbon IDs used by TV and Pokénav
 #define CHAMPION_RIBBON       0

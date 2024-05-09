@@ -442,7 +442,7 @@ const s8 gNatureStatTable[NUM_NATURES][NUM_STATS] =
     [NATURE_COLLECTED]      = {   2,   0,      0,      0,      0,      1   },
     [NATURE_SKITTISH]       = {   2,   0,      0,      1,      0,      0   },
     [NATURE_REGAL]          = {   2,   0,      0,      0,      1,      0   },
-    [NATURE_FREESPIRITED]  = {   2,   1,      0,      0,      0,      0   },
+    [NATURE_FREESPIRITED]  =  {   2,   1,      0,      0,      0,      0   },
 };
 
 #include "data/graphics/pokemon.h"
@@ -880,17 +880,16 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, 
         personality = fixedPersonality;
     else
         personality = Random32();
+    SetBoxMonData(boxMon, MON_DATA_PERSONALITY, &personality);
 
     // Determine original trainer ID
     if (otIdType == OT_ID_RANDOM_NO_SHINY)
     {
         value = Random32();
-        isShiny = FALSE;
     }
     else if (otIdType == OT_ID_PRESET)
     {
         value = fixedOtId;
-        isShiny = GET_SHINY_VALUE(value, personality) < SHINY_ODDS;
     }
     else // Player is the OT
     {
@@ -898,39 +897,36 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, 
               | (gSaveBlock2Ptr->playerTrainerId[1] << 8)
               | (gSaveBlock2Ptr->playerTrainerId[2] << 16)
               | (gSaveBlock2Ptr->playerTrainerId[3] << 24);
-
-        if (P_FLAG_FORCE_NO_SHINY != 0 && FlagGet(P_FLAG_FORCE_NO_SHINY))
-        {
-            isShiny = FALSE;
-        }
-        else if (P_FLAG_FORCE_SHINY != 0 && FlagGet(P_FLAG_FORCE_SHINY))
-        {
-            isShiny = TRUE;
-        }
-        else
-        {
-            u32 totalRerolls = gSaveBlock1Ptr->daysWithoutCheating;
-            if (CheckBagHasItem(ITEM_SHINY_CHARM, 1))
-                totalRerolls += I_SHINY_CHARM_ADDITIONAL_ROLLS;
-            if (LURE_STEP_COUNT != 0)
-                totalRerolls += 1;
-            if (IsCurrentEncounterFishing())
-                totalRerolls += CalculateChainFishingShinyRolls();
-
-            while (GET_SHINY_VALUE(value, personality) >= SHINY_ODDS && totalRerolls > 0)
-            {
-                personality = Random32();
-                totalRerolls--;
-            }
-
-            isShiny = GET_SHINY_VALUE(value, personality) < SHINY_ODDS;
-        }
     }
-
-    SetBoxMonData(boxMon, MON_DATA_PERSONALITY, &personality);
     SetBoxMonData(boxMon, MON_DATA_OT_ID, &value);
 
+    if (P_FLAG_FORCE_NO_SHINY != 0 && FlagGet(P_FLAG_FORCE_NO_SHINY))
+    {
+        isShiny = FALSE;
+    }
+    else if (P_FLAG_FORCE_SHINY != 0 && FlagGet(P_FLAG_FORCE_SHINY))
+    {
+        isShiny = TRUE;
+    }
+    else
+    {
+        u32 totalRolls = 1 + gSaveBlock1Ptr->daysWithoutCheating;
+        if (CheckBagHasItem(ITEM_SHINY_CHARM, 1))
+            totalRolls += I_SHINY_CHARM_ADDITIONAL_ROLLS;
+        if (LURE_STEP_COUNT != 0)
+            totalRolls += 1;
+        if (IsCurrentEncounterFishing())
+            totalRolls += CalculateChainFishingShinyRolls();
+
+        isShiny = FALSE;
+        for (; totalRolls > 0 && !isShiny; totalRolls--)
+        {
+            if (RandomWeighted(RNG_SHININESS, SHINY_ODDS - 1, 1))
+                isShiny = TRUE;
+        };
+    }
     SetBoxMonData(boxMon, MON_DATA_IS_SHINY, &isShiny);
+
     StringCopy(speciesName, GetSpeciesName(species));
     SetBoxMonData(boxMon, MON_DATA_NICKNAME, speciesName);
     SetBoxMonData(boxMon, MON_DATA_OT_NAME, gSaveBlock2Ptr->playerName);
@@ -2181,8 +2177,7 @@ u32 GetBoxMonData3(struct BoxPokemon *boxMon, s32 field, u8 *data)
         break;
     case MON_DATA_IS_SHINY:
     {
-        u32 shinyValue = GET_SHINY_VALUE(boxMon->otId, boxMon->personality);
-        retVal = (shinyValue < SHINY_ODDS) ^ boxMon->shinyModifier;
+        retVal = boxMon->isShiny;
         break;
     }
     case MON_DATA_HIDDEN_POWER_TYPE:
@@ -2447,10 +2442,7 @@ void SetBoxMonData(struct BoxPokemon *boxMon, s32 field, const void *dataArg)
     }
     case MON_DATA_IS_SHINY:
     {
-        u32 shinyValue = GET_SHINY_VALUE(boxMon->otId, boxMon->personality);
-        bool32 isShiny;
-        SET8(isShiny);
-        boxMon->shinyModifier = (shinyValue < SHINY_ODDS) ^ isShiny;
+        SET8(boxMon->isShiny);
         break;
     }
     case MON_DATA_HIDDEN_POWER_TYPE:
