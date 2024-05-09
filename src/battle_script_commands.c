@@ -1927,11 +1927,7 @@ s32 CalcCritChanceStageArgs(u32 battlerAtk, u32 battlerDef, u32 move, bool32 rec
 {
     s32 critChance = 0;
 
-    if (gBattleTypeFlags & BATTLE_TYPE_LEGENDARY && GetBattlerSide(battlerDef) == B_SIDE_OPPONENT)
-    {
-        critChance = -1;
-    }
-    else if (gSideStatuses[battlerDef] & SIDE_STATUS_LUCKY_CHANT
+    if (gSideStatuses[battlerDef] & SIDE_STATUS_LUCKY_CHANT
         || abilityDef == ABILITY_BATTLE_ARMOR || abilityDef == ABILITY_SHELL_ARMOR)
     {
         critChance = -1;
