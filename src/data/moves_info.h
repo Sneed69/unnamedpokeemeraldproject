@@ -20916,6 +20916,31 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .contestComboStarterId = 0,
     },
 
+    [MOVE_VAMPIRIC_FANG] =
+    {
+        .name = COMPOUND_STRING("Vampiric Fang"),
+        .description = COMPOUND_STRING(
+            "An attack that steals half\n"
+            "the damage inflicted."),
+        .effect = EFFECT_ABSORB,
+        .power =  80,
+        .type = TYPE_GHOST,
+        .accuracy = 100,
+        .pp = 16,
+        .target = MOVE_TARGET_SELECTED,
+        .priority = 0,
+        .category = DAMAGE_CATEGORY_PHYSICAL,
+        .makesContact = TRUE,
+        .ignoresKingsRock = (B_UPDATED_MOVE_FLAGS == GEN_3 || B_UPDATED_MOVE_FLAGS == GEN_4),
+        .bitingMove = TRUE,
+        .healingMove = B_HEAL_BLOCKING >= GEN_6,
+
+        .contestEffect = CONTEST_EFFECT_STARTLE_PREV_MON,
+        .contestCategory = CONTEST_CATEGORY_SMART,
+        .contestComboStarterId = 0,
+        .contestComboMoves = {0}
+    },
+
     // Z-Moves
     [MOVE_BREAKNECK_BLITZ] =
     {
