@@ -169,8 +169,7 @@ const void *GetItemIconPicOrPalette(u16 itemId, u8 which)
     {
         if (which)
             return gTypesInfo[gMovesInfo[gItemsInfo[itemId].secondaryId].type].paletteTMHM;
-        else
-            return gItemIcon_TM;
+        return gItemIcon_TM;
     }
 
     return gItemIconTable[itemId][which];
