@@ -2409,6 +2409,8 @@ s32 GetDrainedBigRootHp(u32 battler, s32 hp)
 {
     if (GetBattlerHoldEffect(battler, TRUE) == HOLD_EFFECT_BIG_ROOT)
         hp = (hp * 1300) / 1000;
+    if (GetBattlerAbility(battler) == ABILITY_BLOODSUCKER)
+        hp = (hp * 1500) / 1000;
     if (hp == 0)
         hp = 1;
 
@@ -9242,6 +9244,10 @@ static inline u32 CalcMoveBasePowerAfterModifiers(u32 move, u32 battlerAtk, u32 
         if (moveType == TYPE_ROCK || moveType == TYPE_ICE || moveType == TYPE_STEEL)
            modifier = uq4_12_multiply(modifier, UQ_4_12(1.5));
         break;
+    case ABILITY_BLOODSUCKER:
+        if (gMovesInfo[move].effect == EFFECT_ABSORB)
+           modifier = uq4_12_multiply(modifier, UQ_4_12(1.5));
+        break;
     case ABILITY_GORILLA_TACTICS:
         if (IS_MOVE_PHYSICAL(move))
             modifier = uq4_12_multiply(modifier, UQ_4_12(1.5));
@@ -9470,6 +9476,19 @@ static inline u32 CalcAttackStat(u32 move, u32 battlerAtk, u32 battlerDef, u32 m
         {
             atkStat = gBattleMons[battlerAtk].spDefense;
             atkStage = gBattleMons[battlerAtk].statStages[STAT_SPDEF];
+        }
+    }
+    else if (gMovesInfo[move].effect == EFFECT_ABSORB && atkAbility == ABILITY_BLOODSUCKER)
+    {
+        if (GetCategoryBasedOnStats(battlerAtk) == DAMAGE_CATEGORY_PHYSICAL)
+        {
+            atkStat = gBattleMons[battlerAtk].attack;
+            atkStage = gBattleMons[battlerAtk].statStages[STAT_ATK];
+        }
+        else
+        {
+            atkStat = gBattleMons[battlerAtk].spAttack;
+            atkStage = gBattleMons[battlerAtk].statStages[STAT_SPATK];
         }
     }
     else

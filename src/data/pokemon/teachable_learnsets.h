@@ -14585,6 +14585,7 @@ static const u16 sHuntailTeachableLearnset[] = {
     MOVE_VENOSHOCK,
     MOVE_GEYSER,
     MOVE_SLUDGE_WAVE,
+    MOVE_GUNK_SHOT,
     MOVE_UNAVAILABLE,
 };
 
