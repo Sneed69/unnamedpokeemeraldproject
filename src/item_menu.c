@@ -1671,7 +1671,7 @@ static void OpenContextMenu(u8 taskId)
                         gBagMenu->contextMenuNumItems = ARRAY_COUNT(sContextMenuItems_Cancel);
                         memcpy(&gBagMenu->contextMenuItemsBuffer, &sContextMenuItems_Cancel, sizeof(sContextMenuItems_Cancel));
                     }
-                    if (ItemId_GetFieldFunc(gSpecialVar_ItemId) == ItemUseOutOfBattle_RotomCatalog)
+                    else if (ItemId_GetFieldFunc(gSpecialVar_ItemId) == ItemUseOutOfBattle_RotomCatalog)
                     {
                         gBagMenu->contextMenuNumItems = ARRAY_COUNT(sContextMenuItems_KeyItemsPocketNoRegister);
                         memcpy(&gBagMenu->contextMenuItemsBuffer, &sContextMenuItems_KeyItemsPocketNoRegister, sizeof(sContextMenuItems_KeyItemsPocketNoRegister));
