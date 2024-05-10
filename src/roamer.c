@@ -7,6 +7,8 @@
 #include "pokedex.h"
 #include "day_night.h"
 #include "constants/day_night.h"
+#include "battle.h"
+#include "constants/battle.h"
 #include "battle_tower.h" // GetHighestLevelInPlayerParty declaration
 
 //================= RoamersPlus Config =================\\
@@ -383,8 +385,7 @@ bool8 TryStartRoamerEncounter(bool8 isWaterEncounter)
 
 void UpdateRoamerHPStatus(struct Pokemon *mon)
 {
-    u16 currentHP = GetMonData(mon, MON_DATA_HP);
-    if (currentHP == 0 && CanRoamerRespawn(gEncounteredRoamerIndex))
+    if (gBattleOutcome & B_OUTCOME_WON && CanRoamerRespawn(gEncounteredRoamerIndex))
     {
         ROAMER(gEncounteredRoamerIndex)->damage = 0;
         ROAMER(gEncounteredRoamerIndex)->status = 0;
