@@ -1,6 +1,8 @@
 #include "global.h"
 #include "game_time.h"
 #include "script.h"
+#include "rtc.h"
+#include "global.h"
 
 enum
 {
@@ -9,11 +11,13 @@ enum
 };
 
 static u8 sGameTimeCounterState;
+static struct Time sSyncTime;
 
 void GameTimeCounter_Reset(void)
 {
     sGameTimeCounterState = STOPPED;
 
+    gSaveBlock1Ptr->gameTime.days = STARTING_DAY;
     gSaveBlock1Ptr->gameTime.hours = STARTING_HOUR;
     gSaveBlock1Ptr->gameTime.minutes = STARTING_MINUTE;
     gSaveBlock1Ptr->gameTime.seconds = 0;
@@ -23,6 +27,8 @@ void GameTimeCounter_Reset(void)
 void GameTimeCounter_Start(void)
 {
     sGameTimeCounterState = RUNNING;
+    RtcCalcLocalTime();
+    sSyncTime = gLocalTime;
 }
 
 void GameTimeCounter_Stop(void)
@@ -36,6 +42,8 @@ static u32 debugVBlanks;
 
 void GameTimeCounter_Update(void)
 {
+    struct Time diff;
+
     if (sGameTimeCounterState != RUNNING)
         return;
     if (ArePlayerFieldControlsLocked())//Check if game is paused
@@ -43,7 +51,11 @@ void GameTimeCounter_Update(void)
 #if TIME_DEBUG
     if (++debugVBlanks == 60)
     {
-        mgba_printf(MGBA_LOG_DEBUG, "Time %d %d:%d:%d",gSaveBlock1Ptr->gameTime.days, gSaveBlock1Ptr->gameTime.hours, gSaveBlock1Ptr->gameTime.minutes, gSaveBlock1Ptr->gameTime.seconds);
+        DebugPrintf("Day %d, %02d:%02d:%02d",
+                    gSaveBlock1Ptr->gameTime.days,
+                    gSaveBlock1Ptr->gameTime.hours,
+                    gSaveBlock1Ptr->gameTime.minutes,
+                    gSaveBlock1Ptr->gameTime.seconds);
         debugVBlanks = 0;
     }
 #endif
@@ -52,12 +64,21 @@ void GameTimeCounter_Update(void)
 
     if (gSaveBlock1Ptr->gameTimeVBlanks < 60)
         return;
-    
+
     gSaveBlock1Ptr->gameTimeVBlanks -= 60;
     gSaveBlock1Ptr->gameTime.seconds++;
 
     if (gSaveBlock1Ptr->gameTime.seconds < 60)
         return;
+
+    RtcCalcLocalTime();
+    CalculateTimeDifference(&diff, &sSyncTime, &gLocalTime);
+    if (diff.seconds * TIME_SCALE < 60)
+    {
+        gSaveBlock1Ptr->gameTime.seconds = 59;
+        return;
+    }
+    sSyncTime = gLocalTime;
 
     gSaveBlock1Ptr->gameTime.seconds -= 60;
     gSaveBlock1Ptr->gameTime.minutes++;

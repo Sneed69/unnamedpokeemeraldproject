@@ -1,5 +1,7 @@
 #include "global.h"
 #include "play_time.h"
+#include "rtc.h"
+#include "global.h"
 
 enum
 {
@@ -9,6 +11,7 @@ enum
 };
 
 static u8 sPlayTimeCounterState;
+static struct Time sSyncTime;
 
 void PlayTimeCounter_Reset(void)
 {
@@ -35,6 +38,8 @@ void PlayTimeCounter_Stop(void)
 
 void PlayTimeCounter_Update(void)
 {
+    struct Time diff;
+
     if (sPlayTimeCounterState != RUNNING)
         return;
 
@@ -42,6 +47,15 @@ void PlayTimeCounter_Update(void)
 
     if (gSaveBlock2Ptr->playTimeVBlanks < 60)
         return;
+
+    RtcCalcLocalTime();
+    CalcTimeDifference(&diff, &sSyncTime, &gLocalTime);
+    if (diff.seconds < 1)
+    {
+        gSaveBlock2Ptr->playTimeVBlanks = 59;
+        return;
+    }
+    sSyncTime = gLocalTime;
 
     gSaveBlock2Ptr->playTimeVBlanks = 0;
     gSaveBlock2Ptr->playTimeSeconds++;

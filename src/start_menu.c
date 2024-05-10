@@ -47,7 +47,7 @@
 #include "constants/battle_frontier.h"
 #include "constants/rgb.h"
 #include "constants/songs.h"
-#include "rtc.h"
+#include "game_time.h"
 
 #if (DECAP_ENABLED) && (DECAP_MIRRORING) && !(DECAP_START_MENU)
 #define AddTextPrinterParameterized (AddTextPrinterFixedCaseParameterized)
@@ -485,14 +485,14 @@ const u8 gText_Wednesday[] = _("Wednesday,");
 const u8 gText_Thursday[] = _("Thursday,");
 const u8 gText_Friday[] = _("Friday,");
 
-const u8 *const gDayNameStringsTable[7] = {
-    gText_Saturday,
-    gText_Sunday,
-    gText_Monday,
-    gText_Tuesday,
-    gText_Wednesday,
-    gText_Thursday,
-    gText_Friday,
+const u8 *const gDayNameStringsTable[DAY_COUNT] = {
+    [MONDAY] = gText_Monday,
+    [TUESDAY] = gText_Tuesday,
+    [WEDNESDAY] = gText_Wednesday,
+    [THURSDAY] = gText_Thursday,
+    [FRIDAY] = gText_Friday,
+    [SATURDAY] = gText_Saturday,
+    [SUNDAY] = gText_Sunday,
 };
 
 static void ShowTimeWindow(void)
@@ -526,7 +526,7 @@ static void ShowTimeWindow(void)
         suffix = gText_PM;
     }
 
-    StringExpandPlaceholders(gStringVar4, gDayNameStringsTable[(gSaveBlock1Ptr->gameTime.days % 7)]);
+    StringExpandPlaceholders(gStringVar4, gDayNameStringsTable[(gSaveBlock1Ptr->gameTime.days % DAY_COUNT)]);
     // StringExpandPlaceholders(gStringVar4, gText_ContinueMenuTime); // prints "time" word, from version before weekday was added and leaving it here in case anyone would prefer to use it
     AddTextPrinterParameterized(sStartClockWindowId, 1, gStringVar4, 0, 1, 0xFF, NULL); 
 
