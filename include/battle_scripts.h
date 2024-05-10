@@ -853,5 +853,6 @@ extern const u8 BattleScript_FaintWildMon[];
 extern const u8 BattleScript_EffectColdSnap[];
 extern const u8 BattleScript_EffectHitSetWeather[];
 extern const u8 BattleScript_JetStreamActivates[];
+extern const u8 BattleScript_SoulSiphon[];
 
 #endif // GUARD_BATTLE_SCRIPTS_H

@@ -2812,4 +2812,11 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
         .description = COMPOUND_STRING("Draining moves gain more power,\nuse the highest attack stat\nand recover more HP."),
         .aiRating = 5,
     },
+
+    [ABILITY_SOUL_SIPHON] =
+    {
+        .name = _("Soul Siphon"),
+        .description = COMPOUND_STRING("After hitting an enemy with\na move, restores HP based\non the damage dealt."),
+        .aiRating = 5,
+    },
 };

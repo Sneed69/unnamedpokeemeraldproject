@@ -5910,6 +5910,22 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
     case ABILITYEFFECT_MOVE_END_ATTACKER: // Same as above, but for attacker
         switch (gLastUsedAbility)
         {
+        case ABILITY_SOUL_SIPHON:
+            if (gSpecialStatuses[gBattlerAttacker].damagedMons  // Need to have done damage
+                && gBattlerAttacker != gBattlerTarget
+                && gBattleMons[gBattlerAttacker].hp != gBattleMons[gBattlerAttacker].maxHP
+                && IsBattlerAlive(gBattlerAttacker)
+                && (!(gStatuses3[gBattlerAttacker] & STATUS3_HEAL_BLOCK)))
+            {
+                gBattlerAbility = gBattlerAttacker;
+                gBattleScripting.battler = gBattlerAttacker;
+                gBattleMoveDamage = -(gSpecialStatuses[gBattlerTarget].shellBellDmg / 3);
+                if (gBattleMoveDamage == 0)
+                    gBattleMoveDamage = -1;
+                BattleScriptPushCursor();
+                gBattlescriptCurrInstr = BattleScript_SoulSiphon;
+            }
+            break;
         case ABILITY_POISON_TOUCH:
             if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
              && IsBattlerAlive(gBattlerTarget)
