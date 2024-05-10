@@ -1247,12 +1247,12 @@ void IncrementEggSteps(u32 steps)
             if (eggCycles == 0)
                 gSaveBlock1Ptr->daycare.hatchOnNextStep = TRUE;
 #if EGG_HATCH_DEBUG == TRUE
-            mgba_printf(MGBA_LOG_DEBUG, "Egg %d Cycles: %d", i, GetMonData(&gPlayerParty[i], MON_DATA_FRIENDSHIP, 0));
+            DebugPrintf("Egg %d Cycles: %d", i, GetMonData(&gPlayerParty[i], MON_DATA_FRIENDSHIP, 0));
 #endif
         }
     }
 #if EGG_HATCH_DEBUG == TRUE
-    mgba_printf(MGBA_LOG_DEBUG, "Steps %d", gSaveBlock1Ptr->daycare.stepCounter);
+    DebugPrintf("Steps %d", gSaveBlock1Ptr->daycare.stepCounter);
 #endif
 }
 

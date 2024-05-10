@@ -6019,8 +6019,8 @@ static void ReturnFromBattleToOverworld(void)
     IncrementEggSteps((1 + gBattleResults.battleTurnCounter) * EGG_STEPS_PER_BATTLE_TURN);
     IncrementGameTime((2 + gBattleResults.battleTurnCounter) * SECONDS_PER_BATTLE_TURN);
 #if TIME_DEBUG    
-    mgba_printf(MGBA_LOG_DEBUG, "Turns: %d",gBattleResults.battleTurnCounter+1);
-    mgba_printf(MGBA_LOG_DEBUG, "Seconds added: %d",(2 + gBattleResults.battleTurnCounter) * SECONDS_PER_BATTLE_TURN);
+    DebugPrintf("Turns: %d",gBattleResults.battleTurnCounter+1);
+    DebugPrintf("Seconds added: %d",(2 + gBattleResults.battleTurnCounter) * SECONDS_PER_BATTLE_TURN);
 #endif
 
     if (!(gBattleTypeFlags & BATTLE_TYPE_LINK))
