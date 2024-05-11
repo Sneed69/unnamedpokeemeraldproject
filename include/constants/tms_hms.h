@@ -111,7 +111,7 @@
     F(WATERFALL) \
     F(SLUDGE_WAVE) \
     F(SEISMIC_TOSS) \
-    F(VENOSHOCK) \
+    F(HIGH_HORSEPOWER) \
     F(AMNESIA) \
     F(SOLAR_BLADE) \
     F(TORNADO) \

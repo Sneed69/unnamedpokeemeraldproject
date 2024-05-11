@@ -9279,10 +9279,10 @@ const struct Item gItemsInfo[] =
             "Inflicts 50 damage\n"
             "to the target."),
 
-    TM_ITEM(110, MOVE_VENOSHOCK, 10000,
-            "Power is doubled\n"
-            "against poisoned\n"
-            "targets."),
+    TM_ITEM(110, MOVE_HIGH_HORSEPOWER, 0,
+            "A fierce full-body\n"
+            "tackle.\n"
+            "May raise Speed."),
 
     TM_ITEM(111, MOVE_AMNESIA, 10000,
             "Sharply raises\n"

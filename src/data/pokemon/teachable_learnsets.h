@@ -868,6 +868,7 @@ static const u16 sSandshrewTeachableLearnset[] = {
     MOVE_STRENGTH,
     MOVE_SEISMIC_TOSS,
     MOVE_AMNESIA,
+    MOVE_HIGH_HORSEPOWER,
     MOVE_UNAVAILABLE,
 };
 
@@ -903,6 +904,7 @@ static const u16 sSandslashTeachableLearnset[] = {
     MOVE_STRENGTH,
     MOVE_SEISMIC_TOSS,
     MOVE_AMNESIA,
+    MOVE_HIGH_HORSEPOWER,
     MOVE_UNAVAILABLE,
 };
 
@@ -1044,6 +1046,7 @@ static const u16 sNidoqueenTeachableLearnset[] = {
     MOVE_TOXIC,
     MOVE_TOXIC_SPIKES,
     MOVE_VENOSHOCK,
+    MOVE_HIGH_HORSEPOWER,
     MOVE_UNAVAILABLE,
 };
 
@@ -1149,6 +1152,7 @@ static const u16 sNidokingTeachableLearnset[] = {
     MOVE_AMNESIA,
     MOVE_HEX,
     MOVE_SLUDGE_WAVE,
+    MOVE_HIGH_HORSEPOWER,
     MOVE_UNAVAILABLE,
 };
 #endif //P_FAMILY_NIDORAN
@@ -1860,6 +1864,7 @@ static const u16 sDugtrioTeachableLearnset[] = {
     MOVE_SUBSTITUTE,
     MOVE_GIGA_IMPACT,
     MOVE_STRENGTH,
+    MOVE_HIGH_HORSEPOWER,
     MOVE_UNAVAILABLE,
 };
 
@@ -2373,6 +2378,7 @@ static const u16 sPoliwrathTeachableLearnset[] = {
     MOVE_SUPERPOWER,
     MOVE_WATERFALL,
     MOVE_SEISMIC_TOSS,
+    MOVE_HIGH_HORSEPOWER,
     MOVE_UNAVAILABLE,
 };
 
@@ -2624,6 +2630,7 @@ static const u16 sMachampTeachableLearnset[] = {
     MOVE_STRENGTH,
     MOVE_SUPERPOWER,
     MOVE_SEISMIC_TOSS,
+    MOVE_HIGH_HORSEPOWER,
     MOVE_UNAVAILABLE,
 };
 #endif //P_FAMILY_MACHOP
@@ -2811,6 +2818,7 @@ static const u16 sGeodudeTeachableLearnset[] = {
     MOVE_STRENGTH,
     MOVE_SUPERPOWER,
     MOVE_SEISMIC_TOSS,
+    MOVE_HIGH_HORSEPOWER,
     MOVE_UNAVAILABLE,
 };
 
@@ -2842,6 +2850,7 @@ static const u16 sGravelerTeachableLearnset[] = {
     MOVE_STRENGTH,
     MOVE_SUPERPOWER,
     MOVE_SEISMIC_TOSS,
+    MOVE_HIGH_HORSEPOWER,
     MOVE_UNAVAILABLE,
 };
 
@@ -2878,6 +2887,7 @@ static const u16 sGolemTeachableLearnset[] = {
     MOVE_STRENGTH,
     MOVE_SUPERPOWER,
     MOVE_SEISMIC_TOSS,
+    MOVE_HIGH_HORSEPOWER,
     MOVE_UNAVAILABLE,
 };
 
@@ -2950,6 +2960,7 @@ static const u16 sPonytaTeachableLearnset[] = {
     MOVE_PLAY_ROUGH,
     MOVE_STRENGTH,
     MOVE_FLARE,
+    MOVE_HIGH_HORSEPOWER,
     MOVE_UNAVAILABLE,
 };
 
@@ -2979,6 +2990,7 @@ static const u16 sRapidashTeachableLearnset[] = {
     MOVE_SOLAR_BLADE,
     MOVE_STARFALL,
     MOVE_FLARE,
+    MOVE_HIGH_HORSEPOWER,
     MOVE_UNAVAILABLE,
 };
 
@@ -3796,6 +3808,7 @@ static const u16 sOnixTeachableLearnset[] = {
     MOVE_SUBSTITUTE,
     MOVE_FLASH_CANNON,
     MOVE_STRENGTH,
+    MOVE_HIGH_HORSEPOWER,
     MOVE_UNAVAILABLE,
 };
 
@@ -3832,6 +3845,7 @@ static const u16 sSteelixTeachableLearnset[] = {
     MOVE_FLASH_CANNON,
     MOVE_GIGA_IMPACT,
     MOVE_STRENGTH,
+    MOVE_HIGH_HORSEPOWER,
     MOVE_UNAVAILABLE,
 };
 #endif //P_GEN_2_CROSS_EVOS
@@ -5729,6 +5743,7 @@ static const u16 sPinsirTeachableLearnset[] = {
     MOVE_SUPERPOWER,
     MOVE_SEISMIC_TOSS,
     MOVE_TRAILBLAZE,
+    MOVE_HIGH_HORSEPOWER,
     MOVE_UNAVAILABLE,
 };
 #endif //P_FAMILY_PINSIR
@@ -5763,6 +5778,7 @@ static const u16 sTaurosTeachableLearnset[] = {
     MOVE_SURF,
     MOVE_STRENGTH,
     MOVE_TRAILBLAZE,
+    MOVE_HIGH_HORSEPOWER,
     MOVE_UNAVAILABLE,
 };
 
@@ -6535,6 +6551,7 @@ static const u16 sMunchlaxTeachableLearnset[] = {
     MOVE_SUPERPOWER,
     MOVE_AMNESIA,
     MOVE_TRAILBLAZE,
+    MOVE_HIGH_HORSEPOWER,
     MOVE_UNAVAILABLE,
 };
 #endif //P_GEN_4_CROSS_EVOS
@@ -6584,6 +6601,7 @@ static const u16 sSnorlaxTeachableLearnset[] = {
     MOVE_SEISMIC_TOSS,
     MOVE_AMNESIA,
     MOVE_TRAILBLAZE,
+    MOVE_HIGH_HORSEPOWER,
     MOVE_UNAVAILABLE,
 };
 #endif //P_FAMILY_SNORLAX
@@ -7984,6 +8002,7 @@ static const u16 sBonslyTeachableLearnset[] = {
     MOVE_SUBSTITUTE,
     MOVE_FOUL_PLAY,
     MOVE_TRAILBLAZE,
+    MOVE_HIGH_HORSEPOWER,
     MOVE_UNAVAILABLE,
 };
 #endif //P_GEN_4_CROSS_EVOS
@@ -8944,6 +8963,7 @@ static const u16 sGligarTeachableLearnset[] = {
     MOVE_VENOSHOCK,
     MOVE_DEFOG,
     MOVE_TORNADO,
+    MOVE_HIGH_HORSEPOWER,
     MOVE_UNAVAILABLE,
 };
 
@@ -8991,6 +9011,7 @@ static const u16 sGliscorTeachableLearnset[] = {
     MOVE_DEFOG,
     MOVE_TORNADO,
     MOVE_SKY_ATTACK,
+    MOVE_HIGH_HORSEPOWER,
     MOVE_UNAVAILABLE,
 };
 #endif //P_GEN_4_CROSS_EVOS
@@ -9214,6 +9235,7 @@ static const u16 sHeracrossTeachableLearnset[] = {
     MOVE_SEISMIC_TOSS,
     MOVE_VENOSHOCK,
     MOVE_TRAILBLAZE,
+    MOVE_HIGH_HORSEPOWER,
     MOVE_UNAVAILABLE,
 };
 #endif //P_FAMILY_HERACROSS
@@ -9505,6 +9527,7 @@ static const u16 sSwinubTeachableLearnset[] = {
     MOVE_AMNESIA,
     MOVE_HOWLING_GALE,
     MOVE_TRAILBLAZE,
+    MOVE_HIGH_HORSEPOWER,
     MOVE_UNAVAILABLE,
 };
 
@@ -9535,6 +9558,7 @@ static const u16 sPiloswineTeachableLearnset[] = {
     MOVE_AMNESIA,
     MOVE_HOWLING_GALE,
     MOVE_TRAILBLAZE,
+    MOVE_HIGH_HORSEPOWER,
     MOVE_UNAVAILABLE,
 };
 
@@ -9571,6 +9595,7 @@ static const u16 sMamoswineTeachableLearnset[] = {
     MOVE_AMNESIA,
     MOVE_HOWLING_GALE,
     MOVE_TRAILBLAZE,
+    MOVE_HIGH_HORSEPOWER,
     MOVE_UNAVAILABLE,
 };
 #endif //P_GEN_4_CROSS_EVOS
@@ -10003,6 +10028,7 @@ static const u16 sPhanpyTeachableLearnset[] = {
     MOVE_STRENGTH,
     MOVE_SUPERPOWER,
     MOVE_TRAILBLAZE,
+    MOVE_HIGH_HORSEPOWER,
     MOVE_UNAVAILABLE,
 };
 
@@ -10039,6 +10065,7 @@ static const u16 sDonphanTeachableLearnset[] = {
     MOVE_STRENGTH,
     MOVE_SUPERPOWER,
     MOVE_TRAILBLAZE,
+    MOVE_HIGH_HORSEPOWER,
     MOVE_UNAVAILABLE,
 };
 #endif //P_FAMILY_PHANPY
@@ -10289,6 +10316,7 @@ static const u16 sLarvitarTeachableLearnset[] = {
     MOVE_CRUNCH,
     MOVE_SUBSTITUTE,
     MOVE_SUPERPOWER,
+    MOVE_HIGH_HORSEPOWER,
     MOVE_UNAVAILABLE,
 };
 
@@ -10317,6 +10345,7 @@ static const u16 sPupitarTeachableLearnset[] = {
     MOVE_CRUNCH,
     MOVE_SUBSTITUTE,
     MOVE_SUPERPOWER,
+    MOVE_HIGH_HORSEPOWER,
     MOVE_UNAVAILABLE,
 };
 
@@ -10370,6 +10399,7 @@ static const u16 sTyranitarTeachableLearnset[] = {
     MOVE_SUPERPOWER,
     MOVE_FOUL_PLAY,
     MOVE_SEISMIC_TOSS,
+    MOVE_HIGH_HORSEPOWER,
     MOVE_UNAVAILABLE,
 };
 #endif //P_FAMILY_LARVITAR
@@ -10829,6 +10859,7 @@ static const u16 sSwampertTeachableLearnset[] = {
     MOVE_SEISMIC_TOSS,
     MOVE_AMNESIA,
     MOVE_GEYSER,
+    MOVE_HIGH_HORSEPOWER,
     MOVE_UNAVAILABLE,
 };
 #endif //P_FAMILY_MUDKIP
@@ -12404,6 +12435,7 @@ static const u16 sAggronTeachableLearnset[] = {
     MOVE_STRENGTH,
     MOVE_SUPERPOWER,
     MOVE_SEISMIC_TOSS,
+    MOVE_HIGH_HORSEPOWER,
     MOVE_UNAVAILABLE,
 };
 #endif //P_FAMILY_ARON
@@ -13022,6 +13054,7 @@ static const u16 sNumelTeachableLearnset[] = {
     MOVE_AMNESIA,
     MOVE_FLARE,
     MOVE_TRAILBLAZE,
+    MOVE_HIGH_HORSEPOWER,
     MOVE_UNAVAILABLE,
 };
 
@@ -13056,6 +13089,7 @@ static const u16 sCameruptTeachableLearnset[] = {
     MOVE_AMNESIA,
     MOVE_FLARE,
     MOVE_TRAILBLAZE,
+    MOVE_HIGH_HORSEPOWER,
     MOVE_UNAVAILABLE,
 };
 #endif //P_FAMILY_NUMEL
@@ -13630,6 +13664,7 @@ static const u16 sBarboachTeachableLearnset[] = {
     MOVE_WATERFALL,
     MOVE_AMNESIA,
     MOVE_GEYSER,
+    MOVE_HIGH_HORSEPOWER,
     MOVE_UNAVAILABLE,
 };
 
@@ -13658,6 +13693,7 @@ static const u16 sWhiscashTeachableLearnset[] = {
     MOVE_WATERFALL,
     MOVE_AMNESIA,
     MOVE_GEYSER,
+    MOVE_HIGH_HORSEPOWER,
     MOVE_UNAVAILABLE,
 };
 #endif //P_FAMILY_BARBOACH
@@ -15159,6 +15195,7 @@ static const u16 sGroudonTeachableLearnset[] = {
     MOVE_STRENGTH,
     MOVE_SEISMIC_TOSS,
     MOVE_SOLAR_BLADE,
+    MOVE_HIGH_HORSEPOWER,
     MOVE_UNAVAILABLE,
 };
 #endif //P_FAMILY_GROUDON
@@ -15526,6 +15563,7 @@ static const u16 sTorterraTeachableLearnset[] = {
     MOVE_AMNESIA,
     MOVE_BLOOM,
     MOVE_TRAILBLAZE,
+    MOVE_HIGH_HORSEPOWER,
     MOVE_UNAVAILABLE,
 };
 #endif //P_FAMILY_TURTWIG
@@ -17203,6 +17241,7 @@ static const u16 sHippopotasTeachableLearnset[] = {
     MOVE_STRENGTH,
     MOVE_SUPERPOWER,
     MOVE_AMNESIA,
+    MOVE_HIGH_HORSEPOWER,
     MOVE_UNAVAILABLE,
 };
 
@@ -17234,6 +17273,7 @@ static const u16 sHippowdonTeachableLearnset[] = {
     MOVE_STRENGTH,
     MOVE_SUPERPOWER,
     MOVE_AMNESIA,
+    MOVE_HIGH_HORSEPOWER,
     MOVE_UNAVAILABLE,
 };
 #endif //P_FAMILY_HIPPOPOTAS
@@ -17881,6 +17921,7 @@ static const u16 sRegigigasTeachableLearnset[] = {
     MOVE_GIGA_IMPACT,
     MOVE_STRENGTH,
     MOVE_SUPERPOWER,
+    MOVE_HIGH_HORSEPOWER,
     MOVE_UNAVAILABLE,
 };
 #endif //P_FAMILY_REGIGIGAS
@@ -18407,6 +18448,7 @@ static const u16 sPigniteTeachableLearnset[] = {
     MOVE_CLOSE_COMBAT,
     MOVE_FLARE,
     MOVE_TRAILBLAZE,
+    MOVE_HIGH_HORSEPOWER,
     MOVE_UNAVAILABLE,
 };
 
@@ -18449,6 +18491,7 @@ static const u16 sEmboarTeachableLearnset[] = {
     MOVE_CLOSE_COMBAT,
     MOVE_FLARE,
     MOVE_TRAILBLAZE,
+    MOVE_HIGH_HORSEPOWER,
     MOVE_UNAVAILABLE,
 };
 #endif //P_FAMILY_TEPIG
@@ -19349,6 +19392,7 @@ static const u16 sDrilburTeachableLearnset[] = {
     MOVE_POISON_JAB,
     MOVE_SUBSTITUTE,
     MOVE_STRENGTH,
+    MOVE_HIGH_HORSEPOWER,
     MOVE_UNAVAILABLE,
 };
 
@@ -19379,6 +19423,7 @@ static const u16 sExcadrillTeachableLearnset[] = {
     MOVE_SUBSTITUTE,
     MOVE_GIGA_IMPACT,
     MOVE_STRENGTH,
+    MOVE_HIGH_HORSEPOWER,
     MOVE_UNAVAILABLE,
 };
 #endif //P_FAMILY_DRILBUR
@@ -20098,6 +20143,7 @@ static const u16 sKrookodileTeachableLearnset[] = {
     MOVE_STRENGTH,
     MOVE_SUPERPOWER,
     MOVE_FOUL_PLAY,
+    MOVE_HIGH_HORSEPOWER,
     MOVE_UNAVAILABLE,
 };
 #endif //P_FAMILY_SANDILE
@@ -22389,6 +22435,7 @@ static const u16 sGolurkTeachableLearnset[] = {
     MOVE_CLOSE_COMBAT,
     MOVE_STRENGTH,
     MOVE_SUPERPOWER,
+    MOVE_HIGH_HORSEPOWER,
     MOVE_UNAVAILABLE,
 };
 #endif //P_FAMILY_GOLETT
@@ -24879,6 +24926,7 @@ static const u16 sTyrantrumTeachableLearnset[] = {
     MOVE_STRENGTH,
     MOVE_SUPERPOWER,
     MOVE_TRAILBLAZE,
+    MOVE_HIGH_HORSEPOWER,
     MOVE_UNAVAILABLE,
 };
 #endif //P_FAMILY_TYRUNT
