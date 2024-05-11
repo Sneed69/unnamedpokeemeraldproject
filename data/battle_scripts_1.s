@@ -6778,6 +6778,10 @@ BattleScript_SelectingTormentedMove::
 	printselectionstring STRINGID_PKMNCANTUSEMOVETORMENT
 	endselectionscript
 
+BattleScript_SelectingMoveFlamboyant::
+	printselectionstring STRINGID_PKMNCANTUSEMOVEFLAMBOYANT
+	endselectionscript
+
 BattleScript_MoveUsedIsTormented::
 	printstring STRINGID_PKMNCANTUSEMOVETORMENT
 	waitmessage B_WAIT_TIME_LONG

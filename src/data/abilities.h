@@ -2819,4 +2819,11 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
         .description = COMPOUND_STRING("After hitting an enemy with\na move, restores HP based\non the damage dealt."),
         .aiRating = 5,
     },
+
+    [ABILITY_FLAMBOYANT] =
+    {
+        .name = _("Flamboyant"),
+        .description = COMPOUND_STRING("Boosts move power, but won't use\nthe same move twice in a row.\nAcrobatics ignore held items."),
+        .aiRating = 5,
+    },
 };

@@ -1309,13 +1309,19 @@ u32 TrySetCantSelectMoveBattleScript(u32 battler)
         }
     }
 
-    if (DYNAMAX_BYPASS_CHECK && gBattleStruct->zmove.toBeUsed[gBattlerAttacker] == MOVE_NONE && move == gLastMoves[battler] && move != MOVE_STRUGGLE && (gBattleMons[battler].status2 & STATUS2_TORMENT))
+    if (DYNAMAX_BYPASS_CHECK && gBattleStruct->zmove.toBeUsed[gBattlerAttacker] == MOVE_NONE && move == gLastMoves[battler] && move != MOVE_STRUGGLE
+        && (gBattleMons[battler].status2 & STATUS2_TORMENT || GetBattlerAbility(battler) == ABILITY_FLAMBOYANT))
     {
         CancelMultiTurnMoves(battler);
         if (gBattleTypeFlags & BATTLE_TYPE_PALACE)
         {
             gPalaceSelectionBattleScripts[battler] = BattleScript_SelectingTormentedMoveInPalace;
             gProtectStructs[battler].palaceUnableToUseMove = TRUE;
+        }
+        else if (GetBattlerAbility(battler) == ABILITY_FLAMBOYANT)
+        {
+            gSelectionBattleScripts[battler] = BattleScript_SelectingMoveFlamboyant;
+            limitations++;
         }
         else
         {
@@ -1555,7 +1561,8 @@ u8 CheckMoveLimitations(u32 battler, u8 unusableMoves, u16 check)
         else if (check & MOVE_LIMITATION_DISABLED && move == gDisableStructs[battler].disabledMove)
             unusableMoves |= gBitTable[i];
         // Torment
-        else if (check & MOVE_LIMITATION_TORMENTED && move == gLastMoves[battler] && gBattleMons[battler].status2 & STATUS2_TORMENT)
+        else if (check & MOVE_LIMITATION_TORMENTED && move == gLastMoves[battler]
+                && (gBattleMons[battler].status2 & STATUS2_TORMENT || GetBattlerAbility(battler) == ABILITY_FLAMBOYANT))
             unusableMoves |= gBitTable[i];
         // Taunt
         else if (check & MOVE_LIMITATION_TAUNT && gDisableStructs[battler].tauntTimer && IS_MOVE_STATUS(move))
@@ -8919,7 +8926,7 @@ static inline u32 CalcMoveBasePower(u32 move, u32 battlerAtk, u32 battlerDef, u3
         }
         break;
     case EFFECT_ACROBATICS:
-        if (gBattleMons[battlerAtk].item == ITEM_NONE
+        if (gBattleMons[battlerAtk].item == ITEM_NONE || GetBattlerAbility(battlerAtk) == ABILITY_FLAMBOYANT
             // Edge case, because removal of items happens after damage calculation.
             || (gSpecialStatuses[battlerAtk].gemBoost && GetBattlerHoldEffect(battlerAtk, FALSE) == HOLD_EFFECT_GEMS))
             basePower *= 2;
@@ -9201,6 +9208,9 @@ static inline u32 CalcMoveBasePowerAfterModifiers(u32 move, u32 battlerAtk, u32 
     case ABILITY_POWER_GLIDE:
         if (IsMoveMakingContact(move, battlerAtk) && gBattleWeather & B_WEATHER_WINDY)
            modifier = uq4_12_multiply(modifier, UQ_4_12(1.5));
+        break;
+    case ABILITY_FLAMBOYANT:
+        modifier = uq4_12_multiply(modifier, UQ_4_12(1.25));
         break;
     case ABILITY_STRONG_JAW:
         if (gMovesInfo[move].bitingMove)

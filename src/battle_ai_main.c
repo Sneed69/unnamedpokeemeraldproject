@@ -1698,7 +1698,7 @@ static s32 AI_CheckBadMove(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
             }
             break;
         case EFFECT_TORMENT:
-            if (gBattleMons[battlerDef].status2 & STATUS2_TORMENT
+            if (gBattleMons[battlerDef].status2 & STATUS2_TORMENT || aiData->abilities[battlerDef] == ABILITY_FLAMBOYANT
               || DoesPartnerHaveSameMoveEffect(BATTLE_PARTNER(battlerAtk), battlerDef, move, aiData->partnerMove))
             {
                 ADJUST_SCORE(-10);
