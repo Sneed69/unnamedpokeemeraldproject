@@ -9012,8 +9012,8 @@ const struct Item gItemsInfo[] =
             "May lower Sp. Def."),
 
     TM_ITEM(54, MOVE_DEFOG, 12000,
-            "Clears the terrain,\n"
-            "hazards & barriers\n"
+            "Removes auras,\n"
+            "hazards & screens\n"
             "on both sides."),
 
     TM_ITEM(55, MOVE_SCALD, 3000,

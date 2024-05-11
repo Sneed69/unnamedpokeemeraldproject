@@ -10825,8 +10825,8 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
     {
         .name = COMPOUND_STRING("Defog"),
         .description = COMPOUND_STRING(
-            "Removes obstacles and\n"
-            "lowers evasion."),
+            "Removes screens, hazards,\n"
+            "auras and lowers evasion."),
         .effect = EFFECT_DEFOG,
         .power = 0,
         .type = TYPE_FLYING,
