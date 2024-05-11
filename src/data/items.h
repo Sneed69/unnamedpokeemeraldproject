@@ -8793,7 +8793,7 @@ const struct Item gItemsInfo[] =
             "Fire-type moves\n"
             "for 5 turns."),
 
-    TM_ITEM(12, MOVE_TAUNT, 3000,
+    TM_ITEM(12, MOVE_TAUNT, 7500,
             "Enrages the foe so\n"
             "it can only use\n"
             "attack moves."),
@@ -9256,9 +9256,9 @@ const struct Item gItemsInfo[] =
             "the foe."),
 
     TM_ITEM(105, MOVE_SUPERPOWER, 0,
-            "A strong attack\n"
-            "that lowers own\n"
-            "Attack and Defense."),
+            "A powerful move\n"
+            "that sharply drops\n"
+            "the user's Attack."),
 
     TM_ITEM(106, MOVE_HOWLING_GALE, 0,
             "A frigid wind\n"
