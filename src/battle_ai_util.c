@@ -755,12 +755,16 @@ static bool32 AI_IsMoveEffectInMinus(u32 battlerAtk, u32 battlerDef, u32 move, s
                 case MOVE_EFFECT_DEF_MINUS_1:
                 case MOVE_EFFECT_SPD_MINUS_1:
                 case MOVE_EFFECT_SP_ATK_MINUS_1:
+                case MOVE_EFFECT_SP_DEF_MINUS_1:
+                case MOVE_EFFECT_ATK_MINUS_2:
+                case MOVE_EFFECT_DEF_MINUS_2:
+                case MOVE_EFFECT_SPD_MINUS_2:
+                case MOVE_EFFECT_SP_ATK_MINUS_2:
+                case MOVE_EFFECT_SP_DEF_MINUS_2:
                 case MOVE_EFFECT_SP_ATK_TWO_DOWN:
                 case MOVE_EFFECT_V_CREATE:
                 case MOVE_EFFECT_ATK_DEF_DOWN:
                 case MOVE_EFFECT_DEF_SPDEF_DOWN:
-                case MOVE_EFFECT_SP_DEF_MINUS_1:
-                case MOVE_EFFECT_SP_DEF_MINUS_2:
                     if ((gMovesInfo[move].additionalEffects[i].self && GetBattlerAbility(battlerAtk) != ABILITY_CONTRARY)
                         || (noOfHitsToKo != 1 && abilityDef == ABILITY_CONTRARY && !IsMoldBreakerTypeAbility(abilityAtk)))
                         return TRUE;
@@ -3468,13 +3472,13 @@ bool32 IsRecycleEncouragedItem(u32 item)
     return FALSE;
 }
 
-void IncreaseStatUpScore(u32 battlerAtk, u32 battlerDef, u32 statId, s32 *score)
+static void IncreaseStatUpScoreInternal(u32 battlerAtk, u32 battlerDef, u32 statId, s32 *score, bool32 considerContrary)
 {
     u32 noOfHitsToFaint = NoOfHitsForTargetToFaintAI(battlerDef, battlerAtk);
     u32 aiIsFaster = GetWhichBattlerFaster(battlerAtk, battlerDef, TRUE) == AI_IS_FASTER;
     u32 shouldSetUp = ((noOfHitsToFaint >= 2 && aiIsFaster) || (noOfHitsToFaint >= 3 && !aiIsFaster) || noOfHitsToFaint == UNKNOWN_NO_OF_HITS);
 
-    if (AI_DATA->abilities[battlerAtk] == ABILITY_CONTRARY)
+    if (considerContrary && AI_DATA->abilities[battlerAtk] == ABILITY_CONTRARY)
         return;
 
     // Don't increase stat if AI is at +4
@@ -3566,6 +3570,16 @@ void IncreaseStatUpScore(u32 battlerAtk, u32 battlerDef, u32 statId, s32 *score)
             ADJUST_SCORE_PTR(DECENT_EFFECT);
         break;
     }
+}
+
+void IncreaseStatUpScore(u32 battlerAtk, u32 battlerDef, u32 statId, s32 *score)
+{
+    IncreaseStatUpScoreInternal(battlerAtk, battlerDef, statId, score, TRUE);
+}
+
+void IncreaseStatUpScoreContrary(u32 battlerAtk, u32 battlerDef, u32 statId, s32 *score)
+{
+    IncreaseStatUpScoreInternal(battlerAtk, battlerDef, statId, score, FALSE);
 }
 
 void IncreasePoisonScore(u32 battlerAtk, u32 battlerDef, u32 move, s32 *score)
