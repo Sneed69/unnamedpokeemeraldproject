@@ -2384,10 +2384,6 @@
 	manipulatedamage DMG_CURR_ATTACKER_HP
 	.endm
 
-	.macro dmgtocurrattackerhptarget
-	manipulatedamage DMG_CURR_ATTACKER_HP_TARGET
-	.endm
-
 	.macro jumpifflowerveil jumpInstr:req
 	jumpifnottype BS_TARGET, TYPE_GRASS, 1f
 	jumpifability BS_TARGET_SIDE, ABILITY_FLOWER_VEIL, \jumpInstr

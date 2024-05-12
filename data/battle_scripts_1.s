@@ -1780,7 +1780,7 @@ BattleScript_EffectFinalGambit::
 	critcalc
 	typecalc
 	bichalfword gMoveResultFlags, MOVE_RESULT_SUPER_EFFECTIVE | MOVE_RESULT_NOT_VERY_EFFECTIVE
-	dmgtocurrattackerhptarget
+	dmgtocurrattackerhp
 	adjustdamage
 	attackanimation
 	waitanimation

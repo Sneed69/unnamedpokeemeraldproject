@@ -11401,8 +11401,6 @@ static void Cmd_manipulatedamage(void)
     case DMG_CURR_ATTACKER_HP:
         gBattleMoveDamage = GetNonDynamaxHP(gBattlerAttacker);
         break;
-    case DMG_CURR_ATTACKER_HP_TARGET:
-        gBattleMoveDamage = gBattleMons[gBattlerAttacker].hp;
     case DMG_BIG_ROOT:
         gBattleMoveDamage = GetDrainedBigRootHp(gBattlerAttacker, gBattleMoveDamage);
         break;
