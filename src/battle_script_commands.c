@@ -1276,7 +1276,7 @@ static void Cmd_attackcanceler(void)
         gCurrentActionFuncId = B_ACTION_FINISHED;
         return;
     }
-    if (!IsBattlerAlive(gBattlerAttacker) && !(gHitMarker & HITMARKER_NO_ATTACKSTRING))
+    if (!IsBattlerAlive(gBattlerAttacker) && gMovesInfo[gCurrentMove].effect != EFFECT_EXPLOSION && !(gHitMarker & HITMARKER_NO_ATTACKSTRING))
     {
         gHitMarker |= HITMARKER_UNABLE_TO_USE_MOVE;
         gBattlescriptCurrInstr = BattleScript_MoveEnd;
@@ -5613,27 +5613,50 @@ static void Cmd_moveend(void)
             gBattleScripting.moveendState++;
             break;
         case MOVEEND_RECOIL:
-            if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
-                && !(gHitMarker & HITMARKER_UNABLE_TO_USE_MOVE)
-                && IsBattlerAlive(gBattlerAttacker)
-                && gBattleScripting.savedDmg != 0) // Some checks may be redundant alongside this one
+            if (gHitMarker & HITMARKER_UNABLE_TO_USE_MOVE)
             {
-                if (gMovesInfo[gCurrentMove].recoil > 0)
-                {
-                    gBattleMoveDamage = max(1, gBattleScripting.savedDmg * max(1, gMovesInfo[gCurrentMove].recoil) / 100);
-                    BattleScriptPushCursor();
-                    gBattlescriptCurrInstr = BattleScript_MoveEffectRecoil;
-                    effect = TRUE;
-                }
-                else if (GetBattlerAbility(gBattlerAttacker) == ABILITY_POWER_GLIDE
-                         && gBattleWeather & B_WEATHER_WINDY
-                         && IsMoveMakingContact(gCurrentMove, gBattlerAttacker))
-                {
-                    gBattleMoveDamage = max(1, gBattleScripting.savedDmg / 6);
-                    BattleScriptPushCursor();
-                    gBattlescriptCurrInstr = BattleScript_MoveEffectRecoil;
-                    effect = TRUE;
-                }
+                gBattleScripting.moveendState++;
+                break;
+            }
+            else if (gMovesInfo[gCurrentMove].recoil > 0
+                  && !(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+                  && IsBattlerAlive(gBattlerAttacker)
+                  && gBattleScripting.savedDmg != 0) // Some checks may be redundant alongside this one
+            {
+                gBattleMoveDamage = max(1, gBattleScripting.savedDmg * max(1, gMovesInfo[gCurrentMove].recoil) / 100);
+                BattleScriptPushCursor();
+                gBattlescriptCurrInstr = BattleScript_MoveEffectRecoil;
+                effect = TRUE;
+            }
+            else if (gMovesInfo[gCurrentMove].effect == EFFECT_EXPLOSION && !IsAbilityOnField(ABILITY_DAMP))
+            {
+                gBattleMoveDamage = 0;
+                BattleScriptPushCursor();
+                gBattlescriptCurrInstr = BattleScript_FaintAttackerForExplosion;
+                effect = TRUE;
+            }
+            else if ((gMovesInfo[gCurrentMove].effect == EFFECT_MAX_HP_50_RECOIL
+                   || gMovesInfo[gCurrentMove].effect == EFFECT_MIND_BLOWN)
+                  && IsBattlerAlive(gBattlerAttacker)
+                  && !(gMoveResultFlags & MOVE_RESULT_FAILED)
+                  && GetBattlerAbility(gBattlerAttacker) != ABILITY_MAGIC_GUARD)
+            {
+                gBattleMoveDamage = (GetNonDynamaxMaxHP(gBattlerAttacker) + 1) / 2; // Half of Max HP Rounded UP
+                BattleScriptPushCursor();
+                gBattlescriptCurrInstr = BattleScript_MaxHp50Recoil;
+                effect = TRUE;
+            }
+            else if (GetBattlerAbility(gBattlerAttacker) == ABILITY_POWER_GLIDE
+                    && gBattleWeather & B_WEATHER_WINDY
+                    && IsMoveMakingContact(gCurrentMove, gBattlerAttacker)
+                    && !(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+                    && IsBattlerAlive(gBattlerAttacker)
+                    && gBattleScripting.savedDmg != 0)
+            {
+                gBattleMoveDamage = max(1, gBattleScripting.savedDmg / 6);
+                BattleScriptPushCursor();
+                gBattlescriptCurrInstr = BattleScript_MoveEffectRecoil;
+                effect = TRUE;
             }
             gBattleScripting.moveendState++;
             break;
@@ -5978,7 +6001,11 @@ static void Cmd_moveend(void)
                     gBattleScripting.moveendState = 0;
                     MoveValuesCleanUp();
                     gBattleScripting.moveEffect = gBattleScripting.savedMoveEffect;
-                    BattleScriptPush(GET_MOVE_BATTLESCRIPT(gCurrentMove));
+
+                    if (gMovesInfo[gCurrentMove].effect == EFFECT_EXPLOSION)
+                        BattleScriptPush(gBattleMoveEffects[EFFECT_HIT].battleScript); // Edge case for Explosion not changing targets
+                    else
+                        BattleScriptPush(GET_MOVE_BATTLESCRIPT(gCurrentMove));
                     gBattlescriptCurrInstr = BattleScript_FlushMessageBox;
                     return;
                 }
@@ -7276,22 +7303,10 @@ static void Cmd_switchineffects(void)
 
         gDisableStructs[battler].truantSwitchInHack = 0;
 
-        // Don't activate switch-in abilities if the opposing field is empty.
-        // This could happen when a mon uses explosion and causes everyone to faint.
-        if ((battlerAbility == ABILITY_INTIMIDATE || battlerAbility == ABILITY_SUPERSWEET_SYRUP || battlerAbility == ABILITY_DOWNLOAD || battlerAbility == ABILITY_UNTHREATENING)
-         && !IsBattlerAlive(BATTLE_OPPOSITE(battler))
-         && !IsBattlerAlive(BATTLE_PARTNER(BATTLE_OPPOSITE(battler))))
-        {
-            if (ItemBattleEffects(ITEMEFFECT_ON_SWITCH_IN, battler, FALSE))
-                return;
-        }
-        else
-        {
-            if (DoSwitchInAbilities(battler) || ItemBattleEffects(ITEMEFFECT_ON_SWITCH_IN, battler, FALSE))
-                return;
-            else if (AbilityBattleEffects(ABILITYEFFECT_OPPORTUNIST, battler, 0, 0, 0))
-                return;
-        }
+        if (DoSwitchInAbilities(battler) || ItemBattleEffects(ITEMEFFECT_ON_SWITCH_IN, battler, FALSE))
+            return;
+        else if (AbilityBattleEffects(ABILITYEFFECT_OPPORTUNIST, battler, 0, 0, 0))
+            return;
 
         gDisableStructs[battler].stickyWebDone = FALSE;
         gDisableStructs[battler].spikesDone = FALSE;
@@ -11139,18 +11154,8 @@ static void Cmd_tryexplosion(void)
 {
     CMD_ARGS();
 
-    u32 dampBattler;
     if (gBattleControllerExecFlags)
         return;
-
-    if ((dampBattler = IsAbilityOnField(ABILITY_DAMP)))
-    {
-        // Failed, a battler has Damp
-        gLastUsedAbility = ABILITY_DAMP;
-        gBattlerTarget = --dampBattler;
-        gBattlescriptCurrInstr = BattleScript_DampStopsExplosion;
-        return;
-    }
 
     gBattleMoveDamage = gBattleMons[gBattlerAttacker].hp;
     BtlController_EmitHealthBarUpdate(gBattlerAttacker, BUFFER_A, INSTANT_HP_BAR_DROP);
@@ -11401,14 +11406,9 @@ static void Cmd_manipulatedamage(void)
     case DMG_BIG_ROOT:
         gBattleMoveDamage = GetDrainedBigRootHp(gBattlerAttacker, gBattleMoveDamage);
         break;
-    case DMG_1_2_ATTACKER_HP:
-        gBattleMoveDamage = (GetNonDynamaxMaxHP(gBattlerAttacker) + 1) / 2; // Half of Max HP Rounded UP
-        break;
     case DMG_RECOIL_FROM_IMMUNE:
         gBattleMoveDamage = GetNonDynamaxMaxHP(gBattlerTarget) / 2;
         break;
-    case DMG_40_FLAT:
-        gBattleMoveDamage = 40;
     }
 
     gBattlescriptCurrInstr = cmd->nextInstr;
