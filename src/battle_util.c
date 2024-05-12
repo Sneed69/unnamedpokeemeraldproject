@@ -9271,11 +9271,16 @@ static inline u32 CalcMoveBasePowerAfterModifiers(u32 move, u32 battlerAtk, u32 
         break;
     case ABILITY_MASTER_OF_THE_AGES:
         if (moveType == TYPE_ROCK || moveType == TYPE_ICE || moveType == TYPE_STEEL)
-           modifier = uq4_12_multiply(modifier, UQ_4_12(1.5));
+            modifier = uq4_12_multiply(modifier, UQ_4_12(1.5));
         break;
     case ABILITY_BLOODSUCKER:
         if (gMovesInfo[move].effect == EFFECT_ABSORB)
-           modifier = uq4_12_multiply(modifier, UQ_4_12(1.5));
+        {
+            if (!IS_BATTLER_OF_TYPE(battlerAtk, moveType) || basePower <= 60)
+                modifier = uq4_12_multiply(modifier, UQ_4_12(1.5));
+            else
+                modifier = uq4_12_multiply(modifier, UQ_4_12(1.05));
+        }
         break;
     case ABILITY_GORILLA_TACTICS:
         if (IS_MOVE_PHYSICAL(move))
