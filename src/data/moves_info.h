@@ -10231,13 +10231,13 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
     {
         .name = COMPOUND_STRING("Power Gem"),
         .description = COMPOUND_STRING(
-            "Attacks with rays of light\n"
-            "that sparkle like diamonds."),
-        .effect = EFFECT_HIT,
-        .power = B_UPDATED_MOVE_DATA >= GEN_6 ? 80 : 70,
+            "Power increases to 110\n"
+            "while holding a gem."),
+        .effect = EFFECT_POWER_GEM,
+        .power = 80,
         .type = TYPE_ROCK,
         .accuracy = 100,
-        .pp = 32,
+        .pp = 16,
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
         .category = DAMAGE_CATEGORY_SPECIAL,
