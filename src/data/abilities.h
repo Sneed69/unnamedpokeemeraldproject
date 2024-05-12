@@ -2826,4 +2826,11 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
         .description = COMPOUND_STRING("Entry hazard moves gain\nhighly increased priority.\nUnaffected by entry hazards."),
         .aiRating = 5,
     },
+
+    [ABILITY_FLAMBOYANT] =
+    {
+        .name = _("Flamboyant"),
+        .description = COMPOUND_STRING("Boosts move power, but cannot\nuse the same move twice in a row.\nAcrobatics' power ignores items."),
+        .aiRating = 5,
+    },
 };
