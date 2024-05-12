@@ -27,34 +27,23 @@
         {
             {
 #line 9
-            .nickname = COMPOUND_STRING("Bubbles"),
-#line 9
-            .species = SPECIES_WOBBUFFET,
+            .species = SPECIES_SQUIRTLE,
 #line 9
             .gender = TRAINER_MON_FEMALE,
 #line 9
             .heldItem = ITEM_ASSAULT_VEST,
-#line 14
-            .ev = TRAINER_PARTY_EVS(252, 0, 0, 252, 4, 0),
-#line 13
-            .iv = TRAINER_PARTY_IVS(25, 26, 27, 28, 29, 30),
 #line 12
-            .ability = ABILITY_TELEPATHY,
+            .ability = ABILITY_TORRENT,
 #line 11
             .lvl = 67,
-#line 17
+#line 14
             .ball = ITEM_MASTER_BALL,
-#line 15
-            .friendship = 42,
 #line 10
             .nature = NATURE_HASTY,
-#line 16
+#line 13
             .isShiny = TRUE,
-#line 18
-            .dynamaxLevel = 5,
-            .shouldDynamax = TRUE,
             .moves = {
-#line 19
+#line 15
                 MOVE_AIR_SLASH,
                 MOVE_BARRIER,
                 MOVE_SOLAR_BEAM,
@@ -62,28 +51,22 @@
             },
             },
             {
-#line 24
-            .species = SPECIES_WOBBUFFET,
+#line 20
+            .species = SPECIES_SQUIRTLE,
             .gender = TRAINER_MON_RANDOM_GENDER,
-#line 27
-            .iv = TRAINER_PARTY_IVS(0, 0, 0, 0, 0, 0),
-#line 26
-            .ability = ABILITY_SHADOW_TAG,
+#line 22
+            .ability = ABILITY_TORRENT,
+#line 21
+            .lvl = 5,
+            .nature = NATURE_HARDY,
+            },
+            {
+#line 24
+            .species = SPECIES_SQUIRTLE,
+            .gender = TRAINER_MON_RANDOM_GENDER,
 #line 25
             .lvl = 5,
             .nature = NATURE_HARDY,
-            .dynamaxLevel = MAX_DYNAMAX_LEVEL,
-            },
-            {
-#line 29
-            .species = SPECIES_WYNAUT,
-            .gender = TRAINER_MON_RANDOM_GENDER,
-#line 31
-            .iv = TRAINER_PARTY_IVS(0, 0, 0, 0, 0, 0),
-#line 30
-            .lvl = 5,
-            .nature = NATURE_HARDY,
-            .dynamaxLevel = MAX_DYNAMAX_LEVEL,
             },
         },
     },
