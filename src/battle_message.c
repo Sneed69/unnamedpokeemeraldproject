@@ -739,6 +739,7 @@ static const u8 sText_ComatoseActivates[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX} i
 static const u8 sText_ScreenCleanerActivates[] = _("All screens on the field were\ncleansed!");
 static const u8 sText_FetchedPokeBall[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX} found\na {B_LAST_ITEM}!");
 static const u8 sText_BattlerAbilityRaisedStat[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX}'s {B_SCR_ACTIVE_ABILITY}\nraised its {B_BUFF1}!");
+static const u8 sText_BattlerAbilityRaisedAllStats[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX}'s {B_SCR_ACTIVE_ABILITY}\nraised all its stats!");
 static const u8 sText_ASandstormKickedUp[] = _("A sandstorm kicked up!");
 static const u8 sText_PkmnsWillPerishIn3Turns[] = _("Both Pokémon will perish\nin three turns!");
 static const u8 sText_AbilityRaisedStatDrastically[] = _("{B_DEF_ABILITY} raised {B_DEF_NAME_WITH_PREFIX}'s\n{B_BUFF1} drastically!");
@@ -1605,6 +1606,7 @@ const u8 *const gBattleStringsTable[BATTLESTRINGS_COUNT] =
     [STRINGID_STRONGWINDSGATHERING - BATTLESTRINGS_TABLE_START] = sText_StrongWindsGathering,
     [STRINGID_STORMCONTINUESTOBLOW - BATTLESTRINGS_TABLE_START] = sText_StormContinuesToBlow,
     [STRINGID_WINDCALMEDDOWN - BATTLESTRINGS_TABLE_START] = sText_WindCalmedDown,
+    [STRINGID_BATTLERABILITYRAISEDALLSTATS - BATTLESTRINGS_TABLE_START] = sText_BattlerAbilityRaisedAllStats,
 };
 
 const u16 gTrainerUsedItemStringIds[] =

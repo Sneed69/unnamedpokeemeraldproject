@@ -855,5 +855,6 @@ extern const u8 BattleScript_EffectHitSetWeather[];
 extern const u8 BattleScript_JetStreamActivates[];
 extern const u8 BattleScript_SoulSiphon[];
 extern const u8 BattleScript_SelectingMoveFlamboyant[];
+extern const u8 BattleScript_LoneWolf[];
 
 #endif // GUARD_BATTLE_SCRIPTS_H

@@ -739,8 +739,9 @@
 #define STRINGID_POLLUTEDTERRAINPREVENTS              737
 #define STRINGID_PKMNDRAINEDDEFSOUL                   738
 #define STRINGID_PKMNCANTUSEMOVEFLAMBOYANT            739
+#define STRINGID_BATTLERABILITYRAISEDALLSTATS         740
 
-#define BATTLESTRINGS_COUNT                           740
+#define BATTLESTRINGS_COUNT                           741
 
 // This is the string id that gBattleStringsTable starts with.
 // String ids before this (e.g. STRINGID_INTROMSG) are not in the table,

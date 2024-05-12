@@ -4749,6 +4749,36 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
                 effect++;
             }
             break;
+        case ABILITY_LONE_WOLF:
+            if (!gSpecialStatuses[battler].switchInAbilityDone)
+            {
+                int i;
+                struct Pokemon *party = GetBattlerParty(battler);
+                u32 partyCount = CalculatePartyCount(party);
+                bool32 isLastMonStanding = TRUE;
+
+                for (i = 0; i < partyCount; i++)
+                {
+                    if (GetMonData(&party[i], MON_DATA_SPECIES) != SPECIES_NONE
+                        && !GetMonData(&party[i], MON_DATA_IS_EGG)
+                        && GetMonData(&party[i], MON_DATA_HP) != 0
+                        && i != gBattlerPartyIndexes[battler])
+                    {
+                        isLastMonStanding = FALSE;
+                        break;
+                    }
+                }
+
+                if (isLastMonStanding)
+                {
+                    gBattleScripting.savedBattler = gBattlerAttacker;
+                    gBattlerAttacker = battler;
+                    gSpecialStatuses[battler].switchInAbilityDone = TRUE;
+                    BattleScriptPushCursorAndCallback(BattleScript_LoneWolf);
+                    effect++;
+                }
+            }
+            break;
         case ABILITY_INTREPID_SWORD:
             if (!gSpecialStatuses[battler].switchInAbilityDone && CompareStat(battler, STAT_ATK, MAX_STAT_STAGE, CMP_LESS_THAN)
                  && !(gBattleStruct->intrepidSwordBoost[GetBattlerSide(battler)] & gBitTable[gBattlerPartyIndexes[battler]]))

@@ -2847,4 +2847,11 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
         .description = COMPOUND_STRING("May replace a used gem\nat the end of each turn.\n"),
         .aiRating = 6,
     },
+
+    [ABILITY_LONE_WOLF] =
+    {
+        .name = _("Lone Wolf"),
+        .description = COMPOUND_STRING("Upon entering a battle as\nthe last Pokémon standing,\nraises all stats."),
+        .aiRating = 2,
+    },
 };
