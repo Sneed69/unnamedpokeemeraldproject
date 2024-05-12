@@ -10276,7 +10276,7 @@ static inline s32 DoMoveDamageCalcVars(u32 move, u32 battlerAtk, u32 battlerDef,
     DAMAGE_APPLY_MODIFIER(GetCriticalModifier(isCrit));
     DAMAGE_APPLY_MODIFIER(GetGlaiveRushModifier(battlerDef));
 
-    if (randomFactor)
+    if (randomFactor && !gSpecialStatuses[battlerAtk].gemBoost)
     {
         dmg *= 100 - RandomUniform(RNG_DAMAGE_MODIFIER, 0, 15);
         dmg /= 100;
