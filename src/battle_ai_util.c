@@ -645,20 +645,33 @@ static bool32 AI_IsMoveEffectInPlus(u32 battlerAtk, u32 battlerDef, u32 move, s3
             switch (gMovesInfo[move].additionalEffects[i].moveEffect)
             {
                 case MOVE_EFFECT_ATK_PLUS_1:
+                case MOVE_EFFECT_ATK_PLUS_2:
                     if (BattlerStatCanRise(battlerAtk, abilityAtk, STAT_ATK))
                         return TRUE;
                     break;
-                case MOVE_EFFECT_DEF_PLUS_2:
                 case MOVE_EFFECT_DEF_PLUS_1:
+                case MOVE_EFFECT_DEF_PLUS_2:
                     if (BattlerStatCanRise(battlerAtk, abilityAtk, STAT_DEF))
                         return TRUE;
                     break;
                 case MOVE_EFFECT_SPD_PLUS_1:
+                case MOVE_EFFECT_SPD_PLUS_2:
                     if (BattlerStatCanRise(battlerAtk, abilityAtk, STAT_SPEED))
                         return TRUE;
                     break;
                 case MOVE_EFFECT_SP_ATK_PLUS_1:
+                case MOVE_EFFECT_SP_ATK_PLUS_2:
                     if (BattlerStatCanRise(battlerAtk, abilityAtk, STAT_SPATK))
+                        return TRUE;
+                    break;
+                case MOVE_EFFECT_EVS_PLUS_1:
+                case MOVE_EFFECT_EVS_PLUS_2:
+                    if (BattlerStatCanRise(battlerAtk, abilityAtk, STAT_EVASION))
+                        return TRUE;
+                    break;
+                case MOVE_EFFECT_ACC_PLUS_1:
+                case MOVE_EFFECT_ACC_PLUS_2:
+                    if (BattlerStatCanRise(battlerAtk, abilityAtk, STAT_ACC))
                         return TRUE;
                     break;
                 case MOVE_EFFECT_ALL_STATS_UP:
@@ -756,21 +769,44 @@ static bool32 AI_IsMoveEffectInMinus(u32 battlerAtk, u32 battlerDef, u32 move, s
                 case MOVE_EFFECT_SPD_MINUS_1:
                 case MOVE_EFFECT_SP_ATK_MINUS_1:
                 case MOVE_EFFECT_SP_DEF_MINUS_1:
+                case MOVE_EFFECT_EVS_MINUS_1:
+                case MOVE_EFFECT_ACC_MINUS_1:
                 case MOVE_EFFECT_ATK_MINUS_2:
                 case MOVE_EFFECT_DEF_MINUS_2:
                 case MOVE_EFFECT_SPD_MINUS_2:
                 case MOVE_EFFECT_SP_ATK_MINUS_2:
                 case MOVE_EFFECT_SP_DEF_MINUS_2:
+                case MOVE_EFFECT_EVS_MINUS_2:
+                case MOVE_EFFECT_ACC_MINUS_2:
                 case MOVE_EFFECT_SP_ATK_TWO_DOWN:
                 case MOVE_EFFECT_V_CREATE:
                 case MOVE_EFFECT_ATK_DEF_DOWN:
                 case MOVE_EFFECT_DEF_SPDEF_DOWN:
-                    if ((gMovesInfo[move].additionalEffects[i].self && GetBattlerAbility(battlerAtk) != ABILITY_CONTRARY)
-                        || (noOfHitsToKo != 1 && abilityDef == ABILITY_CONTRARY && !IsMoldBreakerTypeAbility(abilityAtk)))
+                    if ((gMovesInfo[move].additionalEffects[i].self && abilityAtk != ABILITY_CONTRARY)
+                        || (noOfHitsToKo != 1 && abilityDef == ABILITY_CONTRARY && !DoesBattlerIgnoreAbilityChecks(abilityAtk, move)))
                         return TRUE;
                     break;
                 case MOVE_EFFECT_RECHARGE:
                     return gMovesInfo[move].additionalEffects[i].self;
+                case MOVE_EFFECT_ATK_PLUS_1:
+                case MOVE_EFFECT_DEF_PLUS_1:
+                case MOVE_EFFECT_SPD_PLUS_1:
+                case MOVE_EFFECT_SP_ATK_PLUS_1:
+                case MOVE_EFFECT_SP_DEF_PLUS_1:
+                case MOVE_EFFECT_EVS_PLUS_1:
+                case MOVE_EFFECT_ACC_PLUS_1:
+                case MOVE_EFFECT_ATK_PLUS_2:
+                case MOVE_EFFECT_DEF_PLUS_2:
+                case MOVE_EFFECT_SPD_PLUS_2:
+                case MOVE_EFFECT_SP_ATK_PLUS_2:
+                case MOVE_EFFECT_SP_DEF_PLUS_2:
+                case MOVE_EFFECT_EVS_PLUS_2:
+                case MOVE_EFFECT_ACC_PLUS_2:
+                case MOVE_EFFECT_ALL_STATS_UP:
+                    if ((gMovesInfo[move].additionalEffects[i].self && abilityAtk == ABILITY_CONTRARY)
+                        || (noOfHitsToKo != 1 && !(abilityDef == ABILITY_CONTRARY && !DoesBattlerIgnoreAbilityChecks(abilityAtk, move))))
+                        return TRUE;
+                    break;
             }
         }
         break;
