@@ -1614,12 +1614,12 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         FOOTPRINT(Rockruff)
         .levelUpLearnset = sRockruffLevelUpLearnset,
         .teachableLearnset = sRockruffTeachableLearnset,
-        .formSpeciesIdTable = sRockruffFormSpeciesIdTable,
         .evolutions = EVOLUTION({EVO_LEVEL_DAY, 25, SPECIES_LYCANROC_MIDDAY},
-                                {EVO_LEVEL_NIGHT, 25, SPECIES_LYCANROC_MIDNIGHT}),
+                                {EVO_LEVEL_NIGHT, 25, SPECIES_LYCANROC_MIDNIGHT},
+                                {EVO_LEVEL_DUSK, 25, SPECIES_LYCANROC_DUSK}),
     },
 
-    [SPECIES_ROCKRUFF_OWN_TEMPO] =
+    /*[SPECIES_ROCKRUFF_OWN_TEMPO] =
     {
         .baseHP        = 45,
         .baseAttack    = 65,
@@ -1667,7 +1667,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .teachableLearnset = sRockruffTeachableLearnset,
         .formSpeciesIdTable = sRockruffFormSpeciesIdTable,
         .evolutions = EVOLUTION({EVO_LEVEL_DUSK, 25, SPECIES_LYCANROC_DUSK}),
-    },
+    },*/
 
     [SPECIES_LYCANROC_MIDDAY] =
     {
@@ -1677,7 +1677,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .baseSpeed     = 112,
         .baseSpAttack  = 55,
         .baseSpDefense = 65,
-        .types = MON_TYPES(TYPE_ROCK),
+        .types = MON_TYPES(TYPE_ROCK, TYPE_GROUND),
         .catchRate = 90,
         .expYield = 170,
         .evYield_Attack = 2,
@@ -1730,7 +1730,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .baseSpeed     = 82,
         .baseSpAttack  = 55,
         .baseSpDefense = 75,
-        .types = MON_TYPES(TYPE_ROCK),
+        .types = MON_TYPES(TYPE_ROCK, TYPE_DARK),
         .catchRate = 90,
         .expYield = 170,
         .evYield_Attack = 2,
@@ -1783,7 +1783,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .baseSpeed     = 110,
         .baseSpAttack  = 55,
         .baseSpDefense = 65,
-        .types = MON_TYPES(TYPE_ROCK),
+        .types = MON_TYPES(TYPE_ROCK, TYPE_FIGHTING),
         .catchRate = 90,
         .expYield = 170,
         .evYield_Attack = 2,
