@@ -160,7 +160,7 @@ static const struct WindowTemplate sWindowTemplate_StartClock = {
     .bg = 0, 
     .tilemapLeft = 1, 
     .tilemapTop = 1, 
-    .width = 13, // If you want to shorten the dates to Sat., Sun., etc., change this to 9
+    .width = 11, // If you want to shorten the dates to Sat., Sun., etc., change this to 9
     .height = 2, 
     .paletteNum = 15,
     .baseBlock = 0x30
@@ -475,7 +475,7 @@ static void ShowPyramidFloorWindow(void)
 }
 
 // If you want to shorten the dates to Sat., Sun., etc., change this to 70
-#define CLOCK_WINDOW_WIDTH 104
+#define CLOCK_WINDOW_WIDTH 88
 
 const u8 gText_Saturday[] = _("Saturday,");
 const u8 gText_Sunday[] = _("Sunday,");
@@ -497,46 +497,22 @@ const u8 *const gDayNameStringsTable[DAY_COUNT] = {
 
 static void ShowTimeWindow(void)
 {
-    const u8 *suffix;
     u8* ptr;
-    u8 convertedHours;
 
     // print window
     sStartClockWindowId = AddWindow(&sWindowTemplate_StartClock);
     PutWindowTilemap(sStartClockWindowId);
     DrawStdWindowFrame(sStartClockWindowId, FALSE);
 
-    if (gSaveBlock1Ptr->gameTime.hours < 12)
-    {
-        if (gSaveBlock1Ptr->gameTime.hours == 0)
-            convertedHours = 12;
-        else
-            convertedHours = gSaveBlock1Ptr->gameTime.hours;
-        suffix = gText_AM;
-    }
-    else if (gSaveBlock1Ptr->gameTime.hours == 12)
-    {
-        convertedHours = 12;
-        if (suffix == gText_AM);
-            suffix = gText_PM;
-    }
-    else
-    {
-        convertedHours = gSaveBlock1Ptr->gameTime.hours - 12;
-        suffix = gText_PM;
-    }
-
     StringExpandPlaceholders(gStringVar4, gDayNameStringsTable[(gSaveBlock1Ptr->gameTime.days % DAY_COUNT)]);
     // StringExpandPlaceholders(gStringVar4, gText_ContinueMenuTime); // prints "time" word, from version before weekday was added and leaving it here in case anyone would prefer to use it
     AddTextPrinterParameterized(sStartClockWindowId, 1, gStringVar4, 0, 1, 0xFF, NULL); 
 
-    ptr = ConvertIntToDecimalStringN(gStringVar4, convertedHours, STR_CONV_MODE_LEFT_ALIGN, 3);
+    ptr = ConvertIntToDecimalStringN(gStringVar4, gSaveBlock1Ptr->gameTime.hours, STR_CONV_MODE_LEFT_ALIGN, 3);
     *ptr = 0xF0;
 
     ConvertIntToDecimalStringN(ptr + 1, gSaveBlock1Ptr->gameTime.minutes, STR_CONV_MODE_LEADING_ZEROS, 2);
-    AddTextPrinterParameterized(sStartClockWindowId, 1, gStringVar4, GetStringRightAlignXOffset(1, suffix, CLOCK_WINDOW_WIDTH) - (CLOCK_WINDOW_WIDTH - GetStringRightAlignXOffset(1, gStringVar4, CLOCK_WINDOW_WIDTH) + 3), 1, 0xFF, NULL); // print time
-
-    AddTextPrinterParameterized(sStartClockWindowId, 1, suffix, GetStringRightAlignXOffset(1, suffix, CLOCK_WINDOW_WIDTH), 1, 0xFF, NULL); // print am/pm
+    AddTextPrinterParameterized(sStartClockWindowId, 1, gStringVar4,  GetStringRightAlignXOffset(1, gStringVar4, CLOCK_WINDOW_WIDTH), 1, 0xFF, NULL); // print time
 
     CopyWindowToVram(sStartClockWindowId, COPYWIN_GFX);
 }
