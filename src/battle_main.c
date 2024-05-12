@@ -5163,6 +5163,10 @@ s8 GetMovePriority(u32 battler, u16 move)
     {
         priority++;
     }
+    else if (ability == ABILITY_EXPERT_TRAPPER && gMovesInfo[move].hazard)
+    {
+        priority += 2;
+    }
     else if (gMovesInfo[move].effect == EFFECT_GRASSY_GLIDE && gFieldStatuses & STATUS_FIELD_GRASSY_TERRAIN)
     {
         priority++;

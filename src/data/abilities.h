@@ -2820,10 +2820,10 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
         .aiRating = 5,
     },
 
-    [ABILITY_FLAMBOYANT] =
+    [ABILITY_EXPERT_TRAPPER] =
     {
-        .name = _("Flamboyant"),
-        .description = COMPOUND_STRING("Boosts move power, but won't use\nthe same move twice in a row.\nAcrobatics ignore held items."),
+        .name = _("Expert Trapper"),
+        .description = COMPOUND_STRING("Entry hazard moves gain\nhighly increased priority.\nUnaffected by entry hazards."),
         .aiRating = 5,
     },
 };

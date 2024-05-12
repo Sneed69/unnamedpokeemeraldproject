@@ -4869,6 +4869,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .magicCoatAffected = B_UPDATED_MOVE_FLAGS >= GEN_5,
         .forcePressure = TRUE,
         .skyBattleBanned = TRUE,
+        .hazard = TRUE,
 
         .contestEffect = CONTEST_EFFECT_MAKE_FOLLOWING_MONS_NERVOUS,
         .contestCategory = CONTEST_CATEGORY_SMART,
@@ -9796,6 +9797,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .magicCoatAffected = B_UPDATED_MOVE_FLAGS >= GEN_5,
         .forcePressure = TRUE,
         .skyBattleBanned = TRUE,
+        .hazard = TRUE,
 
         .contestEffect = CONTEST_EFFECT_MAKE_FOLLOWING_MONS_NERVOUS,
         .contestCategory = CONTEST_CATEGORY_SMART,
@@ -11177,6 +11179,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .ignoresProtect = TRUE,
         .mirrorMoveBanned = TRUE,
         .forcePressure = TRUE,
+        .hazard = TRUE,
 
         .contestEffect = CONTEST_EFFECT_MAKE_FOLLOWING_MONS_NERVOUS,
         .contestCategory = CONTEST_CATEGORY_COOL,
@@ -14047,6 +14050,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .mirrorMoveBanned = TRUE,
         .magicCoatAffected = TRUE,
         .skyBattleBanned = TRUE,
+        .hazard = TRUE,
 
         .contestEffect = CONTEST_EFFECT_MAKE_FOLLOWING_MONS_NERVOUS,
         .contestCategory = CONTEST_CATEGORY_SMART,

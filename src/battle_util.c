@@ -11417,10 +11417,21 @@ bool32 IsBattlerAffectedByHazards(u32 battler, bool32 toxicSpikes)
 {
     bool32 ret = TRUE;
     u32 holdEffect = GetBattlerHoldEffect(battler, TRUE);
+    u32 ability = GetBattlerAbility(battler);
     if (toxicSpikes && holdEffect == HOLD_EFFECT_HEAVY_DUTY_BOOTS && !IS_BATTLER_OF_TYPE(battler, TYPE_POISON))
     {
         ret = FALSE;
         RecordItemEffectBattle(battler, holdEffect);
+    }
+    else if (toxicSpikes && ability == ABILITY_EXPERT_TRAPPER && !IS_BATTLER_OF_TYPE(battler, TYPE_POISON))
+    {
+        ret = FALSE;
+        RecordAbilityBattle(battler, ability);
+    }
+    else if (ability == ABILITY_EXPERT_TRAPPER)
+    {
+        ret = FALSE;
+        RecordAbilityBattle(battler, ability);
     }
     else if (holdEffect == HOLD_EFFECT_HEAVY_DUTY_BOOTS)
     {
