@@ -2840,4 +2840,11 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
         .description = COMPOUND_STRING("May replace a used herb\nat the end of each turn.\nAlways works under verdant aura."),
         .aiRating = 6,
     },
+
+    [ABILITY_LAPIDARY] =
+    {
+        .name = _("Lapidary"),
+        .description = COMPOUND_STRING("May replace a used gem\nat the end of each turn.\n"),
+        .aiRating = 6,
+    },
 };
