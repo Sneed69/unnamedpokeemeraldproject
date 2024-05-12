@@ -18,7 +18,9 @@ struct Item
     u8 pluralName[ITEM_NAME_PLURAL_LENGTH];
     u8 holdEffect;
     u8 holdEffectParam;
-    u8 importance;
+    u8 importance:2;
+    u8 herb:1;
+    u8 padding:5;
     u8 pocket;
     u8 type;
     u8 battleUsage;
@@ -68,6 +70,7 @@ const u8 *ItemId_GetName(u16 itemId);
 u32 ItemId_GetPrice(u16 itemId);
 const u8 *ItemId_GetEffect(u32 itemId);
 u32 ItemId_GetHoldEffect(u32 itemId);
+u32 ItemId_IsHerb(u32 itemId);
 u32 ItemId_GetHoldEffectParam(u32 itemId);
 const u8 *ItemId_GetDescription(u16 itemId);
 u8 ItemId_GetImportance(u16 itemId);

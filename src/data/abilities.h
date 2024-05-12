@@ -1048,7 +1048,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_HARVEST] =
     {
         .name = _("Harvest"),
-        .description = COMPOUND_STRING("May replace a used Berry\nat the end of each turn.\nAlways works in harsh sunlight."),
+        .description = COMPOUND_STRING("May replace a used berry\nat the end of each turn.\nAlways works in harsh sunlight."),
         .aiRating = 5,
     },
 
@@ -2832,5 +2832,12 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
         .name = _("Flamboyant"),
         .description = COMPOUND_STRING("Boosts move power, but cannot\nuse the same move twice in a row.\nAcrobatics' power ignores items."),
         .aiRating = 5,
+    },
+
+    [ABILITY_BOTANIST] =
+    {
+        .name = _("Botanist"),
+        .description = COMPOUND_STRING("May replace a used herb\nat the end of each turn.\nAlways works under verdant aura."),
+        .aiRating = 6,
     },
 };

@@ -6893,6 +6893,7 @@ const struct Item gItemsInfo[] =
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .herb = TRUE,
     },
 
     [ITEM_EXP_SHARE] =
@@ -6964,6 +6965,7 @@ const struct Item gItemsInfo[] =
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .herb = TRUE,
     },
 
     [ITEM_KINGS_ROCK] =
@@ -7193,6 +7195,7 @@ const struct Item gItemsInfo[] =
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .herb = TRUE,
     },
 
     [ITEM_FOCUS_SASH] =
@@ -10446,6 +10449,7 @@ const struct Item gItemsInfo[] =
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .herb = TRUE,
     },
 
     [ITEM_SCROLL_OF_DARKNESS] =

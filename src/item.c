@@ -949,6 +949,11 @@ const u8 *ItemId_GetEffect(u32 itemId)
         return gItemsInfo[SanitizeItemId(itemId)].effect;
 }
 
+u32 ItemId_IsHerb(u32 itemId)
+{
+    return gItemsInfo[SanitizeItemId(itemId)].herb;
+}
+
 u32 ItemId_GetHoldEffect(u32 itemId)
 {
     return gItemsInfo[SanitizeItemId(itemId)].holdEffect;
