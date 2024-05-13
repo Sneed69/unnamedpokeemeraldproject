@@ -243,6 +243,7 @@ EWRAM_DATA u16 gBallToDisplay = 0;
 EWRAM_DATA bool8 gLastUsedBallMenuPresent = FALSE;
 EWRAM_DATA u8 gPartyCriticalHits[PARTY_SIZE] = {0};
 EWRAM_DATA static u8 sTriedEvolving = 0;
+EWRAM_DATA u8 gMoveResultEffectinessStrength = 0;
 
 void (*gPreBattleCallback1)(void);
 void (*gBattleMainFunc)(void);

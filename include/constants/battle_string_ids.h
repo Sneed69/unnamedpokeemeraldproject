@@ -740,8 +740,12 @@
 #define STRINGID_PKMNDRAINEDDEFSOUL                   738
 #define STRINGID_PKMNCANTUSEMOVEFLAMBOYANT            739
 #define STRINGID_BATTLERABILITYRAISEDALLSTATS         740
+#define STRINGID_SUPEREFFECTIVE_x4                    741
+#define STRINGID_SUPEREFFECTIVE_x8                    742
+#define STRINGID_STRINGID_NOTVERYEFFECTIVE_x0_25      743
+#define STRINGID_STRINGID_NOTVERYEFFECTIVE_x0_125     744
 
-#define BATTLESTRINGS_COUNT                           741
+#define BATTLESTRINGS_COUNT                           745
 
 // This is the string id that gBattleStringsTable starts with.
 // String ids before this (e.g. STRINGID_INTROMSG) are not in the table,

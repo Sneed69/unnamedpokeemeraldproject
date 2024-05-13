@@ -1140,6 +1140,7 @@ extern bool8 gPlayerDoesNotWantToEvolveLeft;
 extern bool8 gPlayerDoesNotWantToEvolveRight;
 extern u8 gBattleTerrainBackup;
 extern const struct BattleMoveEffect gBattleMoveEffects[];
+extern u8 gMoveResultEffectinessStrength;
 
 extern void (*gPreBattleCallback1)(void);
 extern void (*gBattleMainFunc)(void);
@@ -1174,5 +1175,12 @@ static inline struct Pokemon *GetBattlerParty(u32 battler)
 {
     return GetSideParty(GetBattlerSide(battler));
 }
+
+enum 
+{
+    MOVE_EFFECTIVENESS_DOUBLE,
+    MOVE_EFFECTIVENESS_QUADRUPLE,
+    MOVE_EFFECTIVENESS_OCTUPLE,
+};
 
 #endif // GUARD_BATTLE_H

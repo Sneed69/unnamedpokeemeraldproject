@@ -10602,11 +10602,25 @@ static void UpdateMoveResultFlags(uq4_12_t modifier)
     {
         gMoveResultFlags |= MOVE_RESULT_SUPER_EFFECTIVE;
         gMoveResultFlags &= ~(MOVE_RESULT_NOT_VERY_EFFECTIVE | MOVE_RESULT_DOESNT_AFFECT_FOE);
+        
+        if (modifier == UQ_4_12(2.0))
+            gMoveResultEffectinessStrength = MOVE_EFFECTIVENESS_DOUBLE;
+        else if (modifier == UQ_4_12(4.0))
+            gMoveResultEffectinessStrength = MOVE_EFFECTIVENESS_QUADRUPLE;
+        else
+            gMoveResultEffectinessStrength = MOVE_EFFECTIVENESS_OCTUPLE;
     }
     else //if (modifier < UQ_4_12(1.0))
     {
         gMoveResultFlags |= MOVE_RESULT_NOT_VERY_EFFECTIVE;
         gMoveResultFlags &= ~(MOVE_RESULT_SUPER_EFFECTIVE | MOVE_RESULT_DOESNT_AFFECT_FOE);
+        
+        if (modifier == UQ_4_12(0.5))
+            gMoveResultEffectinessStrength = MOVE_EFFECTIVENESS_DOUBLE;
+        else if (modifier == UQ_4_12(0.25))
+            gMoveResultEffectinessStrength = MOVE_EFFECTIVENESS_QUADRUPLE;
+        else
+            gMoveResultEffectinessStrength = MOVE_EFFECTIVENESS_OCTUPLE;
     }
 }
 

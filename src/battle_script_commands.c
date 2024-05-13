@@ -2586,12 +2586,24 @@ static void Cmd_resultmessage(void)
                 if (GetBattlerSide(gBattlerTarget) != B_SIDE_PLAYER && gBattleStruct->trainerSlideFirstSuperEffectiveHitMsgState != 2)
                     gBattleStruct->trainerSlideFirstSuperEffectiveHitMsgState = 1;
 
-                stringId = STRINGID_SUPEREFFECTIVE;
+                if (gMoveResultEffectinessStrength == MOVE_EFFECTIVENESS_DOUBLE)
+                    stringId = STRINGID_SUPEREFFECTIVE;
+                else if (gMoveResultEffectinessStrength == MOVE_EFFECTIVENESS_QUADRUPLE)
+                    stringId = STRINGID_SUPEREFFECTIVE_x4;
+                else
+                    stringId = STRINGID_SUPEREFFECTIVE_x8;
             }
             break;
         case MOVE_RESULT_NOT_VERY_EFFECTIVE:
             if (!gMultiHitCounter)
-                stringId = STRINGID_NOTVERYEFFECTIVE;
+            {
+                if (gMoveResultEffectinessStrength == MOVE_EFFECTIVENESS_DOUBLE)
+                    stringId = STRINGID_NOTVERYEFFECTIVE;
+                else if (gMoveResultEffectinessStrength == MOVE_EFFECTIVENESS_QUADRUPLE)
+                    stringId = STRINGID_STRINGID_NOTVERYEFFECTIVE_x0_25;
+                else
+                    stringId = STRINGID_STRINGID_NOTVERYEFFECTIVE_x0_125;
+            }
             break;
         case MOVE_RESULT_ONE_HIT_KO:
             stringId = STRINGID_ONEHITKO;
