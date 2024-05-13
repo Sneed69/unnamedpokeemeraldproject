@@ -2075,7 +2075,7 @@ static void Cmd_adjustdamage(void)
     }
     else if (GetBattlerAbility(gBattlerTarget) == ABILITY_NINE_LIVES && !gBattleStruct->nineLivesUsed[gBattlerPartyIndexes[gBattlerTarget]][GetBattlerSide(gBattlerTarget)])
     {
-        gBattleMoveDamage /= 10;
+        gBattleMoveDamage /= 9;
         if (gBattleMoveDamage == 0)
             gBattleMoveDamage = 1;
         if (gBattleMons[gBattlerTarget].hp > gBattleMoveDamage)
@@ -2083,6 +2083,7 @@ static void Cmd_adjustdamage(void)
             gMoveResultFlags |= MOVE_RESULT_STURDIED;
             gBattleStruct->nineLivesUsed[gBattlerPartyIndexes[gBattlerTarget]][GetBattlerSide(gBattlerTarget)] = TRUE;
             RecordAbilityBattle(gBattlerTarget, ABILITY_NINE_LIVES);
+            gLastUsedAbility = ABILITY_NINE_LIVES;
         }
     }
     else if (holdEffect == HOLD_EFFECT_FOCUS_SASH && BATTLER_MAX_HP(gBattlerTarget))
