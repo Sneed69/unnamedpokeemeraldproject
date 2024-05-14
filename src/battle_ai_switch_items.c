@@ -1501,7 +1501,10 @@ static u32 GetSwitchinStatusDamage(u32 battler)
         }
         else if ((status & STATUS1_POISON) && ability != ABILITY_POISON_HEAL)
         {
-            statusDamage = maxHP / 8;
+            if (IsAbilityOnOpposingSide(battler, ABILITY_MALEDICTION))
+                statusDamage = maxHP / 6;
+            else
+                statusDamage = maxHP / 8;
             if (statusDamage == 0)
                 statusDamage = 1;
         }
@@ -1509,6 +1512,10 @@ static u32 GetSwitchinStatusDamage(u32 battler)
         {
             if ((status & STATUS1_TOXIC_COUNTER) != STATUS1_TOXIC_TURN(15)) // not 16 turns
                 AI_DATA->switchinCandidate.battleMon.status1 += STATUS1_TOXIC_TURN(1);
+            if (IsAbilityOnOpposingSide(battler, ABILITY_MALEDICTION))
+                statusDamage = maxHP / 12;
+            else
+                statusDamage = maxHP / 16;
             statusDamage *= AI_DATA->switchinCandidate.battleMon.status1 & STATUS1_TOXIC_COUNTER >> 8;
             if (statusDamage == 0)
                 statusDamage = 1;
