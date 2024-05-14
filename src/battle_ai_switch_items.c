@@ -1364,12 +1364,22 @@ static s32 GetSwitchinWeatherImpact(void)
             if (ability == ABILITY_DRY_SKIN)
             {
                 weatherImpact = maxHP / 8;
+                if (gFieldStatuses & STATUS_FIELD_POLLUTED_TERRAIN
+                 && AI_DATA->switchinCandidate.battleMon.type1 != TYPE_POISON
+                 && AI_DATA->switchinCandidate.battleMon.type2 != TYPE_POISON
+                 && AI_DATA->switchinCandidate.battleMon.ability != ABILITY_POISON_HEAL)
+                    weatherImpact /= 2;
                 if (weatherImpact == 0)
                     weatherImpact = 1;
             }
-            else if (ability == ABILITY_RAIN_DISH)
+            else if (ability == ABILITY_RAIN_DISH || ability == ABILITY_HYDRATION)
             {
                 weatherImpact = maxHP / 16;
+                if (gFieldStatuses & STATUS_FIELD_POLLUTED_TERRAIN
+                 && AI_DATA->switchinCandidate.battleMon.type1 != TYPE_POISON
+                 && AI_DATA->switchinCandidate.battleMon.type2 != TYPE_POISON
+                 && AI_DATA->switchinCandidate.battleMon.ability != ABILITY_POISON_HEAL)
+                    weatherImpact /= 2;
                 if (weatherImpact == 0)
                     weatherImpact = 1;
             }
@@ -1378,7 +1388,7 @@ static s32 GetSwitchinWeatherImpact(void)
         {
             weatherImpact = maxHP / 16;
             if (weatherImpact == 0)
-                weatherImpact =1;
+                weatherImpact = 1;
         }
     }
     return weatherImpact;
@@ -1414,6 +1424,12 @@ static u32 GetSwitchinRecurringHealing(void)
         if (recurringHealing == 0)
             recurringHealing = 1;
     }
+    if (gFieldStatuses & STATUS_FIELD_POLLUTED_TERRAIN
+        && AI_DATA->switchinCandidate.battleMon.type1 != TYPE_POISON
+        && AI_DATA->switchinCandidate.battleMon.type2 != TYPE_POISON
+        && AI_DATA->switchinCandidate.battleMon.ability != ABILITY_POISON_HEAL
+        && recurringHealing > 1)
+        recurringHealing /= 2;
     return recurringHealing;
 }
 
