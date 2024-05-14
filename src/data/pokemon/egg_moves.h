@@ -1638,6 +1638,16 @@ const u16 gEggMoves[] = {
         MOVE_DISABLE,
         MOVE_POWER_UP_PUNCH),
 
+    egg_moves(ROCKRUFF,
+        MOVE_BODY_SLAM,
+        MOVE_BULLDOZE,
+        MOVE_CHARM,
+        MOVE_COVET,
+        MOVE_ENDEAVOR,
+        MOVE_ENDURE,
+        MOVE_MAGIC_FANG,
+        MOVE_SWAGGER),
+
     egg_moves(TINKATINK,
         MOVE_STEEL_BEAM,
         MOVE_ENDEAVOR,
