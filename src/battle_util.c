@@ -10169,8 +10169,12 @@ static inline uq4_12_t GetAttackerAbilitiesModifier(u32 battlerAtk, uq4_12_t typ
             return UQ_4_12(1.5);
         break;
     case ABILITY_TINTED_LENS:
+        if (typeEffectivenessModifier <= UQ_4_12(0.125))
+            return UQ_4_12(3.375);
+        if (typeEffectivenessModifier <= UQ_4_12(0.25))
+            return UQ_4_12(2.25);
         if (typeEffectivenessModifier <= UQ_4_12(0.5))
-            return UQ_4_12(2.0);
+            return UQ_4_12(1.5);
         break;
     }
     return UQ_4_12(1.0);

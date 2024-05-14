@@ -829,7 +829,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_TINTED_LENS] =
     {
         .name = _("Tinted Lens"),
-        .description = COMPOUND_STRING("Doubles the power of moves\nthat are not very effective."),
+        .description = COMPOUND_STRING("Boosts the power of moves\nthat are not very effective."),
         .aiRating = 7,
     },
 
