@@ -8648,6 +8648,26 @@ BattleScript_RaiseStatOnFaintingTarget::
 BattleScript_RaiseStatOnFaintingTarget_End:
 	return
 
+BattleScript_HealOnFoeFaint::
+	call BattleScript_AbilityPopUp
+	jumpiffullhp BS_ABILITY_BATTLER, BattleScript_HealOnFoeFaint_TryCureStatus
+	printstring STRINGID_PKMNSXRESTOREDHP
+	waitmessage B_WAIT_TIME_LONG
+	orword gHitMarker, HITMARKER_IGNORE_SUBSTITUTE
+	healthbarupdate BS_ABILITY_BATTLER
+	datahpupdate BS_ABILITY_BATTLER
+BattleScript_HealOnFoeFaint_TryCureStatus:
+	jumpifpollutedterrainaffected BS_ABILITY_BATTLER, BattleScript_HealOnFoeFaint_End
+	jumpifstatus BS_ABILITY_BATTLER, STATUS1_ANY, BattleScript_HealOnFoeFaint_CureStatus
+	goto BattleScript_HealOnFoeFaint_End
+BattleScript_HealOnFoeFaint_CureStatus:
+	curestatus BS_ABILITY_BATTLER
+	printstring STRINGID_PKMNSXCUREDYPROBLEM
+	waitmessage B_WAIT_TIME_LONG
+	updatestatusicon BS_ABILITY_BATTLER
+BattleScript_HealOnFoeFaint_End:
+	return
+
 BattleScript_AttackerAbilityStatRaise::
 	statbuffchange MOVE_EFFECT_AFFECTS_USER | STAT_CHANGE_ALLOW_PTR, BattleScript_AttackerAbilityStatRaise_End
 	copybyte gBattlerAbility, gBattlerAttacker

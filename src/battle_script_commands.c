@@ -9623,8 +9623,10 @@ static void Cmd_various(void)
         VARIOUS_ARGS();
         while (gBattleStruct->soulheartBattlerId < gBattlersCount)
         {
+            u32 battlerAbility;
             gBattleScripting.battler = gBattleStruct->soulheartBattlerId++;
-            if (GetBattlerAbility(gBattleScripting.battler) == ABILITY_SOUL_HEART
+            battlerAbility = GetBattlerAbility(gBattleScripting.battler);
+            if (battlerAbility == ABILITY_SOUL_HEART
                 && IsBattlerAlive(gBattleScripting.battler)
                 && !NoAliveMonsForEitherParty()
                 && CompareStat(gBattleScripting.battler, STAT_SPATK, MAX_STAT_STAGE, CMP_LESS_THAN))
@@ -9633,6 +9635,19 @@ static void Cmd_various(void)
                 PREPARE_STAT_BUFFER(gBattleTextBuff1, STAT_SPATK);
                 BattleScriptPushCursor();
                 gBattlescriptCurrInstr = BattleScript_ScriptingAbilityStatRaise;
+                return;
+            }
+            else if (battlerAbility == ABILITY_VICTORY_RUSH
+                  && IsBattlerAlive(gBattleScripting.battler)
+                  && !NoAliveMonsForEitherParty()
+                  && (!BATTLER_MAX_HP(gBattleScripting.battler)
+                  || gBattleMons[gBattleScripting.battler].status1 & STATUS1_ANY))
+            {
+                gLastUsedAbility = battlerAbility;
+                gBattlerAbility = gBattleScripting.battler;
+                gBattleMoveDamage = -gBattleMons[gBattleScripting.battler].maxHP / 5;
+                BattleScriptPushCursor();
+                gBattlescriptCurrInstr = BattleScript_HealOnFoeFaint;
                 return;
             }
         }

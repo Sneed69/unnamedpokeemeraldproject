@@ -2854,4 +2854,11 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
         .description = COMPOUND_STRING("Upon entering a battle as\nthe last Pokémon standing,\nraises all stats."),
         .aiRating = 2,
     },
+
+    [ABILITY_VICTORY_RUSH] =
+    {
+        .name = _("Victory Rush"),
+        .description = COMPOUND_STRING("Whenever an opponent faints,\nrestores HP and cures any\nnon-volatile status condition."),
+        .aiRating = 6,
+    },
 };

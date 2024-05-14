@@ -307,6 +307,7 @@ static const u8 sText_PkmnsXPreventsBurns[] = _("{B_EFF_NAME_WITH_PREFIX}'s {B_E
 static const u8 sText_PkmnsXBlocksY[] = _("{B_DEF_NAME_WITH_PREFIX}'s {B_DEF_ABILITY}\nblocks {B_CURRENT_MOVE}!");
 static const u8 sText_PkmnsXBlocksY2[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX}'s {B_SCR_ACTIVE_ABILITY}\nblocks {B_CURRENT_MOVE}!");
 static const u8 sText_PkmnsXRestoredHPALittle2[] = _("{B_ATK_NAME_WITH_PREFIX}'s {B_ATK_ABILITY}\nrestored its HP a little!");
+static const u8 sText_PkmnsXRestoredHP[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX}'s {B_SCR_ACTIVE_ABILITY}\nrestored its HP!");
 static const u8 sText_PkmnsXWhippedUpSandstorm[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX}'s {B_SCR_ACTIVE_ABILITY}\nwhipped up a sandstorm!");
 static const u8 sText_PkmnsXIntensifiedSun[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX}'s {B_SCR_ACTIVE_ABILITY}\nintensified the sun's rays!");
 static const u8 sText_PkmnsXPreventsYLoss[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX}'s {B_SCR_ACTIVE_ABILITY}\nprevents {B_BUFF1} loss!");
@@ -1615,6 +1616,7 @@ const u8 *const gBattleStringsTable[BATTLESTRINGS_COUNT] =
     [STRINGID_STORMCONTINUESTOBLOW - BATTLESTRINGS_TABLE_START] = sText_StormContinuesToBlow,
     [STRINGID_WINDCALMEDDOWN - BATTLESTRINGS_TABLE_START] = sText_WindCalmedDown,
     [STRINGID_BATTLERABILITYRAISEDALLSTATS - BATTLESTRINGS_TABLE_START] = sText_BattlerAbilityRaisedAllStats,
+    [STRINGID_PKMNSXRESTOREDHP - BATTLESTRINGS_TABLE_START] = sText_PkmnsXRestoredHP,
 };
 
 const u16 gTrainerUsedItemStringIds[] =
