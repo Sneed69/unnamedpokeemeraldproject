@@ -2875,4 +2875,11 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
         .description = COMPOUND_STRING("After entering a battle,\ngains half of Speed as\nAttack on its first turn."),
         .aiRating = 5,
     },
+
+    [ABILITY_LOUD_SLEEPER] =
+    {
+        .name = _("Loud Sleeper"),
+        .description = COMPOUND_STRING("While asleep, snores loudly\nbefore the end of every turn."),
+        .aiRating = 5,
+    },
 };

@@ -4996,6 +4996,17 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
             gBattlerAttacker = battler;
             switch (gLastUsedAbility)
             {
+            case ABILITY_LOUD_SLEEPER:
+                if ((gBattleMons[battler].status1 & STATUS1_SLEEP))
+                {
+                    gSpecialStatuses[battler].dancerUsedMove = TRUE;
+                    gBattlerAbility = battler;
+                    gCurrentMove = MOVE_SNORE;
+                    gBattlerTarget = BATTLE_OPPOSITE(battler);
+                    BattleScriptExecute(BattleScript_LoudSleeper);
+                    effect++;
+                }
+                break;
             case ABILITY_LAPIDARY:
                 if (Random() % 2 == 0
                  && gBattleMons[battler].item == ITEM_NONE

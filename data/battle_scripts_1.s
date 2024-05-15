@@ -10326,3 +10326,16 @@ BattleScript_PlayWeatherAnimation:
 	BattleScript_PlayWeatherAnimationRet:
 	call BattleScript_ActivateWeatherAbilities
 	return
+
+BattleScript_LoudSleeper::
+	call BattleScript_AbilityPopUp
+	waitmessage B_WAIT_TIME_SHORT
+	attackstring
+	accuracycheck BattleScript_MoveMissedPause, ACC_CURR_MOVE
+	critcalc
+	damagecalc
+	adjustdamage
+	call BattleScript_Hit_RetFromAtkAnimation
+	tryfaintmon BS_TARGET
+	moveendall
+	end
