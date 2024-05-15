@@ -2868,4 +2868,11 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
         .description = COMPOUND_STRING("Boosts Speed after taking a\nhit that drops HP below half."),
         .aiRating = 5,
     },
+
+    [ABILITY_MOMENTUM] =
+    {
+        .name = _("Momentum"),
+        .description = COMPOUND_STRING("After entering a battle,\ngains half of Speed as\nAttack on its first turn."),
+        .aiRating = 5,
+    },
 };

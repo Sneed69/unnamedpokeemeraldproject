@@ -9570,6 +9570,7 @@ static inline u32 CalcAttackStat(u32 move, u32 battlerAtk, u32 battlerDef, u32 m
     u32 atkStat;
     uq4_12_t modifier;
     u16 atkBaseSpeciesId;
+    bool32 usesOwnAttackStat = FALSE;
 
     atkBaseSpeciesId = GET_BASE_SPECIES_ID(gBattleMons[battlerAtk].species);
 
@@ -9605,6 +9606,7 @@ static inline u32 CalcAttackStat(u32 move, u32 battlerAtk, u32 battlerDef, u32 m
         {
             atkStat = gBattleMons[battlerAtk].attack;
             atkStage = gBattleMons[battlerAtk].statStages[STAT_ATK];
+            usesOwnAttackStat = TRUE;
         }
         else
         {
@@ -9618,6 +9620,7 @@ static inline u32 CalcAttackStat(u32 move, u32 battlerAtk, u32 battlerDef, u32 m
         {
             atkStat = gBattleMons[battlerAtk].attack;
             atkStage = gBattleMons[battlerAtk].statStages[STAT_ATK];
+            usesOwnAttackStat = TRUE;
         }
         else
         {
@@ -9635,6 +9638,16 @@ static inline u32 CalcAttackStat(u32 move, u32 battlerAtk, u32 battlerDef, u32 m
 
     atkStat *= gStatStageRatios[atkStage][0];
     atkStat /= gStatStageRatios[atkStage][1];
+
+    if (atkAbility == ABILITY_MOMENTUM && gDisableStructs[battlerAtk].isFirstTurn && usesOwnAttackStat)
+    {
+        u32 speedStage = gBattleMons[battlerAtk].statStages[STAT_SPEED];
+        if (isCrit && speedStage < DEFAULT_STAT_STAGE)
+            speedStage = DEFAULT_STAT_STAGE;
+        if (defAbility == ABILITY_UNAWARE)
+            speedStage = DEFAULT_STAT_STAGE;
+        atkStat += gBattleMons[battlerAtk].speed * gStatStageRatios[speedStage][0] / (2 * gStatStageRatios[speedStage][1]);
+    }
 
     // apply attack stat modifiers
     modifier = UQ_4_12(1.0);
