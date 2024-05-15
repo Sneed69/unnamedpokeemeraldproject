@@ -1539,7 +1539,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_BERSERK] =
     {
         .name = _("Berserk"),
-        .description = COMPOUND_STRING("ABoosts Special Attack after\ntaking hits that cause HP\nto drop to half or less."),
+        .description = COMPOUND_STRING("Boosts Special Attack after\ntaking hits that cause HP\nto drop to half or less."),
         .aiRating = 5,
     },
 
@@ -2860,5 +2860,12 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
         .name = _("Victory Rush"),
         .description = COMPOUND_STRING("Whenever an opponent faints,\nrestores HP and cures any\nnon-volatile status condition."),
         .aiRating = 6,
+    },
+
+    [ABILITY_ADRENALINE_RUSH] =
+    {
+        .name = _("Adrenaline Rush"),
+        .description = COMPOUND_STRING("Boosts Speed after taking a\nhit that drops HP below half."),
+        .aiRating = 5,
     },
 };
