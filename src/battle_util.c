@@ -4028,6 +4028,11 @@ static void ForewarnChooseMove(u32 battler)
     }
 
     gBattlerTarget = data[bestId].battler;
+    if (gDisableStructs[gBattlerTarget].disabledMove == MOVE_NONE)
+    {
+        gDisableStructs[gBattlerTarget].disabledMove = data[bestId].moveId;
+        gDisableStructs[gBattlerTarget].disableTimer = 2;
+    }
     PREPARE_MOVE_BUFFER(gBattleTextBuff1, data[bestId].moveId)
     RecordKnownMove(gBattlerTarget, data[bestId].moveId);
 

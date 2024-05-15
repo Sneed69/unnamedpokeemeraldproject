@@ -814,8 +814,8 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_FOREWARN] =
     {
         .name = _("Forewarn"),
-        .description = COMPOUND_STRING("Reveals one of the moves\nan opposing Pokémon has."),
-        .aiRating = 2,
+        .description = COMPOUND_STRING("Reveals the opponent's\nmost powerful move, then\ndisables it for two turns."),
+        .aiRating = 7,
     },
 
     [ABILITY_UNAWARE] =
