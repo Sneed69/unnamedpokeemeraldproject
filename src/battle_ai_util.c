@@ -1352,8 +1352,12 @@ bool32 IsMoveEncouragedToHit(u32 battlerAtk, u32 battlerDef, u32 move)
     weather = AI_GetWeather(AI_DATA);
     if ((weather & B_WEATHER_SUN) && gMovesInfo[move].effect == EFFECT_THUNDER)
         return FALSE;
+    if ((weather & B_WEATHER_RAIN) && gMovesInfo[move].effect == EFFECT_DUST_DEVIL)
+        return FALSE;
 
     // increased accuracy but don't always hit
+    if ((weather & B_WEATHER_SANDSTORM) && gMovesInfo[move].effect == EFFECT_DUST_DEVIL)
+        return TRUE;
     if ((weather & B_WEATHER_RAIN) && gMovesInfo[move].effect == EFFECT_THUNDER)
         return TRUE;
     if ((weather & (B_WEATHER_HAIL | B_WEATHER_SNOW)) && gMovesInfo[move].effect == EFFECT_BLIZZARD)
@@ -1416,6 +1420,7 @@ bool32 ShouldSetSandstorm(u32 battler, u32 ability, u32 holdEffect)
       || IS_BATTLER_OF_TYPE(battler, TYPE_STEEL)
       || IS_BATTLER_OF_TYPE(battler, TYPE_GROUND)
       || HasMoveEffect(battler, EFFECT_SHORE_UP)
+      || HasMoveEffect(battler, EFFECT_DUST_DEVIL)
       || HasMoveEffect(battler, EFFECT_WEATHER_BALL))
     {
         return TRUE;

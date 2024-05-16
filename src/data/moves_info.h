@@ -22235,4 +22235,31 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .argument = MAX_EFFECT_BYPASS_PROTECT, //EFFECT TODO
     },
 
+    [MOVE_DUST_DEVIL] =
+    {
+        .name = COMPOUND_STRING("Dust Devil"),
+        .description = COMPOUND_STRING(
+            "Never misses in sandstorms.\n"
+            "May knock items off."),
+        .effect = EFFECT_DUST_DEVIL,
+        .power = 110,
+        .type = TYPE_ROCK,
+        .accuracy = 70,
+        .pp = 16,
+        .target = MOVE_TARGET_SELECTED,
+        .priority = 0,
+        .category = DAMAGE_CATEGORY_SPECIAL,
+        .windMove = TRUE,
+        .damagesAirborne = TRUE,
+        .additionalEffects = ADDITIONAL_EFFECTS({
+            .moveEffect = MOVE_EFFECT_KNOCK_OFF,
+            .chance = 30,
+        }),
+
+        .contestEffect = CONTEST_EFFECT_STARTLE_PREV_MONS,
+        .contestCategory = CONTEST_CATEGORY_TOUGH,
+        .contestComboStarterId = 0,
+        .contestComboMoves = {0}
+    },
+
 };

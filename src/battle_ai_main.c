@@ -3771,6 +3771,8 @@ static u32 AI_CalcMoveEffectScore(u32 battlerAtk, u32 battlerDef, u32 move)
                 ADJUST_SCORE(WEAK_EFFECT);
             if (HasMoveWithType(battlerDef, TYPE_FIRE) || HasMoveWithType(BATTLE_PARTNER(battlerDef), TYPE_FIRE))
                 ADJUST_SCORE(WEAK_EFFECT);
+            if (HasMoveEffect(battlerDef, EFFECT_DUST_DEVIL) || HasMoveEffect(BATTLE_PARTNER(battlerDef), EFFECT_DUST_DEVIL))
+                ADJUST_SCORE(WEAK_EFFECT);
         }
         break;
     case EFFECT_SUNNY_DAY:

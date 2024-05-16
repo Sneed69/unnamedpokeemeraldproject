@@ -1623,6 +1623,12 @@ static bool32 AccuracyCalcHelper(u16 move)
             JumpIfMoveFailed(7, move);
             return TRUE;
         }
+        else if ((gBattleWeather & B_WEATHER_SANDSTORM) && gMovesInfo[move].effect == EFFECT_DUST_DEVIL)
+        {
+            // Dust Devil ignores acc checks in Sandstorm
+            JumpIfMoveFailed(7, move);
+            return TRUE;
+        }
     }
 
     if (B_MINIMIZE_DMG_ACC >= GEN_6
@@ -1675,6 +1681,9 @@ u32 GetTotalAccuracy(u32 battlerAtk, u32 battlerDef, u32 move, u32 atkAbility, u
     moveAcc = gMovesInfo[move].accuracy;
     // Check Thunder and Hurricane on sunny weather.
     if (IsBattlerWeatherAffected(battlerDef, B_WEATHER_SUN) && gMovesInfo[move].effect == EFFECT_THUNDER)
+        moveAcc = 50;
+    // Check Dust Devil on rainy weather.
+    if (IsBattlerWeatherAffected(battlerDef, B_WEATHER_RAIN) && gMovesInfo[move].effect == EFFECT_DUST_DEVIL)
         moveAcc = 50;
     // Check Wonder Skin.
     if (defAbility == ABILITY_WONDER_SKIN && IS_MOVE_STATUS(move) && moveAcc > 50)
