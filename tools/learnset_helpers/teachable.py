@@ -15,39 +15,12 @@ def parse_mon_name(name):
     return re.sub(r'(?!^)([A-Z]+)', r'_\1', name).upper()
     
 tm_moves = []
-tutor_moves = []
-
-# scan incs
-incs_to_check =  glob.glob('./data/scripts/*.inc') # all .incs in the script folder
-incs_to_check += glob.glob('./data/maps/*/scripts.inc') # all map scripts
-
-if len(incs_to_check) == 0: # disabled if no jsons present
-    quit()
-
-for file in incs_to_check:
-    with open(file, 'r') as f2:
-        raw = f2.read()
-    if 'special ChooseMonForMoveTutor' in raw:
-        for x in re.findall(r'setvar VAR_0x8005, (MOVE_.*)', raw):
-            if not x in tutor_moves:
-                tutor_moves.append(x)
 
 # scan TMs and HMs
 with open("./include/constants/tms_hms.h", 'r') as file:
     for x in re.findall(r'F\((.*)\)', file.read()):
         if not 'MOVE_' + x in tm_moves:
             tm_moves.append('MOVE_' + x)
-
-# look up universal moves to exclude them
-universal_moves = []
-with open("./src/pokemon.c", "r") as file:
-    for x in re.findall(r"static const u16 sUniversalMoves\[\] =(.|\n)*?{((.|\n)*?)};", file.read())[0]:
-        x = x.replace("\n", "")
-        for y in x.split(","):
-            y = y.strip()
-            if y == "":
-                continue
-            universal_moves.append(y)
 
 # get compatibility from jsons
 def construct_compatibility_dict(force_custom_check):
@@ -132,31 +105,18 @@ with open("./src/data/pokemon/teachable_learnsets.h", 'r') as file:
 for mon in list_of_mons:
     mon_parsed = parse_mon_name(mon)
     tm_learnset = []
-    tutor_learnset = []
     if mon_parsed == "NONE" or mon_parsed == "MEW":
         continue
     if not mon_parsed in compatibility_dict:
         print("Unable to find %s in json" % mon)
         continue
     for move in tm_moves:
-        if move in universal_moves:
-            continue
         if move in tm_learnset:
             continue
         if move in compatibility_dict[mon_parsed]:
             tm_learnset.append(move)
             continue
-    for move in tutor_moves:
-        if move in universal_moves:
-            continue
-        if move in tutor_learnset:
-            continue
-        if move in compatibility_dict[mon_parsed]:
-            tutor_learnset.append(move)
-            continue
     tm_learnset.sort()
-    tutor_learnset.sort()
-    tm_learnset += tutor_learnset
     repl = "static const u16 s%sTeachableLearnset[] = {\n    " % mon
     if len(tm_learnset) > 0:
         repl += ",\n    ".join(tm_learnset) + ",\n    "
@@ -169,21 +129,15 @@ for mon in list_of_mons:
 # add/update header
 header = "//\n// DO NOT MODIFY THIS FILE! It is auto-generated from tools/learnset_helpers/teachable.py\n//\n\n"
 longest_move_name = 0
-for move in tm_moves + tutor_moves:
+for move in tm_moves:
     if len(move) > longest_move_name:
         longest_move_name = len(move)
 longest_move_name += 2 # + 2 for a hyphen and a space
 
-universal_title = "Near-universal moves found in sUniversalMoves:"
 tmhm_title = "TM/HM moves found in \"include/constants/tms_hms.h\":"
-tutor_title = "Tutor moves found in map scripts:"
 
-if longest_move_name < len(universal_title):
-    longest_move_name = len(universal_title)
 if longest_move_name < len(tmhm_title):
     longest_move_name = len(tmhm_title)
-if longest_move_name < len(tutor_title):
-    longest_move_name = len(tutor_title)
 
 def header_print(str):
     global header
@@ -193,16 +147,6 @@ header += "// " + longest_move_name * "*" + " //\n"
 header_print(tmhm_title)
 for move in tm_moves:
     header_print("- " + move)
-header += "// " + longest_move_name * "*" + " //\n"
-header_print(tutor_title)
-tutor_moves.sort() # alphabetically sort tutor moves for easier referencing
-for move in tutor_moves: 
-    header_print("- " + move)
-header += "// " + longest_move_name * "*" + " //\n"
-header_print(universal_title)
-universal_moves.sort() # alphabetically sort near-universal moves for easier referencing
-for move in universal_moves:
-    header_print("- " + move)
 header += "// " + longest_move_name * "*" + " //\n\n"
 
 if not "// DO NOT MODIFY THIS FILE!" in out:
@@ -210,5 +154,5 @@ if not "// DO NOT MODIFY THIS FILE!" in out:
 else:
     out = re.sub(r"\/\/\n\/\/ DO NOT MODIFY THIS FILE!(.|\n)*\* \/\/\n\n", header, out)
 
-with open("./src/data/pokemon/teachable_learnsets.h", 'w') as file:
+with open("./src/data/pokemon/teachable_learnsets_autogen.h", 'w') as file:
     file.write(out)
