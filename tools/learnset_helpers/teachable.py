@@ -124,7 +124,7 @@ for mon in list_of_mons:
     newout = re.sub(r'static const u16 s%sTeachableLearnset\[\] = {[\s\S]*?};' % mon, repl, out)
     if newout != out:
         out = newout
-        print("Updated %s" % mon)
+        #print("Updated %s" % mon)
 
 # add/update header
 header = "//\n// DO NOT MODIFY THIS FILE! It is auto-generated from tools/learnset_helpers/teachable.py\n//\n\n"
