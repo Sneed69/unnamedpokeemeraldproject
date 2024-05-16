@@ -5432,6 +5432,7 @@ static bool32 TryKnockOffBattleScript(u32 battlerDef)
             // In Gen 5+, Knock Off removes the target's item rather than rendering it unusable.
             if (B_KNOCK_OFF_REMOVAL >= GEN_5)
             {
+                gBattleStruct->droppedItem = gLastUsedItem;
                 BtlController_EmitSetMonData(battlerDef, BUFFER_A, REQUEST_HELDITEM_BATTLE, 0, sizeof(gBattleMons[battlerDef].item), &gBattleMons[battlerDef].item);
                 MarkBattlerForControllerExec(battlerDef);
             }
@@ -11004,11 +11005,15 @@ static void Cmd_various(void)
     }
     case VARIOUS_SAVE_DROPPED_ITEMS:
         if (GetBattlerSide(battler) == B_SIDE_OPPONENT)
-            gBattleStruct->droppedItem = gBattleMons[battler].item;
+        {
+            if (gBattleMons[battler].item != ITEM_NONE)
+                gBattleStruct->droppedItem = gBattleMons[battler].item;
+        }
         break;
     case VARIOUS_GIVE_DROPPED_ITEMS:
     {
         gLastUsedItem = gBattleStruct->droppedItem;
+        gBattleStruct->droppedItem = ITEM_NONE;
         if (gLastUsedItem
             && !(gBattleTypeFlags & (BATTLE_TYPE_TRAINER
                                     | BATTLE_TYPE_FIRST_BATTLE
