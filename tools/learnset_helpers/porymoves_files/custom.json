@@ -827,7 +827,8 @@
     "TMMoves": [],
     "EggMoves": [],
     "TutorMoves": [
-      "MOVE_STARFALL"
+      "MOVE_STARFALL",
+      "MOVE_CALM_MIND"
     ]
   },
   "CHANSEY": {
@@ -2027,7 +2028,8 @@
     "TutorMoves": [
       "MOVE_LIGHT_SCREEN",
       "MOVE_DAZZLING_GLEAM",
-      "MOVE_STARFALL"
+      "MOVE_STARFALL",
+      "MOVE_IRON_DEFENSE"
     ]
   },
   "DUSTOX": {
@@ -2038,7 +2040,8 @@
     "TutorMoves": [
       "MOVE_CALM_MIND",
       "MOVE_MINDSTORM",
-      "MOVE_PSYSHOCK"
+      "MOVE_PSYSHOCK",
+      "MOVE_IRON_DEFENSE"
     ]
   },
   "SEEDOT": {
@@ -4512,6 +4515,96 @@
     "EggMoves": [],
     "TutorMoves": [
       "MOVE_LANDSLIDE"
+    ]
+  },
+  "VULPIX_ALOLAN": {
+    "LevelMoves": [],
+    "PreEvoMoves": [],
+    "TMMoves": [],
+    "EggMoves": [],
+    "TutorMoves": [
+      "MOVE_ENERGY_BALL",
+      "MOVE_ICE_FANG"
+    ]
+  },
+  "NINETALES_ALOLAN": {
+    "LevelMoves": [],
+    "PreEvoMoves": [],
+    "TMMoves": [],
+    "EggMoves": [],
+    "TutorMoves": [
+      "MOVE_ENERGY_BALL",
+      "MOVE_ICE_FANG"
+    ]
+  },
+  "GROWLITHE_HISUIAN": {
+    "LevelMoves": [],
+    "PreEvoMoves": [],
+    "TMMoves": [],
+    "EggMoves": [],
+    "TutorMoves": [
+      "MOVE_AERIAL_ACE",
+      "MOVE_IRON_TAIL",
+      "MOVE_PLAY_ROUGH"
+    ]
+  },
+  "ARCANINE_HISUIAN": {
+    "LevelMoves": [],
+    "PreEvoMoves": [],
+    "TMMoves": [],
+    "EggMoves": [],
+    "TutorMoves": [
+      "MOVE_IRON_TAIL",
+      "MOVE_PLAY_ROUGH"
+    ]
+  },
+  "MACHAMP": {
+    "LevelMoves": [],
+    "PreEvoMoves": [],
+    "TMMoves": [],
+    "EggMoves": [],
+    "TutorMoves": [
+      "MOVE_DRAIN_PUNCH"
+    ]
+  },
+  "PONYTA_GALARIAN": {
+    "LevelMoves": [],
+    "PreEvoMoves": [],
+    "TMMoves": [],
+    "EggMoves": [],
+    "TutorMoves": [
+      "MOVE_FIRE_BLAST",
+      "MOVE_FLAMETHROWER"
+    ]
+  },
+  "RAPIDASH_GALARIAN": {
+    "LevelMoves": [],
+    "PreEvoMoves": [],
+    "TMMoves": [],
+    "EggMoves": [],
+    "TutorMoves": [
+      "MOVE_FIRE_BLAST",
+      "MOVE_FLAMETHROWER",
+      "MOVE_POISON_JAB"
+    ]
+  },
+  "MIME_JR": {
+    "LevelMoves": [],
+    "PreEvoMoves": [],
+    "TMMoves": [],
+    "EggMoves": [],
+    "TutorMoves": [
+      "MOVE_IRON_DEFENSE",
+      "MOVE_ZEN_HEADBUTT"
+    ]
+  },
+  "MUNCHLAX": {
+    "LevelMoves": [],
+    "PreEvoMoves": [],
+    "TMMoves": [],
+    "EggMoves": [],
+    "TutorMoves": [
+      "MOVE_HIGH_HORSEPOWER"
     ]
   }
 }
