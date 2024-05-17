@@ -115,7 +115,8 @@
     F(AMNESIA) \
     F(SOLAR_BLADE) \
     F(TORNADO) \
-    F(SKY_ATTACK)
+    F(SKY_ATTACK) \
+    F(DUST_DEVIL)
 
 #define FOREACH_TMHM(F) \
     FOREACH_TM(F)

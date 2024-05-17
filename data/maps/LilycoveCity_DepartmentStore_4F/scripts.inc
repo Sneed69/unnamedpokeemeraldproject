@@ -25,12 +25,12 @@ LilycoveCity_DepartmentStore_4F_EventScript_ClerkLeft::
 
 	.align 2
 LilycoveCity_DepartmentStore_4F_Pokemart_AttackTMs:
+	.2byte ITEM_TM_FIRE_BLAST
 	.2byte ITEM_TM_BLIZZARD
 	.2byte ITEM_TM_THUNDER
-	.2byte ITEM_TM_FIRE_BLAST
 	.2byte ITEM_TM_HURRICANE
+	.2byte ITEM_TM_DUST_DEVIL
 	.2byte ITEM_TM_FOCUS_BLAST
-	.2byte ITEM_TM_STONE_EDGE
 	.2byte ITEM_TM_GIGA_IMPACT
 	.2byte ITEM_TM_HYPER_BEAM
 	.2byte ITEM_NONE

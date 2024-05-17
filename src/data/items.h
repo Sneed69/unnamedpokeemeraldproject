@@ -9306,6 +9306,11 @@ const struct Item gItemsInfo[] =
             "spots then attacks\n"
             "on the next turn."),
 
+    TM_ITEM(115, MOVE_DUST_DEVIL, 30000,
+            "Never misses in a\n"
+            "sandstorm. May\n"
+            "knock items off."),
+
     // UPDATE NUM_TECHNICAL_MACHINES
     #undef TM_ITEM
 
