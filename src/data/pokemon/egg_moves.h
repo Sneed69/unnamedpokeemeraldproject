@@ -304,6 +304,9 @@ const u16 gEggMoves[] = {
         MOVE_ROCK_BLAST),
 
 	egg_moves(VOLTORB,
+        MOVE_MAGNET_RISE,
+        MOVE_METEOR_BEAM,
+        MOVE_DOUBLE_EDGE,
 		MOVE_METAL_SOUND),
 
     egg_moves(EXEGGCUTE,

@@ -4694,7 +4694,13 @@
     "TMMoves": [],
     "EggMoves": [],
     "TutorMoves": [
-      "MOVE_DUST_DEVIL"
+      "MOVE_DUST_DEVIL",
+      "MOVE_ROCK_POLISH",
+      "MOVE_ROCK_SLIDE",
+      "MOVE_ROCK_TOMB",
+      "MOVE_STEALTH_ROCK",
+      "MOVE_STONE_EDGE",
+      "MOVE_LANDSLIDE"
     ]
   },
   "ELECTRODE": {
@@ -4703,7 +4709,13 @@
     "TMMoves": [],
     "EggMoves": [],
     "TutorMoves": [
-      "MOVE_DUST_DEVIL"
+      "MOVE_DUST_DEVIL",
+      "MOVE_ROCK_POLISH",
+      "MOVE_ROCK_SLIDE",
+      "MOVE_ROCK_TOMB",
+      "MOVE_STEALTH_ROCK",
+      "MOVE_STONE_EDGE",
+      "MOVE_LANDSLIDE"
     ]
   },
   "CACNEA": {
