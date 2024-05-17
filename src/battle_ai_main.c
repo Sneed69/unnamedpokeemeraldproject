@@ -398,6 +398,8 @@ static void SetBattlerAiMovesData(struct AiLogicData *aiData, u32 battlerAtk, u3
     moves = GetMovesArray(battlerAtk);
     weather = AI_GetWeather(aiData);
 
+    SetBattlerData(battlerAtk);
+
     // Simulate dmg for both ai controlled mons and for player controlled mons.
     for (battlerDef = 0; battlerDef < battlersCount; battlerDef++)
     {
@@ -405,6 +407,7 @@ static void SetBattlerAiMovesData(struct AiLogicData *aiData, u32 battlerAtk, u3
             continue;
 
         SaveBattlerData(battlerDef);
+        SetBattlerData(battlerDef);
         for (i = 0; i < MAX_MON_MOVES; i++)
         {
             s32 dmg = 0;
@@ -422,7 +425,9 @@ static void SetBattlerAiMovesData(struct AiLogicData *aiData, u32 battlerAtk, u3
             aiData->simulatedDmg[battlerAtk][battlerDef][i] = dmg;
             aiData->effectiveness[battlerAtk][battlerDef][i] = effectiveness;
         }
+        RestoreBattlerData(battlerDef);
     }
+    RestoreBattlerData(battlerAtk);
 }
 
 void SetAiLogicDataForTurn(struct AiLogicData *aiData)
@@ -1323,9 +1328,6 @@ static s32 AI_CheckBadMove(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
             break;
         case EFFECT_EVASION_DOWN:
         case EFFECT_EVASION_DOWN_2:
-            if (!ShouldLowerStat(battlerDef, aiData->abilities[battlerDef], STAT_EVASION))
-                ADJUST_SCORE(-10);
-            break;
         case EFFECT_TICKLE:
             if (!ShouldLowerStat(battlerDef, aiData->abilities[battlerDef], STAT_ATK))
                 ADJUST_SCORE(-10);
@@ -2609,6 +2611,14 @@ static s32 AI_CheckBadMove(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
              && !BattlerStatCanRise(battlerAtk, aiData->abilities[battlerAtk], STAT_SPDEF))
                 ADJUST_SCORE(-10);
             break;
+        case EFFECT_SPICY_EXTRACT:
+            if (battlerAtk != BATTLE_PARTNER(battlerDef)
+             && (HasMoveWithCategory(battlerDef, DAMAGE_CATEGORY_PHYSICAL)
+              || aiData->abilities[battlerDef] == ABILITY_CLEAR_BODY
+              || aiData->abilities[battlerDef] == ABILITY_GOOD_AS_GOLD
+              || aiData->holdEffects[battlerDef] == HOLD_EFFECT_CLEAR_AMULET))
+                ADJUST_SCORE(-10);
+            break;
         case EFFECT_UPPER_HAND:
             if (predictedMove == MOVE_NONE || IS_MOVE_STATUS(predictedMove) || AI_WhoStrikesFirst(battlerAtk, battlerDef, move) == AI_IS_SLOWER || GetMovePriority(battlerDef, move) < 1 || GetMovePriority(battlerDef, move) > 3) // Opponent going first or not using priority move
                 ADJUST_SCORE(-10);
@@ -2739,6 +2749,7 @@ static s32 AI_DoubleBattle(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
               || gMovesInfo[aiData->partnerMove].criticalHitStage > 0
               || HasMoveWithCriticalHitChance(battlerAtkPartner))
             ADJUST_SCORE(GOOD_EFFECT);
+        break;
     } // our effect relative to partner
 
     // consider global move effects
@@ -2900,6 +2911,12 @@ static s32 AI_DoubleBattle(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
         {
             switch (effect)
             {
+            case EFFECT_SPICY_EXTRACT:
+                if (AI_ShouldSpicyExtract(battlerAtk, battlerAtkPartner, move, aiData))
+                {
+                    RETURN_SCORE_PLUS(GOOD_EFFECT);
+                }
+                break;
             case EFFECT_PURIFY:
                 if (gBattleMons[battlerAtkPartner].status1 & STATUS1_ANY)
                 {
@@ -3366,6 +3383,9 @@ static u32 AI_CalcMoveEffectScore(u32 battlerAtk, u32 battlerDef, u32 move)
         if (gBattleMons[battlerDef].statStages[STAT_EVASION] < 7 || aiData->abilities[battlerAtk] == ABILITY_NO_GUARD)
             ADJUST_SCORE(-2);
         break;
+    case EFFECT_SPICY_EXTRACT:
+        // TODO: Make IncreaseStatDownScore function, just like IncreaseStatUpScore
+        break;
     case EFFECT_BIDE:
         if (aiData->hpPercents[battlerAtk] < 90)
             ADJUST_SCORE(-2); // Should be either removed or turned into increasing score
@@ -3387,7 +3407,7 @@ static u32 AI_CalcMoveEffectScore(u32 battlerAtk, u32 battlerDef, u32 move)
         score += AI_TryToClearStats(battlerAtk, battlerDef, isDoubleBattle);
         break;
     case EFFECT_ROAR:
-        if ((gMovesInfo[move].soundMove && aiData->abilities[battlerDef] == ABILITY_SOUNDPROOF) 
+        if ((gMovesInfo[move].soundMove && aiData->abilities[battlerDef] == ABILITY_SOUNDPROOF)
           || aiData->abilities[battlerDef] == ABILITY_SUCTION_CUPS)
             break;
         else if (IsDynamaxed(battlerDef))
@@ -4588,9 +4608,6 @@ static u32 AI_CalcMoveEffectScore(u32 battlerAtk, u32 battlerDef, u32 move)
                 case MOVE_EFFECT_ATK_DEF_DOWN:
                     IncreaseStatUpScoreContrary(battlerAtk, battlerDef, STAT_CHANGE_ATK, &score);
                     IncreaseStatUpScoreContrary(battlerAtk, battlerDef, STAT_CHANGE_DEF, &score);
-                    break;
-                case MOVE_EFFECT_SP_ATK_TWO_DOWN:
-                    IncreaseStatUpScoreContrary(battlerAtk, battlerDef, STAT_CHANGE_SPATK_2, &score);
                     break;
                 case MOVE_EFFECT_V_CREATE:
                     IncreaseStatUpScoreContrary(battlerAtk, battlerDef, STAT_CHANGE_DEF, &score);

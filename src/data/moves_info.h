@@ -10498,7 +10498,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .type = TYPE_ICE,
         .accuracy = 100,
         .pp = 16,
-        .target = MOVE_TARGET_BOTH,
+        .target = MOVE_TARGET_SELECTED,
         .priority = -4,
         .category = DAMAGE_CATEGORY_PHYSICAL,
         .makesContact = TRUE,
@@ -19316,7 +19316,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .description = COMPOUND_STRING(
             "Sharply ups target's Attack,\n"
             "harshly lowers its Defense."),
-        .effect = EFFECT_PLACEHOLDER, // EFFECT_SPICY_EXTRACT
+        .effect = EFFECT_SPICY_EXTRACT,
         .power = 0,
         .type = TYPE_GRASS,
         .accuracy = 0,

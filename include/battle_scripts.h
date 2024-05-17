@@ -116,7 +116,6 @@ extern const u8 BattleScript_MagicCoatBouncePrankster[];
 extern const u8 BattleScript_SnatchedMove[];
 extern const u8 BattleScript_EnduredMsg[];
 extern const u8 BattleScript_OneHitKOMsg[];
-extern const u8 BattleScript_SAtkDown2[];
 extern const u8 BattleScript_FocusPunchSetUp[];
 extern const u8 BattleScript_MoveUsedIsAsleep[];
 extern const u8 BattleScript_MoveUsedWokeUp[];
@@ -187,6 +186,7 @@ extern const u8 BattleScript_HyperboreanBoost_PPLoss[];
 extern const u8 BattleScript_HyperboreanBoost[];
 extern const u8 BattleScript_AbilityNoStatLoss[];
 extern const u8 BattleScript_ItemNoStatLoss[];
+extern const u8 BattleScript_ItemNoStatLossSpicyExtract[];
 extern const u8 BattleScript_BRNPrevention[];
 extern const u8 BattleScript_PRLZPrevention[];
 extern const u8 BattleScript_PSNPrevention[];
@@ -857,5 +857,6 @@ extern const u8 BattleScript_SoulSiphon[];
 extern const u8 BattleScript_SelectingMoveFlamboyant[];
 extern const u8 BattleScript_LoneWolf[];
 extern const u8 BattleScript_HealOnFoeFaint[];
+extern const u8 BattleScript_EffectSpicyExtract[];
 
 #endif // GUARD_BATTLE_SCRIPTS_H

@@ -3562,13 +3562,6 @@ void SetMoveEffect(bool32 primary, bool32 certain)
                     gBattleMons[gEffectBattler].status2 |= STATUS2_LOCK_CONFUSE_TURN(RandomUniform(RNG_RAMPAGE_TURNS, 2, 3));
                 }
                 break;
-            case MOVE_EFFECT_SP_ATK_TWO_DOWN: // Overheat
-                if (!NoAliveMonsForEitherParty())
-                {
-                    BattleScriptPush(gBattlescriptCurrInstr + 1);
-                    gBattlescriptCurrInstr = BattleScript_SAtkDown2;
-                }
-                break;
             case MOVE_EFFECT_CLEAR_SMOG:
                 for (i = 0; i < NUM_BATTLE_STATS; i++)
                 {
@@ -11841,17 +11834,18 @@ static u32 ChangeStatBuffs(s8 statValue, u32 statId, u32 flags, const u8 *BS_ptr
                 }
                 else
                 {
-                    BattleScriptPush(BS_ptr);
                     gBattleScripting.battler = battler;
                     if (battlerHoldEffect == HOLD_EFFECT_CLEAR_AMULET)
                     {
                         gLastUsedItem = gBattleMons[battler].item;
+                        BattleScriptPush(BS_ptr);
                         gBattlescriptCurrInstr = BattleScript_ItemNoStatLoss;
                         RecordItemEffectBattle(battler, HOLD_EFFECT_CLEAR_AMULET);
                     }
                     else
                     {
                         gBattlerAbility = battler;
+                        BattleScriptPush(BS_ptr);
                         gBattlescriptCurrInstr = BattleScript_AbilityNoStatLoss;
                         gLastUsedAbility = battlerAbility;
                         RecordAbilityBattle(battler, gLastUsedAbility);
@@ -17111,19 +17105,6 @@ void BS_TryTidyUp(void)
     }
 }
 
-void BS_TryGulpMissile(void)
-{
-    NATIVE_ARGS();
-
-    if ((gBattleMons[gBattlerAttacker].species == SPECIES_CRAMORANT)
-     && (gCurrentMove == MOVE_DIVE)
-     && (GetBattlerAbility(gBattlerAttacker) == ABILITY_GULP_MISSILE)
-     && TryBattleFormChange(gBattlerAttacker, FORM_CHANGE_BATTLE_HP_PERCENT))
-        gBattlescriptCurrInstr = BattleScript_GulpMissileFormChange;
-    else
-        gBattlescriptCurrInstr = cmd->nextInstr;
-}
-
 void BS_SetWeatherAfterAttack(void)
 {
     NATIVE_ARGS(const u8 *jumpInstr);
@@ -17160,6 +17141,19 @@ void BS_SetWeatherAfterAttack(void)
     else
         gBattleCommunication[MULTISTRING_CHOOSER] = message;
     gBattlescriptCurrInstr = cmd->nextInstr;
+}
+
+void BS_TryGulpMissile(void)
+{
+    NATIVE_ARGS();
+
+    if ((gBattleMons[gBattlerAttacker].species == SPECIES_CRAMORANT)
+     && (gCurrentMove == MOVE_DIVE)
+     && (GetBattlerAbility(gBattlerAttacker) == ABILITY_GULP_MISSILE)
+     && TryBattleFormChange(gBattlerAttacker, FORM_CHANGE_BATTLE_HP_PERCENT))
+        gBattlescriptCurrInstr = BattleScript_GulpMissileFormChange;
+    else
+        gBattlescriptCurrInstr = cmd->nextInstr;
 }
 
 void BS_TryActivateGulpMissile(void)
