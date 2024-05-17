@@ -106,7 +106,7 @@
 #define P_FAMILY_KOFFING                 P_GEN_1_POKEMON
 #define P_FAMILY_RHYHORN                 0
 #define P_FAMILY_CHANSEY                 P_GEN_1_POKEMON
-#define P_FAMILY_TANGELA                 P_GEN_1_POKEMON
+#define P_FAMILY_TANGELA                 0
 #define P_FAMILY_KANGASKHAN              0
 #define P_FAMILY_HORSEA                  P_GEN_1_POKEMON
 #define P_FAMILY_GOLDEEN                 P_GEN_1_POKEMON
@@ -292,7 +292,6 @@
 #define P_FAMILY_INKAY                   TRUE
 #define P_FAMILY_TYRUNT                  TRUE
 #define P_FAMILY_AMAURA                  TRUE
-#define P_FAMILY_GOOMY                   TRUE
 #define P_FAMILY_PHANTUMP                TRUE
 
 #define P_FAMILY_ROCKRUFF                TRUE

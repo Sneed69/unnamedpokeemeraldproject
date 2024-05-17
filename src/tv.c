@@ -208,8 +208,8 @@ static const struct {
         .moves = {MOVE_CHARGE_BEAM, MOVE_FLAME_CHARGE, MOVE_UPROAR, MOVE_CRUNCH},
         .level = 54,
         .probability = 20,
-        .locationMapNum = MAP_NUM(METEOR_FALLS_B1F_2R),
-        .locationMapGroup = MAP_GROUP(METEOR_FALLS_B1F_2R),
+        .locationMapNum = MAP_NUM(SCORCHED_SLAB),
+        .locationMapGroup = MAP_GROUP(SCORCHED_SLAB),
     },
     {
         .species = SPECIES_KIRLIA,
@@ -218,14 +218,6 @@ static const struct {
         .probability = 30,
         .locationMapNum = MAP_NUM(ROUTE102),
         .locationMapGroup = MAP_GROUP(ROUTE102),
-    },
-    {
-        .species = SPECIES_SLIGGOO,
-        .moves = {MOVE_STEEL_BEAM, MOVE_BULLDOZE, MOVE_MUDDY_WATER, MOVE_DRAGON_BREATH},
-        .level = 42,
-        .probability = 30,
-        .locationMapNum = MAP_NUM(ROUTE120),
-        .locationMapGroup = MAP_GROUP(ROUTE120),
     },
     {
         .species = SPECIES_MAROWAK,
