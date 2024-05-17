@@ -4028,10 +4028,15 @@ static void ForewarnChooseMove(u32 battler)
     }
 
     gBattlerTarget = data[bestId].battler;
-    if (gDisableStructs[gBattlerTarget].disabledMove == MOVE_NONE)
+    if (gDisableStructs[gBattlerTarget].disabledMove == MOVE_NONE && !IsAbilityOnSide(gBattlerTarget, ABILITY_AROMA_VEIL))
     {
         gDisableStructs[gBattlerTarget].disabledMove = data[bestId].moveId;
         gDisableStructs[gBattlerTarget].disableTimer = 2;
+        gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SWITCHIN_FOREWARN_DISABLE;
+    }
+    else
+    {
+        gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SWITCHIN_FOREWARN;
     }
     PREPARE_MOVE_BUFFER(gBattleTextBuff1, data[bestId].moveId)
     RecordKnownMove(gBattlerTarget, data[bestId].moveId);
@@ -4481,7 +4486,6 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
             if (!gSpecialStatuses[battler].switchInAbilityDone)
             {
                 ForewarnChooseMove(battler);
-                gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SWITCHIN_FOREWARN;
                 gSpecialStatuses[battler].switchInAbilityDone = TRUE;
                 BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
                 effect++;
