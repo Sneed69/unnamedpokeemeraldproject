@@ -343,7 +343,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         FOOTPRINT(Charmander)
         .levelUpLearnset = sCharmanderLevelUpLearnset,
         .teachableLearnset = sCharmanderTeachableLearnset,
-        .evolutions = EVOLUTION({EVO_LEVEL, 16, SPECIES_CHARMELEON}),
+        .evolutions = EVOLUTION({EVO_LEVEL, 30, SPECIES_CHARMELEON}),
     },
 
     [SPECIES_CHARMELEON] =
@@ -397,7 +397,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         FOOTPRINT(Charmeleon)
         .levelUpLearnset = sCharmeleonLevelUpLearnset,
         .teachableLearnset = sCharmeleonTeachableLearnset,
-        .evolutions = EVOLUTION({EVO_LEVEL, 36, SPECIES_CHARIZARD}),
+        .evolutions = EVOLUTION({EVO_LEVEL, 50, SPECIES_CHARIZARD}),
     },
 
     [SPECIES_CHARIZARD] =
@@ -965,7 +965,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .tmIlliterate = TRUE,
         .levelUpLearnset = sCaterpieLevelUpLearnset,
         .teachableLearnset = sCaterpieTeachableLearnset,
-        .evolutions = EVOLUTION({EVO_LEVEL, 7, SPECIES_METAPOD}),
+        .evolutions = EVOLUTION({EVO_LEVEL, 10, SPECIES_METAPOD}),
     },
 
     [SPECIES_METAPOD] =
@@ -1019,7 +1019,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .tmIlliterate = TRUE,
         .levelUpLearnset = sMetapodLevelUpLearnset,
         .teachableLearnset = sMetapodTeachableLearnset,
-        .evolutions = EVOLUTION({EVO_LEVEL, 10, SPECIES_BUTTERFREE}),
+        .evolutions = EVOLUTION({EVO_LEVEL, 16, SPECIES_BUTTERFREE}),
     },
 
 #if P_UPDATED_EXP_YIELDS >= GEN_8
@@ -2178,7 +2178,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .levelUpLearnset = sPichuLevelUpLearnset,
         .teachableLearnset = sPichuTeachableLearnset,
         .formSpeciesIdTable = sPichuFormSpeciesIdTable,
-        .evolutions = EVOLUTION({EVO_FRIENDSHIP, 0, SPECIES_PIKACHU}),
+        .evolutions = EVOLUTION({EVO_LEVEL, 12, SPECIES_PIKACHU}),
     },
 
     /*[SPECIES_PICHU_SPIKY_EARED] =
@@ -2296,7 +2296,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         FOOTPRINT(Pikachu)
         .levelUpLearnset = sPikachuLevelUpLearnset,
         .teachableLearnset = sPikachuTeachableLearnset,
-        .evolutions = EVOLUTION({EVO_ITEM, ITEM_THUNDER_STONE, SPECIES_RAICHU})
+        .evolutions = EVOLUTION({EVO_LEVEL, 35, SPECIES_RAICHU})
     },
 
 #if P_COSPLAY_PIKACHU_FORMS
@@ -3614,7 +3614,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         FOOTPRINT(Nidorina)
         .levelUpLearnset = sNidorinaLevelUpLearnset,
         .teachableLearnset = sNidorinaTeachableLearnset,
-        .evolutions = EVOLUTION({EVO_ITEM, ITEM_MOON_STONE, SPECIES_NIDOQUEEN}),
+        .evolutions = EVOLUTION({EVO_LEVEL, 40, SPECIES_NIDOQUEEN}),
     },
 
     [SPECIES_NIDOQUEEN] =
@@ -3780,7 +3780,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         FOOTPRINT(Nidorino)
         .levelUpLearnset = sNidorinoLevelUpLearnset,
         .teachableLearnset = sNidorinoTeachableLearnset,
-        .evolutions = EVOLUTION({EVO_ITEM, ITEM_MOON_STONE, SPECIES_NIDOKING}),
+        .evolutions = EVOLUTION({EVO_LEVEL, 40, SPECIES_NIDOKING}),
     },
 
     [SPECIES_NIDOKING] =
@@ -3905,7 +3905,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         FOOTPRINT(Cleffa)
         .levelUpLearnset = sCleffaLevelUpLearnset,
         .teachableLearnset = sCleffaTeachableLearnset,
-        .evolutions = EVOLUTION({EVO_FRIENDSHIP, 0, SPECIES_CLEFAIRY}),
+        .evolutions = EVOLUTION({EVO_LEVEL, 12, SPECIES_CLEFAIRY}),
     },
 #endif //P_GEN_2_CROSS_EVOS
 
@@ -3961,7 +3961,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         FOOTPRINT(Clefairy)
         .levelUpLearnset = sClefairyLevelUpLearnset,
         .teachableLearnset = sClefairyTeachableLearnset,
-        .evolutions = EVOLUTION({EVO_ITEM, ITEM_MOON_STONE, SPECIES_CLEFABLE}),
+        .evolutions = EVOLUTION({EVO_LEVEL, 35, SPECIES_CLEFABLE}),
     },
 
     [SPECIES_CLEFABLE] =
@@ -4080,7 +4080,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .levelUpLearnset = sVulpixLevelUpLearnset,
         .teachableLearnset = sVulpixTeachableLearnset,
         .formSpeciesIdTable = sVulpixFormSpeciesIdTable,
-        .evolutions = EVOLUTION({EVO_ITEM, ITEM_FIRE_STONE, SPECIES_NINETALES}),
+        .evolutions = EVOLUTION({EVO_LEVEL, 38, SPECIES_NINETALES}),
     },
 
     [SPECIES_NINETALES] =
@@ -4312,7 +4312,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         FOOTPRINT(Igglybuff)
         .levelUpLearnset = sIgglybuffLevelUpLearnset,
         .teachableLearnset = sIgglybuffTeachableLearnset,
-        .evolutions = EVOLUTION({EVO_FRIENDSHIP, 0, SPECIES_JIGGLYPUFF}),
+        .evolutions = EVOLUTION({EVO_LEVEL, 12, SPECIES_JIGGLYPUFF}),
     },
 #endif //P_GEN_2_CROSS_EVOS
 
@@ -4368,7 +4368,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         FOOTPRINT(Jigglypuff)
         .levelUpLearnset = sJigglypuffLevelUpLearnset,
         .teachableLearnset = sJigglypuffTeachableLearnset,
-        .evolutions = EVOLUTION({EVO_ITEM, ITEM_MOON_STONE, SPECIES_WIGGLYTUFF}),
+        .evolutions = EVOLUTION({EVO_LEVEL, 35, SPECIES_WIGGLYTUFF}),
     },
 
     [SPECIES_WIGGLYTUFF] =
@@ -4548,7 +4548,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         FOOTPRINT(Golbat)
         .levelUpLearnset = sGolbatLevelUpLearnset,
         .teachableLearnset = sGolbatTeachableLearnset,
-        .evolutions = EVOLUTION({EVO_LEVEL, 42, SPECIES_CROBAT}),
+        .evolutions = EVOLUTION({EVO_LEVEL, 40, SPECIES_CROBAT}),
     },
 
 #if P_GEN_2_CROSS_EVOS
@@ -4723,8 +4723,8 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         FOOTPRINT(Gloom)
         .levelUpLearnset = sGloomLevelUpLearnset,
         .teachableLearnset = sGloomTeachableLearnset,
-        .evolutions = EVOLUTION({EVO_ITEM, ITEM_LEAF_STONE, SPECIES_VILEPLUME},
-                                {EVO_ITEM, ITEM_SUN_STONE, SPECIES_BELLOSSOM}),
+        .evolutions = EVOLUTION({EVO_LEVEL_ABILITY_1, 37, SPECIES_VILEPLUME},
+                                {EVO_LEVEL_ABILITY_2, 37, SPECIES_BELLOSSOM}),
     },
 
     [SPECIES_VILEPLUME] =
@@ -6035,7 +6035,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .levelUpLearnset = sGrowlitheLevelUpLearnset,
         .teachableLearnset = sGrowlitheTeachableLearnset,
         .formSpeciesIdTable = sGrowlitheFormSpeciesIdTable,
-        .evolutions = EVOLUTION({EVO_ITEM, ITEM_FIRE_STONE, SPECIES_ARCANINE}),
+        .evolutions = EVOLUTION({EVO_LEVEL, 31, SPECIES_ARCANINE}),
     },
 
     [SPECIES_ARCANINE] =
@@ -6312,9 +6312,8 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         FOOTPRINT(Poliwhirl)
         .levelUpLearnset = sPoliwhirlLevelUpLearnset,
         .teachableLearnset = sPoliwhirlTeachableLearnset,
-        .evolutions = EVOLUTION({EVO_ITEM, ITEM_WATER_STONE, SPECIES_POLIWRATH},
-                                {EVO_TRADE_ITEM, ITEM_KINGS_ROCK, SPECIES_POLITOED},
-                                {EVO_ITEM, ITEM_KINGS_ROCK, SPECIES_POLITOED}),
+        .evolutions = EVOLUTION({EVO_LEVEL_ABILITY_1, 42, SPECIES_POLIWRATH},
+                                {EVO_LEVEL_ABILITY_2, 42, SPECIES_POLITOED}),
     },
 
     [SPECIES_POLIWRATH] =
@@ -6554,8 +6553,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         FOOTPRINT(Kadabra)
         .levelUpLearnset = sKadabraLevelUpLearnset,
         .teachableLearnset = sKadabraTeachableLearnset,
-        .evolutions = EVOLUTION({EVO_TRADE, 0, SPECIES_ALAKAZAM},
-                                {EVO_ITEM, ITEM_LINKING_CORD, SPECIES_ALAKAZAM}),
+        .evolutions = EVOLUTION({EVO_LEVEL, 36, SPECIES_ALAKAZAM}),
     },
 
 #define ALAKAZAM_SP_DEF (P_UPDATED_STATS >= GEN_6 ? 95 : 85)
@@ -6791,8 +6789,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         FOOTPRINT(Machoke)
         .levelUpLearnset = sMachokeLevelUpLearnset,
         .teachableLearnset = sMachokeTeachableLearnset,
-        .evolutions = EVOLUTION({EVO_TRADE, 0, SPECIES_MACHAMP},
-                                {EVO_ITEM, ITEM_LINKING_CORD, SPECIES_MACHAMP}),
+        .evolutions = EVOLUTION({EVO_LEVEL, 44, SPECIES_MACHAMP}),
     },
 
 #if P_UPDATED_EXP_YIELDS >= GEN_8
@@ -7325,8 +7322,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .levelUpLearnset = sGravelerLevelUpLearnset,
         .teachableLearnset = sGravelerTeachableLearnset,
         .formSpeciesIdTable = sGravelerFormSpeciesIdTable,
-        .evolutions = EVOLUTION({EVO_TRADE, 0, SPECIES_GOLEM},
-                                {EVO_ITEM, ITEM_LINKING_CORD, SPECIES_GOLEM}),
+        .evolutions = EVOLUTION({EVO_LEVEL, 42, SPECIES_GOLEM}),
     },
 
     [SPECIES_GOLEM] =
@@ -8280,8 +8276,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         FOOTPRINT(Magneton)
         .levelUpLearnset = sMagnetonLevelUpLearnset,
         .teachableLearnset = sMagnetonTeachableLearnset,
-        .evolutions = EVOLUTION({EVO_MAPSEC, MAPSEC_NEW_MAUVILLE, SPECIES_MAGNEZONE},
-                                {EVO_ITEM, ITEM_THUNDER_STONE, SPECIES_MAGNEZONE}),
+        .evolutions = EVOLUTION({EVO_LEVEL, 46, SPECIES_MAGNEZONE}),
     },
 
 #if P_GEN_4_CROSS_EVOS
@@ -9036,7 +9031,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         FOOTPRINT(Shellder)
         .levelUpLearnset = sShellderLevelUpLearnset,
         .teachableLearnset = sShellderTeachableLearnset,
-        .evolutions = EVOLUTION({EVO_ITEM, ITEM_WATER_STONE, SPECIES_CLOYSTER}),
+        .evolutions = EVOLUTION({EVO_LEVEL, 33, SPECIES_CLOYSTER}),
     },
 
     [SPECIES_CLOYSTER] =
@@ -9201,8 +9196,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         FOOTPRINT(Haunter)
         .levelUpLearnset = sHaunterLevelUpLearnset,
         .teachableLearnset = sHaunterTeachableLearnset,
-        .evolutions = EVOLUTION({EVO_TRADE, 0, SPECIES_GENGAR},
-                                {EVO_ITEM, ITEM_LINKING_CORD, SPECIES_GENGAR}),
+        .evolutions = EVOLUTION({EVO_LEVEL, 42, SPECIES_GENGAR}),
     },
 
 #if P_UPDATED_ABILITIES >= GEN_7
@@ -10123,8 +10117,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         FOOTPRINT(Exeggcute)
         .levelUpLearnset = sExeggcuteLevelUpLearnset,
         .teachableLearnset = sExeggcuteTeachableLearnset,
-        .evolutions = EVOLUTION({EVO_ITEM, ITEM_LEAF_STONE, SPECIES_EXEGGUTOR},
-                                {EVO_NONE, 0, SPECIES_EXEGGUTOR_ALOLAN}),
+        .evolutions = EVOLUTION({EVO_LEVEL, 35, SPECIES_EXEGGUTOR}),
     },
 
 #if P_UPDATED_EXP_YIELDS >= GEN_7
@@ -10300,9 +10293,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         FOOTPRINT(Cubone)
         .levelUpLearnset = sCuboneLevelUpLearnset,
         .teachableLearnset = sCuboneTeachableLearnset,
-        .evolutions = EVOLUTION({EVO_LEVEL, 28, SPECIES_MAROWAK},
-                                {EVO_NONE, 0, SPECIES_MAROWAK_ALOLAN},
-                                {EVO_NONE, 0, SPECIES_MAROWAK_ALOLAN_TOTEM}),
+        .evolutions = EVOLUTION({EVO_LEVEL, 28, SPECIES_MAROWAK}),
     },
 
     [SPECIES_MAROWAK] =
@@ -11264,7 +11255,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         FOOTPRINT(Chansey)
         .levelUpLearnset = sChanseyLevelUpLearnset,
         .teachableLearnset = sChanseyTeachableLearnset,
-        .evolutions = EVOLUTION({EVO_FRIENDSHIP, 0, SPECIES_BLISSEY}),
+        .evolutions = EVOLUTION({EVO_LEVEL, 50, SPECIES_BLISSEY}),
     },
 
 #if P_GEN_2_CROSS_EVOS
@@ -11654,8 +11645,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         FOOTPRINT(Seadra)
         .levelUpLearnset = sSeadraLevelUpLearnset,
         .teachableLearnset = sSeadraTeachableLearnset,
-        .evolutions = EVOLUTION({EVO_TRADE_ITEM, ITEM_DRAGON_SCALE, SPECIES_KINGDRA},
-                                {EVO_ITEM, ITEM_DRAGON_SCALE, SPECIES_KINGDRA}),
+        .evolutions = EVOLUTION({EVO_LEVEL, 55, SPECIES_KINGDRA}),
     },
 
 #if P_GEN_2_CROSS_EVOS
@@ -11893,7 +11883,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         FOOTPRINT(Staryu)
         .levelUpLearnset = sStaryuLevelUpLearnset,
         .teachableLearnset = sStaryuTeachableLearnset,
-        .evolutions = EVOLUTION({EVO_ITEM, ITEM_WATER_STONE, SPECIES_STARMIE}),
+        .evolutions = EVOLUTION({EVO_LEVEL, 42, SPECIES_STARMIE}),
     },
 
     [SPECIES_STARMIE] =
@@ -12459,7 +12449,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         FOOTPRINT(Smoochum)
         .levelUpLearnset = sSmoochumLevelUpLearnset,
         .teachableLearnset = sSmoochumTeachableLearnset,
-        .evolutions = EVOLUTION({EVO_LEVEL, 30, SPECIES_JYNX}),
+        .evolutions = EVOLUTION({EVO_LEVEL, 20, SPECIES_JYNX}),
     },
 #endif //P_GEN_2_CROSS_EVOS
 
@@ -12570,7 +12560,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         FOOTPRINT(Elekid)
         .levelUpLearnset = sElekidLevelUpLearnset,
         .teachableLearnset = sElekidTeachableLearnset,
-        .evolutions = EVOLUTION({EVO_LEVEL, 30, SPECIES_ELECTABUZZ}),
+        .evolutions = EVOLUTION({EVO_LEVEL, 20, SPECIES_ELECTABUZZ}),
     },
 #endif //P_GEN_2_CROSS_EVOS
 
@@ -12626,8 +12616,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         FOOTPRINT(Electabuzz)
         .levelUpLearnset = sElectabuzzLevelUpLearnset,
         .teachableLearnset = sElectabuzzTeachableLearnset,
-        .evolutions = EVOLUTION({EVO_TRADE_ITEM, ITEM_ELECTIRIZER, SPECIES_ELECTIVIRE},
-                                {EVO_ITEM, ITEM_ELECTIRIZER, SPECIES_ELECTIVIRE}),
+        .evolutions = EVOLUTION({EVO_LEVEL, 40, SPECIES_ELECTIVIRE}),
     },
 
 #if P_GEN_4_CROSS_EVOS
@@ -12746,7 +12735,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         FOOTPRINT(Magby)
         .levelUpLearnset = sMagbyLevelUpLearnset,
         .teachableLearnset = sMagbyTeachableLearnset,
-        .evolutions = EVOLUTION({EVO_LEVEL, 30, SPECIES_MAGMAR}),
+        .evolutions = EVOLUTION({EVO_LEVEL, 20, SPECIES_MAGMAR}),
     },
 #endif //P_GEN_2_CROSS_EVOS
 
@@ -12801,8 +12790,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         FOOTPRINT(Magmar)
         .levelUpLearnset = sMagmarLevelUpLearnset,
         .teachableLearnset = sMagmarTeachableLearnset,
-        .evolutions = EVOLUTION({EVO_TRADE_ITEM, ITEM_MAGMARIZER, SPECIES_MAGMORTAR},
-                                {EVO_ITEM, ITEM_MAGMARIZER, SPECIES_MAGMORTAR}),
+        .evolutions = EVOLUTION({EVO_LEVEL, 40, SPECIES_MAGMORTAR}),
     },
 
 #if P_GEN_4_CROSS_EVOS
@@ -13259,7 +13247,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .tmIlliterate = TRUE,
         .levelUpLearnset = sMagikarpLevelUpLearnset,
         .teachableLearnset = sMagikarpTeachableLearnset,
-        .evolutions = EVOLUTION({EVO_LEVEL, 20, SPECIES_GYARADOS}),
+        .evolutions = EVOLUTION({EVO_LEVEL, 40, SPECIES_GYARADOS}),
     },
 
     [SPECIES_GYARADOS] =
@@ -13609,13 +13597,11 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .evolutions = EVOLUTION({EVO_ITEM, ITEM_THUNDER_STONE, SPECIES_JOLTEON},
                                 {EVO_ITEM, ITEM_WATER_STONE, SPECIES_VAPOREON},
                                 {EVO_ITEM, ITEM_FIRE_STONE, SPECIES_FLAREON},
-                                {EVO_FRIENDSHIP_DAY, 0, SPECIES_ESPEON},
-                                {EVO_FRIENDSHIP_NIGHT, 0, SPECIES_UMBREON},
-                                {EVO_SPECIFIC_MAP, MAP_PETALBURG_WOODS, SPECIES_LEAFEON},
+                                {EVO_ITEM, ITEM_SUN_STONE, SPECIES_ESPEON},
+                                {EVO_ITEM, ITEM_MOON_STONE, SPECIES_UMBREON},
                                 {EVO_ITEM, ITEM_LEAF_STONE, SPECIES_LEAFEON},
-                                {EVO_SPECIFIC_MAP, MAP_SHOAL_CAVE_LOW_TIDE_ICE_ROOM, SPECIES_GLACEON},
                                 {EVO_ITEM, ITEM_ICE_STONE, SPECIES_GLACEON},
-                                {EVO_FRIENDSHIP_MOVE_TYPE, TYPE_FAIRY, SPECIES_SYLVEON}),
+                                {EVO_ITEM, ITEM_SHINY_STONE, SPECIES_SYLVEON}),
     },
 
 #if P_GIGANTAMAX_FORMS
@@ -14732,7 +14718,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         FOOTPRINT(Munchlax)
         .levelUpLearnset = sMunchlaxLevelUpLearnset,
         .teachableLearnset = sMunchlaxTeachableLearnset,
-        .evolutions = EVOLUTION({EVO_FRIENDSHIP, 0, SPECIES_SNORLAX}),
+        .evolutions = EVOLUTION({EVO_LEVEL, 25, SPECIES_SNORLAX}),
     },
 #endif //P_GEN_4_CROSS_EVOS
 

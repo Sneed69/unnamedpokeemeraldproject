@@ -270,7 +270,7 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         FOOTPRINT(Tepig)
         .levelUpLearnset = sTepigLevelUpLearnset,
         .teachableLearnset = sTepigTeachableLearnset,
-        .evolutions = EVOLUTION({EVO_LEVEL, 17, SPECIES_PIGNITE}),
+        .evolutions = EVOLUTION({EVO_LEVEL, 16, SPECIES_PIGNITE}),
     },
 
     [SPECIES_PIGNITE] =
@@ -1800,8 +1800,7 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         FOOTPRINT(Boldore)
         .levelUpLearnset = sBoldoreLevelUpLearnset,
         .teachableLearnset = sBoldoreTeachableLearnset,
-        .evolutions = EVOLUTION({EVO_TRADE, 0, SPECIES_GIGALITH},
-                                {EVO_ITEM, ITEM_LINKING_CORD, SPECIES_GIGALITH}),
+        .evolutions = EVOLUTION({EVO_LEVEL, 40, SPECIES_GIGALITH}),
     },
 
     [SPECIES_GIGALITH] =
@@ -3046,7 +3045,7 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         FOOTPRINT(Cottonee)
         .levelUpLearnset = sCottoneeLevelUpLearnset,
         .teachableLearnset = sCottoneeTeachableLearnset,
-        .evolutions = EVOLUTION({EVO_ITEM, ITEM_SUN_STONE, SPECIES_WHIMSICOTT}),
+        .evolutions = EVOLUTION({EVO_LEVEL, 30, SPECIES_WHIMSICOTT}),
     },
 
     [SPECIES_WHIMSICOTT] =
@@ -7500,7 +7499,7 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         FOOTPRINT(Litwick)
         .levelUpLearnset = sLitwickLevelUpLearnset,
         .teachableLearnset = sLitwickTeachableLearnset,
-        .evolutions = EVOLUTION({EVO_LEVEL, 41, SPECIES_LAMPENT}),
+        .evolutions = EVOLUTION({EVO_LEVEL, 32, SPECIES_LAMPENT}),
     },
 
     [SPECIES_LAMPENT] =
@@ -7554,7 +7553,7 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         FOOTPRINT(Lampent)
         .levelUpLearnset = sLampentLevelUpLearnset,
         .teachableLearnset = sLampentTeachableLearnset,
-        .evolutions = EVOLUTION({EVO_ITEM, ITEM_DUSK_STONE, SPECIES_CHANDELURE}),
+        .evolutions = EVOLUTION({EVO_LEVEL, 46, SPECIES_CHANDELURE}),
     },
 
     [SPECIES_CHANDELURE] =

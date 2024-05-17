@@ -2203,7 +2203,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         FOOTPRINT(Doublade)
         .levelUpLearnset = sDoubladeLevelUpLearnset,
         .teachableLearnset = sDoubladeTeachableLearnset,
-        .evolutions = EVOLUTION({EVO_ITEM, ITEM_DUSK_STONE, SPECIES_AEGISLASH_SHIELD}),
+        .evolutions = EVOLUTION({EVO_LEVEL, 51, SPECIES_AEGISLASH_SHIELD}),
     },
 
 #define AEGISLASH_MAIN_STAT (P_UPDATED_STATS >= GEN_8 ? 140 : 150)
@@ -3134,7 +3134,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         FOOTPRINT(Tyrunt)
         .levelUpLearnset = sTyruntLevelUpLearnset,
         .teachableLearnset = sTyruntTeachableLearnset,
-        .evolutions = EVOLUTION({EVO_LEVEL_DAY, 39, SPECIES_TYRANTRUM}),
+        .evolutions = EVOLUTION({EVO_LEVEL, 39, SPECIES_TYRANTRUM}),
     },
 
     [SPECIES_TYRANTRUM] =
@@ -3241,7 +3241,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         FOOTPRINT(Amaura)
         .levelUpLearnset = sAmauraLevelUpLearnset,
         .teachableLearnset = sAmauraTeachableLearnset,
-        .evolutions = EVOLUTION({EVO_LEVEL_NIGHT, 39, SPECIES_AURORUS}),
+        .evolutions = EVOLUTION({EVO_LEVEL, 39, SPECIES_AURORUS}),
     },
 
     [SPECIES_AURORUS] =
@@ -3853,8 +3853,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         FOOTPRINT(Phantump)
         .levelUpLearnset = sPhantumpLevelUpLearnset,
         .teachableLearnset = sPhantumpTeachableLearnset,
-        .evolutions = EVOLUTION({EVO_TRADE, 0, SPECIES_TREVENANT},
-                                {EVO_ITEM, ITEM_LINKING_CORD, SPECIES_TREVENANT}),
+        .evolutions = EVOLUTION({EVO_LEVEL, 32, SPECIES_TREVENANT}),
     },
 
     [SPECIES_TREVENANT] =

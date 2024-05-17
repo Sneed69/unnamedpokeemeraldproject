@@ -1147,8 +1147,8 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .tmIlliterate = TRUE,
         .levelUpLearnset = sWurmpleLevelUpLearnset,
         .teachableLearnset = sWurmpleTeachableLearnset,
-        .evolutions = EVOLUTION({EVO_LEVEL_SILCOON, 7, SPECIES_SILCOON},
-                                {EVO_LEVEL_CASCOON, 7, SPECIES_CASCOON}),
+        .evolutions = EVOLUTION({EVO_LEVEL_SILCOON, 10, SPECIES_SILCOON},
+                                {EVO_LEVEL_CASCOON, 10, SPECIES_CASCOON}),
     },
 
     [SPECIES_SILCOON] =
@@ -1202,7 +1202,7 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .tmIlliterate = TRUE,
         .levelUpLearnset = sSilcoonLevelUpLearnset,
         .teachableLearnset = sSilcoonTeachableLearnset,
-        .evolutions = EVOLUTION({EVO_LEVEL, 10, SPECIES_BEAUTIFLY}),
+        .evolutions = EVOLUTION({EVO_LEVEL, 16, SPECIES_BEAUTIFLY}),
     },
 
     [SPECIES_BEAUTIFLY] =
@@ -1328,7 +1328,7 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .tmIlliterate = TRUE,
         .levelUpLearnset = sCascoonLevelUpLearnset,
         .teachableLearnset = sCascoonTeachableLearnset,
-        .evolutions = EVOLUTION({EVO_LEVEL, 10, SPECIES_DUSTOX}),
+        .evolutions = EVOLUTION({EVO_LEVEL, 16, SPECIES_DUSTOX}),
     },
 
     [SPECIES_DUSTOX] =
@@ -1506,7 +1506,7 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         FOOTPRINT(Lombre)
         .levelUpLearnset = sLombreLevelUpLearnset,
         .teachableLearnset = sLombreTeachableLearnset,
-        .evolutions = EVOLUTION({EVO_ITEM, ITEM_WATER_STONE, SPECIES_LUDICOLO}),
+        .evolutions = EVOLUTION({EVO_LEVEL, 34, SPECIES_LUDICOLO}),
     },
 
     [SPECIES_LUDICOLO] =
@@ -1683,7 +1683,7 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         FOOTPRINT(Nuzleaf)
         .levelUpLearnset = sNuzleafLevelUpLearnset,
         .teachableLearnset = sNuzleafTeachableLearnset,
-        .evolutions = EVOLUTION({EVO_ITEM, ITEM_LEAF_STONE, SPECIES_SHIFTRY}),
+        .evolutions = EVOLUTION({EVO_LEVEL, 34, SPECIES_SHIFTRY}),
     },
 
     [SPECIES_SHIFTRY] =
@@ -2096,8 +2096,8 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         FOOTPRINT(Kirlia)
         .levelUpLearnset = sKirliaLevelUpLearnset,
         .teachableLearnset = sKirliaTeachableLearnset,
-        .evolutions = EVOLUTION({EVO_LEVEL, 30, SPECIES_GARDEVOIR},
-                                {EVO_ITEM_MALE, ITEM_DAWN_STONE, SPECIES_GALLADE}),
+        .evolutions = EVOLUTION({EVO_LEVEL_FEMALE, 35, SPECIES_GARDEVOIR},
+                                {EVO_LEVEL_MALE, 35, SPECIES_GALLADE}),
     },
 
     [SPECIES_GARDEVOIR] =
@@ -2118,7 +2118,7 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .expYield = 208,
     #endif
         .evYield_SpAttack = 3,
-        .genderRatio = PERCENT_FEMALE(50),
+        .genderRatio = MON_FEMALE,
         .eggCycles = 20,
         .friendship = 35,
         .growthRate = GROWTH_SLOW,
@@ -3118,7 +3118,7 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         FOOTPRINT(Makuhita)
         .levelUpLearnset = sMakuhitaLevelUpLearnset,
         .teachableLearnset = sMakuhitaTeachableLearnset,
-        .evolutions = EVOLUTION({EVO_LEVEL, 24, SPECIES_HARIYAMA}),
+        .evolutions = EVOLUTION({EVO_LEVEL, 28, SPECIES_HARIYAMA}),
     },
 
     [SPECIES_HARIYAMA] =
@@ -3340,7 +3340,7 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         FOOTPRINT(Skitty)
         .levelUpLearnset = sSkittyLevelUpLearnset,
         .teachableLearnset = sSkittyTeachableLearnset,
-        .evolutions = EVOLUTION({EVO_ITEM, ITEM_MOON_STONE, SPECIES_DELCATTY}),
+        .evolutions = EVOLUTION({EVO_LEVEL, 28, SPECIES_DELCATTY}),
     },
 
     [SPECIES_DELCATTY] =
@@ -3692,7 +3692,7 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         FOOTPRINT(Aron)
         .levelUpLearnset = sAronLevelUpLearnset,
         .teachableLearnset = sAronTeachableLearnset,
-        .evolutions = EVOLUTION({EVO_LEVEL, 32, SPECIES_LAIRON}),
+        .evolutions = EVOLUTION({EVO_LEVEL, 28, SPECIES_LAIRON}),
     },
 
     [SPECIES_LAIRON] =
@@ -6732,9 +6732,7 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         FOOTPRINT(Feebas)
         .levelUpLearnset = sFeebasLevelUpLearnset,
         .teachableLearnset = sFeebasTeachableLearnset,
-        .evolutions = EVOLUTION({EVO_BEAUTY, 170, SPECIES_MILOTIC},
-                                {EVO_TRADE_ITEM, ITEM_PRISM_SCALE, SPECIES_MILOTIC},
-                                {EVO_ITEM, ITEM_PRISM_SCALE, SPECIES_MILOTIC}),
+        .evolutions = EVOLUTION({EVO_BEAUTY, 170, SPECIES_MILOTIC}),
     },
 
     [SPECIES_MILOTIC] =
@@ -7360,8 +7358,7 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         FOOTPRINT(Dusclops)
         .levelUpLearnset = sDusclopsLevelUpLearnset,
         .teachableLearnset = sDusclopsTeachableLearnset,
-        .evolutions = EVOLUTION({EVO_TRADE_ITEM, ITEM_REAPER_CLOTH, SPECIES_DUSKNOIR},
-                                {EVO_ITEM, ITEM_REAPER_CLOTH, SPECIES_DUSKNOIR}),
+        .evolutions = EVOLUTION({EVO_LEVEL, 55, SPECIES_DUSKNOIR}),
     },
 
 #if P_GEN_4_CROSS_EVOS
@@ -7770,8 +7767,8 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         FOOTPRINT(Snorunt)
         .levelUpLearnset = sSnoruntLevelUpLearnset,
         .teachableLearnset = sSnoruntTeachableLearnset,
-        .evolutions = EVOLUTION({EVO_LEVEL, 42, SPECIES_GLALIE},
-                                {EVO_ITEM_FEMALE, ITEM_DAWN_STONE, SPECIES_FROSLASS}),
+        .evolutions = EVOLUTION({EVO_LEVEL_MALE, 42, SPECIES_GLALIE},
+                                {EVO_LEVEL_FEMALE, 42, SPECIES_FROSLASS}),
     },
 
     [SPECIES_GLALIE] =
@@ -7786,7 +7783,7 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .catchRate = 75,
         .expYield = (P_UPDATED_EXP_YIELDS >= GEN_5) ? 168 : 187,
         .evYield_HP = 2,
-        .genderRatio = PERCENT_FEMALE(50),
+        .genderRatio = MON_MALE,
         .eggCycles = 20,
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_FAST,
@@ -8162,10 +8159,8 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         FOOTPRINT(Clamperl)
         .levelUpLearnset = sClamperlLevelUpLearnset,
         .teachableLearnset = sClamperlTeachableLearnset,
-        .evolutions = EVOLUTION({EVO_TRADE_ITEM, ITEM_DEEP_SEA_TOOTH, SPECIES_HUNTAIL},
-                                {EVO_TRADE_ITEM, ITEM_DEEP_SEA_SCALE, SPECIES_GOREBYSS},
-                                {EVO_ITEM, ITEM_DEEP_SEA_TOOTH, SPECIES_HUNTAIL},
-                                {EVO_ITEM, ITEM_DEEP_SEA_SCALE, SPECIES_GOREBYSS}),
+        .evolutions = EVOLUTION({EVO_LEVEL_MALE, 38, SPECIES_HUNTAIL},
+                                {EVO_LEVEL_FEMALE, 38, SPECIES_GOREBYSS}),
     },
 
     [SPECIES_HUNTAIL] =
@@ -8182,7 +8177,7 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .evYield_Attack = 1,
         .evYield_Defense = 1,
         .itemRare = ITEM_DEEP_SEA_TOOTH,
-        .genderRatio = PERCENT_FEMALE(50),
+        .genderRatio = MON_MALE,
         .eggCycles = 20,
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_ERRATIC,
@@ -8235,7 +8230,7 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .expYield = (P_UPDATED_EXP_YIELDS >= GEN_5) ? 170 : 178,
         .evYield_SpAttack = 2,
         .itemRare = ITEM_DEEP_SEA_SCALE,
-        .genderRatio = PERCENT_FEMALE(50),
+        .genderRatio = MON_FEMALE,
         .eggCycles = 20,
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_ERRATIC,
