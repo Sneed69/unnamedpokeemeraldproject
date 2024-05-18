@@ -161,6 +161,26 @@ u8 CreateMonIcon(u16 species, void (*callback)(struct Sprite *), s16 x, s16 y, u
     return spriteId;
 }
 
+u8 CreateMonIconBlack(u16 species, void (*callback)(struct Sprite *), s16 x, s16 y, u8 subpriority, u32 personality)
+{
+    u8 spriteId;
+    struct MonIconSpriteTemplate iconTemplate =
+    {
+        .oam = &sMonIconOamData,
+        .image = GetMonIconPtr(species, personality),
+        .anims = sMonIconAnims,
+        .affineAnims = sMonIconAffineAnims,
+        .callback = callback,
+        .paletteTag = POKE_ICON_BASE_PAL_TAG + 30,
+    };
+
+    spriteId = CreateMonIconSprite(&iconTemplate, x, y, subpriority);
+
+    UpdateMonIconFrame(&gSprites[spriteId]);
+
+    return spriteId;
+}
+
 u8 CreateMonIconNoPersonality(u16 species, void (*callback)(struct Sprite *), s16 x, s16 y, u8 subpriority)
 {
     u8 spriteId;

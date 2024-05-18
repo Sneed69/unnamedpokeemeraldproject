@@ -127,7 +127,7 @@ static const u8 sCaughtBall_Gfx[] = INCBIN_U8("graphics/pokedex/caught_ball.4bpp
 static const u8 sText_TenDashes[] = _("----------");
 ALIGNED(4) static const u8 sExpandedPlaceholder_PokedexDescription[] = _("");
 static const u16 sSizeScreenSilhouette_Pal[] = INCBIN_U16("graphics/pokedex/size_silhouette.gbapal");
-
+static const struct SpritePalette sSillouetteIconSpritePalette = { sSizeScreenSilhouette_Pal, 56030 };
 static const u8 sText_Stats_Buttons[] = _("{DPAD_UPDOWN} BROWSE MOVES");
 static const u8 sText_Stats_Buttons_Decapped[] = _("{DPAD_UPDOWN} Browse Moves");
 static const u8 sText_Stats_HP[] = _("HP");
@@ -5728,18 +5728,23 @@ static void HandleTargetSpeciesPrintText(u32 targetSpecies, u32 base_x, u32 base
 static void HandleTargetSpeciesPrintIcon(u8 taskId, u16 targetSpecies, u8 base_i, u8 iterations)
 {
     u32 personality = GetPokedexMonPersonality(targetSpecies);
-    u32 speciesToPrint;
     bool32 seen = GetSetPokedexFlag(SpeciesToNationalPokedexNum(targetSpecies), FLAG_GET_SEEN);
+    u32 iconX;
 
-    if (seen || !HGSS_HIDE_UNSEEN_EVOLUTION_NAMES)
-        speciesToPrint = targetSpecies;
-    else
-        speciesToPrint = SPECIES_NONE;
-    LoadMonIconPalettePersonality(speciesToPrint, personality); //Loads pallete for current mon
     if (iterations > 6) // Print icons closer to each other if there are many evolutions
-        gTasks[taskId].data[4+base_i] = CreateMonIcon(speciesToPrint, SpriteCB_MonIcon, 45 + 26*base_i, 31, 4, personality);
+        iconX = 45 + 26 * base_i;
     else
-        gTasks[taskId].data[4+base_i] = CreateMonIcon(speciesToPrint, SpriteCB_MonIcon, 50 + 32*base_i, 31, 4, personality);
+        iconX = 50 + 32 * base_i;
+    if (seen || !HGSS_HIDE_UNSEEN_EVOLUTION_NAMES)
+    {
+        LoadMonIconPalettePersonality(targetSpecies, personality); //Loads pallete for current mon
+        gTasks[taskId].data[4+base_i] = CreateMonIcon(targetSpecies, SpriteCB_MonIcon, iconX, 31, 4, personality);
+    }
+    else
+    {
+        LoadSpritePalette(&sSillouetteIconSpritePalette);
+        gTasks[taskId].data[4+base_i] = CreateMonIconBlack(targetSpecies, SpriteCB_MonIcon, iconX, 31, 4, personality);
+    }
     gSprites[gTasks[taskId].data[4+base_i]].oam.priority = 0;
 }
 
@@ -5783,14 +5788,17 @@ static void HandlePreEvolutionSpeciesPrint(u8 taskId, u16 preSpecies, u16 specie
     if (base_i < 3)
     {
         u32 personality = GetPokedexMonPersonality(preSpecies);
-        u32 speciesToPrint;
 
         if (seen || !HGSS_HIDE_UNSEEN_EVOLUTION_NAMES)
-            speciesToPrint = preSpecies;
+        {
+            LoadMonIconPalettePersonality(preSpecies, personality); //Loads pallete for current mon
+            gTasks[taskId].data[4+base_i] = CreateMonIcon(preSpecies, SpriteCB_MonIcon, 18 + 32*base_i, 31, 4, personality); //Create pokemon sprite
+        }
         else
-            speciesToPrint = SPECIES_NONE;
-        LoadMonIconPalettePersonality(speciesToPrint, personality); //Loads pallete for current mon
-        gTasks[taskId].data[4+base_i] = CreateMonIcon(speciesToPrint, SpriteCB_MonIcon, 18 + 32*base_i, 31, 4, personality); //Create pokemon sprite
+        {
+            LoadSpritePalette(&sSillouetteIconSpritePalette);
+            gTasks[taskId].data[4+base_i] = CreateMonIconBlack(preSpecies, SpriteCB_MonIcon, 18 + 32*base_i, 31, 4, personality); //Create pokemon sprite
+        }
         gSprites[gTasks[taskId].data[4+base_i]].oam.priority = 0;
     }
 }
