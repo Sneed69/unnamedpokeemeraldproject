@@ -465,7 +465,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
 
     [ABILITY_STICKY_HOLD] =
     {
-        .name = _("Sticky Hold"),
+        .name = _("Tight Grip"),
         .description = COMPOUND_STRING("Held items cannot be stolen\nor removed by other Pokémon."),
         .aiRating = 3,
         .breakable = TRUE,
