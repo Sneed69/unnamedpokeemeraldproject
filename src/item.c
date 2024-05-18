@@ -19,8 +19,10 @@
 #include "menu.h"
 #include "party_menu.h"
 #include "overworld.h"
+#include "graphics.h"
 #include "constants/battle.h"
 #include "constants/items.h"
+#include "constants/moves.h"
 #include "constants/item_effects.h"
 #include "constants/hold_effects.h"
 

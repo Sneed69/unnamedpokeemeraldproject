@@ -12,9 +12,6 @@
 EWRAM_DATA u8 *gItemIconDecompressionBuffer = NULL;
 EWRAM_DATA u8 *gItemIcon4x4Buffer = NULL;
 
-// const rom data
-#include "data/item_icon_table.h"
-
 static const struct OamData sOamData_ItemIcon =
 {
     .y = 0,
@@ -98,14 +95,14 @@ u8 AddItemIconSprite(u16 tilesTag, u16 paletteTag, u16 itemId)
         struct CompressedSpritePalette spritePalette;
         struct SpriteTemplate *spriteTemplate;
 
-        LZDecompressWram(GetItemIconPicOrPalette(itemId, 0), gItemIconDecompressionBuffer);
+        LZDecompressWram(GetItemIconSprite(itemId), gItemIconDecompressionBuffer);
         CopyItemIconPicTo4x4Buffer(gItemIconDecompressionBuffer, gItemIcon4x4Buffer);
         spriteSheet.data = gItemIcon4x4Buffer;
         spriteSheet.size = 0x200;
         spriteSheet.tag = tilesTag;
         LoadSpriteSheet(&spriteSheet);
 
-        spritePalette.data = GetItemIconPicOrPalette(itemId, 1);
+        spritePalette.data = GetItemIconPalette(itemId);
         spritePalette.tag = paletteTag;
         LoadCompressedSpritePalette(&spritePalette);
 
@@ -135,14 +132,14 @@ u8 AddCustomItemIconSprite(const struct SpriteTemplate *customSpriteTemplate, u1
         struct CompressedSpritePalette spritePalette;
         struct SpriteTemplate *spriteTemplate;
 
-        LZDecompressWram(GetItemIconPicOrPalette(itemId, 0), gItemIconDecompressionBuffer);
+        LZDecompressWram(GetItemIconSprite(itemId), gItemIconDecompressionBuffer);
         CopyItemIconPicTo4x4Buffer(gItemIconDecompressionBuffer, gItemIcon4x4Buffer);
         spriteSheet.data = gItemIcon4x4Buffer;
         spriteSheet.size = 0x200;
         spriteSheet.tag = tilesTag;
         LoadSpriteSheet(&spriteSheet);
 
-        spritePalette.data = GetItemIconPicOrPalette(itemId, 1);
+        spritePalette.data = GetItemIconPalette(itemId);
         spritePalette.tag = paletteTag;
         LoadCompressedSpritePalette(&spritePalette);
 
@@ -159,18 +156,23 @@ u8 AddCustomItemIconSprite(const struct SpriteTemplate *customSpriteTemplate, u1
     }
 }
 
-const void *GetItemIconPicOrPalette(u16 itemId, u8 which)
+const void *GetItemIconSprite(u16 itemId)
 {
     if (itemId == ITEM_LIST_END)
-        return gItemIconTable[ITEMS_COUNT][which]; // Use last icon, the "return to field" arrow
+        return gItemIcon_ReturnToFieldArrow; // Use last icon, the "return to field" arrow
     if (itemId >= ITEMS_COUNT)
-        return gItemIconTable[0][which];
-    else if (itemId >= ITEM_TM01 && itemId <= LAST_TM)
-    {
-        if (which)
-            return gTypesInfo[gMovesInfo[gItemsInfo[itemId].secondaryId].type].paletteTMHM;
-        return gItemIcon_TM;
-    }
+        return gItemsInfo[0].iconSprite;
+    return gItemsInfo[itemId].iconSprite;
+}
 
-    return gItemIconTable[itemId][which];
+const void *GetItemIconPalette(u16 itemId)
+{
+    if (itemId == ITEM_LIST_END)
+        return gItemIconPalette_ReturnToFieldArrow;
+    if (itemId >= ITEMS_COUNT)
+        return gItemsInfo[0].iconPalette;
+    if (itemId >= ITEM_TM01 && itemId < ITEM_TM01 + NUM_TECHNICAL_MACHINES)
+        return gTypesInfo[gMovesInfo[gItemsInfo[itemId].secondaryId].type].paletteTMHM;
+
+    return gItemsInfo[itemId].iconPalette;
 }
