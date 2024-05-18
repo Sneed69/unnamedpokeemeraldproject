@@ -9649,8 +9649,18 @@ static void Cmd_various(void)
                 gLastUsedAbility = battlerAbility;
                 gBattlerAbility = gBattleScripting.battler;
                 gBattleMoveDamage = -gBattleMons[gBattleScripting.battler].maxHP / 5;
+                if (gBattleMons[gBattleScripting.battler].status1 & (STATUS1_POISON | STATUS1_TOXIC_POISON))
+                    StringCopy(gBattleTextBuff1, gStatusConditionString_PoisonJpn);
+                else if (gBattleMons[gBattleScripting.battler].status1 & STATUS1_SLEEP)
+                    StringCopy(gBattleTextBuff1, gStatusConditionString_SleepJpn);
+                else if (gBattleMons[gBattleScripting.battler].status1 & STATUS1_PARALYSIS)
+                    StringCopy(gBattleTextBuff1, gStatusConditionString_ParalysisJpn);
+                else if (gBattleMons[gBattleScripting.battler].status1 & STATUS1_BURN)
+                    StringCopy(gBattleTextBuff1, gStatusConditionString_BurnJpn);
+                else if (gBattleMons[gBattleScripting.battler].status1 & (STATUS1_FREEZE | STATUS1_FROSTBITE))
+                    StringCopy(gBattleTextBuff1, gStatusConditionString_IceJpn);
                 BattleScriptPushCursor();
-                gBattlescriptCurrInstr = BattleScript_HealOnFoeFaint;
+                gBattlescriptCurrInstr = BattleScript_AbilityHealAndCureReturn;
                 return;
             }
         }

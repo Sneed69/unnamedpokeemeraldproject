@@ -856,7 +856,8 @@ extern const u8 BattleScript_JetStreamActivates[];
 extern const u8 BattleScript_SoulSiphon[];
 extern const u8 BattleScript_SelectingMoveFlamboyant[];
 extern const u8 BattleScript_LoneWolf[];
-extern const u8 BattleScript_HealOnFoeFaint[];
+extern const u8 BattleScript_AbilityHealAndCureReturn[];
+extern const u8 BattleScript_AbilityHealAndCureEnd3[];
 extern const u8 BattleScript_EffectSpicyExtract[];
 
 #endif // GUARD_BATTLE_SCRIPTS_H

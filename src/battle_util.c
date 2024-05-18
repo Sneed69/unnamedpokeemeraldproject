@@ -5051,25 +5051,32 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
                 }
                 break;
             case ABILITY_HYDRATION:
-                if (IsBattlerWeatherAffected(battler, B_WEATHER_RAIN))
+                if (IsBattlerWeatherAffected(battler, B_WEATHER_RAIN)
+                 && ((gBattleMons[battler].status1 & STATUS1_ANY && !IsBattlerPollutedTerrainAffected(battler))
+                 || (!BATTLER_MAX_HP(battler) && !(gStatuses3[battler] & STATUS3_HEAL_BLOCK))))
                 {
-                    if (!BATTLER_MAX_HP(battler) && !(gStatuses3[battler] & STATUS3_HEAL_BLOCK))
-                    {
-                        BattleScriptPushCursorAndCallback(BattleScript_RainDishActivates);
-                        gBattleMoveDamage = gBattleMons[battler].maxHP / 16;
-                        if (gBattleMoveDamage == 0)
-                            gBattleMoveDamage = 1;
-                        gBattleMoveDamage *= -1;
-                        effect++;
-                    }
-                    if (gBattleMons[battler].status1 & STATUS1_ANY && !IsBattlerPollutedTerrainAffected(battler))
-                        goto ABILITY_HEAL_MON_STATUS;
+                    BattleScriptPushCursorAndCallback(BattleScript_AbilityHealAndCureEnd3);
+                    gBattlerAbility = gBattleScripting.battler = battler;
+                    gBattleMoveDamage = -gBattleMons[battler].maxHP / 16;
+                    if (gBattleMoveDamage == 0)
+                        gBattleMoveDamage = -1;
+                    if (gBattleMons[battler].status1 & (STATUS1_POISON | STATUS1_TOXIC_POISON))
+                        StringCopy(gBattleTextBuff1, gStatusConditionString_PoisonJpn);
+                    else if (gBattleMons[battler].status1 & STATUS1_SLEEP)
+                        StringCopy(gBattleTextBuff1, gStatusConditionString_SleepJpn);
+                    else if (gBattleMons[battler].status1 & STATUS1_PARALYSIS)
+                        StringCopy(gBattleTextBuff1, gStatusConditionString_ParalysisJpn);
+                    else if (gBattleMons[battler].status1 & STATUS1_BURN)
+                        StringCopy(gBattleTextBuff1, gStatusConditionString_BurnJpn);
+                    else if (gBattleMons[battler].status1 & (STATUS1_FREEZE | STATUS1_FROSTBITE))
+                        StringCopy(gBattleTextBuff1, gStatusConditionString_IceJpn);
+                    effect++;
                 }
                 break;
             case ABILITY_SHED_SKIN:
                 if ((gBattleMons[battler].status1 & STATUS1_ANY) && (Random() % 3) == 0 && !IsBattlerPollutedTerrainAffected(battler))
                 {
-                ABILITY_HEAL_MON_STATUS:
+                //ABILITY_HEAL_MON_STATUS:
                     if (gBattleMons[battler].status1 & (STATUS1_POISON | STATUS1_TOXIC_POISON))
                         StringCopy(gBattleTextBuff1, gStatusConditionString_PoisonJpn);
                     if (gBattleMons[battler].status1 & STATUS1_SLEEP)
@@ -6628,7 +6635,13 @@ bool32 IsBattlerTerrainAffected(u32 battler, u32 terrainFlag)
 
 bool32 IsBattlerPollutedTerrainAffected(u32 battler)
 {
-    return IsBattlerTerrainAffected(battler, STATUS_FIELD_POLLUTED_TERRAIN) && !IS_BATTLER_OF_TYPE(battler, TYPE_POISON) && GetBattlerAbility(battler) != ABILITY_POISON_HEAL;
+    if (!IsBattlerTerrainAffected(battler, STATUS_FIELD_POLLUTED_TERRAIN))
+        return FALSE;
+    if (IS_BATTLER_OF_TYPE(battler, TYPE_POISON))
+        return FALSE;
+    if (GetBattlerAbility(battler) == ABILITY_POISON_HEAL)
+        return FALSE;
+    return TRUE;
 }
 
 bool32 CanSleep(u32 battler)
