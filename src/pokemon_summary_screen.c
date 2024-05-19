@@ -3226,7 +3226,7 @@ static void PrintMonTrainerMemo(void)
 static void BufferNatureString(void)
 {
     struct PokemonSummaryScreenData *sumStruct = sMonSummaryScreen;
-    DynamicPlaceholderTextUtil_SetPlaceholderPtr(2, gNatureNamePointers[sumStruct->summary.nature]);
+    DynamicPlaceholderTextUtil_SetPlaceholderPtr(2, gNaturesInfo[sumStruct->summary.nature].name);
     DynamicPlaceholderTextUtil_SetPlaceholderPtr(5, gText_EmptyString5);
 }
 
