@@ -1153,6 +1153,7 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .tmIlliterate = TRUE,
         .levelUpLearnset = sWurmpleLevelUpLearnset,
         .teachableLearnset = sWurmpleTeachableLearnset,
+        .eggMoveLearnset = sWurmpleEggMoveLearnset,
         .evolutions = EVOLUTION({EVO_LEVEL_SILCOON, 10, SPECIES_SILCOON},
                                 {EVO_LEVEL_CASCOON, 10, SPECIES_CASCOON}),
     },
@@ -6430,6 +6431,7 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         FOOTPRINT(Baltoy)
         .levelUpLearnset = sBaltoyLevelUpLearnset,
         .teachableLearnset = sBaltoyTeachableLearnset,
+        .eggMoveLearnset = sBaltoyEggMoveLearnset,
         .evolutions = EVOLUTION({EVO_LEVEL, 36, SPECIES_CLAYDOL}),
     },
 
