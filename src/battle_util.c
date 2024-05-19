@@ -502,10 +502,10 @@ bool32 TryRunFromBattle(u32 battler)
             if (speedVar > (Random() & 0xFF))
                 effect++;
         }
-        else if (gBattleMons[battler].speed < gBattleMons[runningFromBattler].speed)
+        else if (gBattleMons[battler].level * gBattleMons[battler].speed < gBattleMons[runningFromBattler].level * gBattleMons[runningFromBattler].speed)
         {
-            speedVar = (gBattleMons[battler].speed * 128) / (gBattleMons[runningFromBattler].speed) + (gBattleStruct->runTries * 30);
-            if (speedVar > (Random() & 0xFF))
+            speedVar = (gBattleMons[battler].level * gBattleMons[battler].speed * 128) / (gBattleMons[runningFromBattler].level * gBattleMons[runningFromBattler].speed);
+            if (speedVar + (gBattleStruct->runTries * 30) > (Random() & 0xFF))
                 effect++;
         }
         else // same speed or faster
