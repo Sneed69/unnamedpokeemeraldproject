@@ -2762,7 +2762,6 @@ void StealTargetItem(u8 battlerStealer, u8 battlerItem)
     gBattleStruct->choicedMove[battlerItem] = 0;
 
     TrySaveExchangedItem(battlerItem, gLastUsedItem);
-    TrySaveExchangedItem(battlerStealer, ITEM_NONE);
 }
 
 #define INCREMENT_RESET_RETURN                  \
@@ -3689,7 +3688,7 @@ void SetMoveEffect(bool32 primary, bool32 certain)
                 }
                 break;
             case MOVE_EFFECT_SPIKES:
-                if (gSideTimers[GetBattlerSide(gEffectBattler)].spikesAmount < 3)
+                if (gSideTimers[GetBattlerSide(gEffectBattler)].spikesAmount < 3 && (gMultiHitCounter == 1 || !IsBattlerAlive(gBattlerTarget)))
                 {
                     gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SPIKESSCATTERED;
                     BattleScriptPush(gBattlescriptCurrInstr + 1);
@@ -3698,8 +3697,8 @@ void SetMoveEffect(bool32 primary, bool32 certain)
                         gBattlescriptCurrInstr++;
                     else
                         gBattlescriptCurrInstr = BattleScript_SpikesActivates;
-                    break;
                 }
+                break;
             case MOVE_EFFECT_SYRUP_BOMB:
                 if (!(gStatuses4[gEffectBattler] & STATUS4_SYRUP_BOMB))
                 {
