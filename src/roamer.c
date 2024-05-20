@@ -173,7 +173,8 @@ static void ClearRoamerLocationHistory(u8 index)
         ROAMER(index)->mapNumHistory[i] = 0x7F; // 0x7F is MAP_NONE
     }
 }
-static void CreateInitialRoamerMon(u8 index, u16 species, u8 level, bool8 isTerrestrial, bool8 doesNotFlee, bool8 isStalker, u16 respawnMode, u8 nocturnality)
+
+static void CreateRoamerInternal(u8 index, u16 species, u8 level, bool8 isTerrestrial, bool8 doesNotFlee, bool8 isStalker, u16 respawnMode, u8 nocturnality)
 {
     ClearRoamerLocationHistory(index);
     CreateMon(&gEnemyParty[0], species, level, USE_RANDOM_IVS, FALSE, 0, OT_ID_PLAYER_ID, 0);
@@ -429,7 +430,7 @@ bool8 TryAddRoamer(u16 species, u8 level, bool8 doesNotFlee, u16 respawnMode)
     
     if (index < ROAMER_COUNT)
     {
-        CreateInitialRoamerMon(index, species, level, AMPHIBIOUS, doesNotFlee, NOT_STALKER, respawnMode, NORMAL);
+        CreateRoamerInternal(index, species, level, AMPHIBIOUS, doesNotFlee, NOT_STALKER, respawnMode, NORMAL);
         ROAMER(index)->hideFromDex = FALSE;
         return TRUE;
     }
@@ -443,7 +444,7 @@ bool8 TryAddTerrestrialRoamer(u16 species, u8 level, bool8 doesNotFlee, u16 resp
     
     if (index < ROAMER_COUNT)
     {
-        CreateInitialRoamerMon(index, species, level, TERRESTRIAL, doesNotFlee, NOT_STALKER, respawnMode, NORMAL);
+        CreateRoamerInternal(index, species, level, TERRESTRIAL, doesNotFlee, NOT_STALKER, respawnMode, NORMAL);
         ROAMER(index)->hideFromDex = FALSE;
         return TRUE;
     }
@@ -456,7 +457,7 @@ bool8 TryAddStalker(u16 species, u8 level, bool8 doesNotFlee, bool8 isTerrestria
     
     if (index < ROAMER_COUNT)
     {
-        CreateInitialRoamerMon(index, species, level, isTerrestrial, doesNotFlee, STALKER, respawnMode, NORMAL);
+        CreateRoamerInternal(index, species, level, isTerrestrial, doesNotFlee, STALKER, respawnMode, NORMAL);
         ROAMER(index)->hideFromDex = TRUE;
         return TRUE;
     }
@@ -737,6 +738,7 @@ void TryAddDailyRoamer(void)
     else
         species = sDailyRoamerList[i].species;
 
-    CreateInitialRoamerMon(availableSlot, species, 0, sDailyRoamerList[i].isTerrestrial, sDailyRoamerList[i].doesNotFlee, sDailyRoamerList[i].isStalker, DAILY_RESPAWN, sDailyRoamerList[i].nocturnality);
-    ROAMER(availableSlot)->hideFromDex = TRUE;
+    CreateRoamerInternal(availableSlot, species, 0, sDailyRoamerList[i].isTerrestrial, sDailyRoamerList[i].doesNotFlee, sDailyRoamerList[i].isStalker, DAILY_RESPAWN, sDailyRoamerList[i].nocturnality);
+    if (sDailyRoamerList[i].isStalker)
+        ROAMER(availableSlot)->hideFromDex = TRUE;
 }
