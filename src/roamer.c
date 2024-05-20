@@ -241,8 +241,8 @@ void RoamerMoveToOtherLocationSet(u8 index)
         // If moving after fighting the player, stalkers leave the area
         if (IsRoamerAt(index, gSaveBlock1Ptr->location.mapGroup, gSaveBlock1Ptr->location.mapNum))
         {
-            ROAMER(index)->locationMapGroup = MAP_GROUP(DYNAMIC);
-            ROAMER(index)->locationMapNum = MAP_NUM(DYNAMIC);
+            ROAMER(index)->locationMapGroup = MAP_GROUP(UNDEFINED);
+            ROAMER(index)->locationMapNum = MAP_NUM(UNDEFINED);
             return;
         }
         else
