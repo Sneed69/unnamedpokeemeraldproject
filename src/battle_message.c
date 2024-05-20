@@ -649,7 +649,9 @@ static const u8 sText_ForewarnActivates2[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX}'
 static const u8 sText_IceBodyHpGain[] = _("{B_ATK_NAME_WITH_PREFIX}'s {B_ATK_ABILITY}\nhealed it a little bit!");
 static const u8 sText_SnowWarningHail[] = _("It started to hail!");
 static const u8 sText_SnowWarningSnow[] = _("It started to snow!");
-static const u8 sText_FriskActivates[] = _("{B_ATK_NAME_WITH_PREFIX} frisked {B_DEF_NAME_WITH_PREFIX} and\nfound its {B_LAST_ITEM}!");
+static const u8 sText_FriskActivates[] = _("{B_ATK_NAME_WITH_PREFIX} frisked {B_DEF_NAME_WITH_PREFIX} and\n{B_BUFF1} its {B_LAST_ITEM}!");
+static const u8 sText_Found[] = _("found");
+static const u8 sText_Disabled[] = _("disabled");
 static const u8 sText_UnnerveEnters[] = _("The opposing team is too nervous\nto eat Berries!");
 static const u8 sText_HarvestBerry[] = _("{B_ATK_NAME_WITH_PREFIX} replenished\nits {B_LAST_ITEM} with {B_LAST_ABILITY}!");
 static const u8 sText_LastAbilityRaisedBuff1[] = _("{B_ATK_NAME_WITH_PREFIX}'s {B_LAST_ABILITY}\nraised its {B_BUFF1}!");
@@ -1619,6 +1621,8 @@ const u8 *const gBattleStringsTable[BATTLESTRINGS_COUNT] =
     [STRINGID_WINDCALMEDDOWN - BATTLESTRINGS_TABLE_START] = sText_WindCalmedDown,
     [STRINGID_BATTLERABILITYRAISEDALLSTATS - BATTLESTRINGS_TABLE_START] = sText_BattlerAbilityRaisedAllStats,
     [STRINGID_PKMNSXRESTOREDHP - BATTLESTRINGS_TABLE_START] = sText_PkmnsXRestoredHP,
+    [STRINGID_FOUND - BATTLESTRINGS_TABLE_START] = sText_Found,
+    [STRINGID_DISABLED - BATTLESTRINGS_TABLE_START] = sText_Disabled,
 };
 
 const u16 gTrainerUsedItemStringIds[] =

@@ -746,8 +746,10 @@
 #define STRINGID_STRINGID_NOTVERYEFFECTIVE_x0_125     744
 #define STRINGID_PKMNSXRESTOREDHP                     745
 #define STRINGID_FOREWARNDISABLES                     746
+#define STRINGID_FOUND                                747
+#define STRINGID_DISABLED                             748
 
-#define BATTLESTRINGS_COUNT                           747
+#define BATTLESTRINGS_COUNT                           749
 
 // This is the string id that gBattleStringsTable starts with.
 // String ids before this (e.g. STRINGID_INTROMSG) are not in the table,

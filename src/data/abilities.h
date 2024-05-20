@@ -895,8 +895,8 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_FRISK] =
     {
         .name = _("Frisk"),
-        .description = COMPOUND_STRING("Identifies a foe's held item\nupon entering a battle."),
-        .aiRating = 3,
+        .description = COMPOUND_STRING("Upon entering a battle,\nidentifies the opponent's item,\nthen disables it for two turns."),
+        .aiRating = 5,
     },
 
     [ABILITY_RECKLESS] =
