@@ -11497,20 +11497,25 @@ void TryRestoreHeldItems(void)
 
     for (i = 0; i < PARTY_SIZE; i++)
     {
+        u16 lostItem = gBattleStruct->itemLost[i].originalItem;
+        bool32 isLostItemBerry = ItemId_GetPocket(lostItem) == POCKET_BERRIES;
         // Check if held items should be restored after battle based on generation
         if (B_RESTORE_HELD_BATTLE_ITEMS >= GEN_9 || gBattleStruct->itemLost[i].stolen || returnNPCItems)
         {
-            u16 lostItem = gBattleStruct->itemLost[i].originalItem;
 
             // Check if the lost item is a berry and the mon is not holding it
-            if (ItemId_GetPocket(lostItem) == POCKET_BERRIES && GetMonData(&gPlayerParty[i], MON_DATA_HELD_ITEM) != lostItem) 
+            if (isLostItemBerry && GetMonData(&gPlayerParty[i], MON_DATA_HELD_ITEM) != lostItem) 
                 lostItem = ITEM_NONE;
 
             // Check if the lost item should be restored
-            if ((lostItem != ITEM_NONE || returnNPCItems) && ItemId_GetPocket(lostItem) != POCKET_BERRIES) 
+            if ((lostItem != ITEM_NONE || returnNPCItems) && !isLostItemBerry) 
                 SetMonData(&gPlayerParty[i], MON_DATA_HELD_ITEM, &lostItem);
             
         }
+        lostItem = gBattleStruct->itemLost[i].originalItem;
+        if (isLostItemBerry && GetMonData(&gPlayerParty[i], MON_DATA_HELD_ITEM) == ITEM_NONE
+         && gSaveBlock2Ptr->optionsAutoReplenishBerries && RemoveBagItem(lostItem, 1))
+            SetMonData(&gPlayerParty[i], MON_DATA_HELD_ITEM, &lostItem);  // Replenish lost berry items
     }
 }
 
