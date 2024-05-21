@@ -5887,7 +5887,6 @@ void ItemUseCB_RareCandy(u8 taskId, TaskFunc task)
 
             DisplayPartyMenuMessage(gStringVar4, TRUE);
             ScheduleBgCopyTilemapToVram(2);
-            gTasks[taskId].func = task;
             sInitialLevel += 1; // so the Pokemon doesn't learn a move meant for its previous level
             gTasks[taskId].func = Task_TryLearnNewMoves;
         }
