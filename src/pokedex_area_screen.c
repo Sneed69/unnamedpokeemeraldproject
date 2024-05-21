@@ -20,6 +20,8 @@
 #include "constants/region_map_sections.h"
 #include "constants/rgb.h"
 #include "constants/songs.h"
+#include "constants/day_night.h"
+#include "day_night.h"
 
 // There are two types of indicators for the area screen to show where a Pokémon can occur:
 // - Area glows, which highlight any of the maps in MAP_GROUP_TOWNS_AND_ROUTES that have the species.
@@ -305,7 +307,9 @@ static void FindMapsWithMon(u16 species)
     for (i = 0; i < ROAMER_COUNT; i++)
     {
         roamer = &gSaveBlock1Ptr->roamer[i];
-        if (species == roamer->species && !roamer->hideFromDex)
+        if (species == roamer->species && !roamer->hideFromDex
+         && !(roamer->nocturnality == NOCTURNAL && GetCurrentTimeOfDay() != TIME_NIGHT)
+         && !(roamer->nocturnality == DIURNAL && GetCurrentTimeOfDay() == TIME_NIGHT))
         {
             // This is a roamer's species, show where this roamer is currently
             if (roamer->active)
