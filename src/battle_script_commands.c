@@ -12543,7 +12543,7 @@ static void Cmd_weatherdamage(void)
                 && !IS_BATTLER_OF_TYPE(gBattlerAttacker, TYPE_GROUND)
                 && !IS_BATTLER_OF_TYPE(gBattlerAttacker, TYPE_STEEL)
                 && ability != ABILITY_SAND_VEIL
-                && ability != ABILITY_DESERT_LURKER
+                && ability != ABILITY_DESERT_DWELLER
                 && ability != ABILITY_CRYSTAL_SHROUD
                 && ability != ABILITY_SAND_FORCE
                 && ability != ABILITY_SAND_RUSH

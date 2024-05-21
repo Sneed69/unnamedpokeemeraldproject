@@ -2784,9 +2784,9 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
         .breakable = TRUE,
     },
 
-    [ABILITY_DESERT_LURKER] =
+    [ABILITY_DESERT_DWELLER] =
     {
-        .name = _("Desert Lurker"),
+        .name = _("Desert Dweller"),
         .description = COMPOUND_STRING("Boosts Special Defense while\ninside a sandstorm and\nDefense in harsh sunlight."),
         .aiRating = 3,
         .breakable = TRUE,

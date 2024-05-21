@@ -1349,7 +1349,7 @@ static s32 GetSwitchinWeatherImpact(void)
                 && AI_DATA->switchinCandidate.battleMon.type1 != TYPE_ROCK && AI_DATA->switchinCandidate.battleMon.type2 != TYPE_ROCK
                 && AI_DATA->switchinCandidate.battleMon.type1 != TYPE_STEEL && AI_DATA->switchinCandidate.battleMon.type2 != TYPE_STEEL
                 && ability != ABILITY_CRYSTAL_SHROUD && ability != ABILITY_SAND_VEIL
-                && ability != ABILITY_DESERT_LURKER && ability != ABILITY_SAND_RUSH && ability != ABILITY_SAND_FORCE))
+                && ability != ABILITY_DESERT_DWELLER && ability != ABILITY_SAND_RUSH && ability != ABILITY_SAND_FORCE))
             {
                 weatherImpact = maxHP / 16;
                 if (weatherImpact == 0)
