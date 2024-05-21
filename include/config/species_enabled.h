@@ -260,7 +260,6 @@
 #define P_FAMILY_DEOXYS                  0
 
 #define P_FAMILY_TURTWIG                 TRUE
-#define P_FAMILY_PIPLUP                  TRUE
 #define P_FAMILY_STARLY                  TRUE
 #define P_FAMILY_DRIFLOON                TRUE
 #define P_FAMILY_STUNKY                  TRUE
@@ -273,7 +272,6 @@
 #define P_FAMILY_ROTOM                   TRUE
 #define P_FAMILY_REGIGIGAS               TRUE
 
-#define P_FAMILY_TEPIG                   TRUE
 #define P_FAMILY_ROGGENROLA              TRUE
 #define P_FAMILY_DRILBUR                 TRUE
 #define P_FAMILY_VENIPEDE                TRUE

@@ -646,20 +646,6 @@ static const struct {
         .prerequisiteFlag = FLAG_BADGE03_GET,
         .flagToSet = FLAG_TURTWIG_ROAMING,
     },
-    {
-        .species = SPECIES_TEPIG,
-        .isTerrestrial = TRUE,
-        .doesNotFlee = TRUE,
-        .prerequisiteFlag = FLAG_BADGE03_GET,
-        .flagToSet = FLAG_TEPIG_ROAMING,
-    },
-    {
-        .species = SPECIES_PIPLUP,
-        .isTerrestrial = FALSE,
-        .doesNotFlee = TRUE,
-        .prerequisiteFlag = FLAG_BADGE04_GET,
-        .flagToSet = FLAG_PIPLUP_ROAMING,
-    },
 };
 
 void TryAddDailyRoamer(void)
