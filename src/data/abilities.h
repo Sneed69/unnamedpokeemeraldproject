@@ -96,7 +96,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_OBLIVIOUS] =
     {
         .name = _("Oblivious"),
-        .description = COMPOUND_STRING("Unaffected by taunts\nand intimidation."),
+        .description = COMPOUND_STRING("Unaffected by taunts\nand abilities that lower\nstats after switching in."),
         .aiRating = 2,
         .breakable = TRUE,
     },
@@ -161,7 +161,8 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_OWN_TEMPO] =
     {
         .name = _("Own Tempo"),
-        .description = COMPOUND_STRING("Prevents confusion\nand intimidation."),
+        .description = COMPOUND_STRING("Protects against confusion\nand abilities that lower\nstats after switching in."),
+        //.description = COMPOUND_STRING("Protects against encore, taunt,\ntorment, confusion, disable and\nstat lowering switch-in abilities."),
         .aiRating = 3,
         .breakable = TRUE,
     },
@@ -309,7 +310,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_INNER_FOCUS] =
     {
         .name = _("Inner Focus"),
-        .description = COMPOUND_STRING("Protects from flinching\nand intimidation."),
+        .description = COMPOUND_STRING("Protects against flinching\nand abilities that lower\nstats after switching in."),
         .aiRating = 2,
         .breakable = TRUE,
     },

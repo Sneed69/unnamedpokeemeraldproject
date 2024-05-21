@@ -7964,6 +7964,9 @@ BattleScript_UnthreateningLoop:
 	jumpiftargetally BattleScript_UnthreateningLoopIncrement
 	jumpifabsent BS_TARGET, BattleScript_UnthreateningLoopIncrement
 	jumpifstatus2 BS_TARGET, STATUS2_SUBSTITUTE, BattleScript_UnthreateningLoopIncrement
+	jumpifability BS_TARGET, ABILITY_INNER_FOCUS, BattleScript_UnthreateningPrevented
+	jumpifability BS_TARGET, ABILITY_OWN_TEMPO, BattleScript_UnthreateningPrevented
+	jumpifability BS_TARGET, ABILITY_OBLIVIOUS, BattleScript_UnthreateningPrevented
 	jumpifstat BS_TARGET, CMP_GREATER_THAN, STAT_SPDEF, MIN_STAT_STAGE, BattleScript_UnthreateningEffect
 	jumpifstat BS_TARGET, CMP_EQUAL, STAT_DEF, MIN_STAT_STAGE, BattleScript_UnthreateningWontDecrease
 BattleScript_UnthreateningEffect:
@@ -7990,6 +7993,12 @@ BattleScript_UnthreateningEnd:
 	copybyte gBattlerTarget, sSAVED_BATTLER
 	pause B_WAIT_TIME_MED
 	end3
+
+BattleScript_UnthreateningPrevented:
+	copybyte sBATTLER, gBattlerTarget
+	call BattleScript_AbilityPopUp
+	printstring STRINGID_PKMNPREVENTSSTATLOSSWITH
+	goto BattleScript_Unthreatening_WaitString
 
 BattleScript_UnthreateningWontDecrease:
 	jumpifability BS_TARGET, ABILITY_CONTRARY, BattleScript_UnthreateningContrary_WontIncrease
