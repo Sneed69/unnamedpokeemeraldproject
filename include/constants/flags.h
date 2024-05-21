@@ -89,7 +89,7 @@
 #define FLAG_UNUSED_0x04C    0x4C // Unused Flag
 #define FLAG_UNUSED_0x04D    0x4D // Unused Flag
 #define FLAG_UNUSED_0x04E    0x4E // Unused Flag
-#define FLAG_EXP_SHARE_UPGRADE    0x4F // FORMERLY Unused Flag
+#define FLAG_UNUSED_0x04F    0x4F // Unused Flag
 
 // Scripts
 #define FLAG_HIDE_SKY_PILLAR_TOP_RAYQUAZA_STILL  0x50
@@ -341,7 +341,7 @@
 #define FLAG_RECEIVED_OLD_SEA_MAP            0x13C
 #define FLAG_LEFTOVER_STARTER_ROAMING        0x13D
 #define FLAG_RIVAL_STARTER_ROAMING           0x13E
-#define FLAG_UNUSED_ROAMING                  0x13F
+#define FLAG_UNUSED_13F                      0x13F
 #define FLAG_GASTLY_ROAMING                  0x140
 #define FLAG_SNEASEL_ROAMING                 0x141
 #define FLAG_CLEFFA_ROAMING                  0x142
@@ -354,7 +354,7 @@
 #define FLAG_TOTODILE_ROAMING                0x149
 #define FLAG_TURTWIG_ROAMING                 0x14A
 #define FLAG_SCRAGGY_ROAMING                 0x14B
-#define FLAG_UNUSED_ROAMING_3                0x14C
+#define FLAG_IGGLYBUFF_ROAMING               0x14C
 #define FLAG_WONDER_CARD_UNUSED_17           0x14D
 
 #define FLAG_MIRAGE_TOWER_VISIBLE            0x14E
@@ -1454,7 +1454,7 @@
 #define FLAG_LANDMARK_SKY_PILLAR                    (SYSTEM_FLAGS + 0x5E)
 
 #define FLAG_SYS_SHOAL_ITEM                         (SYSTEM_FLAGS + 0x5F)
-#define FLAG_SYS_B_DASH                             (SYSTEM_FLAGS + 0x60) // KINDA UNUSED
+#define FLAG_SYS_B_DASH                             (SYSTEM_FLAGS + 0x60) // kinda unused
 #define FLAG_SYS_CTRL_OBJ_DELETE                    (SYSTEM_FLAGS + 0x61)
 #define FLAG_SYS_RESET_RTC_ENABLE                   (SYSTEM_FLAGS + 0x62)
 

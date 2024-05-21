@@ -587,7 +587,7 @@ static const struct {
         .doesNotFlee = TRUE,
         .isStalker = TRUE,
         .nocturnality = DIURNAL,
-        .flagToSet = FLAG_SNEASEL_ROAMING,
+        .flagToSet = FLAG_IGGLYBUFF_ROAMING,
     },  // Other Roamers
     {
         .species = SPECIES_INKAY,
