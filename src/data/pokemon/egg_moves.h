@@ -1838,6 +1838,13 @@ static const u16 sSandileEggMoveLearnset[] = {
     MOVE_UNAVAILABLE,
 };
 
+static const u16 sScraggyEggMoveLearnset[] = {
+    MOVE_ACID_SPRAY,
+    MOVE_DRAGON_DANCE,
+    MOVE_FAKE_OUT,
+    MOVE_POWER_UP_PUNCH,
+};
+
 static const u16 sFrillishEggMoveLearnset[] = {
     MOVE_ACID_ARMOR,
     MOVE_CONFUSE_RAY,

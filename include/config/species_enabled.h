@@ -277,6 +277,7 @@
 #define P_FAMILY_VENIPEDE                TRUE
 #define P_FAMILY_COTTONEE                TRUE
 #define P_FAMILY_SANDILE                 TRUE
+#define P_FAMILY_SCRAGGY                 TRUE
 #define P_FAMILY_FRILLISH                TRUE
 #define P_FAMILY_JOLTIK                  TRUE
 #define P_FAMILY_FERROSEED               TRUE
