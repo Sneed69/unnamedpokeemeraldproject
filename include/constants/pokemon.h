@@ -312,15 +312,13 @@
 #define EVO_MOVE_THREE_SEGMENT            44     // Pokémon levels up, knows specified move, has a personality value with a modulus of 1-99
 #define EVO_LEVEL_FAMILY_OF_THREE         45     // Pokémon reaches the specified level with a personality value with a modulus of 0
 #define EVO_LEVEL_FAMILY_OF_FOUR          46     // Pokémon reaches the specified level with a personality value with a modulus of 1-99
-#define EVO_LEVEL_MOVE_TWENTY_TIMES       47     // Pokémon levels up after having used a move for at least 20 times
-#define EVO_LEVEL_RECOIL_DAMAGE_MALE      48     // Pokémon levels up after having suffered specified amount of non-fainting recoil damage as a male
-#define EVO_LEVEL_RECOIL_DAMAGE_FEMALE    49     // Pokémon levels up after having suffered specified amount of non-fainting recoil damage as a female
-#define EVO_LEVEL_ITEM_COUNT_999          51     // Pokémon levels up after trainer has collected 999 of a specific item
-#define EVO_LEVEL_ABILITY_1               52     // Pokémon reaches the specified level and has the first ability.
-#define EVO_LEVEL_ABILITY_2               53     // Pokémon reaches the specified level and has the second ability.
-#define EVO_LEVEL_MOVE_TYPE               54     // Pokémon levels up, knows move with specified type
-
-#define EVOS_PER_MON 8
+#define EVO_USE_MOVE_TWENTY_TIMES         47     // Pokémon levels up after having used a move for at least 20 times
+#define EVO_RECOIL_DAMAGE_MALE            48     // Pokémon levels up after having suffered specified amount of non-fainting recoil damage as a male
+#define EVO_RECOIL_DAMAGE_FEMALE          49     // Pokémon levels up after having suffered specified amount of non-fainting recoil damage as a female
+#define EVO_ITEM_COUNT_999                50     // Pokémon levels up after trainer has collected 999 of a specific item
+#define EVO_LEVEL_ABILITY_1               51     // Pokémon reaches the specified level and has its first ability.
+#define EVO_LEVEL_ABILITY_2               52     // Pokémon reaches the specified level and has its second ability.
+#define EVO_LEVEL_MOVE_TYPE               53     // Pokémon levels up, knows move with specified type
 
 // Evolution 'modes,' for GetEvolutionTargetSpecies
 #define EVO_MODE_NORMAL            0
