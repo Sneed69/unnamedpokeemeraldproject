@@ -937,7 +937,8 @@
     "EggMoves": [],
     "TutorMoves": [
       "MOVE_GEYSER",
-      "MOVE_MINDSTORM"
+      "MOVE_MINDSTORM",
+      "MOVE_ICE_SPINNER"
     ]
   },
   "STARMIE": {
@@ -947,7 +948,8 @@
     "EggMoves": [],
     "TutorMoves": [
       "MOVE_GEYSER",
-      "MOVE_MINDSTORM"
+      "MOVE_MINDSTORM",
+      "MOVE_ICE_SPINNER"
     ]
   },
   "MR_MIME_GALARIAN": {
@@ -1222,7 +1224,8 @@
     "TutorMoves": [
       "MOVE_LANDSLIDE",
       "MOVE_GEYSER",
-      "MOVE_DUST_DEVIL"
+      "MOVE_DUST_DEVIL",
+      "MOVE_ICE_SPINNER"
     ]
   },
   "KABUTOPS": {
@@ -1234,7 +1237,8 @@
       "MOVE_LANDSLIDE",
       "MOVE_STRENGTH",
       "MOVE_GEYSER",
-      "MOVE_DUST_DEVIL"
+      "MOVE_DUST_DEVIL",
+      "MOVE_ICE_SPINNER"
     ]
   },
   "AERODACTYL": {
@@ -2551,7 +2555,8 @@
     "TutorMoves": [
       "MOVE_LANDSLIDE",
       "MOVE_MINDSTORM",
-      "MOVE_DUST_DEVIL"
+      "MOVE_DUST_DEVIL",
+      "MOVE_ICE_SPINNER"
     ]
   },
   "SOLROCK": {
@@ -2613,7 +2618,8 @@
     "TutorMoves": [
       "MOVE_LANDSLIDE",
       "MOVE_MINDSTORM",
-      "MOVE_DUST_DEVIL"
+      "MOVE_DUST_DEVIL",
+      "MOVE_ICE_SPINNER"
     ]
   },
   "CLAYDOL": {
@@ -2624,7 +2630,8 @@
     "TutorMoves": [
       "MOVE_LANDSLIDE",
       "MOVE_MINDSTORM",
-      "MOVE_DUST_DEVIL"
+      "MOVE_DUST_DEVIL",
+      "MOVE_ICE_SPINNER"
     ]
   },
   "LILEEP": {
@@ -2770,7 +2777,8 @@
     "EggMoves": [],
     "TutorMoves": [
       "MOVE_SNOWSTORM",
-      "MOVE_HOWLING_GALE"
+      "MOVE_HOWLING_GALE",
+      "MOVE_ICE_SPINNER"
     ]
   },
   "SEALEO": {
@@ -2780,7 +2788,8 @@
     "EggMoves": [],
     "TutorMoves": [
       "MOVE_SNOWSTORM",
-      "MOVE_HOWLING_GALE"
+      "MOVE_HOWLING_GALE",
+      "MOVE_ICE_SPINNER"
     ]
   },
   "WALREIN": {
@@ -2790,7 +2799,8 @@
     "EggMoves": [],
     "TutorMoves": [
       "MOVE_SNOWSTORM",
-      "MOVE_HOWLING_GALE"
+      "MOVE_HOWLING_GALE",
+      "MOVE_ICE_SPINNER"
     ]
   },
   "CLAMPERL": {
@@ -3336,7 +3346,8 @@
     "EggMoves": [],
     "TutorMoves": [
       "MOVE_EARTHQUAKE",
-      "MOVE_TRAILBLAZE"
+      "MOVE_TRAILBLAZE",
+      "MOVE_ICE_SPINNER"
     ]
   },
   "SCOLIPEDE": {
@@ -3346,7 +3357,8 @@
     "EggMoves": [],
     "TutorMoves": [
       "MOVE_LANDSLIDE",
-      "MOVE_TRAILBLAZE"
+      "MOVE_TRAILBLAZE",
+      "MOVE_ICE_SPINNER"
     ]
   },
   "COTTONEE": {

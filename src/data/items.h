@@ -10105,10 +10105,10 @@ const struct Item gItemsInfo[] =
             "attack that may\n"
             "burn the foe."),
 
-    TM_ITEM(39, MOVE_ROCK_TOMB, 3000,
-            "Stops the foe from\n"
-            "moving with rocks.\n"
-            "May lower Speed."),
+    TM_ITEM(39, MOVE_ICE_SPINNER, 3000,
+            "An icy twirling slam\n"
+            "that hurts the\n"
+            "user if it misses."),
 
     TM_ITEM(40, MOVE_AERIAL_ACE, 3000,
             "An extremely fast\n"

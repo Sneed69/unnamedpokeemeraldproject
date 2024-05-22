@@ -40,7 +40,7 @@
     F(SLUDGE_BOMB) \
     F(LANDSLIDE) \
     F(FIRE_BLAST) \
-    F(ROCK_TOMB) \
+    F(ICE_SPINNER) \
     F(AERIAL_ACE) \
     F(COUNTER) \
     F(FACADE) \

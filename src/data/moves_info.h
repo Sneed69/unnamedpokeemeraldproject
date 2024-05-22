@@ -19378,19 +19378,23 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
     {
         .name = COMPOUND_STRING("Ice Spinner"),
         .description = COMPOUND_STRING(
-            "Ice-covered feet hit a foe\n"
-            "and destroy the terrain."),
-        .effect = EFFECT_HIT_SET_REMOVE_TERRAIN,
-        .power = 80,
+            "An icy twirling slam. If it\n"
+            "misses, the user is hurt."),
+        .effect = EFFECT_RECOIL_IF_MISS,
+        .power = 100,
         .type = TYPE_ICE,
-        .accuracy = 100,
-        .pp = 24,
+        .accuracy = 95,
+        .pp = 16,
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
         .category = DAMAGE_CATEGORY_PHYSICAL,
         .makesContact = TRUE,
-        .argument = ARG_TRY_REMOVE_TERRAIN_HIT, // Remove the active field terrain if there is one.
         .skyBattleBanned = B_EXTRAPOLATED_MOVE_FLAGS,
+
+        .contestEffect = CONTEST_EFFECT_USER_MORE_EASILY_STARTLED,
+        .contestCategory = CONTEST_CATEGORY_COOL,
+        .contestComboStarterId = 0,
+        .contestComboMoves = {0},
     },
 
     [MOVE_GLAIVE_RUSH] =
