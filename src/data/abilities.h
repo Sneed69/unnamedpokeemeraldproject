@@ -41,7 +41,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_STURDY] =
     {
         .name = _("Sturdy"),
-        .description = COMPOUND_STRING("Cannot be knocked out by\na single hit while HP is at\nits maximum."),
+        .description = COMPOUND_STRING("Cannot take more than\nfour fifths of max HP as\ndamage in a single blow."),
         .aiRating = 6,
         .breakable = TRUE,
     },

@@ -2011,10 +2011,13 @@ static void Cmd_adjustdamage(void)
         RecordItemEffectBattle(gBattlerTarget, holdEffect);
         gSpecialStatuses[gBattlerTarget].focusBanded = TRUE;
     }
-    else if (B_STURDY >= GEN_5 && GetBattlerAbility(gBattlerTarget) == ABILITY_STURDY && BATTLER_MAX_HP(gBattlerTarget))
+    else if (GetBattlerAbility(gBattlerTarget) == ABILITY_STURDY && gBattleMons[gBattlerTarget].hp > gBattleMons[gBattlerTarget].maxHP * 4 / 5)
     {
         RecordAbilityBattle(gBattlerTarget, ABILITY_STURDY);
         gSpecialStatuses[gBattlerTarget].sturdied = TRUE;
+        gBattleMoveDamage = gBattleMons[gBattlerTarget].maxHP * 4 / 5;
+        gMoveResultFlags |= MOVE_RESULT_STURDIED;
+        gLastUsedAbility = ABILITY_STURDY;
     }
     else if (GetBattlerAbility(gBattlerTarget) == ABILITY_NINE_LIVES && !gBattleStruct->nineLivesUsed[gBattlerPartyIndexes[gBattlerTarget]][GetBattlerSide(gBattlerTarget)])
     {
@@ -2046,8 +2049,7 @@ static void Cmd_adjustdamage(void)
         && !gProtectStructs[gBattlerTarget].endured
         && !gSpecialStatuses[gBattlerTarget].focusBanded
         && !gSpecialStatuses[gBattlerTarget].focusSashed
-        && (B_AFFECTION_MECHANICS == FALSE || !gSpecialStatuses[gBattlerTarget].affectionEndured)
-        && !gSpecialStatuses[gBattlerTarget].sturdied)
+        && (B_AFFECTION_MECHANICS == FALSE || !gSpecialStatuses[gBattlerTarget].affectionEndured))
         goto END;
 
     // Handle reducing the dmg to 1 hp.
@@ -2062,11 +2064,6 @@ static void Cmd_adjustdamage(void)
     {
         gMoveResultFlags |= MOVE_RESULT_FOE_HUNG_ON;
         gLastUsedItem = gBattleMons[gBattlerTarget].item;
-    }
-    else if (gSpecialStatuses[gBattlerTarget].sturdied)
-    {
-        gMoveResultFlags |= MOVE_RESULT_STURDIED;
-        gLastUsedAbility = ABILITY_STURDY;
     }
     else if (B_AFFECTION_MECHANICS == TRUE && gSpecialStatuses[gBattlerTarget].affectionEndured)
     {
