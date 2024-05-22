@@ -450,7 +450,13 @@ static const u16 sGoldeenEggMoveLearnset[] = {
         
 static const u16 sMagikarpEggMoveLearnset[] = {
     MOVE_BOUNCE,
+    MOVE_UNAVAILABLE,
+};
+        
+static const u16 sGyaradosEggMoveLearnset[] = {
+    MOVE_BOUNCE,
     MOVE_SCALE_SHOT,
+    MOVE_DRAGON_PULSE,
     MOVE_UNAVAILABLE,
 };
         
@@ -1038,6 +1044,22 @@ static const u16 sTorchicEggMoveLearnset[] = {
     MOVE_UNAVAILABLE,
 };
 
+static const u16 sCombuskenEggMoveLearnset[] = {
+    MOVE_REVERSAL,
+    MOVE_ENDURE,
+    MOVE_BOUNCE,
+    MOVE_SMELLING_SALTS,
+    MOVE_CRUSH_CLAW,
+    MOVE_AGILITY,
+    MOVE_NIGHT_SLASH,
+    MOVE_FEATHER_DANCE,
+    MOVE_CURSE,
+    MOVE_FLAME_BURST,
+    MOVE_LOW_KICK,
+    MOVE_TRIPLE_KICK,
+    MOVE_UNAVAILABLE,
+};
+
 static const u16 sMudkipEggMoveLearnset[] = {
     MOVE_REFRESH,
     MOVE_UPROAR,
@@ -1154,6 +1176,16 @@ static const u16 sShroomishEggMoveLearnset[] = {
     MOVE_CHARM,
     MOVE_WAKE_UP_SLAP,
     MOVE_BULLET_SEED,
+    MOVE_UNAVAILABLE,
+};
+
+static const u16 sBreloomEggMoveLearnset[] = {
+    MOVE_FAKE_TEARS,
+    MOVE_CHARM,
+    MOVE_WAKE_UP_SLAP,
+    MOVE_BULLET_SEED,
+    MOVE_ROCK_TOMB,
+    MOVE_BULLDOZE,
     MOVE_UNAVAILABLE,
 };
 
@@ -1488,6 +1520,16 @@ static const u16 sAnorithEggMoveLearnset[] = {
 };
 
 static const u16 sFeebasEggMoveLearnset[] = {
+    MOVE_MIRROR_COAT,
+    MOVE_SCALE_SHOT,
+    MOVE_HYPNOSIS,
+    MOVE_CONFUSE_RAY,
+    MOVE_HAZE,
+    MOVE_TICKLE,
+    MOVE_UNAVAILABLE,
+};
+
+static const u16 sMiloticEggMoveLearnset[] = {
     MOVE_MIRROR_COAT,
     MOVE_SCALE_SHOT,
     MOVE_HYPNOSIS,

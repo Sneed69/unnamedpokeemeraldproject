@@ -4978,27 +4978,30 @@ u8 GetEggTutorMoves(struct Pokemon *mon, u16 *moves)
     u16 learnedMoves[MAX_MON_MOVES];
     u8 numMoves = 0;
     u16 species = GetMonData(mon, MON_DATA_SPECIES);
-    u8 eggMovesTotal;
-    u16 allEggMoves[EGG_MOVES_ARRAY_COUNT];
+    const u16 *eggMoves;
     int i, j, k;
 
-    eggMovesTotal = GetFirstStageEggMovesBySpecies(species, allEggMoves);
+    do
+    {
+        eggMoves = GetSpeciesEggMoves(species);
+        species = GetSpeciesPreEvolution(species);
+    } while (eggMoves == sNoneEggMoveLearnset && species != SPECIES_NONE);
 
     for (i = 0; i < MAX_MON_MOVES; i++)
         learnedMoves[i] = GetMonData(mon, MON_DATA_MOVE1 + i, 0);
 
-    for (i = 0; i < eggMovesTotal; i++)
+    for (i = 0; eggMoves[i] != MOVE_UNAVAILABLE; i++)
     {
-        for (j = 0; j < MAX_MON_MOVES && learnedMoves[j] != allEggMoves[i]; j++)
+        for (j = 0; j < MAX_MON_MOVES && learnedMoves[j] != eggMoves[i]; j++)
             ;
 
         if (j == MAX_MON_MOVES)
         {
-            for (k = 0; k < numMoves && moves[k] != allEggMoves[i]; k++)
+            for (k = 0; k < numMoves && moves[k] != eggMoves[i]; k++)
                 ;
 
             if (k == numMoves)
-                moves[numMoves++] = allEggMoves[i];
+                moves[numMoves++] = eggMoves[i];
         }
     }
 

@@ -341,6 +341,7 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         FOOTPRINT(Combusken)
         .levelUpLearnset = sCombuskenLevelUpLearnset,
         .teachableLearnset = sCombuskenTeachableLearnset,
+        .eggMoveLearnset = sCombuskenEggMoveLearnset,
         .evolutions = EVOLUTION({EVO_LEVEL, 36, SPECIES_BLAZIKEN}),
     },
 
@@ -2580,6 +2581,7 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         FOOTPRINT(Breloom)
         .levelUpLearnset = sBreloomLevelUpLearnset,
         .teachableLearnset = sBreloomTeachableLearnset,
+        .eggMoveLearnset = sBreloomEggMoveLearnset,
     },
 #endif //P_FAMILY_SHROOMISH
 
@@ -6842,6 +6844,7 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         FOOTPRINT(Milotic)
         .levelUpLearnset = sMiloticLevelUpLearnset,
         .teachableLearnset = sMiloticTeachableLearnset,
+        .eggMoveLearnset = sMiloticEggMoveLearnset,
     },
 #endif //P_FAMILY_FEEBAS
 
