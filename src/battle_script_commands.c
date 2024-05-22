@@ -3198,7 +3198,7 @@ void SetMoveEffect(bool32 primary, bool32 certain)
                     }
                 }
                 else if (GetBattlerTurnOrderNum(gEffectBattler) > gCurrentTurnActionNumber
-                        && !IsDynamaxed(gEffectBattler))
+                        && !IsDynamaxed(gEffectBattler) && gMultiHitCounter <= 1)
                 {
                     gBattleMons[gEffectBattler].status2 |= sStatusFlagsForMoveEffects[gBattleScripting.moveEffect];
                     gBattlescriptCurrInstr++;
@@ -3685,7 +3685,8 @@ void SetMoveEffect(bool32 primary, bool32 certain)
                 }
                 break;
             case MOVE_EFFECT_SPIKES:
-                if (gSideTimers[GetBattlerSide(gEffectBattler)].spikesAmount < 3 && (gMultiHitCounter == 1 || !IsBattlerAlive(gBattlerTarget)))
+                if (gSideTimers[GetBattlerSide(gEffectBattler)].spikesAmount < 3
+                 && (gMultiHitCounter <= 1 || !IsBattlerAlive(gBattlerTarget)))
                 {
                     gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SPIKESSCATTERED;
                     BattleScriptPush(gBattlescriptCurrInstr + 1);
