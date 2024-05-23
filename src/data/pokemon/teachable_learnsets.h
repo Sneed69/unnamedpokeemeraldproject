@@ -13912,6 +13912,7 @@ static const u16 sAltariaTeachableLearnset[] = {
     MOVE_TORNADO,
     MOVE_TOXIC,
     MOVE_TRAILBLAZE,
+    MOVE_WILL_O_WISP,
     MOVE_UNAVAILABLE,
 };
 #endif //P_FAMILY_SWABLU
