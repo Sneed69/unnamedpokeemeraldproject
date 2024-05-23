@@ -1978,6 +1978,7 @@ static void Cmd_adjustdamage(void)
     u32 moveType;
     u32 affectionScore = GetBattlerAffectionHearts(gBattlerTarget);
     u32 rand = Random() % 100;
+    u32 targetSide = GetBattlerSide(gBattlerTarget);
 
     GET_MOVE_TYPE(gCurrentMove, moveType);
 
@@ -1997,6 +1998,18 @@ static void Cmd_adjustdamage(void)
         gBattleResources->flags->flags[gBattlerTarget] |= RESOURCE_FLAG_ICE_FACE;
         // Form change will be done after attack animation in Cmd_resultmessage.
         goto END;
+    }
+    if (GetBattlerAbility(gBattlerTarget) == ABILITY_DOPEY)
+    {
+        s32 delayedDamage = gBattleMoveDamage / 2;
+        gBattleMoveDamage -= delayedDamage;
+        if (gBattleMons[gBattlerTarget].hp > gBattleMoveDamage)
+        {
+            gSpecialStatuses[gBattlerTarget].dopeyActivated = TRUE;
+            gBattleStruct->delayedDamage[gBattlerPartyIndexes[gBattlerTarget]][targetSide] += delayedDamage;
+            gLastUsedAbility = ABILITY_DOPEY;
+            RecordAbilityBattle(gBattlerTarget, ABILITY_DOPEY);
+        }
     }
     if (gBattleMons[gBattlerTarget].hp > gBattleMoveDamage)
         goto END;
@@ -2019,7 +2032,7 @@ static void Cmd_adjustdamage(void)
         gMoveResultFlags |= MOVE_RESULT_STURDIED;
         gLastUsedAbility = ABILITY_STURDY;
     }
-    else if (GetBattlerAbility(gBattlerTarget) == ABILITY_NINE_LIVES && !gBattleStruct->nineLivesUsed[gBattlerPartyIndexes[gBattlerTarget]][GetBattlerSide(gBattlerTarget)])
+    else if (GetBattlerAbility(gBattlerTarget) == ABILITY_NINE_LIVES && !gBattleStruct->nineLivesUsed[gBattlerPartyIndexes[gBattlerTarget]][targetSide])
     {
         gBattleMoveDamage /= 9;
         if (gBattleMoveDamage == 0)
@@ -2027,7 +2040,7 @@ static void Cmd_adjustdamage(void)
         if (gBattleMons[gBattlerTarget].hp > gBattleMoveDamage)
         {
             gMoveResultFlags |= MOVE_RESULT_STURDIED;
-            gBattleStruct->nineLivesUsed[gBattlerPartyIndexes[gBattlerTarget]][GetBattlerSide(gBattlerTarget)] = TRUE;
+            gBattleStruct->nineLivesUsed[gBattlerPartyIndexes[gBattlerTarget]][targetSide] = TRUE;
             RecordAbilityBattle(gBattlerTarget, ABILITY_NINE_LIVES);
             gLastUsedAbility = ABILITY_NINE_LIVES;
         }
@@ -2037,7 +2050,7 @@ static void Cmd_adjustdamage(void)
         RecordItemEffectBattle(gBattlerTarget, holdEffect);
         gSpecialStatuses[gBattlerTarget].focusSashed = TRUE;
     }
-    else if (B_AFFECTION_MECHANICS == TRUE && GetBattlerSide(gBattlerTarget) == B_SIDE_PLAYER && affectionScore >= AFFECTION_THREE_HEARTS)
+    else if (B_AFFECTION_MECHANICS == TRUE && targetSide == B_SIDE_PLAYER && affectionScore >= AFFECTION_THREE_HEARTS)
     {
         if ((affectionScore == AFFECTION_FIVE_HEARTS && rand < 20)
          || (affectionScore == AFFECTION_FOUR_HEARTS && rand < 15)
@@ -2505,6 +2518,13 @@ static void Cmd_resultmessage(void)
         gBattleScripting.battler = gBattlerTarget; // For STRINGID_PKMNTRANSFORMED
         BattleScriptPushCursor();
         gBattlescriptCurrInstr = BattleScript_IceFaceNullsDamage;
+        return;
+    }
+    if (!gMultiHitCounter && gSpecialStatuses[gBattlerTarget].dopeyActivated)
+    {
+        gSpecialStatuses[gBattlerTarget].dopeyActivated = FALSE;
+        BattleScriptPushCursor();
+        gBattlescriptCurrInstr = BattleScript_DopeyPrintDamageReduction;
         return;
     }
 

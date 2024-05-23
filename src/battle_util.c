@@ -2380,6 +2380,7 @@ enum
     ENDTURN_NIGHTMARES,
     ENDTURN_CURSE,
     ENDTURN_WRAP,
+    ENDTURN_DELAYED_DAMAGE,
     ENDTURN_OCTOLOCK,
     ENDTURN_UPROAR,
     ENDTURN_THRASH,
@@ -2684,6 +2685,19 @@ u8 DoBattlerEndTurnEffects(void)
             }
             gBattleStruct->turnEffectsTracker++;
             break;
+        case ENDTURN_DELAYED_DAMAGE:
+        {   
+            u32 side = GetBattlerSide(battler);
+            if (gBattleStruct->delayedDamage[gBattlerPartyIndexes[battler]][side] > 0 && IsBattlerAlive(battler))
+            {
+                gBattleMoveDamage = gBattleStruct->delayedDamage[gBattlerPartyIndexes[battler]][side];
+                gBattleStruct->delayedDamage[gBattlerPartyIndexes[battler]][side] = 0;
+                BattleScriptExecute(BattleScript_DelayedDamage);
+                effect++;
+            }
+            gBattleStruct->turnEffectsTracker++;
+            break;
+        }
         case ENDTURN_OCTOLOCK:
         {
             if (gDisableStructs[battler].octolock)

@@ -642,6 +642,8 @@ static const u8 sText_TurboblazeEnters[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX} de
 static const u8 sText_SlowStartEnters[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX} can't get it going!");
 static const u8 sText_SlowStartEnd[] = _("{B_ATK_NAME_WITH_PREFIX} finally got\nits act together!");
 static const u8 sText_SolarPowerHpDrop[] = _("{B_ATK_NAME_WITH_PREFIX}'s {B_ATK_ABILITY}\ntakes its toll!");
+static const u8 sText_DidntFeelTheBlowDopey[] = _("{B_DEF_NAME_WITH_PREFIX} delayed some of the\ndamage using {B_DEF_ABILITY}!");
+static const u8 sText_DelayedDamageApplies[] = _("{B_ATK_NAME_WITH_PREFIX} takes the\ndelayed damage!");
 static const u8 sText_AftermathDmg[] = _("{B_ATK_NAME_WITH_PREFIX} is hurt!");
 static const u8 sText_AnticipationActivates[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX} shuddered\nin anticipation!");
 static const u8 sText_ForewarnActivates[] = _("{B_SCR_ACTIVE_ABILITY} alerted {B_SCR_ACTIVE_NAME_WITH_PREFIX}\nto {B_DEF_NAME_WITH_PREFIX}'s {B_BUFF1}!");
@@ -1623,6 +1625,8 @@ const u8 *const gBattleStringsTable[BATTLESTRINGS_COUNT] =
     [STRINGID_PKMNSXRESTOREDHP - BATTLESTRINGS_TABLE_START] = sText_PkmnsXRestoredHP,
     [STRINGID_FOUND - BATTLESTRINGS_TABLE_START] = sText_Found,
     [STRINGID_DISABLED - BATTLESTRINGS_TABLE_START] = sText_Disabled,
+    [STRINGIDDELAYEDDAMAGE - BATTLESTRINGS_TABLE_START] = sText_DelayedDamageApplies,
+    [STRINGID_DOPEYREDUCEDDAMAGE - BATTLESTRINGS_TABLE_START] = sText_DidntFeelTheBlowDopey,
 };
 
 const u16 gTrainerUsedItemStringIds[] =

@@ -7317,6 +7317,13 @@ BattleScript_PoisonHealActivates::
 	datahpupdate BS_ATTACKER
 	end2
 
+BattleScript_DelayedDamage::
+	printstring STRINGIDDELAYEDDAMAGE
+	waitmessage B_WAIT_TIME_LONG
+	playse SE_EFFECTIVE
+	hitanimation BS_ATTACKER
+	goto BattleScript_DoTurnDmg
+
 BattleScript_BurnTurnDmg::
 	printstring STRINGID_PKMNHURTBYBURN
 	waitmessage B_WAIT_TIME_LONG
@@ -7829,6 +7836,13 @@ BattleScript_SolarPowerActivates::
 	waitmessage B_WAIT_TIME_LONG
 	tryfaintmon BS_ATTACKER
 	end3
+
+BattleScript_DopeyPrintDamageReduction::
+	pause B_WAIT_TIME_SHORTEST
+	call BattleScript_AbilityPopUpTarget
+	printstring STRINGID_DOPEYREDUCEDDAMAGE
+	waitmessage B_WAIT_TIME_LONG
+	return
 
 BattleScript_HealerActivates::
 	call BattleScript_AbilityPopUp

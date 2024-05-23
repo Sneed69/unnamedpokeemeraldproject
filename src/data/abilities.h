@@ -2876,4 +2876,12 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
         .description = COMPOUND_STRING("After entering a battle,\ngains half of Speed as\nAttack on its first turn."),
         .aiRating = 5,
     },
+
+    [ABILITY_DOPEY] =
+    {
+        .name = _("Dopey"),
+        .description = COMPOUND_STRING("Delays half of the damage taken\nby attacks until the end of turn.\nAlways moves slower than others."),
+        .aiRating = 8,
+        .breakable = TRUE,
+    },
 };
