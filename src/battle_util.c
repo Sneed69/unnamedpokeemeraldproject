@@ -9638,16 +9638,16 @@ static inline u32 CalcAttackStat(u32 move, u32 battlerAtk, u32 battlerDef, u32 m
     }
     else if (gMovesInfo[move].effect == EFFECT_ABSORB && atkAbility == ABILITY_BLOODSUCKER)
     {
-        if (GetCategoryBasedOnStats(battlerAtk) == DAMAGE_CATEGORY_PHYSICAL)
+        if (IsBattlerSpecialAtkHigher(battlerAtk))
+        {
+            atkStat = gBattleMons[battlerAtk].spAttack;
+            atkStage = gBattleMons[battlerAtk].statStages[STAT_SPATK];
+        }
+        else
         {
             atkStat = gBattleMons[battlerAtk].attack;
             atkStage = gBattleMons[battlerAtk].statStages[STAT_ATK];
             usesOwnAttackStat = TRUE;
-        }
-        else
-        {
-            atkStat = gBattleMons[battlerAtk].spAttack;
-            atkStage = gBattleMons[battlerAtk].statStages[STAT_SPATK];
         }
     }
     else
@@ -11419,7 +11419,12 @@ static bool32 IsUnnerveAbilityOnOpposingSide(u32 battler)
 }
 
 // Photon Geyser, Light That Burns the Sky, Tera Blast
-u8 GetCategoryBasedOnStats(u32 battler)
+inline u8 GetCategoryBasedOnStats(u32 battler)
+{
+    return IsBattlerSpecialAtkHigher(battler) ? DAMAGE_CATEGORY_SPECIAL : DAMAGE_CATEGORY_PHYSICAL;
+}
+
+bool32 IsBattlerSpecialAtkHigher(u32 battler)
 {
     u32 attack = gBattleMons[battler].attack;
     u32 spAttack = gBattleMons[battler].spAttack;
@@ -11430,10 +11435,12 @@ u8 GetCategoryBasedOnStats(u32 battler)
     spAttack = spAttack * gStatStageRatios[gBattleMons[battler].statStages[STAT_SPATK]][0];
     spAttack = spAttack / gStatStageRatios[gBattleMons[battler].statStages[STAT_SPATK]][1];
 
-    if (spAttack >= attack)
-        return DAMAGE_CATEGORY_SPECIAL;
-    else
-        return DAMAGE_CATEGORY_PHYSICAL;
+    return (spAttack >= attack);
+}
+
+inline bool32 GetHighestAttackStatId(u32 battler)
+{
+    return IsBattlerSpecialAtkHigher(battler) ? STAT_SPATK : STAT_ATK;
 }
 
 static u32 GetFlingPowerFromItemId(u32 itemId)
