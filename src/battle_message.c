@@ -295,7 +295,6 @@ static const u8 sText_PkmnPreventsPoisoningWith[] = _("{B_EFF_NAME_WITH_PREFIX}'
 static const u8 sText_PkmnPreventsFrostbiteWith[] = _("{B_EFF_NAME_WITH_PREFIX}'s {B_DEF_ABILITY}\nprevents frostbite!");
 static const u8 sText_PkmnPreventsConfusionWith[] = _("{B_DEF_NAME_WITH_PREFIX}'s {B_DEF_ABILITY}\nprevents confusion!");
 static const u8 sText_PkmnRaisedFirePowerWith[] = _("{B_DEF_NAME_WITH_PREFIX}'s {B_DEF_ABILITY}\nraised its Fire power!");
-static const u8 sText_PkmnRaisedIcePowerWith[] = _("{B_DEF_NAME_WITH_PREFIX}'s {B_DEF_ABILITY}\nraised its Ice power!");
 static const u8 sText_PkmnAnchorsItselfWith[] = _("{B_DEF_NAME_WITH_PREFIX} anchors\nitself with {B_DEF_ABILITY}!");
 static const u8 sText_PkmnCutsAttackWith[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX}'s {B_SCR_ACTIVE_ABILITY}\ncuts {B_DEF_NAME_WITH_PREFIX}'s Attack!");
 static const u8 sText_PkmnLoweredGuard[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX}'s {B_SCR_ACTIVE_ABILITY}\nlowers {B_DEF_NAME_WITH_PREFIX}'s guard!");
@@ -1612,7 +1611,6 @@ const u8 *const gBattleStringsTable[BATTLESTRINGS_COUNT] =
     [STRINGID_PKMNLOWEREDGUARD - BATTLESTRINGS_TABLE_START] = sText_PkmnLoweredGuard,
     [STRINGID_PKMNGUARDWASNOTLOWERED - BATTLESTRINGS_TABLE_START] = sText_PkmnGuardNotLowered,
     [STRINGID_PKMNMAKESFAIRYMISS - BATTLESTRINGS_TABLE_START] = sText_PkmnMakesFairyMiss,
-    [STRINGID_PKMNRAISEDICEPOWERWITH - BATTLESTRINGS_TABLE_START] = sText_PkmnRaisedIcePowerWith,
     [STRINGID_OVERTURNENTERS - BATTLESTRINGS_TABLE_START] = sText_PkmnTurnedTheTables,
     [STRINGID_VICTORYCATCH - BATTLESTRINGS_TABLE_START] = sText_VictoryCatch,
     [STRINGID_TARGETSTATSWONTINCREASE - BATTLESTRINGS_TABLE_START] = sText_TargetStatsWontIncrease,
@@ -2118,7 +2116,6 @@ const u16 gFlashFireStringIds[] =
 {
     [B_MSG_FLASH_FIRE_BOOST]    = STRINGID_PKMNRAISEDFIREPOWERWITH,
     [B_MSG_FLASH_FIRE_NO_BOOST] = STRINGID_PKMNSXMADEYINEFFECTIVE,
-    [B_MSG_HYPERBOREAN_BOOST]    = STRINGID_PKMNRAISEDICEPOWERWITH,
 };
 
 const u16 gCaughtMonStringIds[] =

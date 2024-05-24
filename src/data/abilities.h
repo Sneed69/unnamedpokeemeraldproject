@@ -80,7 +80,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_VOLT_ABSORB] =
     {
         .name = _("Volt Absorb"),
-        .description = COMPOUND_STRING("Takes no damage when hit by\nElectric-type moves.\nInstead, its HP is restored."),
+        .description = COMPOUND_STRING("Incoming Electric-type\nmoves have no effect\nand restore HP instead."),
         .aiRating = 7,
         .breakable = TRUE,
     },
@@ -88,7 +88,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_WATER_ABSORB] =
     {
         .name = _("Water Absorb"),
-        .description = COMPOUND_STRING("Takes no damage when hit by\nWater-type moves.\nInstead, its HP is restored."),
+        .description = COMPOUND_STRING("Incoming Water-type\nmoves have no effect\nand restore HP instead."),
         .aiRating = 7,
         .breakable = TRUE,
     },
@@ -146,7 +146,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     {
         .name = _("Flash Fire"),
         .description = COMPOUND_STRING("Absorbs incoming Fire-type\nmoves, turning them into power\nfor its own Fire-type moves. "),
-        .aiRating = 6,
+        .aiRating = 7,
         .breakable = TRUE,
     },
 
@@ -250,7 +250,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     #else
         .name = _("LightningRod"),
     #endif
-        .description = COMPOUND_STRING("Takes no damage when hit by\nElectric-type moves.\nInstead, its Sp. Atk is boosted."),
+        .description = COMPOUND_STRING("Incoming Electric-type moves\nhave no effect and raise the\nhighest attacking stat instead."),
         .aiRating = 7,
         .breakable = TRUE,
     },
@@ -599,7 +599,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_MOTOR_DRIVE] =
     {
         .name = _("Motor Drive"),
-        .description = COMPOUND_STRING("Takes no damage when hit by\nElectric-type moves.\nInstead, its Speed is boosted."),
+        .description = COMPOUND_STRING("Incoming Electric-type\nmoves have no effect\nand raise Speed instead."),
         .aiRating = 6,
         .breakable = TRUE,
     },
@@ -859,7 +859,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_STORM_DRAIN] =
     {
         .name = _("Storm Drain"),
-        .description = COMPOUND_STRING("Takes no damage when hit by\nWater-type moves.\nInstead, its Sp. Atk is boosted."),
+        .description = COMPOUND_STRING("Incoming Water-type moves\nhave no effect and raise the\nhighest attacking stat instead."),
         .aiRating = 7,
         .breakable = TRUE,
     },
@@ -1185,7 +1185,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_SAP_SIPPER] =
     {
         .name = _("Sap Sipper"),
-        .description = COMPOUND_STRING("Takes no damage when hit by\nGrass-type moves.\nInstead, its Attack is boosted."),
+        .description = COMPOUND_STRING("Incoming Grass-type moves\nhave no effect and raise the\nhighest attacking stat instead."),
         .aiRating = 7,
         .breakable = TRUE,
     },
@@ -2216,7 +2216,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_WIND_RIDER] =
     {
         .name = _("Wind Rider"),
-        .description = COMPOUND_STRING("Takes no damage when\nhit by wind moves.\nInstead, its Attack is boosted."),
+        .description = COMPOUND_STRING("Incoming wind moves have\nno effect and raise the highest\nattacking stat instead."),
         .aiRating = 4,
         .breakable = TRUE,
     },
@@ -2443,7 +2443,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_EARTH_EATER] =
     {
         .name = _("Earth Eater"),
-        .description = COMPOUND_STRING("Takes no damage when hit by\nGround-type moves.\nInstead, its HP is restored."),
+        .description = COMPOUND_STRING("Incoming Ground-type\nmoves have no effect\nand restore HP instead."),
         .aiRating = 7,
         .breakable = TRUE,
     },
@@ -2622,7 +2622,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     {
         .name = _("Hyperborean"),
         .description = COMPOUND_STRING("Absorbs incoming Ice-type\nmoves, turning them into power\nfor its own Ice-type moves. "),
-        .aiRating = 6,
+        .aiRating = 7,
         .breakable = TRUE,
     },
 

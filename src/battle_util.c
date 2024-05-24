@@ -5328,42 +5328,19 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
                 break;
             case ABILITY_LIGHTNING_ROD:
                 if (moveType == TYPE_ELECTRIC && gMovesInfo[move].target != MOVE_TARGET_ALL_BATTLERS)
-                    effect = 2, statId = STAT_SPATK;
+                    effect = 2, statId = GetHighestAttackStatId(gMovesInfo[move].target);
                 break;
             case ABILITY_STORM_DRAIN:
                 if (moveType == TYPE_WATER)
-                    effect = 2, statId = STAT_SPATK;
+                    effect = 2, statId = GetHighestAttackStatId(gMovesInfo[move].target);
                 break;
             case ABILITY_SAP_SIPPER:
                 if (moveType == TYPE_GRASS)
-                    effect = 2, statId = STAT_ATK;
+                    effect = 2, statId = GetHighestAttackStatId(gMovesInfo[move].target);
                 break;
             case ABILITY_FLASH_FIRE:
-                if (moveType == TYPE_FIRE
-                    && (B_FLASH_FIRE_FROZEN >= GEN_5 || !(gBattleMons[battler].status1 & STATUS1_FREEZE)))
-                {
-                    if (!(gBattleResources->flags->flags[battler] & RESOURCE_FLAG_FLASH_FIRE))
-                    {
-                        gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_FLASH_FIRE_BOOST;
-                        if (gProtectStructs[gBattlerAttacker].notFirstStrike)
-                            gBattlescriptCurrInstr = BattleScript_FlashFireBoost;
-                        else
-                            gBattlescriptCurrInstr = BattleScript_FlashFireBoost_PPLoss;
-
-                        gBattleResources->flags->flags[battler] |= RESOURCE_FLAG_FLASH_FIRE;
-                        effect = 3;
-                    }
-                    else
-                    {
-                        gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_FLASH_FIRE_NO_BOOST;
-                        if (gProtectStructs[gBattlerAttacker].notFirstStrike)
-                            gBattlescriptCurrInstr = BattleScript_FlashFireBoost;
-                        else
-                            gBattlescriptCurrInstr = BattleScript_FlashFireBoost_PPLoss;
-
-                        effect = 3;
-                    }
-                }
+                if (moveType == TYPE_FIRE)
+                    effect = 2, statId = GetHighestAttackStatId(gMovesInfo[move].target);
                 break;
             case ABILITY_WELL_BAKED_BODY:
                 if (moveType == TYPE_FIRE)
@@ -5371,7 +5348,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
                 break;
             case ABILITY_WIND_RIDER:
                 if (gMovesInfo[gCurrentMove].windMove && !(GetBattlerMoveTargetType(gBattlerAttacker, gCurrentMove) & MOVE_TARGET_USER))
-                    effect = 2, statId = STAT_ATK;
+                    effect = 2, statId = GetHighestAttackStatId(gMovesInfo[move].target);
                 break;
             case ABILITY_EARTH_EATER:
                 if (moveType == TYPE_GROUND)
@@ -5379,29 +5356,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
                 break;
             case ABILITY_HYPERBOREAN:
                 if (moveType == TYPE_ICE)
-                {
-                    if (!(gBattleResources->flags->flags[battler] & RESOURCE_FLAG_HYPERBOREAN))
-                    {
-                        gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_HYPERBOREAN_BOOST;
-                        if (gProtectStructs[gBattlerAttacker].notFirstStrike)
-                            gBattlescriptCurrInstr = BattleScript_FlashFireBoost;
-                        else
-                            gBattlescriptCurrInstr = BattleScript_FlashFireBoost_PPLoss;
-
-                        gBattleResources->flags->flags[battler] |= RESOURCE_FLAG_HYPERBOREAN;
-                        effect = 3;
-                    }
-                    else
-                    {
-                        gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_FLASH_FIRE_NO_BOOST;
-                        if (gProtectStructs[gBattlerAttacker].notFirstStrike)
-                            gBattlescriptCurrInstr = BattleScript_FlashFireBoost;
-                        else
-                            gBattlescriptCurrInstr = BattleScript_FlashFireBoost_PPLoss;
-
-                        effect = 3;
-                    }
-                }
+                    effect = 2, statId = GetHighestAttackStatId(gMovesInfo[move].target);
                 break;
             }
 
@@ -9719,10 +9674,6 @@ static inline u32 CalcAttackStat(u32 move, u32 battlerAtk, u32 battlerDef, u32 m
         if (moveType == TYPE_FIRE && gBattleResources->flags->flags[battlerAtk] & RESOURCE_FLAG_FLASH_FIRE)
             modifier = uq4_12_multiply_half_down(modifier, UQ_4_12(1.5));
         break;
-    case ABILITY_HYPERBOREAN:
-        if (moveType == TYPE_ICE && gBattleResources->flags->flags[battlerAtk] & RESOURCE_FLAG_HYPERBOREAN)
-            modifier = uq4_12_multiply_half_down(modifier, UQ_4_12(1.5));
-        break;
     case ABILITY_SWARM:
         if (moveType == TYPE_BUG)
             modifier = uq4_12_multiply_half_down(modifier, getBlazeMult(gBattleMons[battlerAtk].maxHP, gBattleMons[battlerAtk].hp));
@@ -11440,7 +11391,7 @@ bool32 IsBattlerSpecialAtkHigher(u32 battler)
 
 inline bool32 GetHighestAttackStatId(u32 battler)
 {
-    return IsBattlerSpecialAtkHigher(battler) ? STAT_SPATK : STAT_ATK;
+    return gBattleMons[battler].spAttack >= gBattleMons[battler].attack ? STAT_SPATK : STAT_ATK;
 }
 
 static u32 GetFlingPowerFromItemId(u32 itemId)

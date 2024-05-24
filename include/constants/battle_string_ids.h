@@ -720,39 +720,38 @@
 #define STRINGID_PKMNLOWEREDGUARD                     718
 #define STRINGID_PKMNGUARDWASNOTLOWERED               719
 #define STRINGID_PKMNMAKESFAIRYMISS                   720
-#define STRINGID_PKMNRAISEDICEPOWERWITH               721
-#define STRINGID_PKMNDROPPEDITEM                      722
-#define STRINGID_OVERTURNENTERS                       723
-#define STRINGID_BAGISFULL                            724
-#define STRINGID_VICTORYCATCH                         725
-#define STRINGID_TARGETSTATSWONTINCREASE              726
-#define STRINGID_SHININGBEACONENTERS                  727
-#define STRINGID_PKMNFROSTBITTENBY                    728
-#define STRINGID_MALEDICTIONENTERS                    729
-#define STRINGID_PKMNKICKEDUPSTORM                    730
-#define STRINGID_STRONGWINDSGATHERING                 731
-#define STRINGID_STORMCONTINUESTOBLOW                 732
-#define STRINGID_WINDCALMEDDOWN                       733
-#define STRINGID_SCRIPTINGAINTED                      734
-#define STRINGID_POLLUTEDTERRAINENDS                  735
-#define STRINGID_TERRAINBECOMESPOLLUTED               736
-#define STRINGID_POLLUTEDTERRAINPREVENTS              737
-#define STRINGID_PKMNDRAINEDDEFSOUL                   738
-#define STRINGID_PKMNCANTUSEMOVEFLAMBOYANT            739
-#define STRINGID_BATTLERABILITYRAISEDALLSTATS         740
-#define STRINGID_SUPEREFFECTIVE_x4                    741
-#define STRINGID_SUPEREFFECTIVE_x8                    742
-#define STRINGID_STRINGID_NOTVERYEFFECTIVE_x0_25      743
-#define STRINGID_STRINGID_NOTVERYEFFECTIVE_x0_125     744
-#define STRINGID_PKMNSXRESTOREDHP                     745
-#define STRINGID_FOREWARNDISABLES                     746
-#define STRINGID_FOUND                                747
-#define STRINGID_DISABLED                             748
-#define STRINGIDDELAYEDDAMAGE                         749
-#define STRINGID_DOPEYREDUCEDDAMAGE                   750
-#define STRINGID_CLEANCUTWOUNDED                      751
+#define STRINGID_PKMNDROPPEDITEM                      721
+#define STRINGID_OVERTURNENTERS                       722
+#define STRINGID_BAGISFULL                            723
+#define STRINGID_VICTORYCATCH                         724
+#define STRINGID_TARGETSTATSWONTINCREASE              725
+#define STRINGID_SHININGBEACONENTERS                  726
+#define STRINGID_PKMNFROSTBITTENBY                    727
+#define STRINGID_MALEDICTIONENTERS                    728
+#define STRINGID_PKMNKICKEDUPSTORM                    729
+#define STRINGID_STRONGWINDSGATHERING                 730
+#define STRINGID_STORMCONTINUESTOBLOW                 731
+#define STRINGID_WINDCALMEDDOWN                       732
+#define STRINGID_SCRIPTINGAINTED                      733
+#define STRINGID_POLLUTEDTERRAINENDS                  734
+#define STRINGID_TERRAINBECOMESPOLLUTED               735
+#define STRINGID_POLLUTEDTERRAINPREVENTS              736
+#define STRINGID_PKMNDRAINEDDEFSOUL                   737
+#define STRINGID_PKMNCANTUSEMOVEFLAMBOYANT            738
+#define STRINGID_BATTLERABILITYRAISEDALLSTATS         739
+#define STRINGID_SUPEREFFECTIVE_x4                    740
+#define STRINGID_SUPEREFFECTIVE_x8                    741
+#define STRINGID_STRINGID_NOTVERYEFFECTIVE_x0_25      742
+#define STRINGID_STRINGID_NOTVERYEFFECTIVE_x0_125     743
+#define STRINGID_PKMNSXRESTOREDHP                     744
+#define STRINGID_FOREWARNDISABLES                     745
+#define STRINGID_FOUND                                746
+#define STRINGID_DISABLED                             747
+#define STRINGIDDELAYEDDAMAGE                         748
+#define STRINGID_DOPEYREDUCEDDAMAGE                   749
+#define STRINGID_CLEANCUTWOUNDED                      750
 
-#define BATTLESTRINGS_COUNT                           752
+#define BATTLESTRINGS_COUNT                           751
 
 // This is the string id that gBattleStringsTable starts with.
 // String ids before this (e.g. STRINGID_INTROMSG) are not in the table,
@@ -939,7 +938,6 @@
 // gFlashFireStringIds
 #define B_MSG_FLASH_FIRE_BOOST    0
 #define B_MSG_FLASH_FIRE_NO_BOOST 1
-#define B_MSG_HYPERBOREAN_BOOST   2
 
 // gBerryEffectStringIds
 #define B_MSG_CURED_PROBLEM     0

@@ -2842,16 +2842,14 @@ static s32 AI_DoubleBattle(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
                 break;
             case ABILITY_FLASH_FIRE:
                 if (moveType == TYPE_FIRE
-                    && HasMoveWithType(battlerAtkPartner, TYPE_FIRE)
-                    && !(gBattleResources->flags->flags[battlerAtkPartner] & RESOURCE_FLAG_FLASH_FIRE))
+                    && HasMoveWithType(battlerAtkPartner, TYPE_FIRE))
                 {
                     RETURN_SCORE_PLUS(WEAK_EFFECT);
                 }
                 break;
             case ABILITY_HYPERBOREAN:
                 if (moveType == TYPE_ICE
-                    && HasMoveWithType(battlerAtkPartner, TYPE_ICE)
-                    && !(gBattleResources->flags->flags[battlerAtkPartner] & RESOURCE_FLAG_HYPERBOREAN))
+                    && HasMoveWithType(battlerAtkPartner, TYPE_ICE))
                 {
                     RETURN_SCORE_PLUS(1);
                 }
