@@ -2884,4 +2884,11 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
         .aiRating = 8,
         .breakable = TRUE,
     },
+
+    [ABILITY_CLEAN_CUT] =
+    {
+        .name = _("Clean Cut"),
+        .description = COMPOUND_STRING("Contact moves wound their\ntargets, causing extra damage\nat the end of the turn."),
+        .aiRating = 7,
+    },
 };

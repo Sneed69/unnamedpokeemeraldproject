@@ -1999,6 +1999,13 @@ static void Cmd_adjustdamage(void)
         // Form change will be done after attack animation in Cmd_resultmessage.
         goto END;
     }
+    if (GetBattlerAbility(gBattlerAttacker) == ABILITY_CLEAN_CUT && IsMoveMakingContact(gCurrentMove, gBattlerAttacker))
+    {
+        gSpecialStatuses[gBattlerTarget].cleanCut = TRUE;
+        gBattleStruct->delayedDamage[gBattlerPartyIndexes[gBattlerTarget]][targetSide] += gBattleMoveDamage / 3;
+        gLastUsedAbility = ABILITY_CLEAN_CUT;
+        RecordAbilityBattle(gBattlerAttacker, ABILITY_CLEAN_CUT);
+    }
     if (GetBattlerAbility(gBattlerTarget) == ABILITY_DOPEY)
     {
         s32 delayedDamage = gBattleMoveDamage / 2;
@@ -2525,6 +2532,14 @@ static void Cmd_resultmessage(void)
         gSpecialStatuses[gBattlerTarget].dopeyActivated = FALSE;
         BattleScriptPushCursor();
         gBattlescriptCurrInstr = BattleScript_DopeyPrintDamageReduction;
+        return;
+    }
+    if (!gMultiHitCounter && gSpecialStatuses[gBattlerTarget].cleanCut && IsBattlerAlive(gBattlerTarget))
+    {
+        gBattlerAbility = gBattlerAttacker;
+        gSpecialStatuses[gBattlerTarget].cleanCut = FALSE;
+        BattleScriptPushCursor();
+        gBattlescriptCurrInstr = BattleScript_CleanCutPrint;
         return;
     }
 

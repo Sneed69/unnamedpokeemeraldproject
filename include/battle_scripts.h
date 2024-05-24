@@ -859,6 +859,7 @@ extern const u8 BattleScript_AbilityHealAndCureReturn[];
 extern const u8 BattleScript_AbilityHealAndCureEnd3[];
 extern const u8 BattleScript_DelayedDamage[];
 extern const u8 BattleScript_DopeyPrintDamageReduction[];
+extern const u8 BattleScript_CleanCutPrint[];
 extern const u8 BattleScript_EffectSpicyExtract[];
 
 #endif // GUARD_BATTLE_SCRIPTS_H

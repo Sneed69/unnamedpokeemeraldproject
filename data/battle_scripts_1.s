@@ -7844,6 +7844,13 @@ BattleScript_DopeyPrintDamageReduction::
 	waitmessage B_WAIT_TIME_LONG
 	return
 
+BattleScript_CleanCutPrint::
+	pause B_WAIT_TIME_SHORTEST
+	call BattleScript_AbilityPopUp
+	printstring STRINGID_CLEANCUTWOUNDED
+	waitmessage B_WAIT_TIME_LONG
+	return
+
 BattleScript_HealerActivates::
 	call BattleScript_AbilityPopUp
 	curestatus BS_SCRIPTING
