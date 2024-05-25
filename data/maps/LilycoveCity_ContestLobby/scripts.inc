@@ -1,8 +1,8 @@
 @ Note: data/scripts/berry_blender.inc is for the same map, so shares local IDs
 .set LOCALID_RECEPTIONIST, 1
 .set LOCALID_LINK_RECEPTIONIST, 2
-.set LOCALID_ARTIST, 4
-.set LOCALID_ARTIST_LINK, 11
+.set LOCALID_ARTIST, 3
+.set LOCALID_ARTIST_LINK, 10
 
 LilycoveCity_ContestLobby_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, LilycoveCity_ContestLobby_OnTransition
