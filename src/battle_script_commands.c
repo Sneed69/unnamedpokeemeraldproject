@@ -2002,11 +2002,11 @@ static void Cmd_adjustdamage(void)
     if (GetBattlerAbility(gBattlerAttacker) == ABILITY_CLEAN_CUT && IsMoveMakingContact(gCurrentMove, gBattlerAttacker))
     {
         gSpecialStatuses[gBattlerTarget].cleanCut = TRUE;
-        gBattleStruct->delayedDamage[gBattlerPartyIndexes[gBattlerTarget]][targetSide] += gBattleMoveDamage / 3;
+        gBattleStruct->delayedDamage[gBattlerPartyIndexes[gBattlerTarget]][targetSide] += max(1, gBattleMoveDamage / 3);
         gLastUsedAbility = ABILITY_CLEAN_CUT;
         RecordAbilityBattle(gBattlerAttacker, ABILITY_CLEAN_CUT);
     }
-    if (GetBattlerAbility(gBattlerTarget) == ABILITY_DOPEY)
+    if (GetBattlerAbility(gBattlerTarget) == ABILITY_DOPEY && gBattleMoveDamage > 1)
     {
         s32 delayedDamage = gBattleMoveDamage / 2;
         gBattleMoveDamage -= delayedDamage;

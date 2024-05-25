@@ -2428,7 +2428,7 @@ s32 GetDrainedBigRootHp(u32 battler, s32 hp)
 #define MAGIC_GUARD_CHECK \
 if (ability == ABILITY_MAGIC_GUARD) \
 {\
-    RecordAbilityBattle(battler, ability);\
+    RecordAbilityBattle(battler, ABILITY_MAGIC_GUARD);\
     gBattleStruct->turnEffectsTracker++;\
             break;\
 }
@@ -2688,10 +2688,14 @@ u8 DoBattlerEndTurnEffects(void)
         case ENDTURN_DELAYED_DAMAGE:
         {   
             u32 side = GetBattlerSide(battler);
-            if (gBattleStruct->delayedDamage[gBattlerPartyIndexes[battler]][side] > 0 && IsBattlerAlive(battler))
+            u32 delayedDamage = gBattleStruct->delayedDamage[gBattlerPartyIndexes[battler]][side];
+            gBattleStruct->delayedDamage[gBattlerPartyIndexes[battler]][side] = 0;
+
+            MAGIC_GUARD_CHECK;
+
+            if (delayedDamage > 0 && IsBattlerAlive(battler))
             {
-                gBattleMoveDamage = gBattleStruct->delayedDamage[gBattlerPartyIndexes[battler]][side];
-                gBattleStruct->delayedDamage[gBattlerPartyIndexes[battler]][side] = 0;
+                gBattleMoveDamage = delayedDamage;
                 BattleScriptExecute(BattleScript_DelayedDamage);
                 effect++;
             }
