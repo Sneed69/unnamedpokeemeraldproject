@@ -2965,8 +2965,7 @@ Move_SHADOW_CLAW:
 	loadspritegfx ANIM_TAG_BLUE_LIGHT_WALL
 	loadspritegfx ANIM_TAG_CLAW_SLASH
 	loadspritegfx ANIM_TAG_TORN_METAL
-	fadetobg BG_GHOST
-	waitbgfadein
+	call SetGhostBg
 	monbg ANIM_TARGET
 	setalpha 12, 8
 	createsprite gHorizontalLungeSpriteTemplate ANIM_ATTACKER, 2, 6, 4
@@ -2980,8 +2979,7 @@ Move_SHADOW_CLAW:
 	createsprite gClawSlashSpriteTemplate, ANIM_TARGET, 2, 10, 10, 1
 	playsewithpan SE_M_RAZOR_WIND, SOUND_PAN_TARGET
 	waitforvisualfinish
-	restorebg
-	waitbgfadein
+	call UnsetPsychicBg
 	waitforvisualfinish
 	blendoff
 	clearmonbg ANIM_TARGET
@@ -17670,8 +17668,7 @@ Move_RAGE_FIST::
 	loadspritegfx ANIM_TAG_HANDS_AND_FEET
 	loadspritegfx ANIM_TAG_ANGER
 	loadspritegfx ANIM_TAG_SWEAT_BEAD
-	fadetobg BG_GHOST
-	waitbgfadein
+	call SetGhostBg
 	monbg ANIM_DEF_PARTNER
 	setalpha 12, 8
 	createvisualtask AnimTask_ShakeMon2, 5, ANIM_ATTACKER, 1, 0, 15, 1
@@ -17699,8 +17696,7 @@ Move_RAGE_FIST::
 	waitforvisualfinish
 	clearmonbg ANIM_DEF_PARTNER
 	blendoff
-	restorebg
-	waitbgfadein
+	call UnsetPsychicBg
 	end
 
 Move_CHILLING_WATER::
@@ -18414,8 +18410,7 @@ Move_VAMPIRIC_FANG:
 	loadspritegfx ANIM_TAG_SHARP_TEETH
 	loadspritegfx ANIM_TAG_IMPACT
 	monbg ANIM_TARGET
-	fadetobg BG_GHOST
-	waitbgfadein
+	call SetGhostBg
 	setalpha 12, 8
 	playsewithpan SE_M_BITE, SOUND_PAN_TARGET
 	createsprite gSharpTeethSpriteTemplate, ANIM_ATTACKER, 2, 0, -32, 0, 0, 819, 10
@@ -18427,8 +18422,7 @@ Move_VAMPIRIC_FANG:
 	clearmonbg ANIM_TARGET
 	blendoff
 	delay 1
-	restorebg
-	waitbgfadein
+	call UnsetPsychicBg
 	end
 
 Move_TOPPLE_PSYCHE:
@@ -20132,8 +20126,7 @@ Move_WHIRLWIND:
 Move_CONFUSE_RAY:
 	loadspritegfx ANIM_TAG_YELLOW_BALL
 	monbg ANIM_DEF_PARTNER
-	fadetobg BG_GHOST
-	waitbgfadein
+	call SetGhostBg
 	createvisualtask SoundTask_AdjustPanningVar, 2, SOUND_PAN_ATTACKER, SOUND_PAN_TARGET, 2, 0
 	createvisualtask AnimTask_BlendColorCycleByTag, 2, ANIM_TAG_YELLOW_BALL, 0, 6, 0, 14, RGB(31, 10, 0)
 	createsprite gConfuseRayBallBounceSpriteTemplate, ANIM_TARGET, 2, 28, 0, 288
@@ -20145,8 +20138,7 @@ Move_CONFUSE_RAY:
 	delay 0
 	blendoff
 	clearmonbg ANIM_DEF_PARTNER
-	restorebg
-	waitbgfadein
+	call UnsetPsychicBg
 	end
 
 Move_LOCK_ON:
@@ -21157,8 +21149,7 @@ Move_SKETCH:
 	end
 
 Move_NIGHTMARE:
-	fadetobg BG_GHOST
-	waitbgfadein
+	call SetGhostBg
 	jumpifcontest NightmareInContest
 	monbg ANIM_DEF_PARTNER
 	createvisualtask AnimTask_NightmareClone, 2
@@ -21166,8 +21157,7 @@ Move_NIGHTMARE:
 	playsewithpan SE_M_NIGHTMARE, SOUND_PAN_TARGET
 	waitforvisualfinish
 	clearmonbg ANIM_DEF_PARTNER
-	restorebg
-	waitbgfadein
+	call UnsetPsychicBg
 	end
 NightmareInContest:
 	createvisualtask AnimTask_BlendMonInAndOut, 2, ANIM_ATTACKER, RGB_WHITE, 10, 2, 1
@@ -21194,16 +21184,14 @@ Move_FLAIL:
 	end
 
 Move_SPITE:
-	fadetobg BG_GHOST
+	call SetGhostBg
 	playsewithpan SE_M_PSYBEAM, SOUND_PAN_ATTACKER
-	waitbgfadein
 	monbg ANIM_DEF_PARTNER
 	createvisualtask AnimTask_BlendColorCycle, 2, F_PAL_ATTACKER, 2, 6, 0, 8, RGB_WHITE
 	createvisualtask AnimTask_SpiteTargetShadow, 2
 	loopsewithpan SE_M_PSYBEAM, SOUND_PAN_TARGET, 20, 3
 	waitforvisualfinish
-	restorebg
-	waitbgfadein
+	call UnsetPsychicBg
 	clearmonbg ANIM_TARGET
 	end
 
@@ -21268,9 +21256,8 @@ Move_FORESIGHT:
 
 Move_DESTINY_BOND:
 	loadspritegfx ANIM_TAG_WHITE_SHADOW
-	fadetobg BG_GHOST
+	call SetGhostBg
 	playsewithpan SE_M_PSYBEAM, SOUND_PAN_ATTACKER
-	waitbgfadein
 	createvisualtask AnimTask_DestinyBondWhiteShadow, 5, 0, 48
 	playsewithpan SE_M_CONFUSE_RAY, SOUND_PAN_ATTACKER
 	delay 48
@@ -21280,8 +21267,7 @@ Move_DESTINY_BOND:
 	createvisualtask AnimTask_BlendBattleAnimPalExclude, 2, 6, 1, 12, 0, RGB(29, 29, 29)
 	playsewithpan SE_M_NIGHTMARE, SOUND_PAN_TARGET
 	waitforvisualfinish
-	restorebg
-	waitbgfadein
+	call UnsetPsychicBg
 	blendoff
 	clearmonbg 5
 	end
@@ -21936,17 +21922,15 @@ Move_GRUDGE:
 	loadspritegfx ANIM_TAG_PURPLE_FLAME
 	monbg ANIM_ATTACKER
 	splitbgprio_all
-	fadetobg BG_GHOST
+	call SetGhostBg
 	playsewithpan SE_M_PSYBEAM, SOUND_PAN_ATTACKER
-	waitbgfadein
 	createvisualtask AnimTask_GrudgeFlames, 3
 	loopsewithpan SE_M_EMBER, SOUND_PAN_ATTACKER, 16, 4
 	delay 10
 	delay 80
 	playsewithpan SE_M_NIGHTMARE, SOUND_PAN_TARGET
 	waitforvisualfinish
-	restorebg
-	waitbgfadein
+	call UnsetPsychicBg
 	clearmonbg ANIM_ATTACKER
 	end
 
@@ -22383,8 +22367,7 @@ Move_WATER_SPOUT:
 Move_SHADOW_PUNCH:
 	loadspritegfx ANIM_TAG_IMPACT
 	loadspritegfx ANIM_TAG_HANDS_AND_FEET
-	fadetobg BG_GHOST
-	waitbgfadein
+	call SetGhostBg
 	monbg ANIM_ATK_PARTNER
 	setalpha 9, 8
 	createvisualtask AnimTask_AttackerPunchWithTrace, 2, RGB_BLACK, 13
@@ -22397,8 +22380,7 @@ Move_SHADOW_PUNCH:
 	waitforvisualfinish
 	clearmonbg ANIM_ATK_PARTNER
 	blendoff
-	restorebg
-	waitbgfadein
+	call UnsetPsychicBg
 	end
 
 Move_EXTRASENSORY:
@@ -25380,8 +25362,7 @@ Move_NIGHT_SHADE:
 	monbg ANIM_ATTACKER
 	splitbgprio ANIM_ATTACKER
 	playsewithpan SE_M_PSYBEAM, SOUND_PAN_ATTACKER
-	fadetobg BG_GHOST
-	waitbgfadein
+	call SetGhostBg
 	delay 10
 	playsewithpan SE_M_LEER, SOUND_PAN_ATTACKER
 	createvisualtask AnimTask_NightShadeClone, 5, 85
@@ -25391,8 +25372,7 @@ Move_NIGHT_SHADE:
 	waitforvisualfinish
 	clearmonbg ANIM_ATTACKER
 	delay 1
-	restorebg
-	waitbgfadein
+	call UnsetPsychicBg
 	end
 
 Move_EGG_BOMB:
@@ -25422,8 +25402,7 @@ Move_EGG_BOMB:
 
 Move_SHADOW_BALL:
 	loadspritegfx ANIM_TAG_SHADOW_BALL
-	fadetobg BG_GHOST
-	waitbgfadein
+	call SetGhostBg
 	delay 15
 	createsoundtask SoundTask_LoopSEAdjustPanning, SE_M_MIST, SOUND_PAN_ATTACKER, SOUND_PAN_TARGET, 5, 5, 0, 5
 	createsprite gShadowBallSpriteTemplate, ANIM_TARGET, 2, 16, 16, 8
@@ -25431,8 +25410,7 @@ Move_SHADOW_BALL:
 	playsewithpan SE_M_SAND_ATTACK, SOUND_PAN_TARGET
 	createvisualtask AnimTask_ShakeMon2, 2, ANIM_TARGET, 4, 0, 8, 1
 	waitforvisualfinish
-	restorebg
-	waitbgfadein
+	call UnsetPsychicBg
 	end
 
 Move_LICK:
@@ -28303,6 +28281,14 @@ UnsetPsychicBg:
 	restorebg
 	waitbgfadeout
 	setarg 7, 0xFFFF
+	waitbgfadein
+	return
+
+SetGhostBg:
+	fadetobg BG_GHOST
+	waitbgfadeout
+	createvisualtask AnimTask_StartSlidingBg, 5, 0, 300, 0, -1
+SetGhostContinue:
 	waitbgfadein
 	return
 
