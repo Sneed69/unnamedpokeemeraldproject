@@ -5636,9 +5636,11 @@ static void Cmd_moveend(void)
                     && IsBattlerAlive(gBattlerAttacker)
                     && gBattleScripting.savedDmg != 0)
             {
+                gLastUsedAbility = ABILITY_POWER_GLIDE;
+                gBattlerAbility = gBattlerAttacker;
                 gBattleMoveDamage = max(1, gBattleScripting.savedDmg / 6);
                 BattleScriptPushCursor();
-                gBattlescriptCurrInstr = BattleScript_MoveEffectRecoil;
+                gBattlescriptCurrInstr = BattleScript_MoveEffectRecoilAbilityPopup;
                 effect = TRUE;
             }
             gBattleScripting.moveendState++;

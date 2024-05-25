@@ -7632,6 +7632,13 @@ BattleScript_MoveEffectConfusion::
 	waitmessage B_WAIT_TIME_LONG
 	return
 
+BattleScript_MoveEffectRecoilAbilityPopup::
+	jumpifmove MOVE_STRUGGLE, BattleScript_DoRecoil
+	jumpifability BS_ATTACKER, ABILITY_ROCK_HEAD, BattleScript_RecoilEnd
+	jumpifability BS_ATTACKER, ABILITY_MAGIC_GUARD, BattleScript_RecoilEnd
+	call BattleScript_AbilityPopUp
+	goto BattleScript_DoRecoil
+
 BattleScript_MoveEffectRecoil::
 	jumpifmove MOVE_STRUGGLE, BattleScript_DoRecoil
 	jumpifability BS_ATTACKER, ABILITY_ROCK_HEAD, BattleScript_RecoilEnd
