@@ -1,3 +1,7 @@
+#ifdef __INTELLISENSE__
+#include "constants/abilities.h"
+#endif
+
 const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
 {
     [ABILITY_NONE] =

@@ -14576,18 +14576,19 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
     {
         .name = COMPOUND_STRING("Boomburst"),
         .description = COMPOUND_STRING(
-            "Attacks everything with a\n"
-            "destructive sound wave."),
+            "A destructive sound wave.\n"
+            "Can't be used twice in a row."),
         .effect = EFFECT_HIT,
         .power = 140,
         .type = TYPE_NORMAL,
         .accuracy = 100,
-        .pp = 16,
+        .pp = 8,
         .target = MOVE_TARGET_FOES_AND_ALLY,
         .priority = 0,
         .category = DAMAGE_CATEGORY_SPECIAL,
         .ignoresSubstitute = B_UPDATED_MOVE_FLAGS >= GEN_6,
         .soundMove = TRUE,
+        .cantUseTwice = TRUE,
 
         .contestEffect = CONTEST_EFFECT_USER_MORE_EASILY_STARTLED,
         .contestCategory = CONTEST_CATEGORY_COOL,
@@ -17691,10 +17692,10 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
     {
         .name = COMPOUND_STRING("Overdrive"),
         .description = COMPOUND_STRING(
-            "The user twangs its guitar,\n"
-            "causing strong vibrations."),
-        .effect = EFFECT_HIT,
-        .power = 80,
+            "Strong vibrations create\n"
+            "an electifying aura."),
+        .effect = EFFECT_HIT_SET_REMOVE_TERRAIN,
+        .power = 100,
         .type = TYPE_ELECTRIC,
         .accuracy = 100,
         .pp = 16,
@@ -17703,7 +17704,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = DAMAGE_CATEGORY_SPECIAL,
         .soundMove = TRUE,
         .ignoresSubstitute = B_UPDATED_MOVE_FLAGS >= GEN_6,
-        .metronomeBanned = TRUE,
+        .argument = ARG_SET_ELECTRIC_TERRAIN,
 
         .contestEffect = CONTEST_EFFECT_BADLY_STARTLE_PREV_MONS,
         .contestCategory = CONTEST_CATEGORY_COOL,
@@ -19979,8 +19980,8 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
     {
         .name = HANDLE_EXPANDED_MOVE_NAME("GigatonHammr", "Gigaton Hammer"),
         .description = COMPOUND_STRING(
-            "Swings a huge hammer. Can't\n"
-            "be used twice in a row."),
+            "Swings a huge hammer.\n"
+            "Can't be used twice in a row."),
         .effect = EFFECT_HIT,
         .power = 140,
         .type = TYPE_STEEL,
@@ -20982,6 +20983,33 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
         .contestComboMoves = {COMBO_STARTER_LOCK_ON, COMBO_STARTER_MIND_READER},
+    },
+
+    [MOVE_DUST_DEVIL] =
+    {
+        .name = COMPOUND_STRING("Dust Devil"),
+        .description = COMPOUND_STRING(
+            "Never misses in sandstorms.\n"
+            "May knock items off."),
+        .effect = EFFECT_DUST_DEVIL,
+        .power = 110,
+        .type = TYPE_ROCK,
+        .accuracy = 70,
+        .pp = 16,
+        .target = MOVE_TARGET_SELECTED,
+        .priority = 0,
+        .category = DAMAGE_CATEGORY_SPECIAL,
+        .windMove = TRUE,
+        .damagesAirborne = TRUE,
+        .additionalEffects = ADDITIONAL_EFFECTS({
+            .moveEffect = MOVE_EFFECT_KNOCK_OFF,
+            .chance = 30,
+        }),
+
+        .contestEffect = CONTEST_EFFECT_STARTLE_PREV_MONS,
+        .contestCategory = CONTEST_CATEGORY_TOUGH,
+        .contestComboStarterId = 0,
+        .contestComboMoves = {0}
     },
 
     // Z-Moves
@@ -22242,32 +22270,4 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = DAMAGE_CATEGORY_PHYSICAL,
         .argument = MAX_EFFECT_BYPASS_PROTECT, //EFFECT TODO
     },
-
-    [MOVE_DUST_DEVIL] =
-    {
-        .name = COMPOUND_STRING("Dust Devil"),
-        .description = COMPOUND_STRING(
-            "Never misses in sandstorms.\n"
-            "May knock items off."),
-        .effect = EFFECT_DUST_DEVIL,
-        .power = 110,
-        .type = TYPE_ROCK,
-        .accuracy = 70,
-        .pp = 16,
-        .target = MOVE_TARGET_SELECTED,
-        .priority = 0,
-        .category = DAMAGE_CATEGORY_SPECIAL,
-        .windMove = TRUE,
-        .damagesAirborne = TRUE,
-        .additionalEffects = ADDITIONAL_EFFECTS({
-            .moveEffect = MOVE_EFFECT_KNOCK_OFF,
-            .chance = 30,
-        }),
-
-        .contestEffect = CONTEST_EFFECT_STARTLE_PREV_MONS,
-        .contestCategory = CONTEST_CATEGORY_TOUGH,
-        .contestComboStarterId = 0,
-        .contestComboMoves = {0}
-    },
-
 };
