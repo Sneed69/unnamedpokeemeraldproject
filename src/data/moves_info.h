@@ -7102,7 +7102,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .name = COMPOUND_STRING("Brick Break"),
         .description = COMPOUND_STRING(
             "Destroys barriers such as\n"
-            "REFLECT and causes damage."),
+            "Reflect and causes damage."),
         .effect = EFFECT_BRICK_BREAK,
         .power = 80,
         .type = TYPE_FIGHTING,
@@ -18663,11 +18663,11 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
     {
         .name = COMPOUND_STRING("Eerie Spell"),
         .description = COMPOUND_STRING(
-            "Attacks with psychic power.\n"
+            "A ghostly incantation.\n"
             "Foe's last move has 3 PP cut."),
         .effect = EFFECT_EERIE_SPELL,
         .power = 80,
-        .type = TYPE_PSYCHIC,
+        .type = TYPE_GHOST,
         .accuracy = 100,
         .pp = 8,
         .target = MOVE_TARGET_SELECTED,

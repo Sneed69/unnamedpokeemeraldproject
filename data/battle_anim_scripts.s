@@ -15907,7 +15907,7 @@ Move_ASTRAL_BARRAGE::
 @Credits to Skeli
 Move_EERIE_SPELL::
 	loadspritegfx ANIM_TAG_PURPLE_FLAME
-	call SetPsychicBackground
+	call SetGhostBg
 	waitforvisualfinish
 	monbg ANIM_TARGET
 	splitbgprio_all
