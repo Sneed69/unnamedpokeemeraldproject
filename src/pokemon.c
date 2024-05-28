@@ -1305,7 +1305,7 @@ void CreateMaleMon(struct Pokemon *mon, u16 species, u8 level)
     u32 otId;
 
     otId = Random32();
-    personality = 0;
+    personality = 255;
 
     CreateMon(mon, species, level, USE_RANDOM_IVS, TRUE, personality, OT_ID_PRESET, otId);
     personality = STAT_DEF;
