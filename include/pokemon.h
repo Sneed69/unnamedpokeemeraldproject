@@ -427,6 +427,7 @@ struct MoveInfo
     u32 parentalBondBanned:1;
     u32 skyBattleBanned:1;
     u32 sketchBanned:1;
+    u32 padding:2; // end of word
 
     u32 argument;
 
