@@ -1607,6 +1607,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
         .name = _("Disguise"),
         .description = COMPOUND_STRING("Once per battle, protects\nfrom one damaging attack."),
         .aiRating = 8,
+        .breakable = TRUE,
         .cantBeCopied = TRUE,
         .cantBeSwapped = TRUE,
         .cantBeTraced = TRUE,
