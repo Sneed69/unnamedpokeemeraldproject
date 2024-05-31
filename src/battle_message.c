@@ -71,7 +71,6 @@ static const u8 sText_AttackMissed[] = _("{B_ATK_NAME_WITH_PREFIX}'s\nattack mis
 static const u8 sText_PkmnProtectedItself[] = _("{B_DEF_NAME_WITH_PREFIX}\nprotected itself!");
 static const u8 sText_AvoidedDamage[] = _("{B_DEF_NAME_WITH_PREFIX} avoided\ndamage with {B_DEF_ABILITY}!");
 static const u8 sText_PkmnMakesGroundMiss[] = _("{B_DEF_NAME_WITH_PREFIX} makes Ground\nmoves miss with {B_DEF_ABILITY}!");
-static const u8 sText_PkmnMakesFairyMiss[] = _("{B_DEF_NAME_WITH_PREFIX}'s {B_DEF_ABILITY}\nprotects from Fairy moves!");
 static const u8 sText_PkmnAvoidedAttack[] = _("{B_DEF_NAME_WITH_PREFIX} avoided\nthe attack!");
 static const u8 sText_ItDoesntAffect[] = _("It doesn't affect\n{B_DEF_NAME_WITH_PREFIX}…");
 static const u8 sText_AttackerFainted[] = _("{B_ATK_NAME_WITH_PREFIX}\nfainted!\p");
@@ -641,7 +640,7 @@ static const u8 sText_TurboblazeEnters[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX} de
 static const u8 sText_SlowStartEnters[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX} can't get it going!");
 static const u8 sText_SlowStartEnd[] = _("{B_ATK_NAME_WITH_PREFIX} finally got\nits act together!");
 static const u8 sText_SolarPowerHpDrop[] = _("{B_ATK_NAME_WITH_PREFIX}'s {B_ATK_ABILITY}\ntakes its toll!");
-static const u8 sText_DidntFeelTheBlowDopey[] = _("{B_DEF_NAME_WITH_PREFIX} delayed some of the\ndamage using {B_DEF_ABILITY}!");
+static const u8 sText_DefDelayedDmgWithAbility[] = _("{B_DEF_NAME_WITH_PREFIX} delayed some of the\ndamage using {B_DEF_ABILITY}!");
 static const u8 sText_DefWasWoundedByAtkAbility[] = _("{B_DEF_NAME_WITH_PREFIX} was wounded by\n{B_ATK_NAME_WITH_PREFIX}'s {B_ATK_ABILITY}!");
 static const u8 sText_DelayedDamageApplies[] = _("{B_ATK_NAME_WITH_PREFIX} takes the\ndelayed damage!");
 static const u8 sText_AftermathDmg[] = _("{B_ATK_NAME_WITH_PREFIX} is hurt!");
@@ -1610,7 +1609,6 @@ const u8 *const gBattleStringsTable[BATTLESTRINGS_COUNT] =
     [STRINGID_PKMNPREVENTSFROSTBITEWITH - BATTLESTRINGS_TABLE_START] = sText_PkmnPreventsFrostbiteWith,
     [STRINGID_PKMNLOWEREDGUARD - BATTLESTRINGS_TABLE_START] = sText_PkmnLoweredGuard,
     [STRINGID_PKMNGUARDWASNOTLOWERED - BATTLESTRINGS_TABLE_START] = sText_PkmnGuardNotLowered,
-    [STRINGID_PKMNMAKESFAIRYMISS - BATTLESTRINGS_TABLE_START] = sText_PkmnMakesFairyMiss,
     [STRINGID_OVERTURNENTERS - BATTLESTRINGS_TABLE_START] = sText_PkmnTurnedTheTables,
     [STRINGID_VICTORYCATCH - BATTLESTRINGS_TABLE_START] = sText_VictoryCatch,
     [STRINGID_TARGETSTATSWONTINCREASE - BATTLESTRINGS_TABLE_START] = sText_TargetStatsWontIncrease,
@@ -1625,8 +1623,8 @@ const u8 *const gBattleStringsTable[BATTLESTRINGS_COUNT] =
     [STRINGID_FOUND - BATTLESTRINGS_TABLE_START] = sText_Found,
     [STRINGID_DISABLED - BATTLESTRINGS_TABLE_START] = sText_Disabled,
     [STRINGIDDELAYEDDAMAGE - BATTLESTRINGS_TABLE_START] = sText_DelayedDamageApplies,
-    [STRINGID_DOPEYREDUCEDDAMAGE - BATTLESTRINGS_TABLE_START] = sText_DidntFeelTheBlowDopey,
-    [STRINGID_CLEANCUTWOUNDED - BATTLESTRINGS_TABLE_START] = sText_DefWasWoundedByAtkAbility,
+    [STRINGID_DOPEYREDUCEDDAMAGE - BATTLESTRINGS_TABLE_START] = sText_DefDelayedDmgWithAbility,
+    [STRINGID_ATKWOUNDEDWITHABILITY - BATTLESTRINGS_TABLE_START] = sText_DefWasWoundedByAtkAbility,
 };
 
 const u16 gTrainerUsedItemStringIds[] =
@@ -1743,7 +1741,6 @@ const u16 gMissStringIds[] =
     [B_MSG_AVOIDED_ATK] = STRINGID_PKMNAVOIDEDATTACK,
     [B_MSG_AVOIDED_DMG] = STRINGID_AVOIDEDDAMAGE,
     [B_MSG_GROUND_MISS] = STRINGID_PKMNMAKESGROUNDMISS,
-    [B_MSG_FAIRY_MISS]  = STRINGID_PKMNMAKESFAIRYMISS,
 };
 
 const u16 gNoEscapeStringIds[] =

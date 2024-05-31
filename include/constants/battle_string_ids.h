@@ -719,39 +719,38 @@
 #define STRINGID_PKMNPREVENTSFROSTBITEWITH            717
 #define STRINGID_PKMNLOWEREDGUARD                     718
 #define STRINGID_PKMNGUARDWASNOTLOWERED               719
-#define STRINGID_PKMNMAKESFAIRYMISS                   720
-#define STRINGID_PKMNDROPPEDITEM                      721
-#define STRINGID_OVERTURNENTERS                       722
-#define STRINGID_BAGISFULL                            723
-#define STRINGID_VICTORYCATCH                         724
-#define STRINGID_TARGETSTATSWONTINCREASE              725
-#define STRINGID_SHININGBEACONENTERS                  726
-#define STRINGID_PKMNFROSTBITTENBY                    727
-#define STRINGID_MALEDICTIONENTERS                    728
-#define STRINGID_PKMNKICKEDUPSTORM                    729
-#define STRINGID_STRONGWINDSGATHERING                 730
-#define STRINGID_STORMCONTINUESTOBLOW                 731
-#define STRINGID_WINDCALMEDDOWN                       732
-#define STRINGID_SCRIPTINGAINTED                      733
-#define STRINGID_POLLUTEDTERRAINENDS                  734
-#define STRINGID_TERRAINBECOMESPOLLUTED               735
-#define STRINGID_POLLUTEDTERRAINPREVENTS              736
-#define STRINGID_PKMNDRAINEDDEFSOUL                   737
-#define STRINGID_PKMNCANTUSEMOVEFLAMBOYANT            738
-#define STRINGID_BATTLERABILITYRAISEDALLSTATS         739
-#define STRINGID_SUPEREFFECTIVE_x4                    740
-#define STRINGID_SUPEREFFECTIVE_x8                    741
-#define STRINGID_STRINGID_NOTVERYEFFECTIVE_x0_25      742
-#define STRINGID_STRINGID_NOTVERYEFFECTIVE_x0_125     743
-#define STRINGID_PKMNSXRESTOREDHP                     744
-#define STRINGID_FOREWARNDISABLES                     745
-#define STRINGID_FOUND                                746
-#define STRINGID_DISABLED                             747
-#define STRINGIDDELAYEDDAMAGE                         748
-#define STRINGID_DOPEYREDUCEDDAMAGE                   749
-#define STRINGID_CLEANCUTWOUNDED                      750
+#define STRINGID_PKMNDROPPEDITEM                      720
+#define STRINGID_OVERTURNENTERS                       721
+#define STRINGID_BAGISFULL                            722
+#define STRINGID_VICTORYCATCH                         723
+#define STRINGID_TARGETSTATSWONTINCREASE              724
+#define STRINGID_SHININGBEACONENTERS                  725
+#define STRINGID_PKMNFROSTBITTENBY                    726
+#define STRINGID_MALEDICTIONENTERS                    727
+#define STRINGID_PKMNKICKEDUPSTORM                    728
+#define STRINGID_STRONGWINDSGATHERING                 729
+#define STRINGID_STORMCONTINUESTOBLOW                 730
+#define STRINGID_WINDCALMEDDOWN                       731
+#define STRINGID_SCRIPTINGAINTED                      732
+#define STRINGID_POLLUTEDTERRAINENDS                  733
+#define STRINGID_TERRAINBECOMESPOLLUTED               734
+#define STRINGID_POLLUTEDTERRAINPREVENTS              735
+#define STRINGID_PKMNDRAINEDDEFSOUL                   736
+#define STRINGID_PKMNCANTUSEMOVEFLAMBOYANT            737
+#define STRINGID_BATTLERABILITYRAISEDALLSTATS         738
+#define STRINGID_SUPEREFFECTIVE_x4                    739
+#define STRINGID_SUPEREFFECTIVE_x8                    740
+#define STRINGID_STRINGID_NOTVERYEFFECTIVE_x0_25      741
+#define STRINGID_STRINGID_NOTVERYEFFECTIVE_x0_125     742
+#define STRINGID_PKMNSXRESTOREDHP                     743
+#define STRINGID_FOREWARNDISABLES                     744
+#define STRINGID_FOUND                                745
+#define STRINGID_DISABLED                             746
+#define STRINGIDDELAYEDDAMAGE                         747
+#define STRINGID_DOPEYREDUCEDDAMAGE                   748
+#define STRINGID_ATKWOUNDEDWITHABILITY                749
 
-#define BATTLESTRINGS_COUNT                           751
+#define BATTLESTRINGS_COUNT                           750
 
 // This is the string id that gBattleStringsTable starts with.
 // String ids before this (e.g. STRINGID_INTROMSG) are not in the table,
@@ -783,7 +782,6 @@
 #define B_MSG_AVOIDED_ATK  2
 #define B_MSG_AVOIDED_DMG  3
 #define B_MSG_GROUND_MISS  4
-#define B_MSG_FAIRY_MISS   5
 
 // gAbsorbDrainStringIds
 #define B_MSG_ABSORB      0

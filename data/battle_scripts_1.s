@@ -7860,7 +7860,7 @@ BattleScript_DopeyPrintDamageReduction::
 BattleScript_CleanCutPrint::
 	pause B_WAIT_TIME_SHORTEST
 	call BattleScript_AbilityPopUp
-	printstring STRINGID_CLEANCUTWOUNDED
+	printstring STRINGID_ATKWOUNDEDWITHABILITY
 	waitmessage B_WAIT_TIME_LONG
 	return
 
