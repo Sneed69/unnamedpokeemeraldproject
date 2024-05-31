@@ -40,8 +40,8 @@ static const u8 sMegaDrainDescription[] = _(
     "half the damage inflicted.");
 
 static const u8 sHyperBeamDescription[] = _(
-    "Harshly lowers the user's\n"
-    "Defense, Sp. Def. and Speed.");
+    "Leaves the user vulnerable\n"
+    "until its next turn.");
 
 static const u8 sRevengeDescription[] = _(
     "An attack that gains power\n"
@@ -1680,19 +1680,15 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
     {
         .name = COMPOUND_STRING("Hyper Beam"),
         .description = sHyperBeamDescription,
-        .effect = EFFECT_HIT,
-        .power = 135,
+        .effect = EFFECT_GLAIVE_RUSH,
+        .power = 120,
         .type = TYPE_NORMAL,
-        .accuracy = 90,
+        .accuracy = 100,
         .pp = 8,
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
         .category = DAMAGE_CATEGORY_SPECIAL,
         .ignoresKingsRock = B_UPDATED_MOVE_FLAGS < GEN_3,
-        .additionalEffects = ADDITIONAL_EFFECTS({
-            .moveEffect = MOVE_EFFECT_V_CREATE,
-            .self = TRUE,
-        }),
 
         .contestEffect = CONTEST_EFFECT_JAMS_OTHERS_BUT_MISS_ONE_TURN,
         .contestCategory = CONTEST_CATEGORY_COOL,
@@ -7773,18 +7769,14 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
     {
         .name = COMPOUND_STRING("Blast Burn"),
         .description = sHyperBeamDescription,
-        .effect = EFFECT_HIT,
-        .power = 135,
+        .effect = EFFECT_GLAIVE_RUSH,
+        .power = 120,
         .type = TYPE_FIRE,
-        .accuracy = 90,
+        .accuracy = 100,
         .pp = 8,
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
         .category = DAMAGE_CATEGORY_SPECIAL,
-        .additionalEffects = ADDITIONAL_EFFECTS({
-            .moveEffect = MOVE_EFFECT_V_CREATE,
-            .self = TRUE,
-        }),
 
         .contestEffect = CONTEST_EFFECT_JAMS_OTHERS_BUT_MISS_ONE_TURN,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
@@ -7796,18 +7788,14 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
     {
         .name = COMPOUND_STRING("Hydro Cannon"),
         .description = sHyperBeamDescription,
-        .effect = EFFECT_HIT,
-        .power = 135,
+        .effect = EFFECT_GLAIVE_RUSH,
+        .power = 120,
         .type = TYPE_WATER,
-        .accuracy = 90,
+        .accuracy = 100,
         .pp = 8,
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
         .category = DAMAGE_CATEGORY_SPECIAL,
-        .additionalEffects = ADDITIONAL_EFFECTS({
-            .moveEffect = MOVE_EFFECT_V_CREATE,
-            .self = TRUE,
-        }),
 
         .contestEffect = CONTEST_EFFECT_JAMS_OTHERS_BUT_MISS_ONE_TURN,
         .contestCategory = CONTEST_CATEGORY_COOL,
@@ -8527,19 +8515,15 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
     {
         .name = COMPOUND_STRING("Frenzy Plant"),
         .description = sHyperBeamDescription,
-        .effect = EFFECT_HIT,
-        .power = 135,
+        .effect = EFFECT_GLAIVE_RUSH,
+        .power = 120,
         .type = TYPE_GRASS,
-        .accuracy = 90,
+        .accuracy = 100,
         .pp = 8,
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
         .category = DAMAGE_CATEGORY_PHYSICAL,
         .skyBattleBanned = TRUE,
-        .additionalEffects = ADDITIONAL_EFFECTS({
-            .moveEffect = MOVE_EFFECT_V_CREATE,
-            .self = TRUE,
-        }),
 
         .contestEffect = CONTEST_EFFECT_JAMS_OTHERS_BUT_MISS_ONE_TURN,
         .contestCategory = CONTEST_CATEGORY_COOL,
@@ -10425,19 +10409,15 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
     {
         .name = COMPOUND_STRING("Giga Impact"),
         .description = sHyperBeamDescription,
-        .effect = EFFECT_HIT,
-        .power = 135,
+        .effect = EFFECT_GLAIVE_RUSH,
+        .power = 120,
         .type = TYPE_NORMAL,
-        .accuracy = 90,
+        .accuracy = 100,
         .pp = 8,
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
         .category = DAMAGE_CATEGORY_PHYSICAL,
         .makesContact = TRUE,
-        .additionalEffects = ADDITIONAL_EFFECTS({
-            .moveEffect = MOVE_EFFECT_V_CREATE,
-            .self = TRUE,
-        }),
 
         .contestEffect = CONTEST_EFFECT_JAMS_OTHERS_BUT_MISS_ONE_TURN,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
@@ -10998,19 +10978,15 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
     {
         .name = COMPOUND_STRING("Rock Wrecker"),
         .description = sHyperBeamDescription,
-        .effect = EFFECT_HIT,
-        .power = 135,
+        .effect = EFFECT_GLAIVE_RUSH,
+        .power = 120,
         .type = TYPE_ROCK,
-        .accuracy = 90,
+        .accuracy = 100,
         .pp = 8,
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
         .category = DAMAGE_CATEGORY_PHYSICAL,
         .ballisticMove = TRUE,
-        .additionalEffects = ADDITIONAL_EFFECTS({
-            .moveEffect = MOVE_EFFECT_V_CREATE,
-            .self = TRUE,
-        }),
 
         .contestEffect = CONTEST_EFFECT_JAMS_OTHERS_BUT_MISS_ONE_TURN,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
@@ -19402,8 +19378,8 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
     {
         .name = COMPOUND_STRING("Glaive Rush"),
         .description = COMPOUND_STRING(
-            "Foe attacks next turn can't\n"
-            "miss and do double damage."),
+            "Leaves the user vulnerable\n\n"
+            "until its next turn."),
         .effect = EFFECT_GLAIVE_RUSH,
         .power = 120,
         .type = TYPE_DRAGON,
