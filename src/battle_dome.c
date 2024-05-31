@@ -2404,14 +2404,6 @@ static int GetTypeEffectivenessPoints(int move, int targetSpecies, int mode)
         #endif
         }
     }
-    else if (defAbility == ABILITY_PURE_HEART && moveType == TYPE_FAIRY)
-    {
-        if (mode == EFFECTIVENESS_MODE_BAD)
-            typePower = 8;
-        #ifdef BUGFIX
-            return typePower;
-        #endif
-    }
     else
     {
         u32 typeEffectiveness1 = UQ_4_12_TO_INT(GetTypeModifier(moveType, defType1) * 2) * 5;

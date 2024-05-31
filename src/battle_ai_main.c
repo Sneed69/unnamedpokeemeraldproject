@@ -2861,6 +2861,13 @@ static s32 AI_DoubleBattle(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
                     RETURN_SCORE_PLUS(1);
                 }
                 break;
+            case ABILITY_COUNTERSPELL:
+                if (moveType == TYPE_FAIRY
+                    && HasMoveWithType(battlerAtkPartner, TYPE_FAIRY))
+                {
+                    RETURN_SCORE_PLUS(1);
+                }
+                break;
             case ABILITY_SAP_SIPPER:
                 if (moveType == TYPE_GRASS
                     && HasMoveWithCategory(battlerAtkPartner, DAMAGE_CATEGORY_PHYSICAL)

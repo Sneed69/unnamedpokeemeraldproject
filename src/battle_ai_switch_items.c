@@ -366,6 +366,11 @@ static bool32 FindMonThatAbsorbsOpponentsMove(u32 battler, bool32 emitResult)
         absorbingTypeAbilities[0] = ABILITY_CRYOPHILIC;
         numAbsorbingAbilities = 1;
     }
+    else if (gMovesInfo[gLastLandedMoves[battler]].type == TYPE_FAIRY)
+    {
+        absorbingTypeAbilities[0] = ABILITY_COUNTERSPELL;
+        numAbsorbingAbilities = 1;
+    }
     else
     {
         return FALSE;

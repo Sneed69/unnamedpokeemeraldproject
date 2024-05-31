@@ -443,6 +443,10 @@ bool32 IsDamageMoveUnusable(u32 move, u32 battlerAtk, u32 battlerDef)
         if (moveType == TYPE_ICE)
             return TRUE;
         break;
+    case ABILITY_COUNTERSPELL:
+        if (moveType == TYPE_FAIRY)
+            return TRUE;
+        break;
     }
 
     switch (gMovesInfo[move].effect)

@@ -5413,6 +5413,10 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
                 if (moveType == TYPE_ICE)
                     effect = 2, statId = GetHighestAttackStatId(gMovesInfo[move].target);
                 break;
+            case ABILITY_COUNTERSPELL:
+                if (moveType == TYPE_FAIRY)
+                    effect = 2, statId = GetHighestAttackStatId(gMovesInfo[move].target);
+                break;
             }
             if (caseID == ABILITYEFFECT_WOULD_ABSORB)
             {
@@ -10761,18 +10765,6 @@ static inline uq4_12_t CalcTypeEffectivenessMultiplierInternal(u32 move, u32 mov
             RecordAbilityBattle(battlerDef, ABILITY_LEVITATE);
         }
     }
-    else if (moveType == TYPE_FAIRY &&defAbility == ABILITY_PURE_HEART)
-    {
-        modifier = UQ_4_12(0.0);
-        if (recordAbilities)
-        {
-            gLastUsedAbility = ABILITY_PURE_HEART;
-            gMoveResultFlags |= (MOVE_RESULT_MISSED | MOVE_RESULT_DOESNT_AFFECT_FOE);
-            gLastLandedMoves[battlerDef] = 0;
-            gBattleCommunication[MISS_TYPE] = B_MSG_FAIRY_MISS;
-            RecordAbilityBattle(battlerDef, ABILITY_PURE_HEART);
-        }
-    }
     else if (B_SHEER_COLD_IMMUNITY >= GEN_7 && move == MOVE_SHEER_COLD && IS_BATTLER_OF_TYPE(battlerDef, TYPE_ICE))
     {
         modifier = UQ_4_12(0.0);
@@ -10835,8 +10827,6 @@ uq4_12_t CalcPartyMonTypeEffectivenessMultiplier(u16 move, u16 speciesDef, u16 a
             MulByTypeEffectiveness(&modifier, move, moveType, 0, gSpeciesInfo[speciesDef].types[1], 0, FALSE);
 
         if (moveType == TYPE_GROUND && abilityDef == ABILITY_LEVITATE && !(gFieldStatuses & STATUS_FIELD_GRAVITY))
-            modifier = UQ_4_12(0.0);
-        if (moveType == TYPE_FAIRY && abilityDef == ABILITY_PURE_HEART)
             modifier = UQ_4_12(0.0);
         if (abilityDef == ABILITY_WONDER_GUARD && modifier <= UQ_4_12(1.0) && gMovesInfo[move].power)
             modifier = UQ_4_12(0.0);

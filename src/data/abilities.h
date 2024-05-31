@@ -2654,10 +2654,10 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
         .breakable = TRUE,
     },
 
-    [ABILITY_PURE_HEART] =
+    [ABILITY_COUNTERSPELL] =
     {
-        .name = _("Pure Heart"),
-        .description = COMPOUND_STRING("Grants full immunity to\nall Fairy-type attacks."),
+        .name = _("Counterspell"),
+        .description = COMPOUND_STRING("Incoming Fairy-type moves\nhave no effect and raise the\nhighest attacking stat instead."),
         .aiRating = 7,
         .breakable = TRUE,
     },
