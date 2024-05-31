@@ -2854,7 +2854,7 @@ static s32 AI_DoubleBattle(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
                     RETURN_SCORE_PLUS(WEAK_EFFECT);
                 }
                 break;
-            case ABILITY_HYPERBOREAN:
+            case ABILITY_CRYOPHILIC:
                 if (moveType == TYPE_ICE
                     && HasMoveWithType(battlerAtkPartner, TYPE_ICE))
                 {

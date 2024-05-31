@@ -363,7 +363,7 @@ static bool32 FindMonThatAbsorbsOpponentsMove(u32 battler, bool32 emitResult)
     }
     else if (gMovesInfo[gLastLandedMoves[battler]].type == TYPE_ICE)
     {
-        absorbingTypeAbilities[0] = ABILITY_HYPERBOREAN;
+        absorbingTypeAbilities[0] = ABILITY_CRYOPHILIC;
         numAbsorbingAbilities = 1;
     }
     else

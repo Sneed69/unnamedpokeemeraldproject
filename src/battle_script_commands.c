@@ -2022,12 +2022,12 @@ static void Cmd_adjustdamage(void)
         // Form change will be done after attack animation in Cmd_resultmessage.
         goto END;
     }
-    if (GetBattlerAbility(gBattlerAttacker) == ABILITY_CLEAN_CUT && IsMoveMakingContact(gCurrentMove, gBattlerAttacker))
+    if (GetBattlerAbility(gBattlerAttacker) == ABILITY_RAZOR_SHARP && IsMoveMakingContact(gCurrentMove, gBattlerAttacker))
     {
         gSpecialStatuses[gBattlerTarget].cleanCut = TRUE;
         gBattleStruct->delayedDamage[gBattlerPartyIndexes[gBattlerTarget]][targetSide] += max(1, gBattleMoveDamage / 3);
-        gLastUsedAbility = ABILITY_CLEAN_CUT;
-        RecordAbilityBattle(gBattlerAttacker, ABILITY_CLEAN_CUT);
+        gLastUsedAbility = ABILITY_RAZOR_SHARP;
+        RecordAbilityBattle(gBattlerAttacker, ABILITY_RAZOR_SHARP);
     }
     if (GetBattlerAbility(gBattlerTarget) == ABILITY_DOPEY && gBattleMoveDamage > 1)
     {

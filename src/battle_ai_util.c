@@ -439,7 +439,7 @@ bool32 IsDamageMoveUnusable(u32 move, u32 battlerAtk, u32 battlerDef)
         if (moveType == TYPE_GROUND)
             return TRUE;
         break;
-    case ABILITY_HYPERBOREAN:
+    case ABILITY_CRYOPHILIC:
         if (moveType == TYPE_ICE)
             return TRUE;
         break;

@@ -149,7 +149,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_FLASH_FIRE] =
     {
         .name = _("Flash Fire"),
-        .description = COMPOUND_STRING("Absorbs incoming Fire-type\nmoves, turning them into power\nfor its own Fire-type moves. "),
+        .description = COMPOUND_STRING("Incoming Fire-type moves\nhave no effect and raise the\nhighest attacking stat instead."),
         .aiRating = 7,
         .breakable = TRUE,
     },
@@ -862,7 +862,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
 
     [ABILITY_STORM_DRAIN] =
     {
-        .name = _("Storm Drain"),
+        .name = _("Hydrophilic"),
         .description = COMPOUND_STRING("Incoming Water-type moves\nhave no effect and raise the\nhighest attacking stat instead."),
         .aiRating = 7,
         .breakable = TRUE,
@@ -2623,10 +2623,10 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
         .aiRating = 6,
     },
 
-    [ABILITY_HYPERBOREAN] =
+    [ABILITY_CRYOPHILIC] =
     {
-        .name = _("Hyperborean"),
-        .description = COMPOUND_STRING("Absorbs incoming Ice-type\nmoves, turning them into power\nfor its own Ice-type moves. "),
+        .name = _("Cryophilic"),
+        .description = COMPOUND_STRING("Incoming Ice-type moves\nhave no effect and raise the\nhighest attacking stat instead."),
         .aiRating = 7,
         .breakable = TRUE,
     },
@@ -2890,9 +2890,9 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
         .breakable = TRUE,
     },
 
-    [ABILITY_CLEAN_CUT] =
+    [ABILITY_RAZOR_SHARP] =
     {
-        .name = _("Clean Cut"),
+        .name = _("Razor Sharp"),
         .description = COMPOUND_STRING("Contact moves wound their\ntargets, causing extra damage\nat the end of the turn."),
         .aiRating = 7,
     },
