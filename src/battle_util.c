@@ -4051,7 +4051,9 @@ static void ForewarnChooseMove(u32 battler)
     }
 
     gBattlerTarget = data[bestId].battler;
-    if (gDisableStructs[gBattlerTarget].disabledMove == MOVE_NONE && !IsAbilityOnSide(gBattlerTarget, ABILITY_AROMA_VEIL))
+    if (gDisableStructs[gBattlerTarget].disabledMove == MOVE_NONE
+     && gBattleStruct->choicedMove[gBattlerTarget] != data[bestId].moveId
+     && !IsAbilityOnSide(gBattlerTarget, ABILITY_AROMA_VEIL))
     {
         gDisableStructs[gBattlerTarget].disabledMove = data[bestId].moveId;
         gDisableStructs[gBattlerTarget].disableTimer = 2;
