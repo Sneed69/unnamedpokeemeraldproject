@@ -2686,10 +2686,6 @@ void SetBoxMonData(struct BoxPokemon *boxMon, s32 field, const void *dataArg)
         break;
     case MON_DATA_IS_EGG:
         SET8(boxMon->isEgg);
-        if (boxMon->isEgg)
-            boxMon->isEgg = TRUE;
-        else
-            boxMon->isEgg = FALSE;
         break;
     case MON_DATA_ABILITY_NUM:
         SET8(boxMon->abilityNum);
