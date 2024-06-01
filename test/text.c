@@ -89,7 +89,7 @@ TEST("Item names fit on Bag Screen (list)")
     {
         PARAMETRIZE_LABEL("%S", gItemsInfo[i].name) { item = i; }
     }
-    if (gItemsInfo[item].pocket == POCKET_TM_HM || gItemsInfo[item].pocket == POCKET_BERRIES)
+    if (gItemsInfo[item].pocket == POCKET_TM_HM)
         EXPECT_LE(GetStringWidth(fontId, gItemsInfo[item].name, 0), tmHmBerryWidthPx);
     else
         EXPECT_LE(GetStringWidth(fontId, gItemsInfo[item].name, 0), restWidthPx);
@@ -230,6 +230,7 @@ TEST("Item names fit on Pokemon Storage System")
     case ITEM_CORNERSTONE_MASK:
     case ITEM_WELLSPRING_MASK:
     case ITEM_HEARTHFLAME_MASK:
+    case ITEM_WEATHER_STONE:
         EXPECT_GT(GetStringWidth(fontId, gItemsInfo[item].name, 0), widthPx);
         break;
     default:

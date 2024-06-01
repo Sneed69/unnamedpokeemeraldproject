@@ -4,29 +4,29 @@
 SINGLE_BATTLE_TEST("Color Change changes the type of a Pokemon being hit by a move if the type of the move and the Pokemon are different")
 {
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET) { Ability(ABILITY_COLOR_CHANGE); }
+        PLAYER(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_ALAKAZAM) { Ability(ABILITY_COLOR_CHANGE); }
     } WHEN {
         TURN { MOVE(player, MOVE_TACKLE); }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, player);
         ABILITY_POPUP(opponent, ABILITY_COLOR_CHANGE);
-        MESSAGE("Foe Wobbuffet's Color Change made it the Normal type!");
+        MESSAGE("Foe Alakazam's Color Change made it the Normal type!");
     }
 }
 
 SINGLE_BATTLE_TEST("Color Change does not change the type when hit by a move that's the same type as itself")
 {
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET) { Ability(ABILITY_COLOR_CHANGE); }
+        PLAYER(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_ALAKAZAM) { Ability(ABILITY_COLOR_CHANGE); }
     } WHEN {
         TURN { MOVE(player, MOVE_PSYCHO_CUT); }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_PSYCHO_CUT, player);
         NONE_OF {
             ABILITY_POPUP(opponent, ABILITY_COLOR_CHANGE);
-            MESSAGE("Foe Wobbuffet's Color Change made it the Normal type!");
+            MESSAGE("Foe Alakazam's Color Change made it the Normal type!");
         }
     }
 }
@@ -34,7 +34,7 @@ SINGLE_BATTLE_TEST("Color Change does not change the type when hit by a move tha
 SINGLE_BATTLE_TEST("Color Change does not change the type of a dual-type Pokemon when hit by a move that shares its primary type")
 {
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM);
         OPPONENT(SPECIES_XATU) { Ability(ABILITY_COLOR_CHANGE); }
     } WHEN {
         TURN { MOVE(player, MOVE_PSYCHO_CUT); }
@@ -50,7 +50,7 @@ SINGLE_BATTLE_TEST("Color Change does not change the type of a dual-type Pokemon
 SINGLE_BATTLE_TEST("Color Change does not change the type of a dual-type Pokemon when hit by a move that shares its secondary type")
 {
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM);
         OPPONENT(SPECIES_SLOWBRO) { Ability(ABILITY_COLOR_CHANGE); }
     } WHEN {
         TURN { MOVE(player, MOVE_PSYCHO_CUT); }
@@ -66,21 +66,21 @@ SINGLE_BATTLE_TEST("Color Change does not change the type of a dual-type Pokemon
 SINGLE_BATTLE_TEST("Color Change changes the user to Electric type if hit by a move while the opponent is under the effect of Electrify")
 {
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET) { Ability(ABILITY_COLOR_CHANGE); }
+        PLAYER(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_ALAKAZAM) { Ability(ABILITY_COLOR_CHANGE); }
     } WHEN {
         TURN { MOVE(opponent, MOVE_ELECTRIFY); MOVE(player, MOVE_PSYCHO_CUT); }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_PSYCHO_CUT, player);
         ABILITY_POPUP(opponent, ABILITY_COLOR_CHANGE);
-        MESSAGE("Foe Wobbuffet's Color Change made it the Electric type!");
+        MESSAGE("Foe Alakazam's Color Change made it the Electric type!");
     }
 }
 
 SINGLE_BATTLE_TEST("Color Change changes the type when a Pokemon is hit by Future Sight")
 {
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM);
         OPPONENT(SPECIES_SNORLAX) { Ability(ABILITY_COLOR_CHANGE); }
     } WHEN {
         TURN { MOVE(player, MOVE_FUTURE_SIGHT); }
@@ -97,17 +97,17 @@ SINGLE_BATTLE_TEST("Color Change changes the type when a Pokemon is hit by Futur
 SINGLE_BATTLE_TEST("Color Change changes the type when a Pokemon is hit by Doom Desire")
 {
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET) { Ability(ABILITY_COLOR_CHANGE); }
+        PLAYER(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_ALAKAZAM) { Ability(ABILITY_COLOR_CHANGE); }
     } WHEN {
         TURN { MOVE(player, MOVE_DOOM_DESIRE); }
         TURN { }
         TURN { }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_DOOM_DESIRE, player);
-        MESSAGE("Foe Wobbuffet took the Doom Desire attack!");
+        MESSAGE("Foe Alakazam took the Doom Desire attack!");
         ABILITY_POPUP(opponent, ABILITY_COLOR_CHANGE);
-        MESSAGE("Foe Wobbuffet's Color Change made it the Steel type!");
+        MESSAGE("Foe Alakazam's Color Change made it the Steel type!");
     }
 }
 
@@ -115,7 +115,7 @@ SINGLE_BATTLE_TEST("Color Change changes the type to Electric when a Pokemon is 
 {
     KNOWN_FAILING; // #4471.
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM);
         OPPONENT(SPECIES_BLASTOISE) { Ability(ABILITY_COLOR_CHANGE); }
     } WHEN {
         TURN { MOVE(opponent, MOVE_CELEBRATE); MOVE(player, MOVE_FUTURE_SIGHT); }
@@ -133,7 +133,7 @@ SINGLE_BATTLE_TEST("Color Change changes the type to Electric when a Pokemon is 
 SINGLE_BATTLE_TEST("Color Change changes the type to Normal when a Pokemon is hit by a forseen attack under the effect of Normalize")
 {
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET) { Ability(ABILITY_NORMALIZE); }
+        PLAYER(SPECIES_ALAKAZAM) { Ability(ABILITY_NORMALIZE); }
         OPPONENT(SPECIES_BLASTOISE) { Ability(ABILITY_COLOR_CHANGE); }
     } WHEN {
         TURN { MOVE(opponent, MOVE_CELEBRATE); MOVE(player, MOVE_FUTURE_SIGHT); }

@@ -9,14 +9,14 @@ ASSUMPTIONS
 SINGLE_BATTLE_TEST("Torment prevents consecutive move uses")
 {
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET) { Moves(MOVE_SPLASH, MOVE_CELEBRATE); }
+        PLAYER(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_ALAKAZAM) { Moves(MOVE_SPLASH, MOVE_CELEBRATE); }
     } WHEN {
         TURN { MOVE(player, MOVE_TORMENT); MOVE(opponent, MOVE_SPLASH); }
         TURN { MOVE(opponent, MOVE_SPLASH, allowed: FALSE); MOVE(opponent, MOVE_CELEBRATE); }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TORMENT, player);
-        MESSAGE("Foe Wobbuffet was subjected to torment!");
+        MESSAGE("Foe Alakazam was subjected to torment!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_SPLASH, opponent);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_CELEBRATE, opponent);
     }
@@ -25,8 +25,8 @@ SINGLE_BATTLE_TEST("Torment prevents consecutive move uses")
 SINGLE_BATTLE_TEST("Torment forces Struggle if the only move is prevented")
 {
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET) { Moves(MOVE_SPLASH); }
+        PLAYER(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_ALAKAZAM) { Moves(MOVE_SPLASH); }
     } WHEN {
         TURN { MOVE(player, MOVE_TORMENT); MOVE(opponent, MOVE_SPLASH); }
         TURN { MOVE(opponent, MOVE_SPLASH, allowed: FALSE); }
@@ -39,8 +39,8 @@ SINGLE_BATTLE_TEST("Torment forces Struggle if the only move is prevented")
 SINGLE_BATTLE_TEST("Torment allows non-consecutive move uses")
 {
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, MOVE_TORMENT); MOVE(opponent, MOVE_SPLASH); }
         TURN { MOVE(opponent, MOVE_CELEBRATE); }

@@ -20,10 +20,10 @@
  *
  * As a concrete example, to manually test EFFECT_PARALYZE, e.g. the
  * effect of Stun Spore you might:
- * 1. Put a Wobbuffet that knows Stun Spore in your party.
- * 2. Battle a wild Wobbuffet.
+ * 1. Put a Alakazam that knows Stun Spore in your party.
+ * 2. Battle a wild Alakazam.
  * 3. Use Stun Spore.
- * 4. Check that the Wobbuffet is paralyzed.
+ * 4. Check that the Alakazam is paralyzed.
  *
  * This can be translated to an automated test as follows:
  *
@@ -35,13 +35,13 @@
  *   SINGLE_BATTLE_TEST("Stun Spore inflicts paralysis")
  *   {
  *       GIVEN {
- *           PLAYER(SPECIES_WOBBUFFET); // 1.
- *           OPPONENT(SPECIES_WOBBUFFET); // 2.
+ *           PLAYER(SPECIES_ALAKAZAM); // 1.
+ *           OPPONENT(SPECIES_ALAKAZAM); // 2.
  *       } WHEN {
  *           TURN { MOVE(player, MOVE_STUN_SPORE); } // 3.
  *       } SCENE {
  *           ANIMATION(ANIM_TYPE_MOVE, MOVE_STUN_SPORE, player);
- *           MESSAGE("Foe Wobbuffet is paralyzed! It may be unable to move!"); // 4
+ *           MESSAGE("Foe Alakazam is paralyzed! It may be unable to move!"); // 4
  *           STATUS_ICON(opponent, paralysis: TRUE); // 4.
  *       }
  *   }
@@ -76,7 +76,7 @@
  *
  * As a second example, to manually test that Stun Spore does not effect
  * Grass-types you might:
- * 1. Put a Wobbuffet that knows Stun Spore in your party.
+ * 1. Put a Alakazam that knows Stun Spore in your party.
  * 2. Battle a wild Oddish.
  * 3. Use Stun Spore.
  * 4. Check that the move animation does not play.
@@ -114,10 +114,10 @@
  * not paralyzed without specifying the exact outputs which led to that.
  *
  * As a final example, to test that Meditate works you might:
- * 1. Put a Wobbuffet that knows Meditate and Tackle in your party.
- * 2. Battle a wild Wobbuffet.
+ * 1. Put a Alakazam that knows Meditate and Tackle in your party.
+ * 2. Battle a wild Alakazam.
  * 3. Use Tackle and note the amount the HP bar reduced.
- * 4. Battle a wild Wobbuffet.
+ * 4. Battle a wild Alakazam.
  * 5. Use Meditate and that the stat change animation and message play.
  * 6. Use Tackle and check that the HP bar reduced by more than in 3.
  *
@@ -130,8 +130,8 @@
  *        PARAMETRIZE { raiseAttack = TRUE; }
  *        GIVEN {
  *            ASSUME(gMovesInfo[MOVE_TACKLE].category == DAMAGE_CATEGORY_PHYSICAL);
- *            PLAYER(SPECIES_WOBBUFFET);
- *            OPPONENT(SPECIES_WOBBUFFET);
+ *            PLAYER(SPECIES_ALAKAZAM);
+ *            OPPONENT(SPECIES_ALAKAZAM);
  *        } WHEN {
  *            if (raiseAttack) TURN { MOVE(player, MOVE_MEDITATE); } // 5.
  *            TURN { MOVE(player, MOVE_TACKLE); } // 3 & 6.
@@ -139,7 +139,7 @@
  *            if (raiseAttack) {
  *                ANIMATION(ANIM_TYPE_MOVE, MOVE_MEDITATE, player);
  *                ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player); // 5.
- *                MESSAGE("Wobbuffet's attack rose!"); // 5.
+ *                MESSAGE("Alakazam's attack rose!"); // 5.
  *            }
  *            ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, player);
  *            HP_BAR(opponent, captureDamage: &results[i].damage); // 3 & 6.
@@ -230,7 +230,7 @@
  *         GIVEN {
  *             ASSUME(gMovesInfo[MOVE_EMBER].type == TYPE_FIRE);
  *             PLAYER(SPECIES_CHARMANDER) { Ability(ABILITY_BLAZE); MaxHP(99); HP(hp); }
- *             OPPONENT(SPECIES_WOBBUFFET);
+ *             OPPONENT(SPECIES_ALAKAZAM);
  *         } WHEN {
  *             TURN { MOVE(player, MOVE_EMBER); }
  *         } SCENE {
@@ -251,12 +251,12 @@
  *     {
  *         PASSES_RANDOMLY(25, 100, RNG_PARALYSIS);
  *         GIVEN {
- *             PLAYER(SPECIES_WOBBUFFET) { Status1(STATUS1_PARALYSIS); }
- *             OPPONENT(SPECIES_WOBBUFFET);
+ *             PLAYER(SPECIES_ALAKAZAM) { Status1(STATUS1_PARALYSIS); }
+ *             OPPONENT(SPECIES_ALAKAZAM);
  *         } WHEN {
  *             TURN { MOVE(player, MOVE_CELEBRATE); }
  *         } SCENE {
- *             MESSAGE("Wobbuffet is paralyzed! It can't move!");
+ *             MESSAGE("Alakazam is paralyzed! It can't move!");
  *         }
  *     }
  * All BattleRandom calls involving tag will return the same number, so
@@ -300,8 +300,8 @@
  * - Moves(moves...)
  * - Friendship(friendship)
  * - Status1(status1)
- * For example to create a Wobbuffet that is poisoned:
- *     PLAYER(SPECIES_WOBBUFFET) { Status1(STATUS1_POISON); }
+ * For example to create a Alakazam that is poisoned:
+ *     PLAYER(SPECIES_ALAKAZAM) { Status1(STATUS1_POISON); }
  * Note if Speed is specified for any Pokémon then it must be specified
  * for all Pokémon.
  * Note if Moves is specified then MOVE will not automatically add moves
@@ -412,8 +412,8 @@
  * Causes the test to fail if the message in pattern is not displayed.
  * Spaces in pattern match newlines (\n, \l, and \p) in the message.
  * Often used to check that a battler took its turn but it failed, e.g.:
- *     MESSAGE("Wobbuffet used Dream Eater!");
- *     MESSAGE("Foe Wobbuffet wasn't affected!");
+ *     MESSAGE("Alakazam used Dream Eater!");
+ *     MESSAGE("Foe Alakazam wasn't affected!");
  *
  * STATUS_ICON(battler, status1 | none: | sleep: | poison: | burn: | freeze: | paralysis:, badPoison:)
  * Causes the test to fail if the battler's status is not changed to the
@@ -430,28 +430,28 @@
  * NOT
  * Causes the test to fail if the SCENE command succeeds before the
  * following command succeeds.
- *     // Our Wobbuffet does not Celebrate before the foe's.
- *     NOT MESSAGE("Wobbuffet used Celebrate!");
- *     MESSAGE("Foe Wobbuffet used Celebrate!");
+ *     // Our Alakazam does not Celebrate before the foe's.
+ *     NOT MESSAGE("Alakazam used Celebrate!");
+ *     MESSAGE("Foe Alakazam used Celebrate!");
  * WARNING: NOT is an alias of NONE_OF, so it behaves surprisingly when
  *          applied to multiple commands wrapped in braces.
  *
  * ONE_OF
  * Causes the test to fail unless one of the SCENE commands succeeds.
  *     ONE_OF {
- *         MESSAGE("Wobbuffet used Celebrate!");
- *         MESSAGE("Wobbuffet is paralyzed! It can't move!");
+ *         MESSAGE("Alakazam used Celebrate!");
+ *         MESSAGE("Alakazam is paralyzed! It can't move!");
  *     }
  *
  * NONE_OF
  * Causes the test to fail if one of the SCENE commands succeeds before
  * the command after the NONE_OF succeeds.
- *     // Our Wobbuffet does not move before the foe's.
+ *     // Our Alakazam does not move before the foe's.
  *     NONE_OF {
- *         MESSAGE("Wobbuffet used Celebrate!");
- *         MESSAGE("Wobbuffet is paralyzed! It can't move!");
+ *         MESSAGE("Alakazam used Celebrate!");
+ *         MESSAGE("Alakazam is paralyzed! It can't move!");
  *     }
- *     MESSAGE("Foe Wobbuffet used Celebrate!");
+ *     MESSAGE("Foe Alakazam used Celebrate!");
  *
  * PLAYER_PARTY and OPPONENT_PARTY
  * Refer to the party members defined in GIVEN, e.g.:

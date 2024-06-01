@@ -14,8 +14,8 @@ SINGLE_BATTLE_TEST("Collision Course damage is increased by 33 Percent if super 
     PARAMETRIZE { move = MOVE_COLLISION_COURSE; }
 
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_KANGASKHAN);
+        PLAYER(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_MILTANK);
     } WHEN {
         TURN { MOVE(player, move); }
     } SCENE {
@@ -34,8 +34,8 @@ SINGLE_BATTLE_TEST("Collision Course does normal damage if not super effective",
     PARAMETRIZE { move = MOVE_COLLISION_COURSE; }
 
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, move); }
     } SCENE {

@@ -1554,7 +1554,7 @@ void OpenPokemon(u32 sourceLine, u32 side, u32 species)
     DATA.currentPartyIndex = *partySize;
     DATA.currentMon = &party[DATA.currentPartyIndex];
     DATA.gender = MON_MALE;
-    DATA.nature = NATURE_HARDY;
+    DATA.nature = NATURE_TIMID;
     (*partySize)++;
 
     CreateMon(DATA.currentMon, species, 100, 0, TRUE, 0, OT_ID_PRESET, 0);

@@ -14,8 +14,8 @@ SINGLE_BATTLE_TEST("Struggle will be used if slow Encore is used on moves with t
     PARAMETRIZE { move = MOVE_BLOOD_MOON; }
     GIVEN {
         ASSUME(gMovesInfo[MOVE_ENCORE].effect == EFFECT_ENCORE);
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, move); MOVE(opponent, MOVE_ENCORE); }
         TURN { FORCED_MOVE(player); }
@@ -33,8 +33,8 @@ SINGLE_BATTLE_TEST("Moves with the cantUseTwice flag strike again if fast encore
     PARAMETRIZE { move = MOVE_BLOOD_MOON; }
     GIVEN {
         ASSUME(gMovesInfo[MOVE_ENCORE].effect == EFFECT_ENCORE);
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, move); }
         TURN { MOVE(opponent, MOVE_ENCORE); FORCED_MOVE(player); }
@@ -55,8 +55,8 @@ SINGLE_BATTLE_TEST("Moves with the cantUseTwice flag alternate with Struggle if 
     PARAMETRIZE { move = MOVE_GIGATON_HAMMER; }
     PARAMETRIZE { move = MOVE_BLOOD_MOON; }
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET) { Moves(move, MOVE_NONE, MOVE_NONE, MOVE_NONE); }
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM) { Moves(move, MOVE_NONE, MOVE_NONE, MOVE_NONE); }
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, move); }
         TURN { FORCED_MOVE(player); }
@@ -75,8 +75,8 @@ SINGLE_BATTLE_TEST("Moves with the cantUseTwice flag alternate with Struggle if 
 SINGLE_BATTLE_TEST("Moves with the cantUseTwice flag can alternate between each other")
 {
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET) { Moves(MOVE_GIGATON_HAMMER, MOVE_BLOOD_MOON, MOVE_NONE, MOVE_NONE); }
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM) { Moves(MOVE_GIGATON_HAMMER, MOVE_BLOOD_MOON, MOVE_NONE, MOVE_NONE); }
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, MOVE_GIGATON_HAMMER); }
         TURN { MOVE(player, MOVE_BLOOD_MOON); }

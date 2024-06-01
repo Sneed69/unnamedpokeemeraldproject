@@ -5,7 +5,7 @@ SINGLE_BATTLE_TEST("Pastel Veil prevents Poison Sting poison")
 {
     GIVEN {
         ASSUME(MoveHasAdditionalEffect(MOVE_POISON_STING, MOVE_EFFECT_POISON) == TRUE);
-        PLAYER(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM);
         OPPONENT(SPECIES_PONYTA_GALARIAN) { Ability(ABILITY_PASTEL_VEIL); }
     } WHEN {
         TURN { MOVE(player, MOVE_POISON_STING); }
@@ -19,10 +19,10 @@ DOUBLE_BATTLE_TEST("Pastel Veil prevents Poison Sting poison on partner")
 {
     GIVEN {
         ASSUME(MoveHasAdditionalEffect(MOVE_POISON_STING, MOVE_EFFECT_POISON) == TRUE);
-        PLAYER(SPECIES_WOBBUFFET);
-        PLAYER(SPECIES_WYNAUT);
+        PLAYER(SPECIES_ALAKAZAM);
+        PLAYER(SPECIES_ABRA);
         OPPONENT(SPECIES_PONYTA_GALARIAN) { Ability(ABILITY_PASTEL_VEIL); }
-        OPPONENT(SPECIES_WYNAUT);
+        OPPONENT(SPECIES_ABRA);
     } WHEN {
         TURN { MOVE(playerLeft, MOVE_POISON_STING, target: opponentRight); }
     } SCENE {
@@ -55,9 +55,9 @@ DOUBLE_BATTLE_TEST("Pastel Veil does not cure Mold Breaker poison on partner")
     GIVEN {
         ASSUME(gMovesInfo[MOVE_TOXIC].effect == EFFECT_TOXIC);
         PLAYER(SPECIES_PINSIR) { Ability(ABILITY_MOLD_BREAKER); }
-        PLAYER(SPECIES_WYNAUT);
+        PLAYER(SPECIES_ABRA);
         OPPONENT(SPECIES_PONYTA_GALARIAN) { Ability(ABILITY_PASTEL_VEIL); }
-        OPPONENT(SPECIES_WYNAUT);
+        OPPONENT(SPECIES_ABRA);
     } WHEN {
         TURN { MOVE(playerLeft, MOVE_TOXIC, target: opponentRight); }
     } SCENE {
@@ -71,12 +71,12 @@ SINGLE_BATTLE_TEST("Pastel Veil prevents Toxic bad poison")
 {
     GIVEN {
         ASSUME(gMovesInfo[MOVE_TOXIC].effect == EFFECT_TOXIC);
-        PLAYER(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM);
         OPPONENT(SPECIES_PONYTA_GALARIAN) { Ability(ABILITY_PASTEL_VEIL); }
     } WHEN {
         TURN { MOVE(player, MOVE_TOXIC); }
     } SCENE {
-        MESSAGE("Wobbuffet used Toxic!");
+        MESSAGE("Alakazam used Toxic!");
         ABILITY_POPUP(opponent, ABILITY_PASTEL_VEIL);
         MESSAGE("Foe Ponyta is protected by a pastel veil!");
         NOT STATUS_ICON(opponent, badPoison: TRUE);
@@ -87,16 +87,16 @@ DOUBLE_BATTLE_TEST("Pastel Veil prevents Toxic bad poison on partner")
 {
     GIVEN {
         ASSUME(gMovesInfo[MOVE_TOXIC].effect == EFFECT_TOXIC);
-        PLAYER(SPECIES_WOBBUFFET);
-        PLAYER(SPECIES_WYNAUT);
+        PLAYER(SPECIES_ALAKAZAM);
+        PLAYER(SPECIES_ABRA);
         OPPONENT(SPECIES_PONYTA_GALARIAN) { Ability(ABILITY_PASTEL_VEIL); }
-        OPPONENT(SPECIES_WYNAUT);
+        OPPONENT(SPECIES_ABRA);
     } WHEN {
         TURN { MOVE(playerLeft, MOVE_TOXIC, target: opponentRight); }
     } SCENE {
-        MESSAGE("Wobbuffet used Toxic!");
+        MESSAGE("Alakazam used Toxic!");
         ABILITY_POPUP(opponentLeft, ABILITY_PASTEL_VEIL);
-        MESSAGE("Foe Wynaut is protected by a pastel veil!");
+        MESSAGE("Foe Abra is protected by a pastel veil!");
         NOT STATUS_ICON(opponentRight, badPoison: TRUE);
     }
 }
@@ -105,8 +105,8 @@ SINGLE_BATTLE_TEST("Pastel Veil prevents Toxic Spikes poison")
 {
     GIVEN {
         ASSUME(gMovesInfo[MOVE_TOXIC_SPIKES].effect == EFFECT_TOXIC_SPIKES);
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_ALAKAZAM);
         OPPONENT(SPECIES_PONYTA_GALARIAN) { Ability(ABILITY_PASTEL_VEIL); }
     } WHEN {
         TURN { MOVE(player, MOVE_TOXIC_SPIKES); }
@@ -121,16 +121,16 @@ DOUBLE_BATTLE_TEST("Pastel Veil prevents Toxic Spikes poison on partner")
 {
     GIVEN {
         ASSUME(gMovesInfo[MOVE_TOXIC_SPIKES].effect == EFFECT_TOXIC_SPIKES);
-        PLAYER(SPECIES_WOBBUFFET);
-        PLAYER(SPECIES_WYNAUT);
+        PLAYER(SPECIES_ALAKAZAM);
+        PLAYER(SPECIES_ABRA);
         OPPONENT(SPECIES_PONYTA_GALARIAN) { Ability(ABILITY_PASTEL_VEIL); }
-        OPPONENT(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WYNAUT);
+        OPPONENT(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_ABRA);
     } WHEN {
         TURN { MOVE(playerLeft, MOVE_TOXIC_SPIKES); }
         TURN { SWITCH(opponentRight, 2); }
     } SCENE {
-        MESSAGE("2 sent out Wynaut!");
+        MESSAGE("2 sent out Abra!");
         NOT STATUS_ICON(opponentRight, poison: TRUE);
     }
 }
@@ -138,16 +138,16 @@ DOUBLE_BATTLE_TEST("Pastel Veil prevents Toxic Spikes poison on partner")
 DOUBLE_BATTLE_TEST("Pastel Veil cures partner's poison on initial switch in")
 {
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET);
-        PLAYER(SPECIES_WYNAUT);
-        OPPONENT(SPECIES_WOBBUFFET) { Status1(STATUS1_POISON); }
+        PLAYER(SPECIES_ALAKAZAM);
+        PLAYER(SPECIES_ABRA);
+        OPPONENT(SPECIES_ALAKAZAM) { Status1(STATUS1_POISON); }
         OPPONENT(SPECIES_PONYTA_GALARIAN) { Ability(ABILITY_PASTEL_VEIL); }
     } WHEN {
         TURN {}
     } SCENE {
-        MESSAGE("2 sent out Wobbuffet and Ponyta!");
+        MESSAGE("2 sent out Alakazam and Ponyta!");
         ABILITY_POPUP(opponentRight, ABILITY_PASTEL_VEIL);
-        MESSAGE("Foe Wobbuffet was cured of its poisoning!");
+        MESSAGE("Foe Alakazam was cured of its poisoning!");
         STATUS_ICON(opponentLeft, none: TRUE);
     }
 }
@@ -155,17 +155,17 @@ DOUBLE_BATTLE_TEST("Pastel Veil cures partner's poison on initial switch in")
 DOUBLE_BATTLE_TEST("Pastel Veil cures partner's poison on switch in")
 {
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET);
-        PLAYER(SPECIES_WYNAUT);
-        OPPONENT(SPECIES_WOBBUFFET) { Status1(STATUS1_POISON); }
-        OPPONENT(SPECIES_WYNAUT);
+        PLAYER(SPECIES_ALAKAZAM);
+        PLAYER(SPECIES_ABRA);
+        OPPONENT(SPECIES_ALAKAZAM) { Status1(STATUS1_POISON); }
+        OPPONENT(SPECIES_ABRA);
         OPPONENT(SPECIES_PONYTA_GALARIAN) { Ability(ABILITY_PASTEL_VEIL); }
     } WHEN {
         TURN { SWITCH(opponentRight, 2); }
     } SCENE {
         MESSAGE("2 sent out Ponyta!");
         ABILITY_POPUP(opponentRight, ABILITY_PASTEL_VEIL);
-        MESSAGE("Foe Wobbuffet was cured of its poisoning!");
+        MESSAGE("Foe Alakazam was cured of its poisoning!");
         STATUS_ICON(opponentLeft, none: TRUE);
     }
 }

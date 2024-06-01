@@ -14,8 +14,8 @@ SINGLE_BATTLE_TEST("Rain multiplies the power of Fire-type moves by 0.5x", s16 d
     PARAMETRIZE { setupMove = MOVE_CELEBRATE; }
     PARAMETRIZE { setupMove = MOVE_RAIN_DANCE; }
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, setupMove); }
         TURN { MOVE(player, MOVE_EMBER); }
@@ -33,8 +33,8 @@ SINGLE_BATTLE_TEST("Rain multiplies the power of Water-type moves by 1.5x", s16 
     PARAMETRIZE { setupMove = MOVE_CELEBRATE; }
     PARAMETRIZE { setupMove = MOVE_RAIN_DANCE; }
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, setupMove); }
         TURN { MOVE(player, MOVE_WATER_GUN); }
@@ -48,19 +48,18 @@ SINGLE_BATTLE_TEST("Rain multiplies the power of Water-type moves by 1.5x", s16 
 
 SINGLE_BATTLE_TEST("Drizzle fails if Desolate Land is active")
 {
-    u32 item;
+    u32 ability;
 
-    PARAMETRIZE { item = ITEM_NONE; }
-    PARAMETRIZE { item = ITEM_RED_ORB; }
+    PARAMETRIZE { ability = ABILITY_NONE; }
+    PARAMETRIZE { ability = ABILITY_DESOLATE_LAND; }
 
     GIVEN {
-        PLAYER(SPECIES_GROUDON) { Item(item); }
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_GROUDON) { Ability(ability); }
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(opponent, MOVE_RAIN_DANCE); }
     } SCENE {
-        if (item == ITEM_RED_ORB) {
-            ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_PRIMAL_REVERSION, player);
+        if (ability == ABILITY_DESOLATE_LAND) {
             NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_RAIN_DANCE, opponent);
         } else {
             ANIMATION(ANIM_TYPE_MOVE, MOVE_RAIN_DANCE, opponent);

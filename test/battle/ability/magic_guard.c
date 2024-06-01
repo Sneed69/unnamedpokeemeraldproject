@@ -6,7 +6,7 @@ SINGLE_BATTLE_TEST("Magic Guard prevents recoil damage to the user")
     GIVEN {
         ASSUME(gMovesInfo[MOVE_DOUBLE_EDGE].recoil == 33);
         PLAYER(SPECIES_CLEFABLE) { Ability(ABILITY_MAGIC_GUARD); }
-        OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, MOVE_DOUBLE_EDGE); }
     } SCENE {

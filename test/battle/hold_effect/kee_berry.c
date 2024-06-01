@@ -16,8 +16,8 @@ SINGLE_BATTLE_TEST("Kee Berry raises the holder's Defense by one stage when hit 
 
     GIVEN {
         ASSUME(gMovesInfo[MOVE_SWIFT].category == DAMAGE_CATEGORY_SPECIAL);
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET) { Item(ITEM_KEE_BERRY); }
+        PLAYER(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_ALAKAZAM) { Item(ITEM_KEE_BERRY); }
     } WHEN {
         TURN { MOVE(player, move); }
     } SCENE {
@@ -25,11 +25,11 @@ SINGLE_BATTLE_TEST("Kee Berry raises the holder's Defense by one stage when hit 
         HP_BAR(opponent);
         if (move == MOVE_TACKLE) {
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, opponent);
-            MESSAGE("Using Kee Berry, the Defense of Foe Wobbuffet rose!");
+            MESSAGE("Using Kee Berry, the Defense of Foe Alakazam rose!");
         } else {
             NONE_OF {
                 ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, opponent);
-                MESSAGE("Using Kee Berry, the Defense of Foe Wobbuffet rose!");
+                MESSAGE("Using Kee Berry, the Defense of Foe Alakazam rose!");
             }
         }
     } THEN {
@@ -41,7 +41,7 @@ SINGLE_BATTLE_TEST("Kee Berry raises the holder's Defense by one stage when hit 
 SINGLE_BATTLE_TEST("Kee Berry raises the holder's Defense by two stages with Ripen when hit by a physical move")
 {
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM);
         OPPONENT(SPECIES_APPLIN) { Item(ITEM_KEE_BERRY); Ability(ABILITY_RIPEN); }
     } WHEN {
         TURN { MOVE(player, MOVE_TACKLE); }
@@ -58,8 +58,8 @@ SINGLE_BATTLE_TEST("Kee Berry raises the holder's Defense by two stages with Rip
 SINGLE_BATTLE_TEST("Kee Berry doesn't trigger if the item hold user used a physical move")
 {
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET) { Item(ITEM_KEE_BERRY); }
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM) { Item(ITEM_KEE_BERRY); }
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, MOVE_TACKLE); }
     } SCENE {
@@ -67,7 +67,7 @@ SINGLE_BATTLE_TEST("Kee Berry doesn't trigger if the item hold user used a physi
         HP_BAR(opponent);
         NONE_OF {
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, player);
-            MESSAGE("Using Kee Berry, the Defense of Wobbuffet rose!");
+            MESSAGE("Using Kee Berry, the Defense of Alakazam rose!");
         }
     } THEN {
         EXPECT_EQ(player->statStages[STAT_DEF], DEFAULT_STAT_STAGE);

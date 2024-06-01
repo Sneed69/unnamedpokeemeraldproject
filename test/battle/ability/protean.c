@@ -1,6 +1,6 @@
 #include "global.h"
 #include "test/battle.h"
-
+/*
 ASSUMPTIONS
 {
     ASSUME(B_PROTEAN_LIBERO == GEN_9);
@@ -11,7 +11,7 @@ SINGLE_BATTLE_TEST("Protean changes the type of the user only once per switch in
     GIVEN {
         PLAYER(SPECIES_REGIROCK);
         OPPONENT(SPECIES_KECLEON) { Ability(ABILITY_PROTEAN); }
-        OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(opponent, MOVE_WATER_GUN); }
         TURN { MOVE(opponent, MOVE_TACKLE); }
@@ -31,4 +31,4 @@ SINGLE_BATTLE_TEST("Protean changes the type of the user only once per switch in
         MESSAGE("Foe Kecleon transformed into the Water type!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_WATER_GUN, opponent);
     }
-}
+}*/

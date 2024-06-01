@@ -29,8 +29,8 @@ SINGLE_BATTLE_TEST("Semi-invulnerable moves make the user semi-invulnerable turn
     PARAMETRIZE { move = MOVE_SHADOW_FORCE; }
 
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, move); MOVE(opponent, MOVE_AERIAL_ACE); }
         TURN { SKIP_TURN(player); }
@@ -41,28 +41,28 @@ SINGLE_BATTLE_TEST("Semi-invulnerable moves make the user semi-invulnerable turn
             switch (move)
             {
                 case MOVE_FLY:
-                    NOT MESSAGE("Wobbuffet flew up high!");
-                    MESSAGE("Wobbuffet used Fly!");
+                    NOT MESSAGE("Alakazam flew up high!");
+                    MESSAGE("Alakazam used Fly!");
                     break;
                 case MOVE_DIG:
-                    NOT MESSAGE("Wobbuffet dug a hole!");
-                    MESSAGE("Wobbuffet used Dig!");
+                    NOT MESSAGE("Alakazam dug a hole!");
+                    MESSAGE("Alakazam used Dig!");
                     break;
                 case MOVE_BOUNCE:
-                    NOT MESSAGE("Wobbuffet sprang up!");
-                    MESSAGE("Wobbuffet used Bounce!");
+                    NOT MESSAGE("Alakazam sprang up!");
+                    MESSAGE("Alakazam used Bounce!");
                     break;
                 case MOVE_DIVE:
-                    NOT MESSAGE("Wobbuffet hid underwater!");
-                    MESSAGE("Wobbuffet used Dive!");
+                    NOT MESSAGE("Alakazam hid underwater!");
+                    MESSAGE("Alakazam used Dive!");
                     break;
                 case MOVE_PHANTOM_FORCE:
-                    NOT MESSAGE("Wobbuffet vanished instantly!");
-                    MESSAGE("Wobbuffet used Phantom Force!");
+                    NOT MESSAGE("Alakazam vanished instantly!");
+                    MESSAGE("Alakazam used Phantom Force!");
                     break;
                 case MOVE_SHADOW_FORCE:
-                    NOT MESSAGE("Wobbuffet vanished instantly!");
-                    MESSAGE("Wobbuffet used Shadow Force!");
+                    NOT MESSAGE("Alakazam vanished instantly!");
+                    MESSAGE("Alakazam used Shadow Force!");
                     break;
             }
         } else {
@@ -73,20 +73,20 @@ SINGLE_BATTLE_TEST("Semi-invulnerable moves make the user semi-invulnerable turn
             switch (move)
             {
                 case MOVE_FLY:
-                    MESSAGE("Wobbuffet flew up high!");
+                    MESSAGE("Alakazam flew up high!");
                     break;
                 case MOVE_DIG:
-                    MESSAGE("Wobbuffet dug a hole!");
+                    MESSAGE("Alakazam dug a hole!");
                     break;
                 case MOVE_BOUNCE:
-                    MESSAGE("Wobbuffet sprang up!");
+                    MESSAGE("Alakazam sprang up!");
                     break;
                 case MOVE_DIVE:
-                    MESSAGE("Wobbuffet hid underwater!");
+                    MESSAGE("Alakazam hid underwater!");
                     break;
                 case MOVE_PHANTOM_FORCE:
                 case MOVE_SHADOW_FORCE:
-                    MESSAGE("Wobbuffet vanished instantly!");
+                    MESSAGE("Alakazam vanished instantly!");
                     break;
             }
         }
@@ -94,28 +94,28 @@ SINGLE_BATTLE_TEST("Semi-invulnerable moves make the user semi-invulnerable turn
             ANIMATION(ANIM_TYPE_MOVE, move, player);
 
         // Aerial Ace cannot miss unless the target is semi-invulnerable
-        MESSAGE("Foe Wobbuffet used Aerial Ace!");
-        MESSAGE("Foe Wobbuffet's attack missed!");
+        MESSAGE("Foe Alakazam used Aerial Ace!");
+        MESSAGE("Foe Alakazam's attack missed!");
         // Attack turn
         switch (move)
         {
             case MOVE_FLY:
-                MESSAGE("Wobbuffet used Fly!");
+                MESSAGE("Alakazam used Fly!");
                 break;
             case MOVE_DIG:
-                MESSAGE("Wobbuffet used Dig!");
+                MESSAGE("Alakazam used Dig!");
                 break;
             case MOVE_BOUNCE:
-                MESSAGE("Wobbuffet used Bounce!");
+                MESSAGE("Alakazam used Bounce!");
                 break;
             case MOVE_DIVE:
-                MESSAGE("Wobbuffet used Dive!");
+                MESSAGE("Alakazam used Dive!");
                 break;
             case MOVE_PHANTOM_FORCE:
-                MESSAGE("Wobbuffet used Phantom Force!");
+                MESSAGE("Alakazam used Phantom Force!");
                 break;
             case MOVE_SHADOW_FORCE:
-                MESSAGE("Wobbuffet used Shadow Force!");
+                MESSAGE("Alakazam used Shadow Force!");
                 break;
         }
         ANIMATION(ANIM_TYPE_MOVE, move, player);
@@ -135,8 +135,8 @@ SINGLE_BATTLE_TEST("Semi-invulnerable moves don't need to charge with Power Herb
     PARAMETRIZE { move = MOVE_SHADOW_FORCE; }
 
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET) { Item(ITEM_POWER_HERB); }
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM) { Item(ITEM_POWER_HERB); }
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, move); }
     } SCENE {
@@ -146,28 +146,28 @@ SINGLE_BATTLE_TEST("Semi-invulnerable moves don't need to charge with Power Herb
             switch (move)
             {
                 case MOVE_FLY:
-                    NOT MESSAGE("Wobbuffet flew up high!");
-                    MESSAGE("Wobbuffet used Fly!");
+                    NOT MESSAGE("Alakazam flew up high!");
+                    MESSAGE("Alakazam used Fly!");
                     break;
                 case MOVE_DIG:
-                    NOT MESSAGE("Wobbuffet dug a hole!");
-                    MESSAGE("Wobbuffet used Dig!");
+                    NOT MESSAGE("Alakazam dug a hole!");
+                    MESSAGE("Alakazam used Dig!");
                     break;
                 case MOVE_BOUNCE:
-                    NOT MESSAGE("Wobbuffet sprang up!");
-                    MESSAGE("Wobbuffet used Bounce!");
+                    NOT MESSAGE("Alakazam sprang up!");
+                    MESSAGE("Alakazam used Bounce!");
                     break;
                 case MOVE_DIVE:
-                    NOT MESSAGE("Wobbuffet hid underwater!");
-                    MESSAGE("Wobbuffet used Dive!");
+                    NOT MESSAGE("Alakazam hid underwater!");
+                    MESSAGE("Alakazam used Dive!");
                     break;
                 case MOVE_PHANTOM_FORCE:
-                    NOT MESSAGE("Wobbuffet vanished instantly!");
-                    MESSAGE("Wobbuffet used Phantom Force!");
+                    NOT MESSAGE("Alakazam vanished instantly!");
+                    MESSAGE("Alakazam used Phantom Force!");
                     break;
                 case MOVE_SHADOW_FORCE:
-                    NOT MESSAGE("Wobbuffet vanished instantly!");
-                    MESSAGE("Wobbuffet used Shadow Force!");
+                    NOT MESSAGE("Alakazam vanished instantly!");
+                    MESSAGE("Alakazam used Shadow Force!");
                     break;
             }
         } else {
@@ -178,47 +178,47 @@ SINGLE_BATTLE_TEST("Semi-invulnerable moves don't need to charge with Power Herb
             switch (move)
             {
                 case MOVE_FLY:
-                    MESSAGE("Wobbuffet flew up high!");
+                    MESSAGE("Alakazam flew up high!");
                     break;
                 case MOVE_DIG:
-                    MESSAGE("Wobbuffet dug a hole!");
+                    MESSAGE("Alakazam dug a hole!");
                     break;
                 case MOVE_BOUNCE:
-                    MESSAGE("Wobbuffet sprang up!");
+                    MESSAGE("Alakazam sprang up!");
                     break;
                 case MOVE_DIVE:
-                    MESSAGE("Wobbuffet hid underwater!");
+                    MESSAGE("Alakazam hid underwater!");
                     break;
                 case MOVE_PHANTOM_FORCE:
                 case MOVE_SHADOW_FORCE:
-                    MESSAGE("Wobbuffet vanished instantly!");
+                    MESSAGE("Alakazam vanished instantly!");
                     break;
             }
         }
         else
             ANIMATION(ANIM_TYPE_MOVE, move, player);
-        MESSAGE("Wobbuffet became fully charged due to its Power Herb!");
+        MESSAGE("Alakazam became fully charged due to its Power Herb!");
         if (B_UPDATED_MOVE_DATA < GEN_5)
         {
             switch (move)
             {
                 case MOVE_FLY:
-                    MESSAGE("Wobbuffet used Fly!");
+                    MESSAGE("Alakazam used Fly!");
                     break;
                 case MOVE_DIG:
-                    MESSAGE("Wobbuffet used Dig!");
+                    MESSAGE("Alakazam used Dig!");
                     break;
                 case MOVE_BOUNCE:
-                    MESSAGE("Wobbuffet used Bounce!");
+                    MESSAGE("Alakazam used Bounce!");
                     break;
                 case MOVE_DIVE:
-                    MESSAGE("Wobbuffet used Dive!");
+                    MESSAGE("Alakazam used Dive!");
                     break;
                 case MOVE_PHANTOM_FORCE:
-                    MESSAGE("Wobbuffet used Phantom Force!");
+                    MESSAGE("Alakazam used Phantom Force!");
                     break;
                 case MOVE_SHADOW_FORCE:
-                    MESSAGE("Wobbuffet used Shadow Force!");
+                    MESSAGE("Alakazam used Shadow Force!");
                     break;
             }
         }
@@ -238,8 +238,8 @@ SINGLE_BATTLE_TEST("Semi-invulnerable moves apply a status that won't block cert
     PARAMETRIZE { move = MOVE_DIVE; opMove = MOVE_SURF; }
 
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, move); MOVE(opponent, opMove); }
     } SCENE {

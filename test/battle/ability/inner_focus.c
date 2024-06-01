@@ -30,7 +30,7 @@ SINGLE_BATTLE_TEST("Inner Focus prevents intimidate")
 SINGLE_BATTLE_TEST("Inner Focus prevents flinching")
 {
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM);
         OPPONENT(SPECIES_ZUBAT) { Ability(ABILITY_INNER_FOCUS); };
     } WHEN {
         TURN { MOVE(player, MOVE_FAKE_OUT);

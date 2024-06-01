@@ -10,7 +10,7 @@ SINGLE_BATTLE_TEST("Scrappy prevents intimidate")
         ASSUME(B_UPDATED_INTIMIDATE >= GEN_8);
         PLAYER(SPECIES_EKANS) { Ability(ABILITY_SHED_SKIN); };
         PLAYER(SPECIES_EKANS) { Ability(ABILITY_INTIMIDATE); };
-        OPPONENT(SPECIES_KANGASKHAN) { Ability(ABILITY_SCRAPPY); };
+        OPPONENT(SPECIES_MILTANK) { Ability(ABILITY_SCRAPPY); };
     } WHEN {
         TURN { MOVE(opponent, MOVE_TACKLE); }
         TURN { SWITCH(player, 1); MOVE(opponent, MOVE_TACKLE); }
@@ -20,7 +20,7 @@ SINGLE_BATTLE_TEST("Scrappy prevents intimidate")
         ABILITY_POPUP(player, ABILITY_INTIMIDATE);
         NONE_OF { ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player); }
         ABILITY_POPUP(opponent, ABILITY_SCRAPPY);
-        MESSAGE("Foe Kangaskhan's Scrappy prevents stat loss!");
+        MESSAGE("Foe Miltank's Scrappy prevents stat loss!");
         HP_BAR(player, captureDamage: &turnTwoHit);
     } THEN {
         EXPECT_EQ(turnOneHit, turnTwoHit);
@@ -34,7 +34,7 @@ SINGLE_BATTLE_TEST("Scrappy allows to hit Ghost-type Pokémon with Normal- and F
     PARAMETRIZE { move = MOVE_KARATE_CHOP; }
 
     GIVEN {
-        PLAYER(SPECIES_KANGASKHAN) { Ability(ABILITY_SCRAPPY); };
+        PLAYER(SPECIES_MILTANK) { Ability(ABILITY_SCRAPPY); };
         OPPONENT(SPECIES_GASTLY);
     } WHEN {
         TURN { MOVE(player, move); }
@@ -51,7 +51,7 @@ SINGLE_BATTLE_TEST("Scrappy doesn't bypass a Ghost-type's Wonder Guard")
     PARAMETRIZE { move = MOVE_KARATE_CHOP; }
 
     GIVEN {
-        PLAYER(SPECIES_KANGASKHAN) { Ability(ABILITY_SCRAPPY); };
+        PLAYER(SPECIES_MILTANK) { Ability(ABILITY_SCRAPPY); };
         OPPONENT(SPECIES_SHEDINJA) { Ability(ABILITY_WONDER_GUARD); };
     } WHEN {
         TURN { MOVE(player, move); }

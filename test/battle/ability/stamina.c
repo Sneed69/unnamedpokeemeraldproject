@@ -28,14 +28,14 @@ SINGLE_BATTLE_TEST("Stamina raises Defense by 1 when hit by a move")
         ASSUME(gMovesInfo[MOVE_GUST].power != 0);
         ASSUME(gMovesInfo[MOVE_GUST].category == DAMAGE_CATEGORY_SPECIAL);
         ASSUME(gMovesInfo[MOVE_TACKLE].category == DAMAGE_CATEGORY_PHYSICAL);
-        PLAYER(SPECIES_WOBBUFFET) { Ability(ABILITY_STAMINA); }
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM) { Ability(ABILITY_STAMINA); }
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(opponent, move); }
         TURN { MOVE(opponent, move); }
     } SCENE {
-        STAMINA_HIT(opponent, player, move, "Wobbuffet's Defense rose!", turnOneHit);
-        STAMINA_HIT(opponent, player, move, "Wobbuffet's Defense rose!", turnTwoHit);
+        STAMINA_HIT(opponent, player, move, "Alakazam's Defense rose!", turnOneHit);
+        STAMINA_HIT(opponent, player, move, "Alakazam's Defense rose!", turnTwoHit);
     }
     THEN {
         if (move == MOVE_TACKLE) {
@@ -57,10 +57,10 @@ DOUBLE_BATTLE_TEST("Stamina activates correctly for every battler with the abili
 
     GIVEN {
         ASSUME(gMovesInfo[MOVE_EARTHQUAKE].target == MOVE_TARGET_FOES_AND_ALLY);
-        PLAYER(SPECIES_WOBBUFFET) { Ability(abilityLeft); Speed(10); }
-        PLAYER(SPECIES_WOBBUFFET) { Ability(abilityRight); Speed(5); }
-        OPPONENT(SPECIES_WOBBUFFET) {Speed(20); }
-        OPPONENT(SPECIES_WOBBUFFET) {Speed(15); }
+        PLAYER(SPECIES_ALAKAZAM) { Ability(abilityLeft); Speed(10); }
+        PLAYER(SPECIES_ALAKAZAM) { Ability(abilityRight); Speed(5); }
+        OPPONENT(SPECIES_ALAKAZAM) {Speed(20); }
+        OPPONENT(SPECIES_ALAKAZAM) {Speed(15); }
     } WHEN {
         TURN { MOVE(opponentLeft, MOVE_EARTHQUAKE);}
     } SCENE {
@@ -68,13 +68,13 @@ DOUBLE_BATTLE_TEST("Stamina activates correctly for every battler with the abili
 
         HP_BAR(playerLeft);
         if (abilityLeft == ABILITY_STAMINA) {
-            STAMINA_STAT_RAISE(playerLeft, "Wobbuffet's Defense rose!");
+            STAMINA_STAT_RAISE(playerLeft, "Alakazam's Defense rose!");
         }
         NOT HP_BAR(opponentLeft); // We need to check the attacker itself does NOT get damaged. There was an issue when the targets would get overwritten by the Stamina's stat raise.
 
         HP_BAR(playerRight);
         if (abilityRight == ABILITY_STAMINA) {
-            STAMINA_STAT_RAISE(playerRight, "Wobbuffet's Defense rose!");
+            STAMINA_STAT_RAISE(playerRight, "Alakazam's Defense rose!");
         }
         NOT HP_BAR(opponentLeft); // We need to check the attacker itself does NOT get damaged. There was an issue when the targets would get overwritten by the Stamina's stat raise.
 
@@ -91,7 +91,7 @@ DOUBLE_BATTLE_TEST("Stamina activates correctly for every battler with the abili
 SINGLE_BATTLE_TEST("Stamina activates for every hit of a multi hit move")
 {
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM);
         OPPONENT(SPECIES_MUDBRAY) { Ability(ABILITY_STAMINA); }
     } WHEN {
         TURN { MOVE(player, MOVE_DOUBLE_KICK); }
@@ -109,12 +109,12 @@ SINGLE_BATTLE_TEST("Stamina is not activated by users own Substitute")
 {
     GIVEN {
         PLAYER(SPECIES_MUDBRAY) { Ability(ABILITY_STAMINA); }
-        OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, MOVE_SUBSTITUTE); }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_SUBSTITUTE, player);
-        MESSAGE("Mudbray made a SUBSTITUTE!");
+        MESSAGE("Mudbray made a Substitute!");
         NONE_OF {
             ABILITY_POPUP(player, ABILITY_STAMINA);
             MESSAGE("Mudbray's Defense rose!");

@@ -8,11 +8,11 @@ SINGLE_BATTLE_TEST("Sandstorm deals 1/16 damage per turn")
 
     GIVEN {
         PLAYER(SPECIES_SANDSLASH);
-        OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN {MOVE(player, MOVE_SANDSTORM);}
     } SCENE {
-        MESSAGE("Foe Wobbuffet is buffeted by the sandstorm!");
+        MESSAGE("Foe Alakazam is buffeted by the sandstorm!");
         HP_BAR(opponent, captureDamage: &sandstormDamage);
    } THEN { EXPECT_EQ(sandstormDamage, opponent->maxHP / 16); }
 }
@@ -24,8 +24,8 @@ SINGLE_BATTLE_TEST("Sandstorm multiplies the special defense of Rock-types by 1.
     PARAMETRIZE{ move = MOVE_CELEBRATE; }
     GIVEN {
         ASSUME(gMovesInfo[MOVE_SWIFT].category == DAMAGE_CATEGORY_SPECIAL);
-        PLAYER(SPECIES_WOBBUFFET) ;
-        OPPONENT(SPECIES_NOSEPASS);
+        PLAYER(SPECIES_ALAKAZAM) ;
+        OPPONENT(SPECIES_BOLDORE);
     } WHEN {
         TURN { MOVE(opponent, move); }
         TURN { MOVE(player, MOVE_SWIFT); }
@@ -40,13 +40,13 @@ SINGLE_BATTLE_TEST("Sandstorm damage does not hurt Ground, Rock, and Steel-type 
 {
     u32 mon;
     PARAMETRIZE { mon = SPECIES_SANDSLASH; }
-    PARAMETRIZE { mon = SPECIES_NOSEPASS; }
+    PARAMETRIZE { mon = SPECIES_BOLDORE; }
     PARAMETRIZE { mon = SPECIES_REGISTEEL; }
     GIVEN {
         ASSUME(gSpeciesInfo[SPECIES_SANDSLASH].types[0] == TYPE_GROUND);
-        ASSUME(gSpeciesInfo[SPECIES_NOSEPASS].types[0] == TYPE_ROCK);
+        ASSUME(gSpeciesInfo[SPECIES_BOLDORE].types[0] == TYPE_ROCK);
         ASSUME(gSpeciesInfo[SPECIES_REGISTEEL].types[0] == TYPE_STEEL);
-        PLAYER(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM);
         OPPONENT(mon);
     } WHEN {
         TURN { MOVE(player, MOVE_SANDSTORM); }
@@ -56,8 +56,8 @@ SINGLE_BATTLE_TEST("Sandstorm damage does not hurt Ground, Rock, and Steel-type 
         case SPECIES_SANDSLASH:
             NOT MESSAGE("Foe Sandslash is buffeted by the sandstorm!");
             break;
-        case SPECIES_NOSEPASS:
-            NOT MESSAGE("Foe Nosepass is buffeted by the sandstorm!");
+        case SPECIES_BOLDORE:
+            NOT MESSAGE("Foe Boldore is buffeted by the sandstorm!");
             break;
         case SPECIES_REGISTEEL:
             NOT MESSAGE("Foe Registeel is buffeted by the sandstorm!");

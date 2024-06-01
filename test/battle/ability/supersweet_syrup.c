@@ -4,9 +4,9 @@
 SINGLE_BATTLE_TEST("Supersweet Syrup lowers evasion once per battle by one stage")
 {
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM);
         OPPONENT(SPECIES_DIPPLIN) { Ability(ABILITY_SUPERSWEET_SYRUP); }
-        OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { SWITCH(opponent, 1); }
         TURN { SWITCH(opponent, 0); }
@@ -15,7 +15,7 @@ SINGLE_BATTLE_TEST("Supersweet Syrup lowers evasion once per battle by one stage
         MESSAGE("A supersweet aroma is wafting from the syrup covering Foe Dipplin!");
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
         MESSAGE("2 withdrew Dipplin!");
-        MESSAGE("2 withdrew Wobbuffet!");
+        MESSAGE("2 withdrew Alakazam!");
         NONE_OF {
             ABILITY_POPUP(opponent, ABILITY_SUPERSWEET_SYRUP);
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
@@ -29,10 +29,10 @@ SINGLE_BATTLE_TEST("Supersweet Syrup lowers evasion once per battle by one stage
 DOUBLE_BATTLE_TEST("Supersweet Syrup lowers evasion of both opposing mon's in battle")
 {
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET);
-        PLAYER(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM);
+        PLAYER(SPECIES_ALAKAZAM);
         OPPONENT(SPECIES_DIPPLIN) { Ability(ABILITY_SUPERSWEET_SYRUP); }
-        OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { }
     } SCENE {

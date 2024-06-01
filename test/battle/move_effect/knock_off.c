@@ -9,18 +9,18 @@ ASSUMPTIONS
 SINGLE_BATTLE_TEST("Knock Off knocks a healing berry before it has the chance to activate")
 {
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET) { Item(ITEM_SITRUS_BERRY); MaxHP(500); HP(255); }
+        PLAYER(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_ALAKAZAM) { Item(ITEM_SITRUS_BERRY); MaxHP(500); HP(255); }
     } WHEN {
         TURN { MOVE(player, MOVE_KNOCK_OFF); }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_KNOCK_OFF, player);
         NONE_OF {
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, opponent);
-            MESSAGE("Foe Wobbuffet's Sitrus Berry restored health!");
+            MESSAGE("Foe Alakazam's Sitrus Berry restored health!");
         }
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_ITEM_KNOCKOFF);
-        MESSAGE("Wobbuffet knocked off Foe Wobbuffet's Sitrus Berry!");
+        MESSAGE("Alakazam knocked off Foe Alakazam's Sitrus Berry!");
     } THEN {
         EXPECT(opponent->item == ITEM_NONE);
     }
@@ -34,8 +34,8 @@ SINGLE_BATTLE_TEST("Knock Off activates after Rocky Helmet and Weakness Policy")
     PARAMETRIZE { item = ITEM_ROCKY_HELMET; }
 
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET) { Item(item); }
+        PLAYER(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_ALAKAZAM) { Item(item); }
     } WHEN {
         TURN { MOVE(player, MOVE_KNOCK_OFF); }
     } SCENE {
@@ -43,13 +43,13 @@ SINGLE_BATTLE_TEST("Knock Off activates after Rocky Helmet and Weakness Policy")
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, opponent);
         if (item == ITEM_WEAKNESS_POLICY) {
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE);
-            MESSAGE("Using Weakness Policy, the Attack of Foe Wobbuffet sharply rose!");
-            MESSAGE("Using Weakness Policy, the Sp. Atk of Foe Wobbuffet sharply rose!");
+            MESSAGE("Using Weakness Policy, the Attack of Foe Alakazam sharply rose!");
+            MESSAGE("Using Weakness Policy, the Sp. Atk of Foe Alakazam sharply rose!");
         } else if (item == ITEM_ROCKY_HELMET) {
             HP_BAR(player);
-            MESSAGE("Wobbuffet was hurt by Foe Wobbuffet's Rocky Helmet!");
+            MESSAGE("Alakazam was hurt by Foe Alakazam's Rocky Helmet!");
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_ITEM_KNOCKOFF);
-            MESSAGE("Wobbuffet knocked off Foe Wobbuffet's Rocky Helmet!");
+            MESSAGE("Alakazam knocked off Foe Alakazam's Rocky Helmet!");
         }
     } THEN {
         EXPECT(opponent->item == ITEM_NONE);
@@ -64,8 +64,8 @@ SINGLE_BATTLE_TEST("Knock Off deals additional damage to opponents holding an it
     PARAMETRIZE { item = ITEM_LEFTOVERS; }
 
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET) { Item(item); };
+        PLAYER(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_ALAKAZAM) { Item(item); };
     } WHEN {
         TURN { MOVE(player, MOVE_KNOCK_OFF); }
     } SCENE {
@@ -87,8 +87,8 @@ SINGLE_BATTLE_TEST("Knock Off deals additional damage to opponents holding an it
 SINGLE_BATTLE_TEST("Knock Off does not remove items through Substitute")
 {
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET) { Item(ITEM_LEFTOVERS); };
+        PLAYER(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_ALAKAZAM) { Item(ITEM_LEFTOVERS); };
     } WHEN {
         TURN { MOVE(opponent, MOVE_SUBSTITUTE); 
                MOVE(player, MOVE_KNOCK_OFF); }
@@ -103,17 +103,17 @@ SINGLE_BATTLE_TEST("Knock Off does not remove items through Substitute")
 SINGLE_BATTLE_TEST("Recycle cannot recover an item removed by Knock Off")
 {
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET) { Item(ITEM_LEFTOVERS); }
+        PLAYER(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_ALAKAZAM) { Item(ITEM_LEFTOVERS); }
     } WHEN {
         TURN { MOVE(player, MOVE_KNOCK_OFF);
                MOVE(opponent, MOVE_RECYCLE); }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_KNOCK_OFF, player);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_ITEM_KNOCKOFF);
-        MESSAGE("Wobbuffet knocked off Foe Wobbuffet's Leftovers!");
+        MESSAGE("Alakazam knocked off Foe Alakazam's Leftovers!");
         
-        MESSAGE("Foe Wobbuffet used Recycle!");
+        MESSAGE("Foe Alakazam used Recycle!");
         MESSAGE("But it failed!");
     } THEN {
         EXPECT(opponent->item == ITEM_NONE);
@@ -123,8 +123,8 @@ SINGLE_BATTLE_TEST("Recycle cannot recover an item removed by Knock Off")
 SINGLE_BATTLE_TEST("Knock Off does not prevent targets from receiving another item in Gen 5+")
 {
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET) { Item(ITEM_LEFTOVERS); }
-        OPPONENT(SPECIES_WOBBUFFET) { Item(ITEM_LEFTOVERS); }
+        PLAYER(SPECIES_ALAKAZAM) { Item(ITEM_LEFTOVERS); }
+        OPPONENT(SPECIES_ALAKAZAM) { Item(ITEM_LEFTOVERS); }
     } WHEN {
         TURN { MOVE(player, MOVE_KNOCK_OFF); }
         TURN { MOVE(player, MOVE_BESTOW); }
@@ -132,12 +132,12 @@ SINGLE_BATTLE_TEST("Knock Off does not prevent targets from receiving another it
         // turn 1
         ANIMATION(ANIM_TYPE_MOVE, MOVE_KNOCK_OFF, player);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_ITEM_KNOCKOFF);
-        MESSAGE("Wobbuffet knocked off Foe Wobbuffet's Leftovers!");
+        MESSAGE("Alakazam knocked off Foe Alakazam's Leftovers!");
         // turn 2
         if (B_KNOCK_OFF_REMOVAL >= GEN_5) {
             ANIMATION(ANIM_TYPE_MOVE, MOVE_BESTOW, player);
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT);
-            MESSAGE("Foe Wobbuffet's Leftovers restored its HP a little!");
+            MESSAGE("Foe Alakazam's Leftovers restored its HP a little!");
         } else {
             NOT { ANIMATION(ANIM_TYPE_MOVE, MOVE_BESTOW, player); }
             MESSAGE("But it failed!");
@@ -154,8 +154,8 @@ SINGLE_BATTLE_TEST("Knock Off does not prevent targets from receiving another it
 SINGLE_BATTLE_TEST("Knock Off triggers Unburden")
 {
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET) { Speed(60); }
-        OPPONENT(SPECIES_WOBBUFFET) { Ability(ABILITY_UNBURDEN); Item(ITEM_LEFTOVERS); Speed(50); }
+        PLAYER(SPECIES_ALAKAZAM) { Speed(60); }
+        OPPONENT(SPECIES_ALAKAZAM) { Ability(ABILITY_UNBURDEN); Item(ITEM_LEFTOVERS); Speed(50); }
     } WHEN {
         TURN { MOVE(player, MOVE_KNOCK_OFF); }
         TURN { MOVE(player, MOVE_CELEBRATE); }
@@ -163,10 +163,10 @@ SINGLE_BATTLE_TEST("Knock Off triggers Unburden")
         // turn 1
         ANIMATION(ANIM_TYPE_MOVE, MOVE_KNOCK_OFF, player);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_ITEM_KNOCKOFF);
-        MESSAGE("Wobbuffet knocked off Foe Wobbuffet's Leftovers!");
+        MESSAGE("Alakazam knocked off Foe Alakazam's Leftovers!");
         // turn 2
-        MESSAGE("Foe Wobbuffet used Celebrate!");
-        MESSAGE("Wobbuffet used Celebrate!");
+        MESSAGE("Foe Alakazam used Celebrate!");
+        MESSAGE("Alakazam used Celebrate!");
     } THEN {
         EXPECT(opponent->item == ITEM_NONE);
     }
@@ -175,19 +175,19 @@ SINGLE_BATTLE_TEST("Knock Off triggers Unburden")
 DOUBLE_BATTLE_TEST("Knock Off does not trigger the opposing ally's Symbiosis")
 {
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET) { Item(ITEM_LEFTOVERS); }
+        PLAYER(SPECIES_ALAKAZAM) { Item(ITEM_LEFTOVERS); }
         PLAYER(SPECIES_FLORGES) { Item(ITEM_LEFTOVERS); }
-        OPPONENT(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(opponentLeft, MOVE_KNOCK_OFF, target: playerLeft); }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_KNOCK_OFF, opponentLeft);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_ITEM_KNOCKOFF);
-        MESSAGE("Foe Wobbuffet knocked off Wobbuffet's Leftovers!");
+        MESSAGE("Foe Alakazam knocked off Alakazam's Leftovers!");
         NONE_OF {
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT);
-            MESSAGE("Wobbuffet's Leftovers restored health!");
+            MESSAGE("Alakazam's Leftovers restored health!");
         }
     } THEN {
         EXPECT(playerLeft->item == ITEM_NONE);
@@ -197,11 +197,11 @@ DOUBLE_BATTLE_TEST("Knock Off does not trigger the opposing ally's Symbiosis")
 SINGLE_BATTLE_TEST("Knock Off doesn't knock off items from Pokemon behind substitutes")
 {
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET) { Item(ITEM_POKE_BALL); }
+        PLAYER(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_ALAKAZAM) { Item(ITEM_POKE_BALL); }
     } WHEN {
         TURN { MOVE(opponent, MOVE_SUBSTITUTE); MOVE(player, MOVE_KNOCK_OFF); }
     } SCENE {
-        NOT MESSAGE("Wobbuffet knocked off Foe Wobbuffet's Poké Ball");
+        NOT MESSAGE("Alakazam knocked off Foe Alakazam's Poké Ball");
     }
 }

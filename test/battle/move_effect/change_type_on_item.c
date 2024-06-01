@@ -19,7 +19,7 @@ SINGLE_BATTLE_TEST("Techno Blast changes the move type depending on the mask the
     PARAMETRIZE { species = SPECIES_DRATINI; item = ITEM_CHILL_DRIVE; }
 
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET) { Item(item); }
+        PLAYER(SPECIES_ALAKAZAM) { Item(item); }
         OPPONENT(species);
     } WHEN {
         TURN { MOVE(player, MOVE_TECHNO_BLAST); }

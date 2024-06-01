@@ -8063,7 +8063,7 @@ const struct Item gItemsInfo[] =
         .name = _("Muscle Band"),
         .price = (I_PRICE >= GEN_9) ? 8000 : ((I_PRICE >= GEN_7) ? 4000 : 200),
         .holdEffect = HOLD_EFFECT_MUSCLE_BAND,
-        .holdEffectParam = 15,
+        .holdEffectParam = 10,
         .description = COMPOUND_STRING(
             "A headband that\n"
             "boosts the power of\n"
@@ -8081,7 +8081,7 @@ const struct Item gItemsInfo[] =
         .pluralName = _("Wise Glasses"),
         .price = (I_PRICE >= GEN_9) ? 8000 : ((I_PRICE >= GEN_7) ? 4000 : 200),
         .holdEffect = HOLD_EFFECT_WISE_GLASSES,
-        .holdEffectParam = 15,
+        .holdEffectParam = 10,
         .description = COMPOUND_STRING(
             "A pair of glasses\n"
             "that ups the power\n"
@@ -10472,6 +10472,31 @@ const struct Item gItemsInfo[] =
             "on the next turn."),
 
     TM_ITEM(115, MOVE_DUST_DEVIL, 30000,
+            "Never misses in a\n"
+            "sandstorm. May\n"
+            "knock items off."),
+
+    TM_ITEM(116, MOVE_DUST_DEVIL, 30000,
+            "Never misses in a\n"
+            "sandstorm. May\n"
+            "knock items off."),
+
+    TM_ITEM(117, MOVE_DUST_DEVIL, 30000,
+            "Never misses in a\n"
+            "sandstorm. May\n"
+            "knock items off."),
+
+    TM_ITEM(118, MOVE_DUST_DEVIL, 30000,
+            "Never misses in a\n"
+            "sandstorm. May\n"
+            "knock items off."),
+
+    TM_ITEM(119, MOVE_DUST_DEVIL, 30000,
+            "Never misses in a\n"
+            "sandstorm. May\n"
+            "knock items off."),
+
+    TM_ITEM(120, MOVE_DUST_DEVIL, 30000,
             "Never misses in a\n"
             "sandstorm. May\n"
             "knock items off."),

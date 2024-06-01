@@ -5,7 +5,7 @@ SINGLE_BATTLE_TEST("Mycelium Might causes the user to move last in the priority 
 {
     GIVEN {
         PLAYER(SPECIES_TOEDSCOOL) { Speed(100); Ability(ABILITY_MYCELIUM_MIGHT); }
-        OPPONENT(SPECIES_WOBBUFFET) { Speed(1); }
+        OPPONENT(SPECIES_ALAKAZAM) { Speed(1); }
     } WHEN {
         TURN { MOVE(opponent, MOVE_CELEBRATE); MOVE(player, MOVE_SPORE); }
     } SCENE {
@@ -51,7 +51,7 @@ SINGLE_BATTLE_TEST("Mycelium Might vs Stall action order depends on speed")
     PARAMETRIZE { speed = 101; }
     GIVEN {
         PLAYER(SPECIES_TOEDSCOOL) { Speed(100); Ability(ABILITY_MYCELIUM_MIGHT); }
-        OPPONENT(SPECIES_SABLEYE) { Speed(speed); Ability(ABILITY_STALL);}
+        OPPONENT(SPECIES_WHIMSICOTT) { Speed(speed); Ability(ABILITY_STALL);}
     } WHEN {
         TURN { MOVE(opponent, MOVE_CELEBRATE); MOVE(player, MOVE_CELEBRATE); }
     } SCENE {

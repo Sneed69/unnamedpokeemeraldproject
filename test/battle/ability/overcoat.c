@@ -5,7 +5,7 @@ SINGLE_BATTLE_TEST("Overcoat blocks powder and spore moves")
 {
     GIVEN {
         ASSUME(gMovesInfo[MOVE_STUN_SPORE].powderMove);
-        PLAYER(SPECIES_WYNAUT);
+        PLAYER(SPECIES_ABRA);
         OPPONENT(SPECIES_PINECO) { Ability(ABILITY_OVERCOAT); }
     } WHEN {
         TURN { MOVE(player, MOVE_STUN_SPORE); }

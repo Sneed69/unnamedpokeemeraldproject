@@ -8,8 +8,8 @@ SINGLE_BATTLE_TEST("Take Down deals 25% of recoil damage to the user")
 
     GIVEN {
         ASSUME(gMovesInfo[MOVE_TAKE_DOWN].recoil == 25);
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, MOVE_TAKE_DOWN); }
     } SCENE {
@@ -28,8 +28,8 @@ SINGLE_BATTLE_TEST("Double Edge deals 33% of recoil damage to the user")
 
     GIVEN {
         ASSUME(gMovesInfo[MOVE_DOUBLE_EDGE].recoil == 33);
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, MOVE_DOUBLE_EDGE); }
     } SCENE {
@@ -48,8 +48,8 @@ SINGLE_BATTLE_TEST("Head Smash deals 50% of recoil damage to the user")
 
     GIVEN {
         ASSUME(gMovesInfo[MOVE_HEAD_SMASH].recoil == 50);
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, MOVE_HEAD_SMASH); }
     } SCENE {
@@ -69,8 +69,8 @@ SINGLE_BATTLE_TEST("Flare Blitz deals 33% of recoil damage to the user and can b
     GIVEN {
         ASSUME(gMovesInfo[MOVE_FLARE_BLITZ].recoil == 33);
         ASSUME(MoveHasAdditionalEffect(MOVE_FLARE_BLITZ, MOVE_EFFECT_BURN));
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, MOVE_FLARE_BLITZ); }
     } SCENE {

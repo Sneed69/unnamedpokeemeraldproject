@@ -9,8 +9,8 @@ ASSUMPTIONS
 SINGLE_BATTLE_TEST("Synthesis recovers 1/2 of the user's max HP")
 {
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET) { HP(1); MaxHP(200); }
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM) { HP(1); MaxHP(200); }
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, MOVE_SYNTHESIS); }
     } SCENE {
@@ -21,8 +21,8 @@ SINGLE_BATTLE_TEST("Synthesis recovers 1/2 of the user's max HP")
 SINGLE_BATTLE_TEST("Synthesis recovers 2/3 of the user's max HP in Sunlight")
 {
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET) { HP(1); MaxHP(300); }
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM) { HP(1); MaxHP(300); }
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(opponent, MOVE_SUNNY_DAY); MOVE(player, MOVE_SYNTHESIS); }
     } SCENE {
@@ -38,8 +38,8 @@ SINGLE_BATTLE_TEST("Synthesis recovers 1/4 of the user's max HP in Rain, Sandsto
     PARAMETRIZE { move = MOVE_HAIL; }
     PARAMETRIZE { move = MOVE_SNOWSCAPE; }
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET) { HP(1); MaxHP(400); }
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM) { HP(1); MaxHP(400); }
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(opponent, move); MOVE(player, MOVE_SYNTHESIS); }
     } SCENE {

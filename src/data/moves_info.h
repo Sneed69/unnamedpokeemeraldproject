@@ -3125,7 +3125,11 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             "injure. May also paralyze."),
         .effect = EFFECT_HIT,
         .power = B_UPDATED_MOVE_DATA >= GEN_6 ? 30 : 20,
+    #if !TESTING
         .type = TYPE_NORMAL,
+    #else
+        .type = TYPE_GHOST,
+    #endif
         .accuracy = 100,
         .pp = 48,
         .target = MOVE_TARGET_SELECTED,

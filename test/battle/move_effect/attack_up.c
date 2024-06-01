@@ -3,7 +3,7 @@
 
 ASSUMPTIONS
 {
-    ASSUME(gMovesInfo[MOVE_MEDITATE].effect == EFFECT_ATTACK_UP);
+    ASSUME(gMovesInfo[MOVE_SHARPEN].effect == EFFECT_ATTACK_UP);
 }
 
 SINGLE_BATTLE_TEST("Meditate raises Attack by 1 stage", s16 damage)
@@ -13,16 +13,16 @@ SINGLE_BATTLE_TEST("Meditate raises Attack by 1 stage", s16 damage)
     PARAMETRIZE { raiseAttack = TRUE; }
     GIVEN {
         ASSUME(gMovesInfo[MOVE_TACKLE].category == DAMAGE_CATEGORY_PHYSICAL);
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
-        if (raiseAttack) TURN { MOVE(player, MOVE_MEDITATE); }
+        if (raiseAttack) TURN { MOVE(player, MOVE_SHARPEN); }
         TURN { MOVE(player, MOVE_TACKLE); }
     } SCENE {
         if (raiseAttack) {
-            ANIMATION(ANIM_TYPE_MOVE, MOVE_MEDITATE, player);
+            ANIMATION(ANIM_TYPE_MOVE, MOVE_SHARPEN, player);
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
-            MESSAGE("Wobbuffet's Attack rose!");
+            MESSAGE("Alakazam's Attack rose!");
         }
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, player);
         HP_BAR(opponent, captureDamage: &results[i].damage);

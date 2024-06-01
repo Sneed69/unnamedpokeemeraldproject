@@ -5,7 +5,7 @@ SINGLE_BATTLE_TEST("Sap Sipper negates damage from Grass-type moves")
 {
     GIVEN {
         PLAYER(SPECIES_MARILL) { Ability(ABILITY_SAP_SIPPER); }
-        OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(opponent, MOVE_VINE_WHIP); }
     } SCENE {
@@ -17,7 +17,7 @@ SINGLE_BATTLE_TEST("Sap Sipper negates effects from Grass-type moves")
 {
     GIVEN {
         PLAYER(SPECIES_MARILL) { Ability(ABILITY_SAP_SIPPER); }
-        OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(opponent, MOVE_SPORE); }
     } SCENE {
@@ -32,13 +32,13 @@ SINGLE_BATTLE_TEST("Sap Sipper increases Attack by one stage when hit by a Grass
 {
     GIVEN {
         PLAYER(SPECIES_MARILL) { Ability(ABILITY_SAP_SIPPER); }
-        OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(opponent, MOVE_VINE_WHIP); }
     } SCENE {
         ABILITY_POPUP(player, ABILITY_SAP_SIPPER);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
-        MESSAGE("Marill's Attack rose!");
+        MESSAGE("Marill's Sap Sipper raised its Attack!");
     }
 }
 
@@ -46,14 +46,14 @@ SINGLE_BATTLE_TEST("Sap Sipper does not increase Attack if already maxed")
 {
     GIVEN {
         PLAYER(SPECIES_MARILL) { Ability(ABILITY_SAP_SIPPER); }
-        OPPONENT(SPECIES_WOBBUFFET) { Speed(1); }
+        OPPONENT(SPECIES_ALAKAZAM) { Speed(1); }
     } WHEN {
         TURN { MOVE(player, MOVE_BELLY_DRUM); MOVE(opponent, MOVE_VINE_WHIP); }
     } SCENE {
         ABILITY_POPUP(player, ABILITY_SAP_SIPPER);
         NONE_OF {
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
-            MESSAGE("Marill's Attack rose!");
+            MESSAGE("Marill's Sap Sipper raised its Attack!");
         }
     }
 }
@@ -70,7 +70,7 @@ SINGLE_BATTLE_TEST("Sap Sipper blocks multi-hit grass type moves")
         MESSAGE("Foe Shellder used Bullet Seed!");
         ABILITY_POPUP(player, ABILITY_SAP_SIPPER);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
-        MESSAGE("Marill's Attack rose!");
+        MESSAGE("Marill's Sap Sipper raised its Attack!");
         NONE_OF {
             ANIMATION(ANIM_TYPE_MOVE, MOVE_BULLET_SEED, opponent);
             HP_BAR(player);

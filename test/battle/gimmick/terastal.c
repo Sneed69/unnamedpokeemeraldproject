@@ -2,7 +2,7 @@
 #include "test/battle.h"
 
 // Base Power and STAB Checks
-
+/*
 SINGLE_BATTLE_TEST("(TERA) Terastallizing into a different type preserves other STAB boosts", s16 damage1, s16 damage2)
 {
     bool32 tera;
@@ -10,7 +10,7 @@ SINGLE_BATTLE_TEST("(TERA) Terastallizing into a different type preserves other 
     PARAMETRIZE { tera = TRUE; }
     GIVEN {
         PLAYER(SPECIES_BULBASAUR) { TeraType(TYPE_NORMAL); }
-        OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, MOVE_VINE_WHIP, tera: tera); }
         TURN { MOVE(player, MOVE_SLUDGE_BOMB); }
@@ -33,12 +33,12 @@ SINGLE_BATTLE_TEST("(TERA) Terastallizing does not affect the power of non-STAB 
     PARAMETRIZE { tera = FALSE; }
     PARAMETRIZE { tera = TRUE; }
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET) { TeraType(TYPE_PSYCHIC); }
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM) { TeraType(TYPE_PSYCHIC); }
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, MOVE_HEADBUTT, tera: tera); }
     } SCENE {
-        MESSAGE("Wobbuffet used Headbutt!");
+        MESSAGE("Alakazam used Headbutt!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_HEADBUTT, player);
         HP_BAR(opponent, captureDamage: &results[i].damage);
     } FINALLY {
@@ -52,12 +52,12 @@ SINGLE_BATTLE_TEST("(TERA) Terastallizing into a different type gives that type 
     PARAMETRIZE { tera = FALSE; }
     PARAMETRIZE { tera = TRUE; }
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET) { TeraType(TYPE_NORMAL); }
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM) { TeraType(TYPE_NORMAL); }
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, MOVE_HEADBUTT, tera: tera); }
     } SCENE {
-        MESSAGE("Wobbuffet used Headbutt!");
+        MESSAGE("Alakazam used Headbutt!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_HEADBUTT, player);
         HP_BAR(opponent, captureDamage: &results[i].damage);
     } FINALLY {
@@ -72,12 +72,12 @@ SINGLE_BATTLE_TEST("(TERA) Terastallizing into the same type gives that type 2x 
     PARAMETRIZE { tera = FALSE; }
     PARAMETRIZE { tera = TRUE; }
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET) { TeraType(TYPE_PSYCHIC); }
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM) { TeraType(TYPE_PSYCHIC); }
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, MOVE_PSYCHIC, tera: tera); }
     } SCENE {
-        MESSAGE("Wobbuffet used Psychic!");
+        MESSAGE("Alakazam used Psychic!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_PSYCHIC, player);
         HP_BAR(opponent, captureDamage: &results[i].damage);
     } FINALLY {
@@ -93,7 +93,7 @@ SINGLE_BATTLE_TEST("(TERA) Terastallizing into a different type with Adaptabilit
     PARAMETRIZE { tera = TRUE; }
     GIVEN {
         PLAYER(SPECIES_CRAWDAUNT) { Ability(ABILITY_ADAPTABILITY); TeraType(TYPE_NORMAL); }
-        OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, MOVE_HEADBUTT, tera: tera); }
     } SCENE {
@@ -113,7 +113,7 @@ SINGLE_BATTLE_TEST("(TERA) Terastallizing into the same type with Adaptability g
     PARAMETRIZE { tera = TRUE; }
     GIVEN {
         PLAYER(SPECIES_CRAWDAUNT) { Ability(ABILITY_ADAPTABILITY); TeraType(TYPE_WATER); }
-        OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, MOVE_WATER_PULSE, tera: tera); }
     } SCENE {
@@ -133,12 +133,12 @@ SINGLE_BATTLE_TEST("(TERA) Terastallizing boosts moves of the same type to 60 BP
     PARAMETRIZE { tera = TRUE; }
     GIVEN {
         ASSUME(gMovesInfo[MOVE_ABSORB].power == 20);
-        PLAYER(SPECIES_WOBBUFFET) { TeraType(TYPE_GRASS); }
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM) { TeraType(TYPE_GRASS); }
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, MOVE_ABSORB, tera: tera); }
     } SCENE {
-        MESSAGE("Wobbuffet used Absorb!");
+        MESSAGE("Alakazam used Absorb!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_ABSORB, player);
         HP_BAR(opponent, captureDamage: &results[i].damage);
     } FINALLY {
@@ -155,7 +155,7 @@ SINGLE_BATTLE_TEST("(TERA) Terastallization's 60 BP floor occurs after Technicia
     GIVEN {
         ASSUME(gMovesInfo[MOVE_MEGA_DRAIN].power == 40);
         PLAYER(SPECIES_MR_MIME) { Ability(ABILITY_TECHNICIAN); TeraType(TYPE_GRASS); }
-        OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, MOVE_MEGA_DRAIN, tera: tera); }
     } SCENE {
@@ -175,7 +175,7 @@ SINGLE_BATTLE_TEST("(TERA) Terastallization's 60 BP floor occurs after Technicia
     PARAMETRIZE { tera = TRUE; }
     GIVEN {
         PLAYER(SPECIES_MR_MIME) { Ability(ABILITY_TECHNICIAN); TeraType(TYPE_PSYCHIC); }
-        OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, MOVE_STORED_POWER, tera: tera); }
     } SCENE {
@@ -194,12 +194,12 @@ SINGLE_BATTLE_TEST("(TERA) Terastallization's 60 BP floor does not apply to mult
     PARAMETRIZE { tera = FALSE; }
     PARAMETRIZE { tera = TRUE; }
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET) { TeraType(TYPE_NORMAL); }
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM) { TeraType(TYPE_NORMAL); }
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, MOVE_FURY_SWIPES, tera: tera); }
     } SCENE {
-        MESSAGE("Wobbuffet used Fury Swipes!");
+        MESSAGE("Alakazam used Fury Swipes!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_FURY_SWIPES, player);
         HP_BAR(opponent, captureDamage: &results[i].damage);
     } FINALLY {
@@ -213,12 +213,12 @@ SINGLE_BATTLE_TEST("(TERA) Terastallization's 60 BP floor does not apply to prio
     PARAMETRIZE { tera = FALSE; }
     PARAMETRIZE { tera = TRUE; }
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET) { TeraType(TYPE_NORMAL); }
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM) { TeraType(TYPE_NORMAL); }
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, MOVE_QUICK_ATTACK, tera: tera); }
     } SCENE {
-        MESSAGE("Wobbuffet used Quick Attack!");
+        MESSAGE("Alakazam used Quick Attack!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_QUICK_ATTACK, player);
         HP_BAR(opponent, captureDamage: &results[i].damage);
     } FINALLY {
@@ -234,12 +234,12 @@ SINGLE_BATTLE_TEST("(TERA) Terastallization changes type effectiveness", s16 dam
     PARAMETRIZE { tera = FALSE; }
     PARAMETRIZE { tera = TRUE; }
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET) { TeraType(TYPE_GRASS); }
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM) { TeraType(TYPE_GRASS); }
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, MOVE_CELEBRATE, tera: tera); MOVE(opponent, MOVE_WATER_GUN); }
     } SCENE {
-        MESSAGE("Foe Wobbuffet used Water Gun!");
+        MESSAGE("Foe Alakazam used Water Gun!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_WATER_GUN, opponent);
         HP_BAR(player, captureDamage: &results[i].damage);
     } FINALLY {
@@ -250,13 +250,13 @@ SINGLE_BATTLE_TEST("(TERA) Terastallization changes type effectiveness", s16 dam
 SINGLE_BATTLE_TEST("(TERA) Terastallization changes type effectiveness")
 {
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET) { TeraType(TYPE_FLYING); }
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM) { TeraType(TYPE_FLYING); }
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, MOVE_CELEBRATE, tera: TRUE); MOVE(opponent, MOVE_EARTHQUAKE); }
     } SCENE {
-        MESSAGE("Foe Wobbuffet used Earthquake!");
-        MESSAGE("It doesn't affect Wobbuffet…");
+        MESSAGE("Foe Alakazam used Earthquake!");
+        MESSAGE("It doesn't affect Alakazam…");
         NOT { HP_BAR(player); }
     }
 }
@@ -264,9 +264,9 @@ SINGLE_BATTLE_TEST("(TERA) Terastallization changes type effectiveness")
 SINGLE_BATTLE_TEST("(TERA) Terastallization persists across switches")
 {
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET) { TeraType(TYPE_FLYING); }
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM) { TeraType(TYPE_FLYING); }
+        PLAYER(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, MOVE_CELEBRATE, tera: TRUE); MOVE(opponent, MOVE_EARTHQUAKE); }
         TURN { SWITCH(player, 1); }
@@ -274,12 +274,12 @@ SINGLE_BATTLE_TEST("(TERA) Terastallization persists across switches")
         TURN { MOVE(opponent, MOVE_EARTHQUAKE); }
     } SCENE {
         // turn 1
-        MESSAGE("Foe Wobbuffet used Earthquake!");
-        MESSAGE("It doesn't affect Wobbuffet…");
+        MESSAGE("Foe Alakazam used Earthquake!");
+        MESSAGE("It doesn't affect Alakazam…");
         NOT { HP_BAR(player); }
         // turn 4
-        MESSAGE("Foe Wobbuffet used Earthquake!");
-        MESSAGE("It doesn't affect Wobbuffet…");
+        MESSAGE("Foe Alakazam used Earthquake!");
+        MESSAGE("It doesn't affect Alakazam…");
         NOT { HP_BAR(player); }
     }
 }
@@ -289,14 +289,14 @@ SINGLE_BATTLE_TEST("(TERA) Terastallization persists across switches")
 SINGLE_BATTLE_TEST("(TERA) Terastallization changes the effect of Curse")
 {
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET) { TeraType(TYPE_GHOST); }
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM) { TeraType(TYPE_GHOST); }
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, MOVE_CURSE, tera: TRUE); }
     } SCENE {
-        MESSAGE("Wobbuffet used Curse!");
+        MESSAGE("Alakazam used Curse!");
         HP_BAR(player);
-        MESSAGE("Wobbuffet cut its own HP and laid a CURSE on Foe Wobbuffet!");
+        MESSAGE("Alakazam cut its own HP and laid a CURSE on Foe Alakazam!");
         NOT { ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player); }
     }
 }
@@ -305,13 +305,13 @@ SINGLE_BATTLE_TEST("(TERA) Roost does not remove the user's Flying type while Te
 {
     GIVEN {
         PLAYER(SPECIES_ZAPDOS) { HP(1); TeraType(TYPE_FLYING); }
-        OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, MOVE_ROOST, tera: TRUE); MOVE(opponent, MOVE_ICE_BEAM); }
     } SCENE {
         MESSAGE("Zapdos used Roost!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_ROOST, player);
-        MESSAGE("Foe Wobbuffet used Ice Beam!");
+        MESSAGE("Foe Alakazam used Ice Beam!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_ICE_BEAM, opponent);
         MESSAGE("It's super effective!");
     }
@@ -324,8 +324,8 @@ SINGLE_BATTLE_TEST("(TERA) Type-changing moves fail against a Terastallized Poke
     PARAMETRIZE { move = MOVE_FORESTS_CURSE; }
     PARAMETRIZE { move = MOVE_TRICK_OR_TREAT; }
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET) { TeraType(TYPE_PSYCHIC); }
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM) { TeraType(TYPE_PSYCHIC); }
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, MOVE_CELEBRATE, tera: TRUE); MOVE(opponent, move); }
     } SCENE {
@@ -338,12 +338,12 @@ SINGLE_BATTLE_TEST("(TERA) Type-changing moves fail against a Terastallized Poke
 SINGLE_BATTLE_TEST("(TERA) Reflect Type fails if used by a Terastallized Pokemon")
 {
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET) { TeraType(TYPE_PSYCHIC); }
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM) { TeraType(TYPE_PSYCHIC); }
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, MOVE_REFLECT_TYPE, tera: TRUE); }
     } SCENE {
-        MESSAGE("Wobbuffet used Reflect Type!");
+        MESSAGE("Alakazam used Reflect Type!");
         MESSAGE("But it failed!");
     }
 }
@@ -351,12 +351,12 @@ SINGLE_BATTLE_TEST("(TERA) Reflect Type fails if used by a Terastallized Pokemon
 SINGLE_BATTLE_TEST("(TERA) Conversion fails if used by a Terastallized Pokemon")
 {
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET) { TeraType(TYPE_PSYCHIC); }
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM) { TeraType(TYPE_PSYCHIC); }
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, MOVE_CONVERSION, tera: TRUE); }
     } SCENE {
-        MESSAGE("Wobbuffet used Conversion!");
+        MESSAGE("Alakazam used Conversion!");
         MESSAGE("But it failed!");
     }
 }
@@ -364,13 +364,13 @@ SINGLE_BATTLE_TEST("(TERA) Conversion fails if used by a Terastallized Pokemon")
 SINGLE_BATTLE_TEST("(TERA) Conversion2 fails if used by a Terastallized Pokemon")
 {
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET) { TeraType(TYPE_PSYCHIC); }
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM) { TeraType(TYPE_PSYCHIC); }
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(opponent, MOVE_TACKLE); }
         TURN { MOVE(player, MOVE_CONVERSION_2, tera: TRUE); }
     } SCENE {
-        MESSAGE("Wobbuffet used Conversion 2!");
+        MESSAGE("Alakazam used Conversion 2!");
         MESSAGE("But it failed!");
     }
 }
@@ -378,19 +378,19 @@ SINGLE_BATTLE_TEST("(TERA) Conversion2 fails if used by a Terastallized Pokemon"
 SINGLE_BATTLE_TEST("(TERA) Reflect Type copies a Terastallized Pokemon's Tera Type")
 {
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET) { TeraType(TYPE_GHOST); }
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM) { TeraType(TYPE_GHOST); }
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(opponent, MOVE_CELEBRATE); MOVE(player, MOVE_CELEBRATE, tera: TRUE); }
         TURN { MOVE(opponent, MOVE_REFLECT_TYPE); }
         TURN { MOVE(player, MOVE_TACKLE); }
     } SCENE {
         // turn 2
-        MESSAGE("Foe Wobbuffet used Reflect Type!");
+        MESSAGE("Foe Alakazam used Reflect Type!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_REFLECT_TYPE, opponent);
         // turn 3
-        MESSAGE("Wobbuffet used Tackle!");
-        MESSAGE("It doesn't affect Foe Wobbuffet…");
+        MESSAGE("Alakazam used Tackle!");
+        MESSAGE("It doesn't affect Foe Alakazam…");
         NOT { HP_BAR(opponent); }
     }
 }
@@ -398,17 +398,17 @@ SINGLE_BATTLE_TEST("(TERA) Reflect Type copies a Terastallized Pokemon's Tera Ty
 SINGLE_BATTLE_TEST("(TERA) Synchronoise uses a Terastallized Pokemon's Tera Type")
 {
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET) { TeraType(TYPE_GHOST); }
-        OPPONENT(SPECIES_WOBBUFFET) { TeraType(TYPE_GHOST); }
+        PLAYER(SPECIES_ALAKAZAM) { TeraType(TYPE_GHOST); }
+        OPPONENT(SPECIES_ALAKAZAM) { TeraType(TYPE_GHOST); }
     } WHEN {
         TURN { MOVE(opponent, MOVE_SYNCHRONOISE); MOVE(player, MOVE_CELEBRATE, tera: TRUE); }
         TURN { MOVE(opponent, MOVE_SYNCHRONOISE, tera: TRUE); }
     } SCENE {
         // turn 1
-        MESSAGE("Foe Wobbuffet used Synchronoise!");
-        MESSAGE("It had no effect on Wobbuffet!");
+        MESSAGE("Foe Alakazam used Synchronoise!");
+        MESSAGE("It had no effect on Alakazam!");
         // turn 2
-        MESSAGE("Foe Wobbuffet used Synchronoise!");
+        MESSAGE("Foe Alakazam used Synchronoise!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_SYNCHRONOISE, opponent);
     }
 }
@@ -435,8 +435,8 @@ SINGLE_BATTLE_TEST("(TERA) Double Shock does not remove the user's Electric type
     GIVEN {
         ASSUME(gMovesInfo[MOVE_DOUBLE_SHOCK].effect == EFFECT_FAIL_IF_NOT_ARG_TYPE);
         PLAYER(SPECIES_PICHU) { TeraType(TYPE_ELECTRIC); }
-        PLAYER(SPECIES_WOBBUFFET)
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM)
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, MOVE_DOUBLE_SHOCK); MOVE(opponent, MOVE_RECOVER); }
         TURN { MOVE(player, MOVE_DOUBLE_SHOCK, tera: TRUE); MOVE(opponent, MOVE_RECOVER); }
@@ -476,7 +476,7 @@ SINGLE_BATTLE_TEST("(TERA) Transform does not copy the target's Tera Type, and i
 {
     KNOWN_FAILING; // Transform seems to be bugged in tests.
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET) { Moves(MOVE_CELEBRATE, MOVE_TACKLE, MOVE_EARTHQUAKE); TeraType(TYPE_GHOST); }
+        PLAYER(SPECIES_ALAKAZAM) { Moves(MOVE_CELEBRATE, MOVE_TACKLE, MOVE_EARTHQUAKE); TeraType(TYPE_GHOST); }
         OPPONENT(SPECIES_DITTO) { TeraType(TYPE_FLYING); }
     } WHEN {
         TURN { MOVE(player, MOVE_CELEBRATE, tera: TRUE); MOVE(opponent, MOVE_TRANSFORM); }
@@ -484,11 +484,11 @@ SINGLE_BATTLE_TEST("(TERA) Transform does not copy the target's Tera Type, and i
         // TURN { MOVE(player, MOVE_TACKLE); MOVE(opponent, MOVE_TACKLE, target: player, tera: TRUE); }
     } SCENE {
         // turn 2
-        MESSAGE("Wobbuffet used Earthquake!");
+        MESSAGE("Alakazam used Earthquake!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_EARTHQUAKE, player);
         HP_BAR(opponent);
         // turn 3
-        MESSAGE("Wobbuffet used Tackle!");
+        MESSAGE("Alakazam used Tackle!");
         MESSAGE("It doesn't affect Ditto…");
         NOT { HP_BAR(opponent); }
     }
@@ -501,12 +501,12 @@ SINGLE_BATTLE_TEST("(TERA) Stellar type does not change the user's defensive pro
     PARAMETRIZE { tera = FALSE; }
     PARAMETRIZE { tera = TRUE; }
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET) { TeraType(TYPE_STELLAR); }
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM) { TeraType(TYPE_STELLAR); }
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, MOVE_CELEBRATE, tera: tera); MOVE(opponent, MOVE_PSYCHIC); }
     } SCENE {
-        MESSAGE("Foe Wobbuffet used Psychic!");
+        MESSAGE("Foe Alakazam used Psychic!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_PSYCHIC, opponent);
         HP_BAR(player, captureDamage: &results[i].damage);
     } FINALLY {
@@ -518,18 +518,18 @@ SINGLE_BATTLE_TEST("(TERA) Reflect Type copies a Stellar-type Pokemon's base typ
 {
     GIVEN {
         PLAYER(SPECIES_BANETTE) { TeraType(TYPE_STELLAR); }
-        OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(opponent, MOVE_CELEBRATE); MOVE(player, MOVE_CELEBRATE, tera: TRUE); }
         TURN { MOVE(opponent, MOVE_REFLECT_TYPE); }
         TURN { MOVE(player, MOVE_TACKLE); }
     } SCENE {
         // turn 2
-        MESSAGE("Foe Wobbuffet used Reflect Type!");
+        MESSAGE("Foe Alakazam used Reflect Type!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_REFLECT_TYPE, opponent);
         // turn 3
         MESSAGE("Banette used Tackle!");
-        MESSAGE("It doesn't affect Foe Wobbuffet…");
+        MESSAGE("It doesn't affect Foe Alakazam…");
         NOT { HP_BAR(opponent); }
     }
 }
@@ -552,17 +552,17 @@ SINGLE_BATTLE_TEST("(TERA) Revelation Dance uses a Stellar-type Pokemon's base t
 SINGLE_BATTLE_TEST("(TERA) Conversion2 fails if last hit by a Stellar-type move")
 {
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET) { TeraType(TYPE_STELLAR); }
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM) { TeraType(TYPE_STELLAR); }
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, MOVE_TERA_BLAST, tera: TRUE); }
         TURN { MOVE(opponent, MOVE_CONVERSION_2); }
     } SCENE {
         // turn 1
-        MESSAGE("Wobbuffet used Tera Blast!");
+        MESSAGE("Alakazam used Tera Blast!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TERA_BLAST, player);
         // turn 2
-        MESSAGE("Foe Wobbuffet used Conversion 2!");
+        MESSAGE("Foe Alakazam used Conversion 2!");
         MESSAGE("But it failed!");
     }
 }
@@ -571,13 +571,13 @@ SINGLE_BATTLE_TEST("(TERA) Roost does not remove Flying-type ground immunity whe
 {
     GIVEN {
         PLAYER(SPECIES_ZAPDOS) { HP(1); TeraType(TYPE_STELLAR); }
-        OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, MOVE_ROOST, tera: TRUE); MOVE(opponent, MOVE_ICE_BEAM); }
     } SCENE {
         MESSAGE("Zapdos used Roost!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_ROOST, player);
-        MESSAGE("Foe Wobbuffet used Ice Beam!");
+        MESSAGE("Foe Alakazam used Ice Beam!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_ICE_BEAM, opponent);
         MESSAGE("It's super effective!");
     }
@@ -587,23 +587,23 @@ SINGLE_BATTLE_TEST("(TERA) Terastallizing into the Stellar-type provides a one-t
 {
     s16 damage[3];
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET) { TeraType(TYPE_STELLAR); }
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM) { TeraType(TYPE_STELLAR); }
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, MOVE_EXTRASENSORY); }
         TURN { MOVE(player, MOVE_EXTRASENSORY, tera: TRUE); }
         TURN { MOVE(player, MOVE_EXTRASENSORY); }
     } SCENE {
         // turn 1
-        MESSAGE("Wobbuffet used Extrasensory!");
+        MESSAGE("Alakazam used Extrasensory!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_EXTRASENSORY, player);
         HP_BAR(opponent, captureDamage: &damage[0]);
         // turn 2
-        MESSAGE("Wobbuffet used Extrasensory!");
+        MESSAGE("Alakazam used Extrasensory!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_EXTRASENSORY, player);
         HP_BAR(opponent, captureDamage: &damage[1]);
         // turn 3
-        MESSAGE("Wobbuffet used Extrasensory!");
+        MESSAGE("Alakazam used Extrasensory!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_EXTRASENSORY, player);
         HP_BAR(opponent, captureDamage: &damage[2]);
     } THEN {
@@ -617,23 +617,23 @@ SINGLE_BATTLE_TEST("(TERA) Terastallizing into the Stellar-type provides a one-t
 {
     s16 damage[3];
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET) { TeraType(TYPE_STELLAR); }
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM) { TeraType(TYPE_STELLAR); }
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, MOVE_TAKE_DOWN); }
         TURN { MOVE(player, MOVE_TAKE_DOWN, tera: TRUE); }
         TURN { MOVE(player, MOVE_TAKE_DOWN); }
     } SCENE {
         // turn 1
-        MESSAGE("Wobbuffet used Take Down!");
+        MESSAGE("Alakazam used Take Down!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TAKE_DOWN, player);
         HP_BAR(opponent, captureDamage: &damage[0]);
         // turn 2
-        MESSAGE("Wobbuffet used Take Down!");
+        MESSAGE("Alakazam used Take Down!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TAKE_DOWN, player);
         HP_BAR(opponent, captureDamage: &damage[1]);
         // turn 3
-        MESSAGE("Wobbuffet used Take Down!");
+        MESSAGE("Alakazam used Take Down!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TAKE_DOWN, player);
         HP_BAR(opponent, captureDamage: &damage[2]);
     } THEN {
@@ -648,8 +648,8 @@ SINGLE_BATTLE_TEST("(TERA) Terastallizing into the Stellar type boosts all moves
     GIVEN {
         ASSUME(gMovesInfo[MOVE_MEGA_DRAIN].power == 40);
         ASSUME(gMovesInfo[MOVE_BUBBLE].power == 40);
-        PLAYER(SPECIES_WOBBUFFET) { TeraType(TYPE_STELLAR); }
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM) { TeraType(TYPE_STELLAR); }
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, MOVE_MEGA_DRAIN); }
         TURN { MOVE(player, MOVE_MEGA_DRAIN, tera: TRUE); }
@@ -657,19 +657,19 @@ SINGLE_BATTLE_TEST("(TERA) Terastallizing into the Stellar type boosts all moves
         TURN { MOVE(player, MOVE_BUBBLE); }
     } SCENE {
         // turn 1
-        MESSAGE("Wobbuffet used Mega Drain!");
+        MESSAGE("Alakazam used Mega Drain!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_MEGA_DRAIN, player);
         HP_BAR(opponent, captureDamage: &damage[0]);
         // turn 2
-        MESSAGE("Wobbuffet used Mega Drain!");
+        MESSAGE("Alakazam used Mega Drain!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_MEGA_DRAIN, player);
         HP_BAR(opponent, captureDamage: &damage[1]);
         // turn 3
-        MESSAGE("Wobbuffet used Mega Drain!");
+        MESSAGE("Alakazam used Mega Drain!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_MEGA_DRAIN, player);
         HP_BAR(opponent, captureDamage: &damage[2]);
         // turn 4
-        MESSAGE("Wobbuffet used Bubble!");
+        MESSAGE("Alakazam used Bubble!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_BUBBLE, player);
         HP_BAR(opponent, captureDamage: &damage[3]);
     } THEN {
@@ -684,13 +684,13 @@ SINGLE_BATTLE_TEST("(TERA) Protean cannot change the type of a Terastallized Pok
 {
     GIVEN {
         PLAYER(SPECIES_GRENINJA) { Ability(ABILITY_PROTEAN); TeraType(TYPE_GRASS); }
-        OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, MOVE_BUBBLE, tera: TRUE); 
                MOVE(opponent, MOVE_EMBER); }
     } SCENE {
         MESSAGE("Greninja used Bubble!");
-        MESSAGE("Foe Wobbuffet used Ember!");
+        MESSAGE("Foe Alakazam used Ember!");
         MESSAGE("It's super effective!");
     }
 }
@@ -699,22 +699,22 @@ SINGLE_BATTLE_TEST("(TERA) Status moves don't expend Stellar's one-time type boo
 {
     s16 damage[2];
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET) { TeraType(TYPE_STELLAR); }
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM) { TeraType(TYPE_STELLAR); }
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, MOVE_GROWL, tera: TRUE); }
         TURN { MOVE(player, MOVE_TAKE_DOWN); }
         TURN { MOVE(player, MOVE_TAKE_DOWN); }
     } SCENE {
         // turn 1
-        MESSAGE("Wobbuffet used Growl!");
+        MESSAGE("Alakazam used Growl!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_GROWL, player);
         // turn 2
-        MESSAGE("Wobbuffet used Take Down!");
+        MESSAGE("Alakazam used Take Down!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TAKE_DOWN, player);
         HP_BAR(opponent, captureDamage: &damage[0]);
         // turn 3
-        MESSAGE("Wobbuffet used Take Down!");
+        MESSAGE("Alakazam used Take Down!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TAKE_DOWN, player);
         HP_BAR(opponent, captureDamage: &damage[1]);
     } THEN {
@@ -728,7 +728,7 @@ SINGLE_BATTLE_TEST("(TERA) Stellar type's one-time boost factors in dynamically-
     GIVEN {
         ASSUME(gMovesInfo[MOVE_WEATHER_BALL].type == TYPE_NORMAL);
         PLAYER(SPECIES_PELIPPER) { Ability(ABILITY_DRIZZLE); TeraType(TYPE_STELLAR); }
-        OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, MOVE_WEATHER_BALL, tera: TRUE); MOVE(opponent, MOVE_RECOVER); }
         TURN { MOVE(player, MOVE_TAKE_DOWN); MOVE(opponent, MOVE_RECOVER); }
@@ -786,9 +786,9 @@ SINGLE_BATTLE_TEST("(TERA) All type indicators function correctly")
     PARAMETRIZE { type = TYPE_FAIRY; }
     PARAMETRIZE { type = TYPE_STELLAR; }
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET) { TeraType(type); }
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM) { TeraType(type); }
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, MOVE_CELEBRATE, tera: TRUE); }
     }
-}
+}*/

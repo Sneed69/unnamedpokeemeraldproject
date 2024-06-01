@@ -13,8 +13,8 @@ SINGLE_BATTLE_TEST("Make It Rain lowers special attack by one stage")
 
     GIVEN {
         ASSUME(gMovesInfo[MOVE_MAKE_IT_RAIN].category == DAMAGE_CATEGORY_SPECIAL);
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, MOVE_MAKE_IT_RAIN); }
         TURN { MOVE(player, MOVE_MAKE_IT_RAIN); }
@@ -23,13 +23,13 @@ SINGLE_BATTLE_TEST("Make It Rain lowers special attack by one stage")
         HP_BAR(opponent, captureDamage: &damage[0]);
         MESSAGE("Coins scattered everywhere!");
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
-        MESSAGE("Wobbuffet's Sp. Atk fell!");
+        MESSAGE("Alakazam's Sp. Atk fell!");
 
         ANIMATION(ANIM_TYPE_MOVE, MOVE_MAKE_IT_RAIN, player);
         HP_BAR(opponent, captureDamage: &damage[1]);
         MESSAGE("Coins scattered everywhere!");
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
-        MESSAGE("Wobbuffet's Sp. Atk fell!");
+        MESSAGE("Alakazam's Sp. Atk fell!");
     } THEN {
         EXPECT_MUL_EQ(damage[0], Q_4_12(0.66), damage[1]);
     }
@@ -38,10 +38,10 @@ SINGLE_BATTLE_TEST("Make It Rain lowers special attack by one stage")
 DOUBLE_BATTLE_TEST("Make It Rain lowers special attack by one stage if it hits both targets")
 {
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET)
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM)
+        PLAYER(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(playerLeft, MOVE_MAKE_IT_RAIN); }
     } SCENE {
@@ -50,11 +50,11 @@ DOUBLE_BATTLE_TEST("Make It Rain lowers special attack by one stage if it hits b
         NONE_OF {
             MESSAGE("Coins scattered everywhere!");
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, playerLeft);
-            MESSAGE("Wobbuffet's Sp. Atk fell!");
+            MESSAGE("Alakazam's Sp. Atk fell!");
         }
         HP_BAR(opponentRight);
         MESSAGE("Coins scattered everywhere!");
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, playerLeft);
-        MESSAGE("Wobbuffet's Sp. Atk fell!");
+        MESSAGE("Alakazam's Sp. Atk fell!");
     }
 }

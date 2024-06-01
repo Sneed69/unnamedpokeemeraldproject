@@ -11,8 +11,8 @@ SINGLE_BATTLE_TEST("Dragon Tail switches the target with a random non-fainted re
 {
     PASSES_RANDOMLY(1, 2, RNG_FORCE_RANDOM_SWITCH);
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_ALAKAZAM);
         OPPONENT(SPECIES_BULBASAUR);
         OPPONENT(SPECIES_CHARMANDER);
         OPPONENT(SPECIES_SQUIRTLE) { HP(0); }
@@ -28,10 +28,10 @@ DOUBLE_BATTLE_TEST("Dragon Tail switches the target with a random non-battler, n
 {
     PASSES_RANDOMLY(1, 2, RNG_FORCE_RANDOM_SWITCH);
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET);
-        PLAYER(SPECIES_WYNAUT);
-        OPPONENT(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WYNAUT);
+        PLAYER(SPECIES_ALAKAZAM);
+        PLAYER(SPECIES_ABRA);
+        OPPONENT(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_ABRA);
         OPPONENT(SPECIES_BULBASAUR);
         OPPONENT(SPECIES_CHARMANDER);
         OPPONENT(SPECIES_SQUIRTLE) { HP(0); }
@@ -46,8 +46,8 @@ DOUBLE_BATTLE_TEST("Dragon Tail switches the target with a random non-battler, n
 SINGLE_BATTLE_TEST("Dragon Tail does not fail if no replacements")
 {
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, MOVE_DRAGON_TAIL); }
     } SCENE {
@@ -59,9 +59,9 @@ SINGLE_BATTLE_TEST("Dragon Tail does not fail if no replacements")
 SINGLE_BATTLE_TEST("Dragon Tail does not fail if replacements fainted")
 {
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WYNAUT) { HP(0); }
+        PLAYER(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_ABRA) { HP(0); }
     } WHEN {
         TURN { MOVE(player, MOVE_DRAGON_TAIL); }
     } SCENE {

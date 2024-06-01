@@ -11,8 +11,8 @@ DOUBLE_BATTLE_TEST("Supreme Overlord boosts Attack by an additive 10% per fainte
         PLAYER(SPECIES_PAWNIARD);
         PLAYER(SPECIES_PAWNIARD);
         PLAYER(SPECIES_PAWNIARD);
-        OPPONENT(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         if (switchMon)
             TURN { SWITCH(playerLeft, 3); }
@@ -42,8 +42,8 @@ DOUBLE_BATTLE_TEST("Supreme Overlord's boost caps at a 1.5x multipler", s16 dama
         PLAYER(SPECIES_PAWNIARD);
         PLAYER(SPECIES_PAWNIARD);
         PLAYER(SPECIES_KINGAMBIT) { Ability(ABILITY_SUPREME_OVERLORD); }
-        OPPONENT(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(playerLeft, MOVE_MEMENTO, target: opponentRight); SEND_OUT(playerLeft, 2); }
         TURN { MOVE(playerLeft, MOVE_MEMENTO, target: opponentRight); SEND_OUT(playerLeft, 0); USE_ITEM(playerRight, ITEM_REVIVE, 0); }
@@ -77,7 +77,7 @@ SINGLE_BATTLE_TEST("Supreme Overlord does not boost attack if party members are 
         PLAYER(SPECIES_PAWNIARD) { HP(fainted ? 0 : 1); }
         PLAYER(SPECIES_PAWNIARD) { HP(fainted ? 0 : 1); }
         PLAYER(SPECIES_PAWNIARD) { HP(fainted ? 0 : 1); }
-        OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, MOVE_TACKLE, target: opponent); }
     } SCENE {
@@ -96,10 +96,10 @@ SINGLE_BATTLE_TEST("Supreme Overlord's message displays correctly after all batt
 {
     GIVEN {
         ASSUME(gMovesInfo[MOVE_EXPLOSION].effect == EFFECT_EXPLOSION);
-        PLAYER(SPECIES_WOBBUFFET) { HP(1);}
+        PLAYER(SPECIES_ALAKAZAM) { HP(1);}
         PLAYER(SPECIES_KINGAMBIT) { Ability(ABILITY_SUPREME_OVERLORD); }
-        OPPONENT(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(opponent, MOVE_EXPLOSION); SEND_OUT(player, 1); SEND_OUT(opponent, 1); }
     } SCENE {
@@ -109,7 +109,7 @@ SINGLE_BATTLE_TEST("Supreme Overlord's message displays correctly after all batt
         MESSAGE("Go! Kingambit!");
         ABILITY_POPUP(player, ABILITY_SUPREME_OVERLORD);
         MESSAGE("Kingambit gained strength from the fallen!");
-        MESSAGE("2 sent out Wobbuffet!");
+        MESSAGE("2 sent out Alakazam!");
     }
 }
 
@@ -117,9 +117,9 @@ SINGLE_BATTLE_TEST("Supreme Overlord's message displays correctly after all batt
 {
     GIVEN {
         ASSUME(gMovesInfo[MOVE_EXPLOSION].effect == EFFECT_EXPLOSION);
-        PLAYER(SPECIES_WOBBUFFET);
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET) { HP(1);}
+        PLAYER(SPECIES_ALAKAZAM);
+        PLAYER(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_ALAKAZAM) { HP(1);}
         OPPONENT(SPECIES_KINGAMBIT) { Ability(ABILITY_SUPREME_OVERLORD); }
     } WHEN {
         TURN { MOVE(player, MOVE_EXPLOSION); SEND_OUT(player, 1); SEND_OUT(opponent, 1); }
@@ -127,7 +127,7 @@ SINGLE_BATTLE_TEST("Supreme Overlord's message displays correctly after all batt
         HP_BAR(player, hp: 0);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_EXPLOSION, player);
         // Everyone faints.
-        MESSAGE("Go! Wobbuffet!");
+        MESSAGE("Go! Alakazam!");
         MESSAGE("2 sent out Kingambit!");
         ABILITY_POPUP(opponent, ABILITY_SUPREME_OVERLORD);
         MESSAGE("Foe Kingambit gained strength from the fallen!");

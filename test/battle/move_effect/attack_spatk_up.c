@@ -18,8 +18,8 @@ SINGLE_BATTLE_TEST("Work Up raises Attack and Sp. Attack by 1 stage each", s16 d
     GIVEN {
         ASSUME(gMovesInfo[MOVE_TACKLE].category == DAMAGE_CATEGORY_PHYSICAL);
         ASSUME(gMovesInfo[MOVE_SWIFT].category == DAMAGE_CATEGORY_SPECIAL);
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         if (raiseStats) TURN { MOVE(player, MOVE_WORK_UP); }
         TURN { MOVE(player, move); }
@@ -27,8 +27,8 @@ SINGLE_BATTLE_TEST("Work Up raises Attack and Sp. Attack by 1 stage each", s16 d
         if (raiseStats) {
             ANIMATION(ANIM_TYPE_MOVE, MOVE_WORK_UP, player);
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
-            MESSAGE("Wobbuffet's Attack rose!");
-            MESSAGE("Wobbuffet's Sp. Atk rose!");
+            MESSAGE("Alakazam's Attack rose!");
+            MESSAGE("Alakazam's Sp. Atk rose!");
         }
         ANIMATION(ANIM_TYPE_MOVE, move, player);
         HP_BAR(opponent, captureDamage: &results[i].damage);

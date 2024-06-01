@@ -6,7 +6,7 @@ SINGLE_BATTLE_TEST("Insomnia prevents sleep")
     GIVEN {
         ASSUME(gMovesInfo[MOVE_SPORE].effect == EFFECT_SLEEP);
         PLAYER(SPECIES_DROWZEE) { Ability(ABILITY_INSOMNIA); }
-        OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(opponent, MOVE_SPORE); }
     } SCENE {
@@ -24,7 +24,7 @@ SINGLE_BATTLE_TEST("Insomnia prevents yawn")
     GIVEN {
         ASSUME(gMovesInfo[MOVE_YAWN].effect == EFFECT_YAWN);
         PLAYER(SPECIES_DROWZEE) { Ability(ABILITY_INSOMNIA); }
-        OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(opponent, MOVE_SPORE); }
         TURN {}
@@ -44,7 +44,7 @@ SINGLE_BATTLE_TEST("Insomnia prevents rest")
     GIVEN {
         ASSUME(gMovesInfo[MOVE_REST].effect == EFFECT_REST);
         PLAYER(SPECIES_DROWZEE) { Ability(ABILITY_INSOMNIA); HP(1); }
-        OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, MOVE_REST); }
     } SCENE {

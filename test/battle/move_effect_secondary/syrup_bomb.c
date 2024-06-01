@@ -11,8 +11,8 @@ SINGLE_BATTLE_TEST("Syrup Bomb covers the foe in sticky syrup for 3 turns")
     u8 j;
 
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, MOVE_SYRUP_BOMB); }
         for (j = 0; j < 4; j++)
@@ -20,16 +20,16 @@ SINGLE_BATTLE_TEST("Syrup Bomb covers the foe in sticky syrup for 3 turns")
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_SYRUP_BOMB, player);
         HP_BAR(opponent);
-        MESSAGE("Foe Wobbuffet got covered in sticky syrup!");
+        MESSAGE("Foe Alakazam got covered in sticky syrup!");
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_SYRUP_BOMB_SPEED_DROP, opponent);
-        MESSAGE("Foe Wobbuffet's Speed fell!");
+        MESSAGE("Foe Alakazam's Speed fell!");
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_SYRUP_BOMB_SPEED_DROP, opponent);
-        MESSAGE("Foe Wobbuffet's Speed fell!");
+        MESSAGE("Foe Alakazam's Speed fell!");
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_SYRUP_BOMB_SPEED_DROP, opponent);
-        MESSAGE("Foe Wobbuffet's Speed fell!");
+        MESSAGE("Foe Alakazam's Speed fell!");
         NONE_OF {
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_SYRUP_BOMB_SPEED_DROP, opponent);
-            MESSAGE("Foe Wobbuffet's Speed fell!");
+            MESSAGE("Foe Alakazam's Speed fell!");
         }
     }
 }
@@ -37,27 +37,27 @@ SINGLE_BATTLE_TEST("Syrup Bomb covers the foe in sticky syrup for 3 turns")
 SINGLE_BATTLE_TEST("Sticky Syrup isn't applied again if the target is already covered")
 {
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, MOVE_SYRUP_BOMB); }
         TURN { MOVE(player, MOVE_SYRUP_BOMB); }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_SYRUP_BOMB, player);
         HP_BAR(opponent);
-        MESSAGE("Foe Wobbuffet got covered in sticky syrup!");
+        MESSAGE("Foe Alakazam got covered in sticky syrup!");
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_SYRUP_BOMB_SPEED_DROP, opponent);
-        MESSAGE("Foe Wobbuffet's Speed fell!");
+        MESSAGE("Foe Alakazam's Speed fell!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_SYRUP_BOMB, player);
         HP_BAR(opponent);
-        NOT MESSAGE("Foe Wobbuffet got covered in sticky syrup!");
+        NOT MESSAGE("Foe Alakazam got covered in sticky syrup!");
     }
 }
 
 SINGLE_BATTLE_TEST("Syrup Bomb is prevented by Bulletproof")
 {
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM);
         OPPONENT(SPECIES_CHESPIN) { Ability(ABILITY_BULLETPROOF); }
     } WHEN {
         TURN { MOVE(player, MOVE_SYRUP_BOMB); }
@@ -81,7 +81,7 @@ SINGLE_BATTLE_TEST("Sticky Syrup speed reduction is prevented by Clear Body, Whi
     PARAMETRIZE { species = SPECIES_SOLGALEO; ability = ABILITY_FULL_METAL_BODY; }
 
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM);
         OPPONENT(species) { Ability(ability); }
     } WHEN {
         TURN { MOVE(player, MOVE_SYRUP_BOMB); }
@@ -126,18 +126,18 @@ SINGLE_BATTLE_TEST("Sticky Syrup speed reduction is prevented by Clear Body, Whi
 SINGLE_BATTLE_TEST("Sticky Syrup speed reduction is prevented by Clear Amulet")
 {
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET) { Item(ITEM_CLEAR_AMULET); }
+        PLAYER(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_ALAKAZAM) { Item(ITEM_CLEAR_AMULET); }
     } WHEN {
         TURN { MOVE(player, MOVE_SYRUP_BOMB); }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_SYRUP_BOMB, player);
         HP_BAR(opponent);
-        MESSAGE("Foe Wobbuffet got covered in sticky syrup!");
-        MESSAGE("Foe Wobbuffet's Clear Amulet prevents its stats from being lowered!");
+        MESSAGE("Foe Alakazam got covered in sticky syrup!");
+        MESSAGE("Foe Alakazam's Clear Amulet prevents its stats from being lowered!");
         NONE_OF {
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_SYRUP_BOMB_SPEED_DROP, opponent);
-            MESSAGE("Foe Wobbuffet's Speed fell!");
+            MESSAGE("Foe Alakazam's Speed fell!");
         }
     }
 }
@@ -147,8 +147,8 @@ SINGLE_BATTLE_TEST("Sticky syrup will not decrease speed further then minus six"
     u8 j;
 
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         for (j = 0; j < 3; j++)
             TURN { MOVE(player, MOVE_SCARY_FACE); }
@@ -161,11 +161,11 @@ SINGLE_BATTLE_TEST("Sticky syrup will not decrease speed further then minus six"
         }
         ANIMATION(ANIM_TYPE_MOVE, MOVE_SYRUP_BOMB, player);
         HP_BAR(opponent);
-        MESSAGE("Foe Wobbuffet got covered in sticky syrup!");
+        MESSAGE("Foe Alakazam got covered in sticky syrup!");
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_SYRUP_BOMB_SPEED_DROP, opponent);
-        MESSAGE("Foe Wobbuffet's Speed won't go lower!");
+        MESSAGE("Foe Alakazam's Speed won't go lower!");
         NONE_OF {
-            MESSAGE("Foe Wobbuffet's Speed fell!");
+            MESSAGE("Foe Alakazam's Speed fell!");
         }
     }
 }
@@ -173,21 +173,21 @@ SINGLE_BATTLE_TEST("Sticky syrup will not decrease speed further then minus six"
 SINGLE_BATTLE_TEST("Sticky Syrup is removed when the user switches out")
 {
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET);
-        PLAYER(SPECIES_WYNAUT);
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM);
+        PLAYER(SPECIES_ABRA);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, MOVE_SYRUP_BOMB); }
         TURN { SWITCH(player, 1); }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_SYRUP_BOMB, player);
         HP_BAR(opponent);
-        MESSAGE("Foe Wobbuffet got covered in sticky syrup!");
+        MESSAGE("Foe Alakazam got covered in sticky syrup!");
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_SYRUP_BOMB_SPEED_DROP, opponent);
-        MESSAGE("Foe Wobbuffet's Speed fell!");
+        MESSAGE("Foe Alakazam's Speed fell!");
         NONE_OF {
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_SYRUP_BOMB_SPEED_DROP, opponent);
-            MESSAGE("Foe Wobbuffet's Speed fell!");
+            MESSAGE("Foe Alakazam's Speed fell!");
         }
     }
 }
@@ -195,9 +195,9 @@ SINGLE_BATTLE_TEST("Sticky Syrup is removed when the user switches out")
 SINGLE_BATTLE_TEST("Sticky Syrup is removed when the user faints")
 {
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET) { HP(1); }
-        PLAYER(SPECIES_WYNAUT);
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM) { HP(1); }
+        PLAYER(SPECIES_ABRA);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, MOVE_SYRUP_BOMB);
                MOVE(opponent, MOVE_TACKLE);
@@ -206,14 +206,14 @@ SINGLE_BATTLE_TEST("Sticky Syrup is removed when the user faints")
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_SYRUP_BOMB, player);
         HP_BAR(opponent);
-        MESSAGE("Foe Wobbuffet got covered in sticky syrup!");
+        MESSAGE("Foe Alakazam got covered in sticky syrup!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, opponent);
         HP_BAR(player);
-        MESSAGE("Wobbuffet fainted!");
-        MESSAGE("Go! Wynaut!");
+        MESSAGE("Alakazam fainted!");
+        MESSAGE("Go! Abra!");
         NONE_OF {
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_SYRUP_BOMB_SPEED_DROP, opponent);
-            MESSAGE("Foe Wobbuffet's Speed fell!");
+            MESSAGE("Foe Alakazam's Speed fell!");
         }
     }
 }

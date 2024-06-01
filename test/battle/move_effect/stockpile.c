@@ -12,8 +12,8 @@ ASSUMPTIONS
 SINGLE_BATTLE_TEST("Stockpile's count can go up only to 3")
 {
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, MOVE_STOCKPILE); }
         TURN { MOVE(player, MOVE_STOCKPILE); }
@@ -21,16 +21,16 @@ SINGLE_BATTLE_TEST("Stockpile's count can go up only to 3")
         TURN { MOVE(player, MOVE_STOCKPILE); }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_STOCKPILE, player);
-        MESSAGE("Wobbuffet stockpiled 1!");
+        MESSAGE("Alakazam stockpiled 1!");
 
         ANIMATION(ANIM_TYPE_MOVE, MOVE_STOCKPILE, player);
-        MESSAGE("Wobbuffet stockpiled 2!");
+        MESSAGE("Alakazam stockpiled 2!");
 
         ANIMATION(ANIM_TYPE_MOVE, MOVE_STOCKPILE, player);
-        MESSAGE("Wobbuffet stockpiled 3!");
+        MESSAGE("Alakazam stockpiled 3!");
 
         NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_STOCKPILE, player);
-        MESSAGE("Wobbuffet can't stockpile any more!");
+        MESSAGE("Alakazam can't stockpile any more!");
     }
 }
 
@@ -40,8 +40,8 @@ SINGLE_BATTLE_TEST("Spit Up and Swallow don't work if used without Stockpile")
     PARAMETRIZE { move = MOVE_SWALLOW; }
     PARAMETRIZE { move = MOVE_SPIT_UP; }
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET) { HP(10), MaxHP(400); }
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM) { HP(10), MaxHP(400); }
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, move); }
         TURN { MOVE(player, MOVE_STOCKPILE); }
@@ -54,7 +54,7 @@ SINGLE_BATTLE_TEST("Spit Up and Swallow don't work if used without Stockpile")
             MESSAGE("But it failed to spit up a thing!");
 
         ANIMATION(ANIM_TYPE_MOVE, MOVE_STOCKPILE, player);
-        MESSAGE("Wobbuffet stockpiled 1!");
+        MESSAGE("Alakazam stockpiled 1!");
 
         ANIMATION(ANIM_TYPE_MOVE, move, player);
         if (move == MOVE_SPIT_UP) {
@@ -73,8 +73,8 @@ SINGLE_BATTLE_TEST("Spit Up's power raises depending on Stockpile's count", s16 
     PARAMETRIZE { count = 2; }
     PARAMETRIZE { count = 3; }
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, MOVE_STOCKPILE); }
         if (count != 1){
@@ -86,13 +86,13 @@ SINGLE_BATTLE_TEST("Spit Up's power raises depending on Stockpile's count", s16 
         TURN { MOVE(player, MOVE_SPIT_UP); }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_STOCKPILE, player);
-        MESSAGE("Wobbuffet stockpiled 1!");
+        MESSAGE("Alakazam stockpiled 1!");
         if (count != 1) {
             ANIMATION(ANIM_TYPE_MOVE, MOVE_STOCKPILE, player);
-            MESSAGE("Wobbuffet stockpiled 2!");
+            MESSAGE("Alakazam stockpiled 2!");
             if (count == 3) {
                 ANIMATION(ANIM_TYPE_MOVE, MOVE_STOCKPILE, player);
-                MESSAGE("Wobbuffet stockpiled 3!");
+                MESSAGE("Alakazam stockpiled 3!");
             }
         }
         ANIMATION(ANIM_TYPE_MOVE, MOVE_SPIT_UP, player);
@@ -110,8 +110,8 @@ SINGLE_BATTLE_TEST("Swallow heals HP depending on Stockpile's count", s16 hpHeal
     PARAMETRIZE { count = 2; }
     PARAMETRIZE { count = 3; }
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET) { HP(1), MaxHP(400); }
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM) { HP(1), MaxHP(400); }
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, MOVE_STOCKPILE); }
         if (count != 1){
@@ -123,13 +123,13 @@ SINGLE_BATTLE_TEST("Swallow heals HP depending on Stockpile's count", s16 hpHeal
         TURN { MOVE(player, MOVE_SWALLOW); }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_STOCKPILE, player);
-        MESSAGE("Wobbuffet stockpiled 1!");
+        MESSAGE("Alakazam stockpiled 1!");
         if (count != 1) {
             ANIMATION(ANIM_TYPE_MOVE, MOVE_STOCKPILE, player);
-            MESSAGE("Wobbuffet stockpiled 2!");
+            MESSAGE("Alakazam stockpiled 2!");
             if (count == 3) {
                 ANIMATION(ANIM_TYPE_MOVE, MOVE_STOCKPILE, player);
-                MESSAGE("Wobbuffet stockpiled 3!");
+                MESSAGE("Alakazam stockpiled 3!");
             }
         }
         ANIMATION(ANIM_TYPE_MOVE, MOVE_SWALLOW, player);
@@ -150,18 +150,18 @@ SINGLE_BATTLE_TEST("Stockpile temporarily raises Def and Sp. Def", s16 dmgPyhsic
         ASSUME(B_STOCKPILE_RAISES_DEFS >= GEN_4);
         ASSUME(gMovesInfo[MOVE_TACKLE].category == DAMAGE_CATEGORY_PHYSICAL);
         ASSUME(gMovesInfo[MOVE_GUST].category == DAMAGE_CATEGORY_SPECIAL);
-        PLAYER(SPECIES_WOBBUFFET) { Speed(2); }
-        OPPONENT(SPECIES_WOBBUFFET) { Speed(1); }
+        PLAYER(SPECIES_ALAKAZAM) { Speed(2); }
+        OPPONENT(SPECIES_ALAKAZAM) { Speed(1); }
     } WHEN {
         TURN { MOVE(player, move); MOVE(opponent, MOVE_TACKLE); }
         TURN { MOVE(opponent, MOVE_GUST); }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, move, player);
         if (move == MOVE_STOCKPILE) {
-            MESSAGE("Wobbuffet stockpiled 1!");
+            MESSAGE("Alakazam stockpiled 1!");
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
-            MESSAGE("Wobbuffet's Defense rose!");
-            MESSAGE("Wobbuffet's Sp. Def rose!");
+            MESSAGE("Alakazam's Defense rose!");
+            MESSAGE("Alakazam's Sp. Def rose!");
         }
 
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, opponent);
@@ -186,10 +186,10 @@ DOUBLE_BATTLE_TEST("Stockpile's Def and Sp. Def boost is lost after using Spit U
         ASSUME(B_STOCKPILE_RAISES_DEFS >= GEN_4);
         ASSUME(gMovesInfo[MOVE_TACKLE].category == DAMAGE_CATEGORY_PHYSICAL);
         ASSUME(gMovesInfo[MOVE_GUST].category == DAMAGE_CATEGORY_SPECIAL);
-        PLAYER(SPECIES_WOBBUFFET) { Speed(4); HP(399); MaxHP(400); }
-        PLAYER(SPECIES_WOBBUFFET) { Speed(3); }
-        OPPONENT(SPECIES_WOBBUFFET) { Speed(2); }
-        OPPONENT(SPECIES_WOBBUFFET) { Speed(1); }
+        PLAYER(SPECIES_ALAKAZAM) { Speed(4); HP(399); MaxHP(400); }
+        PLAYER(SPECIES_ALAKAZAM) { Speed(3); }
+        OPPONENT(SPECIES_ALAKAZAM) { Speed(2); }
+        OPPONENT(SPECIES_ALAKAZAM) { Speed(1); }
     } WHEN {
         TURN { MOVE(opponentLeft, MOVE_TACKLE, target: playerLeft); MOVE(opponentRight, MOVE_GUST, target: playerLeft); }
         TURN { MOVE(playerLeft, MOVE_STOCKPILE); }
@@ -216,26 +216,26 @@ DOUBLE_BATTLE_TEST("Stockpile's Def and Sp. Def boost is lost after using Spit U
         ANIMATION(ANIM_TYPE_MOVE, move, playerLeft);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, playerLeft);
         if (count == 1) {
-            MESSAGE("Wobbuffet's Defense fell!");
+            MESSAGE("Alakazam's Defense fell!");
         }
         else if (count == 2) {
-            MESSAGE("Wobbuffet's Defense harshly fell!");
+            MESSAGE("Alakazam's Defense harshly fell!");
         }
         else {
-            MESSAGE("Wobbuffet's Defense severely fell!");
+            MESSAGE("Alakazam's Defense severely fell!");
         }
 
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, playerLeft);
         if (count == 1) {
-            MESSAGE("Wobbuffet's Sp. Def fell!");
+            MESSAGE("Alakazam's Sp. Def fell!");
         }
         else if (count == 2) {
-            MESSAGE("Wobbuffet's Sp. Def harshly fell!");
+            MESSAGE("Alakazam's Sp. Def harshly fell!");
         }
         else {
-            MESSAGE("Wobbuffet's Sp. Def severely fell!");
+            MESSAGE("Alakazam's Sp. Def severely fell!");
         }
-        MESSAGE("Wobbuffet's stockpiled effect wore off!");
+        MESSAGE("Alakazam's stockpiled effect wore off!");
 
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, opponentLeft);
         HP_BAR(playerLeft, captureDamage: &results[i].dmgPhysicalAfter);

@@ -13,8 +13,8 @@ SINGLE_BATTLE_TEST("Reflect reduces physical damage", s16 damage)
     PARAMETRIZE { move = MOVE_REFLECT; }
     GIVEN {
         ASSUME(gMovesInfo[MOVE_TACKLE].category == DAMAGE_CATEGORY_PHYSICAL);
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, move); MOVE(opponent, MOVE_TACKLE); }
     } SCENE {
@@ -31,8 +31,8 @@ SINGLE_BATTLE_TEST("Reflect applies for 5 turns")
     s16 damage[6];
     GIVEN {
         ASSUME(gMovesInfo[MOVE_TACKLE].category == DAMAGE_CATEGORY_PHYSICAL);
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, MOVE_REFLECT); MOVE(opponent, MOVE_TACKLE); }
         TURN { MOVE(opponent, MOVE_TACKLE); }
@@ -66,14 +66,14 @@ SINGLE_BATTLE_TEST("Reflect applies for 5 turns")
 SINGLE_BATTLE_TEST("Reflect fails if already active")
 {
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, MOVE_REFLECT); }
         TURN { MOVE(player, MOVE_REFLECT); }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_REFLECT, player);
-        MESSAGE("Wobbuffet used Reflect!");
+        MESSAGE("Alakazam used Reflect!");
         MESSAGE("But it failed!");
     }
 }

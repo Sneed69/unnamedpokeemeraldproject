@@ -14,9 +14,9 @@ SINGLE_BATTLE_TEST("Spikes damage on switch in")
     PARAMETRIZE { layers = 2; divisor = 6; }
     PARAMETRIZE { layers = 3; divisor = 4; }
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WYNAUT);
+        PLAYER(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_ABRA);
     } WHEN {
         u32 count;
         for (count = 0; count < layers; ++count) {
@@ -30,18 +30,18 @@ SINGLE_BATTLE_TEST("Spikes damage on switch in")
             ANIMATION(ANIM_TYPE_MOVE, MOVE_SPIKES, player);
             MESSAGE("Spikes were scattered all around the opposing team!");
         }
-        MESSAGE("2 sent out Wynaut!");
+        MESSAGE("2 sent out Abra!");
         HP_BAR(opponent, damage: maxHP / divisor);
-        MESSAGE("Foe Wynaut is hurt by spikes!");
+        MESSAGE("Foe Abra is hurt by spikes!");
     }
 }
 
 SINGLE_BATTLE_TEST("Spikes fails after 3 layers")
 {
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WYNAUT);
+        PLAYER(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_ABRA);
     } WHEN {
         TURN { MOVE(player, MOVE_SPIKES); }
         TURN { MOVE(player, MOVE_SPIKES); }
@@ -56,20 +56,20 @@ SINGLE_BATTLE_TEST("Spikes fails after 3 layers")
         MESSAGE("Spikes were scattered all around the opposing team!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_SPIKES, player);
         MESSAGE("Spikes were scattered all around the opposing team!");
-        MESSAGE("Wobbuffet used Spikes!");
+        MESSAGE("Alakazam used Spikes!");
         MESSAGE("But it failed!");
-        MESSAGE("2 sent out Wynaut!");
+        MESSAGE("2 sent out Abra!");
         HP_BAR(opponent, damage: maxHP / 4);
-        MESSAGE("Foe Wynaut is hurt by spikes!");
+        MESSAGE("Foe Abra is hurt by spikes!");
     }
 }
 
 SINGLE_BATTLE_TEST("Spikes damage on subsequent switch ins")
 {
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WYNAUT);
+        PLAYER(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_ABRA);
     } WHEN {
         TURN { MOVE(player, MOVE_SPIKES); }
         TURN { SWITCH(opponent, 1); }
@@ -77,18 +77,18 @@ SINGLE_BATTLE_TEST("Spikes damage on subsequent switch ins")
     } SCENE {
         s32 maxHP0 = GetMonData(&OPPONENT_PARTY[0], MON_DATA_MAX_HP);
         s32 maxHP1 = GetMonData(&OPPONENT_PARTY[1], MON_DATA_MAX_HP);
-        MESSAGE("2 sent out Wynaut!");
+        MESSAGE("2 sent out Abra!");
         HP_BAR(opponent, damage: maxHP1 / 8);
-        MESSAGE("Foe Wynaut is hurt by spikes!");
-        MESSAGE("2 sent out Wobbuffet!");
+        MESSAGE("Foe Abra is hurt by spikes!");
+        MESSAGE("2 sent out Alakazam!");
         HP_BAR(opponent, damage: maxHP0 / 8);
-        MESSAGE("Foe Wobbuffet is hurt by spikes!");
+        MESSAGE("Foe Alakazam is hurt by spikes!");
     }
 }
 
 SINGLE_BATTLE_TEST("Spikes do not damage airborne Pokemon")
 {
-    u32 species = SPECIES_WOBBUFFET;
+    u32 species = SPECIES_ALAKAZAM;
     u32 item = ITEM_NONE;
     u32 move1 = MOVE_CELEBRATE;
     u32 move2 = MOVE_CELEBRATE;
@@ -117,8 +117,8 @@ SINGLE_BATTLE_TEST("Spikes do not damage airborne Pokemon")
     PARAMETRIZE { item = ITEM_AIR_BALLOON; move1 = MOVE_INGRAIN; airborne = FALSE; }
 
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_ALAKAZAM);
         OPPONENT(species) { Item(item); }
     } WHEN {
         TURN { MOVE(player, MOVE_SPIKES); MOVE(opponent, move1); }

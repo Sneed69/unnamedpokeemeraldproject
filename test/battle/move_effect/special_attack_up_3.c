@@ -13,8 +13,8 @@ SINGLE_BATTLE_TEST("Tail Glow drastically raises Special Attack", s16 damage)
     PARAMETRIZE { raiseSpecialAttack = TRUE; }
     GIVEN {
         ASSUME(gMovesInfo[MOVE_GUST].category == DAMAGE_CATEGORY_SPECIAL);
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         if (raiseSpecialAttack) TURN { MOVE(player, MOVE_TAIL_GLOW); }
         TURN { MOVE(player, MOVE_GUST); }
@@ -22,7 +22,7 @@ SINGLE_BATTLE_TEST("Tail Glow drastically raises Special Attack", s16 damage)
         if (raiseSpecialAttack) {
             ANIMATION(ANIM_TYPE_MOVE, MOVE_TAIL_GLOW, player);
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
-            MESSAGE("Wobbuffet's Sp. Atk drastically rose!");
+            MESSAGE("Alakazam's Sp. Atk drastically rose!");
         }
         ANIMATION(ANIM_TYPE_MOVE, MOVE_GUST, player);
         HP_BAR(opponent, captureDamage: &results[i].damage);

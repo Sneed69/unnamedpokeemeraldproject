@@ -9,8 +9,8 @@ ASSUMPTIONS
 SINGLE_BATTLE_TEST("Teleport fails when there is no pokemon to switch in")
 {
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(opponent, MOVE_TELEPORT); }
     } SCENE {
@@ -21,9 +21,9 @@ SINGLE_BATTLE_TEST("Teleport fails when there is no pokemon to switch in")
 SINGLE_BATTLE_TEST("Teleport fails when there no alive pokemon left")
 {
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WYNAUT) { HP(0); }
+        PLAYER(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_ABRA) { HP(0); }
     } WHEN {
         TURN { MOVE(opponent, MOVE_TELEPORT); }
     } SCENE {
@@ -34,28 +34,28 @@ SINGLE_BATTLE_TEST("Teleport fails when there no alive pokemon left")
 SINGLE_BATTLE_TEST("Teleport forces the pokemon to switch out")
 {
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WYNAUT);
+        PLAYER(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_ABRA);
     } WHEN {
         TURN { MOVE(opponent, MOVE_TELEPORT); SEND_OUT(opponent, 1); }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TELEPORT, opponent);
-        MESSAGE("2 sent out Wynaut!");
+        MESSAGE("2 sent out Abra!");
     }
 }
 
 SINGLE_BATTLE_TEST("Teleport does not fail if the user is trapped")
 {
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WYNAUT);
+        PLAYER(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_ABRA);
     } WHEN {
         TURN { MOVE(player, MOVE_FIRE_SPIN); MOVE(opponent, MOVE_TELEPORT); SEND_OUT(opponent, 1); }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_FIRE_SPIN, player);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TELEPORT, opponent);
-        MESSAGE("2 sent out Wynaut!");
+        MESSAGE("2 sent out Abra!");
     }
 }

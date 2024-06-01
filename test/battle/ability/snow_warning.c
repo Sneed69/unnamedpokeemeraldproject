@@ -9,7 +9,7 @@ SINGLE_BATTLE_TEST("Snow Warning summons snow")
 {
     GIVEN {
         PLAYER(SPECIES_ABOMASNOW) { Ability(ABILITY_SNOW_WARNING); }
-        OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN {}
     } SCENE {

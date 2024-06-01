@@ -7,7 +7,7 @@ SINGLE_BATTLE_TEST("Magician does not get self-damage recoil after stealing Life
         ASSUME(gItemsInfo[ITEM_LIFE_ORB].holdEffect == HOLD_EFFECT_LIFE_ORB);
         ASSUME(gMovesInfo[MOVE_TACKLE].power != 0);
         PLAYER(SPECIES_DELPHOX) { Ability(ABILITY_MAGICIAN); Item(ITEM_NONE); }
-        OPPONENT(SPECIES_WOBBUFFET) { Item(ITEM_LIFE_ORB); }
+        OPPONENT(SPECIES_ALAKAZAM) { Item(ITEM_LIFE_ORB); }
     } WHEN {
         TURN { MOVE(player, MOVE_TACKLE); }
         TURN { MOVE(player, MOVE_TACKLE); }
@@ -15,7 +15,7 @@ SINGLE_BATTLE_TEST("Magician does not get self-damage recoil after stealing Life
         // 1st turn
         MESSAGE("Delphox used Tackle!");
         ABILITY_POPUP(player, ABILITY_MAGICIAN);
-        MESSAGE("Delphox stole Foe Wobbuffet's Life Orb!");
+        MESSAGE("Delphox stole Foe Alakazam's Life Orb!");
         NONE_OF {
             HP_BAR(player);
             MESSAGE("Delphox was hurt by its Life Orb!");

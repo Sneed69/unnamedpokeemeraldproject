@@ -10,18 +10,18 @@ SINGLE_BATTLE_TEST("Eject Pack does not cause the new Pokémon to lose HP due to
 {
     GIVEN {
         ASSUME(gItemsInfo[ITEM_LIFE_ORB].holdEffect == HOLD_EFFECT_LIFE_ORB);
-        PLAYER(SPECIES_WOBBUFFET) { Item(ITEM_EJECT_PACK); }
-        PLAYER(SPECIES_WYNAUT) { Item(ITEM_LIFE_ORB); }
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM) { Item(ITEM_EJECT_PACK); }
+        PLAYER(SPECIES_ABRA) { Item(ITEM_LIFE_ORB); }
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, MOVE_OVERHEAT); SEND_OUT(player, 1); }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_OVERHEAT, player);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, player);
-        MESSAGE("Wobbuffet is switched out with the Eject Pack!");
-        MESSAGE("Go! Wynaut!");
-        NOT MESSAGE("Wynaut was hurt by its Life Orb!");
+        MESSAGE("Alakazam is switched out with the Eject Pack!");
+        MESSAGE("Go! Abra!");
+        NOT MESSAGE("Abra was hurt by its Life Orb!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_CELEBRATE, opponent);
     }
 }
@@ -29,8 +29,8 @@ SINGLE_BATTLE_TEST("Eject Pack does not cause the new Pokémon to lose HP due to
 SINGLE_BATTLE_TEST("Eject Pack does not activate if there are no Pokémon left to battle")
 {
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET) { Item(ITEM_EJECT_PACK); }
-        PLAYER(SPECIES_WOBBUFFET) { HP(0); }
+        PLAYER(SPECIES_ALAKAZAM) { Item(ITEM_EJECT_PACK); }
+        PLAYER(SPECIES_ALAKAZAM) { HP(0); }
         OPPONENT(SPECIES_EKANS) { Ability(ABILITY_INTIMIDATE); }
     } WHEN {
         TURN { }
@@ -38,7 +38,7 @@ SINGLE_BATTLE_TEST("Eject Pack does not activate if there are no Pokémon left t
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
         NONE_OF {
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, player);
-            MESSAGE("Wobbuffet is switched out with the Eject Pack!");
+            MESSAGE("Alakazam is switched out with the Eject Pack!");
         }
     }
 }
@@ -47,10 +47,10 @@ SINGLE_BATTLE_TEST("Eject Pack is triggered by self-inflicting stat decreases")
 {
     GIVEN {
         ASSUME(gItemsInfo[ITEM_LIFE_ORB].holdEffect == HOLD_EFFECT_LIFE_ORB);
-        PLAYER(SPECIES_WOBBUFFET) { Item(ITEM_EJECT_PACK); }
-        PLAYER(SPECIES_WYNAUT);
-        OPPONENT(SPECIES_WOBBUFFET)  { Item(ITEM_EJECT_PACK); }
-        OPPONENT(SPECIES_WYNAUT);
+        PLAYER(SPECIES_ALAKAZAM) { Item(ITEM_EJECT_PACK); }
+        PLAYER(SPECIES_ABRA);
+        OPPONENT(SPECIES_ALAKAZAM)  { Item(ITEM_EJECT_PACK); }
+        OPPONENT(SPECIES_ABRA);
     } WHEN {
         TURN { MOVE(player, MOVE_OVERHEAT); SEND_OUT(player, 1); }
     } SCENE {
@@ -58,8 +58,8 @@ SINGLE_BATTLE_TEST("Eject Pack is triggered by self-inflicting stat decreases")
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
         NOT ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, opponent);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, player);
-        MESSAGE("Wobbuffet is switched out with the Eject Pack!");
-        MESSAGE("Go! Wynaut!");
+        MESSAGE("Alakazam is switched out with the Eject Pack!");
+        MESSAGE("Go! Abra!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_CELEBRATE, opponent);
     }
 }

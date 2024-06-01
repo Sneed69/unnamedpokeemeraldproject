@@ -20,8 +20,8 @@ SINGLE_BATTLE_TEST("Items can restore a battler's HP by a fixed amount")
 #endif
     GIVEN {
         ASSUME(gItemsInfo[item].battleUsage == EFFECT_ITEM_RESTORE_HP);
-        PLAYER(SPECIES_WOBBUFFET) { HP(1); MaxHP(400); }
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM) { HP(1); MaxHP(400); }
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { USE_ITEM(player, item, partyIndex: 0); }
     } SCENE {
@@ -38,8 +38,8 @@ SINGLE_BATTLE_TEST("Items can restore a battler's HP by a percentage")
 #endif
     GIVEN {
         ASSUME(gItemsInfo[item].battleUsage == EFFECT_ITEM_RESTORE_HP);
-        PLAYER(SPECIES_WOBBUFFET) { HP(1); MaxHP(400); }
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM) { HP(1); MaxHP(400); }
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { USE_ITEM(player, item, partyIndex: 0); }
     } SCENE {

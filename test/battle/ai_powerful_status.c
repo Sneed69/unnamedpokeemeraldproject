@@ -8,14 +8,14 @@ AI_SINGLE_BATTLE_TEST("AI prefers to set up a powerful Status over fainting a ta
         ASSUME(gMovesInfo[MOVE_TRICK_ROOM].effect == EFFECT_TRICK_ROOM);
         ASSUME(gMovesInfo[MOVE_TACKLE].power > 0);
         AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_TRY_TO_FAINT | AI_FLAG_CHECK_VIABILITY | AI_FLAG_POWERFUL_STATUS);
-        PLAYER(SPECIES_WOBBUFFET) { HP(1); }
-        PLAYER(SPECIES_WYNAUT);
+        PLAYER(SPECIES_ALAKAZAM) { HP(1); }
+        PLAYER(SPECIES_ABRA);
         OPPONENT(SPECIES_DUSCLOPS) { Moves(MOVE_TRICK_ROOM, MOVE_TACKLE); }
     } WHEN {
         TURN { EXPECT_MOVE(opponent, MOVE_TRICK_ROOM); }
         TURN { EXPECT_MOVE(opponent, MOVE_TACKLE); SEND_OUT(player, 1); }
     } SCENE {
-        MESSAGE("Wobbuffet fainted!");
+        MESSAGE("Alakazam fainted!");
     }
 }
 
@@ -26,14 +26,14 @@ AI_SINGLE_BATTLE_TEST("AI will try to do damage on target instead of setting up 
         ASSUME(gMovesInfo[MOVE_STEALTH_ROCK].effect == EFFECT_STEALTH_ROCK);
         ASSUME(gMovesInfo[MOVE_TACKLE].power > 0);
         AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_TRY_TO_FAINT | AI_FLAG_POWERFUL_STATUS | AI_FLAG_OMNISCIENT);
-        PLAYER(SPECIES_WOBBUFFET) { HP(1); Moves(MOVE_RAPID_SPIN, MOVE_DEFOG, MOVE_CELEBRATE); }
-        PLAYER(SPECIES_WYNAUT);
+        PLAYER(SPECIES_ALAKAZAM) { HP(1); Moves(MOVE_RAPID_SPIN, MOVE_DEFOG, MOVE_CELEBRATE); }
+        PLAYER(SPECIES_ABRA);
         OPPONENT(SPECIES_GLIGAR) { Moves(MOVE_STEALTH_ROCK, MOVE_TACKLE); }
-        OPPONENT(SPECIES_WYNAUT);
+        OPPONENT(SPECIES_ABRA);
     } WHEN {
         TURN { EXPECT_MOVE(opponent, MOVE_TACKLE); SEND_OUT(player, 1); }
     } SCENE {
-        MESSAGE("Wobbuffet fainted!");
+        MESSAGE("Alakazam fainted!");
     }
 }
 
@@ -43,10 +43,10 @@ AI_SINGLE_BATTLE_TEST("AI will not set up Rain if it is already raining")
         ASSUME(gMovesInfo[MOVE_RAIN_DANCE].effect == EFFECT_RAIN_DANCE);
         ASSUME(gMovesInfo[MOVE_TACKLE].power > 0);
         AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_TRY_TO_FAINT | AI_FLAG_CHECK_VIABILITY | AI_FLAG_POWERFUL_STATUS);
-        PLAYER(SPECIES_WOBBUFFET);
-        PLAYER(SPECIES_WYNAUT);
-        OPPONENT(SPECIES_WOBBUFFET) { Moves(MOVE_RAIN_DANCE, MOVE_TACKLE); }
-        OPPONENT(SPECIES_WYNAUT);
+        PLAYER(SPECIES_ALAKAZAM);
+        PLAYER(SPECIES_ABRA);
+        OPPONENT(SPECIES_ALAKAZAM) { Moves(MOVE_RAIN_DANCE, MOVE_TACKLE); }
+        OPPONENT(SPECIES_ABRA);
     } WHEN {
         TURN { EXPECT_MOVE(opponent, MOVE_RAIN_DANCE); }
         TURN { EXPECT_MOVE(opponent, MOVE_TACKLE); }

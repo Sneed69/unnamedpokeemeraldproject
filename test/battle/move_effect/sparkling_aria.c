@@ -12,14 +12,14 @@ DOUBLE_BATTLE_TEST("Sparkling Aria cures burns from all Pokemon on the field and
 {
     GIVEN {
         PLAYER(SPECIES_PRIMARINA);
-        PLAYER(SPECIES_WOBBUFFET) { Status1(STATUS1_BURN); }
-        OPPONENT(SPECIES_WOBBUFFET) { Status1(STATUS1_BURN); }
-        OPPONENT(SPECIES_WYNAUT) { Status1(STATUS1_BURN); }
+        PLAYER(SPECIES_ALAKAZAM) { Status1(STATUS1_BURN); }
+        OPPONENT(SPECIES_ALAKAZAM) { Status1(STATUS1_BURN); }
+        OPPONENT(SPECIES_ABRA) { Status1(STATUS1_BURN); }
     } WHEN {
         TURN { MOVE(opponentLeft, MOVE_SUBSTITUTE); MOVE(opponentRight, MOVE_CELEBRATE); MOVE(playerRight, MOVE_CELEBRATE); MOVE(playerLeft, MOVE_SPARKLING_ARIA); }
     } SCENE {
-        MESSAGE("Foe Wobbuffet's burn was healed.");
-        MESSAGE("Wobbuffet's burn was healed.");
-        MESSAGE("Foe Wynaut's burn was healed.");
+        MESSAGE("Foe Alakazam's burn was healed.");
+        MESSAGE("Alakazam's burn was healed.");
+        MESSAGE("Foe Abra's burn was healed.");
     }
 }

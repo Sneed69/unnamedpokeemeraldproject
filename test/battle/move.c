@@ -12,8 +12,8 @@ SINGLE_BATTLE_TEST("Accuracy controls the proportion of misses")
     ASSUME(0 < gMovesInfo[move].accuracy && gMovesInfo[move].accuracy <= 100);
     PASSES_RANDOMLY(gMovesInfo[move].accuracy, 100, RNG_ACCURACY);
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, move); }
     } SCENE {
@@ -30,8 +30,8 @@ SINGLE_BATTLE_TEST("AdditionalEffect.chance controls the proportion of secondary
     ASSUME(MoveHasAdditionalEffect(move, MOVE_EFFECT_PARALYSIS) == TRUE);
     PASSES_RANDOMLY(chance, 100, RNG_SECONDARY_EFFECT);
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, move); }
     } SCENE {
@@ -43,8 +43,8 @@ SINGLE_BATTLE_TEST("Turn order is determined by priority")
 {
     GIVEN {
         ASSUME(gMovesInfo[MOVE_QUICK_ATTACK].priority > gMovesInfo[MOVE_TACKLE].priority);
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, MOVE_QUICK_ATTACK); MOVE(opponent, MOVE_TACKLE); }
     } SCENE {
@@ -56,8 +56,8 @@ SINGLE_BATTLE_TEST("Turn order is determined by priority")
 SINGLE_BATTLE_TEST("Turn order is determined by Speed if priority ties")
 {
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET) { Speed(2); }
-        OPPONENT(SPECIES_WOBBUFFET) { Speed(1); }
+        PLAYER(SPECIES_ALAKAZAM) { Speed(2); }
+        OPPONENT(SPECIES_ALAKAZAM) { Speed(1); }
     } WHEN {
         TURN { MOVE(player, MOVE_QUICK_ATTACK); MOVE(opponent, MOVE_QUICK_ATTACK); }
     } SCENE {
@@ -71,8 +71,8 @@ SINGLE_BATTLE_TEST("Turn order is determined randomly if priority and Speed tie"
     KNOWN_FAILING; // The algorithm is significantly biased.
     PASSES_RANDOMLY(1, 2);
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET) { Speed(1); }
-        OPPONENT(SPECIES_WOBBUFFET) { Speed(1); }
+        PLAYER(SPECIES_ALAKAZAM) { Speed(1); }
+        OPPONENT(SPECIES_ALAKAZAM) { Speed(1); }
     } WHEN {
         TURN { MOVE(player, MOVE_QUICK_ATTACK); MOVE(opponent, MOVE_QUICK_ATTACK); }
     } SCENE {
@@ -86,8 +86,8 @@ SINGLE_BATTLE_TEST("Critical hits occur at a 1/24 rate")
     ASSUME(B_CRIT_CHANCE >= GEN_7);
     PASSES_RANDOMLY(1, 24, RNG_CRITICAL_HIT);
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, MOVE_SCRATCH); }
     } SCENE {
@@ -101,8 +101,8 @@ SINGLE_BATTLE_TEST("Slash's critical hits occur at a 1/8 rate")
     ASSUME(gMovesInfo[MOVE_SLASH].criticalHitStage == 1);
     PASSES_RANDOMLY(1, 8, RNG_CRITICAL_HIT);
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, MOVE_SLASH); }
     } SCENE {
@@ -117,8 +117,8 @@ SINGLE_BATTLE_TEST("Critical hits deal 50% more damage", s16 damage)
     PARAMETRIZE { criticalHit = TRUE; }
     GIVEN {
         ASSUME(B_CRIT_MULTIPLIER >= GEN_6);
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, MOVE_SCRATCH, criticalHit: criticalHit); }
     } SCENE {
@@ -136,8 +136,8 @@ SINGLE_BATTLE_TEST("Critical hits do not ignore positive stat stages", s16 damag
     PARAMETRIZE { move = MOVE_TAIL_WHIP; }
     GIVEN {
         ASSUME(gMovesInfo[MOVE_SCRATCH].category == DAMAGE_CATEGORY_PHYSICAL);
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, move); }
         TURN { MOVE(player, MOVE_SCRATCH, criticalHit: TRUE); }
@@ -157,8 +157,8 @@ SINGLE_BATTLE_TEST("Critical hits ignore negative stat stages", s16 damage)
     PARAMETRIZE { move = MOVE_GROWL; }
     GIVEN {
         ASSUME(gMovesInfo[MOVE_SCRATCH].category == DAMAGE_CATEGORY_PHYSICAL);
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(opponent, move); }
         TURN { MOVE(player, MOVE_SCRATCH, criticalHit: TRUE); }

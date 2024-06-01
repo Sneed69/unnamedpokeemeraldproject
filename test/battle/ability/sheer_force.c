@@ -26,7 +26,7 @@ SINGLE_BATTLE_TEST("Sheer Force boosts power, but removes secondary effects of m
 
     GIVEN {
         PLAYER(SPECIES_TAUROS) { Ability(ability); Status1(move == MOVE_SNORE ? STATUS1_SLEEP : STATUS1_NONE); }
-        OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         if (move == MOVE_ALLURING_VOICE || move == MOVE_BURNING_JEALOUSY) // Alluring Voice requires the target to boost stats to have an effect
             TURN { MOVE(opponent, MOVE_AGILITY); MOVE(player, move); }
@@ -50,8 +50,8 @@ SINGLE_BATTLE_TEST("Sheer Force boosts power, but removes secondary effects of m
                 STATUS_ICON(opponent, STATUS1_BURN);
                 STATUS_ICON(opponent, STATUS1_TOXIC_POISON);
                 STATUS_ICON(opponent, STATUS1_PARALYSIS);
-                MESSAGE("Wobbuffet is confused!");
-                MESSAGE("Wobbuffet flinched!");
+                MESSAGE("Alakazam is confused!");
+                MESSAGE("Alakazam flinched!");
             }
             // Volt Tackle/Flare Blitz edge case: recoil happens, but target isn't statused
             if (gMovesInfo[move].recoil > 0)

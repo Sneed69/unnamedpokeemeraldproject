@@ -9,15 +9,15 @@ ASSUMPTIONS
 SINGLE_BATTLE_TEST("Curse lowers Speed, raises Attack, and raises Defense when used by non-Ghost-types")
 {
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, MOVE_CURSE); }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_CURSE, player);
-        MESSAGE("Wobbuffet's Speed fell!");
-        MESSAGE("Wobbuffet's Attack rose!");
-        MESSAGE("Wobbuffet's Defense rose!");
+        MESSAGE("Alakazam's Speed fell!");
+        MESSAGE("Alakazam's Attack rose!");
+        MESSAGE("Alakazam's Defense rose!");
     }
 }
 
@@ -25,7 +25,7 @@ SINGLE_BATTLE_TEST("Curse cuts the user's HP in half when used by Ghost-types")
 {
     GIVEN {
         PLAYER(SPECIES_MISDREAVUS);
-        OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, MOVE_CURSE); }
     } SCENE {

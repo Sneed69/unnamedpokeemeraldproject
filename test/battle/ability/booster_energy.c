@@ -76,7 +76,7 @@ SINGLE_BATTLE_TEST("Booster Energy activates Protosynthesis and increases highes
 
     GIVEN {
         PLAYER(SPECIES_RAGING_BOLT) { Attack(attack); Defense(defense); Speed(speed); SpAttack(spAttack); SpDefense(spDefense); Ability(ABILITY_PROTOSYNTHESIS); Item(ITEM_BOOSTER_ENERGY); }
-        OPPONENT(SPECIES_WOBBUFFET) { Speed(50); };
+        OPPONENT(SPECIES_ALAKAZAM) { Speed(50); };
     } WHEN {
         TURN { }
     } SCENE {
@@ -110,7 +110,7 @@ SINGLE_BATTLE_TEST("Booster Energy activates Quark Drive and increases highest s
 
     GIVEN {
         PLAYER(SPECIES_IRON_MOTH) { Attack(attack); Defense(defense); Speed(speed); SpAttack(spAttack); SpDefense(spDefense); Ability(ABILITY_QUARK_DRIVE); Item(ITEM_BOOSTER_ENERGY); }
-        OPPONENT(SPECIES_WOBBUFFET) { Speed(50); };
+        OPPONENT(SPECIES_ALAKAZAM) { Speed(50); };
     } WHEN {
         TURN { }
     } SCENE {
@@ -145,7 +145,7 @@ SINGLE_BATTLE_TEST("Booster Energy increases special attack by 30% if it is the 
     GIVEN {
         ASSUME(gMovesInfo[MOVE_ROUND].category == DAMAGE_CATEGORY_SPECIAL);
         PLAYER(species) { Attack(100); Defense(100); Speed(100); SpAttack(110); SpDefense(100); Ability(ability); Item(item); }
-        OPPONENT(SPECIES_WOBBUFFET) { Speed(100); };
+        OPPONENT(SPECIES_ALAKAZAM) { Speed(100); };
     } WHEN {
         TURN { MOVE(player, MOVE_ROUND); }
     } SCENE {
@@ -171,7 +171,7 @@ SINGLE_BATTLE_TEST("Booster Energy increases special defense by 30% if it is the
     GIVEN {
         ASSUME(gMovesInfo[MOVE_ROUND].category == DAMAGE_CATEGORY_SPECIAL);
         PLAYER(species) { Attack(100); Defense(100); Speed(100); SpAttack(100); SpDefense(110); Ability(ability); Item(item); }
-        OPPONENT(SPECIES_WOBBUFFET) { Speed(100); };
+        OPPONENT(SPECIES_ALAKAZAM) { Speed(100); };
     } WHEN {
         TURN { MOVE(opponent, MOVE_ROUND); }
     } SCENE {
@@ -187,7 +187,7 @@ SINGLE_BATTLE_TEST("Booster Energy can't be flung if a Paradox species is involv
     GIVEN {
         ASSUME(gSpeciesInfo[SPECIES_IRON_MOTH].isParadox == TRUE);
         PLAYER(SPECIES_IRON_MOTH);
-        OPPONENT(SPECIES_WOBBUFFET) { Item(ITEM_BOOSTER_ENERGY); }
+        OPPONENT(SPECIES_ALAKAZAM) { Item(ITEM_BOOSTER_ENERGY); }
     } WHEN {
         TURN { MOVE(opponent, MOVE_FLING); }
     } SCENE {
@@ -201,7 +201,7 @@ SINGLE_BATTLE_TEST("Booster Energy can't be tricked if a Paradox species is invo
     GIVEN {
         ASSUME(gSpeciesInfo[SPECIES_IRON_MOTH].isParadox == TRUE);
         PLAYER(SPECIES_IRON_MOTH) { Item(ITEM_BERRY_JUICE); }
-        OPPONENT(SPECIES_WOBBUFFET) { Item(ITEM_BOOSTER_ENERGY); }
+        OPPONENT(SPECIES_ALAKAZAM) { Item(ITEM_BOOSTER_ENERGY); }
     } WHEN {
         TURN { MOVE(opponent, MOVE_TRICK); }
     } SCENE {

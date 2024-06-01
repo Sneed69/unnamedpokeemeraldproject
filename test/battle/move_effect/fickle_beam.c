@@ -14,8 +14,8 @@ SINGLE_BATTLE_TEST("Fickle Beam deals double damage 30% of the time")
     GIVEN {
         ASSUME(gMovesInfo[MOVE_POWER_GEM].power == 80);
         ASSUME(gMovesInfo[MOVE_FICKLE_BEAM].power == 80);
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, MOVE_POWER_GEM); }
         TURN { MOVE(player, MOVE_FICKLE_BEAM); }

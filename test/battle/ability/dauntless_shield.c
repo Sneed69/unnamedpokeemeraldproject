@@ -3,13 +3,13 @@
 
 ASSUMPTIONS
 {
-    ASSUME(B_PROTEAN_LIBERO == GEN_9);
+    ASSUME(B_DAUNTLESS_SHIELD == GEN_9);
 }
 
 SINGLE_BATTLE_TEST("Dauntless Shield raises Defense by one stage")
 {
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM);
         OPPONENT(SPECIES_ZAMAZENTA) { Ability(ABILITY_DAUNTLESS_SHIELD); }
     } WHEN {
         TURN { }
@@ -25,9 +25,9 @@ SINGLE_BATTLE_TEST("Dauntless Shield raises Defense by one stage")
 SINGLE_BATTLE_TEST("Dauntless Shield raises Defense by one stage only once per battle")
 {
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM);
         OPPONENT(SPECIES_ZAMAZENTA) { Ability(ABILITY_DAUNTLESS_SHIELD); }
-        OPPONENT(SPECIES_WYNAUT);
+        OPPONENT(SPECIES_ABRA);
     } WHEN {
         TURN { SWITCH(opponent, 1); }
         TURN { SWITCH(opponent, 0); }
@@ -49,7 +49,7 @@ SINGLE_BATTLE_TEST("Dauntless Shield activates when it's no longer effected by N
 {
     GIVEN {
         PLAYER(SPECIES_WEEZING) { Ability(ABILITY_NEUTRALIZING_GAS); }
-        PLAYER(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM);
         OPPONENT(SPECIES_ZAMAZENTA) { Ability(ABILITY_DAUNTLESS_SHIELD); }
     } WHEN {
         TURN { SWITCH(player, 1); }

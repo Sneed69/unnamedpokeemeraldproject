@@ -14,7 +14,7 @@ SINGLE_BATTLE_TEST("Sharpness increases the power of slicing moves", s16 damage)
         ASSUME(gMovesInfo[MOVE_AERIAL_ACE].slicingMove);
         ASSUME(!gMovesInfo[MOVE_SCRATCH].slicingMove);
         PLAYER(SPECIES_GALLADE) { Ability(ability); }
-        OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, move); }
     } SCENE {

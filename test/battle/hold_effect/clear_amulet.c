@@ -14,7 +14,7 @@ SINGLE_BATTLE_TEST("Clear Amulet prevents Intimidate")
     GIVEN {
         PLAYER(SPECIES_EKANS) { Ability(ABILITY_SHED_SKIN); };
         PLAYER(SPECIES_EKANS) { Ability(ABILITY_INTIMIDATE); };
-        OPPONENT(SPECIES_WOBBUFFET) { Item(ITEM_CLEAR_AMULET); };
+        OPPONENT(SPECIES_ALAKAZAM) { Item(ITEM_CLEAR_AMULET); };
     } WHEN {
         TURN { MOVE(opponent, MOVE_TACKLE); }
         TURN { SWITCH(player, 1); MOVE(opponent, MOVE_TACKLE); }
@@ -22,7 +22,7 @@ SINGLE_BATTLE_TEST("Clear Amulet prevents Intimidate")
         HP_BAR(player, captureDamage: &turnOneHit);
         ABILITY_POPUP(player, ABILITY_INTIMIDATE);
         NOT ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
-        MESSAGE("Foe Wobbuffet's Clear Amulet prevents its stats from being lowered!");
+        MESSAGE("Foe Alakazam's Clear Amulet prevents its stats from being lowered!");
         HP_BAR(player, captureDamage: &turnTwoHit);
     } THEN {
         EXPECT_EQ(turnOneHit, turnTwoHit);
@@ -50,13 +50,13 @@ SINGLE_BATTLE_TEST("Clear Amulet prevents stat reducing effects")
         ASSUME(B_UPDATED_MOVE_DATA >= GEN_6);
         ASSUME(gMovesInfo[MOVE_SWEET_SCENT].effect == EFFECT_EVASION_DOWN_2);
         ASSUME(gMovesInfo[MOVE_SAND_ATTACK].effect == EFFECT_ACCURACY_DOWN);
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET) { Item(ITEM_CLEAR_AMULET); };
+        PLAYER(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_ALAKAZAM) { Item(ITEM_CLEAR_AMULET); };
     } WHEN {
         TURN { MOVE(player, move); }
     } SCENE {
         NOT ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
-        MESSAGE("Foe Wobbuffet's Clear Amulet prevents its stats from being lowered!");
+        MESSAGE("Foe Alakazam's Clear Amulet prevents its stats from being lowered!");
     }
 }
 
@@ -78,14 +78,14 @@ SINGLE_BATTLE_TEST("Clear Amulet prevents secondary effects that reduce stats")
         ASSUME(MoveHasAdditionalEffect(MOVE_SNARL, MOVE_EFFECT_SP_ATK_MINUS_1) == TRUE);
         ASSUME(MoveHasAdditionalEffect(MOVE_PSYCHIC, MOVE_EFFECT_SP_DEF_MINUS_1) == TRUE);
         ASSUME(MoveHasAdditionalEffect(MOVE_MUD_SLAP, MOVE_EFFECT_ACC_MINUS_1) == TRUE);
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET) { Item(ITEM_CLEAR_AMULET); };
+        PLAYER(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_ALAKAZAM) { Item(ITEM_CLEAR_AMULET); };
     } WHEN {
         TURN { MOVE(player, move); }
     } SCENE {
         NONE_OF {
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
-            MESSAGE("Foe Wobbuffet's Clear Amulet prevents its stats from being lowered!");
+            MESSAGE("Foe Alakazam's Clear Amulet prevents its stats from being lowered!");
         }
     }
 }

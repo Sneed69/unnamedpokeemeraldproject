@@ -14,13 +14,13 @@ SINGLE_BATTLE_TEST("Upper Hand succeeds if the target is using a priority attack
         ASSUME(gMovesInfo[MOVE_EXTREME_SPEED].category == DAMAGE_CATEGORY_PHYSICAL);
         ASSUME(gMovesInfo[MOVE_EXTREME_SPEED].priority == 2);
         PLAYER(SPECIES_MIENSHAO);
-        OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(opponent, MOVE_EXTREME_SPEED); MOVE(player, MOVE_UPPER_HAND); }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_UPPER_HAND, player);
         HP_BAR(opponent);
-        MESSAGE("Foe Wobbuffet flinched!");
+        MESSAGE("Foe Alakazam flinched!");
         NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_EXTREME_SPEED, opponent);
     }
 }
@@ -31,7 +31,7 @@ SINGLE_BATTLE_TEST("Upper Hand fails if the target is using a status move")
         ASSUME(gMovesInfo[MOVE_BABY_DOLL_EYES].category == DAMAGE_CATEGORY_STATUS);
         ASSUME(gMovesInfo[MOVE_BABY_DOLL_EYES].priority == 1);
         PLAYER(SPECIES_MIENSHAO);
-        OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(opponent, MOVE_BABY_DOLL_EYES); MOVE(player, MOVE_UPPER_HAND); }
     } SCENE {
@@ -106,7 +106,7 @@ SINGLE_BATTLE_TEST("Upper Hand is boosted by Sheer Force")
         ASSUME(gMovesInfo[MOVE_EXTREME_SPEED].priority == 2);
         ASSUME(MoveIsAffectedBySheerForce(MOVE_UPPER_HAND) == TRUE);
         PLAYER(SPECIES_HARIYAMA) { Ability(ABILITY_SHEER_FORCE); }
-        OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(opponent, MOVE_EXTREME_SPEED); MOVE(player, MOVE_UPPER_HAND); }
     } SCENE {

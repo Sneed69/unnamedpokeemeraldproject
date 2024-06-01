@@ -13,8 +13,8 @@ SINGLE_BATTLE_TEST("Harden raises Defense", s16 damage)
     PARAMETRIZE { raiseDefense = TRUE; }
     GIVEN {
         ASSUME(gMovesInfo[MOVE_TACKLE].category == DAMAGE_CATEGORY_PHYSICAL);
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         if (raiseDefense) TURN { MOVE(player, MOVE_HARDEN); }
         TURN { MOVE(opponent, MOVE_TACKLE); }
@@ -22,7 +22,7 @@ SINGLE_BATTLE_TEST("Harden raises Defense", s16 damage)
         if (raiseDefense) {
             ANIMATION(ANIM_TYPE_MOVE, MOVE_HARDEN, player);
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
-            MESSAGE("Wobbuffet's Defense rose!");
+            MESSAGE("Alakazam's Defense rose!");
         }
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, opponent);
         HP_BAR(player, captureDamage: &results[i].damage);

@@ -9,16 +9,16 @@ ASSUMPTIONS
 SINGLE_BATTLE_TEST("Tidy Up raises Attack and Speed by one")
 {
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, MOVE_TIDY_UP); }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TIDY_UP, player);
         NOT MESSAGE("Tidying up complete!");
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
-        MESSAGE("Wobbuffet's Attack rose!");
-        MESSAGE("Wobbuffet's Speed rose!");
+        MESSAGE("Alakazam's Attack rose!");
+        MESSAGE("Alakazam's Speed rose!");
     } THEN {
         EXPECT_EQ(player->statStages[STAT_ATK], DEFAULT_STAT_STAGE + 1);
         EXPECT_EQ(player->statStages[STAT_SPEED], DEFAULT_STAT_STAGE + 1);
@@ -28,8 +28,8 @@ SINGLE_BATTLE_TEST("Tidy Up raises Attack and Speed by one")
 SINGLE_BATTLE_TEST("Tidy Up removes hazards and raises Stats")
 {
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(opponent, MOVE_SPIKES); }
         TURN { MOVE(opponent, MOVE_STEALTH_ROCK); }
@@ -40,7 +40,7 @@ SINGLE_BATTLE_TEST("Tidy Up removes hazards and raises Stats")
         ANIMATION(ANIM_TYPE_MOVE, MOVE_STEALTH_ROCK, opponent);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TOXIC_SPIKES, opponent);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_STICKY_WEB, opponent);
-        MESSAGE("Wobbuffet used Tidy Up!");
+        MESSAGE("Alakazam used Tidy Up!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TIDY_UP, player);
         MESSAGE("The spikes disappeared from the ground around your team!");
         MESSAGE("The pointed stones disappeared from around your team!");
@@ -48,29 +48,29 @@ SINGLE_BATTLE_TEST("Tidy Up removes hazards and raises Stats")
         MESSAGE("The sticky web has disappeared from the ground around your team!");
         MESSAGE("Tidying up complete!");
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
-        MESSAGE("Wobbuffet's Attack rose!");
-        MESSAGE("Wobbuffet's Speed rose!");
+        MESSAGE("Alakazam's Attack rose!");
+        MESSAGE("Alakazam's Speed rose!");
     }
 }
 
 SINGLE_BATTLE_TEST("Tidy Up removes Substitute")
 {
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(opponent, MOVE_SUBSTITUTE); MOVE(player, MOVE_TIDY_UP); }
     } SCENE {
-        MESSAGE("Foe Wobbuffet used Substitute!");
+        MESSAGE("Foe Alakazam used Substitute!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_SUBSTITUTE, opponent);
-        MESSAGE("Foe Wobbuffet made a SUBSTITUTE!");
-        MESSAGE("Wobbuffet used Tidy Up!");
+        MESSAGE("Foe Alakazam made a Substitute!");
+        MESSAGE("Alakazam used Tidy Up!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TIDY_UP, player);
-        MESSAGE("Foe Wobbuffet's SUBSTITUTE faded!");
+        MESSAGE("Foe Alakazam's Substitute faded!");
         MESSAGE("Tidying up complete!");
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
-        MESSAGE("Wobbuffet's Attack rose!");
-        MESSAGE("Wobbuffet's Speed rose!");
+        MESSAGE("Alakazam's Attack rose!");
+        MESSAGE("Alakazam's Speed rose!");
     }
 }
 
@@ -78,8 +78,8 @@ AI_SINGLE_BATTLE_TEST("AI prefers to keep it's substitute over removing hazards 
 {
     GIVEN {
         AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT);
-        PLAYER(SPECIES_WOBBUFFET) { Speed(50); Status1(STATUS1_PARALYSIS); Moves(MOVE_SLEEP_POWDER, MOVE_STEALTH_ROCK, MOVE_CELEBRATE); }
-        OPPONENT(SPECIES_WOBBUFFET) { Speed(100); Moves(MOVE_BITE, MOVE_TACKLE, MOVE_SUBSTITUTE, MOVE_TIDY_UP); }
+        PLAYER(SPECIES_ALAKAZAM) { Speed(50); Status1(STATUS1_PARALYSIS); Moves(MOVE_SLEEP_POWDER, MOVE_STEALTH_ROCK, MOVE_CELEBRATE); }
+        OPPONENT(SPECIES_ALAKAZAM) { Speed(100); Moves(MOVE_BITE, MOVE_TACKLE, MOVE_SUBSTITUTE, MOVE_TIDY_UP); }
     } WHEN {
         TURN { MOVE(player, MOVE_STEALTH_ROCK); EXPECT_MOVE(opponent, MOVE_SUBSTITUTE); }
         TURN { EXPECT_MOVE(opponent, MOVE_BITE); }
@@ -90,8 +90,8 @@ AI_SINGLE_BATTLE_TEST("AI will try to remove hazards if slower then target even 
 {
     GIVEN {
         AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT);
-        PLAYER(SPECIES_WOBBUFFET) { Speed(100); Status1(STATUS1_BURN); Moves(MOVE_SLEEP_POWDER, MOVE_STEALTH_ROCK, MOVE_CELEBRATE); }
-        OPPONENT(SPECIES_WOBBUFFET) { Speed(50); Moves(MOVE_BITE, MOVE_TACKLE, MOVE_SUBSTITUTE, MOVE_TIDY_UP); }
+        PLAYER(SPECIES_ALAKAZAM) { Speed(100); Status1(STATUS1_BURN); Moves(MOVE_SLEEP_POWDER, MOVE_STEALTH_ROCK, MOVE_CELEBRATE); }
+        OPPONENT(SPECIES_ALAKAZAM) { Speed(50); Moves(MOVE_BITE, MOVE_TACKLE, MOVE_SUBSTITUTE, MOVE_TIDY_UP); }
     } WHEN {
         TURN { MOVE(player, MOVE_STEALTH_ROCK); EXPECT_MOVE(opponent, MOVE_SUBSTITUTE); }
         TURN { EXPECT_MOVE(opponent, MOVE_TIDY_UP); }

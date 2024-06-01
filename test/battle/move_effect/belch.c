@@ -32,7 +32,7 @@ SINGLE_BATTLE_TEST("Belch cannot be used if the user has not eaten a berry")
     PARAMETRIZE { item = ITEM_ORAN_BERRY; }
     GIVEN {
         PLAYER(SPECIES_SKWOVET) { Item(item); }
-        OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         if (item == ITEM_NONE)
             TURN { MOVE(player, MOVE_BELCH, allowed: FALSE); MOVE(player, MOVE_CELEBRATE); }

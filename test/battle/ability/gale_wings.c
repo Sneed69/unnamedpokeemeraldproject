@@ -10,16 +10,16 @@ SINGLE_BATTLE_TEST("Gale Wings only grants priority at full HP")
         ASSUME(B_GALE_WINGS >= GEN_7);
         ASSUME(gMovesInfo[MOVE_AERIAL_ACE].type == TYPE_FLYING);
         PLAYER(SPECIES_TALONFLAME) { Ability(ABILITY_GALE_WINGS); HP(hp); MaxHP(100); Speed(1);}
-        OPPONENT(SPECIES_WOBBUFFET) { Speed(100);};
+        OPPONENT(SPECIES_ALAKAZAM) { Speed(100);};
     } WHEN {
         TURN { MOVE(player, MOVE_AERIAL_ACE); }
     } SCENE {
         if (hp == 100) {
             MESSAGE("Talonflame used Aerial Ace!");
-            MESSAGE("Foe Wobbuffet used Celebrate!");
+            MESSAGE("Foe Alakazam used Celebrate!");
         }
         else {
-            MESSAGE("Foe Wobbuffet used Celebrate!");
+            MESSAGE("Foe Alakazam used Celebrate!");
             MESSAGE("Talonflame used Aerial Ace!");
         }
     }
@@ -35,16 +35,16 @@ SINGLE_BATTLE_TEST("Gale Wings only grants priority to Flying-type moves")
         ASSUME(gMovesInfo[MOVE_AERIAL_ACE].type == TYPE_FLYING);
         ASSUME(gMovesInfo[MOVE_FLARE_BLITZ].type == TYPE_FIRE);
         PLAYER(SPECIES_TALONFLAME) { Ability(ABILITY_GALE_WINGS); HP(100); MaxHP(100); Speed(1);}
-        OPPONENT(SPECIES_WOBBUFFET) { Speed(100);};
+        OPPONENT(SPECIES_ALAKAZAM) { Speed(100);};
     } WHEN {
         TURN { MOVE(player, move); }
     } SCENE {
         if (move == MOVE_AERIAL_ACE) {
             MESSAGE("Talonflame used Aerial Ace!");
-            MESSAGE("Foe Wobbuffet used Celebrate!");
+            MESSAGE("Foe Alakazam used Celebrate!");
         }
         else {
-            MESSAGE("Foe Wobbuffet used Celebrate!");
+            MESSAGE("Foe Alakazam used Celebrate!");
             MESSAGE("Talonflame used Flare Blitz!");
         }
     }

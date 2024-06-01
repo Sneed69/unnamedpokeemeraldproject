@@ -1,6 +1,6 @@
 #include "global.h"
 #include "test/battle.h"
-
+#if P_PRIMAL_REVERSIONS
 SINGLE_BATTLE_TEST("Primal reversion happens for Groudon only when holding Red Orb")
 {
     u16 heldItem;
@@ -9,7 +9,7 @@ SINGLE_BATTLE_TEST("Primal reversion happens for Groudon only when holding Red O
     PARAMETRIZE { heldItem = ITEM_BLUE_ORB;}
     GIVEN {
         PLAYER(SPECIES_GROUDON) { Item(heldItem); }
-        OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, MOVE_CELEBRATE); }
     } SCENE {
@@ -40,7 +40,7 @@ SINGLE_BATTLE_TEST("Primal reversion happens for Kyogre only when holding Blue O
     PARAMETRIZE { heldItem = ITEM_RED_ORB;}
     PARAMETRIZE { heldItem = ITEM_BLUE_ORB;}
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM);
         OPPONENT(SPECIES_KYOGRE) { Item(heldItem); }
     } WHEN {
         TURN { MOVE(opponent, MOVE_CELEBRATE); }
@@ -121,14 +121,14 @@ SINGLE_BATTLE_TEST("Primal reversion happens after a mon is sent out after a mon
 {
     GIVEN {
         ASSUME(gMovesInfo[MOVE_TACKLE].power != 0);
-        PLAYER(SPECIES_WOBBUFFET) {HP(1); }
+        PLAYER(SPECIES_ALAKAZAM) {HP(1); }
         PLAYER(SPECIES_GROUDON) { Item(ITEM_RED_ORB); }
-        OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(opponent, MOVE_TACKLE); SEND_OUT(player, 1); }
         TURN { MOVE(opponent, MOVE_TACKLE); }
     } SCENE {
-        MESSAGE("Wobbuffet fainted!");
+        MESSAGE("Alakazam fainted!");
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_PRIMAL_REVERSION, player);
         MESSAGE("Groudon's Primal Reversion! It reverted to its primal form!");
     } THEN {
@@ -139,9 +139,9 @@ SINGLE_BATTLE_TEST("Primal reversion happens after a mon is sent out after a mon
 SINGLE_BATTLE_TEST("Primal reversion happens after a mon is switched in")
 {
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM);
         PLAYER(SPECIES_GROUDON) { Item(ITEM_RED_ORB); }
-        OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { SWITCH(player, 1); MOVE(opponent, MOVE_CELEBRATE); }
         TURN { MOVE(opponent, MOVE_CELEBRATE); }
@@ -158,14 +158,14 @@ SINGLE_BATTLE_TEST("Primal reversion happens after a switch-in caused by Eject B
     GIVEN {
         ASSUME(gMovesInfo[MOVE_TACKLE].power != 0);
         ASSUME(gItemsInfo[ITEM_EJECT_BUTTON].holdEffect == HOLD_EFFECT_EJECT_BUTTON);
-        PLAYER(SPECIES_WOBBUFFET) {Item(ITEM_EJECT_BUTTON); }
+        PLAYER(SPECIES_ALAKAZAM) {Item(ITEM_EJECT_BUTTON); }
         PLAYER(SPECIES_GROUDON) { Item(ITEM_RED_ORB); }
-        OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(opponent, MOVE_TACKLE); SEND_OUT(player, 1); }
         TURN { MOVE(opponent, MOVE_TACKLE); }
     } SCENE {
-        MESSAGE("Wobbuffet is switched out with the Eject Button!");
+        MESSAGE("Alakazam is switched out with the Eject Button!");
         MESSAGE("Go! Groudon!");
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_PRIMAL_REVERSION, player);
         MESSAGE("Groudon's Primal Reversion! It reverted to its primal form!");
@@ -179,13 +179,13 @@ SINGLE_BATTLE_TEST("Primal reversion happens after a switch-in caused by Red Car
     GIVEN {
         ASSUME(gMovesInfo[MOVE_TACKLE].power != 0);
         ASSUME(gItemsInfo[ITEM_RED_CARD].holdEffect == HOLD_EFFECT_RED_CARD);
-        PLAYER(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM);
         PLAYER(SPECIES_GROUDON) { Item(ITEM_RED_ORB); }
-        OPPONENT(SPECIES_WOBBUFFET) {Item(ITEM_RED_CARD); }
+        OPPONENT(SPECIES_ALAKAZAM) {Item(ITEM_RED_CARD); }
     } WHEN {
         TURN { MOVE(player, MOVE_TACKLE); }
     } SCENE {
-        MESSAGE("Foe Wobbuffet held up its Red Card against Wobbuffet!");
+        MESSAGE("Foe Alakazam held up its Red Card against Alakazam!");
         MESSAGE("Groudon was dragged out!");
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_PRIMAL_REVERSION, player);
         MESSAGE("Groudon's Primal Reversion! It reverted to its primal form!");
@@ -198,9 +198,9 @@ SINGLE_BATTLE_TEST("Primal reversion happens after the entry hazards damage")
 {
     GIVEN {
         ASSUME(gMovesInfo[MOVE_SPIKES].effect == EFFECT_SPIKES);
-        PLAYER(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM);
         PLAYER(SPECIES_GROUDON) { Item(ITEM_RED_ORB); }
-        OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(opponent, MOVE_SPIKES); }
         TURN { MOVE(opponent, MOVE_SPIKES); SWITCH(player, 1);}
@@ -218,10 +218,10 @@ SINGLE_BATTLE_TEST("Primal reversion happens after the entry hazards damage")
 SINGLE_BATTLE_TEST("Primal reversion happens immediately if it was brought in by U-turn")
 {
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM);
         PLAYER(SPECIES_GROUDON) { Item(ITEM_RED_ORB); }
-        OPPONENT(SPECIES_WYNAUT) { HP(1); }
-        OPPONENT(SPECIES_WYNAUT);
+        OPPONENT(SPECIES_ABRA) { HP(1); }
+        OPPONENT(SPECIES_ABRA);
     } WHEN {
         TURN { MOVE(player, MOVE_U_TURN); SEND_OUT(player, 1); SEND_OUT(opponent, 1); }
     } SCENE {
@@ -229,8 +229,9 @@ SINGLE_BATTLE_TEST("Primal reversion happens immediately if it was brought in by
         HP_BAR(opponent);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_PRIMAL_REVERSION, player);
         MESSAGE("Groudon's Primal Reversion! It reverted to its primal form!");
-        MESSAGE("2 sent out Wynaut!");
+        MESSAGE("2 sent out Abra!");
     } THEN {
         EXPECT_EQ(player->species, SPECIES_GROUDON_PRIMAL);
     }
 }
+#endif

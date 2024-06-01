@@ -4,8 +4,8 @@
 ASSUMPTIONS
 {
     ASSUME(gMovesInfo[MOVE_ROOST].effect == EFFECT_ROOST);
-    ASSUME(gSpeciesInfo[SPECIES_WOBBUFFET].types[0] != TYPE_FLYING);
-    ASSUME(gSpeciesInfo[SPECIES_WOBBUFFET].types[1] != TYPE_FLYING);
+    ASSUME(gSpeciesInfo[SPECIES_ALAKAZAM].types[0] != TYPE_FLYING);
+    ASSUME(gSpeciesInfo[SPECIES_ALAKAZAM].types[1] != TYPE_FLYING);
     // One attack of each type to verify typelessness
     ASSUME(gMovesInfo[MOVE_POUND].type == TYPE_NORMAL);
     ASSUME(gMovesInfo[MOVE_KARATE_CHOP].type == TYPE_FIGHTING);
@@ -30,12 +30,12 @@ ASSUMPTIONS
 SINGLE_BATTLE_TEST("Roost fails when user is at full HP")
 {
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, MOVE_ROOST); }
     } SCENE {
-        MESSAGE("Wobbuffet's HP is full!");
+        MESSAGE("Alakazam's HP is full!");
         NONE_OF {
             ANIMATION(ANIM_TYPE_MOVE, MOVE_ROOST, player);
             HP_BAR(player);
@@ -46,14 +46,14 @@ SINGLE_BATTLE_TEST("Roost fails when user is at full HP")
 SINGLE_BATTLE_TEST("Roost fails if the user is under the effects of Heal Block")
 {
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET) { HP(100); }
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM) { HP(100); }
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(opponent, MOVE_HEAL_BLOCK); MOVE(player, MOVE_ROOST); }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_HEAL_BLOCK, opponent);
-        MESSAGE("Wobbuffet was prevented from healing!"); // Message when Heal Block is applied
-        MESSAGE("Wobbuffet was prevented from healing!"); // Message when trying to heal under Heal Block
+        MESSAGE("Alakazam was prevented from healing!"); // Message when Heal Block is applied
+        MESSAGE("Alakazam was prevented from healing!"); // Message when trying to heal under Heal Block
         NONE_OF {
             ANIMATION(ANIM_TYPE_MOVE, MOVE_ROOST, player);
             HP_BAR(player);
@@ -67,8 +67,8 @@ SINGLE_BATTLE_TEST("Roost recovers 50% of the user's Max HP")
 
     KNOWN_FAILING; // All healing is currently rounded down
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET) { HP(1); MaxHP(99); }
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM) { HP(1); MaxHP(99); }
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, MOVE_ROOST); }
     } SCENE {
@@ -88,7 +88,7 @@ SINGLE_BATTLE_TEST("Roost suppresses the user's Flying-typing this turn, then re
         ASSUME(gSpeciesInfo[SPECIES_SKARMORY].types[0] == TYPE_STEEL);
         ASSUME(gSpeciesInfo[SPECIES_SKARMORY].types[1] == TYPE_FLYING);
         PLAYER(SPECIES_SKARMORY) { HP(50); MaxHP(100); Ability(ABILITY_STURDY); }
-        OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, MOVE_ROOST); MOVE(opponent, MOVE_EARTHQUAKE); }
         TURN { MOVE(opponent, MOVE_EARTHQUAKE); }
@@ -97,11 +97,11 @@ SINGLE_BATTLE_TEST("Roost suppresses the user's Flying-typing this turn, then re
         MESSAGE("Skarmory used Roost!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_ROOST, player);
         MESSAGE("Skarmory regained health!");
-        MESSAGE("Foe Wobbuffet used Earthquake!");
+        MESSAGE("Foe Alakazam used Earthquake!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_EARTHQUAKE, opponent);
         MESSAGE("It's super effective!");
         // Turn 2: EQ has no effect because Roost expired
-        MESSAGE("Foe Wobbuffet used Earthquake!");
+        MESSAGE("Foe Alakazam used Earthquake!");
         NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_EARTHQUAKE, opponent);
         MESSAGE("It doesn't affect Skarmory…");
         NOT HP_BAR(player);
@@ -134,7 +134,7 @@ SINGLE_BATTLE_TEST("Roost, if used by a Flying/Flying type, treats the user as a
         ASSUME(gSpeciesInfo[SPECIES_TORNADUS].types[0] == TYPE_FLYING);
         ASSUME(gSpeciesInfo[SPECIES_TORNADUS].types[1] == TYPE_FLYING);
         PLAYER(SPECIES_TORNADUS) { HP(50); MaxHP(100); }
-        OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, MOVE_ROOST); MOVE(opponent, damagingMove); }
     } SCENE {
@@ -202,7 +202,7 @@ SINGLE_BATTLE_TEST("Roost, if used by a Mystery/Flying type, treats the user as 
         ASSUME(gSpeciesInfo[SPECIES_MOLTRES].types[0] == TYPE_FIRE);
         ASSUME(gSpeciesInfo[SPECIES_MOLTRES].types[1] == TYPE_FLYING);
         PLAYER(SPECIES_MOLTRES) { HP(300); MaxHP(400); }
-        OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, MOVE_BURN_UP); }
         TURN { MOVE(player, MOVE_ROOST); MOVE(opponent, damagingMove); }
@@ -231,7 +231,7 @@ DOUBLE_BATTLE_TEST("Roost suppresses the user's not-yet-aquired Flying-type this
         ASSUME(gSpeciesInfo[SPECIES_KECLEON].types[0] != TYPE_FLYING);
         ASSUME(gSpeciesInfo[SPECIES_KECLEON].types[1] != TYPE_FLYING);
         PLAYER(SPECIES_KECLEON) { Speed(40); HP(150); Ability(ABILITY_COLOR_CHANGE); }
-        PLAYER(SPECIES_WOBBUFFET) { Speed(10); }
+        PLAYER(SPECIES_ALAKAZAM) { Speed(10); }
         OPPONENT(SPECIES_PIDGEY) { Speed(30); }
         OPPONENT(SPECIES_SANDSHREW) { Speed(20); }
     } WHEN {
@@ -257,14 +257,14 @@ SINGLE_BATTLE_TEST("Roost prevents a Flying-type user from being protected by De
     GIVEN {
         ASSUME(gSpeciesInfo[SPECIES_RAYQUAZA].types[1] == TYPE_FLYING);
         PLAYER(SPECIES_RAYQUAZA) { HP(1); Ability(ABILITY_DELTA_STREAM); }
-        OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, MOVE_ROOST); MOVE(opponent, MOVE_ICE_BEAM); }
     } SCENE {
         MESSAGE("Rayquaza used Roost!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_ROOST, player);
         MESSAGE("Rayquaza regained health!");
-        MESSAGE("Foe Wobbuffet used Ice Beam!");
+        MESSAGE("Foe Alakazam used Ice Beam!");
         NOT MESSAGE("The mysterious strong winds weakened the attack!");
     }
 }
@@ -275,7 +275,7 @@ SINGLE_BATTLE_TEST("Roost does not undo other type-changing effects at the end o
         ASSUME(gSpeciesInfo[SPECIES_SWELLOW].types[0] == TYPE_NORMAL);
         ASSUME(gSpeciesInfo[SPECIES_SWELLOW].types[1] == TYPE_FLYING);
         PLAYER(SPECIES_SWELLOW) { HP(1); }
-        OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, MOVE_ROOST); MOVE(opponent, MOVE_SOAK); }
         TURN { MOVE(opponent, MOVE_VINE_WHIP); }
@@ -283,10 +283,10 @@ SINGLE_BATTLE_TEST("Roost does not undo other type-changing effects at the end o
         MESSAGE("Swellow used Roost!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_ROOST, player);
         MESSAGE("Swellow regained health!");
-        MESSAGE("Foe Wobbuffet used Soak!");
+        MESSAGE("Foe Alakazam used Soak!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_SOAK, opponent);
         MESSAGE("Swellow transformed into the Water type!");
-        MESSAGE("Foe Wobbuffet used Vine Whip!");
+        MESSAGE("Foe Alakazam used Vine Whip!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_VINE_WHIP, opponent);
         MESSAGE("It's super effective!");
     }
@@ -299,14 +299,14 @@ SINGLE_BATTLE_TEST("Roost's effect is lifted after Grassy Terrain's healing")
         ASSUME(gSpeciesInfo[SPECIES_SWELLOW].types[0] == TYPE_NORMAL);
         ASSUME(gSpeciesInfo[SPECIES_SWELLOW].types[1] == TYPE_FLYING);
         PLAYER(SPECIES_SWELLOW) { HP(1); Ability(ABILITY_GRASSY_SURGE); }
-        OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, MOVE_ROOST); }
     } SCENE {
         MESSAGE("Swellow used Roost!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_ROOST, player);
         MESSAGE("Swellow regained health!");
-        MESSAGE("Swellow is healed by the grassy terrain!");
+        MESSAGE("Swellow is healed by the verdant aura!");
         HP_BAR(player);
     }
 }
@@ -317,10 +317,10 @@ SINGLE_BATTLE_TEST("Roost's suppression prevents Reflect Type from copying any F
     GIVEN {
         ASSUME(gSpeciesInfo[SPECIES_SWELLOW].types[0] == TYPE_NORMAL);
         ASSUME(gSpeciesInfo[SPECIES_SWELLOW].types[1] == TYPE_FLYING);
-        ASSUME(gSpeciesInfo[SPECIES_WOBBUFFET].types[0] == TYPE_PSYCHIC);
-        ASSUME(gSpeciesInfo[SPECIES_WOBBUFFET].types[1] == TYPE_PSYCHIC);
+        ASSUME(gSpeciesInfo[SPECIES_ALAKAZAM].types[0] == TYPE_PSYCHIC);
+        ASSUME(gSpeciesInfo[SPECIES_ALAKAZAM].types[1] == TYPE_PSYCHIC);
         PLAYER(SPECIES_SWELLOW) { HP(1); }
-        OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, MOVE_ROOST); MOVE(opponent, MOVE_REFLECT_TYPE); }
         TURN { MOVE(player, MOVE_EARTHQUAKE); MOVE(opponent, MOVE_REFLECT_TYPE); }
@@ -330,19 +330,19 @@ SINGLE_BATTLE_TEST("Roost's suppression prevents Reflect Type from copying any F
         MESSAGE("Swellow used Roost!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_ROOST, player);
         MESSAGE("Swellow regained health!");
-        MESSAGE("Foe Wobbuffet used Reflect Type!");
+        MESSAGE("Foe Alakazam used Reflect Type!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_REFLECT_TYPE, opponent);
-        MESSAGE("Foe Wobbuffet's type changed to match the Swellow's!");
+        MESSAGE("Foe Alakazam's type changed to match the Swellow's!");
         // Turn 2: EQ hits, Reflect Type on non-Roosted Normal/Flying
         MESSAGE("Swellow used Earthquake!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_EARTHQUAKE, player);
         HP_BAR(opponent);
-        MESSAGE("Foe Wobbuffet used Reflect Type!");
+        MESSAGE("Foe Alakazam used Reflect Type!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_REFLECT_TYPE, opponent);
-        MESSAGE("Foe Wobbuffet's type changed to match the Swellow's!");
+        MESSAGE("Foe Alakazam's type changed to match the Swellow's!");
         // Turn 3: EQ has no effect
         MESSAGE("Swellow used Earthquake!");
-        MESSAGE("It doesn't affect Foe Wobbuffet…");
+        MESSAGE("It doesn't affect Foe Alakazam…");
         NONE_OF {
             ANIMATION(ANIM_TYPE_MOVE, MOVE_EARTHQUAKE, player);
             HP_BAR(opponent);
@@ -354,14 +354,14 @@ SINGLE_BATTLE_TEST("Roost does not suppress the ungrounded effect of Levitate")
 {
     GIVEN {
         PLAYER(SPECIES_FLYGON) { HP(1); Ability(ABILITY_LEVITATE); }
-        OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, MOVE_ROOST); MOVE(opponent, MOVE_EARTHQUAKE); }
     } SCENE {
         MESSAGE("Flygon used Roost!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_ROOST, player);
         MESSAGE("Flygon regained health!");
-        MESSAGE("Foe Wobbuffet used Earthquake!");
+        MESSAGE("Foe Alakazam used Earthquake!");
         NONE_OF {
             ANIMATION(ANIM_TYPE_MOVE, MOVE_EARTHQUAKE, opponent);
             HP_BAR(player);
@@ -372,15 +372,15 @@ SINGLE_BATTLE_TEST("Roost does not suppress the ungrounded effect of Levitate")
 SINGLE_BATTLE_TEST("Roost does not suppress the ungrounded effect of Air Balloon")
 {
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET) { HP(1); Item(ITEM_AIR_BALLOON); }
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM) { HP(1); Item(ITEM_AIR_BALLOON); }
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, MOVE_ROOST); MOVE(opponent, MOVE_EARTHQUAKE); }
     } SCENE {
-        MESSAGE("Wobbuffet used Roost!");
+        MESSAGE("Alakazam used Roost!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_ROOST, player);
-        MESSAGE("Wobbuffet regained health!");
-        MESSAGE("Foe Wobbuffet used Earthquake!");
+        MESSAGE("Alakazam regained health!");
+        MESSAGE("Foe Alakazam used Earthquake!");
         NONE_OF {
             ANIMATION(ANIM_TYPE_MOVE, MOVE_EARTHQUAKE, opponent);
             HP_BAR(player);
@@ -391,21 +391,21 @@ SINGLE_BATTLE_TEST("Roost does not suppress the ungrounded effect of Air Balloon
 SINGLE_BATTLE_TEST("Roost does not suppress the ungrounded effect of Magnet Rise")
 {
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET) { HP(1); }
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM) { HP(1); }
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, MOVE_MAGNET_RISE); }
         TURN { MOVE(player, MOVE_ROOST); MOVE(opponent, MOVE_EARTHQUAKE); }
     } SCENE {
         // Turn 1: Magnet Rise
-        MESSAGE("Wobbuffet used Magnet Rise!");
+        MESSAGE("Alakazam used Magnet Rise!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_MAGNET_RISE, player);
-        MESSAGE("Wobbuffet levitated on electromagnetism!");
+        MESSAGE("Alakazam levitated on electromagnetism!");
         // Turn 2
-        MESSAGE("Wobbuffet used Roost!");
+        MESSAGE("Alakazam used Roost!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_ROOST, player);
-        MESSAGE("Wobbuffet regained health!");
-        MESSAGE("Foe Wobbuffet used Earthquake!");
+        MESSAGE("Alakazam regained health!");
+        MESSAGE("Foe Alakazam used Earthquake!");
         NONE_OF {
             ANIMATION(ANIM_TYPE_MOVE, MOVE_EARTHQUAKE, opponent);
             HP_BAR(player);
@@ -416,21 +416,21 @@ SINGLE_BATTLE_TEST("Roost does not suppress the ungrounded effect of Magnet Rise
 SINGLE_BATTLE_TEST("Roost does not suppress the ungrounded effect of Telekinesis")
 {
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET) { HP(1); }
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM) { HP(1); }
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(opponent, MOVE_TELEKINESIS); }
         TURN { MOVE(player, MOVE_ROOST); MOVE(opponent, MOVE_EARTHQUAKE); }
     } SCENE {
         // Turn 1: Telekinesis
-        MESSAGE("Foe Wobbuffet used Telekinesis!");
+        MESSAGE("Foe Alakazam used Telekinesis!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TELEKINESIS, opponent);
-        MESSAGE("Wobbuffet was hurled into the air!");
+        MESSAGE("Alakazam was hurled into the air!");
         // Turn 2
-        MESSAGE("Wobbuffet used Roost!");
+        MESSAGE("Alakazam used Roost!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_ROOST, player);
-        MESSAGE("Wobbuffet regained health!");
-        MESSAGE("Foe Wobbuffet used Earthquake!");
+        MESSAGE("Alakazam regained health!");
+        MESSAGE("Foe Alakazam used Earthquake!");
         NONE_OF {
             ANIMATION(ANIM_TYPE_MOVE, MOVE_EARTHQUAKE, opponent);
             HP_BAR(player);

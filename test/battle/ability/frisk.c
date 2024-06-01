@@ -43,18 +43,18 @@ DOUBLE_BATTLE_TEST("Frisk triggers for player in a Double Battle after switching
 
     GIVEN {
         ASSUME(gMovesInfo[MOVE_POUND].power != 0);
-        PLAYER(SPECIES_WOBBUFFET) { HP(1); }
-        PLAYER(SPECIES_WOBBUFFET) { HP(1); }
+        PLAYER(SPECIES_ALAKAZAM) { HP(1); }
+        PLAYER(SPECIES_ALAKAZAM) { HP(1); }
         PLAYER(SPECIES_FURRET) { Ability(ABILITY_FRISK); };
-        OPPONENT(SPECIES_WYNAUT) { Item(ITEM_POTION); }
-        OPPONENT(SPECIES_WYNAUT);
+        OPPONENT(SPECIES_ABRA) { Item(ITEM_POTION); }
+        OPPONENT(SPECIES_ABRA);
     } WHEN {
         TURN { MOVE(opponentLeft, MOVE_POUND, target: target); SEND_OUT(target, 2); }
     } SCENE {
-        MESSAGE("Foe Wynaut used Pound!");
-        MESSAGE("Wobbuffet fainted!");
+        MESSAGE("Foe Abra used Pound!");
+        MESSAGE("Alakazam fainted!");
         ABILITY_POPUP(target, ABILITY_FRISK);
-        MESSAGE("Furret frisked Foe Wynaut and found its Potion!");
+        MESSAGE("Furret frisked Foe Abra and found its Potion!");
     }
 }
 
@@ -66,17 +66,17 @@ DOUBLE_BATTLE_TEST("Frisk triggers for opponent in a Double Battle after switchi
 
     GIVEN {
         ASSUME(gMovesInfo[MOVE_POUND].power != 0);
-        PLAYER(SPECIES_WYNAUT) { Item(ITEM_POTION); }
-        PLAYER(SPECIES_WYNAUT);
-        OPPONENT(SPECIES_WOBBUFFET) { HP(1); }
-        OPPONENT(SPECIES_WOBBUFFET) { HP(1); }
+        PLAYER(SPECIES_ABRA) { Item(ITEM_POTION); }
+        PLAYER(SPECIES_ABRA);
+        OPPONENT(SPECIES_ALAKAZAM) { HP(1); }
+        OPPONENT(SPECIES_ALAKAZAM) { HP(1); }
         OPPONENT(SPECIES_FURRET) { Ability(ABILITY_FRISK); };
     } WHEN {
         TURN { MOVE(playerLeft, MOVE_POUND, target: target); SEND_OUT(target, 2); }
     } SCENE {
-        MESSAGE("Wynaut used Pound!");
-        MESSAGE("Foe Wobbuffet fainted!");
+        MESSAGE("Abra used Pound!");
+        MESSAGE("Foe Alakazam fainted!");
         ABILITY_POPUP(target, ABILITY_FRISK);
-        MESSAGE("Foe Furret frisked Wynaut and found its Potion!");
+        MESSAGE("Foe Furret frisked Abra and found its Potion!");
     }
 }

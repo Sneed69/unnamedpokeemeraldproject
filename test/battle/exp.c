@@ -11,7 +11,7 @@ WILD_BATTLE_TEST("Pokemon gain exp after catching a Pokemon")
     PARAMETRIZE { level = MAX_LEVEL; }
 
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET) { Level(level); }
+        PLAYER(SPECIES_ALAKAZAM) { Level(level); }
         OPPONENT(SPECIES_CATERPIE) { HP(1); }
     } WHEN {
         TURN { USE_ITEM(player, ITEM_ULTRA_BALL); }
@@ -34,12 +34,12 @@ WILD_BATTLE_TEST("Higher leveled Pokemon give more exp", s32 exp)
     PARAMETRIZE { level = 10; }
 
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET) { Level(20); }
+        PLAYER(SPECIES_ALAKAZAM) { Level(20); }
         OPPONENT(SPECIES_CATERPIE) { Level(level); HP(1); }
     } WHEN {
         TURN { MOVE(player, MOVE_TACKLE); }
     } SCENE {
-        MESSAGE("Wobbuffet used Tackle!");
+        MESSAGE("Alakazam used Tackle!");
         MESSAGE("Wild Caterpie fainted!");
         EXPERIENCE_BAR(player, captureGainedExp: &results[i].exp);
     } FINALLY {
@@ -55,12 +55,12 @@ WILD_BATTLE_TEST("Lucky Egg boosts gained exp points by 50%", s32 exp)
     PARAMETRIZE { item = ITEM_NONE; }
 
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET) { Level(20); Item(item); }
+        PLAYER(SPECIES_ALAKAZAM) { Level(20); Item(item); }
         OPPONENT(SPECIES_CATERPIE) { Level(10); HP(1); }
     } WHEN {
         TURN { MOVE(player, MOVE_TACKLE); }
     } SCENE {
-        MESSAGE("Wobbuffet used Tackle!");
+        MESSAGE("Alakazam used Tackle!");
         MESSAGE("Wild Caterpie fainted!");
         EXPERIENCE_BAR(player, captureGainedExp: &results[i].exp);
     } FINALLY {
@@ -78,12 +78,12 @@ WILD_BATTLE_TEST("Exp is scaled to player and opponent's levels", s32 exp)
     PARAMETRIZE { level = 10; }
 
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET) { Level(level); }
+        PLAYER(SPECIES_ALAKAZAM) { Level(level); }
         OPPONENT(SPECIES_CATERPIE) { Level(5); HP(1); }
     } WHEN {
         TURN { MOVE(player, MOVE_TACKLE); }
     } SCENE {
-        MESSAGE("Wobbuffet used Tackle!");
+        MESSAGE("Alakazam used Tackle!");
         MESSAGE("Wild Caterpie fainted!");
         EXPERIENCE_BAR(player, captureGainedExp: &results[i].exp);
     } FINALLY {
@@ -102,12 +102,12 @@ WILD_BATTLE_TEST("Large exp gains are supported", s32 exp) // #1455
     PARAMETRIZE { level = MAX_LEVEL; }
 
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET) { Level(1); Item(ITEM_LUCKY_EGG); OTName("Test"); } // OT Name is different so it gets more exp as a traded mon
+        PLAYER(SPECIES_ALAKAZAM) { Level(1); Item(ITEM_LUCKY_EGG); OTName("Test"); } // OT Name is different so it gets more exp as a traded mon
         OPPONENT(SPECIES_BLISSEY) { Level(level); HP(1); }
     } WHEN {
         TURN { MOVE(player, MOVE_TACKLE); }
     } SCENE {
-        MESSAGE("Wobbuffet used Tackle!");
+        MESSAGE("Alakazam used Tackle!");
         MESSAGE("Wild Blissey fainted!");
         EXPERIENCE_BAR(player, captureGainedExp: &results[i].exp);
     } THEN {
@@ -129,21 +129,21 @@ WILD_BATTLE_TEST("Exp Share(held) gives Experience to mons which did not partici
     PARAMETRIZE { item = ITEM_EXP_SHARE; }
 
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET);
-        PLAYER(SPECIES_WYNAUT) { Level(40); Item(item); }
+        PLAYER(SPECIES_ALAKAZAM);
+        PLAYER(SPECIES_ABRA) { Level(40); Item(item); }
         OPPONENT(SPECIES_CATERPIE) { Level(10); HP(1); }
     } WHEN {
         TURN { MOVE(player, MOVE_TACKLE); }
     } SCENE {
-        MESSAGE("Wobbuffet used Tackle!");
+        MESSAGE("Alakazam used Tackle!");
         MESSAGE("Wild Caterpie fainted!");
         // This message should appear only for gen6> exp share.
         NOT MESSAGE("The rest of your team gained EXP. Points thanks to the Exp. Share!");
     } THEN {
         if (item == ITEM_EXP_SHARE)
-            EXPECT_GT(GetMonData(&gPlayerParty[1], MON_DATA_EXP), gExperienceTables[gSpeciesInfo[SPECIES_WYNAUT].growthRate][40]);
+            EXPECT_GT(GetMonData(&gPlayerParty[1], MON_DATA_EXP), gExperienceTables[gSpeciesInfo[SPECIES_ABRA].growthRate][40]);
         else
-            EXPECT_EQ(GetMonData(&gPlayerParty[1], MON_DATA_EXP), gExperienceTables[gSpeciesInfo[SPECIES_WYNAUT].growthRate][40]);
+            EXPECT_EQ(GetMonData(&gPlayerParty[1], MON_DATA_EXP), gExperienceTables[gSpeciesInfo[SPECIES_ABRA].growthRate][40]);
     }
 }
 

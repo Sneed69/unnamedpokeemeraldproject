@@ -11,8 +11,8 @@ SINGLE_BATTLE_TEST("Beast Boost boosts the most proficient stat when knocking ou
     PARAMETRIZE { stats[4] = 255; }
     GIVEN {
         PLAYER(SPECIES_NIHILEGO) { Ability(ABILITY_BEAST_BOOST); Attack(stats[0]); Defense(stats[1]); SpAttack(stats[2]); SpDefense(stats[3]); Speed(stats[4]); }
-        OPPONENT(SPECIES_WOBBUFFET) { HP(1); Speed(1); }
-        OPPONENT(SPECIES_WOBBUFFET) { Speed(1); }
+        OPPONENT(SPECIES_ALAKAZAM) { HP(1); Speed(1); }
+        OPPONENT(SPECIES_ALAKAZAM) { Speed(1); }
     } WHEN {
         TURN { MOVE(player, MOVE_TACKLE); SEND_OUT(opponent, 1); }
     } SCENE {

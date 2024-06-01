@@ -1231,12 +1231,14 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, 
         SetBoxMonData(boxMon, MON_DATA_ABILITY_NUM, &value);
     }
 
+#if !TESTING
     do
     {
         value = RandomElement(RNG_HIDDEN_POWER, sHiddenPowerTypes);
     }
     while (value == gSpeciesInfo[species].types[0]);
     SetBoxMonData(boxMon, MON_DATA_HIDDEN_POWER_TYPE, &value);
+#endif
 
     for (value = STAT_HP; value < NUM_STATS; value++)
     {

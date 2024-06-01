@@ -13,7 +13,7 @@ SINGLE_BATTLE_TEST("Rage Fist base power is increased by 50 if the user takes da
     s16 timesGotHit[2];
 
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM);
         OPPONENT(SPECIES_REGIROCK);
     } WHEN {
         for (turns = 0; turns < 2; turns++) {
@@ -38,7 +38,7 @@ SINGLE_BATTLE_TEST("Rage Fist base power is increased by each multi hit")
 
     GIVEN {
         ASSUME(gMovesInfo[MOVE_BULLET_SEED].effect == EFFECT_MULTI_HIT);
-        PLAYER(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM);
         OPPONENT(SPECIES_REGIROCK);
     } WHEN {
         for (turns = 0; turns < 2; turns++) {
@@ -61,7 +61,7 @@ SINGLE_BATTLE_TEST("Rage Fist base power is not increased by a confusion hit")
     s16 timesGotHit[2];
 
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM);
         OPPONENT(SPECIES_REGIROCK);
     } WHEN {
         TURN { MOVE(player, MOVE_RAGE_FIST); MOVE(opponent, MOVE_CONFUSE_RAY); }
@@ -72,7 +72,7 @@ SINGLE_BATTLE_TEST("Rage Fist base power is not increased by a confusion hit")
         HP_BAR(opponent, captureDamage: &timesGotHit[0]);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_CONFUSE_RAY, opponent);
         ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_CONFUSION, player);
-        MESSAGE("Wobbuffet became confused!");
+        MESSAGE("Alakazam became confused!");
         ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_CONFUSION, player);
         MESSAGE("It hurt itself in its confusion!");
         HP_BAR(player);
@@ -83,16 +83,16 @@ SINGLE_BATTLE_TEST("Rage Fist base power is not increased by a confusion hit")
     }
 }
 
-DOUBLE_BATTLE_TEST("Rage Fist maximum base power is 350")
+DOUBLE_BATTLE_TEST("Rage Fist maximum BP is 7 times its normal BP")
 {
     u16 turns;
     s16 timesGotHit[2];
 
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET);
-        PLAYER(SPECIES_WYNAUT);
+        PLAYER(SPECIES_ALAKAZAM) { HP(500); Attack(71);};
+        PLAYER(SPECIES_ABRA);
         OPPONENT(SPECIES_REGIROCK);
-        OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         for (turns = 1; turns <= 3; turns++) {
             TURN {
@@ -131,7 +131,7 @@ SINGLE_BATTLE_TEST("Rage Fist base power is not increased if a substitute was hi
 
     GIVEN {
         ASSUME(gMovesInfo[MOVE_CRUNCH].category == DAMAGE_CATEGORY_PHYSICAL); // Substitute doesn't fade otherwise
-        PLAYER(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM);
         OPPONENT(SPECIES_REGIROCK);
     } WHEN {
         TURN { MOVE(player, MOVE_RAGE_FIST); }
@@ -142,8 +142,8 @@ SINGLE_BATTLE_TEST("Rage Fist base power is not increased if a substitute was hi
         HP_BAR(opponent, captureDamage: &timesGotHit[0]);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_SUBSTITUTE, player);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_CRUNCH, opponent);
-        MESSAGE("The SUBSTITUTE took damage for Wobbuffet!");
-        MESSAGE("Wobbuffet's SUBSTITUTE faded!");
+        MESSAGE("The Substitute took damage for Alakazam!");
+        MESSAGE("Alakazam's Substitute faded!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_RAGE_FIST, player);
         HP_BAR(opponent, captureDamage: &timesGotHit[1]);
     } THEN {
@@ -156,8 +156,8 @@ SINGLE_BATTLE_TEST("Rage Fist base power is not lost if user switches out")
     s16 timesGotHit[2];
 
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET);
-        PLAYER(SPECIES_WYNAUT);
+        PLAYER(SPECIES_ALAKAZAM);
+        PLAYER(SPECIES_ABRA);
         OPPONENT(SPECIES_REGIROCK);
     } WHEN {
         TURN { MOVE(player, MOVE_RAGE_FIST); MOVE(opponent, MOVE_TACKLE); }
@@ -167,9 +167,9 @@ SINGLE_BATTLE_TEST("Rage Fist base power is not lost if user switches out")
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_RAGE_FIST, player);
         HP_BAR(opponent, captureDamage: &timesGotHit[0]);
-        MESSAGE("Wobbuffet, that's enough! Come back!");
+        MESSAGE("Alakazam, that's enough! Come back!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, opponent);
-        MESSAGE("Wynaut, that's enough! Come back!");
+        MESSAGE("Abra, that's enough! Come back!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_RAGE_FIST, player);
         HP_BAR(opponent, captureDamage: &timesGotHit[1]);
     } THEN {
@@ -183,7 +183,7 @@ SINGLE_BATTLE_TEST("Rage Fist base power is increased by 50 even if a damaging m
     s16 timesGotHit[2];
 
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET) { HP(1); }
+        PLAYER(SPECIES_ALAKAZAM) { HP(1); }
         OPPONENT(SPECIES_REGIROCK);
     } WHEN {
         for (turns = 0; turns < 2; turns++) {
@@ -206,7 +206,7 @@ SINGLE_BATTLE_TEST("Rage Fist base power is increased by 50 even if a damaging m
     s16 timesGotHit[2];
 
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET) { HP(2); }
+        PLAYER(SPECIES_ALAKAZAM) { HP(2); }
         OPPONENT(SPECIES_REGIROCK);
     } WHEN {
         TURN { MOVE(player, MOVE_RAGE_FIST); MOVE(opponent, MOVE_FALSE_SWIPE); }

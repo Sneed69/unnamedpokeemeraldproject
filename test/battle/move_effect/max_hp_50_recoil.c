@@ -9,77 +9,77 @@ ASSUMPTIONS
 SINGLE_BATTLE_TEST("Steel Beam makes the user lose 1/2 of its Max HP")
 {
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET) { HP(400); MaxHP(400); }
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM) { HP(400); MaxHP(400); }
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, MOVE_STEEL_BEAM); }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_STEEL_BEAM, player);
         HP_BAR(player, damage: 200);
-        NOT MESSAGE("Wobbuffet fainted!"); // Wobb had more than 1/2 of its HP, so it can't faint.
+        NOT MESSAGE("Alakazam fainted!"); // Wobb had more than 1/2 of its HP, so it can't faint.
     }
 }
 
 DOUBLE_BATTLE_TEST("Steel Beam makes the user lose 1/2 of its Max HP in a double battle")
 {
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET) { HP(400); MaxHP(400); }
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM) { HP(400); MaxHP(400); }
+        PLAYER(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(playerLeft, MOVE_STEEL_BEAM, target:opponentLeft); }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_STEEL_BEAM, playerLeft);
         HP_BAR(playerLeft, damage: 200);
-        NOT MESSAGE("Wobbuffet fainted!"); // Wobb had more than 1/2 of its HP, so it can't faint.
+        NOT MESSAGE("Alakazam fainted!"); // Wobb had more than 1/2 of its HP, so it can't faint.
     }
 }
 
 SINGLE_BATTLE_TEST("Steel Beam causes the user to faint when below 1/2 of its Max HP")
 {
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET) { HP(200); MaxHP(400); }
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM) { HP(200); MaxHP(400); }
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, MOVE_STEEL_BEAM); }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_STEEL_BEAM, player);
         HP_BAR(player, hp: 0);
-        MESSAGE("Wobbuffet fainted!");
+        MESSAGE("Alakazam fainted!");
     }
 }
 
 DOUBLE_BATTLE_TEST("Steel Beam causes the user to faint when below 1/2 of its Max HP in a double battle")
 {
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET) { HP(200); MaxHP(400); }
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM) { HP(200); MaxHP(400); }
+        PLAYER(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(playerLeft, MOVE_STEEL_BEAM, target:opponentLeft); }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_STEEL_BEAM, playerLeft);
         HP_BAR(playerLeft, hp: 0);
-        MESSAGE("Wobbuffet fainted!");
+        MESSAGE("Alakazam fainted!");
     }
 }
 
 SINGLE_BATTLE_TEST("Steel Beam causes the user & the target to faint when below 1/2 of its Max HP")
 {
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET) { HP(200) ; MaxHP(400); }
-        OPPONENT(SPECIES_WOBBUFFET) { HP(1); }
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM) { HP(200) ; MaxHP(400); }
+        OPPONENT(SPECIES_ALAKAZAM) { HP(1); }
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, MOVE_STEEL_BEAM); }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_STEEL_BEAM, player);
         HP_BAR(opponent, hp: 0);
-        MESSAGE("Foe Wobbuffet fainted!");
+        MESSAGE("Foe Alakazam fainted!");
         HP_BAR(player, hp: 0);
-        MESSAGE("Wobbuffet fainted!");
+        MESSAGE("Alakazam fainted!");
     }
 }
 
@@ -87,7 +87,7 @@ SINGLE_BATTLE_TEST("Steel Beam hp loss is prevented by Magic Guard")
 {
     GIVEN {
         PLAYER(SPECIES_CLEFAIRY) { Ability(ABILITY_MAGIC_GUARD); }
-        OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, MOVE_STEEL_BEAM); }
     } SCENE {
@@ -100,8 +100,8 @@ SINGLE_BATTLE_TEST("Steel Beam hp loss is prevented by Magic Guard")
 SINGLE_BATTLE_TEST("Steel Beam makes the user lose HP even if the opposing mon protected")
 {
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(opponent, MOVE_PROTECT); MOVE(player, MOVE_STEEL_BEAM); }
     } SCENE {
@@ -114,9 +114,9 @@ SINGLE_BATTLE_TEST("Steel Beam makes the user lose HP even if the opposing mon p
 SINGLE_BATTLE_TEST("Steel Beam does not cause the user to lose HP if there is no target")
 {
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(opponent, MOVE_MEMENTO); MOVE(player, MOVE_STEEL_BEAM); SEND_OUT(opponent, 1); }
     } SCENE {
@@ -125,16 +125,16 @@ SINGLE_BATTLE_TEST("Steel Beam does not cause the user to lose HP if there is no
             ANIMATION(ANIM_TYPE_MOVE, MOVE_STEEL_BEAM, player);
             HP_BAR(player);
         }
-        MESSAGE("Wobbuffet used Steel Beam!");
+        MESSAGE("Alakazam used Steel Beam!");
         MESSAGE("But it failed!");
-        MESSAGE("2 sent out Wobbuffet!");
+        MESSAGE("2 sent out Alakazam!");
     }
 }
 
 SINGLE_BATTLE_TEST("Steel Beam is not blocked by Damp")
 {
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET) { HP(400); MaxHP(400); }
+        PLAYER(SPECIES_ALAKAZAM) { HP(400); MaxHP(400); }
         OPPONENT(SPECIES_GOLDUCK) { Ability(ABILITY_DAMP); }
     } WHEN {
         TURN { MOVE(player, MOVE_STEEL_BEAM); }
@@ -143,7 +143,7 @@ SINGLE_BATTLE_TEST("Steel Beam is not blocked by Damp")
         HP_BAR(player, damage: 200);
         NONE_OF {
             ABILITY_POPUP(opponent, ABILITY_DAMP);
-            MESSAGE("Foe Golduck's Damp prevents Wobbuffet from using Steel Beam!");
+            MESSAGE("Foe Golduck's Damp prevents Alakazam from using Steel Beam!");
         }
     }
 }

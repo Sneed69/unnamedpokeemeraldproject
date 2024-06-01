@@ -8,12 +8,12 @@ SINGLE_BATTLE_TEST("Tera Shell makes all moves against Terapagos not very effect
     PARAMETRIZE { hp = 99; }
     GIVEN {
         PLAYER(SPECIES_TERAPAGOS_TERASTAL) { Ability(ABILITY_TERA_SHELL); HP(hp); MaxHP(100);}
-        OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(opponent, MOVE_TACKLE); }
     } SCENE {
         if (hp == 100) {
-            MESSAGE("Foe Wobbuffet used Tackle!");
+            MESSAGE("Foe Alakazam used Tackle!");
             ABILITY_POPUP(player, ABILITY_TERA_SHELL);
             MESSAGE("Terapagos made its shell gleam! It's distorting type matchups!");
             ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, opponent);
@@ -36,11 +36,11 @@ SINGLE_BATTLE_TEST("Tera Shell makes all hits of multi-hit moves against Terapag
     s16 secondHit;
     GIVEN {
         PLAYER(SPECIES_TERAPAGOS_TERASTAL) { Ability(ABILITY_TERA_SHELL); }
-        OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(opponent, MOVE_DOUBLE_HIT); }
     } SCENE {
-        MESSAGE("Foe Wobbuffet used Double Hit!");
+        MESSAGE("Foe Alakazam used Double Hit!");
         ABILITY_POPUP(player, ABILITY_TERA_SHELL);
         MESSAGE("Terapagos made its shell gleam! It's distorting type matchups!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_DOUBLE_HIT, opponent);
@@ -59,9 +59,9 @@ DOUBLE_BATTLE_TEST("Tera Shell only makes the first hit of a double battle turn 
     s16 secondHit;
     GIVEN {
         PLAYER(SPECIES_TERAPAGOS_TERASTAL) { Ability(ABILITY_TERA_SHELL); }
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(opponentLeft, MOVE_TACKLE, target: playerLeft); MOVE(opponentRight, MOVE_TACKLE, target: playerLeft); }
     } SCENE {
@@ -82,9 +82,9 @@ DOUBLE_BATTLE_TEST("Tera Shell only makes the first hit against Terapagos from a
 {
     GIVEN {
         PLAYER(SPECIES_TERAPAGOS_TERASTAL) { Ability(ABILITY_TERA_SHELL); }
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(opponentLeft, MOVE_BLIZZARD); }
     } SCENE {

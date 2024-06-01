@@ -6,7 +6,7 @@ SINGLE_BATTLE_TEST("Good as Gold protects from status moves")
 {
     GIVEN {
         ASSUME(gMovesInfo[MOVE_TOXIC].category == DAMAGE_CATEGORY_STATUS);
-        PLAYER(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM);
         OPPONENT(SPECIES_GHOLDENGO) { Ability(ABILITY_GOOD_AS_GOLD); }
     } WHEN {
         TURN { MOVE(player, MOVE_TOXIC); }
@@ -21,7 +21,7 @@ SINGLE_BATTLE_TEST("Good as Gold doesn't protect the user from it's own moves")
 {
     GIVEN {
         ASSUME(gMovesInfo[MOVE_NASTY_PLOT].category == DAMAGE_CATEGORY_STATUS);
-        PLAYER(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM);
         OPPONENT(SPECIES_GHOLDENGO) { Ability(ABILITY_GOOD_AS_GOLD); }
     } WHEN {
         TURN { MOVE(opponent, MOVE_NASTY_PLOT); }
@@ -39,7 +39,7 @@ SINGLE_BATTLE_TEST("Good as Gold doesn't protect from moves that target the fiel
     GIVEN {
         ASSUME(gMovesInfo[MOVE_STEALTH_ROCK].category == DAMAGE_CATEGORY_STATUS);
         ASSUME(gMovesInfo[MOVE_STEALTH_ROCK].target == MOVE_TARGET_OPPONENTS_FIELD);
-        PLAYER(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM);
         OPPONENT(SPECIES_GHOLDENGO) { Ability(ABILITY_GOOD_AS_GOLD); }
     } WHEN {
         TURN { MOVE(player, MOVE_STEALTH_ROCK); }
@@ -56,10 +56,10 @@ DOUBLE_BATTLE_TEST("Good as Gold protects from partner's status moves")
 {
     GIVEN {
         ASSUME(gMovesInfo[MOVE_HELPING_HAND].category == DAMAGE_CATEGORY_STATUS);
-        PLAYER(SPECIES_WOBBUFFET);
-        PLAYER(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM);
+        PLAYER(SPECIES_ALAKAZAM);
         OPPONENT(SPECIES_GHOLDENGO) { Ability(ABILITY_GOOD_AS_GOLD); }
-        OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(opponentRight, MOVE_HELPING_HAND); }
     } SCENE {

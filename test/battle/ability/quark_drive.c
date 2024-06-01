@@ -11,7 +11,7 @@ SINGLE_BATTLE_TEST("Quark Drive boosts the highest stat")
 {
     GIVEN {
         PLAYER(SPECIES_IRON_MOTH) { Ability(ABILITY_QUARK_DRIVE); }
-        OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, MOVE_ELECTRIC_TERRAIN); }
     } SCENE {
@@ -36,7 +36,7 @@ SINGLE_BATTLE_TEST("Quark Drive boosts either Attack or Special Attack, not both
 
     GIVEN {
         PLAYER(species) { Ability(ABILITY_QUARK_DRIVE); }
-        OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, move); }
         TURN { MOVE(opponent, MOVE_ELECTRIC_TERRAIN); MOVE(player, move); }
@@ -60,7 +60,7 @@ SINGLE_BATTLE_TEST("Quark Drive ability pop up activates only once during the du
 
     GIVEN {
         PLAYER(SPECIES_IRON_MOTH) { Ability(ABILITY_QUARK_DRIVE); }
-        OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, MOVE_ELECTRIC_TERRAIN); }
         for (turns = 0; turns < 4; turns++)
@@ -88,7 +88,7 @@ SINGLE_BATTLE_TEST("Quark Drive ability pop up activates only once during the du
 SINGLE_BATTLE_TEST("Quark Drive activates on switch-in")
 {
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM);
         PLAYER(SPECIES_IRON_MOTH) { Ability(ABILITY_QUARK_DRIVE); }
         OPPONENT(SPECIES_TAPU_KOKO) { Ability(ABILITY_ELECTRIC_SURGE); };
     } WHEN {

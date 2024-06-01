@@ -21,13 +21,13 @@ TO_DO_BATTLE_TEST("Assist can be used by wild Pokémon in Wild Double Battles, e
 SINGLE_BATTLE_TEST("Assist fails if there are no valid moves to choose from")
 {
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET) { Moves(MOVE_ASSIST, MOVE_CELEBRATE, MOVE_METRONOME, MOVE_ME_FIRST); }
-        PLAYER(SPECIES_WOBBUFFET) { Moves(MOVE_ASSIST, MOVE_ENDURE, MOVE_DRAGON_TAIL, MOVE_SPOTLIGHT); }
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM) { Moves(MOVE_ASSIST, MOVE_CELEBRATE, MOVE_METRONOME, MOVE_ME_FIRST); }
+        PLAYER(SPECIES_ALAKAZAM) { Moves(MOVE_ASSIST, MOVE_ENDURE, MOVE_DRAGON_TAIL, MOVE_SPOTLIGHT); }
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, MOVE_ASSIST); }
     } SCENE {
-        MESSAGE("Wobbuffet used Assist!");
+        MESSAGE("Alakazam used Assist!");
         NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_ASSIST, player);
         MESSAGE("But it failed!");
     }

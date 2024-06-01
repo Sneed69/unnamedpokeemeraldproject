@@ -11,7 +11,7 @@ SINGLE_BATTLE_TEST("Chilly Reception sets up snow and switches the user out")
     GIVEN {
         PLAYER(SPECIES_SLOWKING_GALARIAN);
         PLAYER(SPECIES_SLOWPOKE_GALARIAN);
-        OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, MOVE_CHILLY_RECEPTION); SEND_OUT(player, 1); }
     } SCENE {
@@ -46,7 +46,7 @@ SINGLE_BATTLE_TEST("Chilly Reception does not switch the user out if no replacem
 {
     GIVEN {
         PLAYER(SPECIES_SLOWKING_GALARIAN);
-        OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, MOVE_CHILLY_RECEPTION); }
     } SCENE {
@@ -62,7 +62,7 @@ SINGLE_BATTLE_TEST("Chilly Reception does not switch the user out if replacement
     GIVEN {
         PLAYER(SPECIES_SLOWKING_GALARIAN);
         PLAYER(SPECIES_SLOWPOKE_GALARIAN) { HP(0); }
-        OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, MOVE_CHILLY_RECEPTION); }
     } SCENE {
@@ -77,7 +77,7 @@ SINGLE_BATTLE_TEST("Chilly Reception changes the weather, even if the user canno
 {
     GIVEN {
         PLAYER(SPECIES_SLOWKING_GALARIAN);
-        OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, MOVE_CHILLY_RECEPTION); }
     } SCENE {

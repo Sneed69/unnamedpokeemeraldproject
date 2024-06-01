@@ -10,7 +10,7 @@ SINGLE_BATTLE_TEST("Safety Goggles block powder and spore moves")
 {
     GIVEN {
         ASSUME(gMovesInfo[MOVE_STUN_SPORE].powderMove);
-        PLAYER(SPECIES_WYNAUT);
+        PLAYER(SPECIES_ABRA);
         OPPONENT(SPECIES_ABRA) { Item(ITEM_SAFETY_GOGGLES); }
     } WHEN {
         TURN { MOVE(player, MOVE_STUN_SPORE); }
@@ -23,24 +23,24 @@ SINGLE_BATTLE_TEST("Safety Goggles block powder and spore moves")
 SINGLE_BATTLE_TEST("Safety Goggles blocks damage from Hail")
 {
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET) { Item(ITEM_SAFETY_GOGGLES); };
+        PLAYER(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_ALAKAZAM) { Item(ITEM_SAFETY_GOGGLES); };
     } WHEN {
         TURN { MOVE(player, MOVE_HAIL); }
     } SCENE {
-        NOT MESSAGE("Foe Wobbuffet is pelted by HAIL!");
+        NOT MESSAGE("Foe Alakazam is pelted by HAIL!");
     }
 }
 
 SINGLE_BATTLE_TEST("Safety Goggles blocks damage from Sandstorm")
 {
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET) { Item(ITEM_SAFETY_GOGGLES); };
+        PLAYER(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_ALAKAZAM) { Item(ITEM_SAFETY_GOGGLES); };
     } WHEN {
         TURN { MOVE(player, MOVE_SANDSTORM); }
     } SCENE {
-        NOT MESSAGE("Foe Wobbuffet is buffeted by the sandstorm!");
+        NOT MESSAGE("Foe Alakazam is buffeted by the sandstorm!");
     }
 }
 

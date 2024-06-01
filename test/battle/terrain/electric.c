@@ -4,16 +4,16 @@
 SINGLE_BATTLE_TEST("Electric Terrain protects grounded battlers from falling asleep")
 {
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM);
         OPPONENT(SPECIES_CLAYDOL) { Ability(ABILITY_LEVITATE); }
     } WHEN {
         TURN { MOVE(player, MOVE_ELECTRIC_TERRAIN); MOVE(opponent, MOVE_SPORE); }
         TURN { MOVE(player, MOVE_SPORE); }
     } SCENE {
-        MESSAGE("Wobbuffet used Electric Terrain!");
+        MESSAGE("Alakazam used Electric Terrain!");
         MESSAGE("Foe Claydol used Spore!");
-        MESSAGE("Wobbuffet surrounds itself with electrified terrain!");
-        MESSAGE("Wobbuffet used Spore!");
+        MESSAGE("The electrifying aura prevents sleep!");
+        MESSAGE("Alakazam used Spore!");
         MESSAGE("Foe Claydol fell asleep!");
         STATUS_ICON(opponent, sleep: TRUE);
     }
@@ -24,13 +24,13 @@ SINGLE_BATTLE_TEST("Electric Terrain activates Electric Seed and Mimicry")
     GIVEN {
         ASSUME(gItemsInfo[ITEM_ELECTRIC_SEED].holdEffect == HOLD_EFFECT_SEEDS);
         ASSUME(gItemsInfo[ITEM_ELECTRIC_SEED].holdEffectParam == HOLD_EFFECT_PARAM_ELECTRIC_TERRAIN);
-        PLAYER(SPECIES_WOBBUFFET) { Item(ITEM_ELECTRIC_SEED); }
+        PLAYER(SPECIES_ALAKAZAM) { Item(ITEM_ELECTRIC_SEED); }
         OPPONENT(SPECIES_STUNFISK_GALARIAN) { Ability(ABILITY_MIMICRY); }
     } WHEN {
         TURN { MOVE(player, MOVE_ELECTRIC_TERRAIN); }
     } SCENE {
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
-        MESSAGE("Using Electric Seed, the Defense of Wobbuffet rose!");
+        MESSAGE("Using Electric Seed, the Defense of Alakazam rose!");
         ABILITY_POPUP(opponent);
         MESSAGE("Foe Stunfisk's type changed to Electric!");
     } THEN {
@@ -44,14 +44,14 @@ SINGLE_BATTLE_TEST("Electric Terrain increases power of Electric-type moves by 3
     PARAMETRIZE { terrain = FALSE; }
     PARAMETRIZE { terrain = TRUE; }
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         if (terrain)
             TURN { MOVE(player, MOVE_ELECTRIC_TERRAIN); }
         TURN { MOVE(player, MOVE_THUNDER_SHOCK); }
     } SCENE {
-        MESSAGE("Wobbuffet used Thunder Shock!");
+        MESSAGE("Alakazam used Thunder Shock!");
         HP_BAR(opponent, captureDamage: &results[i].damage);
     } FINALLY {
         if (B_TERRAIN_TYPE_BOOST >= GEN_8)
@@ -64,8 +64,8 @@ SINGLE_BATTLE_TEST("Electric Terrain increases power of Electric-type moves by 3
 SINGLE_BATTLE_TEST("Electric Terrain lasts for 5 turns")
 {
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(opponent, MOVE_CELEBRATE); MOVE(player, MOVE_ELECTRIC_TERRAIN); }
         TURN {}
@@ -73,18 +73,18 @@ SINGLE_BATTLE_TEST("Electric Terrain lasts for 5 turns")
         TURN {}
         TURN {}
     } SCENE {
-        MESSAGE("Foe Wobbuffet used Celebrate!");
+        MESSAGE("Foe Alakazam used Celebrate!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_ELECTRIC_TERRAIN, player);
         MESSAGE("An electric current runs across the battlefield!");
 
-        MESSAGE("Wobbuffet used Celebrate!");
-        MESSAGE("Foe Wobbuffet used Celebrate!");
+        MESSAGE("Alakazam used Celebrate!");
+        MESSAGE("Foe Alakazam used Celebrate!");
 
-        MESSAGE("Wobbuffet used Celebrate!");
-        MESSAGE("Foe Wobbuffet used Celebrate!");
+        MESSAGE("Alakazam used Celebrate!");
+        MESSAGE("Foe Alakazam used Celebrate!");
 
-        MESSAGE("Wobbuffet used Celebrate!");
-        MESSAGE("Foe Wobbuffet used Celebrate!");
+        MESSAGE("Alakazam used Celebrate!");
+        MESSAGE("Foe Alakazam used Celebrate!");
 
         MESSAGE("The electricity disappeared from the battlefield.");
     }

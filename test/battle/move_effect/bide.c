@@ -12,8 +12,8 @@ SINGLE_BATTLE_TEST("Bide deals twice the taken damage over two turns")
     s16 damage2;
     s16 bideDamage;
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, MOVE_BIDE); MOVE(opponent, MOVE_TACKLE); }
         TURN { SKIP_TURN(player); MOVE(opponent, MOVE_TACKLE); }
@@ -22,10 +22,10 @@ SINGLE_BATTLE_TEST("Bide deals twice the taken damage over two turns")
         ANIMATION(ANIM_TYPE_MOVE, MOVE_BIDE, player);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, opponent);
         HP_BAR(player, captureDamage: &damage1);
-        MESSAGE("Wobbuffet is storing energy!");
+        MESSAGE("Alakazam is storing energy!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, opponent);
         HP_BAR(player, captureDamage: &damage2);
-        MESSAGE("Wobbuffet unleashed energy!");
+        MESSAGE("Alakazam unleashed energy!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_BIDE, player);
         HP_BAR(opponent, captureDamage: &bideDamage);
     } THEN {

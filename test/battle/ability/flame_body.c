@@ -9,7 +9,7 @@ SINGLE_BATTLE_TEST("Flame Body inflicts burn on contact")
     GIVEN {
         ASSUME(gMovesInfo[MOVE_TACKLE].makesContact);
         ASSUME(!gMovesInfo[MOVE_SWIFT].makesContact);
-        PLAYER(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM);
         OPPONENT(SPECIES_MAGMAR) { Ability(ABILITY_FLAME_BODY); }
     } WHEN {
         TURN { MOVE(player, move); }
@@ -17,13 +17,13 @@ SINGLE_BATTLE_TEST("Flame Body inflicts burn on contact")
         if (gMovesInfo[move].makesContact) {
             ABILITY_POPUP(opponent, ABILITY_FLAME_BODY);
             ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_BRN, player);
-            MESSAGE("Foe Magmar's Flame Body burned Wobbuffet!");
+            MESSAGE("Foe Magmar's Flame Body burned Alakazam!");
             STATUS_ICON(player, burn: TRUE);
         } else {
             NONE_OF {
                 ABILITY_POPUP(opponent, ABILITY_FLAME_BODY);
                 ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_BRN, player);
-                MESSAGE("Foe Magmar's Flame Body burned Wobbuffet!");
+                MESSAGE("Foe Magmar's Flame Body burned Alakazam!");
                 STATUS_ICON(player, burn: TRUE);
             }
         }

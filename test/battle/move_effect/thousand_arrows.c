@@ -10,7 +10,7 @@ ASSUMPTIONS
 SINGLE_BATTLE_TEST("Thousand Arrows does not ground mons behind substitutes")
 {
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM);
         OPPONENT(SPECIES_SKARMORY);
     } WHEN {
         TURN { MOVE(opponent, MOVE_SUBSTITUTE); MOVE(player, MOVE_THOUSAND_ARROWS); }
@@ -25,7 +25,7 @@ SINGLE_BATTLE_TEST("Thousand Arrows does neutral damage to non-grounded Flying t
     PARAMETRIZE { pokemon = SPECIES_SKARMORY; }
     PARAMETRIZE { pokemon = SPECIES_SCYTHER; }
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM);
         OPPONENT(pokemon);
     } WHEN {
         TURN { MOVE(player, MOVE_THOUSAND_ARROWS); }
@@ -41,7 +41,7 @@ SINGLE_BATTLE_TEST("Thousand Arrows does neutral damage to non-grounded Flying t
         }
         ANIMATION(ANIM_TYPE_MOVE, MOVE_CELEBRATE, opponent);
         MESSAGE("Congratulations, 1!");
-        MESSAGE("Wobbuffet used Thousand Arrows!");
+        MESSAGE("Alakazam used Thousand Arrows!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_THOUSAND_ARROWS, player);
         if (pokemon == SPECIES_SKARMORY)
         {

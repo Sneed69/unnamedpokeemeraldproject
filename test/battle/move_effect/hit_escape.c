@@ -9,24 +9,24 @@ ASSUMPTIONS
 SINGLE_BATTLE_TEST("U-turn switches the user out")
 {
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET);
-        PLAYER(SPECIES_WYNAUT);
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM);
+        PLAYER(SPECIES_ABRA);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, MOVE_U_TURN); SEND_OUT(player, 1); }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_U_TURN, player);
         HP_BAR(opponent);
-        MESSAGE("Go! Wynaut!");
+        MESSAGE("Go! Abra!");
     }
 }
 
 SINGLE_BATTLE_TEST("U-turn does not switch the user out if the battle ends")
 {
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET);
-        PLAYER(SPECIES_WYNAUT);
-        OPPONENT(SPECIES_WOBBUFFET) { HP(1); }
+        PLAYER(SPECIES_ALAKAZAM);
+        PLAYER(SPECIES_ABRA);
+        OPPONENT(SPECIES_ALAKAZAM) { HP(1); }
     } WHEN {
         TURN { MOVE(player, MOVE_U_TURN); }
     } SCENE {
@@ -38,8 +38,8 @@ SINGLE_BATTLE_TEST("U-turn does not switch the user out if the battle ends")
 SINGLE_BATTLE_TEST("U-turn does not switch the user out if no replacements")
 {
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, MOVE_U_TURN); }
     } SCENE {
@@ -51,9 +51,9 @@ SINGLE_BATTLE_TEST("U-turn does not switch the user out if no replacements")
 SINGLE_BATTLE_TEST("U-turn does not switch the user out if replacements fainted")
 {
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET);
-        PLAYER(SPECIES_WYNAUT) { HP(0); }
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM);
+        PLAYER(SPECIES_ABRA) { HP(0); }
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, MOVE_U_TURN); }
     } SCENE {
@@ -65,25 +65,25 @@ SINGLE_BATTLE_TEST("U-turn does not switch the user out if replacements fainted"
 SINGLE_BATTLE_TEST("U-turn does not switch the user out if Wimp Out activates")
 {
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET);
-        PLAYER(SPECIES_WYNAUT);
+        PLAYER(SPECIES_ALAKAZAM);
+        PLAYER(SPECIES_ABRA);
         OPPONENT(SPECIES_WIMPOD) { MaxHP(200); HP(101); Ability(ABILITY_WIMP_OUT); }
-        OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, MOVE_U_TURN); SEND_OUT(opponent, 1); }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_U_TURN, player);
         HP_BAR(opponent);
         ABILITY_POPUP(opponent, ABILITY_WIMP_OUT);
-        MESSAGE("2 sent out Wobbuffet!");
+        MESSAGE("2 sent out Alakazam!");
     }
 }
 
 SINGLE_BATTLE_TEST("U-turn switches the user out if Wimp Out fails to activate")
 {
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET);
-        PLAYER(SPECIES_WYNAUT);
+        PLAYER(SPECIES_ALAKAZAM);
+        PLAYER(SPECIES_ABRA);
         OPPONENT(SPECIES_WIMPOD) { MaxHP(200); HP(101); Ability(ABILITY_WIMP_OUT); }
     } WHEN {
         TURN { MOVE(player, MOVE_U_TURN); SEND_OUT(player, 1); }
@@ -91,7 +91,7 @@ SINGLE_BATTLE_TEST("U-turn switches the user out if Wimp Out fails to activate")
         ANIMATION(ANIM_TYPE_MOVE, MOVE_U_TURN, player);
         HP_BAR(opponent);
         NOT ABILITY_POPUP(opponent);
-        MESSAGE("Go for it, Wynaut!");
+        MESSAGE("Go for it, Abra!");
     }
 }
 
@@ -100,7 +100,7 @@ SINGLE_BATTLE_TEST("U-turn switches the user out after Ice Face activates")
     GIVEN {
         ASSUME(gMovesInfo[MOVE_U_TURN].category == DAMAGE_CATEGORY_PHYSICAL);
         PLAYER(SPECIES_BEEDRILL);
-        PLAYER(SPECIES_WYNAUT);
+        PLAYER(SPECIES_ABRA);
         OPPONENT(SPECIES_EISCUE) { Ability(ABILITY_ICE_FACE); }
     } WHEN {
         TURN { MOVE(player, MOVE_U_TURN); SEND_OUT(player, 1); }
@@ -109,17 +109,17 @@ SINGLE_BATTLE_TEST("U-turn switches the user out after Ice Face activates")
         HP_BAR(opponent);
         ABILITY_POPUP(opponent, ABILITY_ICE_FACE);
         MESSAGE("Foe Eiscue transformed!");
-        MESSAGE("Go! Wynaut!");
+        MESSAGE("Go! Abra!");
     }
 }
 
 SINGLE_BATTLE_TEST("Held items are consumed immediately after a mon switched in by U-turn and Intimidate activates after it: player side")
 {
     GIVEN {
-        PLAYER(SPECIES_TAPU_KOKO) { Ability(ABILITY_ELECTRIC_SURGE); };
+        PLAYER(SPECIES_RAICHU) { Ability(ABILITY_ELECTRIC_SURGE); };
         PLAYER(SPECIES_EKANS) { Ability(ABILITY_INTIMIDATE); Item(ITEM_ELECTRIC_SEED); }
-        OPPONENT(SPECIES_WYNAUT) { HP(1); }
-        OPPONENT(SPECIES_WYNAUT);
+        OPPONENT(SPECIES_ABRA) { HP(1); }
+        OPPONENT(SPECIES_ABRA);
     } WHEN {
         TURN { MOVE(player, MOVE_U_TURN); SEND_OUT(player, 1); SEND_OUT(opponent, 1); }
     } SCENE {
@@ -128,7 +128,7 @@ SINGLE_BATTLE_TEST("Held items are consumed immediately after a mon switched in 
         HP_BAR(opponent);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, player);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
-        MESSAGE("2 sent out Wynaut!");
+        MESSAGE("2 sent out Abra!");
         NOT ABILITY_POPUP(player, ABILITY_INTIMIDATE);
     } THEN {
         EXPECT_EQ(player->statStages[STAT_DEF], DEFAULT_STAT_STAGE + 1);
@@ -139,10 +139,10 @@ SINGLE_BATTLE_TEST("Held items are consumed immediately after a mon switched in 
 {
     KNOWN_FAILING;
     GIVEN {
-        PLAYER(SPECIES_TAPU_KOKO) { Ability(ABILITY_ELECTRIC_SURGE); };
+        PLAYER(SPECIES_RAICHU) { Ability(ABILITY_ELECTRIC_SURGE); };
         PLAYER(SPECIES_EKANS) { Ability(ABILITY_INTIMIDATE);  }
-        OPPONENT(SPECIES_WYNAUT) { HP(1); }
-        OPPONENT(SPECIES_WYNAUT) { Item(ITEM_ELECTRIC_SEED); }
+        OPPONENT(SPECIES_ABRA) { HP(1); }
+        OPPONENT(SPECIES_ABRA) { Item(ITEM_ELECTRIC_SEED); }
     } WHEN {
         TURN { MOVE(player, MOVE_U_TURN); SEND_OUT(player, 1); SEND_OUT(opponent, 1); }
     } SCENE {
@@ -150,7 +150,7 @@ SINGLE_BATTLE_TEST("Held items are consumed immediately after a mon switched in 
         ANIMATION(ANIM_TYPE_MOVE, MOVE_U_TURN, player);
         HP_BAR(opponent);
         NOT ABILITY_POPUP(player, ABILITY_INTIMIDATE);
-        MESSAGE("2 sent out Wynaut!");
+        MESSAGE("2 sent out Abra!");
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, opponent);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
         NOT ABILITY_POPUP(player, ABILITY_INTIMIDATE);
@@ -162,10 +162,10 @@ SINGLE_BATTLE_TEST("Held items are consumed immediately after a mon switched in 
 SINGLE_BATTLE_TEST("Electric Seed boost is received by the right pokemon after U-turn and Intimidate")
 {
     GIVEN {
-        PLAYER(SPECIES_TAPU_KOKO) { Ability(ABILITY_ELECTRIC_SURGE); };
+        PLAYER(SPECIES_RAICHU) { Ability(ABILITY_ELECTRIC_SURGE); };
         PLAYER(SPECIES_EKANS) { Ability(ABILITY_INTIMIDATE); Item(ITEM_ELECTRIC_SEED); }
-        OPPONENT(SPECIES_WYNAUT);
-        OPPONENT(SPECIES_WYNAUT);
+        OPPONENT(SPECIES_ABRA);
+        OPPONENT(SPECIES_ABRA);
     } WHEN {
         TURN { MOVE(player, MOVE_U_TURN); SEND_OUT(player, 1); }
     } SCENE {

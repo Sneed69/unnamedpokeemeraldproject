@@ -13,8 +13,8 @@ SINGLE_BATTLE_TEST("Tail Whip lowers Defense", s16 damage)
     PARAMETRIZE { lowerDefense = TRUE; }
     GIVEN {
         ASSUME(gMovesInfo[MOVE_TACKLE].category == DAMAGE_CATEGORY_PHYSICAL);
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         if (lowerDefense) TURN { MOVE(player, MOVE_TAIL_WHIP); }
         TURN { MOVE(player, MOVE_TACKLE); }
@@ -22,7 +22,7 @@ SINGLE_BATTLE_TEST("Tail Whip lowers Defense", s16 damage)
         if (lowerDefense) {
             ANIMATION(ANIM_TYPE_MOVE, MOVE_TAIL_WHIP, player);
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
-            MESSAGE("Foe Wobbuffet's Defense fell!");
+            MESSAGE("Foe Alakazam's Defense fell!");
         }
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, player);
         HP_BAR(opponent, captureDamage: &results[i].damage);

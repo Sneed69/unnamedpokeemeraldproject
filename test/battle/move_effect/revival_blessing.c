@@ -13,22 +13,22 @@ ASSUMPTIONS
 SINGLE_BATTLE_TEST("Revival Blessing revives a chosen fainted party member for the player")
 {
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET);
-        PLAYER(SPECIES_WOBBUFFET) { HP(0); }
-        PLAYER(SPECIES_WYNAUT) { HP(0); }
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM);
+        PLAYER(SPECIES_ALAKAZAM) { HP(0); }
+        PLAYER(SPECIES_ABRA) { HP(0); }
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, MOVE_REVIVAL_BLESSING); SEND_OUT(player, 2); }
     } SCENE {
-        MESSAGE("Wobbuffet used Revival Blessing!");
-        MESSAGE("Wynaut was revived and is ready to fight again!");
+        MESSAGE("Alakazam used Revival Blessing!");
+        MESSAGE("Abra was revived and is ready to fight again!");
     }
 }
 
 SINGLE_BATTLE_TEST("Revival Blessing revives a fainted party member for an opponent")
 {
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM);
         OPPONENT(SPECIES_RAICHU);
         OPPONENT(SPECIES_PICHU) { HP(0); }
         OPPONENT(SPECIES_PIKACHU) { HP(0); }
@@ -43,12 +43,12 @@ SINGLE_BATTLE_TEST("Revival Blessing revives a fainted party member for an oppon
 SINGLE_BATTLE_TEST("Revival Blessing fails if no party members are fainted")
 {
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, MOVE_REVIVAL_BLESSING); }
     } SCENE {
-        MESSAGE("Wobbuffet used Revival Blessing!");
+        MESSAGE("Alakazam used Revival Blessing!");
         MESSAGE("But it failed!");
     }
 }
@@ -64,23 +64,23 @@ TO_DO_BATTLE_TEST("Revival Blessing cannot revive a partner's party member");
 //     PARAMETRIZE { user = opponentRight; }
 //     GIVEN {
 //         ASSUME((gBattleTypeFlags & BATTLE_TYPE_TWO_OPPONENTS) != FALSE);
-//         PLAYER(SPECIES_WOBBUFFET);
-//         PLAYER(SPECIES_WOBBUFFET);
-//         OPPONENT(SPECIES_WOBBUFFET);
-//         OPPONENT(SPECIES_WOBBUFFET);
-//         OPPONENT(SPECIES_WOBBUFFET);
-//         OPPONENT(SPECIES_WYNAUT);
-//         OPPONENT(SPECIES_WYNAUT) { HP(0); }
-//         OPPONENT(SPECIES_WYNAUT);
+//         PLAYER(SPECIES_ALAKAZAM);
+//         PLAYER(SPECIES_ALAKAZAM);
+//         OPPONENT(SPECIES_ALAKAZAM);
+//         OPPONENT(SPECIES_ALAKAZAM);
+//         OPPONENT(SPECIES_ALAKAZAM);
+//         OPPONENT(SPECIES_ABRA);
+//         OPPONENT(SPECIES_ABRA) { HP(0); }
+//         OPPONENT(SPECIES_ABRA);
 //     } WHEN {
 //         TURN { MOVE(user, MOVE_REVIVAL_BLESSING); }
 //     } SCENE {
 //         if (user == opponentLeft) {
-//             MESSAGE("Foe Wobbuffet used Revival Blessing!");
+//             MESSAGE("Foe Alakazam used Revival Blessing!");
 //             MESSAGE("But it failed!");
 //         } else {
-//             MESSAGE("Foe Wynaut used Revival Blessing!");
-//             MESSAGE("Wynaut was revived and is ready to fight again!");
+//             MESSAGE("Foe Abra used Revival Blessing!");
+//             MESSAGE("Abra was revived and is ready to fight again!");
 //         }
 //     }
 // }
@@ -91,19 +91,19 @@ TO_DO_BATTLE_TEST("Revived battlers still lose their turn");
 // DOUBLE_BATTLE_TEST("Revived battlers still lose their turn")
 // {
 //     GIVEN {
-//         PLAYER(SPECIES_WOBBUFFET);
-//         PLAYER(SPECIES_WYNAUT);
-//         OPPONENT(SPECIES_WOBBUFFET);
-//         OPPONENT(SPECIES_WYNAUT) { HP(1); }
+//         PLAYER(SPECIES_ALAKAZAM);
+//         PLAYER(SPECIES_ABRA);
+//         OPPONENT(SPECIES_ALAKAZAM);
+//         OPPONENT(SPECIES_ABRA) { HP(1); }
 //     } WHEN {
 //         TURN { MOVE(playerLeft, MOVE_TACKLE, target: opponentRight);
 //                MOVE(opponentLeft, MOVE_REVIVAL_BLESSING);
 //                SEND_OUT(opponentLeft, 1); }
 //     } SCENE {
-//         MESSAGE("Wobbuffet used Tackle!");
-//         MESSAGE("Foe Wynaut fainted!");
-//         MESSAGE("Foe Wobbuffet used Revival Blessing!");
-//         MESSAGE("Wynaut was revived and is ready to fight again!");
-//         NOT { MESSAGE("Wynaut used Celebrate!"); }
+//         MESSAGE("Alakazam used Tackle!");
+//         MESSAGE("Foe Abra fainted!");
+//         MESSAGE("Foe Alakazam used Revival Blessing!");
+//         MESSAGE("Abra was revived and is ready to fight again!");
+//         NOT { MESSAGE("Abra used Celebrate!"); }
 //     }
 // }

@@ -4,9 +4,9 @@
 SINGLE_BATTLE_TEST("Emergency Exit switches out when taking 50% max-hp damage")
 {
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM);
         OPPONENT(SPECIES_GOLISOPOD) { Ability(ABILITY_EMERGENCY_EXIT); MaxHP(263); HP(262); };
-        OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, MOVE_SUPER_FANG); SEND_OUT(opponent, 1); }
     } SCENE {
@@ -19,9 +19,9 @@ SINGLE_BATTLE_TEST("Emergency Exit switches out when taking 50% max-hp damage")
 SINGLE_BATTLE_TEST("Emergency Exit does not switch out when going below 50% max-HP but healed via held item back above the threshold")
 {
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET)
+        PLAYER(SPECIES_ALAKAZAM)
         OPPONENT(SPECIES_GOLISOPOD) { Ability(ABILITY_EMERGENCY_EXIT); MaxHP(263); HP(262); Item(ITEM_SITRUS_BERRY); };
-        OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, MOVE_SUPER_FANG); }
     } SCENE {
@@ -35,9 +35,9 @@ SINGLE_BATTLE_TEST("Emergency Exit does not switch out when going below 50% max-
 SINGLE_BATTLE_TEST("Emergency Exit switches out when going below 50% max-HP but healing via held item is not enough to go back above the threshold")
 {
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET)
+        PLAYER(SPECIES_ALAKAZAM)
         OPPONENT(SPECIES_GOLISOPOD) { Ability(ABILITY_EMERGENCY_EXIT); MaxHP(263); HP(133); Item(ITEM_ORAN_BERRY); };
-        OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, MOVE_SUPER_FANG); SEND_OUT(opponent, 1); }
     } SCENE {

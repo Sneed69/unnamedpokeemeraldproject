@@ -14,17 +14,17 @@ SINGLE_BATTLE_TEST("Strength Sap lowers Attack by 1 and restores HP based on tar
     PARAMETRIZE{ atkStat = 50; }
 
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET) { HP(200); }
-        OPPONENT(SPECIES_WOBBUFFET) { Attack(atkStat); }
+        PLAYER(SPECIES_ALAKAZAM) { HP(200); MaxHP(300); }
+        OPPONENT(SPECIES_ALAKAZAM) { Attack(atkStat); }
     } WHEN {
         TURN { MOVE(player, MOVE_STRENGTH_SAP); }
     } SCENE {
-        MESSAGE("Wobbuffet used Strength Sap!");
+        MESSAGE("Alakazam used Strength Sap!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_STRENGTH_SAP, player);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
-        MESSAGE("Foe Wobbuffet's Attack fell!");
+        MESSAGE("Foe Alakazam's Attack fell!");
         HP_BAR(player, captureDamage: &results[i].hp);
-        MESSAGE("Foe Wobbuffet had its energy drained!");
+        MESSAGE("Foe Alakazam had its energy drained!");
     } THEN {
         EXPECT_EQ(results[i].hp * -1, atkStat);
     }
@@ -39,20 +39,20 @@ SINGLE_BATTLE_TEST("Strength Sap works exactly the same when attacker is behind 
     PARAMETRIZE{ atkStat = 50; }
 
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET) { HP(200); }
-        OPPONENT(SPECIES_WOBBUFFET) { Attack(atkStat); }
+        PLAYER(SPECIES_ALAKAZAM) { HP(200); }
+        OPPONENT(SPECIES_ALAKAZAM) { Attack(atkStat); }
     } WHEN {
         TURN { MOVE(player, MOVE_SUBSTITUTE); }
         TURN { MOVE(player, MOVE_STRENGTH_SAP); }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_SUBSTITUTE, player);
-        MESSAGE("Wobbuffet used Strength Sap!");
+        MESSAGE("Alakazam used Strength Sap!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_STRENGTH_SAP, player);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
-        MESSAGE("Foe Wobbuffet's Attack fell!");
+        MESSAGE("Foe Alakazam's Attack fell!");
         HP_BAR(player, captureDamage: &results[i].hp);
-        NOT MESSAGE("The SUBSTITUTE took damage for Foe Wobbuffet!");
-        MESSAGE("Foe Wobbuffet had its energy drained!");
+        NOT MESSAGE("The Substitute took damage for Foe Alakazam!");
+        MESSAGE("Foe Alakazam had its energy drained!");
     } THEN {
         EXPECT_EQ(results[i].hp * -1, atkStat);
     }
@@ -71,8 +71,8 @@ SINGLE_BATTLE_TEST("Strength Sap lowers Attack by 1 and restores HP based on tar
     GIVEN {
         ASSUME(gMovesInfo[MOVE_WORK_UP].effect == EFFECT_ATTACK_SPATK_UP);
         ASSUME(gMovesInfo[MOVE_GROWL].effect == EFFECT_ATTACK_DOWN);
-        PLAYER(SPECIES_WOBBUFFET) { HP(50); }
-        OPPONENT(SPECIES_WOBBUFFET) { Attack(60); }
+        PLAYER(SPECIES_ALAKAZAM) { HP(50); MaxHP(300); }
+        OPPONENT(SPECIES_ALAKAZAM) { Attack(60); }
     } WHEN {
         if (statStage > DEFAULT_STAT_STAGE) { // +
             for (j = statStage; j > DEFAULT_STAT_STAGE; j--) {
@@ -94,12 +94,12 @@ SINGLE_BATTLE_TEST("Strength Sap lowers Attack by 1 and restores HP based on tar
                 ANIMATION(ANIM_TYPE_MOVE, MOVE_GROWL, player);
             }
         }
-        MESSAGE("Wobbuffet used Strength Sap!");
+        MESSAGE("Alakazam used Strength Sap!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_STRENGTH_SAP, player);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
-        MESSAGE("Foe Wobbuffet's Attack fell!");
+        MESSAGE("Foe Alakazam's Attack fell!");
         HP_BAR(player, captureDamage: &results[i].hp);
-        MESSAGE("Foe Wobbuffet had its energy drained!");
+        MESSAGE("Foe Alakazam had its energy drained!");
     } THEN {
         if (statStage < DEFAULT_STAT_STAGE) {
             EXPECT_EQ(results[i].hp * -1, (60 * gStatStageRatios[statStage + 1][0] / gStatStageRatios[statStage + 1][1]));
@@ -118,8 +118,8 @@ SINGLE_BATTLE_TEST("Strength Sap fails if target is at -6 Atk")
 {
     GIVEN {
         ASSUME(gMovesInfo[MOVE_CHARM].effect == EFFECT_ATTACK_DOWN_2);
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, MOVE_CHARM); }
         TURN { MOVE(player, MOVE_CHARM); }
@@ -129,15 +129,15 @@ SINGLE_BATTLE_TEST("Strength Sap fails if target is at -6 Atk")
         ANIMATION(ANIM_TYPE_MOVE, MOVE_CHARM, player);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_CHARM, player);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_CHARM, player);
-        MESSAGE("Wobbuffet used Strength Sap!");
+        MESSAGE("Alakazam used Strength Sap!");
         NONE_OF {
             ANIMATION(ANIM_TYPE_MOVE, MOVE_STRENGTH_SAP, player);
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
-            MESSAGE("Foe Wobbuffet's Attack fell!");
+            MESSAGE("Foe Alakazam's Attack fell!");
             HP_BAR(player);
-            MESSAGE("Foe Wobbuffet had its energy drained!");
+            MESSAGE("Foe Alakazam had its energy drained!");
         }
-        MESSAGE("Foe Wobbuffet's Attack won't go lower!");
+        MESSAGE("Foe Alakazam's Attack won't go lower!");
     }
 }
 
@@ -150,17 +150,17 @@ SINGLE_BATTLE_TEST("Strength Sap restores more HP if Big Root is held", s16 hp)
 
     GIVEN {
         ASSUME(gItemsInfo[ITEM_BIG_ROOT].holdEffect == HOLD_EFFECT_BIG_ROOT);
-        PLAYER(SPECIES_WOBBUFFET) { HP(200); Item(item); }
-        OPPONENT(SPECIES_WOBBUFFET) { Attack(100); }
+        PLAYER(SPECIES_ALAKAZAM) { HP(200); Item(item); }
+        OPPONENT(SPECIES_ALAKAZAM) { Attack(100); }
     } WHEN {
         TURN { MOVE(player, MOVE_STRENGTH_SAP); }
     } SCENE {
-        MESSAGE("Wobbuffet used Strength Sap!");
+        MESSAGE("Alakazam used Strength Sap!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_STRENGTH_SAP, player);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
-        MESSAGE("Foe Wobbuffet's Attack fell!");
+        MESSAGE("Foe Alakazam's Attack fell!");
         HP_BAR(player, captureDamage: &results[i].hp);
-        MESSAGE("Foe Wobbuffet had its energy drained!");
+        MESSAGE("Foe Alakazam had its energy drained!");
     } FINALLY {
         EXPECT_GT(abs(results[1].hp), abs(results[0].hp));
     }
@@ -175,22 +175,22 @@ SINGLE_BATTLE_TEST("Strength Sap makes attacker lose HP if target's ability is L
     PARAMETRIZE { atkStat = 490; } // Checks that attacker can faint with no problems.
 
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET);
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET) { Attack(atkStat); Ability(ABILITY_LIQUID_OOZE); }
+        PLAYER(SPECIES_ALAKAZAM);
+        PLAYER(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_ALAKAZAM) { Attack(atkStat); Ability(ABILITY_LIQUID_OOZE); }
     } WHEN {
         TURN { MOVE(player, MOVE_STRENGTH_SAP); if (atkStat == 490) { SEND_OUT(player, 1); } }
     } SCENE {
-        MESSAGE("Wobbuffet used Strength Sap!");
+        MESSAGE("Alakazam used Strength Sap!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_STRENGTH_SAP, player);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
-        MESSAGE("Foe Wobbuffet's Attack fell!");
+        MESSAGE("Foe Alakazam's Attack fell!");
         ABILITY_POPUP(opponent, ABILITY_LIQUID_OOZE);
         HP_BAR(player, captureDamage: &lostHp);
         MESSAGE("It sucked up the liquid ooze!");
         if (atkStat >= 490) {
-            MESSAGE("Wobbuffet fainted!");
-            MESSAGE("Go! Wobbuffet!");
+            MESSAGE("Alakazam fainted!");
+            MESSAGE("Go! Alakazam!");
         }
     } THEN {
         EXPECT_EQ(lostHp, atkStat);

@@ -10,7 +10,7 @@ SINGLE_BATTLE_TEST("Damp prevents explosion-like moves from enemies")
     PARAMETRIZE { move = MOVE_MISTY_EXPLOSION; }
     GIVEN {
         PLAYER(SPECIES_PARAS) { Ability(ABILITY_DAMP); }
-        OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(opponent, move); }
     } SCENE {
@@ -28,9 +28,9 @@ DOUBLE_BATTLE_TEST("Damp prevents explosion-like moves from enemies in a double 
     PARAMETRIZE { move = MOVE_MISTY_EXPLOSION; }
     GIVEN {
         PLAYER(SPECIES_PARAS) { Ability(ABILITY_DAMP); }
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(opponentLeft, move); }
     } SCENE {
@@ -48,7 +48,7 @@ SINGLE_BATTLE_TEST("Damp prevents explosion-like moves from self")
     PARAMETRIZE { move = MOVE_MISTY_EXPLOSION; }
     GIVEN {
         PLAYER(SPECIES_PARAS) { Ability(ABILITY_DAMP); }
-        OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, move); }
     } SCENE {
@@ -63,7 +63,7 @@ SINGLE_BATTLE_TEST("Damp prevents damage from aftermath")
         ASSUME(gMovesInfo[MOVE_TACKLE].makesContact);
         PLAYER(SPECIES_PARAS) { Ability(ABILITY_DAMP); }
         OPPONENT(SPECIES_VOLTORB) { Ability(ABILITY_AFTERMATH); HP(1); }
-        OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, MOVE_TACKLE); SEND_OUT(opponent, 1); }
     } SCENE {

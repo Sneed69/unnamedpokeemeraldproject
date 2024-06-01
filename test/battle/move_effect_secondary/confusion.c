@@ -10,8 +10,8 @@ SINGLE_BATTLE_TEST("Alluring Voice confuses the target if the target raised a st
 
     GIVEN {
         ASSUME(MoveHasAdditionalEffect(MOVE_ALLURING_VOICE, MOVE_EFFECT_CONFUSION));
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(opponent, move); MOVE(player, MOVE_ALLURING_VOICE); }
     } SCENE {
@@ -20,11 +20,11 @@ SINGLE_BATTLE_TEST("Alluring Voice confuses the target if the target raised a st
         HP_BAR(opponent);
         if (move == MOVE_SWORDS_DANCE) {
             ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_CONFUSION, opponent);
-            MESSAGE("Foe Wobbuffet became confused!");
+            MESSAGE("Foe Alakazam became confused!");
         } else {
             NONE_OF {
                 ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_CONFUSION, opponent);
-                MESSAGE("Foe Wobbuffet became confused!");
+                MESSAGE("Foe Alakazam became confused!");
             }
         }
     }
@@ -35,7 +35,7 @@ SINGLE_BATTLE_TEST("Alluring Voice confuse effect is removed if it is Sheer Forc
     GIVEN {
         ASSUME(MoveHasAdditionalEffect(MOVE_ALLURING_VOICE, MOVE_EFFECT_CONFUSION));
         PLAYER(SPECIES_NIDOKING) { Ability(ABILITY_SHEER_FORCE); }
-        OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(opponent, MOVE_SWORDS_DANCE); MOVE(player, MOVE_ALLURING_VOICE); }
     } SCENE {
@@ -44,7 +44,7 @@ SINGLE_BATTLE_TEST("Alluring Voice confuse effect is removed if it is Sheer Forc
         HP_BAR(opponent);
         NONE_OF {
             ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_CONFUSION, opponent);
-            MESSAGE("Foe Wobbuffet became confused!");
+            MESSAGE("Foe Alakazam became confused!");
         }
     }
 }

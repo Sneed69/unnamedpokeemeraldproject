@@ -11,8 +11,8 @@ SINGLE_BATTLE_TEST("Thunder's accuracy is lowered to 50% in Sunlight")
 {
     PASSES_RANDOMLY(50, 100, RNG_ACCURACY);
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, MOVE_SUNNY_DAY); MOVE(opponent, MOVE_THUNDER); }
     } SCENE {
@@ -24,11 +24,11 @@ SINGLE_BATTLE_TEST("Thunder bypasses accuracy checks in Rain")
 {
     PASSES_RANDOMLY(100, 100, RNG_ACCURACY);
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(opponent, MOVE_RAIN_DANCE); MOVE(player, MOVE_THUNDER); }
     } SCENE {
-        NONE_OF { MESSAGE("Wobbuffet's attack missed!"); }
+        NONE_OF { MESSAGE("Alakazam's attack missed!"); }
     }
 }

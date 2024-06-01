@@ -13,12 +13,12 @@ SINGLE_BATTLE_TEST("Protective Pads protected moves still make direct contact", 
     PARAMETRIZE { ability = ABILITY_KLUTZ; }
     PARAMETRIZE { ability = ABILITY_FLUFFY; }
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET) { Item(ITEM_PROTECTIVE_PADS); }
+        PLAYER(SPECIES_ALAKAZAM) { Item(ITEM_PROTECTIVE_PADS); }
         OPPONENT(SPECIES_STUFFUL) { Ability(ability); }
     } WHEN {
         TURN { MOVE(player, MOVE_TACKLE); }
     } SCENE {
-        MESSAGE("Wobbuffet used Tackle!");
+        MESSAGE("Alakazam used Tackle!");
         HP_BAR(opponent, captureDamage: &results[i].damage);
     } FINALLY {
         EXPECT_MUL_EQ(results[0].damage, UQ_4_12(0.5), results[1].damage);
@@ -32,7 +32,7 @@ SINGLE_BATTLE_TEST("Protective Pads doesn't reduce tough claws damage", s16 dama
     PARAMETRIZE { item = ITEM_PROTECTIVE_PADS; }
     GIVEN {
         PLAYER(SPECIES_BINACLE) { Ability(ABILITY_TOUGH_CLAWS); Item(item); }
-        OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, MOVE_TACKLE); }
     } SCENE {
@@ -47,7 +47,7 @@ SINGLE_BATTLE_TEST("Protective Pads doesn't invalid unseen fist")
 {
     GIVEN {
         PLAYER(SPECIES_URSHIFU_RAPID_STRIKE_STYLE) { Ability(ABILITY_UNSEEN_FIST); Item(ITEM_PROTECTIVE_PADS); }
-        OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(opponent, MOVE_PROTECT); MOVE(player, MOVE_TACKLE); }
     } SCENE {
@@ -60,8 +60,8 @@ SINGLE_BATTLE_TEST("Protective Pads doesn't invalid unseen fist")
 SINGLE_BATTLE_TEST("Protective Pads protects from Rocly Helmet Damage")
 {
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET) { Item(ITEM_PROTECTIVE_PADS); }
-        OPPONENT(SPECIES_WOBBUFFET) { Item(ITEM_ROCKY_HELMET); }
+        PLAYER(SPECIES_ALAKAZAM) { Item(ITEM_PROTECTIVE_PADS); }
+        OPPONENT(SPECIES_ALAKAZAM) { Item(ITEM_ROCKY_HELMET); }
     } WHEN {
         TURN { MOVE(player, MOVE_TACKLE); }
     } SCENE {
@@ -69,7 +69,7 @@ SINGLE_BATTLE_TEST("Protective Pads protects from Rocly Helmet Damage")
         HP_BAR(opponent);
         NONE_OF {
             HP_BAR(player);
-            MESSAGE("Wobbuffet was hurt by Foe Wobbuffet's Rocky Helmet!");
+            MESSAGE("Alakazam was hurt by Foe Alakazam's Rocky Helmet!");
         }
     }
 }

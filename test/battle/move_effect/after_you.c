@@ -9,10 +9,10 @@ ASSUMPTIONS
 DOUBLE_BATTLE_TEST("After You makes the target move after user")
 {
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET) { Speed(4); }
-        PLAYER(SPECIES_WYNAUT) { Speed(1); }
-        OPPONENT(SPECIES_WOBBUFFET) { Speed(3); }
-        OPPONENT(SPECIES_WYNAUT) { Speed(2); }
+        PLAYER(SPECIES_ALAKAZAM) { Speed(4); }
+        PLAYER(SPECIES_ABRA) { Speed(1); }
+        OPPONENT(SPECIES_ALAKAZAM) { Speed(3); }
+        OPPONENT(SPECIES_ABRA) { Speed(2); }
     } WHEN {
         TURN {
             MOVE(playerLeft, MOVE_AFTER_YOU, target: playerRight);
@@ -22,7 +22,7 @@ DOUBLE_BATTLE_TEST("After You makes the target move after user")
         }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_AFTER_YOU, playerLeft);
-        MESSAGE("Wynaut took the kind offer!");
+        MESSAGE("Abra took the kind offer!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_CELEBRATE, playerRight);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_CELEBRATE, opponentLeft);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_CELEBRATE, opponentRight);
@@ -32,10 +32,10 @@ DOUBLE_BATTLE_TEST("After You makes the target move after user")
 DOUBLE_BATTLE_TEST("After You does nothing if the target has already moved")
 {
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET) { Speed(4); }
-        PLAYER(SPECIES_WYNAUT) { Speed(1); }
-        OPPONENT(SPECIES_WOBBUFFET) { Speed(3); }
-        OPPONENT(SPECIES_WYNAUT) { Speed(2); }
+        PLAYER(SPECIES_ALAKAZAM) { Speed(4); }
+        PLAYER(SPECIES_ABRA) { Speed(1); }
+        OPPONENT(SPECIES_ALAKAZAM) { Speed(3); }
+        OPPONENT(SPECIES_ABRA) { Speed(2); }
     } WHEN {
         TURN {
             MOVE(playerLeft, MOVE_CELEBRATE);
@@ -46,7 +46,7 @@ DOUBLE_BATTLE_TEST("After You does nothing if the target has already moved")
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_CELEBRATE, playerLeft);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_CELEBRATE, opponentLeft);
-        MESSAGE("Foe Wynaut used After You!");
+        MESSAGE("Foe Abra used After You!");
         MESSAGE("But it failed!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_CELEBRATE, playerRight);
     }

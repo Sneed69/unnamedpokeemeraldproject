@@ -17,8 +17,8 @@ SINGLE_BATTLE_TEST("Stealth Rock damage on switch in based on typing")
     PARAMETRIZE { species = SPECIES_STEELIX; divisor = 32; } // Ground/Steel not very effective
 
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_ALAKAZAM);
         OPPONENT(species);
     } WHEN {
         TURN { MOVE(player, MOVE_STEALTH_ROCK); }
@@ -60,7 +60,7 @@ DOUBLE_BATTLE_TEST("Stealth Rock damages the correct pokemon when Eject Button i
         PLAYER(SPECIES_METAPOD) { Item(ITEM_EJECT_BUTTON); }
         PLAYER(SPECIES_METAPOD);
         OPPONENT(SPECIES_JOLTEON);
-        OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(opponentLeft, MOVE_STEALTH_ROCK); MOVE(opponentRight, MOVE_TACKLE, target: playerLeft); SEND_OUT(playerLeft, 2); }
     } SCENE {

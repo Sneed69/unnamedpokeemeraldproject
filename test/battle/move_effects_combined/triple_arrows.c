@@ -16,13 +16,13 @@ SINGLE_BATTLE_TEST("Triple Arrows may lower Defense by one stage")
     PASSES_RANDOMLY(chance, 100, RNG_SECONDARY_EFFECT);
     GIVEN {
         PLAYER(SPECIES_TOGEPI) { Ability(ability); }
-        OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, MOVE_TRIPLE_ARROWS); }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TRIPLE_ARROWS, player);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
-        MESSAGE("Foe Wobbuffet's Defense fell!");
+        MESSAGE("Foe Alakazam's Defense fell!");
     }
 }
 
@@ -35,12 +35,12 @@ SINGLE_BATTLE_TEST("Triple Arrows makes the foe flinch 30% of the time")
     PASSES_RANDOMLY(chance, 100, RNG_SECONDARY_EFFECT_2);
     GIVEN {
         PLAYER(SPECIES_TOGEPI) { Ability(ability); }
-        OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, MOVE_TRIPLE_ARROWS); }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TRIPLE_ARROWS, player);
-        MESSAGE("Foe Wobbuffet flinched!");
+        MESSAGE("Foe Alakazam flinched!");
     }
 }
 
@@ -50,8 +50,8 @@ SINGLE_BATTLE_TEST("Triple Arrows lands a critical hit")
     ASSUME(gMovesInfo[MOVE_TRIPLE_ARROWS].criticalHitStage == 1);
     PASSES_RANDOMLY(1, 8, RNG_CRITICAL_HIT);
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, MOVE_TRIPLE_ARROWS); }
     } SCENE {
@@ -63,22 +63,22 @@ SINGLE_BATTLE_TEST("Triple Arrows lands a critical hit")
 SINGLE_BATTLE_TEST("Triple Arrows can lower Defense and cause flinch at the time")
 {
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, MOVE_TRIPLE_ARROWS); }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TRIPLE_ARROWS, player);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
-        MESSAGE("Foe Wobbuffet's Defense fell!");
-        MESSAGE("Foe Wobbuffet flinched!");
+        MESSAGE("Foe Alakazam's Defense fell!");
+        MESSAGE("Foe Alakazam flinched!");
     }
 }
 
 SINGLE_BATTLE_TEST("Triple Arrows's flinching is prevented by Inner Focus")
 {
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM);
         OPPONENT(SPECIES_RIOLU) { Ability(ABILITY_INNER_FOCUS); }
     } WHEN {
         TURN { MOVE(player, MOVE_TRIPLE_ARROWS);
@@ -86,7 +86,7 @@ SINGLE_BATTLE_TEST("Triple Arrows's flinching is prevented by Inner Focus")
         }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TRIPLE_ARROWS, player);
-        NONE_OF { MESSAGE("Foe Wobbuffet flinched!"); }
+        NONE_OF { MESSAGE("Foe Alakazam flinched!"); }
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, opponent);
     }
 }

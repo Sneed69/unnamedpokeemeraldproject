@@ -9,8 +9,8 @@ ASSUMPTIONS
 WILD_BATTLE_TEST("Poke Toy lets the player escape from a wild battle")
 {
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { USE_ITEM(player, ITEM_POKE_TOY); }
     } SCENE {
@@ -22,16 +22,16 @@ WILD_BATTLE_TEST("Poke Toy lets the player escape from a wild battle even if a m
 {
     GIVEN {
         ASSUME(gMovesInfo[MOVE_MEAN_LOOK].effect == EFFECT_MEAN_LOOK);
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(opponent, MOVE_MEAN_LOOK); }
         TURN { USE_ITEM(player, ITEM_POKE_TOY); }
     } SCENE {
         // Turn 1
-        MESSAGE("Wild Wobbuffet used Mean Look!");
+        MESSAGE("Wild Alakazam used Mean Look!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_MEAN_LOOK, opponent);
-        MESSAGE("Wobbuffet can't escape now!");
+        MESSAGE("Alakazam can't escape now!");
         // Turn 2
         MESSAGE("{PLAY_SE SE_FLEE}Got away safely!\p");
     }
@@ -40,7 +40,7 @@ WILD_BATTLE_TEST("Poke Toy lets the player escape from a wild battle even if a m
 WILD_BATTLE_TEST("Poke Toy lets the player escape from a wild battle even if an ability forbid them to")
 {
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM);
         OPPONENT(SPECIES_DIGLETT) { Ability(ABILITY_ARENA_TRAP); }
     } WHEN {
         TURN { USE_ITEM(player, ITEM_POKE_TOY); }

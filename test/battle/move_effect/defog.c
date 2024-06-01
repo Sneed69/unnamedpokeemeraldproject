@@ -22,31 +22,31 @@ ASSUMPTIONS
 SINGLE_BATTLE_TEST("Defog lowers evasiveness by 1")
 {
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, MOVE_DEFOG); }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_DEFOG, player);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
-        MESSAGE("Foe Wobbuffet's evasiveness fell!");
+        MESSAGE("Foe Alakazam's evasiveness fell!");
     }
 }
 
 SINGLE_BATTLE_TEST("Defog does not lower evasiveness if target behind Substitute")
 {
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET) { Speed(4); }
-        OPPONENT(SPECIES_WOBBUFFET) { Speed(5); }
+        PLAYER(SPECIES_ALAKAZAM) { Speed(4); }
+        OPPONENT(SPECIES_ALAKAZAM) { Speed(5); }
     } WHEN {
         TURN { MOVE(opponent, MOVE_SUBSTITUTE); MOVE(player, MOVE_DEFOG); }
     } SCENE {
-        MESSAGE("Foe Wobbuffet used Substitute!");
+        MESSAGE("Foe Alakazam used Substitute!");
         MESSAGE("But it failed!");
         NONE_OF {
             ANIMATION(ANIM_TYPE_MOVE, MOVE_DEFOG, player);
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
-            MESSAGE("Foe Wobbuffet's evasiveness fell!");
+            MESSAGE("Foe Alakazam's evasiveness fell!");
         }
     }
 }
@@ -58,10 +58,10 @@ DOUBLE_BATTLE_TEST("Defog lowers evasiveness by 1 and removes Reflect and Light 
     PARAMETRIZE { move = MOVE_DEFOG; }
     PARAMETRIZE { move = MOVE_CELEBRATE; }
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET) { Speed(4); }
-        PLAYER(SPECIES_WOBBUFFET) { Speed(3); }
-        OPPONENT(SPECIES_WOBBUFFET) { Speed(2); }
-        OPPONENT(SPECIES_WOBBUFFET) { Speed(1); }
+        PLAYER(SPECIES_ALAKAZAM) { Speed(4); }
+        PLAYER(SPECIES_ALAKAZAM) { Speed(3); }
+        OPPONENT(SPECIES_ALAKAZAM) { Speed(2); }
+        OPPONENT(SPECIES_ALAKAZAM) { Speed(1); }
     } WHEN {
         TURN { MOVE(opponentLeft, MOVE_REFLECT); MOVE(opponentRight, MOVE_LIGHT_SCREEN); }
         TURN { MOVE(playerLeft, move, target: opponentLeft); }
@@ -72,13 +72,13 @@ DOUBLE_BATTLE_TEST("Defog lowers evasiveness by 1 and removes Reflect and Light 
         ANIMATION(ANIM_TYPE_MOVE, move, playerLeft);
         if (move == MOVE_DEFOG) {
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponentLeft);
-            MESSAGE("Foe Wobbuffet's evasiveness fell!");
+            MESSAGE("Foe Alakazam's evasiveness fell!");
             MESSAGE("Foe's Reflect wore off!");
             MESSAGE("Foe's Light Screen wore off!");
         }
-        MESSAGE("Wobbuffet used Tackle!");
+        MESSAGE("Alakazam used Tackle!");
         HP_BAR(opponentLeft, captureDamage: &results[i].damagePhysical);
-        MESSAGE("Wobbuffet used Gust!");
+        MESSAGE("Alakazam used Gust!");
         HP_BAR(opponentRight, captureDamage: &results[i].damageSpecial);
     } FINALLY {
         EXPECT_MUL_EQ(results[1].damagePhysical, Q_4_12(1.5), results[0].damagePhysical);
@@ -93,10 +93,10 @@ DOUBLE_BATTLE_TEST("Defog lowers evasiveness by 1 and removes Mist and Safeguard
     PARAMETRIZE { move = MOVE_DEFOG; }
     PARAMETRIZE { move = MOVE_CELEBRATE; }
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET) { Speed(4); }
-        PLAYER(SPECIES_WOBBUFFET) { Speed(3); }
-        OPPONENT(SPECIES_WOBBUFFET) { Speed(2); }
-        OPPONENT(SPECIES_WOBBUFFET) { Speed(1); }
+        PLAYER(SPECIES_ALAKAZAM) { Speed(4); }
+        PLAYER(SPECIES_ALAKAZAM) { Speed(3); }
+        OPPONENT(SPECIES_ALAKAZAM) { Speed(2); }
+        OPPONENT(SPECIES_ALAKAZAM) { Speed(1); }
     } WHEN {
         TURN { MOVE(opponentLeft, MOVE_MIST); MOVE(opponentRight, MOVE_SAFEGUARD); }
         TURN { MOVE(playerLeft, move, target: opponentLeft); }
@@ -105,27 +105,27 @@ DOUBLE_BATTLE_TEST("Defog lowers evasiveness by 1 and removes Mist and Safeguard
         ANIMATION(ANIM_TYPE_MOVE, MOVE_MIST, opponentLeft);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_SAFEGUARD, opponentRight);
         if (move == MOVE_DEFOG) {
-            MESSAGE("Foe Wobbuffet is protected by MIST!");
+            MESSAGE("Foe Alakazam is protected by MIST!");
             ANIMATION(ANIM_TYPE_MOVE, move, playerLeft);
             MESSAGE("Foe's Mist wore off!");
             MESSAGE("Foe's Safeguard wore off!");
         }
-        MESSAGE("Wobbuffet used Screech!");
+        MESSAGE("Alakazam used Screech!");
         if (move == MOVE_DEFOG) {
             ANIMATION(ANIM_TYPE_MOVE, MOVE_SCREECH, playerLeft);
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponentLeft);
         }
         else {
-            MESSAGE("Foe Wobbuffet is protected by MIST!");
+            MESSAGE("Foe Alakazam is protected by MIST!");
             NOT ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponentLeft);
         }
-        MESSAGE("Wobbuffet used Toxic!");
+        MESSAGE("Alakazam used Toxic!");
         if (move == MOVE_DEFOG) {
             ANIMATION(ANIM_TYPE_MOVE, MOVE_TOXIC, playerRight);
             STATUS_ICON(opponentRight, badPoison: TRUE);
         }
         else {
-            MESSAGE("Foe Wobbuffet's party is protected by Safeguard!");
+            MESSAGE("Foe Alakazam's party is protected by Safeguard!");
             NOT STATUS_ICON(opponentRight, badPoison: TRUE);
         }
     }
@@ -138,11 +138,11 @@ DOUBLE_BATTLE_TEST("Defog lowers evasiveness by 1 and removes Stealth Rock and S
     PARAMETRIZE { move = MOVE_DEFOG; }
     PARAMETRIZE { move = MOVE_CELEBRATE; }
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET) { Speed(4); }
-        PLAYER(SPECIES_WOBBUFFET) { Speed(3); }
-        PLAYER(SPECIES_WOBBUFFET) { Speed(3); }
-        OPPONENT(SPECIES_WOBBUFFET) { Speed(2); }
-        OPPONENT(SPECIES_WOBBUFFET) { Speed(1); }
+        PLAYER(SPECIES_ALAKAZAM) { Speed(4); }
+        PLAYER(SPECIES_ALAKAZAM) { Speed(3); }
+        PLAYER(SPECIES_ALAKAZAM) { Speed(3); }
+        OPPONENT(SPECIES_ALAKAZAM) { Speed(2); }
+        OPPONENT(SPECIES_ALAKAZAM) { Speed(1); }
     } WHEN {
         TURN { MOVE(opponentLeft, MOVE_STEALTH_ROCK); MOVE(opponentRight, MOVE_STICKY_WEB); }
         TURN { MOVE(playerLeft, move, target: opponentLeft); }
@@ -153,27 +153,27 @@ DOUBLE_BATTLE_TEST("Defog lowers evasiveness by 1 and removes Stealth Rock and S
         ANIMATION(ANIM_TYPE_MOVE, move, playerLeft);
         if (move == MOVE_DEFOG) {
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponentLeft);
-            MESSAGE("Foe Wobbuffet's evasiveness fell!");
+            MESSAGE("Foe Alakazam's evasiveness fell!");
             MESSAGE("The pointed stones disappeared from around your team!");
             MESSAGE("The sticky web has disappeared from the ground around your team!");
         }
         // Switch happens
-        MESSAGE("Wobbuffet, that's enough! Come back!");
-        MESSAGE("Go! Wobbuffet!");
+        MESSAGE("Alakazam, that's enough! Come back!");
+        MESSAGE("Go! Alakazam!");
         if (move != MOVE_DEFOG) {
             HP_BAR(playerLeft);
-            MESSAGE("Pointed stones dug into Wobbuffet!");
-            MESSAGE("Wobbuffet was caught in a Sticky Web!");
+            MESSAGE("Pointed stones dug into Alakazam!");
+            MESSAGE("Alakazam was caught in a Sticky Web!");
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, playerLeft);
-            MESSAGE("Wobbuffet's Speed fell!");
+            MESSAGE("Alakazam's Speed fell!");
         }
         else {
             NONE_OF {
                 HP_BAR(playerLeft);
-                MESSAGE("Pointed stones dug into Wobbuffet!");
-                MESSAGE("Wobbuffet was caught in a Sticky Web!");
+                MESSAGE("Pointed stones dug into Alakazam!");
+                MESSAGE("Alakazam was caught in a Sticky Web!");
                 ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, playerLeft);
-                MESSAGE("Wobbuffet's Speed fell!");
+                MESSAGE("Alakazam's Speed fell!");
             }
         }
     }
@@ -186,9 +186,9 @@ SINGLE_BATTLE_TEST("Defog lowers evasiveness by 1 and removes Spikes from player
     PARAMETRIZE { move = MOVE_DEFOG; }
     PARAMETRIZE { move = MOVE_CELEBRATE; }
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET) { Speed(2); }
-        PLAYER(SPECIES_WOBBUFFET) { Speed(2); }
-        OPPONENT(SPECIES_WOBBUFFET) { Speed(5); }
+        PLAYER(SPECIES_ALAKAZAM) { Speed(2); }
+        PLAYER(SPECIES_ALAKAZAM) { Speed(2); }
+        OPPONENT(SPECIES_ALAKAZAM) { Speed(5); }
     } WHEN {
         TURN { MOVE(opponent, MOVE_SPIKES); MOVE(player, move); }
         TURN { SWITCH(player, 1); }
@@ -197,20 +197,20 @@ SINGLE_BATTLE_TEST("Defog lowers evasiveness by 1 and removes Spikes from player
         ANIMATION(ANIM_TYPE_MOVE, move, player);
         if (move == MOVE_DEFOG) {
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
-            MESSAGE("Foe Wobbuffet's evasiveness fell!");
+            MESSAGE("Foe Alakazam's evasiveness fell!");
             MESSAGE("The spikes disappeared from the ground around your team!");
         }
         // Switch happens
-        MESSAGE("Wobbuffet, that's enough! Come back!");
-        MESSAGE("Go! Wobbuffet!");
+        MESSAGE("Alakazam, that's enough! Come back!");
+        MESSAGE("Go! Alakazam!");
         if (move != MOVE_DEFOG) {
             HP_BAR(player);
-            MESSAGE("Wobbuffet is hurt by spikes!");
+            MESSAGE("Alakazam is hurt by spikes!");
         }
         else {
             NONE_OF {
                 HP_BAR(player);
-                MESSAGE("Wobbuffet is hurt by spikes!");
+                MESSAGE("Alakazam is hurt by spikes!");
             }
         }
     }
@@ -226,26 +226,26 @@ SINGLE_BATTLE_TEST("Defog lowers evasiveness by 1 and removes terrain")
     PARAMETRIZE { move = MOVE_GRASSY_TERRAIN; }
     GIVEN {
         ASSUME(B_DEFOG_CLEARS_TERRAIN >= GEN_8);
-        PLAYER(SPECIES_WOBBUFFET) { Speed(50); }
-        OPPONENT(SPECIES_WOBBUFFET) { Speed(5); }
+        PLAYER(SPECIES_ALAKAZAM) { Speed(50); }
+        OPPONENT(SPECIES_ALAKAZAM) { Speed(5); }
     } WHEN {
         TURN { MOVE(player, move); MOVE(opponent, MOVE_DEFOG); }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, move, player);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_DEFOG, opponent);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
-        MESSAGE("Wobbuffet's evasiveness fell!");
+        MESSAGE("Alakazam's evasiveness fell!");
         if (move == MOVE_PSYCHIC_TERRAIN) {
-            MESSAGE("The weirdness disappeared from the battlefield.");
+            MESSAGE("The telepathic aura disappeared.");
         }
         else if (move == MOVE_ELECTRIC_TERRAIN) {
-            MESSAGE("The electricity disappeared from the battlefield.");
+            MESSAGE("The electrifying aura disappeared.");
         }
         else if (move == MOVE_MISTY_TERRAIN) {
-            MESSAGE("The mist disappeared from the battlefield.");
+            MESSAGE("The mystifying aura disappeared.");
         }
         else if (move == MOVE_GRASSY_TERRAIN) {
-            MESSAGE("The grass disappeared from the battlefield.");
+            MESSAGE("The verdant aura disappeared.");
         }
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_RESTORE_BG, player);
     }
@@ -258,9 +258,9 @@ SINGLE_BATTLE_TEST("Defog lowers evasiveness by 1 and removes Toxic Spikes from 
     PARAMETRIZE { move = MOVE_DEFOG; }
     PARAMETRIZE { move = MOVE_CELEBRATE; }
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET) { Speed(5); }
-        OPPONENT(SPECIES_WOBBUFFET) { Speed(2); }
-        OPPONENT(SPECIES_WOBBUFFET) { Speed(2); }
+        PLAYER(SPECIES_ALAKAZAM) { Speed(5); }
+        OPPONENT(SPECIES_ALAKAZAM) { Speed(2); }
+        OPPONENT(SPECIES_ALAKAZAM) { Speed(2); }
     } WHEN {
         TURN { MOVE(player, MOVE_TOXIC_SPIKES); MOVE(opponent, move); }
         TURN { SWITCH(opponent, 1); }
@@ -269,19 +269,19 @@ SINGLE_BATTLE_TEST("Defog lowers evasiveness by 1 and removes Toxic Spikes from 
         ANIMATION(ANIM_TYPE_MOVE, move, opponent);
         if (move == MOVE_DEFOG) {
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
-            MESSAGE("Wobbuffet's evasiveness fell!");
+            MESSAGE("Alakazam's evasiveness fell!");
             MESSAGE("The poison spikes disappeared from the ground around the opposing team!");
         }
         // Switch happens
-        MESSAGE("2 sent out Wobbuffet!");
+        MESSAGE("2 sent out Alakazam!");
         if (move != MOVE_DEFOG) {
-            MESSAGE("Foe Wobbuffet was poisoned!");
+            MESSAGE("Foe Alakazam was poisoned!");
             ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_PSN, opponent);
             STATUS_ICON(opponent, poison: TRUE);
         }
         else {
             NONE_OF {
-                MESSAGE("Foe Wobbuffet was poisoned!");
+                MESSAGE("Foe Alakazam was poisoned!");
                 ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_PSN, opponent);
                 STATUS_ICON(opponent, poison: TRUE);
             }

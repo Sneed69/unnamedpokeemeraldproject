@@ -19,8 +19,8 @@ SINGLE_BATTLE_TEST("Brick Break removes Light Screen, Reflect and Aurora Veil fr
     PARAMETRIZE { move = MOVE_AURORA_VEIL; }
 
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, MOVE_SNOWSCAPE); }
         TURN { MOVE(opponent, move); MOVE(player, MOVE_BRICK_BREAK); }
@@ -43,7 +43,7 @@ SINGLE_BATTLE_TEST("Brick Break doesn't remove Light Screen, Reflect and Aurora 
 
     KNOWN_FAILING;
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM);
         OPPONENT(SPECIES_GASTLY);
     } WHEN {
         TURN { MOVE(player, MOVE_SNOWSCAPE); }
@@ -68,8 +68,8 @@ SINGLE_BATTLE_TEST("Brick Break doesn't remove Light Screen, Reflect and Aurora 
     PARAMETRIZE { move = MOVE_AURORA_VEIL; }
 
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, MOVE_SNOWSCAPE); MOVE(opponent, move); }
         TURN { MOVE(player, MOVE_BRICK_BREAK); MOVE(opponent, MOVE_PROTECT); }
@@ -94,8 +94,8 @@ SINGLE_BATTLE_TEST("Brick Break doesn't remove Light Screen, Reflect and Aurora 
     PARAMETRIZE { move = MOVE_AURORA_VEIL; }
 
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET) { Item(ITEM_BRIGHT_POWDER); }
+        PLAYER(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_ALAKAZAM) { Item(ITEM_BRIGHT_POWDER); }
     } WHEN {
         TURN { MOVE(player, MOVE_SNOWSCAPE); MOVE(opponent, move); }
         TURN { MOVE(player, MOVE_BRICK_BREAK, hit: FALSE); }
@@ -119,10 +119,10 @@ DOUBLE_BATTLE_TEST("Brick Break can remove Light Screen, Reflect and Aurora Veil
     PARAMETRIZE { move = MOVE_AURORA_VEIL; }
 
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET);
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM);
+        PLAYER(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN {
             MOVE(opponentLeft, MOVE_SNOWSCAPE);

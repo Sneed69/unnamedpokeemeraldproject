@@ -6,7 +6,7 @@ SINGLE_BATTLE_TEST("Volt Absorb heals 25% when hit by electric type moves")
     GIVEN {
         ASSUME(gMovesInfo[MOVE_THUNDER_SHOCK].type == TYPE_ELECTRIC);
         PLAYER(SPECIES_JOLTEON) { Ability(ABILITY_VOLT_ABSORB); HP(1); MaxHP(100); }
-        OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(opponent, MOVE_THUNDER_SHOCK); }
     } SCENE {
@@ -21,7 +21,7 @@ SINGLE_BATTLE_TEST("Volt Absorb does not activate if protected")
     GIVEN {
         ASSUME(gMovesInfo[MOVE_THUNDER_SHOCK].type == TYPE_ELECTRIC);
         PLAYER(SPECIES_JOLTEON) { Ability(ABILITY_VOLT_ABSORB); HP(1); MaxHP(100); }
-        OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, MOVE_PROTECT); MOVE(opponent, MOVE_THUNDER_SHOCK); }
     } SCENE {
@@ -35,7 +35,7 @@ SINGLE_BATTLE_TEST("Volt Absorb activates on status moves")
         ASSUME(gMovesInfo[MOVE_THUNDER_WAVE].type == TYPE_ELECTRIC);
         ASSUME(gMovesInfo[MOVE_THUNDER_WAVE].category == DAMAGE_CATEGORY_STATUS);
         PLAYER(SPECIES_JOLTEON) { Ability(ABILITY_VOLT_ABSORB); HP(1); MaxHP(100); }
-        OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(opponent, MOVE_THUNDER_WAVE); }
     } SCENE {
@@ -51,7 +51,7 @@ SINGLE_BATTLE_TEST("Volt Absorb is only triggered once on multi strike moves")
         ASSUME(gMovesInfo[MOVE_FURY_SWIPES].type == TYPE_NORMAL);
         ASSUME(gMovesInfo[MOVE_FURY_SWIPES].effect == EFFECT_MULTI_HIT);
         PLAYER(SPECIES_JOLTEON) { Ability(ABILITY_VOLT_ABSORB); HP(1); MaxHP(100); }
-        OPPONENT(SPECIES_GRAVELER_ALOLAN) { Ability(ABILITY_GALVANIZE); }
+        OPPONENT(SPECIES_GRAVELER) { Ability(ABILITY_GALVANIZE); }
     } WHEN {
         TURN { MOVE(opponent, MOVE_FURY_SWIPES); }
     } SCENE {
@@ -69,8 +69,8 @@ DOUBLE_BATTLE_TEST("Volt Absorb does not stop Electric Typed Explosion from dama
         ASSUME(gMovesInfo[MOVE_EXPLOSION].type == TYPE_NORMAL);
         PLAYER(SPECIES_JOLTEON) { Ability(ABILITY_VOLT_ABSORB); HP(1); MaxHP(100); }
         PLAYER(SPECIES_ABRA);
-        OPPONENT(SPECIES_GRAVELER_ALOLAN) { Ability(ABILITY_GALVANIZE); }
-        OPPONENT(SPECIES_WYNAUT);
+        OPPONENT(SPECIES_GRAVELER) { Ability(ABILITY_GALVANIZE); }
+        OPPONENT(SPECIES_ABRA);
     } WHEN {
         TURN { MOVE(opponentLeft, MOVE_EXPLOSION); }
     } SCENE {
@@ -90,7 +90,7 @@ SINGLE_BATTLE_TEST("Volt Absorb prevents Cell Battery from activating")
     GIVEN {
         ASSUME(gMovesInfo[MOVE_THUNDER_SHOCK].type == TYPE_ELECTRIC);
         PLAYER(SPECIES_JOLTEON) { Ability(ABILITY_VOLT_ABSORB); HP(1); MaxHP(100); Item(ITEM_CELL_BATTERY); }
-        OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(opponent, MOVE_THUNDER_SHOCK); }
     } SCENE {

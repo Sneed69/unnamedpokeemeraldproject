@@ -5,7 +5,7 @@ ASSUMPTIONS
 {
     ASSUME(MoveHasAdditionalEffect(MOVE_THUNDER_FANG, MOVE_EFFECT_PARALYSIS) == TRUE);
     ASSUME(MoveHasAdditionalEffect(MOVE_THUNDER_FANG, MOVE_EFFECT_FLINCH) == TRUE);
-    ASSUME(MoveHasAdditionalEffect(MOVE_ICE_FANG, MOVE_EFFECT_FREEZE) == TRUE);
+    ASSUME(MoveHasAdditionalEffect(MOVE_ICE_FANG, MOVE_EFFECT_FREEZE_OR_FROSTBITE) == TRUE);
     ASSUME(MoveHasAdditionalEffect(MOVE_ICE_FANG, MOVE_EFFECT_FLINCH) == TRUE);
     ASSUME(MoveHasAdditionalEffect(MOVE_FIRE_FANG, MOVE_EFFECT_BURN) == TRUE);
     ASSUME(MoveHasAdditionalEffect(MOVE_FIRE_FANG, MOVE_EFFECT_FLINCH) == TRUE);
@@ -21,8 +21,8 @@ SINGLE_BATTLE_TEST("Thunder, Ice and Fire Fang inflict status 10% of the time")
 
     PASSES_RANDOMLY(10, 100, RNG_SECONDARY_EFFECT);
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, move); }
     } SCENE {
@@ -51,14 +51,14 @@ SINGLE_BATTLE_TEST("Thunder, Ice and Fire Fang cause the opponent to flinch 10% 
 
     PASSES_RANDOMLY(10, 100, RNG_SECONDARY_EFFECT_2);
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET) { Speed(100); }
-        OPPONENT(SPECIES_WOBBUFFET) { Speed(1); }
+        PLAYER(SPECIES_ALAKAZAM) { Speed(100); }
+        OPPONENT(SPECIES_ALAKAZAM) { Speed(1); }
     } WHEN {
         TURN { MOVE(player, move); }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, move, player);
         HP_BAR(opponent);
-        MESSAGE("Foe Wobbuffet flinched!");
+        MESSAGE("Foe Alakazam flinched!");
         NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_CELEBRATE, opponent);
     }
 }

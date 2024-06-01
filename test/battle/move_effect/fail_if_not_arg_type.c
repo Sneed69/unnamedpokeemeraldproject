@@ -6,10 +6,10 @@ SINGLE_BATTLE_TEST("Burn Up user loses its Fire-type")
     GIVEN {
         ASSUME(gMovesInfo[MOVE_BURN_UP].effect == EFFECT_FAIL_IF_NOT_ARG_TYPE);
         ASSUME(MoveHasAdditionalEffectSelfArg(MOVE_BURN_UP, MOVE_EFFECT_REMOVE_ARG_TYPE, TYPE_FIRE) == TRUE);
-        ASSUME(gSpeciesInfo[SPECIES_WOBBUFFET].types[0] != TYPE_FIRE || gSpeciesInfo[SPECIES_WOBBUFFET].types[1] != TYPE_FIRE);
+        ASSUME(gSpeciesInfo[SPECIES_ALAKAZAM].types[0] != TYPE_FIRE || gSpeciesInfo[SPECIES_ALAKAZAM].types[1] != TYPE_FIRE);
         ASSUME(gSpeciesInfo[SPECIES_CYNDAQUIL].types[0] == TYPE_FIRE || gSpeciesInfo[SPECIES_CYNDAQUIL].types[1] == TYPE_FIRE);
         PLAYER(SPECIES_CYNDAQUIL);
-        OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, MOVE_BURN_UP); }
         TURN { MOVE(player, MOVE_BURN_UP); }
@@ -26,14 +26,14 @@ SINGLE_BATTLE_TEST("Burn Up fails if the user isn't a Fire-type")
     GIVEN {
         ASSUME(gMovesInfo[MOVE_BURN_UP].effect == EFFECT_FAIL_IF_NOT_ARG_TYPE);
         ASSUME(MoveHasAdditionalEffectSelfArg(MOVE_BURN_UP, MOVE_EFFECT_REMOVE_ARG_TYPE, TYPE_FIRE) == TRUE);
-        ASSUME(gSpeciesInfo[SPECIES_WOBBUFFET].types[0] != TYPE_FIRE || gSpeciesInfo[SPECIES_WOBBUFFET].types[1] != TYPE_FIRE);
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET);
+        ASSUME(gSpeciesInfo[SPECIES_ALAKAZAM].types[0] != TYPE_FIRE || gSpeciesInfo[SPECIES_ALAKAZAM].types[1] != TYPE_FIRE);
+        PLAYER(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, MOVE_BURN_UP); }
     } SCENE {
         NONE_OF { ANIMATION(ANIM_TYPE_MOVE, MOVE_BURN_UP, player); }
-        MESSAGE("Wobbuffet used Burn Up!");
+        MESSAGE("Alakazam used Burn Up!");
         MESSAGE("But it failed!");
     }
 }
@@ -43,10 +43,10 @@ SINGLE_BATTLE_TEST("Burn Up user loses its Fire-type if enemy faints")
     GIVEN {
         ASSUME(gMovesInfo[MOVE_BURN_UP].effect == EFFECT_FAIL_IF_NOT_ARG_TYPE);
         ASSUME(MoveHasAdditionalEffectSelfArg(MOVE_BURN_UP, MOVE_EFFECT_REMOVE_ARG_TYPE, TYPE_FIRE) == TRUE);
-        ASSUME(gSpeciesInfo[SPECIES_WOBBUFFET].types[0] != TYPE_FIRE || gSpeciesInfo[SPECIES_WOBBUFFET].types[1] != TYPE_FIRE);
+        ASSUME(gSpeciesInfo[SPECIES_ALAKAZAM].types[0] != TYPE_FIRE || gSpeciesInfo[SPECIES_ALAKAZAM].types[1] != TYPE_FIRE);
         ASSUME(gSpeciesInfo[SPECIES_CYNDAQUIL].types[0] == TYPE_FIRE || gSpeciesInfo[SPECIES_CYNDAQUIL].types[1] == TYPE_FIRE);
         PLAYER(SPECIES_CYNDAQUIL);
-        OPPONENT(SPECIES_WOBBUFFET) { HP(1); }
+        OPPONENT(SPECIES_ALAKAZAM) { HP(1); }
     } WHEN {
         TURN { MOVE(player, MOVE_BURN_UP); }
     } SCENE {
@@ -61,10 +61,10 @@ SINGLE_BATTLE_TEST("Double Shock user loses its Electric-type")
     GIVEN {
         ASSUME(gMovesInfo[MOVE_DOUBLE_SHOCK].effect == EFFECT_FAIL_IF_NOT_ARG_TYPE);
         ASSUME(MoveHasAdditionalEffectSelfArg(MOVE_DOUBLE_SHOCK, MOVE_EFFECT_REMOVE_ARG_TYPE, TYPE_ELECTRIC) == TRUE);
-        ASSUME(gSpeciesInfo[SPECIES_WOBBUFFET].types[0] != TYPE_ELECTRIC || gSpeciesInfo[SPECIES_WOBBUFFET].types[1] != TYPE_ELECTRIC);
+        ASSUME(gSpeciesInfo[SPECIES_ALAKAZAM].types[0] != TYPE_ELECTRIC || gSpeciesInfo[SPECIES_ALAKAZAM].types[1] != TYPE_ELECTRIC);
         ASSUME(gSpeciesInfo[SPECIES_PIKACHU].types[0] == TYPE_ELECTRIC || gSpeciesInfo[SPECIES_PIKACHU].types[1] == TYPE_ELECTRIC);
         PLAYER(SPECIES_PIKACHU);
-        OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, MOVE_DOUBLE_SHOCK); }
         TURN { MOVE(player, MOVE_DOUBLE_SHOCK); }
@@ -81,14 +81,14 @@ SINGLE_BATTLE_TEST("Double Shock fails if the user isn't an Electric-type")
     GIVEN {
         ASSUME(gMovesInfo[MOVE_DOUBLE_SHOCK].effect == EFFECT_FAIL_IF_NOT_ARG_TYPE);
         ASSUME(MoveHasAdditionalEffectSelfArg(MOVE_DOUBLE_SHOCK, MOVE_EFFECT_REMOVE_ARG_TYPE, TYPE_ELECTRIC) == TRUE);
-        ASSUME(gSpeciesInfo[SPECIES_WOBBUFFET].types[0] != TYPE_ELECTRIC || gSpeciesInfo[SPECIES_WOBBUFFET].types[1] != TYPE_ELECTRIC);
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET);
+        ASSUME(gSpeciesInfo[SPECIES_ALAKAZAM].types[0] != TYPE_ELECTRIC || gSpeciesInfo[SPECIES_ALAKAZAM].types[1] != TYPE_ELECTRIC);
+        PLAYER(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, MOVE_DOUBLE_SHOCK); }
     } SCENE {
         NONE_OF { ANIMATION(ANIM_TYPE_MOVE, MOVE_DOUBLE_SHOCK, player); }
-        MESSAGE("Wobbuffet used Double Shock!");
+        MESSAGE("Alakazam used Double Shock!");
         MESSAGE("But it failed!");
     }
 }
@@ -98,10 +98,10 @@ SINGLE_BATTLE_TEST("Double Shock user loses its Electric-type if enemy faints")
     GIVEN {
         ASSUME(gMovesInfo[MOVE_DOUBLE_SHOCK].effect == EFFECT_FAIL_IF_NOT_ARG_TYPE);
         ASSUME(MoveHasAdditionalEffectSelfArg(MOVE_DOUBLE_SHOCK, MOVE_EFFECT_REMOVE_ARG_TYPE, TYPE_ELECTRIC) == TRUE);
-        ASSUME(gSpeciesInfo[SPECIES_WOBBUFFET].types[0] != TYPE_ELECTRIC || gSpeciesInfo[SPECIES_WOBBUFFET].types[1] != TYPE_ELECTRIC);
+        ASSUME(gSpeciesInfo[SPECIES_ALAKAZAM].types[0] != TYPE_ELECTRIC || gSpeciesInfo[SPECIES_ALAKAZAM].types[1] != TYPE_ELECTRIC);
         ASSUME(gSpeciesInfo[SPECIES_PIKACHU].types[0] == TYPE_ELECTRIC || gSpeciesInfo[SPECIES_PIKACHU].types[1] == TYPE_ELECTRIC);
         PLAYER(SPECIES_PIKACHU);
-        OPPONENT(SPECIES_WOBBUFFET) { HP(1); }
+        OPPONENT(SPECIES_ALAKAZAM) { HP(1); }
     } WHEN {
         TURN { MOVE(player, MOVE_DOUBLE_SHOCK); }
     } SCENE {

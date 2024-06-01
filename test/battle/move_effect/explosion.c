@@ -9,45 +9,45 @@ ASSUMPTIONS
 SINGLE_BATTLE_TEST("Explosion causes the user to faint")
 {
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, MOVE_EXPLOSION); }
     } SCENE {
         HP_BAR(player, hp: 0);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_EXPLOSION, player);
-        MESSAGE("Wobbuffet fainted!");
+        MESSAGE("Alakazam fainted!");
     }
 }
 
 SINGLE_BATTLE_TEST("Explosion causes the user & the target to faint")
 {
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET) { HP(1); }
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_ALAKAZAM) { HP(1); }
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, MOVE_EXPLOSION); }
     } SCENE {
         HP_BAR(player, hp: 0);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_EXPLOSION, player);
         HP_BAR(opponent, hp: 0);
-        MESSAGE("Foe Wobbuffet fainted!");
-        MESSAGE("Wobbuffet fainted!");
+        MESSAGE("Foe Alakazam fainted!");
+        MESSAGE("Alakazam fainted!");
     }
 }
 
 SINGLE_BATTLE_TEST("Explosion causes the user to faint even if it misses")
 {
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, MOVE_EXPLOSION, hit: FALSE); }
     } SCENE {
         HP_BAR(player, hp: 0);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_EXPLOSION, player);
-        MESSAGE("Wobbuffet fainted!");
+        MESSAGE("Alakazam fainted!");
     }
 }
 
@@ -56,7 +56,7 @@ SINGLE_BATTLE_TEST("Explosion causes the user to faint even if it has no effect"
     GIVEN {
         ASSUME(gMovesInfo[MOVE_EXPLOSION].type == TYPE_NORMAL);
         ASSUME(gSpeciesInfo[SPECIES_GASTLY].types[0] == TYPE_GHOST);
-        PLAYER(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM);
         OPPONENT(SPECIES_GASTLY);
     } WHEN {
         TURN { MOVE(player, MOVE_EXPLOSION); }
@@ -64,15 +64,15 @@ SINGLE_BATTLE_TEST("Explosion causes the user to faint even if it has no effect"
         HP_BAR(player, hp: 0);
         MESSAGE("It doesn't affect Foe Gastly…");
         NOT HP_BAR(opponent);
-        MESSAGE("Wobbuffet fainted!");
+        MESSAGE("Alakazam fainted!");
     }
 }
 
 DOUBLE_BATTLE_TEST("Explosion causes everyone to faint in a double battle")
 {
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET);
-        PLAYER(SPECIES_WYNAUT) { HP(1); }
+        PLAYER(SPECIES_ALAKAZAM);
+        PLAYER(SPECIES_ABRA) { HP(1); }
         OPPONENT(SPECIES_ABRA) { HP(1); }
         OPPONENT(SPECIES_KADABRA) { HP(1); }
         OPPONENT(SPECIES_KADABRA);
@@ -84,17 +84,17 @@ DOUBLE_BATTLE_TEST("Explosion causes everyone to faint in a double battle")
         HP_BAR(opponentLeft, hp: 0);
         MESSAGE("Foe Abra fainted!");
         HP_BAR(playerRight, hp: 0);
-        MESSAGE("Wynaut fainted!");
+        MESSAGE("Abra fainted!");
         HP_BAR(opponentRight, hp: 0);
         MESSAGE("Foe Kadabra fainted!");
-        MESSAGE("Wobbuffet fainted!");
+        MESSAGE("Alakazam fainted!");
     }
 }
 
 SINGLE_BATTLE_TEST("Explosion is blocked by Ability Damp")
 {
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM);
         OPPONENT(SPECIES_GOLDUCK) { Ability(ABILITY_DAMP); }
     } WHEN {
         TURN { MOVE(player, MOVE_EXPLOSION); }
@@ -104,15 +104,15 @@ SINGLE_BATTLE_TEST("Explosion is blocked by Ability Damp")
             HP_BAR(player, hp: 0);
         }
         ABILITY_POPUP(opponent, ABILITY_DAMP);
-        MESSAGE("Foe Golduck's Damp prevents Wobbuffet from using Explosion!");
+        MESSAGE("Foe Golduck's Damp prevents Alakazam from using Explosion!");
     }
 }
 
 SINGLE_BATTLE_TEST("Explosion does not trigger Destiny Bond")
 {
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET) { HP(1); };
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM) { HP(1); };
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, MOVE_DESTINY_BOND); MOVE(opponent, MOVE_EXPLOSION);}
     } SCENE {
@@ -128,9 +128,9 @@ DOUBLE_BATTLE_TEST("Explosion boosted by Galvanize is correctly blocked by Volt 
 {
     GIVEN {
         PLAYER(SPECIES_GEODUDE_ALOLAN) { Ability(ABILITY_GALVANIZE); }
-        PLAYER(SPECIES_WYNAUT) { HP(1); }
+        PLAYER(SPECIES_ABRA) { HP(1); }
         OPPONENT(SPECIES_LANTURN) { Ability(ABILITY_VOLT_ABSORB); }
-        OPPONENT(SPECIES_WOBBUFFET) { HP(1); }
+        OPPONENT(SPECIES_ALAKAZAM) { HP(1); }
     } WHEN {
         TURN { MOVE(playerLeft, MOVE_EXPLOSION); }
     } SCENE {
@@ -139,9 +139,9 @@ DOUBLE_BATTLE_TEST("Explosion boosted by Galvanize is correctly blocked by Volt 
         ABILITY_POPUP(opponentLeft, ABILITY_VOLT_ABSORB);
         NOT HP_BAR(opponentLeft, hp: 0);
         HP_BAR(playerRight, hp: 0);
-        MESSAGE("Wynaut fainted!");
+        MESSAGE("Abra fainted!");
         HP_BAR(opponentRight, hp: 0);
-        MESSAGE("Foe Wobbuffet fainted!");
+        MESSAGE("Foe Alakazam fainted!");
         MESSAGE("Geodude fainted!");
     }
 }

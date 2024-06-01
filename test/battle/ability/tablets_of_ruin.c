@@ -13,7 +13,7 @@ SINGLE_BATTLE_TEST("Tablets of Ruin reduces Attack if opposing mon's ability doe
 
     GIVEN {
         PLAYER(SPECIES_WO_CHIEN) { Ability(ABILITY_TABLETS_OF_RUIN); }
-        OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(opponent, MOVE_TACKLE); MOVE(player, MOVE_ENTRAINMENT); }
         TURN { MOVE(opponent, MOVE_TACKLE); }
@@ -34,10 +34,10 @@ SINGLE_BATTLE_TEST("Tablets of Ruin's message displays correctly after all battl
 {
     GIVEN {
         ASSUME(gMovesInfo[MOVE_EXPLOSION].effect == EFFECT_EXPLOSION);
-        PLAYER(SPECIES_WOBBUFFET) { HP(1);}
+        PLAYER(SPECIES_ALAKAZAM) { HP(1);}
         PLAYER(SPECIES_WO_CHIEN);
-        OPPONENT(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(opponent, MOVE_EXPLOSION); SEND_OUT(player, 1); SEND_OUT(opponent, 1); }
         TURN { MOVE(player, MOVE_TACKLE); MOVE(opponent, MOVE_RUINATION); }
@@ -48,7 +48,7 @@ SINGLE_BATTLE_TEST("Tablets of Ruin's message displays correctly after all battl
         MESSAGE("Go! Wo-Chien!");
         ABILITY_POPUP(player, ABILITY_TABLETS_OF_RUIN);
         MESSAGE("Wo-Chien's Tablets of Ruin weakened the Attack of all surrounding Pokémon!");
-        MESSAGE("2 sent out Wobbuffet!");
+        MESSAGE("2 sent out Alakazam!");
     }
 }
 
@@ -56,9 +56,9 @@ SINGLE_BATTLE_TEST("Tablets of Ruin's message displays correctly after all battl
 {
     GIVEN {
         ASSUME(gMovesInfo[MOVE_EXPLOSION].effect == EFFECT_EXPLOSION);
-        PLAYER(SPECIES_WOBBUFFET);
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET) { HP(1);}
+        PLAYER(SPECIES_ALAKAZAM);
+        PLAYER(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_ALAKAZAM) { HP(1);}
         OPPONENT(SPECIES_WO_CHIEN);
     } WHEN {
         TURN { MOVE(player, MOVE_EXPLOSION); SEND_OUT(player, 1); SEND_OUT(opponent, 1); }
@@ -67,7 +67,7 @@ SINGLE_BATTLE_TEST("Tablets of Ruin's message displays correctly after all battl
         HP_BAR(player, hp: 0);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_EXPLOSION, player);
         // Everyone faints.
-        MESSAGE("Go! Wobbuffet!");
+        MESSAGE("Go! Alakazam!");
         MESSAGE("2 sent out Wo-Chien!");
         ABILITY_POPUP(opponent, ABILITY_TABLETS_OF_RUIN);
         MESSAGE("Foe Wo-Chien's Tablets of Ruin weakened the Attack of all surrounding Pokémon!");

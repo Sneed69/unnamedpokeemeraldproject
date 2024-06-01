@@ -9,20 +9,20 @@ ASSUMPTIONS
 SINGLE_BATTLE_TEST("Battle Bond does not transform species other than Greninja")
 {
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET) { Ability(ABILITY_BATTLE_BOND); }
-        OPPONENT(SPECIES_WOBBUFFET) { HP(1); }
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM) { Ability(ABILITY_BATTLE_BOND); }
+        OPPONENT(SPECIES_ALAKAZAM) { HP(1); }
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, MOVE_WATER_GUN); SEND_OUT(opponent, 1); }
     } SCENE {
         HP_BAR(opponent);
-        MESSAGE("Foe Wobbuffet fainted!");
+        MESSAGE("Foe Alakazam fainted!");
         NONE_OF {
             ABILITY_POPUP(player, ABILITY_BATTLE_BOND);
-            MESSAGE("Wobbuffet became fully charged due to its bond with its trainer!");
+            MESSAGE("Alakazam became fully charged due to its bond with its trainer!");
         }
     } THEN {
-        EXPECT(player->species == SPECIES_WOBBUFFET);
+        EXPECT(player->species == SPECIES_ALAKAZAM);
     }
 }
 
@@ -39,11 +39,11 @@ SINGLE_BATTLE_TEST("Battle Bond transforms player's Greninja - Singles")
     GIVEN {
         PLAYER(SPECIES_GRENINJA_BATTLE_BOND);
         if (monsCountPlayer == 2) {
-            PLAYER(SPECIES_WOBBUFFET);
+            PLAYER(SPECIES_ALAKAZAM);
         }
-        OPPONENT(SPECIES_WOBBUFFET) { HP(1); }
+        OPPONENT(SPECIES_ALAKAZAM) { HP(1); }
         if (monsCountOpponent == 2) {
-            OPPONENT(SPECIES_WOBBUFFET);
+            OPPONENT(SPECIES_ALAKAZAM);
         }
     } WHEN {
         if (monsCountOpponent == 2) {
@@ -54,7 +54,7 @@ SINGLE_BATTLE_TEST("Battle Bond transforms player's Greninja - Singles")
 
     } SCENE {
         HP_BAR(opponent);
-        MESSAGE("Foe Wobbuffet fainted!");
+        MESSAGE("Foe Alakazam fainted!");
         if (monsCountOpponent != 1) {
             ABILITY_POPUP(player, ABILITY_BATTLE_BOND);
             MESSAGE("Greninja became fully charged due to its bond with its trainer!");
@@ -86,11 +86,11 @@ SINGLE_BATTLE_TEST("Battle Bond transforms opponent's Greninja - Singles")
     GIVEN {
         OPPONENT(SPECIES_GRENINJA_BATTLE_BOND);
         if (monsCountOpponent == 2) {
-            OPPONENT(SPECIES_WOBBUFFET);
+            OPPONENT(SPECIES_ALAKAZAM);
         }
-        PLAYER(SPECIES_WOBBUFFET) {HP(1); }
+        PLAYER(SPECIES_ALAKAZAM) {HP(1); }
         if (monsCountPlayer == 2) {
-            PLAYER(SPECIES_WOBBUFFET);
+            PLAYER(SPECIES_ALAKAZAM);
         }
     } WHEN {
         if (monsCountPlayer == 2) {
@@ -101,7 +101,7 @@ SINGLE_BATTLE_TEST("Battle Bond transforms opponent's Greninja - Singles")
 
     } SCENE {
         HP_BAR(player);
-        MESSAGE("Wobbuffet fainted!");
+        MESSAGE("Alakazam fainted!");
         if (monsCountPlayer != 1) {
             ABILITY_POPUP(opponent, ABILITY_BATTLE_BOND);
             MESSAGE("Foe Greninja became fully charged due to its bond with its trainer!");
@@ -132,14 +132,14 @@ DOUBLE_BATTLE_TEST("Battle Bond transforms player's Greninja when fainting its A
 
     GIVEN {
         PLAYER(SPECIES_GRENINJA_BATTLE_BOND);
-        PLAYER(SPECIES_WOBBUFFET) { HP(1); }
+        PLAYER(SPECIES_ALAKAZAM) { HP(1); }
         if (monsCountPlayer == 3) {
-            PLAYER(SPECIES_WOBBUFFET);
+            PLAYER(SPECIES_ALAKAZAM);
         }
-        OPPONENT(SPECIES_WOBBUFFET) { HP(1); }
-        OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_ALAKAZAM) { HP(1); }
+        OPPONENT(SPECIES_ALAKAZAM);
         if (monsCountOpponent == 3) {
-            OPPONENT(SPECIES_WOBBUFFET);
+            OPPONENT(SPECIES_ALAKAZAM);
         }
     } WHEN {
         if (monsCountPlayer == 3) {
@@ -150,7 +150,7 @@ DOUBLE_BATTLE_TEST("Battle Bond transforms player's Greninja when fainting its A
 
     } SCENE {
         HP_BAR(playerRight);
-        MESSAGE("Wobbuffet fainted!");
+        MESSAGE("Alakazam fainted!");
         ABILITY_POPUP(playerLeft, ABILITY_BATTLE_BOND);
         MESSAGE("Greninja became fully charged due to its bond with its trainer!");
         MESSAGE("Greninja became Ash-Greninja!");

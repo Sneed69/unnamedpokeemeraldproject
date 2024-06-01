@@ -14,12 +14,12 @@ SINGLE_BATTLE_TEST("Fling fails if pokemon holds no item")
     PARAMETRIZE {item = ITEM_RAZOR_CLAW; }
 
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET) { Item(item); }
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM) { Item(item); }
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, MOVE_FLING);}
     } SCENE {
-        MESSAGE("Wobbuffet used Fling!");
+        MESSAGE("Alakazam used Fling!");
         if (item != ITEM_NONE) {
             ANIMATION(ANIM_TYPE_MOVE, MOVE_FLING, player);
             HP_BAR(opponent);
@@ -40,13 +40,13 @@ SINGLE_BATTLE_TEST("Fling fails if pokemon is under the effects of Embargo or Ma
     GIVEN {
         ASSUME(gMovesInfo[MOVE_EMBARGO].effect == EFFECT_EMBARGO);
         ASSUME(gMovesInfo[MOVE_MAGIC_ROOM].effect == EFFECT_MAGIC_ROOM);
-        PLAYER(SPECIES_WOBBUFFET) { Item(ITEM_RAZOR_CLAW); }
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM) { Item(ITEM_RAZOR_CLAW); }
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(opponent, move); }
         TURN { MOVE(player, MOVE_FLING); }
     } SCENE {
-        MESSAGE("Wobbuffet used Fling!");
+        MESSAGE("Alakazam used Fling!");
         if (move == MOVE_CELEBRATE) {
             ANIMATION(ANIM_TYPE_MOVE, MOVE_FLING, player);
             HP_BAR(opponent);
@@ -66,7 +66,7 @@ SINGLE_BATTLE_TEST("Fling fails for pokemon with Klutz ability")
     GIVEN {
         ASSUME(B_KLUTZ_FLING_INTERACTION >= GEN_5);
         PLAYER(SPECIES_BUNEARY) { Item(ITEM_RAZOR_CLAW); Ability(ability); }
-        OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, MOVE_FLING); }
     } SCENE {
@@ -84,20 +84,20 @@ SINGLE_BATTLE_TEST("Fling's thrown item can be regained with Recycle")
 {
     GIVEN {
         ASSUME(gMovesInfo[MOVE_RECYCLE].effect == EFFECT_RECYCLE);
-        PLAYER(SPECIES_WOBBUFFET) {Item(ITEM_RAZOR_CLAW); }
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM) {Item(ITEM_RAZOR_CLAW); }
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, MOVE_FLING);}
         TURN { MOVE(player, MOVE_RECYCLE);}
         TURN { MOVE(player, MOVE_FLING);}
     } SCENE {
-        MESSAGE("Wobbuffet used Fling!");
+        MESSAGE("Alakazam used Fling!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_FLING, player);
         HP_BAR(opponent);
-        MESSAGE("Wobbuffet used Recycle!");
+        MESSAGE("Alakazam used Recycle!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_RECYCLE, player);
-        MESSAGE("Wobbuffet found one Razor Claw!");
-        MESSAGE("Wobbuffet used Fling!");
+        MESSAGE("Alakazam found one Razor Claw!");
+        MESSAGE("Alakazam used Fling!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_FLING, player);
         HP_BAR(opponent);
     }
@@ -107,21 +107,21 @@ SINGLE_BATTLE_TEST("Fling - Item is lost even when there is no target")
 {
     GIVEN {
         ASSUME(gMovesInfo[MOVE_SELF_DESTRUCT].effect == EFFECT_EXPLOSION);
-        PLAYER(SPECIES_WOBBUFFET) {Item(ITEM_RAZOR_CLAW); Speed(2); }
-        OPPONENT(SPECIES_WOBBUFFET) {Speed(5); }
-        OPPONENT(SPECIES_WOBBUFFET) {Speed(5); }
+        PLAYER(SPECIES_ALAKAZAM) {Item(ITEM_RAZOR_CLAW); Speed(2); }
+        OPPONENT(SPECIES_ALAKAZAM) {Speed(5); }
+        OPPONENT(SPECIES_ALAKAZAM) {Speed(5); }
     } WHEN {
         TURN { MOVE(opponent, MOVE_SELF_DESTRUCT); MOVE(player, MOVE_FLING); SEND_OUT(opponent, 1); }
         TURN { MOVE(player, MOVE_FLING); }
     } SCENE {
-        MESSAGE("Foe Wobbuffet used Self-Destruct!");
+        MESSAGE("Foe Alakazam used Self-Destruct!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_SELF_DESTRUCT, opponent);
         HP_BAR(player);
-        MESSAGE("Foe Wobbuffet fainted!");
-        MESSAGE("Wobbuffet used Fling!");
+        MESSAGE("Foe Alakazam fainted!");
+        MESSAGE("Alakazam used Fling!");
         MESSAGE("But it failed!");
 
-        MESSAGE("Wobbuffet used Fling!");
+        MESSAGE("Alakazam used Fling!");
         MESSAGE("But it failed!");
     } THEN {
         EXPECT_EQ(player->item, ITEM_NONE);
@@ -132,18 +132,18 @@ SINGLE_BATTLE_TEST("Fling - Item is lost when target protects itself")
 {
     GIVEN {
         ASSUME(gMovesInfo[MOVE_PROTECT].effect == EFFECT_PROTECT);
-        PLAYER(SPECIES_WOBBUFFET) {Item(ITEM_RAZOR_CLAW); }
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM) {Item(ITEM_RAZOR_CLAW); }
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(opponent, MOVE_PROTECT); MOVE(player, MOVE_FLING);}
         TURN { MOVE(player, MOVE_FLING); }
     } SCENE {
-        MESSAGE("Foe Wobbuffet used Protect!");
+        MESSAGE("Foe Alakazam used Protect!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_PROTECT, opponent);
-        MESSAGE("Wobbuffet used Fling!");
-        MESSAGE("Foe Wobbuffet protected itself!");
+        MESSAGE("Alakazam used Fling!");
+        MESSAGE("Foe Alakazam protected itself!");
 
-        MESSAGE("Wobbuffet used Fling!");
+        MESSAGE("Alakazam used Fling!");
         MESSAGE("But it failed!");
     } THEN {
         EXPECT_EQ(player->item, ITEM_NONE);
@@ -163,8 +163,8 @@ SINGLE_BATTLE_TEST("Fling doesn't consume the item if pokemon is asleep/frozen/p
     PARAMETRIZE {status = STATUS1_FREEZE; item = ITEM_NONE; }
 
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET) {Item(item); Status1(status); }
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM) {Item(item); Status1(status); }
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         if (status == STATUS1_FREEZE) {
             TURN { MOVE(player, MOVE_FLING, WITH_RNG(RNG_FROZEN, FALSE)); }
@@ -178,17 +178,17 @@ SINGLE_BATTLE_TEST("Fling doesn't consume the item if pokemon is asleep/frozen/p
         }
     } SCENE {
         if (status == STATUS1_FREEZE) {
-            MESSAGE("Wobbuffet is frozen solid!");
-            MESSAGE("Wobbuffet was defrosted!");
+            MESSAGE("Alakazam is frozen solid!");
+            MESSAGE("Alakazam was defrosted!");
         }
         else if (status == STATUS1_PARALYSIS) {
-            MESSAGE("Wobbuffet is paralyzed! It can't move!");
+            MESSAGE("Alakazam is paralyzed! It can't move!");
         }
         else {
-            MESSAGE("Wobbuffet is fast asleep.");
-            MESSAGE("Wobbuffet woke up!");
+            MESSAGE("Alakazam is fast asleep.");
+            MESSAGE("Alakazam woke up!");
         }
-        MESSAGE("Wobbuffet used Fling!");
+        MESSAGE("Alakazam used Fling!");
         if (item != ITEM_NONE) {
             ANIMATION(ANIM_TYPE_MOVE, MOVE_FLING, player);
             HP_BAR(opponent);
@@ -213,44 +213,44 @@ SINGLE_BATTLE_TEST("Fling applies special effects when throwing specific Items")
     PARAMETRIZE {item = ITEM_KINGS_ROCK; }
 
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET) { Item(item); }
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM) { Item(item); }
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, MOVE_FLING); }
     } SCENE {
-        MESSAGE("Wobbuffet used Fling!");
+        MESSAGE("Alakazam used Fling!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_FLING, player);
         HP_BAR(opponent);
         switch (item)
         {
         case ITEM_FLAME_ORB:
             {
-                MESSAGE("Foe Wobbuffet was burned!");
+                MESSAGE("Foe Alakazam was burned!");
                 STATUS_ICON(opponent, STATUS1_BURN);
             }
             break;
         case ITEM_LIGHT_BALL:
             {
-                MESSAGE("Foe Wobbuffet is paralyzed! It may be unable to move!");
+                MESSAGE("Foe Alakazam is paralyzed! It may be unable to move!");
                 STATUS_ICON(opponent, STATUS1_PARALYSIS);
             }
             break;
         case ITEM_POISON_BARB:
             {
-                MESSAGE("Foe Wobbuffet was poisoned!");
+                MESSAGE("Foe Alakazam was poisoned!");
                 STATUS_ICON(opponent, STATUS1_POISON);
             }
             break;
         case ITEM_TOXIC_ORB:
             {
-                MESSAGE("Foe Wobbuffet is badly poisoned!");
+                MESSAGE("Foe Alakazam is badly poisoned!");
                 STATUS_ICON(opponent, STATUS1_TOXIC_POISON);
             }
             break;
         case ITEM_RAZOR_FANG:
         case ITEM_KINGS_ROCK:
             {
-                MESSAGE("Foe Wobbuffet flinched!");
+                MESSAGE("Foe Alakazam flinched!");
             }
             break;
         }
@@ -269,12 +269,12 @@ SINGLE_BATTLE_TEST("Fling's secondary effects are blocked by Shield Dust")
     PARAMETRIZE {item = ITEM_KINGS_ROCK; }
 
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET) { Item(item); }
-        OPPONENT(SPECIES_WOBBUFFET) { Ability(ABILITY_SHIELD_DUST); }
+        PLAYER(SPECIES_ALAKAZAM) { Item(item); }
+        OPPONENT(SPECIES_ALAKAZAM) { Ability(ABILITY_SHIELD_DUST); }
     } WHEN {
         TURN { MOVE(player, MOVE_FLING); }
     } SCENE {
-        MESSAGE("Wobbuffet used Fling!");
+        MESSAGE("Alakazam used Fling!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_FLING, player);
         HP_BAR(opponent);
         switch (item)
@@ -282,7 +282,7 @@ SINGLE_BATTLE_TEST("Fling's secondary effects are blocked by Shield Dust")
         case ITEM_FLAME_ORB:
             {
                 NONE_OF {
-                    MESSAGE("Foe Wobbuffet was burned!");
+                    MESSAGE("Foe Alakazam was burned!");
                     STATUS_ICON(opponent, STATUS1_BURN);
                 }
                 MESSAGE("The Flame Orb was used up...");
@@ -291,7 +291,7 @@ SINGLE_BATTLE_TEST("Fling's secondary effects are blocked by Shield Dust")
         case ITEM_LIGHT_BALL:
             {
                 NONE_OF {
-                    MESSAGE("Foe Wobbuffet is paralyzed! It may be unable to move!");
+                    MESSAGE("Foe Alakazam is paralyzed! It may be unable to move!");
                     STATUS_ICON(opponent, STATUS1_PARALYSIS);
                 }
                 MESSAGE("The Light Ball was used up...");
@@ -300,7 +300,7 @@ SINGLE_BATTLE_TEST("Fling's secondary effects are blocked by Shield Dust")
         case ITEM_POISON_BARB:
             {
                 NONE_OF {
-                    MESSAGE("Foe Wobbuffet was poisoned!");
+                    MESSAGE("Foe Alakazam was poisoned!");
                     STATUS_ICON(opponent, STATUS1_POISON);
                 }
                 MESSAGE("The Poison Barb was used up...");
@@ -309,7 +309,7 @@ SINGLE_BATTLE_TEST("Fling's secondary effects are blocked by Shield Dust")
         case ITEM_TOXIC_ORB:
             {
                 NONE_OF {
-                    MESSAGE("Foe Wobbuffet is badly poisoned!");
+                    MESSAGE("Foe Alakazam is badly poisoned!");
                     STATUS_ICON(opponent, STATUS1_TOXIC_POISON);
                 }
                 MESSAGE("The Toxic Orb was used up...");
@@ -319,7 +319,7 @@ SINGLE_BATTLE_TEST("Fling's secondary effects are blocked by Shield Dust")
         case ITEM_KINGS_ROCK:
             {
                 NONE_OF {
-                    MESSAGE("Foe Wobbuffet flinched!");
+                    MESSAGE("Foe Alakazam flinched!");
                 }
                 switch (item)
                 {
@@ -363,63 +363,63 @@ SINGLE_BATTLE_TEST("Fling - thrown berry's effect activates for the target even 
 
     GIVEN {
         ASSUME(gMovesInfo[MOVE_FLING].category == DAMAGE_CATEGORY_PHYSICAL);
-        PLAYER(SPECIES_WOBBUFFET) { Item(item); Attack(1); }
-        OPPONENT(SPECIES_WOBBUFFET) { Status1(status1); HP(399); MaxHP(400); MovesWithPP({MOVE_CELEBRATE, 35}); }
+        PLAYER(SPECIES_ALAKAZAM) { Item(item); Attack(1); }
+        OPPONENT(SPECIES_ALAKAZAM) { Status1(status1); HP(399); MaxHP(400); MovesWithPP({MOVE_CELEBRATE, 35}); }
     } WHEN {
         TURN { MOVE(player, MOVE_FLING); }
     } SCENE {
-        MESSAGE("Wobbuffet used Fling!");
+        MESSAGE("Alakazam used Fling!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_FLING, player);
         HP_BAR(opponent);
         if (effect == HOLD_EFFECT_RESTORE_HP) {
             if (item == ITEM_ORAN_BERRY) {
-                MESSAGE("Foe Wobbuffet's Oran Berry restored health!");
+                MESSAGE("Foe Alakazam's Oran Berry restored health!");
             } else if (item == ITEM_SITRUS_BERRY) {
-                MESSAGE("Foe Wobbuffet's Sitrus Berry restored health!");
+                MESSAGE("Foe Alakazam's Sitrus Berry restored health!");
             } else {
-                MESSAGE("Wobbuffet's Enigma Berry restored health!");
+                MESSAGE("Alakazam's Enigma Berry restored health!");
             }
             HP_BAR(opponent);
         }
         else if (effect == HOLD_EFFECT_RESTORE_PP) {
-            MESSAGE("Foe Wobbuffet's Leppa Berry restored Celebrate's PP!");
+            MESSAGE("Foe Alakazam's Leppa Berry restored Celebrate's PP!");
         }
         else if (status1 != STATUS1_NONE) {
             if (status1 == STATUS1_BURN) {
-                MESSAGE("Foe Wobbuffet's Rawst Berry healed its burn!");
+                MESSAGE("Foe Alakazam's Rawst Berry healed its burn!");
             } else if (status1 == STATUS1_SLEEP) {
-                MESSAGE("Foe Wobbuffet's Chesto Berry woke it from its sleep!");
+                MESSAGE("Foe Alakazam's Chesto Berry woke it from its sleep!");
             } else if (status1 == STATUS1_FREEZE) {
-                MESSAGE("Foe Wobbuffet's Aspear Berry defrosted it!");
+                MESSAGE("Foe Alakazam's Aspear Berry defrosted it!");
             } else if (status1 == STATUS1_FROSTBITE) {
-                MESSAGE("Foe Wobbuffet's Aspear Berry healed its frostbite!");
+                MESSAGE("Foe Alakazam's Aspear Berry healed its frostbite!");
             } else if (status1 == STATUS1_PARALYSIS) {
-                MESSAGE("Foe Wobbuffet's Cheri Berry cured paralysis!");
+                MESSAGE("Foe Alakazam's Cheri Berry cured paralysis!");
             } else if (status1 == STATUS1_TOXIC_POISON || status1 == STATUS1_POISON) {
-                MESSAGE("Foe Wobbuffet's Pecha Berry cured poison!");
+                MESSAGE("Foe Alakazam's Pecha Berry cured poison!");
             }
             NOT STATUS_ICON(opponent, status1);
         }
         else if (statId != 0) {
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
             if (statId == STAT_ATK) {
-                MESSAGE("Using Liechi Berry, the Attack of Foe Wobbuffet rose!");
+                MESSAGE("Using Liechi Berry, the Attack of Foe Alakazam rose!");
             } else if (statId == STAT_DEF) {
                 if (item == ITEM_GANLON_BERRY) {
-                    MESSAGE("Using Ganlon Berry, the Defense of Foe Wobbuffet rose!");
+                    MESSAGE("Using Ganlon Berry, the Defense of Foe Alakazam rose!");
                 } else {
-                    MESSAGE("Using Kee Berry, the Defense of Foe Wobbuffet rose!");
+                    MESSAGE("Using Kee Berry, the Defense of Foe Alakazam rose!");
                 }
             } else if (statId == STAT_SPDEF) {
                 if (item == ITEM_APICOT_BERRY) {
-                    MESSAGE("Using Apicot Berry, the Sp. Def of Foe Wobbuffet rose!");
+                    MESSAGE("Using Apicot Berry, the Sp. Def of Foe Alakazam rose!");
                 } else {
-                    MESSAGE("Using Maranga Berry, the Sp. Def of Foe Wobbuffet rose!");
+                    MESSAGE("Using Maranga Berry, the Sp. Def of Foe Alakazam rose!");
                 }
             } else if (statId == STAT_SPEED) {
-                MESSAGE("Using Salac Berry, the Speed of Foe Wobbuffet rose!");
+                MESSAGE("Using Salac Berry, the Speed of Foe Alakazam rose!");
             } else if (statId == STAT_SPATK) {
-                MESSAGE("Using Petaya Berry, the Sp. Atk of Foe Wobbuffet rose!");
+                MESSAGE("Using Petaya Berry, the Sp. Atk of Foe Alakazam rose!");
             }
         }
     } THEN {
@@ -443,7 +443,7 @@ SINGLE_BATTLE_TEST("Fling deals damage based on items fling power")
     GIVEN {
         ASSUME(gMovesInfo[MOVE_CRUNCH].power == 80);
         ASSUME(gItemsInfo[ITEM_VENUSAURITE].flingPower == 80);
-        PLAYER(SPECIES_WOBBUFFET) { Item(ITEM_VENUSAURITE); }
+        PLAYER(SPECIES_ALAKAZAM) { Item(ITEM_VENUSAURITE); }
         OPPONENT(SPECIES_REGIROCK);
     } WHEN {
         TURN { MOVE(player, MOVE_CRUNCH); }

@@ -23,8 +23,8 @@ SINGLE_BATTLE_TEST("Metronome Item gradually boosts power of consecutively used 
     s16 damage[METRONOME_TURNS];
     u32 j;
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET) { Item(ITEM_METRONOME); }
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM) { Item(ITEM_METRONOME); }
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         for (j = 0; j < METRONOME_TURNS; ++j) {
             TURN { MOVE(player, MOVE_TACKLE); }
@@ -45,8 +45,8 @@ SINGLE_BATTLE_TEST("Metronome Item's boost is reset if the attacker uses a diffe
 {
     s16 damage[2];
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET) { Item(ITEM_METRONOME); }
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM) { Item(ITEM_METRONOME); }
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, MOVE_TACKLE); }
         TURN { MOVE(player, MOVE_QUICK_ATTACK); }
@@ -68,8 +68,8 @@ SINGLE_BATTLE_TEST("Metronome Item's boost is reset if the move fails")
 {
     s16 damage[2];
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET) { Item(ITEM_METRONOME); }
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM) { Item(ITEM_METRONOME); }
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, MOVE_TACKLE); }
         TURN { MOVE(opponent, MOVE_PROTECT); MOVE(player, MOVE_TACKLE); }
@@ -89,8 +89,8 @@ SINGLE_BATTLE_TEST("Metronome Item counts called moves instead of the calling mo
 {
     s16 damage[2];
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET) { Item(ITEM_METRONOME); }
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM) { Item(ITEM_METRONOME); }
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, MOVE_METRONOME, WITH_RNG(RNG_METRONOME, MOVE_TACKLE)); }
         TURN { MOVE(player, MOVE_METRONOME, WITH_RNG(RNG_METRONOME, MOVE_TACKLE)); }
@@ -113,17 +113,17 @@ SINGLE_BATTLE_TEST("Metronome Item counts charging turn of moves for its attacki
     PARAMETRIZE {item = ITEM_METRONOME; }
     GIVEN {
         ASSUME(gMovesInfo[MOVE_SOLAR_BEAM].effect == EFFECT_SOLAR_BEAM);
-        PLAYER(SPECIES_WOBBUFFET) { Item(item); }
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM) { Item(item); }
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, MOVE_SOLAR_BEAM); }
         TURN { SKIP_TURN(player); }
     } SCENE {
-        MESSAGE("Wobbuffet used Solar Beam!");
-        MESSAGE("Wobbuffet took in sunlight!");
-        MESSAGE("Foe Wobbuffet used Celebrate!");
+        MESSAGE("Alakazam used Solar Beam!");
+        MESSAGE("Alakazam took in sunlight!");
+        MESSAGE("Foe Alakazam used Celebrate!");
         MESSAGE("Congratulations, 1!");
-        MESSAGE("Wobbuffet used Solar Beam!");
+        MESSAGE("Alakazam used Solar Beam!");
         HP_BAR(opponent, captureDamage: &results[i].damage);
     } FINALLY {
         EXPECT_MUL_EQ(results[0].damage, UQ_4_12(1.2), results[1].damage);
@@ -135,8 +135,8 @@ SINGLE_BATTLE_TEST("Metronome Item doesn't increase damage per hit of multi-hit 
     s16 damage[3];
     GIVEN {
         ASSUME(gMovesInfo[MOVE_FURY_ATTACK].effect == EFFECT_MULTI_HIT);
-        PLAYER(SPECIES_WOBBUFFET) { Item(ITEM_METRONOME); }
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM) { Item(ITEM_METRONOME); }
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, MOVE_FURY_ATTACK); }
         TURN { MOVE(player, MOVE_FURY_ATTACK); }

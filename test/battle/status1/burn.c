@@ -6,8 +6,8 @@ SINGLE_BATTLE_TEST("Burn deals 1/16th damage per turn")
     u32 j;
     GIVEN {
         ASSUME(B_BURN_DAMAGE >= GEN_LATEST);
-        PLAYER(SPECIES_WOBBUFFET) { Status1(STATUS1_BURN); }
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM) { Status1(STATUS1_BURN); }
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         for (j = 0; j < 4; j++)
             TURN {}
@@ -25,8 +25,8 @@ SINGLE_BATTLE_TEST("Burn reduces Attack by 50%", s16 damage)
     PARAMETRIZE { burned = TRUE; }
     GIVEN {
         ASSUME(gMovesInfo[MOVE_TACKLE].category == DAMAGE_CATEGORY_PHYSICAL);
-        PLAYER(SPECIES_WOBBUFFET) { if (burned) Status1(STATUS1_BURN); }
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM) { if (burned) Status1(STATUS1_BURN); }
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, MOVE_TACKLE); }
     } SCENE {
