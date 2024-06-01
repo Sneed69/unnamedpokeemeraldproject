@@ -6251,6 +6251,7 @@ u32 GetMonAffectionHearts(struct Pokemon *pokemon)
 
 void UpdateMonPersonality(struct BoxPokemon *boxMon, u32 personality)
 {
+    SetBoxMonData(boxMon, MON_DATA_PERSONALITY, &personality);
 }
 
 void HealPokemon(struct Pokemon *mon)
