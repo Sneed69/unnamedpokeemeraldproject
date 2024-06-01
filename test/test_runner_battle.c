@@ -1839,6 +1839,12 @@ void Shadow_(u32 sourceLine, bool32 isShadow)
     SetMonData(DATA.currentMon, MON_DATA_IS_SHADOW, &isShadow);
 }
 
+void Egg_(u32 sourceLine, bool32 isEgg)
+{
+    INVALID_IF(!DATA.currentMon, "Egg outside of PLAYER/OPPONENT");
+    SetMonData(DATA.currentMon, MON_DATA_IS_EGG, &isEgg);
+}
+
 static const char *const sBattlerIdentifiersSingles[] =
 {
     "player",
