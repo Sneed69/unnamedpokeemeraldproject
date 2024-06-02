@@ -2858,22 +2858,25 @@ void SetMoveEffect(bool32 primary, bool32 certain)
         return;
     }
 
-    switch (gBattleScripting.moveEffect) // Set move effects which happen later on
+    if (!TestIfSheerForceAffected(gBattlerAttacker, gCurrentMove) || primary)
     {
-    case MOVE_EFFECT_KNOCK_OFF:
-    case MOVE_EFFECT_SMACK_DOWN:
-    case MOVE_EFFECT_REMOVE_STATUS:
-    case MOVE_EFFECT_STOCKPILE_WORE_OFF:
-        gBattleStruct->moveEffect2 = gBattleScripting.moveEffect;
-        gBattlescriptCurrInstr++;
-        return;
-    case MOVE_EFFECT_STEALTH_ROCK:
-    case MOVE_EFFECT_SPIKES:
-    case MOVE_EFFECT_PAYDAY:
-    case MOVE_EFFECT_STEAL_ITEM:
-    case MOVE_EFFECT_BUG_BITE:
-        activateAfterFaint = TRUE;
-        break;
+        switch (gBattleScripting.moveEffect) // Set move effects which happen later on
+        {
+        case MOVE_EFFECT_KNOCK_OFF:
+        case MOVE_EFFECT_SMACK_DOWN:
+        case MOVE_EFFECT_REMOVE_STATUS:
+        case MOVE_EFFECT_STOCKPILE_WORE_OFF:
+            gBattleStruct->moveEffect2 = gBattleScripting.moveEffect;
+            gBattlescriptCurrInstr++;
+            return;
+        case MOVE_EFFECT_STEALTH_ROCK:
+        case MOVE_EFFECT_SPIKES:
+        case MOVE_EFFECT_PAYDAY:
+        case MOVE_EFFECT_STEAL_ITEM:
+        case MOVE_EFFECT_BUG_BITE:
+            activateAfterFaint = TRUE;
+            break;
+        }
     }
 
     if (gBattleScripting.moveEffect & MOVE_EFFECT_AFFECTS_USER)
