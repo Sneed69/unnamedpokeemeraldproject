@@ -126,7 +126,7 @@ WILD_BATTLE_TEST("Experience is gained by mons which did not participate in batt
 
     GIVEN {
         PLAYER(SPECIES_ALAKAZAM);
-        PLAYER(SPECIES_ABRA) { Level(40); }
+        PLAYER(SPECIES_ABRA) { Level(2); }
         OPPONENT(SPECIES_CATERPIE) { Level(10); HP(1); }
     } WHEN {
         TURN { MOVE(player, MOVE_TACKLE); }
@@ -134,7 +134,7 @@ WILD_BATTLE_TEST("Experience is gained by mons which did not participate in batt
         MESSAGE("Alakazam used Tackle!");
         MESSAGE("Wild Caterpie fainted!");
     } THEN {
-        EXPECT_GT(GetMonData(&gPlayerParty[1], MON_DATA_EXP), gExperienceTables[gSpeciesInfo[SPECIES_ABRA].growthRate][40]);
+        EXPECT_GT(GetMonData(&gPlayerParty[1], MON_DATA_EXP), gExperienceTables[gSpeciesInfo[SPECIES_ABRA].growthRate][2]);
     }
 }
 
@@ -160,7 +160,7 @@ WILD_BATTLE_TEST("Experience is gained by fainted mons")
 
     GIVEN {
         PLAYER(SPECIES_ALAKAZAM);
-        PLAYER(SPECIES_ABRA) { Level(40); HP(0);}
+        PLAYER(SPECIES_ABRA) { Level(2); HP(0);}
         OPPONENT(SPECIES_CATERPIE) { Level(10); HP(1); }
     } WHEN {
         TURN { MOVE(player, MOVE_TACKLE); }
@@ -168,7 +168,7 @@ WILD_BATTLE_TEST("Experience is gained by fainted mons")
         MESSAGE("Alakazam used Tackle!");
         MESSAGE("Wild Caterpie fainted!");
     } THEN {
-        EXPECT_GT(GetMonData(&gPlayerParty[1], MON_DATA_EXP), gExperienceTables[gSpeciesInfo[SPECIES_ABRA].growthRate][40]);
+        EXPECT_GT(GetMonData(&gPlayerParty[1], MON_DATA_EXP), gExperienceTables[gSpeciesInfo[SPECIES_ABRA].growthRate][2]);
     }
 }
 
