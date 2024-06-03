@@ -2302,16 +2302,28 @@ u32 GetBoxMonData3(struct BoxPokemon *boxMon, s32 field, u8 *data)
         retVal = boxMon->friendship;
         break;
     case MON_DATA_MOVE1:
+        retVal = boxMon->move1;
+        break;
     case MON_DATA_MOVE2:
+        retVal = boxMon->move2;
+        break;
     case MON_DATA_MOVE3:
+        retVal = boxMon->move3;
+        break;
     case MON_DATA_MOVE4:
-        retVal = boxMon->moves[field - MON_DATA_MOVE1];
+        retVal = boxMon->move4;
         break;
     case MON_DATA_PP1:
+        retVal = gMovesInfo[boxMon->move1].pp;
+        break;
     case MON_DATA_PP2:
+        retVal = gMovesInfo[boxMon->move2].pp;
+        break;
     case MON_DATA_PP3:
+        retVal = gMovesInfo[boxMon->move3].pp;
+        break;
     case MON_DATA_PP4:
-        retVal = gMovesInfo[boxMon->moves[field - MON_DATA_PP1]].pp;
+        retVal = gMovesInfo[boxMon->move4].pp;
         break;
     case MON_DATA_HP_EV:
         break;
@@ -2423,10 +2435,10 @@ u32 GetBoxMonData3(struct BoxPokemon *boxMon, s32 field, u8 *data)
             while (moves[i] != MOVES_COUNT)
             {
                 u16 move = moves[i];
-                if (boxMon->moves[0] == move
-                 || boxMon->moves[1] == move
-                 || boxMon->moves[2] == move
-                 || boxMon->moves[3] == move)
+                if (boxMon->move1 == move
+                 || boxMon->move2 == move
+                 || boxMon->move3 == move
+                 || boxMon->move4 == move)
                     retVal |= gBitTable[i];
                 i++;
             }
@@ -2612,10 +2624,16 @@ void SetBoxMonData(struct BoxPokemon *boxMon, s32 field, const void *dataArg)
         SET8(boxMon->friendship);
         break;
     case MON_DATA_MOVE1:
+        SET16(boxMon->move1);
+        break;
     case MON_DATA_MOVE2:
+        SET16(boxMon->move2);
+        break;
     case MON_DATA_MOVE3:
+        SET16(boxMon->move3);
+        break;
     case MON_DATA_MOVE4:
-        SET16(boxMon->moves[field - MON_DATA_MOVE1]);
+        SET16(boxMon->move4);
         break;
     case MON_DATA_PP1:
     case MON_DATA_PP2:

@@ -2125,6 +2125,11 @@ void CheckPokemonStorageSize(struct ScriptContext *ctx)
     ConvertIntToDecimalStringN(gStringVar3, maxPkmnStorageSize - currPkmnStorageSize, STR_CONV_MODE_LEFT_ALIGN, 6);
 }
 
+void CheckBoxPokemonSize(struct ScriptContext *ctx)
+{
+    ConvertIntToDecimalStringN(gStringVar1, sizeof(struct BoxPokemon), STR_CONV_MODE_LEFT_ALIGN, 6);
+}
+
 static void DebugAction_Util_CheckSaveBlock(u8 taskId)
 {
     Debug_DestroyMenu_Full_Script(taskId, Debug_CheckSaveBlock);

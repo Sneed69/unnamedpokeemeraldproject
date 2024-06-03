@@ -121,9 +121,25 @@ struct BoxPokemon
     u32 otId;
     u8 otName[PLAYER_NAME_LENGTH];
     u8 nickname[POKEMON_NAME_LENGTH];
-    u16 unused16;
-    
-    u16 moves[MAX_MON_MOVES];
+    u16 majorProficiency:3;
+    u16 minorProficiency:3;
+    u16 hiddenPowerType:5;
+    u16 coolRibbon:3;
+    u16 championRibbon:1;
+    u16 winningRibbon:1;
+    // ^ 32 bytes ^
+    u32 move1:11; // 2047 moves
+    u32 move2:11;
+    u32 beautyRibbon:3;
+    u32 cuteRibbon:3;
+    u32 smartRibbon:3;
+    u32 victoryRibbon:1;
+
+    u32 move3:11;
+    u32 move4:11;
+    u32 toughRibbon:3;
+    u32 artistRibbon:1;
+    u32 unused6:6;
 
     u32 species:11; // 2047 species
     u32 experience:21;
@@ -148,21 +164,7 @@ struct BoxPokemon
     u8 smart;
     u8 tough;
     u8 sheen;
-
-    u32 coolRibbon:3;
-    u32 beautyRibbon:3;
-    u32 cuteRibbon:3;
-    u32 smartRibbon:3;
-    u32 toughRibbon:3;
-    u32 championRibbon:1;
-    u32 winningRibbon:1;
-    u32 victoryRibbon:1;
-    u32 artistRibbon:1;
-    u32 hiddenPowerType:5;
-    u32 majorProficiency:3;
-    u32 minorProficiency:3;
-    u32 unused_2:2;
-}; // size 0x40 (64)
+}; // 56 bytes
 
 struct Pokemon
 {
