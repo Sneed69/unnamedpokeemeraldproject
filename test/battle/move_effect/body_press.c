@@ -4,6 +4,7 @@
 ASSUMPTIONS
 {
     ASSUME(gMovesInfo[MOVE_BODY_PRESS].effect == EFFECT_BODY_PRESS);
+    ASSUME(gMovesInfo[MOVE_BODY_PRESS].category == DAMAGE_CATEGORY_PHYSICAL);
 }
 
 SINGLE_BATTLE_TEST("Body Press uses physical defense stat of target", s16 damage)
@@ -28,6 +29,7 @@ SINGLE_BATTLE_TEST("Body Press uses physical defense stat of target", s16 damage
     }
 }
 
+TO_DO_BATTLE_TEST("Body Press's damage depends on the user's base Defense instead of its base Attack");
 TO_DO_BATTLE_TEST("Body Press's damage depends on the user's Defense stat stages");
 
 // Could be split into multiple tests or maybe to separate files based on the modifier?
