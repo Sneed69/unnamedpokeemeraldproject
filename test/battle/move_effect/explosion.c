@@ -95,7 +95,7 @@ SINGLE_BATTLE_TEST("Explosion is blocked by Ability Damp")
 {
     GIVEN {
         PLAYER(SPECIES_ALAKAZAM);
-        OPPONENT(SPECIES_GOLDUCK) { Ability(ABILITY_DAMP); }
+        OPPONENT(SPECIES_MUDKIP) { Ability(ABILITY_DAMP); }
     } WHEN {
         TURN { MOVE(player, MOVE_EXPLOSION); }
     } SCENE {
@@ -104,7 +104,7 @@ SINGLE_BATTLE_TEST("Explosion is blocked by Ability Damp")
             HP_BAR(player, hp: 0);
         }
         ABILITY_POPUP(opponent, ABILITY_DAMP);
-        MESSAGE("Foe Golduck's Damp prevents Alakazam from using Explosion!");
+        MESSAGE("Foe Mudkip's Damp prevents Alakazam from using Explosion!");
     }
 }
 
@@ -127,7 +127,7 @@ SINGLE_BATTLE_TEST("Explosion does not trigger Destiny Bond")
 DOUBLE_BATTLE_TEST("Explosion boosted by Galvanize is correctly blocked by Volt Absorb")
 {
     GIVEN {
-        PLAYER(SPECIES_GEODUDE_ALOLAN) { Ability(ABILITY_GALVANIZE); }
+        PLAYER(SPECIES_GEODUDE) { Ability(ABILITY_GALVANIZE); }
         PLAYER(SPECIES_ABRA) { HP(1); }
         OPPONENT(SPECIES_LANTURN) { Ability(ABILITY_VOLT_ABSORB); }
         OPPONENT(SPECIES_ALAKAZAM) { HP(1); }

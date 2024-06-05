@@ -27,7 +27,7 @@ SINGLE_BATTLE_TEST("Mind's Eye doesn't bypass a Ghost-type's Wonder Guard")
 
     GIVEN {
         PLAYER(SPECIES_ALAKAZAM) { Ability(ABILITY_SCRAPPY); };
-        OPPONENT(SPECIES_SHEDINJA) { Ability(ABILITY_WONDER_GUARD); };
+        OPPONENT(SPECIES_SHUPPET) { Ability(ABILITY_WONDER_GUARD); };
     } WHEN {
         TURN { MOVE(player, move); }
     } SCENE {
@@ -36,7 +36,7 @@ SINGLE_BATTLE_TEST("Mind's Eye doesn't bypass a Ghost-type's Wonder Guard")
             HP_BAR(opponent);
         }
         ABILITY_POPUP(opponent, ABILITY_WONDER_GUARD);
-        MESSAGE("Foe Shedinja avoided damage with Wonder Guard!");
+        MESSAGE("Foe Shuppet avoided damage with Wonder Guard!");
     }
 }
 
@@ -57,7 +57,7 @@ AI_SINGLE_BATTLE_TEST("AI doesn't use accuracy-lowering moves if it knows that t
     GIVEN {
         AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT);
         PLAYER(SPECIES_ALAKAZAM) { Ability(ABILITY_MINDS_EYE); }
-        OPPONENT(SPECIES_BASCULEGION) { Moves(MOVE_CELEBRATE, moveAI); Ability(abilityAI); }
+        OPPONENT(SPECIES_JELLICENT) { Moves(MOVE_CELEBRATE, moveAI); Ability(abilityAI); }
     } WHEN {
             TURN { MOVE(player, MOVE_TACKLE); }
             TURN { MOVE(player, MOVE_TACKLE);

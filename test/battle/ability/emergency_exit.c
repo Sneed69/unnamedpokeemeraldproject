@@ -5,7 +5,7 @@ SINGLE_BATTLE_TEST("Emergency Exit switches out when taking 50% max-hp damage")
 {
     GIVEN {
         PLAYER(SPECIES_ALAKAZAM);
-        OPPONENT(SPECIES_GOLISOPOD) { Ability(ABILITY_EMERGENCY_EXIT); MaxHP(263); HP(262); };
+        OPPONENT(SPECIES_MASQUERAIN) { Ability(ABILITY_EMERGENCY_EXIT); MaxHP(263); HP(262); };
         OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, MOVE_SUPER_FANG); SEND_OUT(opponent, 1); }
@@ -20,7 +20,7 @@ SINGLE_BATTLE_TEST("Emergency Exit does not switch out when going below 50% max-
 {
     GIVEN {
         PLAYER(SPECIES_ALAKAZAM)
-        OPPONENT(SPECIES_GOLISOPOD) { Ability(ABILITY_EMERGENCY_EXIT); MaxHP(263); HP(262); Item(ITEM_SITRUS_BERRY); };
+        OPPONENT(SPECIES_MASQUERAIN) { Ability(ABILITY_EMERGENCY_EXIT); MaxHP(263); HP(262); Item(ITEM_SITRUS_BERRY); };
         OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, MOVE_SUPER_FANG); }
@@ -36,7 +36,7 @@ SINGLE_BATTLE_TEST("Emergency Exit switches out when going below 50% max-HP but 
 {
     GIVEN {
         PLAYER(SPECIES_ALAKAZAM)
-        OPPONENT(SPECIES_GOLISOPOD) { Ability(ABILITY_EMERGENCY_EXIT); MaxHP(263); HP(133); Item(ITEM_ORAN_BERRY); };
+        OPPONENT(SPECIES_MASQUERAIN) { Ability(ABILITY_EMERGENCY_EXIT); MaxHP(263); HP(133); Item(ITEM_ORAN_BERRY); };
         OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, MOVE_SUPER_FANG); SEND_OUT(opponent, 1); }

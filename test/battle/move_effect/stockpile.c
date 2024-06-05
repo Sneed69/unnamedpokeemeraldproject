@@ -74,7 +74,7 @@ SINGLE_BATTLE_TEST("Spit Up's power raises depending on Stockpile's count", s16 
     PARAMETRIZE { count = 3; }
     GIVEN {
         PLAYER(SPECIES_ALAKAZAM);
-        OPPONENT(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_ALAKAZAM) { HP(500); }
     } WHEN {
         TURN { MOVE(player, MOVE_STOCKPILE); }
         if (count != 1){
@@ -188,7 +188,7 @@ DOUBLE_BATTLE_TEST("Stockpile's Def and Sp. Def boost is lost after using Spit U
         ASSUME(gMovesInfo[MOVE_GUST].category == DAMAGE_CATEGORY_SPECIAL);
         PLAYER(SPECIES_ALAKAZAM) { Speed(4); HP(399); MaxHP(400); }
         PLAYER(SPECIES_ALAKAZAM) { Speed(3); }
-        OPPONENT(SPECIES_ALAKAZAM) { Speed(2); }
+        OPPONENT(SPECIES_ALAKAZAM) { Speed(2); HP(399); MaxHP(400); }
         OPPONENT(SPECIES_ALAKAZAM) { Speed(1); }
     } WHEN {
         TURN { MOVE(opponentLeft, MOVE_TACKLE, target: playerLeft); MOVE(opponentRight, MOVE_GUST, target: playerLeft); }

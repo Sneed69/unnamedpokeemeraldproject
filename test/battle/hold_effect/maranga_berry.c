@@ -42,14 +42,14 @@ SINGLE_BATTLE_TEST("Maranga Berry raises the holder's Sp. Def by two stages with
     GIVEN {
         ASSUME(gMovesInfo[MOVE_SWIFT].category == DAMAGE_CATEGORY_SPECIAL);
         PLAYER(SPECIES_ALAKAZAM);
-        OPPONENT(SPECIES_APPLIN) { Item(ITEM_MARANGA_BERRY); Ability(ABILITY_RIPEN); }
+        OPPONENT(SPECIES_SNORLAX) { Item(ITEM_MARANGA_BERRY); Ability(ABILITY_RIPEN); }
     } WHEN {
         TURN { MOVE(player, MOVE_SWIFT); }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_SWIFT, player);
         HP_BAR(opponent);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, opponent);
-        MESSAGE("Using Maranga Berry, the Sp. Def of Foe Applin sharply rose!");
+        MESSAGE("Using Maranga Berry, the Sp. Def of Foe Snorlax sharply rose!");
     } THEN {
         EXPECT_EQ(opponent->statStages[STAT_SPDEF], DEFAULT_STAT_STAGE + 2);
     }
@@ -67,7 +67,7 @@ SINGLE_BATTLE_TEST("Maranga Berry doesn't trigger if the item hold user used a s
         HP_BAR(opponent);
         NONE_OF {
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, player);
-            MESSAGE("Using Maranga Berry, the Sp. Def of Applin sharply rose!");
+            MESSAGE("Using Maranga Berry, the Sp. Def of Snorlax sharply rose!");
         }
     } THEN {
         EXPECT_EQ(player->statStages[STAT_SPDEF], DEFAULT_STAT_STAGE);

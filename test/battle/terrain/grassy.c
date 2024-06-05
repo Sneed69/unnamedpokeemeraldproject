@@ -21,14 +21,14 @@ SINGLE_BATTLE_TEST("Grassy Terrain activates Grassy Seed and Mimicry")
         ASSUME(gItemsInfo[ITEM_GRASSY_SEED].holdEffect == HOLD_EFFECT_SEEDS);
         ASSUME(gItemsInfo[ITEM_GRASSY_SEED].holdEffectParam == HOLD_EFFECT_PARAM_GRASSY_TERRAIN);
         PLAYER(SPECIES_ALAKAZAM) { Item(ITEM_GRASSY_SEED); }
-        OPPONENT(SPECIES_STUNFISK_GALARIAN) { Ability(ABILITY_MIMICRY); }
+        OPPONENT(SPECIES_PIKACHU) { Ability(ABILITY_MIMICRY); }
     } WHEN {
         TURN { MOVE(player, MOVE_GRASSY_TERRAIN); }
     } SCENE {
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
         MESSAGE("Using Grassy Seed, the Defense of Alakazam rose!");
         ABILITY_POPUP(opponent);
-        MESSAGE("Foe Stunfisk's type changed to Grass!");
+        MESSAGE("Foe Pikachu's type changed to Grass!");
     } THEN {
         EXPECT_EQ(gBattleMons[B_POSITION_OPPONENT_LEFT].type1, TYPE_GRASS);
     }
@@ -71,7 +71,7 @@ SINGLE_BATTLE_TEST("Grassy Terrain lasts for 5 turns")
     } SCENE {
         MESSAGE("Foe Alakazam used Celebrate!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_GRASSY_TERRAIN, player);
-        MESSAGE("Grass grew to cover the battlefield!");
+        MESSAGE("A verdant aura envelops the battlefield!");
 
         MESSAGE("Alakazam used Celebrate!");
         MESSAGE("Foe Alakazam used Celebrate!");
@@ -82,6 +82,6 @@ SINGLE_BATTLE_TEST("Grassy Terrain lasts for 5 turns")
         MESSAGE("Alakazam used Celebrate!");
         MESSAGE("Foe Alakazam used Celebrate!");
 
-        MESSAGE("The grass disappeared from the battlefield.");
+        MESSAGE("The verdant aura disappeared.");
     }
 }

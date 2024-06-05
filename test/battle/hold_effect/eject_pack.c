@@ -12,7 +12,7 @@ SINGLE_BATTLE_TEST("Eject Pack does not cause the new Pokémon to lose HP due to
         ASSUME(gItemsInfo[ITEM_LIFE_ORB].holdEffect == HOLD_EFFECT_LIFE_ORB);
         PLAYER(SPECIES_ALAKAZAM) { Item(ITEM_EJECT_PACK); }
         PLAYER(SPECIES_ABRA) { Item(ITEM_LIFE_ORB); }
-        OPPONENT(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_ALAKAZAM) { HP(400); }
     } WHEN {
         TURN { MOVE(player, MOVE_OVERHEAT); SEND_OUT(player, 1); }
     } SCENE {
@@ -20,7 +20,7 @@ SINGLE_BATTLE_TEST("Eject Pack does not cause the new Pokémon to lose HP due to
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, player);
         MESSAGE("Alakazam is switched out with the Eject Pack!");
-        MESSAGE("Go! Abra!");
+        SEND_IN_MESSAGE("Abra");
         NOT MESSAGE("Abra was hurt by its Life Orb!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_CELEBRATE, opponent);
     }
@@ -49,7 +49,7 @@ SINGLE_BATTLE_TEST("Eject Pack is triggered by self-inflicting stat decreases")
         ASSUME(gItemsInfo[ITEM_LIFE_ORB].holdEffect == HOLD_EFFECT_LIFE_ORB);
         PLAYER(SPECIES_ALAKAZAM) { Item(ITEM_EJECT_PACK); }
         PLAYER(SPECIES_ABRA);
-        OPPONENT(SPECIES_ALAKAZAM)  { Item(ITEM_EJECT_PACK); }
+        OPPONENT(SPECIES_ALAKAZAM)  { Item(ITEM_EJECT_PACK); HP(400); }
         OPPONENT(SPECIES_ABRA);
     } WHEN {
         TURN { MOVE(player, MOVE_OVERHEAT); SEND_OUT(player, 1); }
@@ -59,7 +59,7 @@ SINGLE_BATTLE_TEST("Eject Pack is triggered by self-inflicting stat decreases")
         NOT ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, opponent);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, player);
         MESSAGE("Alakazam is switched out with the Eject Pack!");
-        MESSAGE("Go! Abra!");
+        SEND_IN_MESSAGE("Abra");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_CELEBRATE, opponent);
     }
 }

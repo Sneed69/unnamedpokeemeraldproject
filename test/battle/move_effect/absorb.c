@@ -24,7 +24,7 @@ SINGLE_BATTLE_TEST("Absorb recovers 50% of the damage dealt")
     }
 }
 
-SINGLE_BATTLE_TEST("Absorb does not fail if Heal Block applies")
+SINGLE_BATTLE_TEST("Absorb does not fail if Heal Block applies but does not heal")
 {
     ASSUME(B_HEAL_BLOCKING < GEN_6);
     GIVEN {
@@ -35,7 +35,9 @@ SINGLE_BATTLE_TEST("Absorb does not fail if Heal Block applies")
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_ABSORB, player);
         HP_BAR(opponent);
-        HP_BAR(player);
+        NONE_OF {
+            HP_BAR(player);
+        }
     }
 }
 

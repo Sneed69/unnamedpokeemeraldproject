@@ -22,7 +22,7 @@ SINGLE_BATTLE_TEST("Download raises Attack if player has lower Def than Sp. Def"
         {
             ABILITY_POPUP(opponent, ABILITY_DOWNLOAD);
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
-            MESSAGE("Foe MAGNEMITE's Download raised its Attack!");
+            MESSAGE("Foe Magnemite's Download raised its Attack!");
         }
         HP_BAR(player, captureDamage: &results[i].damage);
     } FINALLY {
@@ -45,7 +45,7 @@ SINGLE_BATTLE_TEST("Download raises Sp.Attack if enemy has lower Sp. Def than De
         {
             ABILITY_POPUP(player, ABILITY_DOWNLOAD);
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
-            MESSAGE("MAGNEMITE's Download raised its Sp. Atk!");
+            MESSAGE("Magnemite's Download raised its Sp. Atk!");
         }
         HP_BAR(opponent, captureDamage: &results[i].damage);
     } FINALLY {
@@ -72,19 +72,19 @@ SINGLE_BATTLE_TEST("Download doesn't activate if target hasn't been sent out yet
         ANIMATION(ANIM_TYPE_MOVE, MOVE_EXPLOSION, player);
         // Everyone faints.
 
-        MESSAGE("Go! MAGNEMITE!");
-        MESSAGE("2 sent out MAGNEMITE2!");
+        SEND_IN_MESSAGE("Magnemite");
+        MESSAGE("2 sent out Magnemite!");
 
         NONE_OF {
             ABILITY_POPUP(player, ABILITY_DOWNLOAD);
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
-            MESSAGE("MAGNEMITE's Download raised its Attack!");
+            MESSAGE("Magnemite's Download raised its Attack!");
         }
         if (ability == ABILITY_DOWNLOAD)
         {
             ABILITY_POPUP(opponent, ABILITY_DOWNLOAD);
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
-            MESSAGE("Foe MAGNEMITE2's Download raised its Sp. Atk!");
+            MESSAGE("Foe Magnemite's Download raised its Sp. Atk!");
         }
 
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TRI_ATTACK, opponent);

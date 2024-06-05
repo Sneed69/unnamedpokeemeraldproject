@@ -1,7 +1,7 @@
 #include "global.h"
 #include "test/battle.h"
 
-SINGLE_BATTLE_TEST("Electric Terrain protects grounded battlers from falling asleep")
+SINGLE_BATTLE_TEST("Electric Terrain protects battlers from falling asleep")
 {
     GIVEN {
         PLAYER(SPECIES_ALAKAZAM);
@@ -10,12 +10,12 @@ SINGLE_BATTLE_TEST("Electric Terrain protects grounded battlers from falling asl
         TURN { MOVE(player, MOVE_ELECTRIC_TERRAIN); MOVE(opponent, MOVE_SPORE); }
         TURN { MOVE(player, MOVE_SPORE); }
     } SCENE {
-        MESSAGE("Alakazam used Electric Terrain!");
+        MESSAGE("Alakazam used Electrifying Aura!");
         MESSAGE("Foe Claydol used Spore!");
         MESSAGE("The electrifying aura prevents sleep!");
         MESSAGE("Alakazam used Spore!");
-        MESSAGE("Foe Claydol fell asleep!");
-        STATUS_ICON(opponent, sleep: TRUE);
+        MESSAGE("The electrifying aura prevents sleep!");
+        NONE_OF { STATUS_ICON(opponent, sleep: TRUE); }
     }
 }
 
@@ -25,14 +25,14 @@ SINGLE_BATTLE_TEST("Electric Terrain activates Electric Seed and Mimicry")
         ASSUME(gItemsInfo[ITEM_ELECTRIC_SEED].holdEffect == HOLD_EFFECT_SEEDS);
         ASSUME(gItemsInfo[ITEM_ELECTRIC_SEED].holdEffectParam == HOLD_EFFECT_PARAM_ELECTRIC_TERRAIN);
         PLAYER(SPECIES_ALAKAZAM) { Item(ITEM_ELECTRIC_SEED); }
-        OPPONENT(SPECIES_STUNFISK_GALARIAN) { Ability(ABILITY_MIMICRY); }
+        OPPONENT(SPECIES_PIKACHU) { Ability(ABILITY_MIMICRY); }
     } WHEN {
         TURN { MOVE(player, MOVE_ELECTRIC_TERRAIN); }
     } SCENE {
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
         MESSAGE("Using Electric Seed, the Defense of Alakazam rose!");
         ABILITY_POPUP(opponent);
-        MESSAGE("Foe Stunfisk's type changed to Electric!");
+        MESSAGE("Foe Pikachu's type changed to Electric!");
     } THEN {
         EXPECT_EQ(gBattleMons[B_POSITION_OPPONENT_LEFT].type1, TYPE_ELECTRIC);
     }
@@ -75,7 +75,7 @@ SINGLE_BATTLE_TEST("Electric Terrain lasts for 5 turns")
     } SCENE {
         MESSAGE("Foe Alakazam used Celebrate!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_ELECTRIC_TERRAIN, player);
-        MESSAGE("An electric current runs across the battlefield!");
+        MESSAGE("An electrifying aura envelops the battlefield!");
 
         MESSAGE("Alakazam used Celebrate!");
         MESSAGE("Foe Alakazam used Celebrate!");
@@ -86,6 +86,6 @@ SINGLE_BATTLE_TEST("Electric Terrain lasts for 5 turns")
         MESSAGE("Alakazam used Celebrate!");
         MESSAGE("Foe Alakazam used Celebrate!");
 
-        MESSAGE("The electricity disappeared from the battlefield.");
+        MESSAGE("The electrifying aura disappeared.");
     }
 }

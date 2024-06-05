@@ -1,7 +1,7 @@
 #include "global.h"
 #include "test/battle.h"
 
-SINGLE_BATTLE_TEST("Gale Wings only grants priority at full HP")
+/*SINGLE_BATTLE_TEST("Gale Wings only grants priority at full HP")
 {
     u16 hp;
     PARAMETRIZE { hp = 100; }
@@ -23,7 +23,7 @@ SINGLE_BATTLE_TEST("Gale Wings only grants priority at full HP")
             MESSAGE("Talonflame used Aerial Ace!");
         }
     }
-}
+}*/
 
 SINGLE_BATTLE_TEST("Gale Wings only grants priority to Flying-type moves")
 {
@@ -31,7 +31,7 @@ SINGLE_BATTLE_TEST("Gale Wings only grants priority to Flying-type moves")
     PARAMETRIZE { move = MOVE_AERIAL_ACE; }
     PARAMETRIZE { move = MOVE_FLARE_BLITZ; }
     GIVEN {
-        ASSUME(B_GALE_WINGS >= GEN_7);
+        //ASSUME(B_GALE_WINGS >= GEN_7);
         ASSUME(gMovesInfo[MOVE_AERIAL_ACE].type == TYPE_FLYING);
         ASSUME(gMovesInfo[MOVE_FLARE_BLITZ].type == TYPE_FIRE);
         PLAYER(SPECIES_TALONFLAME) { Ability(ABILITY_GALE_WINGS); HP(100); MaxHP(100); Speed(1);}

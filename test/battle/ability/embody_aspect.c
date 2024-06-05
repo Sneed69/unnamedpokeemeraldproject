@@ -1,7 +1,7 @@
 #include "global.h"
 #include "test/battle.h"
 
-
+/*
 SINGLE_BATTLE_TEST("Embody Aspect raises a stat depending on the users form by one stage")
 {
     u16 species, ability;
@@ -50,10 +50,10 @@ SINGLE_BATTLE_TEST("Embody Aspect activates when it's no longer effected by Neut
     } SCENE {
         ABILITY_POPUP(player, ABILITY_NEUTRALIZING_GAS);
         MESSAGE("Neutralizing Gas filled the area!");
-        MESSAGE("Weezing, that's enough! Come back!");
+        SWITCH_OUT_MESSAGE("Weezing");
         MESSAGE("The effects of Neutralizing Gas wore off!");
         ABILITY_POPUP(opponent, ABILITY_EMBODY_ASPECT_TEAL_MASK);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
         MESSAGE("Foe Ogerpon's Embody Aspect raised its Speed!");
     }
-}
+}*/

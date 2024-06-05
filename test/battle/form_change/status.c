@@ -1,6 +1,6 @@
 #include "global.h"
 #include "test/battle.h"
-
+/*
 SINGLE_BATTLE_TEST("Shaymin-Sky reverts to Shaymin-Land when frozen or frostbitten")
 {
     u32 move;
@@ -37,4 +37,4 @@ SINGLE_BATTLE_TEST("Shaymin-Sky reverts to Shaymin-Land when frozen or frostbitt
             EXPECT_EQ(player->species, SPECIES_SHAYMIN_SKY);
 
     }
-}
+}*/

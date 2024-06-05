@@ -24,7 +24,7 @@ SINGLE_BATTLE_TEST("Metronome Item gradually boosts power of consecutively used 
     u32 j;
     GIVEN {
         PLAYER(SPECIES_ALAKAZAM) { Item(ITEM_METRONOME); }
-        OPPONENT(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_ALAKAZAM) { HP(600); };
     } WHEN {
         for (j = 0; j < METRONOME_TURNS; ++j) {
             TURN { MOVE(player, MOVE_TACKLE); }

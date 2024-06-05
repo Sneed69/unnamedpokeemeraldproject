@@ -15,7 +15,7 @@ SINGLE_BATTLE_TEST("Hex deals double damage to foes with a status", s16 damage)
         ASSUME(gMovesInfo[MOVE_HEX].effect == EFFECT_DOUBLE_POWER_ON_ARG_STATUS);
         ASSUME(gMovesInfo[MOVE_HEX].argument == STATUS1_ANY);
         PLAYER(SPECIES_ALAKAZAM);
-        OPPONENT(SPECIES_ALAKAZAM) { Status1(status1); }
+        OPPONENT(SPECIES_ALAKAZAM) { Status1(status1); HP(490); }
     } WHEN {
         TURN { MOVE(player, MOVE_HEX); }
     } SCENE {

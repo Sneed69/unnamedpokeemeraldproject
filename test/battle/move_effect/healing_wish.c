@@ -54,7 +54,7 @@ SINGLE_BATTLE_TEST("Healing Wish effect activates only if the switched pokemon c
     GIVEN {
         ASSUME(B_HEALING_WISH_SWITCH >= GEN_8);
         PLAYER(SPECIES_GARDEVOIR) { Speed(300); }
-        PLAYER(SPECIES_NINJASK) { Speed(400); }
+        PLAYER(SPECIES_BUTTERFREE) { Speed(400); }
         PLAYER(SPECIES_ABRA) { HP(50); MaxHP(100); Status1(STATUS1_PARALYSIS); Speed(50); }
         OPPONENT(SPECIES_ALAKAZAM) { Speed(50); }
     } WHEN {

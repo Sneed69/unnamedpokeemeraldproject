@@ -14,7 +14,7 @@ SINGLE_BATTLE_TEST("Anger Shell activates only if the target had more than 50% o
 
     GIVEN {
         ASSUME(gMovesInfo[MOVE_TACKLE].power != 0);
-        PLAYER(SPECIES_KLAWF) { Ability(ABILITY_ANGER_SHELL); MaxHP(maxHp); HP(hp); }
+        PLAYER(SPECIES_BOLDORE) { Ability(ABILITY_ANGER_SHELL); MaxHP(maxHp); HP(hp); }
         OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(opponent, MOVE_TACKLE); }

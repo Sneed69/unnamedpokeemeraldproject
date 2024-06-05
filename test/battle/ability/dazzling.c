@@ -11,9 +11,9 @@ DOUBLE_BATTLE_TEST("Dazzling, Queenly Majesty and Armor Tail protect the user fr
 {
     u32 species, ability;
 
-    PARAMETRIZE { species = SPECIES_BRUXISH; ability = ABILITY_DAZZLING; }
+    PARAMETRIZE { species = SPECIES_GOREBYSS; ability = ABILITY_DAZZLING; }
     PARAMETRIZE { species = SPECIES_FARIGIRAF; ability = ABILITY_ARMOR_TAIL; }
-    PARAMETRIZE { species = SPECIES_TSAREENA; ability = ABILITY_QUEENLY_MAJESTY; }
+    PARAMETRIZE { species = SPECIES_GOREBYSS; ability = ABILITY_QUEENLY_MAJESTY; }
 
     GIVEN {
         PLAYER(SPECIES_ALAKAZAM);
@@ -33,9 +33,9 @@ DOUBLE_BATTLE_TEST("Dazzling, Queenly Majesty and Armor Tail protect users partn
 {
     u32 species, ability;
 
-    PARAMETRIZE { species = SPECIES_BRUXISH; ability = ABILITY_DAZZLING; }
+    PARAMETRIZE { species = SPECIES_GOREBYSS; ability = ABILITY_DAZZLING; }
     PARAMETRIZE { species = SPECIES_FARIGIRAF; ability = ABILITY_ARMOR_TAIL; }
-    PARAMETRIZE { species = SPECIES_TSAREENA; ability = ABILITY_QUEENLY_MAJESTY; }
+    PARAMETRIZE { species = SPECIES_GOREBYSS; ability = ABILITY_QUEENLY_MAJESTY; }
 
     GIVEN {
         PLAYER(SPECIES_ALAKAZAM);

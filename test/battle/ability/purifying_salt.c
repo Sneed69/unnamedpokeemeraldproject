@@ -9,7 +9,7 @@ SINGLE_BATTLE_TEST("Purifying Salt halves damage from Ghost-type moves", s16 dam
     GIVEN {
         ASSUME(gMovesInfo[MOVE_SHADOW_BALL].type == TYPE_GHOST);
         PLAYER(SPECIES_ALAKAZAM);
-        OPPONENT(SPECIES_GARGANACL) { Ability(ability); }
+        OPPONENT(SPECIES_ROGGENROLA) { Ability(ability); }
     } WHEN {
         TURN { MOVE(player, MOVE_SHADOW_BALL); }
     } SCENE {
@@ -22,13 +22,13 @@ SINGLE_BATTLE_TEST("Purifying Salt halves damage from Ghost-type moves", s16 dam
 SINGLE_BATTLE_TEST("Purifying Salt makes Rest fail")
 {
     GIVEN {
-        PLAYER(SPECIES_GARGANACL) { Ability(ABILITY_PURIFYING_SALT); HP(1); MaxHP(100);}
+        PLAYER(SPECIES_ROGGENROLA) { Ability(ABILITY_PURIFYING_SALT); HP(1); MaxHP(100);}
         OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, MOVE_REST); }
     } SCENE {
         NONE_OF {
-            MESSAGE("Garganacl went to sleep!");
+            MESSAGE("Roggenrola went to sleep!");
         }
     }
 }

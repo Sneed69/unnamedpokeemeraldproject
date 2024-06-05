@@ -10,7 +10,7 @@ ASSUMPTIONS
 SINGLE_BATTLE_TEST("Desolate Land blocks damaging Water-type moves")
 {
     GIVEN {
-        PLAYER(SPECIES_GROUDON) {Item(ITEM_RED_ORB);}
+        PLAYER(SPECIES_GROUDON);
         OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(opponent, MOVE_WATER_GUN); }

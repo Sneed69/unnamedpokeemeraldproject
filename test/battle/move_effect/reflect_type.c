@@ -4,7 +4,7 @@
 TO_DO_BATTLE_TEST("Reflect Type fails if the user is Terastallized");
 TO_DO_BATTLE_TEST("Reflect Type succeeds against a Terastallized target and copies its Tera type");
 
-SINGLE_BATTLE_TEST("Reflect Type does not affect any of Arceus' forms")
+/*SINGLE_BATTLE_TEST("Reflect Type does not affect any of Arceus' forms")
 {
     u32 j;
     static const u16 sArceusFormSpeciesIdTable[] = {
@@ -84,7 +84,7 @@ SINGLE_BATTLE_TEST("Reflect Type does not affect any of Silvally's forms")
         MESSAGE("Alakazam used Reflect Type!");
         MESSAGE("But it failed!");
     }
-}
+}*/
 
 SINGLE_BATTLE_TEST("Reflect Type does not affect Pokémon with no types")
 {

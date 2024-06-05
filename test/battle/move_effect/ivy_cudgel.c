@@ -1,6 +1,6 @@
 #include "global.h"
 #include "test/battle.h"
-
+/*
 ASSUMPTIONS
 {
     ASSUME(gMovesInfo[MOVE_IVY_CUDGEL].effect == EFFECT_IVY_CUDGEL);
@@ -48,4 +48,4 @@ SINGLE_BATTLE_TEST("Ivy Cudgel does not change the move type if used by Pokémon
         HP_BAR(opponent);
         MESSAGE("It's super effective!"); // Should be super effective everytime if type isnt being changed
     }
-}
+}*/

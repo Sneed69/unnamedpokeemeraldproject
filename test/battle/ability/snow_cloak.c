@@ -20,7 +20,6 @@ SINGLE_BATTLE_TEST("Snow Cloak increases Sp. Def during hail", s16 damage)
     PARAMETRIZE{ ability = ABILITY_CRYOPHILIC; }
     PARAMETRIZE{ ability = ABILITY_SNOW_CLOAK; }
     GIVEN {
-        ASSUME(gMovesInfo[MOVE_POUND].accuracy == 100);
         PLAYER(SPECIES_GLACEON) { Ability(ability); }
         OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {

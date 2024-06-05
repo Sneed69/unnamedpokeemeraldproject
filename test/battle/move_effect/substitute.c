@@ -44,7 +44,7 @@ SINGLE_BATTLE_TEST("Substitute's HP cost can trigger a berry")
 {
     GIVEN {
         ASSUME(gItemsInfo[ITEM_SITRUS_BERRY].battleUsage == EFFECT_ITEM_RESTORE_HP);
-        PLAYER(SPECIES_ALAKAZAM) { HP(300); Item(ITEM_SITRUS_BERRY); }
+        PLAYER(SPECIES_ALAKAZAM) { HP((gSpeciesInfo[SPECIES_ALAKAZAM].baseHP) + HP_BASE / 2 + 1); Item(ITEM_SITRUS_BERRY); }
         PLAYER(SPECIES_ABRA);
         OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {

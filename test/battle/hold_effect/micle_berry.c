@@ -37,14 +37,14 @@ SINGLE_BATTLE_TEST("Micle Berry raises the holder's accuracy by 1.2 when HP drop
 SINGLE_BATTLE_TEST("Micle Berry raises the holder's accuracy by 1.2 when HP drops to 1/2 or below")
 {
     GIVEN {
-        PLAYER(SPECIES_BELLSPROUT) { MaxHP(100); HP(100); Ability(ABILITY_GLUTTONY); Item(ITEM_MICLE_BERRY); }
+        PLAYER(SPECIES_SNORLAX) { MaxHP(100); HP(100); Ability(ABILITY_GLUTTONY); Item(ITEM_MICLE_BERRY); }
         OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(opponent, MOVE_DRAGON_RAGE); }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_DRAGON_RAGE, opponent);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, player);
-        MESSAGE("Bellsprout boosted the accuracy of its next move using Micle Berry!");
+        MESSAGE("Snorlax boosted the accuracy of its next move using Micle Berry!");
     }
 }
 

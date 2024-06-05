@@ -17,6 +17,7 @@ SINGLE_BATTLE_TEST("Sheer Force boosts power, but removes secondary effects of m
         if (MoveIsAffectedBySheerForce(j)
           //&& gMovesInfo[j].effect != EFFECT_ORDER_UP
           && gMovesInfo[j].effect != EFFECT_AURA_WHEEL
+          && gMovesInfo[j].effect != EFFECT_DUST_DEVIL
           && gMovesInfo[j].effect != EFFECT_PLACEHOLDER)
         {
             PARAMETRIZE { ability = ABILITY_ANGER_POINT; move = j; }
@@ -25,8 +26,8 @@ SINGLE_BATTLE_TEST("Sheer Force boosts power, but removes secondary effects of m
     }
 
     GIVEN {
-        PLAYER(SPECIES_TAUROS) { Ability(ability); Status1(move == MOVE_SNORE ? STATUS1_SLEEP : STATUS1_NONE); }
-        OPPONENT(SPECIES_ALAKAZAM);
+        PLAYER(SPECIES_TAUROS) { Ability(ability); Status1(move == MOVE_SNORE ? STATUS1_SLEEP : STATUS1_NONE); SpAttack(400); Attack(400);}
+        OPPONENT(SPECIES_ALAKAZAM) { HP(700); }
     } WHEN {
         if (move == MOVE_ALLURING_VOICE || move == MOVE_BURNING_JEALOUSY) // Alluring Voice requires the target to boost stats to have an effect
             TURN { MOVE(opponent, MOVE_AGILITY); MOVE(player, move); }
@@ -59,6 +60,38 @@ SINGLE_BATTLE_TEST("Sheer Force boosts power, but removes secondary effects of m
                 HP_BAR(player);
                 MESSAGE("Tauros is hit with recoil!");
             }
+        }
+    } FINALLY {
+        s32 j;
+        for (j = 0; j < gBattleTestRunnerState->parametersCount; j+=2)
+        {
+            EXPECT_GT(results[j+1].damage, results[j].damage);
+        }
+    }
+}
+
+SINGLE_BATTLE_TEST("Sheer Force boosts power, but removes secondary effects of Dust Devil", s16 damage)
+{
+    u32 ability = 0, move = 0;
+
+    PARAMETRIZE { ability = ABILITY_ANGER_POINT; move = MOVE_DUST_DEVIL; }
+    PARAMETRIZE { ability = ABILITY_SHEER_FORCE; move = MOVE_DUST_DEVIL; }
+
+    GIVEN {
+        PLAYER(SPECIES_TAUROS) { Ability(ability); }
+        OPPONENT(SPECIES_ALAKAZAM) { HP(300); Item(ITEM_LIFE_ORB); }
+    } WHEN {
+        TURN { MOVE(player, move); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, move, player);
+        HP_BAR(opponent, captureDamage: &results[i].damage);
+        if (ability == ABILITY_SHEER_FORCE) {
+            NONE_OF {
+                MESSAGE("Tauros knocked off Foe Alakazam's Life Orb!");
+            }
+        }
+        else {
+            MESSAGE("Tauros knocked off Foe Alakazam's Life Orb!");
         }
     } FINALLY {
         s32 j;

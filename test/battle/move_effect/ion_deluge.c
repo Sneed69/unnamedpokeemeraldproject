@@ -33,16 +33,16 @@ WILD_BATTLE_TEST("Ion Deluge works the same way as always when used by a mon wit
 
     GIVEN {
         PLAYER(SPECIES_ALAKAZAM);
-        OPPONENT(SPECIES_ZEBSTRIKA) { Ability(ability); }
+        OPPONENT(SPECIES_PIKACHU) { Ability(ability); SpAttack(200);}
     } WHEN {
         TURN { MOVE(opponent, MOVE_ION_DELUGE); }
     } SCENE {
-        MESSAGE("Wild Zebstrika used Ion Deluge!");
+        MESSAGE("Wild Pikachu used Ion Deluge!");
         NONE_OF {
             ABILITY_POPUP(opponent, ability);
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
-            MESSAGE("Wild Zebstrika's Sp.Atk rose!");
-            MESSAGE("Wild Zebstrika's Speed rose!");
+            MESSAGE("Wild Pikachu's Sp.Atk rose!");
+            MESSAGE("Wild Pikachu's Speed rose!");
         }
         MESSAGE("A deluge of ions showers the battlefield!");
     }

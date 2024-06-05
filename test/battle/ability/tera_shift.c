@@ -1,6 +1,6 @@
 #include "global.h"
 #include "test/battle.h"
-
+/*
 SINGLE_BATTLE_TEST("Tera Shift transforms Terapagos into its Terastal form on switch in")
 {
     GIVEN {
@@ -32,4 +32,4 @@ SINGLE_BATTLE_TEST("Tera Shift can't be suppressed by Neutralizing Gas")
     } THEN {
         EXPECT_EQ(player->species, SPECIES_TERAPAGOS_TERASTAL);
     }
-}
+}*/

@@ -13,7 +13,7 @@ SINGLE_BATTLE_TEST("Contrary raises Attack when Intimidated in a single battle",
     PARAMETRIZE { ability = ABILITY_TANGLED_FEET; }
     GIVEN {
         PLAYER(SPECIES_MIGHTYENA) { Ability(ABILITY_INTIMIDATE); }
-        OPPONENT(SPECIES_SPINDA) { Ability(ability); }
+        OPPONENT(SPECIES_MALAMAR) { Ability(ability); }
     } WHEN {
         TURN { MOVE(opponent, MOVE_TACKLE); }
     } SCENE {
@@ -21,7 +21,7 @@ SINGLE_BATTLE_TEST("Contrary raises Attack when Intimidated in a single battle",
         if (ability == ABILITY_CONTRARY) {
             ABILITY_POPUP(opponent, ABILITY_CONTRARY);
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
-            MESSAGE("Foe Spinda's Attack rose!");
+            MESSAGE("Foe Malamar's Attack rose!");
         }
         HP_BAR(player, captureDamage: &results[i].damage);
     }
@@ -42,8 +42,8 @@ DOUBLE_BATTLE_TEST("Contrary raises Attack when Intimidated in a double battle",
     GIVEN {
         PLAYER(SPECIES_MIGHTYENA) { Ability(ABILITY_INTIMIDATE); }
         PLAYER(SPECIES_ALAKAZAM);
-        OPPONENT(SPECIES_SPINDA) { Ability(abilityLeft); }
-        OPPONENT(SPECIES_SPINDA) { Ability(abilityRight); }
+        OPPONENT(SPECIES_MALAMAR) { Ability(abilityLeft); }
+        OPPONENT(SPECIES_MALAMAR) { Ability(abilityRight); }
     } WHEN {
         TURN { MOVE(opponentLeft, MOVE_TACKLE, target: playerLeft); MOVE(opponentRight, MOVE_TACKLE, target: playerRight); }
     } SCENE {
@@ -51,18 +51,18 @@ DOUBLE_BATTLE_TEST("Contrary raises Attack when Intimidated in a double battle",
         if (abilityLeft == ABILITY_CONTRARY) {
             ABILITY_POPUP(opponentLeft, ABILITY_CONTRARY);
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponentLeft);
-            MESSAGE("Foe Spinda's Attack rose!");
+            MESSAGE("Foe Malamar's Attack rose!");
         } else {
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponentLeft);
-            MESSAGE("Mightyena's Intimidate cuts Foe Spinda's Attack!");
+            MESSAGE("Mightyena's Intimidate cuts Foe Malamar's Attack!");
         }
         if (abilityRight == ABILITY_CONTRARY) {
             ABILITY_POPUP(opponentRight, ABILITY_CONTRARY);
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponentRight);
-            MESSAGE("Foe Spinda's Attack rose!");
+            MESSAGE("Foe Malamar's Attack rose!");
         } else {
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponentRight);
-            MESSAGE("Mightyena's Intimidate cuts Foe Spinda's Attack!");
+            MESSAGE("Mightyena's Intimidate cuts Foe Malamar's Attack!");
         }
         HP_BAR(playerLeft, captureDamage: &results[i].damageLeft);
         HP_BAR(playerRight, captureDamage: &results[i].damageRight);
@@ -85,33 +85,33 @@ SINGLE_BATTLE_TEST("Contrary raises stats after using a move which would normall
         ASSUME(MoveHasAdditionalEffectSelf(MOVE_OVERHEAT, MOVE_EFFECT_SP_ATK_MINUS_2) == TRUE);
         ASSUME(gMovesInfo[MOVE_OVERHEAT].category == DAMAGE_CATEGORY_SPECIAL);
         PLAYER(SPECIES_ALAKAZAM);
-        OPPONENT(SPECIES_SPINDA) { Ability(ability); }
+        OPPONENT(SPECIES_MALAMAR) { Ability(ability); }
     } WHEN {
         TURN { MOVE(opponent, MOVE_OVERHEAT); }
         TURN { MOVE(opponent, MOVE_OVERHEAT); }
     } SCENE {
-        MESSAGE("Foe Spinda used Overheat!");
+        MESSAGE("Foe Malamar used Overheat!");
         HP_BAR(player, captureDamage: &results[i].damageBefore);
         if (ability == ABILITY_CONTRARY) {
             // ABILITY_POPUP(opponent, ABILITY_CONTRARY);
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
-            MESSAGE("Foe Spinda's Sp. Atk sharply rose!");
+            MESSAGE("Foe Malamar's Sp. Atk sharply rose!");
         }
         else {
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
-            MESSAGE("Foe Spinda's Sp. Atk harshly fell!");
+            MESSAGE("Foe Malamar's Sp. Atk harshly fell!");
         }
 
-        // MESSAGE("Foe Spinda used Overheat!");
+        // MESSAGE("Foe Malamar used Overheat!");
         HP_BAR(player, captureDamage: &results[i].damageAfter);
         if (ability == ABILITY_CONTRARY) {
             // ABILITY_POPUP(opponent, ABILITY_CONTRARY);
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
-            MESSAGE("Foe Spinda's Sp. Atk sharply rose!");
+            MESSAGE("Foe Malamar's Sp. Atk sharply rose!");
         }
         else {
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
-            MESSAGE("Foe Spinda's Sp. Atk harshly fell!");
+            MESSAGE("Foe Malamar's Sp. Atk harshly fell!");
         }
     }
     FINALLY {
@@ -127,28 +127,28 @@ SINGLE_BATTLE_TEST("Contrary lowers a stat after using a move which would normal
     PARAMETRIZE { ability = ABILITY_TANGLED_FEET; }
     GIVEN {
         ASSUME(gMovesInfo[MOVE_SWORDS_DANCE].effect == EFFECT_ATTACK_UP_2);
-        PLAYER(SPECIES_ALAKAZAM) { Defense(102); }
-        OPPONENT(SPECIES_SPINDA) { Ability(ability); Attack(100); }
+        PLAYER(SPECIES_ALAKAZAM) { Defense(102); HP(300);}
+        OPPONENT(SPECIES_MALAMAR) { Ability(ability); Attack(100); }
     } WHEN {
         TURN { MOVE(opponent, MOVE_TACKLE); }
         TURN { MOVE(opponent, MOVE_SWORDS_DANCE); }
         TURN { MOVE(opponent, MOVE_TACKLE); }
     } SCENE {
-        MESSAGE("Foe Spinda used Tackle!");
+        MESSAGE("Foe Malamar used Tackle!");
         HP_BAR(player, captureDamage: &results[i].damageBefore);
 
-        //MESSAGE("Foe Spinda used Swords Dance!");
+        //MESSAGE("Foe Malamar used Swords Dance!");
         if (ability == ABILITY_CONTRARY) {
             // ABILITY_POPUP(opponent, ABILITY_CONTRARY);
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
-            MESSAGE("Foe Spinda's Attack harshly fell!");
+            MESSAGE("Foe Malamar's Attack harshly fell!");
         }
         else {
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
-            MESSAGE("Foe Spinda's Attack sharply rose!");
+            MESSAGE("Foe Malamar's Attack sharply rose!");
         }
 
-        // MESSAGE("Foe Spinda used Tackle!");
+        // MESSAGE("Foe Malamar used Tackle!");
         HP_BAR(player, captureDamage: &results[i].damageAfter);
     }
     FINALLY {
@@ -165,7 +165,7 @@ SINGLE_BATTLE_TEST("Contrary raises a stat after using a move which would normal
     GIVEN {
         ASSUME(gMovesInfo[MOVE_GROWL].effect == EFFECT_ATTACK_DOWN);
         PLAYER(SPECIES_ALAKAZAM) { Speed(3); }
-        OPPONENT(SPECIES_SPINDA) { Ability(ability); Speed(2); }
+        OPPONENT(SPECIES_MALAMAR) { Ability(ability); Speed(2); }
     } WHEN {
         TURN { MOVE(player, MOVE_GROWL); MOVE(opponent, MOVE_TACKLE); }
     } SCENE {
@@ -173,14 +173,14 @@ SINGLE_BATTLE_TEST("Contrary raises a stat after using a move which would normal
         if (ability == ABILITY_CONTRARY) {
             // ABILITY_POPUP(opponent, ABILITY_CONTRARY);
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
-            MESSAGE("Foe Spinda's Attack rose!");
+            MESSAGE("Foe Malamar's Attack rose!");
         }
         else {
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
-            MESSAGE("Foe Spinda's Attack fell!");
+            MESSAGE("Foe Malamar's Attack fell!");
         }
 
-        MESSAGE("Foe Spinda used Tackle!");
+        MESSAGE("Foe Malamar used Tackle!");
         HP_BAR(player, captureDamage: &results[i].damage);
     }
     FINALLY {
@@ -195,23 +195,23 @@ SINGLE_BATTLE_TEST("Contrary lowers a stat after using a move which would normal
     PARAMETRIZE { ability = ABILITY_TANGLED_FEET; }
     GIVEN {
         ASSUME(gMovesInfo[MOVE_BELLY_DRUM].effect == EFFECT_BELLY_DRUM);
-        PLAYER(SPECIES_ALAKAZAM);
-        OPPONENT(SPECIES_SPINDA) { Ability(ability); }
+        PLAYER(SPECIES_ALAKAZAM) { HP(300);}
+        OPPONENT(SPECIES_MALAMAR) { Ability(ability); }
     } WHEN {
         TURN { MOVE(opponent, MOVE_TACKLE); }
         TURN { MOVE(opponent, MOVE_BELLY_DRUM); }
         TURN { MOVE(opponent, MOVE_TACKLE); }
     } SCENE {
-        MESSAGE("Foe Spinda used Tackle!");
+        MESSAGE("Foe Malamar used Tackle!");
         HP_BAR(player, captureDamage: &results[i].damageBefore);
 
         if (ability == ABILITY_CONTRARY) {
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
-            MESSAGE("Foe Spinda cut its own HP and maximized Attack!"); //Message stays the same
+            MESSAGE("Foe Malamar cut its own HP and maximized Attack!"); //Message stays the same
         }
         else {
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
-            MESSAGE("Foe Spinda cut its own HP and maximized Attack!");
+            MESSAGE("Foe Malamar cut its own HP and maximized Attack!");
         }
 
         HP_BAR(player, captureDamage: &results[i].damageAfter);

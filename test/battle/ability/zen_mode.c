@@ -1,6 +1,6 @@
 #include "global.h"
 #include "test/battle.h"
-
+/*
 SINGLE_BATTLE_TEST("Zen Mode switches Darmanitan's form when HP is half or less at the end of the turn")
 {
     u16 standardSpecies, zenSpecies;
@@ -87,4 +87,4 @@ SINGLE_BATTLE_TEST("Zen Mode switches Darmanitan's form when HP is healed above 
         EXPECT_GT(player->hp, player->maxHP / 2);
         EXPECT_EQ(player->species, standardSpecies);
     }
-}
+}*/

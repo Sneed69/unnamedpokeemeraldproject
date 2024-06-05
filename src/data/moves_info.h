@@ -17879,17 +17879,17 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             "Attacks with a thick leek.\n"
             "The user must then rest."),
         .effect = EFFECT_HIT,
-        .power = 135,
+        .power = 150,
         .type = TYPE_FIGHTING,
         .accuracy = 100,
-        .pp = 8,
+        .pp = 5,
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
         .category = DAMAGE_CATEGORY_PHYSICAL,
         .metronomeBanned = TRUE,
         .instructBanned = TRUE,
         .additionalEffects = ADDITIONAL_EFFECTS({
-            .moveEffect = MOVE_EFFECT_V_CREATE,
+            .moveEffect = MOVE_EFFECT_RECHARGE,
             .self = TRUE,
         }),
 

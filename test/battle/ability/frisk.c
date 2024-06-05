@@ -4,10 +4,10 @@
 DOUBLE_BATTLE_TEST("Frisk does not trigger when pokemon hold no items")
 {
     GIVEN {
-        PLAYER(SPECIES_FURRET) { Ability(ABILITY_FRISK); };
-        PLAYER(SPECIES_FURRET) { Ability(ABILITY_FRISK); };
-        OPPONENT(SPECIES_SENTRET) { Ability(ABILITY_FRISK); };
-        OPPONENT(SPECIES_SENTRET) { Ability(ABILITY_FRISK); };
+        PLAYER(SPECIES_YANMA) { Ability(ABILITY_FRISK); };
+        PLAYER(SPECIES_YANMA) { Ability(ABILITY_FRISK); };
+        OPPONENT(SPECIES_YANMEGA) { Ability(ABILITY_FRISK); };
+        OPPONENT(SPECIES_YANMEGA) { Ability(ABILITY_FRISK); };
     } WHEN {
         TURN { ; }
     } SCENE {
@@ -23,15 +23,15 @@ DOUBLE_BATTLE_TEST("Frisk does not trigger when pokemon hold no items")
 SINGLE_BATTLE_TEST("Frisk triggers in a Single Battle")
 {
     GIVEN {
-        PLAYER(SPECIES_FURRET) { Ability(ABILITY_FRISK); Item(ITEM_POTION); };
-        OPPONENT(SPECIES_SENTRET) { Ability(ABILITY_FRISK); Item(ITEM_POTION); };
+        PLAYER(SPECIES_YANMA) { Ability(ABILITY_FRISK); Item(ITEM_POTION); };
+        OPPONENT(SPECIES_YANMEGA) { Ability(ABILITY_FRISK); Item(ITEM_POTION); };
     } WHEN {
         TURN { ; }
     } SCENE {
         ABILITY_POPUP(player, ABILITY_FRISK);
-        MESSAGE("Furret frisked Foe Sentret and found its Potion!");
+        MESSAGE("Yanma frisked Foe Yanmega and disabled its Potion!");
         ABILITY_POPUP(opponent, ABILITY_FRISK);
-        MESSAGE("Foe Sentret frisked Furret and found its Potion!");
+        MESSAGE("Foe Yanmega frisked Yanma and disabled its Potion!");
     }
 }
 
@@ -45,7 +45,7 @@ DOUBLE_BATTLE_TEST("Frisk triggers for player in a Double Battle after switching
         ASSUME(gMovesInfo[MOVE_POUND].power != 0);
         PLAYER(SPECIES_ALAKAZAM) { HP(1); }
         PLAYER(SPECIES_ALAKAZAM) { HP(1); }
-        PLAYER(SPECIES_FURRET) { Ability(ABILITY_FRISK); };
+        PLAYER(SPECIES_YANMA) { Ability(ABILITY_FRISK); };
         OPPONENT(SPECIES_ABRA) { Item(ITEM_POTION); }
         OPPONENT(SPECIES_ABRA);
     } WHEN {
@@ -54,7 +54,7 @@ DOUBLE_BATTLE_TEST("Frisk triggers for player in a Double Battle after switching
         MESSAGE("Foe Abra used Pound!");
         MESSAGE("Alakazam fainted!");
         ABILITY_POPUP(target, ABILITY_FRISK);
-        MESSAGE("Furret frisked Foe Abra and found its Potion!");
+        MESSAGE("Yanma frisked Foe Abra and disabled its Potion!");
     }
 }
 
@@ -70,13 +70,13 @@ DOUBLE_BATTLE_TEST("Frisk triggers for opponent in a Double Battle after switchi
         PLAYER(SPECIES_ABRA);
         OPPONENT(SPECIES_ALAKAZAM) { HP(1); }
         OPPONENT(SPECIES_ALAKAZAM) { HP(1); }
-        OPPONENT(SPECIES_FURRET) { Ability(ABILITY_FRISK); };
+        OPPONENT(SPECIES_YANMA) { Ability(ABILITY_FRISK); };
     } WHEN {
         TURN { MOVE(playerLeft, MOVE_POUND, target: target); SEND_OUT(target, 2); }
     } SCENE {
         MESSAGE("Abra used Pound!");
         MESSAGE("Foe Alakazam fainted!");
         ABILITY_POPUP(target, ABILITY_FRISK);
-        MESSAGE("Foe Furret frisked Abra and found its Potion!");
+        MESSAGE("Foe Yanma frisked Abra and disabled its Potion!");
     }
 }

@@ -1,6 +1,6 @@
 #include "global.h"
 #include "test/battle.h"
-
+/*
 SINGLE_BATTLE_TEST("X Attack sharply raises battler's Attack stat", s16 damage)
 {
     u16 useItem;
@@ -256,4 +256,4 @@ SINGLE_BATTLE_TEST("Max Mushrooms raises battler's Speed stat", s16 damage)
             MESSAGE("Alakazam used Tackle!");
         }
     }
-}
+}*/

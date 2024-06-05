@@ -42,7 +42,7 @@ SINGLE_BATTLE_TEST("Steel Roller and Ice Spinner can remove a terrain from the f
         switch (terrainMove)
         {
         case MOVE_ELECTRIC_TERRAIN:
-            MESSAGE("The electricity disappeared from the battlefield.");
+            MESSAGE("The electrifying aura disappeared.");
             break;
         case MOVE_PSYCHIC_TERRAIN:
             MESSAGE("The weirdness disappeared from the battlefield.");

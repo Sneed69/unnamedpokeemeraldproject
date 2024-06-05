@@ -12,14 +12,14 @@ SINGLE_BATTLE_TEST("Vessel of Ruin reduces Sp. Atk if opposing mon's ability doe
     s16 damage[2];
 
     GIVEN {
-        PLAYER(SPECIES_TING_LU) { Ability(ABILITY_VESSEL_OF_RUIN); }
+        PLAYER(SPECIES_KROOKODILE) { Ability(ABILITY_VESSEL_OF_RUIN); }
         OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(opponent, MOVE_WATER_GUN); MOVE(player, MOVE_ENTRAINMENT); }
         TURN { MOVE(opponent, MOVE_WATER_GUN); }
     } SCENE {
         ABILITY_POPUP(player, ABILITY_VESSEL_OF_RUIN);
-        MESSAGE("Ting-Lu's Vessel of Ruin weakened the Sp. Atk of all surrounding Pokémon!");
+        MESSAGE("Krookodile's Vessel of Ruin weakened the Sp. Atk of all surrounding Pokémon!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_WATER_GUN, opponent);
         HP_BAR(player, captureDamage: &damage[0]);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_ENTRAINMENT, player);
@@ -35,7 +35,7 @@ SINGLE_BATTLE_TEST("Vessel of Ruin's message displays correctly after all battle
     GIVEN {
         ASSUME(gMovesInfo[MOVE_EXPLOSION].effect == EFFECT_EXPLOSION);
         PLAYER(SPECIES_ALAKAZAM) { HP(1);}
-        PLAYER(SPECIES_TING_LU);
+        PLAYER(SPECIES_KROOKODILE) { Ability(ABILITY_VESSEL_OF_RUIN); };
         OPPONENT(SPECIES_ALAKAZAM);
         OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
@@ -45,9 +45,9 @@ SINGLE_BATTLE_TEST("Vessel of Ruin's message displays correctly after all battle
         HP_BAR(opponent, hp: 0);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_EXPLOSION, opponent);
         // Everyone faints.
-        MESSAGE("Go! Ting-Lu!");
+        SEND_IN_MESSAGE("Krookodile");
         ABILITY_POPUP(player, ABILITY_VESSEL_OF_RUIN);
-        MESSAGE("Ting-Lu's Vessel of Ruin weakened the Sp. Atk of all surrounding Pokémon!");
+        MESSAGE("Krookodile's Vessel of Ruin weakened the Sp. Atk of all surrounding Pokémon!");
         MESSAGE("2 sent out Alakazam!");
     }
 }
@@ -59,7 +59,7 @@ SINGLE_BATTLE_TEST("Vessel of Ruin's message displays correctly after all battle
         PLAYER(SPECIES_ALAKAZAM);
         PLAYER(SPECIES_ALAKAZAM);
         OPPONENT(SPECIES_ALAKAZAM) { HP(1);}
-        OPPONENT(SPECIES_TING_LU);
+        OPPONENT(SPECIES_KROOKODILE) { Ability(ABILITY_VESSEL_OF_RUIN); };
     } WHEN {
         TURN { MOVE(player, MOVE_EXPLOSION); SEND_OUT(player, 1); SEND_OUT(opponent, 1); }
         TURN { MOVE(player, MOVE_RUINATION); MOVE(opponent, MOVE_TACKLE); }
@@ -67,9 +67,9 @@ SINGLE_BATTLE_TEST("Vessel of Ruin's message displays correctly after all battle
         HP_BAR(player, hp: 0);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_EXPLOSION, player);
         // Everyone faints.
-        MESSAGE("Go! Alakazam!");
-        MESSAGE("2 sent out Ting-Lu!");
+        SEND_IN_MESSAGE("Alakazam");
+        MESSAGE("2 sent out Krookodile!");
         ABILITY_POPUP(opponent, ABILITY_VESSEL_OF_RUIN);
-        MESSAGE("Foe Ting-Lu's Vessel of Ruin weakened the Sp. Atk of all surrounding Pokémon!");
+        MESSAGE("Foe Krookodile's Vessel of Ruin weakened the Sp. Atk of all surrounding Pokémon!");
     }
 }

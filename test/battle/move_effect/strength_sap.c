@@ -39,7 +39,7 @@ SINGLE_BATTLE_TEST("Strength Sap works exactly the same when attacker is behind 
     PARAMETRIZE{ atkStat = 50; }
 
     GIVEN {
-        PLAYER(SPECIES_ALAKAZAM) { HP(200); }
+        PLAYER(SPECIES_ALAKAZAM) { HP(50); }
         OPPONENT(SPECIES_ALAKAZAM) { Attack(atkStat); }
     } WHEN {
         TURN { MOVE(player, MOVE_SUBSTITUTE); }
@@ -150,7 +150,7 @@ SINGLE_BATTLE_TEST("Strength Sap restores more HP if Big Root is held", s16 hp)
 
     GIVEN {
         ASSUME(gItemsInfo[ITEM_BIG_ROOT].holdEffect == HOLD_EFFECT_BIG_ROOT);
-        PLAYER(SPECIES_ALAKAZAM) { HP(200); Item(item); }
+        PLAYER(SPECIES_ALAKAZAM) { HP(10); Item(item); }
         OPPONENT(SPECIES_ALAKAZAM) { Attack(100); }
     } WHEN {
         TURN { MOVE(player, MOVE_STRENGTH_SAP); }
@@ -172,14 +172,14 @@ SINGLE_BATTLE_TEST("Strength Sap makes attacker lose HP if target's ability is L
     s32 atkStat;
 
     PARAMETRIZE { atkStat = 100; }
-    PARAMETRIZE { atkStat = 490; } // Checks that attacker can faint with no problems.
+    PARAMETRIZE { atkStat = gSpeciesInfo[SPECIES_ALAKAZAM].baseHP + HP_BASE; } // Checks that attacker can faint with no problems.
 
     GIVEN {
         PLAYER(SPECIES_ALAKAZAM);
         PLAYER(SPECIES_ALAKAZAM);
         OPPONENT(SPECIES_ALAKAZAM) { Attack(atkStat); Ability(ABILITY_LIQUID_OOZE); }
     } WHEN {
-        TURN { MOVE(player, MOVE_STRENGTH_SAP); if (atkStat == 490) { SEND_OUT(player, 1); } }
+        TURN { MOVE(player, MOVE_STRENGTH_SAP); if (i == 1) { SEND_OUT(player, 1); } }
     } SCENE {
         MESSAGE("Alakazam used Strength Sap!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_STRENGTH_SAP, player);
@@ -188,9 +188,9 @@ SINGLE_BATTLE_TEST("Strength Sap makes attacker lose HP if target's ability is L
         ABILITY_POPUP(opponent, ABILITY_LIQUID_OOZE);
         HP_BAR(player, captureDamage: &lostHp);
         MESSAGE("It sucked up the liquid ooze!");
-        if (atkStat >= 490) {
+        if (i == 1) {
             MESSAGE("Alakazam fainted!");
-            MESSAGE("Go! Alakazam!");
+            SEND_IN_MESSAGE("Alakazam");
         }
     } THEN {
         EXPECT_EQ(lostHp, atkStat);

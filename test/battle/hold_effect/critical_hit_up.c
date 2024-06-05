@@ -37,14 +37,14 @@ SINGLE_BATTLE_TEST("Lansat Berry raises the holder's critical-hit-ratio by two s
 SINGLE_BATTLE_TEST("Lansat Berry raises the holder's critical-hit-ratio by two stages when HP drops to 1/2 or below")
 {
     GIVEN {
-        PLAYER(SPECIES_BELLSPROUT) { MaxHP(100); HP(100); Ability(ABILITY_GLUTTONY); Item(ITEM_LANSAT_BERRY); }
+        PLAYER(SPECIES_SNORLAX) { MaxHP(100); HP(100); Ability(ABILITY_GLUTTONY); Item(ITEM_LANSAT_BERRY); }
         OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(opponent, MOVE_DRAGON_RAGE); }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_DRAGON_RAGE, opponent);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, player);
-        MESSAGE("Bellsprout used Lansat Berry to get pumped!");
+        MESSAGE("Snorlax used Lansat Berry to get pumped!");
     }
 }
 

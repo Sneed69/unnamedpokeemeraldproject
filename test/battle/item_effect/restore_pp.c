@@ -26,7 +26,7 @@ SINGLE_BATTLE_TEST("Max Ether restores the PP of one of a battler's moves fully"
     } WHEN {
         TURN { USE_ITEM(player, ITEM_MAX_ETHER, partyIndex: 0, move: MOVE_TACKLE); }
     } THEN {
-        EXPECT_EQ(player->pp[0], 35);
+        EXPECT_EQ(player->pp[0], gMovesInfo[MOVE_TACKLE].pp);
         EXPECT_EQ(player->pp[1], 20);
     }
 }
@@ -58,10 +58,10 @@ SINGLE_BATTLE_TEST("Max Elixir restores the PP of all of a battler's moves fully
     } WHEN {
         TURN { USE_ITEM(player, ITEM_MAX_ELIXIR, partyIndex: 0); }
     } THEN {
-        EXPECT_EQ(player->pp[0], 35);
-        EXPECT_EQ(player->pp[1], 25);
-        EXPECT_EQ(player->pp[2], 35);
-        EXPECT_EQ(player->pp[3], 40);
+        EXPECT_EQ(player->pp[0], gMovesInfo[MOVE_TACKLE].pp);
+        EXPECT_EQ(player->pp[1], gMovesInfo[MOVE_CONFUSION].pp);
+        EXPECT_EQ(player->pp[2], gMovesInfo[MOVE_SCRATCH].pp);
+        EXPECT_EQ(player->pp[3], gMovesInfo[MOVE_GROWL].pp);
     }
 }
 

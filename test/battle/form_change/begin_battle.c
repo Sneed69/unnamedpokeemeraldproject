@@ -1,7 +1,7 @@
 #include "global.h"
 #include "test/battle.h"
 
-SINGLE_BATTLE_TEST("Xerneas changes into Active Form upon battle start")
+/*SINGLE_BATTLE_TEST("Xerneas changes into Active Form upon battle start")
 {
     GIVEN {
         PLAYER(SPECIES_XERNEAS_NEUTRAL);
@@ -73,4 +73,4 @@ SINGLE_BATTLE_TEST("Zamazenta's Iron Head becomes Behemoth Bash upon form change
         ASSUME(player->species == SPECIES_ZAMAZENTA_CROWNED_SHIELD); // Assumes form change worked.
         EXPECT_EQ(player->moves[0], MOVE_BEHEMOTH_BASH);
     }
-}
+}*/

@@ -105,7 +105,7 @@ DOUBLE_BATTLE_TEST("Defog lowers evasiveness by 1 and removes Mist and Safeguard
         ANIMATION(ANIM_TYPE_MOVE, MOVE_MIST, opponentLeft);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_SAFEGUARD, opponentRight);
         if (move == MOVE_DEFOG) {
-            MESSAGE("Foe Alakazam is protected by MIST!");
+            MESSAGE("Foe Alakazam is protected by Mist!");
             ANIMATION(ANIM_TYPE_MOVE, move, playerLeft);
             MESSAGE("Foe's Mist wore off!");
             MESSAGE("Foe's Safeguard wore off!");
@@ -116,7 +116,7 @@ DOUBLE_BATTLE_TEST("Defog lowers evasiveness by 1 and removes Mist and Safeguard
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponentLeft);
         }
         else {
-            MESSAGE("Foe Alakazam is protected by MIST!");
+            MESSAGE("Foe Alakazam is protected by Mist!");
             NOT ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponentLeft);
         }
         MESSAGE("Alakazam used Toxic!");
@@ -158,8 +158,8 @@ DOUBLE_BATTLE_TEST("Defog lowers evasiveness by 1 and removes Stealth Rock and S
             MESSAGE("The sticky web has disappeared from the ground around your team!");
         }
         // Switch happens
-        MESSAGE("Alakazam, that's enough! Come back!");
-        MESSAGE("Go! Alakazam!");
+        SWITCH_OUT_MESSAGE("Alakazam");
+        SEND_IN_MESSAGE("Alakazam");
         if (move != MOVE_DEFOG) {
             HP_BAR(playerLeft);
             MESSAGE("Pointed stones dug into Alakazam!");
@@ -201,8 +201,8 @@ SINGLE_BATTLE_TEST("Defog lowers evasiveness by 1 and removes Spikes from player
             MESSAGE("The spikes disappeared from the ground around your team!");
         }
         // Switch happens
-        MESSAGE("Alakazam, that's enough! Come back!");
-        MESSAGE("Go! Alakazam!");
+        SWITCH_OUT_MESSAGE("Alakazam");
+        SEND_IN_MESSAGE("Alakazam");
         if (move != MOVE_DEFOG) {
             HP_BAR(player);
             MESSAGE("Alakazam is hurt by spikes!");
@@ -347,7 +347,7 @@ DOUBLE_BATTLE_TEST("Defog lowers evasiveness by 1 and removes everything it can"
         TURN { MOVE(playerLeft, MOVE_MIST); MOVE(playerRight, MOVE_SAFEGUARD); MOVE(opponentLeft, MOVE_MIST); MOVE(opponentRight, MOVE_DEFOG, target: playerLeft); }
     } SCENE {
         MESSAGE("Foe Glalie used Defog!");
-        MESSAGE("Glalie is protected by MIST!");
+        MESSAGE("Glalie is protected by Mist!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_DEFOG, opponentRight);
         // Player side
         MESSAGE("Ally's Reflect wore off!");

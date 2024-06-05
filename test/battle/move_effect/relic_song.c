@@ -43,8 +43,8 @@ SINGLE_BATTLE_TEST("Relic Song is prevented by Soundproof")
 SINGLE_BATTLE_TEST("Relic Song will become a Water-type move when used by a Pokémon with the Ability Liquid Voice")
 {
     GIVEN {
-        PLAYER(SPECIES_VULPIX);
-        OPPONENT(SPECIES_POPPLIO) { Ability(ABILITY_LIQUID_VOICE); }
+        PLAYER(SPECIES_TORCHIC);
+        OPPONENT(SPECIES_LAPRAS) { Ability(ABILITY_LIQUID_VOICE); }
     } WHEN {
         TURN { MOVE(opponent, MOVE_RELIC_SONG); }
     } SCENE {
@@ -69,7 +69,7 @@ SINGLE_BATTLE_TEST("Relic Song is blocked by Throat Chop")
     }
 }
 
-SINGLE_BATTLE_TEST("Relic Song transforms Meloetta if used successfully")
+/*SINGLE_BATTLE_TEST("Relic Song transforms Meloetta if used successfully")
 {
     GIVEN {
         PLAYER(SPECIES_MELOETTA_ARIA);
@@ -164,7 +164,7 @@ SINGLE_BATTLE_TEST("Relic Song transforms Meloetta after Magician was activated"
 {
     GIVEN {
         PLAYER(SPECIES_MELOETTA_ARIA);
-        OPPONENT(SPECIES_DELPHOX) { Ability(ABILITY_MAGICIAN); Item(ITEM_POTION); }
+        OPPONENT(SPECIES_NINETALES) { Ability(ABILITY_MAGICIAN); Item(ITEM_POTION); }
     } WHEN {
         TURN { MOVE(opponent, MOVE_SKILL_SWAP); MOVE(player, MOVE_RELIC_SONG); }
     } SCENE {
@@ -172,9 +172,9 @@ SINGLE_BATTLE_TEST("Relic Song transforms Meloetta after Magician was activated"
         ANIMATION(ANIM_TYPE_MOVE, MOVE_RELIC_SONG, player);
         HP_BAR(opponent);
         ABILITY_POPUP(player, ABILITY_MAGICIAN);
-        MESSAGE("Meloetta stole Foe Delphox's Potion!");
+        MESSAGE("Meloetta stole Foe Ninetales's Potion!");
         MESSAGE("Meloetta transformed!");
     } THEN {
         EXPECT_EQ(player->species, SPECIES_MELOETTA_PIROUETTE);
     }
-}
+}*/

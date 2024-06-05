@@ -128,7 +128,7 @@ SINGLE_BATTLE_TEST("Defiant activates after Sticky Web lowers Speed")
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_STICKY_WEB, opponent);
         // Switch-in - Sticky Web activates
-        MESSAGE("Go! Mankey!");
+        SEND_IN_MESSAGE("Mankey");
         MESSAGE("Mankey was caught in a Sticky Web!");
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
         MESSAGE("Mankey's Speed fell!");
@@ -145,7 +145,7 @@ DOUBLE_BATTLE_TEST("Defiant is activated by Cotton Down for non-ally pokemon")
     GIVEN {
         PLAYER(SPECIES_MANKEY) { Ability(ABILITY_DEFIANT); }
         PLAYER(SPECIES_MANKEY) { Ability(ABILITY_DEFIANT); }
-        OPPONENT(SPECIES_ELDEGOSS) { Ability(ABILITY_COTTON_DOWN); }
+        OPPONENT(SPECIES_FLAAFFY) { Ability(ABILITY_COTTON_DOWN); }
         OPPONENT(SPECIES_MANKEY) { Ability(ABILITY_DEFIANT); }
     } WHEN {
         TURN { MOVE(playerLeft, MOVE_TACKLE, target: opponentLeft); }
@@ -252,7 +252,7 @@ SINGLE_BATTLE_TEST("Defiant doesn't activate if the pokemon lowers it's own stat
     PARAMETRIZE { move = MOVE_SPIN_OUT; }
 
     GIVEN {
-        ASSUME(MoveHasAdditionalEffectSelf(MOVE_SUPERPOWER, MOVE_EFFECT_ATK_DEF_DOWN));
+        ASSUME(MoveHasAdditionalEffectSelf(MOVE_SUPERPOWER, MOVE_EFFECT_ATK_MINUS_2));
         ASSUME(MoveHasAdditionalEffectSelf(MOVE_CLOSE_COMBAT, MOVE_EFFECT_DEF_SPDEF_DOWN));
         ASSUME(MoveHasAdditionalEffectSelf(MOVE_MAKE_IT_RAIN, MOVE_EFFECT_SP_ATK_MINUS_1));
         ASSUME(MoveHasAdditionalEffectSelf(MOVE_SPIN_OUT, MOVE_EFFECT_SPD_MINUS_2));
@@ -271,7 +271,7 @@ SINGLE_BATTLE_TEST("Defiant doesn't activate if the pokemon lowers it's own stat
         }
     } THEN {
         if (move == MOVE_SUPERPOWER)
-            EXPECT_EQ(player->statStages[STAT_ATK], DEFAULT_STAT_STAGE - 1);
+            EXPECT_EQ(player->statStages[STAT_ATK], DEFAULT_STAT_STAGE - 2);
         else
             EXPECT_EQ(player->statStages[STAT_ATK], DEFAULT_STAT_STAGE);
     }

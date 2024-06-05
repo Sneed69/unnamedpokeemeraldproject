@@ -40,14 +40,14 @@ SINGLE_BATTLE_TEST("Apicot Berry raises the holder's Sp. Def by one stage when H
 SINGLE_BATTLE_TEST("Apicot Berry raises Sp. Def by one stage when HP drops to 1/2 or below if holder has Gluttony")
 {
     GIVEN {
-        PLAYER(SPECIES_BELLSPROUT) { MaxHP(100); HP(100); Ability(ABILITY_GLUTTONY); Item(ITEM_APICOT_BERRY); }
+        PLAYER(SPECIES_SNORLAX) { MaxHP(100); HP(100); Ability(ABILITY_GLUTTONY); Item(ITEM_APICOT_BERRY); }
         OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(opponent, MOVE_DRAGON_RAGE); }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_DRAGON_RAGE, opponent);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, player);
-        MESSAGE("Using Apicot Berry, the Sp. Def of Bellsprout rose!");
+        MESSAGE("Using Apicot Berry, the Sp. Def of Snorlax rose!");
     } THEN {
         EXPECT_EQ(player->statStages[STAT_SPDEF], DEFAULT_STAT_STAGE + 1);
     }
@@ -56,14 +56,14 @@ SINGLE_BATTLE_TEST("Apicot Berry raises Sp. Def by one stage when HP drops to 1/
 SINGLE_BATTLE_TEST("Apicot Berry raises Sp. Def by one stage when HP drops to 1/4 or below if holder has Ripen")
 {
     GIVEN {
-        PLAYER(SPECIES_APPLIN) { MaxHP(200); HP(100); Ability(ABILITY_RIPEN); Item(ITEM_APICOT_BERRY); }
+        PLAYER(SPECIES_SNORLAX) { MaxHP(200); HP(100); Ability(ABILITY_RIPEN); Item(ITEM_APICOT_BERRY); }
         OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(opponent, MOVE_DRAGON_RAGE); }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_DRAGON_RAGE, opponent);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, player);
-        MESSAGE("Using Apicot Berry, the Sp. Def of Applin sharply rose!");
+        MESSAGE("Using Apicot Berry, the Sp. Def of Snorlax sharply rose!");
     } THEN {
         EXPECT_EQ(player->statStages[STAT_SPDEF], DEFAULT_STAT_STAGE + 2);
     }

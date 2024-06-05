@@ -13,7 +13,7 @@ SINGLE_BATTLE_TEST("Mirror Armor lowers a stat of the attacking pokemon")
     PARAMETRIZE { move = MOVE_FAKE_TEARS; statId = STAT_SPDEF; }
 
     GIVEN {
-        PLAYER(SPECIES_CORVIKNIGHT) {Ability(ABILITY_MIRROR_ARMOR);}
+        PLAYER(SPECIES_SKARMORY) {Ability(ABILITY_MIRROR_ARMOR);}
         OPPONENT(SPECIES_ABRA);
     } WHEN {
         TURN { MOVE(opponent, move); }
@@ -50,16 +50,16 @@ SINGLE_BATTLE_TEST("Mirror Armor lowers a stat of the attacking pokemon")
 SINGLE_BATTLE_TEST("Mirror Armor triggers even if the attacking Pokemon also has Mirror Armor ability")
 {
     GIVEN {
-        PLAYER(SPECIES_CORVIKNIGHT) { Ability(ABILITY_MIRROR_ARMOR); }
-        OPPONENT(SPECIES_CORVIKNIGHT) { Ability(ABILITY_MIRROR_ARMOR); }
+        PLAYER(SPECIES_SKARMORY) { Ability(ABILITY_MIRROR_ARMOR); }
+        OPPONENT(SPECIES_SKARMORY) { Ability(ABILITY_MIRROR_ARMOR); }
     } WHEN {
         TURN { MOVE(opponent, MOVE_LEER); }
     } SCENE {
-        MESSAGE("Foe Corviknight used Leer!");
+        MESSAGE("Foe Skarmory used Leer!");
         ABILITY_POPUP(player, ABILITY_MIRROR_ARMOR);
         NOT ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
-        MESSAGE("Foe Corviknight's Defense fell!");
+        MESSAGE("Foe Skarmory's Defense fell!");
     } THEN {
         EXPECT_EQ(player->statStages[STAT_DEF], DEFAULT_STAT_STAGE);
         EXPECT_EQ(opponent->statStages[STAT_DEF], DEFAULT_STAT_STAGE - 1);
@@ -69,7 +69,7 @@ SINGLE_BATTLE_TEST("Mirror Armor triggers even if the attacking Pokemon also has
 SINGLE_BATTLE_TEST("Mirror Armor doesn't lower the stats of an attacking Pokemon with the Clear Body ability")
 {
     GIVEN {
-        PLAYER(SPECIES_CORVIKNIGHT) { Ability(ABILITY_MIRROR_ARMOR); }
+        PLAYER(SPECIES_SKARMORY) { Ability(ABILITY_MIRROR_ARMOR); }
         OPPONENT(SPECIES_ABRA) { Ability(ABILITY_CLEAR_BODY); }
     } WHEN {
         TURN { MOVE(opponent, MOVE_LEER); }
@@ -87,7 +87,7 @@ SINGLE_BATTLE_TEST("Mirror Armor doesn't lower the stats of an attacking Pokemon
 SINGLE_BATTLE_TEST("Mirror Armor lowers the Attack of Pokemon with Intimidate")
 {
     GIVEN {
-        PLAYER(SPECIES_CORVIKNIGHT) { Ability(ABILITY_MIRROR_ARMOR); }
+        PLAYER(SPECIES_SKARMORY) { Ability(ABILITY_MIRROR_ARMOR); }
         OPPONENT(SPECIES_GYARADOS) { Ability(ABILITY_INTIMIDATE); }
     } WHEN {
         TURN {}
@@ -107,7 +107,7 @@ SINGLE_BATTLE_TEST("Mirror Armor doesn't lower the stats of an attacking Pokemon
 {
     KNOWN_FAILING;
     GIVEN {
-        PLAYER(SPECIES_CORVIKNIGHT) { Ability(ABILITY_MIRROR_ARMOR); }
+        PLAYER(SPECIES_SKARMORY) { Ability(ABILITY_MIRROR_ARMOR); }
         OPPONENT(SPECIES_ABRA);
     } WHEN {
         TURN { MOVE(opponent, MOVE_SUBSTITUTE); }
@@ -127,15 +127,15 @@ SINGLE_BATTLE_TEST("Mirror Armor doesn't lower the stats of an attacking Pokemon
 SINGLE_BATTLE_TEST("Mirror Armor raises the stat of an attacking Pokemon with Contrary")
 {
     GIVEN {
-        PLAYER(SPECIES_CORVIKNIGHT) {Ability(ABILITY_MIRROR_ARMOR);}
-        OPPONENT(SPECIES_SHUCKLE) {Ability(ABILITY_CONTRARY);}
+        PLAYER(SPECIES_SKARMORY) {Ability(ABILITY_MIRROR_ARMOR);}
+        OPPONENT(SPECIES_MALAMAR) {Ability(ABILITY_CONTRARY);}
     } WHEN {
         TURN { MOVE(opponent, MOVE_LEER); }
     } SCENE {
-        MESSAGE("Foe Shuckle used Leer!");
+        MESSAGE("Foe Malamar used Leer!");
         ABILITY_POPUP(player, ABILITY_MIRROR_ARMOR);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
-        MESSAGE("Foe Shuckle's Defense rose!");
+        MESSAGE("Foe Malamar's Defense rose!");
     } THEN {
         EXPECT_EQ(player->statStages[STAT_DEF], DEFAULT_STAT_STAGE);
         EXPECT_EQ(opponent->statStages[STAT_DEF], DEFAULT_STAT_STAGE + 1);
@@ -145,7 +145,7 @@ SINGLE_BATTLE_TEST("Mirror Armor raises the stat of an attacking Pokemon with Co
 SINGLE_BATTLE_TEST("Mirror Armor doesn't lower the stat of the attacking Pokemon if it is already at -6")
 {
     GIVEN {
-        PLAYER(SPECIES_CORVIKNIGHT) {Ability(ABILITY_MIRROR_ARMOR);}
+        PLAYER(SPECIES_SKARMORY) {Ability(ABILITY_MIRROR_ARMOR);}
         OPPONENT(SPECIES_ABRA);
     } WHEN {
         TURN { MOVE(player, MOVE_SCREECH); }
@@ -153,9 +153,9 @@ SINGLE_BATTLE_TEST("Mirror Armor doesn't lower the stat of the attacking Pokemon
         TURN { MOVE(player, MOVE_SCREECH); }
         TURN { MOVE(opponent, MOVE_LEER); }
     } SCENE {
-        MESSAGE("Corviknight used Screech!");
-        MESSAGE("Corviknight used Screech!");
-        MESSAGE("Corviknight used Screech!");
+        MESSAGE("Skarmory used Screech!");
+        MESSAGE("Skarmory used Screech!");
+        MESSAGE("Skarmory used Screech!");
         MESSAGE("Foe Abra used Leer!");
         ABILITY_POPUP(player, ABILITY_MIRROR_ARMOR);
         NOT ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
@@ -175,7 +175,7 @@ DOUBLE_BATTLE_TEST("Mirror Armor lowers Speed of the partner Pokemon after Court
         ASSUME(gMovesInfo[MOVE_COURT_CHANGE].effect == EFFECT_COURT_CHANGE);
         PLAYER(SPECIES_ALAKAZAM);
         PLAYER(SPECIES_ALAKAZAM);
-        PLAYER(SPECIES_CORVIKNIGHT) {Ability(ABILITY_MIRROR_ARMOR); Item(ITEM_IRON_BALL); }
+        PLAYER(SPECIES_SKARMORY) {Ability(ABILITY_MIRROR_ARMOR); Item(ITEM_IRON_BALL); }
         OPPONENT(SPECIES_ABRA);
         OPPONENT(SPECIES_ABRA);
         OPPONENT(SPECIES_ABRA);
@@ -188,8 +188,8 @@ DOUBLE_BATTLE_TEST("Mirror Armor lowers Speed of the partner Pokemon after Court
         MESSAGE("Alakazam used Sticky Web!");
         MESSAGE("Foe Abra used Court Change!");
         MESSAGE("Foe Abra swapped the battle effects affecting each side!");
-        MESSAGE("Go! Corviknight!");
-        MESSAGE("Corviknight was caught in a Sticky Web!");
+        SEND_IN_MESSAGE("Skarmory");
+        MESSAGE("Skarmory was caught in a Sticky Web!");
         ABILITY_POPUP(playerRight, ABILITY_MIRROR_ARMOR);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, playerLeft);
         MESSAGE("Alakazam's Speed fell!");
@@ -200,7 +200,7 @@ SINGLE_BATTLE_TEST("Mirror Armor reflects Tangling Hair speed drop")
 {
     GIVEN {
         PLAYER(SPECIES_DUGTRIO) { Ability(ABILITY_TANGLING_HAIR); }
-        OPPONENT(SPECIES_CORVIKNIGHT) { Ability(ABILITY_MIRROR_ARMOR); }
+        OPPONENT(SPECIES_SKARMORY) { Ability(ABILITY_MIRROR_ARMOR); }
     } WHEN {
         TURN { MOVE(opponent, MOVE_TACKLE); }
     } SCENE {

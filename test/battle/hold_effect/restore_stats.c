@@ -99,8 +99,8 @@ SINGLE_BATTLE_TEST("White Herb restores stats after all hits of a multi hit move
     u16 species;
     u16 ability;
 
-    PARAMETRIZE { species = SPECIES_SLIGGOO_HISUIAN; ability = ABILITY_GOOEY; }
-    PARAMETRIZE { species = SPECIES_DUGTRIO_ALOLAN; ability = ABILITY_TANGLING_HAIR; }
+    PARAMETRIZE { species = SPECIES_SHELGON; ability = ABILITY_GOOEY; }
+    PARAMETRIZE { species = SPECIES_DUGTRIO; ability = ABILITY_TANGLING_HAIR; }
 
     GIVEN {
         ASSUME(gMovesInfo[MOVE_DUAL_WINGBEAT].strikeCount == 2);
@@ -164,7 +164,7 @@ SINGLE_BATTLE_TEST("White Herb wont have time to activate if Magician steals it"
 {
     GIVEN {
         PLAYER(SPECIES_SLUGMA) {  Ability(ABILITY_WEAK_ARMOR); Item(ITEM_WHITE_HERB); }
-        OPPONENT(SPECIES_FENNEKIN) { Ability(ABILITY_MAGICIAN); }
+        OPPONENT(SPECIES_NINETALES) { Ability(ABILITY_MAGICIAN); }
     } WHEN {
         TURN { MOVE(opponent, MOVE_TACKLE); }
     } SCENE {
@@ -174,7 +174,7 @@ SINGLE_BATTLE_TEST("White Herb wont have time to activate if Magician steals it"
         MESSAGE("Slugma's Weak Armor lowered its Defense!");
         MESSAGE("Slugma's Weak Armor raised its Speed!");
         ABILITY_POPUP(opponent, ABILITY_MAGICIAN);
-        MESSAGE("Foe Fennekin stole Slugma's White Herb!");
+        MESSAGE("Foe Ninetales stole Slugma's White Herb!");
         NONE_OF {
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, player);
             MESSAGE("Alakazam's White Herb restored its status!");

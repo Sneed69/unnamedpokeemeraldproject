@@ -58,12 +58,12 @@ SINGLE_BATTLE_TEST("Syrup Bomb is prevented by Bulletproof")
 {
     GIVEN {
         PLAYER(SPECIES_ALAKAZAM);
-        OPPONENT(SPECIES_CHESPIN) { Ability(ABILITY_BULLETPROOF); }
+        OPPONENT(SPECIES_BRELOOM) { Ability(ABILITY_BULLETPROOF); }
     } WHEN {
         TURN { MOVE(player, MOVE_SYRUP_BOMB); }
     } SCENE {
         ABILITY_POPUP(opponent, ABILITY_BULLETPROOF);
-        MESSAGE("Foe Chespin's Bulletproof blocks Syrup Bomb!");
+        MESSAGE("Foe Breloom's Bulletproof blocks Syrup Bomb!");
         NONE_OF {
             ANIMATION(ANIM_TYPE_MOVE, MOVE_SYRUP_BOMB, player);
             HP_BAR(opponent);
@@ -78,7 +78,7 @@ SINGLE_BATTLE_TEST("Sticky Syrup speed reduction is prevented by Clear Body, Whi
 
     PARAMETRIZE { species = SPECIES_BELDUM; ability = ABILITY_CLEAR_BODY; }
     PARAMETRIZE { species = SPECIES_TORKOAL; ability = ABILITY_WHITE_SMOKE; }
-    PARAMETRIZE { species = SPECIES_SOLGALEO; ability = ABILITY_FULL_METAL_BODY; }
+    PARAMETRIZE { species = SPECIES_METAGROSS; ability = ABILITY_FULL_METAL_BODY; }
 
     GIVEN {
         PLAYER(SPECIES_ALAKAZAM);
@@ -110,14 +110,14 @@ SINGLE_BATTLE_TEST("Sticky Syrup speed reduction is prevented by Clear Body, Whi
                 MESSAGE("Foe Torkoal's Speed fell!");
             }
         }
-        else if (species == SPECIES_SOLGALEO)
+        else if (species == SPECIES_METAGROSS)
         {
-            MESSAGE("Foe Solgaleo got covered in sticky syrup!");
+            MESSAGE("Foe Metagross got covered in sticky syrup!");
             ABILITY_POPUP(opponent, ABILITY_FULL_METAL_BODY);
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_SYRUP_BOMB_SPEED_DROP, opponent);
-            MESSAGE("Foe Solgaleo's Full Metal Body prevents stat loss!");
+            MESSAGE("Foe Metagross's Full Metal Body prevents stat loss!");
             NONE_OF {
-                MESSAGE("Foe Solgaleo's Speed fell!");
+                MESSAGE("Foe Metagross's Speed fell!");
             }
         }
     }
@@ -210,7 +210,7 @@ SINGLE_BATTLE_TEST("Sticky Syrup is removed when the user faints")
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, opponent);
         HP_BAR(player);
         MESSAGE("Alakazam fainted!");
-        MESSAGE("Go! Abra!");
+        SEND_IN_MESSAGE("Abra");
         NONE_OF {
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_SYRUP_BOMB_SPEED_DROP, opponent);
             MESSAGE("Foe Alakazam's Speed fell!");

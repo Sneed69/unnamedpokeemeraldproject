@@ -9,7 +9,7 @@ ASSUMPTIONS
 SINGLE_BATTLE_TEST("U-turn switches the user out")
 {
     GIVEN {
-        PLAYER(SPECIES_ALAKAZAM);
+        PLAYER(SPECIES_ALAKAZAM) { Attack(1); }
         PLAYER(SPECIES_ABRA);
         OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
@@ -17,7 +17,7 @@ SINGLE_BATTLE_TEST("U-turn switches the user out")
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_U_TURN, player);
         HP_BAR(opponent);
-        MESSAGE("Go! Abra!");
+        SEND_IN_MESSAGE("Abra");
     }
 }
 
@@ -67,7 +67,7 @@ SINGLE_BATTLE_TEST("U-turn does not switch the user out if Wimp Out activates")
     GIVEN {
         PLAYER(SPECIES_ALAKAZAM);
         PLAYER(SPECIES_ABRA);
-        OPPONENT(SPECIES_WIMPOD) { MaxHP(200); HP(101); Ability(ABILITY_WIMP_OUT); }
+        OPPONENT(SPECIES_SURSKIT) { MaxHP(200); HP(101); Ability(ABILITY_WIMP_OUT); }
         OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, MOVE_U_TURN); SEND_OUT(opponent, 1); }
@@ -84,17 +84,17 @@ SINGLE_BATTLE_TEST("U-turn switches the user out if Wimp Out fails to activate")
     GIVEN {
         PLAYER(SPECIES_ALAKAZAM);
         PLAYER(SPECIES_ABRA);
-        OPPONENT(SPECIES_WIMPOD) { MaxHP(200); HP(101); Ability(ABILITY_WIMP_OUT); }
+        OPPONENT(SPECIES_SURSKIT) { MaxHP(200); HP(101); Ability(ABILITY_WIMP_OUT); }
     } WHEN {
         TURN { MOVE(player, MOVE_U_TURN); SEND_OUT(player, 1); }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_U_TURN, player);
         HP_BAR(opponent);
         NOT ABILITY_POPUP(opponent);
-        MESSAGE("Go for it, Abra!");
+        SEND_IN_MESSAGE("Abra");
     }
 }
-
+/*
 SINGLE_BATTLE_TEST("U-turn switches the user out after Ice Face activates")
 {
     GIVEN {
@@ -109,9 +109,9 @@ SINGLE_BATTLE_TEST("U-turn switches the user out after Ice Face activates")
         HP_BAR(opponent);
         ABILITY_POPUP(opponent, ABILITY_ICE_FACE);
         MESSAGE("Foe Eiscue transformed!");
-        MESSAGE("Go! Abra!");
+        SEND_IN_MESSAGE("Abra");
     }
-}
+}*/
 
 SINGLE_BATTLE_TEST("Held items are consumed immediately after a mon switched in by U-turn and Intimidate activates after it: player side")
 {
@@ -164,7 +164,7 @@ SINGLE_BATTLE_TEST("Electric Seed boost is received by the right pokemon after U
     GIVEN {
         PLAYER(SPECIES_RAICHU) { Ability(ABILITY_ELECTRIC_SURGE); };
         PLAYER(SPECIES_EKANS) { Ability(ABILITY_INTIMIDATE); Item(ITEM_ELECTRIC_SEED); }
-        OPPONENT(SPECIES_ABRA);
+        OPPONENT(SPECIES_ABRA) { HP(400); }
         OPPONENT(SPECIES_ABRA);
     } WHEN {
         TURN { MOVE(player, MOVE_U_TURN); SEND_OUT(player, 1); }

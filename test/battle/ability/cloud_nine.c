@@ -5,7 +5,7 @@ SINGLE_BATTLE_TEST("Cloud Nine prevents weather effects")
 {
     GIVEN {
         ASSUME(gMovesInfo[MOVE_SANDSTORM].effect == EFFECT_SANDSTORM);
-        PLAYER(SPECIES_PSYDUCK) { Ability(ABILITY_CLOUD_NINE); }
+        PLAYER(SPECIES_ALTARIA) { Ability(ABILITY_CLOUD_NINE); }
         OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(opponent, MOVE_SANDSTORM); }

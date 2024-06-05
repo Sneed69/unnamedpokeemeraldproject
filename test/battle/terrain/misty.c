@@ -1,7 +1,7 @@
 #include "global.h"
 #include "test/battle.h"
 
-SINGLE_BATTLE_TEST("Misty Terrain protects grounded battlers from non-volatile status conditions")
+SINGLE_BATTLE_TEST("Misty Terrain protects battlers from non-volatile status conditions")
 {
     GIVEN {
         PLAYER(SPECIES_ALAKAZAM);
@@ -10,12 +10,12 @@ SINGLE_BATTLE_TEST("Misty Terrain protects grounded battlers from non-volatile s
         TURN { MOVE(player, MOVE_MISTY_TERRAIN); MOVE(opponent, MOVE_TOXIC); }
         TURN { MOVE(player, MOVE_TOXIC); }
     } SCENE {
-        MESSAGE("Alakazam used Misty Terrain!");
+        MESSAGE("Alakazam used Mystifying Aura!");
         MESSAGE("Foe Claydol used Toxic!");
-        MESSAGE("Alakazam surrounds itself with a protective mist!");
+        MESSAGE("Alakazam is protected by the mystifying aura!");
         NOT { STATUS_ICON(opponent, badPoison: TRUE); }
         MESSAGE("Alakazam used Toxic!");
-        STATUS_ICON(opponent, badPoison: TRUE);
+        NONE_OF { STATUS_ICON(opponent, badPoison: TRUE); }
     }
 }
 
@@ -25,14 +25,14 @@ SINGLE_BATTLE_TEST("Misty Terrain activates Misty Seed and Mimicry")
         ASSUME(gItemsInfo[ITEM_MISTY_SEED].holdEffect == HOLD_EFFECT_SEEDS);
         ASSUME(gItemsInfo[ITEM_MISTY_SEED].holdEffectParam == HOLD_EFFECT_PARAM_MISTY_TERRAIN);
         PLAYER(SPECIES_ALAKAZAM) { Item(ITEM_MISTY_SEED); }
-        OPPONENT(SPECIES_STUNFISK_GALARIAN) { Ability(ABILITY_MIMICRY); }
+        OPPONENT(SPECIES_PIKACHU) { Ability(ABILITY_MIMICRY); }
     } WHEN {
         TURN { MOVE(player, MOVE_MISTY_TERRAIN); }
     } SCENE {
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
         MESSAGE("Using Misty Seed, the Sp. Def of Alakazam rose!");
         ABILITY_POPUP(opponent);
-        MESSAGE("Foe Stunfisk's type changed to Fairy!");
+        MESSAGE("Foe Pikachu's type changed to Fairy!");
     } THEN {
         EXPECT_EQ(gBattleMons[B_POSITION_OPPONENT_LEFT].type1, TYPE_FAIRY);
     }
@@ -95,7 +95,7 @@ SINGLE_BATTLE_TEST("Misty Terrain lasts for 5 turns")
     } SCENE {
         MESSAGE("Foe Alakazam used Celebrate!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_MISTY_TERRAIN, player);
-        MESSAGE("Mist swirled about the battlefield!");
+        MESSAGE("A mystifying aura envelops the battlefield!");
 
         MESSAGE("Alakazam used Celebrate!");
         MESSAGE("Foe Alakazam used Celebrate!");
@@ -106,6 +106,6 @@ SINGLE_BATTLE_TEST("Misty Terrain lasts for 5 turns")
         MESSAGE("Alakazam used Celebrate!");
         MESSAGE("Foe Alakazam used Celebrate!");
 
-        MESSAGE("The mist disappeared from the battlefield.");
+        MESSAGE("The mystifying aura disappeared.");
     }
 }

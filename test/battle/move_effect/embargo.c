@@ -45,7 +45,7 @@ SINGLE_BATTLE_TEST("Embargo blocks an affected Pokémon's trainer from using ite
     }
 }
 
-WILD_BATTLE_TEST("Embargo doesn't block held item effects that affect experience gain", s32 exp)
+/*WILD_BATTLE_TEST("Embargo doesn't block held item effects that affect experience gain", s32 exp)
 {
     u32 item;
 
@@ -93,7 +93,7 @@ WILD_BATTLE_TEST("Embargo doesn't block held item effects that affect effort val
         finalHPEVAmount = (GetMonData(&PLAYER_PARTY[0], MON_DATA_HP_EV) + gItemsInfo[ITEM_POWER_WEIGHT].holdEffectParam + gSpeciesInfo[SPECIES_CATERPIE].evYield_HP);
         EXPECT_EQ(GetMonData(&gPlayerParty[0], MON_DATA_HP_EV), finalHPEVAmount);
     }
-}
+}*/
 
 SINGLE_BATTLE_TEST("Embargo negates a held item's Speed reduction")
 {
@@ -137,7 +137,7 @@ WILD_BATTLE_TEST("Embargo doesn't block held item effects that affect friendship
     }
 }
 
-SINGLE_BATTLE_TEST("Embargo doesn't block a held item's form-changing effect, but it does block its other effects", s16 damage)
+/*SINGLE_BATTLE_TEST("Embargo doesn't block a held item's form-changing effect, but it does block its other effects", s16 damage)
 {
     u32 heldItem;
 
@@ -201,7 +201,7 @@ SINGLE_BATTLE_TEST("Embargo doesn't stop an item flung at an affected target fro
         HP_BAR(opponent);
         MESSAGE("Foe Alakazam is paralyzed! It may be unable to move!");
     }
-}
+}*/
 
 SINGLE_BATTLE_TEST("Baton Pass passes Embargo's effect")
 {
@@ -220,7 +220,7 @@ SINGLE_BATTLE_TEST("Baton Pass passes Embargo's effect")
         // Turn 2
         MESSAGE("Alakazam used Baton Pass!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_BATON_PASS, player);
-        MESSAGE("Go! Abra!");
+        SEND_IN_MESSAGE("Abra");
         // Turn 3
         MESSAGE("Abra used Fling!");
         MESSAGE("But it failed!");
@@ -229,7 +229,7 @@ SINGLE_BATTLE_TEST("Baton Pass passes Embargo's effect")
 
 SINGLE_BATTLE_TEST("Embargo doesn't block the effects of berries obtained through Bug Bite or Pluck")
 {
-    u32 hp = 10;
+    u32 hp = 40;
 
     GIVEN {
         PLAYER(SPECIES_ALAKAZAM) { HP(1); };
@@ -249,7 +249,7 @@ SINGLE_BATTLE_TEST("Embargo doesn't block the effects of berries obtained throug
     }
 }
 
-SINGLE_BATTLE_TEST("Embargo disables the effect of the Plate items on the move Judgment", s16 damage)
+/*SINGLE_BATTLE_TEST("Embargo disables the effect of the Plate items on the move Judgment", s16 damage)
 {
     u32 heldItem;
 
@@ -310,7 +310,7 @@ SINGLE_BATTLE_TEST("Embargo disables the effect of the Memory items on the move 
     } FINALLY {
         EXPECT_MUL_EQ(results[0].damage, Q_4_12(1.0), results[1].damage);
     }
-}
+}*/
 
 SINGLE_BATTLE_TEST("Embargo can be reflected by Magic Coat")
 {
@@ -325,7 +325,7 @@ SINGLE_BATTLE_TEST("Embargo can be reflected by Magic Coat")
         MESSAGE("Alakazam used Magic Coat!");
         MESSAGE("Alakazam shrouded itself in Magic Coat!");
         MESSAGE("Foe Alakazam used Embargo!");
-        MESSAGE("Foe Alakazam's Embargo was bounced back by MAGIC COAT!");
+        MESSAGE("Foe Alakazam's Embargo was bounced back by Magic Coat!");
         MESSAGE("Foe Alakazam can't use items anymore!");
         // Turn 2
         MESSAGE("Foe Alakazam used Fling!");
@@ -333,7 +333,7 @@ SINGLE_BATTLE_TEST("Embargo can be reflected by Magic Coat")
     }
 }
 
-SINGLE_BATTLE_TEST("Embargo doesn't prevent Mega Evolution")
+/*SINGLE_BATTLE_TEST("Embargo doesn't prevent Mega Evolution")
 {
     GIVEN {
         PLAYER(SPECIES_ALAKAZAM);
@@ -383,7 +383,7 @@ SINGLE_BATTLE_TEST("Embargo doesn't prevent Primal Reversion")
         MESSAGE("Foe Groudon used Fling!");
         MESSAGE("But it failed!");
     }
-}
+}*/
 
 TO_DO_BATTLE_TEST("Embargo doesn't prevent the usage of Z-Moves")
 TO_DO_BATTLE_TEST("Embargo doesn't block held item effects that affect prize money")

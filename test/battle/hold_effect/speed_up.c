@@ -40,14 +40,14 @@ SINGLE_BATTLE_TEST("Salac Berry raises the holder's Speed by one stage when HP d
 SINGLE_BATTLE_TEST("Salac Berry raises Speed by one stage when HP drops to 1/2 or below if holder has Gluttony")
 {
     GIVEN {
-        PLAYER(SPECIES_BELLSPROUT) { MaxHP(100); HP(100); Ability(ABILITY_GLUTTONY); Item(ITEM_SALAC_BERRY); }
+        PLAYER(SPECIES_SNORLAX) { MaxHP(100); HP(100); Ability(ABILITY_GLUTTONY); Item(ITEM_SALAC_BERRY); }
         OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(opponent, MOVE_DRAGON_RAGE); }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_DRAGON_RAGE, opponent);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, player);
-        MESSAGE("Using Salac Berry, the Speed of Bellsprout rose!");
+        MESSAGE("Using Salac Berry, the Speed of Snorlax rose!");
     } THEN {
         EXPECT_EQ(player->statStages[STAT_SPEED], DEFAULT_STAT_STAGE + 1);
     }
@@ -56,14 +56,14 @@ SINGLE_BATTLE_TEST("Salac Berry raises Speed by one stage when HP drops to 1/2 o
 SINGLE_BATTLE_TEST("Salac Berry raises Speed by one stage when HP drops to 1/4 or below if holder has Ripen")
 {
     GIVEN {
-        PLAYER(SPECIES_APPLIN) { MaxHP(200); HP(100); Ability(ABILITY_RIPEN); Item(ITEM_SALAC_BERRY); }
+        PLAYER(SPECIES_SNORLAX) { MaxHP(200); HP(100); Ability(ABILITY_RIPEN); Item(ITEM_SALAC_BERRY); }
         OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(opponent, MOVE_DRAGON_RAGE); }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_DRAGON_RAGE, opponent);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, player);
-        MESSAGE("Using Salac Berry, the Speed of Applin sharply rose!");
+        MESSAGE("Using Salac Berry, the Speed of Snorlax sharply rose!");
     } THEN {
         EXPECT_EQ(player->statStages[STAT_SPEED], DEFAULT_STAT_STAGE + 2);
     }

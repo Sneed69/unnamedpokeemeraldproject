@@ -9,7 +9,7 @@ DOUBLE_BATTLE_TEST("Hospitality user restores 25% of ally's health")
     PARAMETRIZE { health = 100; }
 
     GIVEN {
-        PLAYER(SPECIES_POLTCHAGEIST) { Ability(ABILITY_HOSPITALITY); }
+        PLAYER(SPECIES_BANETTE) { Ability(ABILITY_HOSPITALITY); }
         PLAYER(SPECIES_ALAKAZAM) { HP(health); MaxHP(100); }
         OPPONENT(SPECIES_ALAKAZAM);
         OPPONENT(SPECIES_ALAKAZAM);
@@ -18,12 +18,12 @@ DOUBLE_BATTLE_TEST("Hospitality user restores 25% of ally's health")
     } SCENE {
         if (health == 75) {
             ABILITY_POPUP(playerLeft, ABILITY_HOSPITALITY);
-            MESSAGE("Alakazam drank down all the matcha that Poltchageist made!");
+            MESSAGE("Alakazam drank down all the matcha that Banette made!");
             HP_BAR(playerRight, damage: -25);
         } else {
             NONE_OF {
                 ABILITY_POPUP(playerLeft, ABILITY_HOSPITALITY);
-                MESSAGE("Alakazam drank down all the matcha that Poltchageist made!");
+                MESSAGE("Alakazam drank down all the matcha that Banette made!");
                 HP_BAR(playerRight, damage: -25);
             }
         }
@@ -35,16 +35,16 @@ DOUBLE_BATTLE_TEST("Hospitality user restores 25% of ally's health on switch-in"
     GIVEN {
         PLAYER(SPECIES_ALAKAZAM)
         PLAYER(SPECIES_ALAKAZAM) { HP(75); MaxHP(100); }
-        PLAYER(SPECIES_POLTCHAGEIST) { Ability(ABILITY_HOSPITALITY); }
+        PLAYER(SPECIES_BANETTE) { Ability(ABILITY_HOSPITALITY); }
         OPPONENT(SPECIES_ALAKAZAM);
         OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { SWITCH(playerLeft, 2); }
     } SCENE {
-        MESSAGE("Alakazam, that's enough! Come back!");
-        MESSAGE("Go! Poltchageist!");
+        SWITCH_OUT_MESSAGE("Alakazam");
+        SEND_IN_MESSAGE("Banette");
         ABILITY_POPUP(playerLeft, ABILITY_HOSPITALITY);
-        MESSAGE("Alakazam drank down all the matcha that Poltchageist made!");
+        MESSAGE("Alakazam drank down all the matcha that Banette made!");
         HP_BAR(playerRight, damage: -25);
     }
 }
@@ -54,7 +54,7 @@ DOUBLE_BATTLE_TEST("Hospitality ignores Substitute")
     GIVEN {
         PLAYER(SPECIES_ALAKAZAM);
         PLAYER(SPECIES_ALAKAZAM);
-        PLAYER(SPECIES_POLTCHAGEIST) { Ability(ABILITY_HOSPITALITY); }
+        PLAYER(SPECIES_BANETTE) { Ability(ABILITY_HOSPITALITY); }
         OPPONENT(SPECIES_ALAKAZAM);
         OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
@@ -62,10 +62,10 @@ DOUBLE_BATTLE_TEST("Hospitality ignores Substitute")
         TURN { SWITCH(playerLeft, 2); }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_SUBSTITUTE, playerRight);
-        MESSAGE("Alakazam, that's enough! Come back!");
-        MESSAGE("Go! Poltchageist!");
+        SWITCH_OUT_MESSAGE("Alakazam");
+        SEND_IN_MESSAGE("Banette");
         ABILITY_POPUP(playerLeft, ABILITY_HOSPITALITY);
-        MESSAGE("Alakazam drank down all the matcha that Poltchageist made!");
+        MESSAGE("Alakazam drank down all the matcha that Banette made!");
     }
 }
 
@@ -74,7 +74,7 @@ DOUBLE_BATTLE_TEST("Hospitality does not trigger if there is no ally on the fiel
     GIVEN {
         PLAYER(SPECIES_ALAKAZAM) { HP(1);  }
         PLAYER(SPECIES_ALAKAZAM) { HP(1);  }
-        PLAYER(SPECIES_POLTCHAGEIST) { Ability(ABILITY_HOSPITALITY); }
+        PLAYER(SPECIES_BANETTE) { Ability(ABILITY_HOSPITALITY); }
         OPPONENT(SPECIES_ALAKAZAM);
         OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
@@ -85,7 +85,7 @@ DOUBLE_BATTLE_TEST("Hospitality does not trigger if there is no ally on the fiel
         MESSAGE("Alakazam fainted!");
         HP_BAR(playerRight);
         MESSAGE("Alakazam fainted!");
-        MESSAGE("Go! Poltchageist!");
+        SEND_IN_MESSAGE("Banette");
         NOT ABILITY_POPUP(playerLeft, ABILITY_HOSPITALITY);
     }
 }

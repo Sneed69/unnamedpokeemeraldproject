@@ -135,7 +135,7 @@ SINGLE_BATTLE_TEST("Steel Beam is not blocked by Damp")
 {
     GIVEN {
         PLAYER(SPECIES_ALAKAZAM) { HP(400); MaxHP(400); }
-        OPPONENT(SPECIES_GOLDUCK) { Ability(ABILITY_DAMP); }
+        OPPONENT(SPECIES_MARSHTOMP) { Ability(ABILITY_DAMP); }
     } WHEN {
         TURN { MOVE(player, MOVE_STEEL_BEAM); }
     } SCENE {
@@ -143,7 +143,7 @@ SINGLE_BATTLE_TEST("Steel Beam is not blocked by Damp")
         HP_BAR(player, damage: 200);
         NONE_OF {
             ABILITY_POPUP(opponent, ABILITY_DAMP);
-            MESSAGE("Foe Golduck's Damp prevents Alakazam from using Steel Beam!");
+            MESSAGE("Foe Marshtomp's Damp prevents Alakazam from using Steel Beam!");
         }
     }
 }

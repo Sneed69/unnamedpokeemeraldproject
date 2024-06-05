@@ -34,7 +34,7 @@ SINGLE_BATTLE_TEST("Moves with the cantUseTwice flag strike again if fast encore
     GIVEN {
         ASSUME(gMovesInfo[MOVE_ENCORE].effect == EFFECT_ENCORE);
         PLAYER(SPECIES_ALAKAZAM);
-        OPPONENT(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_ALAKAZAM) { HP (295); }
     } WHEN {
         TURN { MOVE(player, move); }
         TURN { MOVE(opponent, MOVE_ENCORE); FORCED_MOVE(player); }
@@ -56,7 +56,7 @@ SINGLE_BATTLE_TEST("Moves with the cantUseTwice flag alternate with Struggle if 
     PARAMETRIZE { move = MOVE_BLOOD_MOON; }
     GIVEN {
         PLAYER(SPECIES_ALAKAZAM) { Moves(move, MOVE_NONE, MOVE_NONE, MOVE_NONE); }
-        OPPONENT(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_ALAKAZAM) { HP (295); }
     } WHEN {
         TURN { MOVE(player, move); }
         TURN { FORCED_MOVE(player); }
@@ -76,7 +76,7 @@ SINGLE_BATTLE_TEST("Moves with the cantUseTwice flag can alternate between each 
 {
     GIVEN {
         PLAYER(SPECIES_ALAKAZAM) { Moves(MOVE_GIGATON_HAMMER, MOVE_BLOOD_MOON, MOVE_NONE, MOVE_NONE); }
-        OPPONENT(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_ALAKAZAM) { HP (295); }
     } WHEN {
         TURN { MOVE(player, MOVE_GIGATON_HAMMER); }
         TURN { MOVE(player, MOVE_BLOOD_MOON); }

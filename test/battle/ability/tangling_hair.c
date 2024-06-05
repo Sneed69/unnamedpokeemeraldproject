@@ -54,15 +54,15 @@ SINGLE_BATTLE_TEST("Tangling Hair Speed stat drop triggers defiant")
 {
     GIVEN {
         PLAYER(SPECIES_DUGTRIO) { Ability(ABILITY_TANGLING_HAIR); }
-        OPPONENT(SPECIES_PAWNIARD) { Ability(ABILITY_DEFIANT); }
+        OPPONENT(SPECIES_SNEASEL) { Ability(ABILITY_DEFIANT); }
     } WHEN {
         TURN { MOVE(opponent, MOVE_TACKLE); }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, opponent);
         ABILITY_POPUP(player, ABILITY_TANGLING_HAIR);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
-        MESSAGE("Foe Pawniard's Speed fell!");
+        MESSAGE("Foe Sneasel's Speed fell!");
         ABILITY_POPUP(opponent, ABILITY_DEFIANT);
-        MESSAGE("Foe Pawniard's Attack sharply rose!");
+        MESSAGE("Foe Sneasel's Attack sharply rose!");
     }
 }

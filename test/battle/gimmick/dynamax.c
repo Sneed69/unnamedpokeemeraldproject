@@ -816,7 +816,7 @@ SINGLE_BATTLE_TEST("(DYNAMAX) Max Overgrowth sets up Grassy Terrain")
         TURN { MOVE(player, MOVE_VINE_WHIP); MOVE(opponent, MOVE_CELEBRATE); }
     } SCENE {
         MESSAGE("Alakazam used Max Overgrowth!");
-        MESSAGE("Grass grew to cover the battlefield!");
+        MESSAGE("A verdant aura envelops the battlefield!");
         MESSAGE("Alakazam is healed by the verdant aura!");
         HP_BAR(player, damage: -maxHP/16);
         MESSAGE("Foe Alakazam is healed by the verdant aura!");

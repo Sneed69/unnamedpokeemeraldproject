@@ -11,7 +11,7 @@ SINGLE_BATTLE_TEST("Thrash lasts for 2 or 3 turns")
     PASSES_RANDOMLY(1, 2, RNG_RAMPAGE_TURNS);
     GIVEN {
         PLAYER(SPECIES_ALAKAZAM);
-        OPPONENT(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_ALAKAZAM) { HP(400); }
     } WHEN {
         TURN { MOVE(player, MOVE_THRASH); }
         TURN { SKIP_TURN(player); }
@@ -27,7 +27,7 @@ SINGLE_BATTLE_TEST("Thrash confuses the user after it finishes")
 {
     GIVEN {
         PLAYER(SPECIES_ALAKAZAM) { MovesWithPP({MOVE_THRASH, 10}); }
-        OPPONENT(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_ALAKAZAM) { HP(400); }
     } WHEN {
         TURN { MOVE(player, MOVE_THRASH); }
         TURN { SKIP_TURN(player); }
@@ -93,7 +93,7 @@ SINGLE_BATTLE_TEST("Petal Dance does not lock mons that copy the move with Dance
 {
     GIVEN {
         PLAYER(SPECIES_VILEPLUME);
-        OPPONENT(SPECIES_ORICORIO);
+        OPPONENT(SPECIES_BELLOSSOM) { Ability(ABILITY_DANCER); }
     } WHEN {
         TURN { MOVE(player, MOVE_PETAL_DANCE); }
         TURN { SKIP_TURN(player); }

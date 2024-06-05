@@ -37,20 +37,19 @@ SINGLE_BATTLE_TEST("Dream Eater fails on awake targets")
     }
 }
 
-SINGLE_BATTLE_TEST("Dream Eater fails if Heal Block applies")
+SINGLE_BATTLE_TEST("Dream Eater does not fail if Heal Block applies but does not heal")
 {
-    ASSUME(B_HEAL_BLOCKING >= GEN_6);
+    ASSUME(B_HEAL_BLOCKING < GEN_6);
     GIVEN {
-        PLAYER(SPECIES_ALAKAZAM) { HP(1); }
-        OPPONENT(SPECIES_ALAKAZAM);
+        PLAYER(SPECIES_ALAKAZAM) { HP(1); Speed(1); }
+        OPPONENT(SPECIES_ALAKAZAM) { Speed(2); };
     } WHEN {
-        TURN { MOVE(opponent, MOVE_HEAL_BLOCK); MOVE(player, MOVE_DREAM_EATER); }
+        TURN { MOVE(opponent, MOVE_HEAL_BLOCK); MOVE(player, MOVE_HYPNOSIS); }
+        TURN { MOVE(player, MOVE_DREAM_EATER); }
     } SCENE {
-        MESSAGE("Alakazam was prevented from healing!");
-        NONE_OF {
-            ANIMATION(ANIM_TYPE_MOVE, MOVE_DREAM_EATER, player);
-            HP_BAR(opponent);
-            HP_BAR(player);
-        }
+        MESSAGE("Alakazam used Dream Eater!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_DREAM_EATER, player);
+        HP_BAR(opponent);
+        NOT { HP_BAR(player); }
     }
 }

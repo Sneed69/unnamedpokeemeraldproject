@@ -50,7 +50,7 @@ SINGLE_BATTLE_TEST("Drizzle fails if Desolate Land is active")
 {
     u32 ability;
 
-    PARAMETRIZE { ability = ABILITY_NONE; }
+    PARAMETRIZE { ability = ABILITY_EARTH_EATER; }
     PARAMETRIZE { ability = ABILITY_DESOLATE_LAND; }
 
     GIVEN {

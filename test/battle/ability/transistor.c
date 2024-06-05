@@ -19,8 +19,8 @@ SINGLE_BATTLE_TEST("Transistor increases Electric-type move damage", s16 damage)
         ASSUME(gMovesInfo[MOVE_THUNDER_SHOCK].type == TYPE_ELECTRIC);
         ASSUME(gMovesInfo[MOVE_WILD_CHARGE].category == DAMAGE_CATEGORY_PHYSICAL);
         ASSUME(gMovesInfo[MOVE_THUNDER_SHOCK].category == DAMAGE_CATEGORY_SPECIAL);
-        PLAYER(SPECIES_REGIELEKI) { Ability(ability); }
-        OPPONENT(SPECIES_ALAKAZAM);
+        PLAYER(SPECIES_JOLTEON) { Ability(ability); }
+        OPPONENT(SPECIES_ALAKAZAM) { HP(400); }
     } WHEN {
         TURN { MOVE(player, move); }
     } SCENE {

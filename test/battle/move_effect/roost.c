@@ -131,16 +131,14 @@ SINGLE_BATTLE_TEST("Roost, if used by a Flying/Flying type, treats the user as a
     PARAMETRIZE{ damagingMove = MOVE_DISARMING_VOICE; }
 
     GIVEN {
-        ASSUME(gSpeciesInfo[SPECIES_TORNADUS].types[0] == TYPE_FLYING);
-        ASSUME(gSpeciesInfo[SPECIES_TORNADUS].types[1] == TYPE_FLYING);
-        PLAYER(SPECIES_TORNADUS) { HP(50); MaxHP(100); }
+        PLAYER(SPECIES_KECLEON) { HP(50); MaxHP(100); Ability(ABILITY_PROTEAN); }
         OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, MOVE_ROOST); MOVE(opponent, damagingMove); }
     } SCENE {
-        MESSAGE("Tornadus used Roost!");
+        MESSAGE("Kecleon used Roost!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_ROOST, player);
-        MESSAGE("Tornadus regained health!");
+        MESSAGE("Kecleon regained health!");
 
         if (B_ROOST_PURE_FLYING >= GEN_5) // >= Gen. 5, Pokemon becomes pure Normal-type
         {
@@ -152,7 +150,7 @@ SINGLE_BATTLE_TEST("Roost, if used by a Flying/Flying type, treats the user as a
             else if (damagingMove == MOVE_LICK)
             {
                 NOT ANIMATION(ANIM_TYPE_MOVE, damagingMove, opponent);
-                MESSAGE("It doesn't affect Tornadus…");
+                MESSAGE("It doesn't affect Kecleon…");
             }
             else
             {
@@ -160,7 +158,7 @@ SINGLE_BATTLE_TEST("Roost, if used by a Flying/Flying type, treats the user as a
                 NONE_OF {
                     MESSAGE("It's super effective!");
                     MESSAGE("It's not very effective…");
-                    MESSAGE("It doesn't affect Tornadus…");
+                    MESSAGE("It doesn't affect Kecleon…");
                 }
             }
         }
@@ -170,7 +168,7 @@ SINGLE_BATTLE_TEST("Roost, if used by a Flying/Flying type, treats the user as a
             NONE_OF {
                 MESSAGE("It's super effective!");
                 MESSAGE("It's not very effective…");
-                MESSAGE("It doesn't affect Tornadus…");
+                MESSAGE("It doesn't affect Kecleon…");
             }
         }
     }
@@ -199,27 +197,27 @@ SINGLE_BATTLE_TEST("Roost, if used by a Mystery/Flying type, treats the user as 
     PARAMETRIZE{ damagingMove = MOVE_DISARMING_VOICE; }
 
     GIVEN {
-        ASSUME(gSpeciesInfo[SPECIES_MOLTRES].types[0] == TYPE_FIRE);
-        ASSUME(gSpeciesInfo[SPECIES_MOLTRES].types[1] == TYPE_FLYING);
-        PLAYER(SPECIES_MOLTRES) { HP(300); MaxHP(400); }
+        ASSUME(gSpeciesInfo[SPECIES_TALONFLAME].types[0] == TYPE_FIRE);
+        ASSUME(gSpeciesInfo[SPECIES_TALONFLAME].types[1] == TYPE_FLYING);
+        PLAYER(SPECIES_TALONFLAME) { HP(300); MaxHP(400); }
         OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, MOVE_BURN_UP); }
         TURN { MOVE(player, MOVE_ROOST); MOVE(opponent, damagingMove); }
     } SCENE {
         // Turn 1: Use Burn Up to change from Fire/Flying to Mystery/Flying
-        MESSAGE("Moltres used Burn Up!");
+        MESSAGE("Talonflame used Burn Up!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_BURN_UP, player);
-        MESSAGE("Moltres burned itself out!");
+        MESSAGE("Talonflame burned itself out!");
         // Turn 2: Use Roost to now be treated as a Mystery/Mystery type
-        MESSAGE("Moltres used Roost!");
+        MESSAGE("Talonflame used Roost!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_ROOST, player);
-        MESSAGE("Moltres regained health!");
+        MESSAGE("Talonflame regained health!");
         ANIMATION(ANIM_TYPE_MOVE, damagingMove, opponent);
         NONE_OF {
             MESSAGE("It's super effective!");
             MESSAGE("It's not very effective…");
-            MESSAGE("It doesn't affect Moltres…");
+            MESSAGE("It doesn't affect Talonflame…");
         }
     }
 }
@@ -230,7 +228,7 @@ DOUBLE_BATTLE_TEST("Roost suppresses the user's not-yet-aquired Flying-type this
     GIVEN {
         ASSUME(gSpeciesInfo[SPECIES_KECLEON].types[0] != TYPE_FLYING);
         ASSUME(gSpeciesInfo[SPECIES_KECLEON].types[1] != TYPE_FLYING);
-        PLAYER(SPECIES_KECLEON) { Speed(40); HP(150); Ability(ABILITY_COLOR_CHANGE); }
+        PLAYER(SPECIES_KECLEON) { Speed(40); HP(90); Ability(ABILITY_COLOR_CHANGE); }
         PLAYER(SPECIES_ALAKAZAM) { Speed(10); }
         OPPONENT(SPECIES_PIDGEY) { Speed(30); }
         OPPONENT(SPECIES_SANDSHREW) { Speed(20); }

@@ -10,7 +10,7 @@ SINGLE_BATTLE_TEST("Innards Out deal dmg on fainting equal to the amount of dmg 
     PARAMETRIZE { hp = 100; } // This takes out Alakazam.
 
     GIVEN {
-        PLAYER(SPECIES_PYUKUMUKU) { HP(hp); Ability(ABILITY_INNARDS_OUT); }
+        PLAYER(SPECIES_DRIFLOON) { HP(hp); Ability(ABILITY_INNARDS_OUT); }
         PLAYER(SPECIES_ALAKAZAM);
         OPPONENT(SPECIES_ALAKAZAM) { HP(70); SpAttack(1000); }
         OPPONENT(SPECIES_ALAKAZAM);
@@ -29,7 +29,7 @@ SINGLE_BATTLE_TEST("Innards Out deal dmg on fainting equal to the amount of dmg 
 SINGLE_BATTLE_TEST("Innards Out does not trigger after Gastro Acid has been used")
 {
     GIVEN {
-        PLAYER(SPECIES_PYUKUMUKU) { HP(1); Ability(ABILITY_INNARDS_OUT); }
+        PLAYER(SPECIES_DRIFLOON) { HP(1); Ability(ABILITY_INNARDS_OUT); }
         PLAYER(SPECIES_ALAKAZAM);
         OPPONENT(SPECIES_ALAKAZAM);
         ASSUME(gMovesInfo[MOVE_PSYCHIC].power != 0);
@@ -52,7 +52,7 @@ SINGLE_BATTLE_TEST("Innards Out does not trigger after Gastro Acid has been used
 SINGLE_BATTLE_TEST("Innards Out does not damage Magic Guard Pokemon")
 {
     GIVEN {
-        PLAYER(SPECIES_PYUKUMUKU) { HP(1); Ability(ABILITY_INNARDS_OUT); }
+        PLAYER(SPECIES_DRIFLOON) { HP(1); Ability(ABILITY_INNARDS_OUT); }
         PLAYER(SPECIES_ALAKAZAM);
         OPPONENT(SPECIES_CLEFABLE) { Ability(ABILITY_MAGIC_GUARD); }
         ASSUME(gMovesInfo[MOVE_PSYCHIC].power != 0);

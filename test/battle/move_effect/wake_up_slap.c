@@ -14,22 +14,22 @@ SINGLE_BATTLE_TEST("Wake-Up Slap does not cure paralyzed pokemons behind substit
     PARAMETRIZE { ability = ABILITY_INFILTRATOR; }
     GIVEN {
         PLAYER(SPECIES_CROBAT) { Ability(ability); }
-        OPPONENT(SPECIES_SEISMITOAD);
+        OPPONENT(SPECIES_SWAMPERT);
     } WHEN {
         TURN { MOVE(opponent, MOVE_SUBSTITUTE); MOVE(player, MOVE_SING); }
         TURN { MOVE(opponent, MOVE_CELEBRATE); MOVE(player, MOVE_WAKE_UP_SLAP); }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_WAKE_UP_SLAP, player);
         if (ability == ABILITY_INNER_FOCUS) {
-            MESSAGE("The Substitute took damage for Foe Seismitoad!");
+            MESSAGE("The Substitute took damage for Foe Swampert!");
             NONE_OF
             {
-                MESSAGE("Foe Seismitoad's Substitute faded!"); // Smelling Salts does 86 damage, the sub has 122 HP, if hitting a sub it shouldn't get boosted damage.
-                MESSAGE("Foe Seismitoad woke up!");
+                MESSAGE("Foe Swampert's Substitute faded!"); // Smelling Salts does 86 damage, the sub has 122 HP, if hitting a sub it shouldn't get boosted damage.
+                MESSAGE("Foe Swampert woke up!");
                 STATUS_ICON(opponent, none: TRUE);
             }
         } else {
-            MESSAGE("Foe Seismitoad woke up!");
+            MESSAGE("Foe Swampert woke up!");
             STATUS_ICON(opponent, none: TRUE);
         }
     }

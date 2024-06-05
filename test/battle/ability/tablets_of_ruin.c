@@ -12,14 +12,14 @@ SINGLE_BATTLE_TEST("Tablets of Ruin reduces Attack if opposing mon's ability doe
     s16 damage[2];
 
     GIVEN {
-        PLAYER(SPECIES_WO_CHIEN) { Ability(ABILITY_TABLETS_OF_RUIN); }
+        PLAYER(SPECIES_CACTURNE) { Ability(ABILITY_TABLETS_OF_RUIN); }
         OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(opponent, MOVE_TACKLE); MOVE(player, MOVE_ENTRAINMENT); }
         TURN { MOVE(opponent, MOVE_TACKLE); }
     } SCENE {
         ABILITY_POPUP(player, ABILITY_TABLETS_OF_RUIN);
-        MESSAGE("Wo-Chien's Tablets of Ruin weakened the Attack of all surrounding Pokémon!");
+        MESSAGE("Cacturne's Tablets of Ruin weakened the Attack of all surrounding Pokémon!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, opponent);
         HP_BAR(player, captureDamage: &damage[0]);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_ENTRAINMENT, player);
@@ -35,7 +35,7 @@ SINGLE_BATTLE_TEST("Tablets of Ruin's message displays correctly after all battl
     GIVEN {
         ASSUME(gMovesInfo[MOVE_EXPLOSION].effect == EFFECT_EXPLOSION);
         PLAYER(SPECIES_ALAKAZAM) { HP(1);}
-        PLAYER(SPECIES_WO_CHIEN);
+        PLAYER(SPECIES_CACTURNE) { Ability(ABILITY_TABLETS_OF_RUIN); }
         OPPONENT(SPECIES_ALAKAZAM);
         OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
@@ -45,9 +45,9 @@ SINGLE_BATTLE_TEST("Tablets of Ruin's message displays correctly after all battl
         HP_BAR(opponent, hp: 0);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_EXPLOSION, opponent);
         // Everyone faints.
-        MESSAGE("Go! Wo-Chien!");
+        MESSAGE("Go! Cacturne!");
         ABILITY_POPUP(player, ABILITY_TABLETS_OF_RUIN);
-        MESSAGE("Wo-Chien's Tablets of Ruin weakened the Attack of all surrounding Pokémon!");
+        MESSAGE("Cacturne's Tablets of Ruin weakened the Attack of all surrounding Pokémon!");
         MESSAGE("2 sent out Alakazam!");
     }
 }
@@ -59,7 +59,7 @@ SINGLE_BATTLE_TEST("Tablets of Ruin's message displays correctly after all battl
         PLAYER(SPECIES_ALAKAZAM);
         PLAYER(SPECIES_ALAKAZAM);
         OPPONENT(SPECIES_ALAKAZAM) { HP(1);}
-        OPPONENT(SPECIES_WO_CHIEN);
+        OPPONENT(SPECIES_CACTURNE) { Ability(ABILITY_TABLETS_OF_RUIN); }
     } WHEN {
         TURN { MOVE(player, MOVE_EXPLOSION); SEND_OUT(player, 1); SEND_OUT(opponent, 1); }
         TURN { MOVE(player, MOVE_RUINATION); MOVE(opponent, MOVE_TACKLE); }
@@ -67,9 +67,9 @@ SINGLE_BATTLE_TEST("Tablets of Ruin's message displays correctly after all battl
         HP_BAR(player, hp: 0);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_EXPLOSION, player);
         // Everyone faints.
-        MESSAGE("Go! Alakazam!");
-        MESSAGE("2 sent out Wo-Chien!");
+        SEND_IN_MESSAGE("Alakazam");
+        MESSAGE("2 sent out Cacturne!");
         ABILITY_POPUP(opponent, ABILITY_TABLETS_OF_RUIN);
-        MESSAGE("Foe Wo-Chien's Tablets of Ruin weakened the Attack of all surrounding Pokémon!");
+        MESSAGE("Foe Cacturne's Tablets of Ruin weakened the Attack of all surrounding Pokémon!");
     }
 }

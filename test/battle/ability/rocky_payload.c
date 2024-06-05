@@ -19,7 +19,7 @@ SINGLE_BATTLE_TEST("Rocky Payload increases Rock-type move damage", s16 damage)
         ASSUME(gMovesInfo[MOVE_POWER_GEM].type == TYPE_ROCK);
         ASSUME(gMovesInfo[MOVE_ROCK_THROW].category == DAMAGE_CATEGORY_PHYSICAL);
         ASSUME(gMovesInfo[MOVE_POWER_GEM].category == DAMAGE_CATEGORY_SPECIAL);
-        PLAYER(SPECIES_BOMBIRDIER) { Ability(ability); }
+        PLAYER(SPECIES_ZIGZAGOON) { Ability(ability); }
         OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, move); }

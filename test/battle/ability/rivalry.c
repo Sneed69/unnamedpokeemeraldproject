@@ -61,8 +61,7 @@ SINGLE_BATTLE_TEST("Rivalry doesn't modify power if the attacker is genderless",
     PARAMETRIZE { species = SPECIES_NIDOQUEEN; ability = ABILITY_RIVALRY; }
 
     GIVEN {
-        ASSUME(gSpeciesInfo[SPECIES_MAGNEMITE].abilities[0] == ABILITY_TRACE);
-        PLAYER(SPECIES_MAGNEMITE) { Ability(ABILITY_TRACE); } // No genderless mon naturally gets Rivalry
+        PLAYER(SPECIES_MAGNEMITE) { Ability(ABILITY_RIVALRY); }
         OPPONENT(species) { Ability(ability); };
     } WHEN {
         TURN { MOVE(player, MOVE_TACKLE); }

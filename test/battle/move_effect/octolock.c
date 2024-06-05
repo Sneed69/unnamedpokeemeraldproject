@@ -25,7 +25,7 @@ SINGLE_BATTLE_TEST("Octolock reduction is prevented by Clear Body, White Smoke a
 
     PARAMETRIZE { species = SPECIES_BELDUM; ability = ABILITY_CLEAR_BODY; }
     PARAMETRIZE { species = SPECIES_TORKOAL; ability = ABILITY_WHITE_SMOKE; }
-    PARAMETRIZE { species = SPECIES_SOLGALEO; ability = ABILITY_FULL_METAL_BODY; }
+    PARAMETRIZE { species = SPECIES_METAGROSS; ability = ABILITY_FULL_METAL_BODY; }
 
     GIVEN {
         PLAYER(SPECIES_ALAKAZAM);
@@ -55,14 +55,14 @@ SINGLE_BATTLE_TEST("Octolock reduction is prevented by Clear Body, White Smoke a
                 MESSAGE("Foe Torkoal's Sp. Def fell!");
             }
         }
-        else if (species == SPECIES_SOLGALEO)
+        else if (species == SPECIES_METAGROSS)
         {
-            MESSAGE("Foe Solgaleo can no longer escape because of Octolock!");
+            MESSAGE("Foe Metagross can no longer escape because of Octolock!");
             ABILITY_POPUP(opponent, ABILITY_FULL_METAL_BODY);
-            MESSAGE("Foe Solgaleo's Full Metal Body prevents stat loss!");
+            MESSAGE("Foe Metagross's Full Metal Body prevents stat loss!");
             NONE_OF {
-                MESSAGE("Foe Solgaleo's Defense fell!");
-                MESSAGE("Foe Solgaleo's Sp. Def fell!");
+                MESSAGE("Foe Metagross's Defense fell!");
+                MESSAGE("Foe Metagross's Sp. Def fell!");
             }
         }
     }

@@ -19,8 +19,8 @@ SINGLE_BATTLE_TEST("Galvanize can not turn certain moves into Electric type move
     ASSUME(gMovesInfo[MOVE_WEATHER_BALL].effect == EFFECT_WEATHER_BALL);
     ASSUME(gMovesInfo[MOVE_MULTI_ATTACK].effect == EFFECT_CHANGE_TYPE_ON_ITEM);
     GIVEN {
-        PLAYER(SPECIES_KRABBY);
-        OPPONENT(SPECIES_GEODUDE_ALOLAN) { Ability(ABILITY_GALVANIZE); }
+        PLAYER(SPECIES_CORPHISH);
+        OPPONENT(SPECIES_GEODUDE) { Ability(ABILITY_GALVANIZE); }
     } WHEN {
         TURN { MOVE(opponent, move); }
     } SCENE {
@@ -32,8 +32,8 @@ SINGLE_BATTLE_TEST("Galvanize can not turn certain moves into Electric type move
 SINGLE_BATTLE_TEST("Galvanize turns a normal type move into Electric")
 {
     GIVEN {
-        PLAYER(SPECIES_KRABBY);
-        OPPONENT(SPECIES_GEODUDE_ALOLAN) { Ability(ABILITY_GALVANIZE); }
+        PLAYER(SPECIES_CORPHISH);
+        OPPONENT(SPECIES_GEODUDE) { Ability(ABILITY_GALVANIZE); }
     } WHEN {
         TURN { MOVE(opponent, MOVE_TACKLE); }
     } SCENE {
@@ -46,11 +46,10 @@ SINGLE_BATTLE_TEST("Pixilate turns a normal type move into Fairy")
 {
     GIVEN {
         PLAYER(SPECIES_DRAGONITE);
-        OPPONENT(SPECIES_ALTARIA) { Item(ITEM_ALTARIANITE); }
+        OPPONENT(SPECIES_ALTARIA) { Ability(ABILITY_PIXILATE); }
     } WHEN {
-        TURN { MOVE(opponent, MOVE_TACKLE, megaEvolve: TRUE); }
+        TURN { MOVE(opponent, MOVE_TACKLE); }
     } SCENE {
-        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_MEGA_EVOLUTION, opponent);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, opponent);
         MESSAGE("It's super effective!");
     }
@@ -62,9 +61,8 @@ SINGLE_BATTLE_TEST("Refrigerate turns a normal type move into Ice")
         PLAYER(SPECIES_MEGANIUM);
         OPPONENT(SPECIES_AMAURA) { Ability(ABILITY_REFRIGERATE); }
     } WHEN {
-        TURN { MOVE(opponent, MOVE_TACKLE, megaEvolve: TRUE); }
+        TURN { MOVE(opponent, MOVE_TACKLE); }
     } SCENE {
-        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_MEGA_EVOLUTION, opponent);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, opponent);
         MESSAGE("It's super effective!");
     }
@@ -74,11 +72,10 @@ SINGLE_BATTLE_TEST("Aerilate turns a normal type move into Flying")
 {
     GIVEN {
         PLAYER(SPECIES_MEGANIUM);
-        OPPONENT(SPECIES_SALAMENCE) { Item(ITEM_SALAMENCITE); }
+        OPPONENT(SPECIES_SALAMENCE) { Ability(ABILITY_AERILATE); }
     } WHEN {
-        TURN { MOVE(opponent, MOVE_TACKLE, megaEvolve: TRUE); }
+        TURN { MOVE(opponent, MOVE_TACKLE); }
     } SCENE {
-        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_MEGA_EVOLUTION, opponent);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, opponent);
         MESSAGE("It's super effective!");
     }

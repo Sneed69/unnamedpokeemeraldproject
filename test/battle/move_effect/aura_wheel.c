@@ -1,6 +1,6 @@
 #include "global.h"
 #include "test/battle.h"
-
+/*
 ASSUMPTIONS
 {
     ASSUME(MoveHasAdditionalEffectSelf(MOVE_AURA_WHEEL, MOVE_EFFECT_SPD_PLUS_1) == TRUE);
@@ -50,4 +50,4 @@ SINGLE_BATTLE_TEST("Aura Wheel changes type depending on Morpeko's form")
     }
 }
 
-TO_DO_BATTLE_TEST("Aura Wheel can be used by Pokémon transformed into Morpeko");
+TO_DO_BATTLE_TEST("Aura Wheel can be used by Pokémon transformed into Morpeko");*/

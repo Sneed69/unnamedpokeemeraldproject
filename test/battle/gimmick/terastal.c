@@ -417,12 +417,12 @@ SINGLE_BATTLE_TEST("(TERA) Revelation Dance uses a Terastallized Pokemon's Tera 
 {
     GIVEN {
         ASSUME(P_GEN_7_POKEMON);
-        PLAYER(SPECIES_ORICORIO) { TeraType(TYPE_NORMAL); }
+        PLAYER(SPECIES_BELLOSSOM) { TeraType(TYPE_NORMAL); }
         OPPONENT(SPECIES_GENGAR);
     } WHEN {
         TURN { MOVE(player, MOVE_REVELATION_DANCE, tera: TRUE); }
     } SCENE {
-        MESSAGE("Oricorio used Revelation Dance!");
+        MESSAGE("Bellossom used Revelation Dance!");
         MESSAGE("It doesn't affect Foe Gengar…");
         NOT { HP_BAR(opponent); }
     }
@@ -538,12 +538,12 @@ SINGLE_BATTLE_TEST("(TERA) Revelation Dance uses a Stellar-type Pokemon's base t
 {
     GIVEN {
         ASSUME(P_GEN_7_POKEMON);
-        PLAYER(SPECIES_ORICORIO_SENSU) { TeraType(TYPE_STELLAR); }
+        PLAYER(SPECIES_BELLOSSOM_SENSU) { TeraType(TYPE_STELLAR); }
         OPPONENT(SPECIES_GUMSHOOS);
     } WHEN {
         TURN { MOVE(player, MOVE_REVELATION_DANCE, tera: TRUE); }
     } SCENE {
-        MESSAGE("Oricorio used Revelation Dance!");
+        MESSAGE("Bellossom used Revelation Dance!");
         MESSAGE("It doesn't affect Foe Gumshoos…");
         NOT { HP_BAR(opponent); }
     }

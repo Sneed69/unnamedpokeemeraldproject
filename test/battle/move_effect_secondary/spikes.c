@@ -10,7 +10,7 @@ SINGLE_BATTLE_TEST("Ceaseless Edge sets up hazards after hitting the target")
 {
     GIVEN {
         PLAYER(SPECIES_ALAKAZAM);
-        OPPONENT(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_MACHAMP);
         OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, MOVE_CEASELESS_EDGE); }
@@ -30,7 +30,7 @@ SINGLE_BATTLE_TEST("Ceaseless Edge can set up to 3 layers of Spikes")
 {
     GIVEN {
         PLAYER(SPECIES_ALAKAZAM);
-        OPPONENT(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_MACHAMP);
         OPPONENT(SPECIES_ABRA);
     } WHEN {
         TURN { MOVE(player, MOVE_CEASELESS_EDGE); }

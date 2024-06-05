@@ -92,14 +92,14 @@ SINGLE_BATTLE_TEST("Stamina activates for every hit of a multi hit move")
 {
     GIVEN {
         PLAYER(SPECIES_ALAKAZAM);
-        OPPONENT(SPECIES_MUDBRAY) { Ability(ABILITY_STAMINA); }
+        OPPONENT(SPECIES_CAMERUPT) { Ability(ABILITY_STAMINA); }
     } WHEN {
         TURN { MOVE(player, MOVE_DOUBLE_KICK); }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_DOUBLE_KICK, player);
         HP_BAR(opponent);
-        STAMINA_STAT_RAISE(opponent, "Foe Mudbray's Defense rose!");
-        STAMINA_STAT_RAISE(opponent, "Foe Mudbray's Defense rose!");
+        STAMINA_STAT_RAISE(opponent, "Foe Camerupt's Defense rose!");
+        STAMINA_STAT_RAISE(opponent, "Foe Camerupt's Defense rose!");
     } THEN {
         EXPECT_EQ(opponent->statStages[STAT_DEF], DEFAULT_STAT_STAGE + 2);
     }
@@ -108,16 +108,16 @@ SINGLE_BATTLE_TEST("Stamina activates for every hit of a multi hit move")
 SINGLE_BATTLE_TEST("Stamina is not activated by users own Substitute")
 {
     GIVEN {
-        PLAYER(SPECIES_MUDBRAY) { Ability(ABILITY_STAMINA); }
+        PLAYER(SPECIES_CAMERUPT) { Ability(ABILITY_STAMINA); }
         OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, MOVE_SUBSTITUTE); }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_SUBSTITUTE, player);
-        MESSAGE("Mudbray made a Substitute!");
+        MESSAGE("Camerupt made a Substitute!");
         NONE_OF {
             ABILITY_POPUP(player, ABILITY_STAMINA);
-            MESSAGE("Mudbray's Defense rose!");
+            MESSAGE("Camerupt's Defense rose!");
         }
     } THEN {
         EXPECT_EQ(player->statStages[STAT_DEF], DEFAULT_STAT_STAGE);

@@ -12,14 +12,14 @@ SINGLE_BATTLE_TEST("Sword of Ruin reduces Defense if opposing mon's ability does
     s16 damage[2];
 
     GIVEN {
-        PLAYER(SPECIES_CHIEN_PAO) { Ability(ABILITY_SWORD_OF_RUIN); }
+        PLAYER(SPECIES_WEAVILE) { Ability(ABILITY_SWORD_OF_RUIN); }
         OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, MOVE_TACKLE); MOVE(opponent, MOVE_ROLE_PLAY); }
         TURN { MOVE(player, MOVE_TACKLE); }
     } SCENE {
         ABILITY_POPUP(player, ABILITY_SWORD_OF_RUIN);
-        MESSAGE("Chien-Pao's Sword of Ruin weakened the Defense of all surrounding Pokémon!");
+        MESSAGE("Weavile's Sword of Ruin weakened the Defense of all surrounding Pokémon!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, player);
         HP_BAR(opponent, captureDamage: &damage[0]);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_ROLE_PLAY, opponent);
@@ -35,7 +35,7 @@ SINGLE_BATTLE_TEST("Sword of Ruin's message displays correctly after all battler
     GIVEN {
         ASSUME(gMovesInfo[MOVE_EXPLOSION].effect == EFFECT_EXPLOSION);
         PLAYER(SPECIES_ALAKAZAM) { HP(1);}
-        PLAYER(SPECIES_CHIEN_PAO);
+        PLAYER(SPECIES_WEAVILE){ Ability(ABILITY_SWORD_OF_RUIN); }
         OPPONENT(SPECIES_ALAKAZAM);
         OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
@@ -45,9 +45,9 @@ SINGLE_BATTLE_TEST("Sword of Ruin's message displays correctly after all battler
         HP_BAR(opponent, hp: 0);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_EXPLOSION, opponent);
         // Everyone faints.
-        MESSAGE("Go! Chien-Pao!");
+        SEND_IN_MESSAGE("Weavile");
         ABILITY_POPUP(player, ABILITY_SWORD_OF_RUIN);
-        MESSAGE("Chien-Pao's Sword of Ruin weakened the Defense of all surrounding Pokémon!");
+        MESSAGE("Weavile's Sword of Ruin weakened the Defense of all surrounding Pokémon!");
         MESSAGE("2 sent out Alakazam!");
     }
 }
@@ -59,7 +59,7 @@ SINGLE_BATTLE_TEST("Sword of Ruin's message displays correctly after all battler
         PLAYER(SPECIES_ALAKAZAM);
         PLAYER(SPECIES_ALAKAZAM);
         OPPONENT(SPECIES_ALAKAZAM) { HP(1);}
-        OPPONENT(SPECIES_CHIEN_PAO);
+        OPPONENT(SPECIES_WEAVILE){ Ability(ABILITY_SWORD_OF_RUIN); }
     } WHEN {
         TURN { MOVE(player, MOVE_EXPLOSION); SEND_OUT(player, 1); SEND_OUT(opponent, 1); }
         TURN { MOVE(player, MOVE_RUINATION); MOVE(opponent, MOVE_TACKLE); }
@@ -67,9 +67,9 @@ SINGLE_BATTLE_TEST("Sword of Ruin's message displays correctly after all battler
         HP_BAR(player, hp: 0);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_EXPLOSION, player);
         // Everyone faints.
-        MESSAGE("Go! Alakazam!");
-        MESSAGE("2 sent out Chien-Pao!");
+        SEND_IN_MESSAGE("Alakazam");
+        MESSAGE("2 sent out Weavile!");
         ABILITY_POPUP(opponent, ABILITY_SWORD_OF_RUIN);
-        MESSAGE("Foe Chien-Pao's Sword of Ruin weakened the Defense of all surrounding Pokémon!");
+        MESSAGE("Foe Weavile's Sword of Ruin weakened the Defense of all surrounding Pokémon!");
     }
 }

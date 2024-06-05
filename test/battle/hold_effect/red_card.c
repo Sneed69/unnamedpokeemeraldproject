@@ -203,7 +203,7 @@ SINGLE_BATTLE_TEST("Red Card does not activate if stolen by Magician")
 
     GIVEN {
         PLAYER(SPECIES_ALAKAZAM) { Item(ITEM_RED_CARD); }
-        OPPONENT(SPECIES_FENNEKIN) { Ability(ABILITY_MAGICIAN); Item(item); }
+        OPPONENT(SPECIES_VULPIX) { Ability(ABILITY_MAGICIAN); Item(item); }
         OPPONENT(SPECIES_ABRA);
     } WHEN {
         TURN { MOVE(opponent, MOVE_TACKLE); }
@@ -211,11 +211,11 @@ SINGLE_BATTLE_TEST("Red Card does not activate if stolen by Magician")
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, opponent);
         if (activate) {
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, player);
-            MESSAGE("Alakazam held up its Red Card against Foe Fennekin!");
+            MESSAGE("Alakazam held up its Red Card against Foe Vulpix!");
         } else {
             NONE_OF {
                 ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, player);
-                MESSAGE("Alakazam held up its Red Card against Foe Fennekin!");
+                MESSAGE("Alakazam held up its Red Card against Foe Vulpix!");
             }
         }
     } THEN {
@@ -230,7 +230,7 @@ DOUBLE_BATTLE_TEST("Red Card activates for only the fastest target")
         PLAYER(SPECIES_ABRA) { Speed(2); Item(ITEM_RED_CARD); }
         OPPONENT(SPECIES_ALAKAZAM) { Speed(5); }
         OPPONENT(SPECIES_ABRA) { Speed(4); }
-        OPPONENT(SPECIES_UNOWN) { Speed(1); }
+        OPPONENT(SPECIES_KADABRA) { Speed(1); }
     } WHEN {
         TURN {
             MOVE(opponentLeft, MOVE_ROCK_SLIDE);
@@ -241,7 +241,7 @@ DOUBLE_BATTLE_TEST("Red Card activates for only the fastest target")
         ANIMATION(ANIM_TYPE_MOVE, MOVE_ROCK_SLIDE, opponentLeft);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, playerLeft);
         MESSAGE("Alakazam held up its Red Card against Foe Alakazam!");
-        MESSAGE("Foe Unown was dragged out!");
+        MESSAGE("Foe Kadabra was dragged out!");
 
         // Slower target's Red Card still able to activate on other battler.
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, opponentRight);
@@ -261,7 +261,7 @@ DOUBLE_BATTLE_TEST("Red Card activates but fails if the attacker is rooted")
         PLAYER(SPECIES_ABRA);
         OPPONENT(SPECIES_ALAKAZAM);
         OPPONENT(SPECIES_ABRA);
-        OPPONENT(SPECIES_UNOWN);
+        OPPONENT(SPECIES_KADABRA);
     } WHEN {
         TURN { MOVE(opponentLeft, MOVE_INGRAIN); }
         TURN {
@@ -288,9 +288,9 @@ DOUBLE_BATTLE_TEST("Red Card activates but fails if the attacker has Suction Cup
     GIVEN {
         PLAYER(SPECIES_ALAKAZAM) { Item(ITEM_RED_CARD); }
         PLAYER(SPECIES_ABRA);
-        OPPONENT(SPECIES_OCTILLERY) { Ability(ABILITY_SUCTION_CUPS); }
+        OPPONENT(SPECIES_CRADILY) { Ability(ABILITY_SUCTION_CUPS); }
         OPPONENT(SPECIES_ABRA);
-        OPPONENT(SPECIES_UNOWN);
+        OPPONENT(SPECIES_KADABRA);
     } WHEN {
         TURN {
             MOVE(opponentLeft, MOVE_TACKLE, target: playerLeft);
@@ -299,8 +299,8 @@ DOUBLE_BATTLE_TEST("Red Card activates but fails if the attacker has Suction Cup
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, opponentLeft);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, playerLeft);
-        MESSAGE("Alakazam held up its Red Card against Foe Octillery!");
-        MESSAGE("Foe Octillery anchors itself with Suction Cups!");
+        MESSAGE("Alakazam held up its Red Card against Foe Cradily!");
+        MESSAGE("Foe Cradily anchors itself with Suction Cups!");
 
         // Red Card already consumed so cannot activate.
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, opponentRight);
@@ -383,8 +383,8 @@ SINGLE_BATTLE_TEST("Red Card does not activate if attacker's Sheer Force applied
 SINGLE_BATTLE_TEST("Red Card activates before Emergency Exit")
 {
     GIVEN {
-        PLAYER(SPECIES_GOLISOPOD) { MaxHP(100); HP(51); Item(ITEM_RED_CARD); }
-        PLAYER(SPECIES_WIMPOD);
+        PLAYER(SPECIES_MASQUERAIN) { MaxHP(100); HP(51); Item(ITEM_RED_CARD); Ability(ABILITY_EMERGENCY_EXIT); }
+        PLAYER(SPECIES_SURSKIT);
         OPPONENT(SPECIES_ALAKAZAM);
         OPPONENT(SPECIES_ABRA);
     } WHEN {
@@ -392,9 +392,9 @@ SINGLE_BATTLE_TEST("Red Card activates before Emergency Exit")
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, opponent);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, player);
-        MESSAGE("Golisopod held up its Red Card against Foe Alakazam!");
+        MESSAGE("Masquerain held up its Red Card against Foe Alakazam!");
         ABILITY_POPUP(player, ABILITY_EMERGENCY_EXIT);
-        MESSAGE("Go! Wimpod!");
+        SEND_IN_MESSAGE("Surskit");
     }
 }
 

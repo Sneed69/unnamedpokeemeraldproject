@@ -157,7 +157,7 @@ SINGLE_BATTLE_TEST("Berserk Gene does not confuse on Misty Terrain but still rai
 {
     GIVEN {
         ASSUME(gMovesInfo[MOVE_TACKLE].category == DAMAGE_CATEGORY_PHYSICAL);
-        PLAYER(SPECIES_TAPU_FINI) { Ability(ABILITY_MISTY_SURGE); Item(ITEM_BERSERK_GENE); }
+        PLAYER(SPECIES_SYLVEON) { Ability(ABILITY_MISTY_SURGE); Item(ITEM_BERSERK_GENE); }
         OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN {
@@ -165,7 +165,7 @@ SINGLE_BATTLE_TEST("Berserk Gene does not confuse on Misty Terrain but still rai
         }
     } SCENE {
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
-        MESSAGE("Using Berserk Gene, the Attack of Tapu Fini sharply rose!");
+        MESSAGE("Using Berserk Gene, the Attack of Sylveon sharply rose!");
         NOT MESSAGE("Tapu Fini became confused!");
     }
 }
@@ -190,7 +190,7 @@ SINGLE_BATTLE_TEST("Berserk Gene does not confuse when Safeguard is active")
 SINGLE_BATTLE_TEST("Berserk Gene causes confusion for more than 5 turns") // how else would be check for infinite?
 {
     GIVEN {
-        PLAYER(SPECIES_ALAKAZAM) { Item(ITEM_BERSERK_GENE); }
+        PLAYER(SPECIES_ALAKAZAM) { Item(ITEM_BERSERK_GENE); HP(400);}
         OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN {}

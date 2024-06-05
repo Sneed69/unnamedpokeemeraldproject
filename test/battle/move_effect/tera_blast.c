@@ -60,7 +60,7 @@ SINGLE_BATTLE_TEST("Tera Blast has correct effectiveness for every Tera Type")
         ASSUME(gSpeciesInfo[SPECIES_SNEASEL].types[1] == TYPE_ICE);
         ASSUME(gSpeciesInfo[SPECIES_ABRA].types[0] == TYPE_PSYCHIC);
         ASSUME(gSpeciesInfo[SPECIES_ABRA].types[1] == TYPE_PSYCHIC);
-        PLAYER(SPECIES_WOBBUFFET) { TeraType(type); }
+        PLAYER(SPECIES_ALAKAZAM) { TeraType(type); }
         OPPONENT(species);
     } WHEN {
         TURN { MOVE(player, MOVE_TERA_BLAST, tera: TRUE); }

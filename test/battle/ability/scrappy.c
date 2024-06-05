@@ -52,7 +52,7 @@ SINGLE_BATTLE_TEST("Scrappy doesn't bypass a Ghost-type's Wonder Guard")
 
     GIVEN {
         PLAYER(SPECIES_MILTANK) { Ability(ABILITY_SCRAPPY); };
-        OPPONENT(SPECIES_SHEDINJA) { Ability(ABILITY_WONDER_GUARD); };
+        OPPONENT(SPECIES_SHUPPET) { Ability(ABILITY_WONDER_GUARD); };
     } WHEN {
         TURN { MOVE(player, move); }
     } SCENE {
@@ -61,6 +61,6 @@ SINGLE_BATTLE_TEST("Scrappy doesn't bypass a Ghost-type's Wonder Guard")
             HP_BAR(opponent);
         }
         ABILITY_POPUP(opponent, ABILITY_WONDER_GUARD);
-        MESSAGE("Foe Shedinja avoided damage with Wonder Guard!");
+        MESSAGE("Foe Shuppet avoided damage with Wonder Guard!");
     }
 }

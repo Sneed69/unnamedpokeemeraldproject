@@ -17,7 +17,7 @@ SINGLE_BATTLE_TEST("Fluffy halves damage taken from moves that make direct conta
     PARAMETRIZE { ability = ABILITY_FLUFFY; }
     GIVEN {
         PLAYER(SPECIES_ALAKAZAM);
-        OPPONENT(SPECIES_STUFFUL) { Ability(ability); }
+        OPPONENT(SPECIES_ALTARIA) { Ability(ability); }
     } WHEN {
         TURN { MOVE(player, MOVE_TACKLE); }
     } SCENE {
@@ -35,7 +35,7 @@ SINGLE_BATTLE_TEST("Fluffy doubles damage taken from fire type moves", s16 damag
     PARAMETRIZE { ability = ABILITY_FLUFFY; }
     GIVEN {
         PLAYER(SPECIES_ALAKAZAM);
-        OPPONENT(SPECIES_STUFFUL) { Ability(ability); }
+        OPPONENT(SPECIES_ALTARIA) { Ability(ability); }
     } WHEN {
         TURN { MOVE(player, MOVE_EMBER); }
     } SCENE {
@@ -53,7 +53,7 @@ SINGLE_BATTLE_TEST("Fluffy does not alter damage of fire-type moves that make di
     PARAMETRIZE { ability = ABILITY_FLUFFY; }
     GIVEN {
         PLAYER(SPECIES_ALAKAZAM);
-        OPPONENT(SPECIES_STUFFUL) { Ability(ability); }
+        OPPONENT(SPECIES_ALTARIA) { Ability(ability); }
     } WHEN {
         TURN { MOVE(player, MOVE_FIRE_PUNCH); }
     } SCENE {

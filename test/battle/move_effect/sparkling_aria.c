@@ -11,7 +11,7 @@ ASSUMPTIONS
 DOUBLE_BATTLE_TEST("Sparkling Aria cures burns from all Pokemon on the field and behind substitutes")
 {
     GIVEN {
-        PLAYER(SPECIES_PRIMARINA);
+        PLAYER(SPECIES_LAPRAS);
         PLAYER(SPECIES_ALAKAZAM) { Status1(STATUS1_BURN); }
         OPPONENT(SPECIES_ALAKAZAM) { Status1(STATUS1_BURN); }
         OPPONENT(SPECIES_ABRA) { Status1(STATUS1_BURN); }

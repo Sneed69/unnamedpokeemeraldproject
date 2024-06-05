@@ -5,7 +5,7 @@ SINGLE_BATTLE_TEST("Cotton Down drops speed by one of opposing battler if hit by
 {
     GIVEN {
         PLAYER(SPECIES_ALAKAZAM);
-        OPPONENT(SPECIES_ELDEGOSS) { Ability(ABILITY_COTTON_DOWN); }
+        OPPONENT(SPECIES_FLAAFFY) { Ability(ABILITY_COTTON_DOWN); }
     } WHEN {
         TURN { MOVE(player, MOVE_TACKLE); }
     } SCENE {
@@ -22,7 +22,7 @@ SINGLE_BATTLE_TEST("Cotton Down drops speed by one for each multi hit")
 {
     GIVEN {
         PLAYER(SPECIES_ALAKAZAM);
-        OPPONENT(SPECIES_ELDEGOSS) { Ability(ABILITY_COTTON_DOWN); }
+        OPPONENT(SPECIES_FLAAFFY) { Ability(ABILITY_COTTON_DOWN); }
     } WHEN {
         TURN { MOVE(player, MOVE_DOUBLE_KICK); }
     } SCENE {
@@ -43,7 +43,7 @@ DOUBLE_BATTLE_TEST("Cotton Down drops speed by one of all other battlers on the 
     GIVEN {
         PLAYER(SPECIES_ALAKAZAM);
         PLAYER(SPECIES_ABRA);
-        OPPONENT(SPECIES_ELDEGOSS) { Ability(ABILITY_COTTON_DOWN); }
+        OPPONENT(SPECIES_FLAAFFY) { Ability(ABILITY_COTTON_DOWN); }
         OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(playerLeft, MOVE_TACKLE, target: opponentLeft); }

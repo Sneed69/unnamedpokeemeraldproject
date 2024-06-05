@@ -40,7 +40,7 @@ SINGLE_BATTLE_TEST("Heal Pulse is boosted by Mega Launcher")
 {
     GIVEN {
         PLAYER(SPECIES_ALAKAZAM) { MaxHP(100); HP(1); }
-        OPPONENT(SPECIES_CLAWITZER);
+        OPPONENT(SPECIES_BLASTOISE) { Ability(ABILITY_MEGA_LAUNCHER); }
     } WHEN {
         TURN { MOVE(opponent, MOVE_HEAL_PULSE); }
     } SCENE {

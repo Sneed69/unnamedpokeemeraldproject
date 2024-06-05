@@ -21,19 +21,19 @@ SINGLE_BATTLE_TEST("Shield Dust blocks secondary effects")
         ASSUME(MoveHasAdditionalEffectWithChance(MOVE_SPIRIT_SHACKLE, MOVE_EFFECT_PREVENT_ESCAPE, 100) == TRUE);
         ASSUME(MoveHasAdditionalEffectWithChance(MOVE_PSYCHIC_NOISE, MOVE_EFFECT_PSYCHIC_NOISE, 100) == TRUE);
         PLAYER(SPECIES_ALAKAZAM);
-        OPPONENT(SPECIES_VIVILLON) { Ability(ABILITY_SHIELD_DUST); }
+        OPPONENT(SPECIES_DUSTOX) { Ability(ABILITY_SHIELD_DUST); }
     } WHEN {
         TURN { MOVE(player, move); }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, move, player);
         HP_BAR(opponent);
         NONE_OF {
-            MESSAGE("Foe Vivillon is paralyzed! It may be unable to move!");
-            MESSAGE("Foe Vivillon was burned!");
-            MESSAGE("Foe Vivillon was poisoned!");
-            MESSAGE("Foe Vivillon flinched!");
+            MESSAGE("Foe Dustox is paralyzed! It may be unable to move!");
+            MESSAGE("Foe Dustox was burned!");
+            MESSAGE("Foe Dustox was poisoned!");
+            MESSAGE("Foe Dustox flinched!");
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
-            MESSAGE("Foe Vivillon was prevented from healing!");
+            MESSAGE("Foe Dustox was prevented from healing!");
         }
     } THEN { // Can't find good way to test trapping
         EXPECT(!(opponent->status2 & STATUS2_ESCAPE_PREVENTION));
@@ -55,7 +55,7 @@ SINGLE_BATTLE_TEST("Shield Dust does not block primary effects")
         ASSUME(MoveHasAdditionalEffectWithChance(MOVE_PAY_DAY, MOVE_EFFECT_PAYDAY, 0) == TRUE);
         ASSUME(MoveHasAdditionalEffectWithChance(MOVE_SMACK_DOWN, MOVE_EFFECT_SMACK_DOWN, 0) == TRUE);
         PLAYER(SPECIES_ALAKAZAM);
-        OPPONENT(SPECIES_VIVILLON) { Ability(ABILITY_SHIELD_DUST); }
+        OPPONENT(SPECIES_BUTTERFREE) { Ability(ABILITY_SHIELD_DUST); }
     } WHEN {
         TURN { MOVE(player, move); }
     } SCENE {
@@ -64,10 +64,10 @@ SINGLE_BATTLE_TEST("Shield Dust does not block primary effects")
         switch (move)
         {
             case MOVE_INFESTATION:
-                MESSAGE("Foe Vivillon has been afflicted with an infestation by Alakazam!");
+                MESSAGE("Foe Butterfree has been afflicted with an infestation by Alakazam!");
                 break;
             case MOVE_THOUSAND_ARROWS:
-                MESSAGE("Foe Vivillon fell straight down!");
+                MESSAGE("Foe Butterfree fell straight down!");
                 break;
             case MOVE_JAW_LOCK:
                 MESSAGE("Neither Pokémon can run away!");
@@ -98,7 +98,7 @@ SINGLE_BATTLE_TEST("Shield Dust does not block self-targeting effects, primary o
         ASSUME(MoveHasAdditionalEffectSelf(MOVE_LEAF_STORM, MOVE_EFFECT_SP_ATK_MINUS_2) == TRUE);
         ASSUME(MoveHasAdditionalEffectSelf(MOVE_METEOR_ASSAULT, MOVE_EFFECT_RECHARGE) == TRUE);
         PLAYER(SPECIES_ALAKAZAM);
-        OPPONENT(SPECIES_VIVILLON) { Ability(ABILITY_SHIELD_DUST); }
+        OPPONENT(SPECIES_DUSTOX) { Ability(ABILITY_SHIELD_DUST); }
     } WHEN {
         TURN { MOVE(player, move); }
         if (move == MOVE_METEOR_ASSAULT) {
@@ -130,18 +130,18 @@ DOUBLE_BATTLE_TEST("Shield Dust does or does not block Sparkling Aria depending 
     GIVEN {
         PLAYER(SPECIES_ABRA);
         PLAYER(SPECIES_ALAKAZAM);
-        OPPONENT(SPECIES_VIVILLON) { Ability(ABILITY_SHIELD_DUST); Status1(STATUS1_BURN); }
+        OPPONENT(SPECIES_DUSTOX) { Ability(ABILITY_SHIELD_DUST); Status1(STATUS1_BURN); }
         OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(playerRight, moveToUse, target: opponentRight); MOVE(playerLeft, MOVE_SPARKLING_ARIA); }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_SPARKLING_ARIA, playerLeft);
         if (moveToUse == MOVE_TACKLE) {
-            MESSAGE("Foe Vivillon's burn was healed.");
+            MESSAGE("Foe Dustox's burn was healed.");
             STATUS_ICON(opponentLeft, none: TRUE);
         } else {
             NONE_OF {
-                MESSAGE("Foe Vivillon's burn was healed.");
+                MESSAGE("Foe Dustox's burn was healed.");
                 STATUS_ICON(opponentLeft, none: TRUE);
             }
         }
@@ -153,13 +153,13 @@ SINGLE_BATTLE_TEST("Shield Dust blocks Sparkling Aria in singles")
     KNOWN_FAILING;
     GIVEN {
         PLAYER(SPECIES_ALAKAZAM);
-        OPPONENT(SPECIES_VIVILLON) { Ability(ABILITY_SHIELD_DUST); Status1(STATUS1_BURN); }
+        OPPONENT(SPECIES_DUSTOX) { Ability(ABILITY_SHIELD_DUST); Status1(STATUS1_BURN); }
     } WHEN {
         TURN { MOVE(player, MOVE_SPARKLING_ARIA); }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_SPARKLING_ARIA, player);
         NONE_OF {
-            MESSAGE("Foe Vivillon's burn was healed.");
+            MESSAGE("Foe Dustox's burn was healed.");
             STATUS_ICON(opponent, none: TRUE);
         }
     }

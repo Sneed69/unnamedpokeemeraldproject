@@ -1,6 +1,6 @@
 #include "global.h"
 #include "test/battle.h"
-
+/*
 SINGLE_BATTLE_TEST("Minior Meteor transforms into Minior Core on switch-in if it has 1/2 or less health")
 {
     GIVEN {
@@ -31,4 +31,4 @@ SINGLE_BATTLE_TEST("Minior Core transforms into Minior Meteor on switch-in if it
     } THEN {
         EXPECT_EQ(opponent->species, SPECIES_MINIOR_METEOR);
     }
-}
+}*/

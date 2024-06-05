@@ -12,14 +12,14 @@ SINGLE_BATTLE_TEST("Beads of Ruin reduces Sp. Def if opposing mon's ability does
     s16 damage[2];
 
     GIVEN {
-        PLAYER(SPECIES_CHI_YU) { Ability(ABILITY_BEADS_OF_RUIN); }
+        PLAYER(SPECIES_ALAKAZAM) { Ability(ABILITY_BEADS_OF_RUIN); }
         OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, MOVE_WATER_GUN); MOVE(opponent, MOVE_ROLE_PLAY); }
         TURN { MOVE(player, MOVE_WATER_GUN); }
     } SCENE {
         ABILITY_POPUP(player, ABILITY_BEADS_OF_RUIN);
-        MESSAGE("Chi-Yu's Beads of Ruin weakened the Sp. Def of all surrounding Pokémon!");
+        MESSAGE("Alakazam's Beads of Ruin weakened the Sp. Def of all surrounding Pokémon!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_WATER_GUN, player);
         HP_BAR(opponent, captureDamage: &damage[0]);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_ROLE_PLAY, opponent);
@@ -35,7 +35,7 @@ SINGLE_BATTLE_TEST("Beads of Ruin's message displays correctly after all battler
     GIVEN {
         ASSUME(gMovesInfo[MOVE_EXPLOSION].effect == EFFECT_EXPLOSION);
         PLAYER(SPECIES_ALAKAZAM) { HP(1);}
-        PLAYER(SPECIES_CHI_YU);
+        PLAYER(SPECIES_ALAKAZAM) { Ability(ABILITY_BEADS_OF_RUIN); };
         OPPONENT(SPECIES_ALAKAZAM);
         OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
@@ -45,9 +45,9 @@ SINGLE_BATTLE_TEST("Beads of Ruin's message displays correctly after all battler
         HP_BAR(opponent, hp: 0);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_EXPLOSION, opponent);
         // Everyone faints.
-        MESSAGE("Go! Chi-Yu!");
+        SEND_IN_MESSAGE("Alakazam");
         ABILITY_POPUP(player, ABILITY_BEADS_OF_RUIN);
-        MESSAGE("Chi-Yu's Beads of Ruin weakened the Sp. Def of all surrounding Pokémon!");
+        MESSAGE("Alakazam's Beads of Ruin weakened the Sp. Def of all surrounding Pokémon!");
         MESSAGE("2 sent out Alakazam!");
     }
 }
@@ -59,7 +59,7 @@ SINGLE_BATTLE_TEST("Beads of Ruin's message displays correctly after all battler
         PLAYER(SPECIES_ALAKAZAM);
         PLAYER(SPECIES_ALAKAZAM);
         OPPONENT(SPECIES_ALAKAZAM) { HP(1);}
-        OPPONENT(SPECIES_CHI_YU);
+        OPPONENT(SPECIES_ALAKAZAM) { Ability(ABILITY_BEADS_OF_RUIN); };
     } WHEN {
         TURN { MOVE(player, MOVE_EXPLOSION); SEND_OUT(player, 1); SEND_OUT(opponent, 1); }
         TURN { MOVE(player, MOVE_RUINATION); MOVE(opponent, MOVE_TACKLE); }
@@ -67,9 +67,9 @@ SINGLE_BATTLE_TEST("Beads of Ruin's message displays correctly after all battler
         HP_BAR(player, hp: 0);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_EXPLOSION, player);
         // Everyone faints.
-        MESSAGE("Go! Alakazam!");
-        MESSAGE("2 sent out Chi-Yu!");
+        SEND_IN_MESSAGE("Alakazam");
+        MESSAGE("2 sent out Alakazam!");
         ABILITY_POPUP(opponent, ABILITY_BEADS_OF_RUIN);
-        MESSAGE("Foe Chi-Yu's Beads of Ruin weakened the Sp. Def of all surrounding Pokémon!");
+        MESSAGE("Foe Alakazam's Beads of Ruin weakened the Sp. Def of all surrounding Pokémon!");
     }
 }

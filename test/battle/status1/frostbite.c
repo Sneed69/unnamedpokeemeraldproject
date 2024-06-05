@@ -4,7 +4,7 @@
 SINGLE_BATTLE_TEST("Frostbite reduces the special attack by 50 percent")
 {
     s16 reducedDamage;
-    s16 normaleDamage;
+    s16 normalDamage;
 
     GIVEN {
         ASSUME(gMovesInfo[MOVE_SWIFT].category == DAMAGE_CATEGORY_SPECIAL);
@@ -19,8 +19,8 @@ SINGLE_BATTLE_TEST("Frostbite reduces the special attack by 50 percent")
         ANIMATION(ANIM_TYPE_MOVE, MOVE_FLAME_WHEEL, player);
         HP_BAR(opponent);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_SWIFT, opponent);
-        HP_BAR(player, captureDamage: &normaleDamage);
-   } THEN { EXPECT_EQ(reducedDamage * 2, normaleDamage); }
+        HP_BAR(player, captureDamage: &normalDamage);
+   } THEN { EXPECT_MUL_EQ(reducedDamage, UQ_4_12(2.0), normalDamage); }
 }
 
 SINGLE_BATTLE_TEST("Frostbite deals 1/16 damage to effected pokemon")

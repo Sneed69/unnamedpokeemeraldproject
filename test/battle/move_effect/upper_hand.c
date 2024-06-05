@@ -13,7 +13,7 @@ SINGLE_BATTLE_TEST("Upper Hand succeeds if the target is using a priority attack
     GIVEN {
         ASSUME(gMovesInfo[MOVE_EXTREME_SPEED].category == DAMAGE_CATEGORY_PHYSICAL);
         ASSUME(gMovesInfo[MOVE_EXTREME_SPEED].priority == 2);
-        PLAYER(SPECIES_MIENSHAO);
+        PLAYER(SPECIES_MACHAMP);
         OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(opponent, MOVE_EXTREME_SPEED); MOVE(player, MOVE_UPPER_HAND); }
@@ -30,17 +30,17 @@ SINGLE_BATTLE_TEST("Upper Hand fails if the target is using a status move")
     GIVEN {
         ASSUME(gMovesInfo[MOVE_BABY_DOLL_EYES].category == DAMAGE_CATEGORY_STATUS);
         ASSUME(gMovesInfo[MOVE_BABY_DOLL_EYES].priority == 1);
-        PLAYER(SPECIES_MIENSHAO);
+        PLAYER(SPECIES_MACHAMP);
         OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(opponent, MOVE_BABY_DOLL_EYES); MOVE(player, MOVE_UPPER_HAND); }
     } SCENE {
         NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_UPPER_HAND, player);
-        MESSAGE("Mienshao used Upper Hand!");
+        MESSAGE("Machamp used Upper Hand!");
         MESSAGE("But it failed!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_BABY_DOLL_EYES, opponent);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
-        MESSAGE("Mienshao's Attack fell!");
+        MESSAGE("Machamp's Attack fell!");
     }
 }
 
@@ -49,13 +49,13 @@ SINGLE_BATTLE_TEST("Upper Hand fails if the target is not using a priority move"
     GIVEN {
         ASSUME(gMovesInfo[MOVE_DRAINING_KISS].category == DAMAGE_CATEGORY_SPECIAL);
         ASSUME(gMovesInfo[MOVE_DRAINING_KISS].priority == 0);
-        PLAYER(SPECIES_MIENSHAO);
-        OPPONENT(SPECIES_COMFEY) { Ability(ABILITY_FLOWER_VEIL); }
+        PLAYER(SPECIES_MACHAMP);
+        OPPONENT(SPECIES_CLEFFA) { Ability(ABILITY_FLOWER_VEIL); }
     } WHEN {
         TURN { MOVE(opponent, MOVE_DRAINING_KISS); MOVE(player, MOVE_UPPER_HAND); }
     } SCENE {
         NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_UPPER_HAND, player);
-        MESSAGE("Mienshao used Upper Hand!");
+        MESSAGE("Machamp used Upper Hand!");
         MESSAGE("But it failed!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_DRAINING_KISS, opponent);
         HP_BAR(player);
@@ -66,35 +66,34 @@ SINGLE_BATTLE_TEST("Upper Hand fails if the target is not using a priority move"
 SINGLE_BATTLE_TEST("Upper Hand succeeds if the target's move is boosted in priority by an Ability")
 {
     GIVEN {
-        ASSUME(gMovesInfo[MOVE_DRAINING_KISS].category == DAMAGE_CATEGORY_SPECIAL);
-        ASSUME(gMovesInfo[MOVE_DRAINING_KISS].priority == 0);
-        PLAYER(SPECIES_MIENSHAO) { Speed(10); }
-        OPPONENT(SPECIES_COMFEY) { Speed(5); Ability(ABILITY_TRIAGE); }
+        ASSUME(gMovesInfo[MOVE_TACKLE].category != DAMAGE_CATEGORY_STATUS);
+        ASSUME(gMovesInfo[MOVE_TACKLE].priority == 0);
+        PLAYER(SPECIES_MACHAMP) { Speed(10); Ability(ABILITY_MISTY_SURGE); }
+        OPPONENT(SPECIES_CLEFFA) { Speed(5); Ability(ABILITY_MISCHIEVOUS); }
     } WHEN {
-        TURN { MOVE(opponent, MOVE_DRAINING_KISS); MOVE(player, MOVE_UPPER_HAND); }
+        TURN { MOVE(opponent, MOVE_TACKLE); MOVE(player, MOVE_UPPER_HAND); }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_UPPER_HAND, player);
         HP_BAR(opponent);
-        MESSAGE("Foe Comfey flinched!");
-        NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_DRAINING_KISS, opponent);
+        MESSAGE("Foe Cleffa flinched!");
+        NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, opponent);
     }
 }
 
 SINGLE_BATTLE_TEST("Upper Hand fails if the target moves first")
 {
     GIVEN {
-        ASSUME(gMovesInfo[MOVE_DRAINING_KISS].category == DAMAGE_CATEGORY_SPECIAL);
-        ASSUME(gMovesInfo[MOVE_DRAINING_KISS].priority == 0);
-        PLAYER(SPECIES_MIENSHAO) { Speed(5); }
-        OPPONENT(SPECIES_COMFEY) { Speed(10); Ability(ABILITY_TRIAGE); }
+        ASSUME(gMovesInfo[MOVE_FAKE_OUT].category != DAMAGE_CATEGORY_STATUS);
+        ASSUME(gMovesInfo[MOVE_FAKE_OUT].priority == 3);
+        PLAYER(SPECIES_MACHAMP) { Speed(5); Ability(ABILITY_INNER_FOCUS); }
+        OPPONENT(SPECIES_CLEFFA) { Speed(10); }
     } WHEN {
-        TURN { MOVE(opponent, MOVE_DRAINING_KISS); MOVE(player, MOVE_UPPER_HAND); }
+        TURN { MOVE(opponent, MOVE_FAKE_OUT); MOVE(player, MOVE_UPPER_HAND); }
     } SCENE {
-        ANIMATION(ANIM_TYPE_MOVE, MOVE_DRAINING_KISS, opponent);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_FAKE_OUT, opponent);
         HP_BAR(player);
-        HP_BAR(opponent);
         NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_UPPER_HAND, player);
-        MESSAGE("Mienshao used Upper Hand!");
+        MESSAGE("Machamp used Upper Hand!");
         MESSAGE("But it failed!");
     }
 }

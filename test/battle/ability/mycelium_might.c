@@ -4,7 +4,7 @@
 SINGLE_BATTLE_TEST("Mycelium Might causes the user to move last in the priority bracket if it uses a status move")
 {
     GIVEN {
-        PLAYER(SPECIES_TOEDSCOOL) { Speed(100); Ability(ABILITY_MYCELIUM_MIGHT); }
+        PLAYER(SPECIES_BRELOOM) { Speed(100); Ability(ABILITY_MYCELIUM_MIGHT); }
         OPPONENT(SPECIES_ALAKAZAM) { Speed(1); }
     } WHEN {
         TURN { MOVE(opponent, MOVE_CELEBRATE); MOVE(player, MOVE_SPORE); }
@@ -18,8 +18,8 @@ SINGLE_BATTLE_TEST("Mycelium Might causes the user to move last in the priority 
 SINGLE_BATTLE_TEST("Mycelium Might will respect the speed if both battlers have the ability")
 {
     GIVEN {
-        PLAYER(SPECIES_TOEDSCOOL) { Speed(100); Ability(ABILITY_MYCELIUM_MIGHT); }
-        OPPONENT(SPECIES_TOEDSCOOL) { Speed(1); Ability(ABILITY_MYCELIUM_MIGHT); }
+        PLAYER(SPECIES_BRELOOM) { Speed(100); Ability(ABILITY_MYCELIUM_MIGHT); }
+        OPPONENT(SPECIES_BRELOOM) { Speed(1); Ability(ABILITY_MYCELIUM_MIGHT); }
     } WHEN {
         TURN { MOVE(opponent, MOVE_WILL_O_WISP); MOVE(player, MOVE_WILL_O_WISP); }
     } SCENE {
@@ -33,7 +33,7 @@ SINGLE_BATTLE_TEST("Mycelium Might will respect the speed if both battlers have 
 SINGLE_BATTLE_TEST("Mycelium Might ignores opposing abilities")
 {
     GIVEN {
-        PLAYER(SPECIES_TOEDSCOOL) { Speed(100); Ability(ABILITY_MYCELIUM_MIGHT); }
+        PLAYER(SPECIES_BRELOOM) { Speed(100); Ability(ABILITY_MYCELIUM_MIGHT); }
         OPPONENT(SPECIES_BELDUM) { Speed(1); Ability(ABILITY_CLEAR_BODY);}
     } WHEN {
         TURN { MOVE(opponent, MOVE_CELEBRATE); MOVE(player, MOVE_SCREECH); }
@@ -50,7 +50,7 @@ SINGLE_BATTLE_TEST("Mycelium Might vs Stall action order depends on speed")
     PARAMETRIZE { speed = 99; }
     PARAMETRIZE { speed = 101; }
     GIVEN {
-        PLAYER(SPECIES_TOEDSCOOL) { Speed(100); Ability(ABILITY_MYCELIUM_MIGHT); }
+        PLAYER(SPECIES_BRELOOM) { Speed(100); Ability(ABILITY_MYCELIUM_MIGHT); }
         OPPONENT(SPECIES_WHIMSICOTT) { Speed(speed); Ability(ABILITY_STALL);}
     } WHEN {
         TURN { MOVE(opponent, MOVE_CELEBRATE); MOVE(player, MOVE_CELEBRATE); }

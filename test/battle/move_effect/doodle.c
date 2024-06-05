@@ -30,15 +30,15 @@ DOUBLE_BATTLE_TEST("Doodle can't copy a banned ability")
     GIVEN {
         PLAYER(SPECIES_ABRA);
         PLAYER(SPECIES_ABRA);
-        OPPONENT(SPECIES_GREAT_TUSK) { Ability(ABILITY_PROTOSYNTHESIS); }
+        OPPONENT(SPECIES_DONPHAN) { Ability(ABILITY_PROTOSYNTHESIS); }
         OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(playerLeft, MOVE_DOODLE, target: opponentLeft);  }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_DOODLE, playerLeft);
         NONE_OF {
-            MESSAGE("Abra copied Foe Great Tusk's Protosynthesis!");
-            MESSAGE("Abra copied Foe Great Tusk's Protosynthesis!");
+            MESSAGE("Abra copied Foe Donphan's Protosynthesis!");
+            MESSAGE("Abra copied Foe Donphan's Protosynthesis!");
         }
     } THEN {
         EXPECT(playerLeft->ability != ABILITY_PROTOSYNTHESIS);
@@ -49,7 +49,7 @@ DOUBLE_BATTLE_TEST("Doodle can't copy a banned ability")
 DOUBLE_BATTLE_TEST("Doodle fails if user has a banned Ability")
 {
     GIVEN {
-        PLAYER(SPECIES_CRAMORANT) { Ability(ABILITY_GULP_MISSILE); }
+        PLAYER(SPECIES_ABRA) { Ability(ABILITY_GULP_MISSILE); }
         PLAYER(SPECIES_ABRA) { Ability(ABILITY_SHADOW_TAG); }
         OPPONENT(SPECIES_TORCHIC) { Ability(ABILITY_BLAZE); }
         OPPONENT(SPECIES_ALAKAZAM);
@@ -68,7 +68,7 @@ DOUBLE_BATTLE_TEST("Doodle fails if partner has a banned Ability")
 {
     GIVEN {
         PLAYER(SPECIES_ABRA) { Ability(ABILITY_SHADOW_TAG); }
-        PLAYER(SPECIES_CRAMORANT) { Ability(ABILITY_GULP_MISSILE); }
+        PLAYER(SPECIES_ABRA) { Ability(ABILITY_GULP_MISSILE); }
         OPPONENT(SPECIES_TORCHIC) { Ability(ABILITY_BLAZE); }
         OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {

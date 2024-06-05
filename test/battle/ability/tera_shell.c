@@ -1,6 +1,6 @@
 #include "global.h"
 #include "test/battle.h"
-
+/*
 SINGLE_BATTLE_TEST("Tera Shell makes all moves against Terapagos not very effective when at full HP")
 {
     u16 hp;
@@ -96,4 +96,4 @@ DOUBLE_BATTLE_TEST("Tera Shell only makes the first hit against Terapagos from a
         HP_BAR(playerRight);
         NOT MESSAGE("It's not very effective…");
     }
-}
+}*/

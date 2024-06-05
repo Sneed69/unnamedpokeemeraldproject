@@ -14,7 +14,7 @@ SINGLE_BATTLE_TEST("Protective Pads protected moves still make direct contact", 
     PARAMETRIZE { ability = ABILITY_FLUFFY; }
     GIVEN {
         PLAYER(SPECIES_ALAKAZAM) { Item(ITEM_PROTECTIVE_PADS); }
-        OPPONENT(SPECIES_STUFFUL) { Ability(ability); }
+        OPPONENT(SPECIES_ALTARIA) { Ability(ability); }
     } WHEN {
         TURN { MOVE(player, MOVE_TACKLE); }
     } SCENE {
@@ -31,12 +31,12 @@ SINGLE_BATTLE_TEST("Protective Pads doesn't reduce tough claws damage", s16 dama
     PARAMETRIZE { item = ITEM_NONE; }
     PARAMETRIZE { item = ITEM_PROTECTIVE_PADS; }
     GIVEN {
-        PLAYER(SPECIES_BINACLE) { Ability(ABILITY_TOUGH_CLAWS); Item(item); }
+        PLAYER(SPECIES_CHARIZARD) { Ability(ABILITY_TOUGH_CLAWS); Item(item); }
         OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, MOVE_TACKLE); }
     } SCENE {
-        MESSAGE("Binacle used Tackle!");
+        MESSAGE("Charizard used Tackle!");
         HP_BAR(opponent, captureDamage: &results[i].damage);
     } FINALLY {
         EXPECT_EQ(results[0].damage, results[1].damage);
@@ -46,7 +46,7 @@ SINGLE_BATTLE_TEST("Protective Pads doesn't reduce tough claws damage", s16 dama
 SINGLE_BATTLE_TEST("Protective Pads doesn't invalid unseen fist")
 {
     GIVEN {
-        PLAYER(SPECIES_URSHIFU_RAPID_STRIKE_STYLE) { Ability(ABILITY_UNSEEN_FIST); Item(ITEM_PROTECTIVE_PADS); }
+        PLAYER(SPECIES_CHARIZARD) { Ability(ABILITY_UNSEEN_FIST); Item(ITEM_PROTECTIVE_PADS); }
         OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(opponent, MOVE_PROTECT); MOVE(player, MOVE_TACKLE); }

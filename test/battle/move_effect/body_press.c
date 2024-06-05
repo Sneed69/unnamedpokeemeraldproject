@@ -10,14 +10,14 @@ SINGLE_BATTLE_TEST("Body Press uses physical defense stat of target", s16 damage
 {
     u32 move;
 
-    PARAMETRIZE { move = MOVE_DRILL_PECK; }
+    PARAMETRIZE { move = MOVE_MEGA_PUNCH; }
     PARAMETRIZE { move = MOVE_BODY_PRESS; }
 
     GIVEN {
-        ASSUME(gMovesInfo[MOVE_DRILL_PECK].power == gMovesInfo[MOVE_BODY_PRESS].power);
+        ASSUME(gMovesInfo[MOVE_MEGA_PUNCH].power == gMovesInfo[MOVE_BODY_PRESS].power);
         ASSUME(gMovesInfo[MOVE_CHARM].effect == EFFECT_ATTACK_DOWN_2);
-        PLAYER(SPECIES_ALAKAZAM);
-        OPPONENT(SPECIES_SHELLDER);
+        PLAYER(SPECIES_ALAKAZAM) { Attack(200); Defense(200); }
+        OPPONENT(SPECIES_SHELLDER) { HP(400); }
     } WHEN {
         TURN { MOVE(opponent, MOVE_CHARM); MOVE(player, move); }
     } SCENE {

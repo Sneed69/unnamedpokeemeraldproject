@@ -13,9 +13,9 @@ SINGLE_BATTLE_TEST("Keen Eye, Gen9+ Illuminate & Minds Eye prevent accuracy stag
     u16 ability;
     u32 species;
 
-    PARAMETRIZE { species = SPECIES_HITMONCHAN; ability = ABILITY_KEEN_EYE; }
+    PARAMETRIZE { species = SPECIES_MACHOKE; ability = ABILITY_KEEN_EYE; }
     PARAMETRIZE { species = SPECIES_STARYU; ability = ABILITY_ILLUMINATE; }
-    PARAMETRIZE { species = SPECIES_URSALUNA_BLOODMOON; ability = ABILITY_MINDS_EYE; }
+    PARAMETRIZE { species = SPECIES_LINOONE; ability = ABILITY_MINDS_EYE; }
 
     PASSES_RANDOMLY(100, 100, RNG_ACCURACY);
     GIVEN {
@@ -26,12 +26,12 @@ SINGLE_BATTLE_TEST("Keen Eye, Gen9+ Illuminate & Minds Eye prevent accuracy stag
     } SCENE {
         ABILITY_POPUP(opponent, ability);
         NOT ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
-        if (species == SPECIES_HITMONCHAN)
-            MESSAGE("Foe Hitmonchan's Keen Eye prevents accuracy loss!");
+        if (species == SPECIES_MACHOKE)
+            MESSAGE("Foe Machoke's Keen Eye prevents accuracy loss!");
         else if (species == SPECIES_STARYU)
             MESSAGE("Foe Staryu's Illuminate prevents accuracy loss!");
         else
-            MESSAGE("Foe Ursaluna's Mind's Eye prevents accuracy loss!");
+            MESSAGE("Foe Linoone's Mind's Eye prevents accuracy loss!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, opponent);
     }
 }
@@ -41,9 +41,9 @@ SINGLE_BATTLE_TEST("Keen Eye, Gen9+ Illuminate & Minds Eye ignore target's evasi
     u16 ability;
     u32 species;
 
-    PARAMETRIZE { species = SPECIES_HITMONCHAN; ability = ABILITY_KEEN_EYE; }
+    PARAMETRIZE { species = SPECIES_MACHOKE; ability = ABILITY_KEEN_EYE; }
     PARAMETRIZE { species = SPECIES_STARYU; ability = ABILITY_ILLUMINATE; }
-    PARAMETRIZE { species = SPECIES_URSALUNA_BLOODMOON; ability = ABILITY_MINDS_EYE; }
+    PARAMETRIZE { species = SPECIES_LINOONE; ability = ABILITY_MINDS_EYE; }
 
     PASSES_RANDOMLY(100, 100, RNG_ACCURACY);
     GIVEN {
@@ -67,15 +67,15 @@ SINGLE_BATTLE_TEST("Keen Eye, Gen9+ Illuminate & Minds Eye are ignored by Mold B
     u32 j;
     static const u16 moldBreakerAbilities[][2] = {
         {SPECIES_PINSIR,   ABILITY_MOLD_BREAKER},
-        {SPECIES_RESHIRAM, ABILITY_TURBOBLAZE},
-        {SPECIES_ZEKROM,   ABILITY_TERAVOLT},
+        {SPECIES_TINKATON, ABILITY_TURBOBLAZE},
+        {SPECIES_TINKATON,   ABILITY_TERAVOLT},
     };
 
     for (j = 0; j < ARRAY_COUNT(moldBreakerAbilities); j++) {
         speciesPlayer = moldBreakerAbilities[j][0]; abilityPlayer = moldBreakerAbilities[j][1];
-        PARAMETRIZE { speciesOpponent = SPECIES_HITMONCHAN; abilityOpponent = ABILITY_KEEN_EYE; }
+        PARAMETRIZE { speciesOpponent = SPECIES_MACHOKE; abilityOpponent = ABILITY_KEEN_EYE; }
         PARAMETRIZE { speciesOpponent = SPECIES_STARYU; abilityOpponent = ABILITY_ILLUMINATE; }
-        PARAMETRIZE { speciesOpponent = SPECIES_URSALUNA_BLOODMOON; abilityOpponent = ABILITY_MINDS_EYE; }
+        PARAMETRIZE { speciesOpponent = SPECIES_LINOONE; abilityOpponent = ABILITY_MINDS_EYE; }
     }
 
     PASSES_RANDOMLY(gMovesInfo[MOVE_TACKLE].accuracy * 3 / 4, 100, RNG_ACCURACY);
@@ -97,9 +97,9 @@ SINGLE_BATTLE_TEST("Keen Eye, Gen9+ Illuminate & Minds Eye don't prevent Topsy-T
     u16 ability;
     u32 species;
 
-    PARAMETRIZE { species = SPECIES_HITMONCHAN; ability = ABILITY_KEEN_EYE; }
+    PARAMETRIZE { species = SPECIES_MACHOKE; ability = ABILITY_KEEN_EYE; }
     PARAMETRIZE { species = SPECIES_STARYU; ability = ABILITY_ILLUMINATE; }
-    PARAMETRIZE { species = SPECIES_URSALUNA_BLOODMOON; ability = ABILITY_MINDS_EYE; }
+    PARAMETRIZE { species = SPECIES_LINOONE; ability = ABILITY_MINDS_EYE; }
 
     GIVEN {
         ASSUME(gMovesInfo[MOVE_HONE_CLAWS].effect == EFFECT_ATTACK_ACCURACY_UP);
@@ -110,23 +110,23 @@ SINGLE_BATTLE_TEST("Keen Eye, Gen9+ Illuminate & Minds Eye don't prevent Topsy-T
         TURN { MOVE(opponent, MOVE_HONE_CLAWS); MOVE(player, MOVE_TOPSY_TURVY); }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_HONE_CLAWS, opponent);
-        if (species == SPECIES_HITMONCHAN) {
-            MESSAGE("Foe Hitmonchan's Attack rose!");
-            MESSAGE("Foe Hitmonchan's accuracy rose!");
+        if (species == SPECIES_MACHOKE) {
+            MESSAGE("Foe Machoke's Attack rose!");
+            MESSAGE("Foe Machoke's accuracy rose!");
         } else if (species == SPECIES_STARYU) {
             MESSAGE("Foe Staryu's Attack rose!");
             MESSAGE("Foe Staryu's accuracy rose!");
         } else {
-            MESSAGE("Foe Ursaluna's Attack rose!");
-            MESSAGE("Foe Ursaluna's accuracy rose!");
+            MESSAGE("Foe Linoone's Attack rose!");
+            MESSAGE("Foe Linoone's accuracy rose!");
         }
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TOPSY_TURVY, player);
-        if (species == SPECIES_HITMONCHAN)
-            MESSAGE("Foe Hitmonchan's stat changes were all reversed!");
+        if (species == SPECIES_MACHOKE)
+            MESSAGE("Foe Machoke's stat changes were all reversed!");
         else if (species == SPECIES_STARYU)
             MESSAGE("Foe Staryu's stat changes were all reversed!");
         else
-            MESSAGE("Foe Ursaluna's stat changes were all reversed!");
+            MESSAGE("Foe Linoone's stat changes were all reversed!");
     } THEN {
         EXPECT_EQ(opponent->statStages[STAT_ACC], DEFAULT_STAT_STAGE - 1);
     }
@@ -136,9 +136,9 @@ SINGLE_BATTLE_TEST("Keen Eye, Gen9+ Illuminate & Minds Eye don't prevent receivi
 {
     u16 ability;
     u32 species;
-    PARAMETRIZE { species = SPECIES_HITMONCHAN; ability = ABILITY_KEEN_EYE; }
+    PARAMETRIZE { species = SPECIES_MACHOKE; ability = ABILITY_KEEN_EYE; }
     PARAMETRIZE { species = SPECIES_STARYU; ability = ABILITY_ILLUMINATE; }
-    PARAMETRIZE { species = SPECIES_URSALUNA_BLOODMOON; ability = ABILITY_MINDS_EYE; }
+    PARAMETRIZE { species = SPECIES_LINOONE; ability = ABILITY_MINDS_EYE; }
 
     GIVEN {
         ASSUME(gMovesInfo[MOVE_BATON_PASS].effect == EFFECT_BATON_PASS);
@@ -153,12 +153,12 @@ SINGLE_BATTLE_TEST("Keen Eye, Gen9+ Illuminate & Minds Eye don't prevent receivi
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_SAND_ATTACK, player);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_BATON_PASS, opponent);
-        if (species == SPECIES_HITMONCHAN)
-            MESSAGE("2 sent out Hitmonchan!");
+        if (species == SPECIES_MACHOKE)
+            MESSAGE("2 sent out Machoke!");
         else if (species == SPECIES_STARYU)
             MESSAGE("2 sent out Staryu!");
         else
-            MESSAGE("2 sent out Ursaluna!");
+            MESSAGE("2 sent out Linoone!");
     } THEN {
         EXPECT_EQ(opponent->statStages[STAT_ACC], DEFAULT_STAT_STAGE - 1);
     }
@@ -169,7 +169,7 @@ SINGLE_BATTLE_TEST("Keen Eye & Gen9+ Illuminate don't prevent Spectral Thief fro
     u16 ability;
     u32 species;
 
-    PARAMETRIZE { species = SPECIES_HITMONCHAN; ability = ABILITY_KEEN_EYE; }
+    PARAMETRIZE { species = SPECIES_MACHOKE; ability = ABILITY_KEEN_EYE; }
     PARAMETRIZE { species = SPECIES_STARYU; ability = ABILITY_ILLUMINATE; }
 
     GIVEN {
@@ -181,10 +181,10 @@ SINGLE_BATTLE_TEST("Keen Eye & Gen9+ Illuminate don't prevent Spectral Thief fro
         TURN { MOVE(opponent, MOVE_HONE_CLAWS); MOVE(player, MOVE_SPECTRAL_THIEF); }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_HONE_CLAWS, opponent);
-        if (species == SPECIES_HITMONCHAN)
+        if (species == SPECIES_MACHOKE)
         {
-            MESSAGE("Foe Hitmonchan's Attack rose!");
-            MESSAGE("Foe Hitmonchan's accuracy rose!");
+            MESSAGE("Foe Machoke's Attack rose!");
+            MESSAGE("Foe Machoke's accuracy rose!");
         }
         else
         {

@@ -10,7 +10,7 @@ SINGLE_BATTLE_TEST("MinimizeDoubleDamage flag makes moves cause double damage to
         ASSUME(gMovesInfo[MOVE_MINIMIZE].effect == EFFECT_MINIMIZE);
         ASSUME(gMovesInfo[MOVE_STEAMROLLER].minimizeDoubleDamage);
         PLAYER(SPECIES_ALAKAZAM) { Speed(1); }
-        OPPONENT(SPECIES_ALAKAZAM) { Speed(2); }
+        OPPONENT(SPECIES_ALAKAZAM) { Speed(2); HP(490); Defense(105); }
     } WHEN {
         if (useMinimize)
             TURN { MOVE(opponent, MOVE_MINIMIZE); MOVE(player, MOVE_STEAMROLLER); }

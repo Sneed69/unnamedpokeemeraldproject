@@ -26,10 +26,10 @@ SINGLE_BATTLE_TEST("Metronome's called powder move fails against Grass Types")
 {
     GIVEN {
         ASSUME(gMovesInfo[MOVE_POISON_POWDER].powderMove);
-        ASSUME(gSpeciesInfo[SPECIES_TANGELA].types[0] == TYPE_GRASS);
+        ASSUME(gSpeciesInfo[SPECIES_BELLOSSOM].types[0] == TYPE_GRASS);
         ASSUME(gMovesInfo[MOVE_POISON_POWDER].effect == EFFECT_POISON);
         PLAYER(SPECIES_ALAKAZAM);
-        OPPONENT(SPECIES_TANGELA);
+        OPPONENT(SPECIES_BELLOSSOM);
     } WHEN {
         TURN { MOVE(player, MOVE_METRONOME, WITH_RNG(RNG_METRONOME, MOVE_POISON_POWDER)); }
     } SCENE {
@@ -37,7 +37,7 @@ SINGLE_BATTLE_TEST("Metronome's called powder move fails against Grass Types")
         ANIMATION(ANIM_TYPE_MOVE, MOVE_METRONOME, player);
         MESSAGE("Alakazam used Poison Powder!");
         NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_POISON_POWDER, player);
-        MESSAGE("It doesn't affect Foe Tangela…");
+        MESSAGE("It doesn't affect Foe Bellossom…");
         NOT STATUS_ICON(opponent, poison: TRUE);
     }
 }

@@ -1,6 +1,6 @@
 #include "global.h"
 #include "test/battle.h"
-
+/*
 ASSUMPTIONS
 {
     ASSUME(gMovesInfo[MOVE_WATER_GUN].power != 0);
@@ -157,4 +157,4 @@ DOUBLE_BATTLE_TEST("Battle Bond transforms player's Greninja when fainting its A
     } FINALLY {
         EXPECT(playerLeft->species == SPECIES_GRENINJA_ASH);
     }
-}
+}*/

@@ -245,7 +245,7 @@ SINGLE_BATTLE_TEST("Teatime triggers Motor Drive if it has been affected by Elec
 
     GIVEN {
         PLAYER(SPECIES_ELECTIVIRE) { Ability(ABILITY_MOTOR_DRIVE); Item(item); }
-        OPPONENT(SPECIES_ALAKAZAM) { Item(ITEM_LIECHI_BERRY); }
+        OPPONENT(SPECIES_ALAKAZAM) { Item(ITEM_LIECHI_BERRY); HP(490);}
     } WHEN {
         TURN {
             MOVE(player, move);

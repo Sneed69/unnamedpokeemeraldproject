@@ -13,7 +13,7 @@ SINGLE_BATTLE_TEST("Opportunist only copies foe's positive stat changes in a tur
     PARAMETRIZE { ability = ABILITY_OPPORTUNIST; }
     GIVEN {
         PLAYER(SPECIES_ALAKAZAM) { Speed(4); }
-        OPPONENT(SPECIES_ESPATHRA) { Speed(5); Ability(ability); }
+        OPPONENT(SPECIES_GIRAFARIG) { Speed(5); Ability(ability); }
     } WHEN {
         TURN { MOVE(player, MOVE_SHELL_SMASH); }
         TURN { MOVE(player, MOVE_TACKLE); MOVE(opponent, MOVE_TACKLE); }
@@ -51,9 +51,9 @@ DOUBLE_BATTLE_TEST("Opportunist raises Attack only once when partner has Intimid
 
     GIVEN {
         PLAYER(SPECIES_MIGHTYENA) { Ability(ABILITY_INTIMIDATE); }
-        PLAYER(SPECIES_ESPATHRA) { Ability(ABILITY_OPPORTUNIST); }
-        OPPONENT(SPECIES_SPINDA) { Ability(abilityLeft); }
-        OPPONENT(SPECIES_SPINDA) { Ability(abilityRight); }
+        PLAYER(SPECIES_GIRAFARIG) { Ability(ABILITY_OPPORTUNIST); }
+        OPPONENT(SPECIES_MALAMAR) { Ability(abilityLeft); }
+        OPPONENT(SPECIES_MALAMAR) { Ability(abilityRight); }
     } WHEN {
         TURN { MOVE(opponentLeft, MOVE_TACKLE, target: playerLeft); MOVE(opponentRight, MOVE_TACKLE, target: playerRight); }
     } SCENE {
@@ -61,31 +61,31 @@ DOUBLE_BATTLE_TEST("Opportunist raises Attack only once when partner has Intimid
         if (abilityLeft == ABILITY_CONTRARY) {
             ABILITY_POPUP(opponentLeft, ABILITY_CONTRARY);
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponentLeft);
-            MESSAGE("Foe Spinda's Attack rose!");
+            MESSAGE("Foe Malamar's Attack rose!");
         } else {
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponentLeft);
-            MESSAGE("Mightyena's Intimidate cuts Foe Spinda's Attack!");
+            MESSAGE("Mightyena's Intimidate cuts Foe Malamar's Attack!");
         }
         if (abilityRight == ABILITY_CONTRARY) {
             ABILITY_POPUP(opponentRight, ABILITY_CONTRARY);
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponentRight);
-            MESSAGE("Foe Spinda's Attack rose!");
+            MESSAGE("Foe Malamar's Attack rose!");
         } else {
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponentRight);
-            MESSAGE("Mightyena's Intimidate cuts Foe Spinda's Attack!");
+            MESSAGE("Mightyena's Intimidate cuts Foe Malamar's Attack!");
         }
 
         if ((abilityLeft == ABILITY_CONTRARY && abilityRight != ABILITY_CONTRARY)
                 || (abilityLeft != ABILITY_CONTRARY && abilityRight == ABILITY_CONTRARY)) {
             ABILITY_POPUP(playerRight, ABILITY_OPPORTUNIST);
-            MESSAGE("Espathra copied its opponent's stat changes!");
+            MESSAGE("Girafarig copied its opponent's stat changes!");
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, playerRight);
-            MESSAGE("Espathra's Attack rose!");
+            MESSAGE("Girafarig's Attack rose!");
         } else if (abilityLeft == ABILITY_CONTRARY && abilityRight == ABILITY_CONTRARY) {
             ABILITY_POPUP(playerRight, ABILITY_OPPORTUNIST);
-            MESSAGE("Espathra copied its opponent's stat changes!");
+            MESSAGE("Girafarig copied its opponent's stat changes!");
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, playerRight);
-            MESSAGE("Espathra's Attack sharply rose!");
+            MESSAGE("Girafarig's Attack sharply rose!");
         }
 
         HP_BAR(playerLeft, captureDamage: &results[i].damageLeft);
@@ -110,7 +110,7 @@ SINGLE_BATTLE_TEST("Opportunist does not accumulate opposing mon's stat changes"
 {
     GIVEN {
         PLAYER(SPECIES_ALAKAZAM);
-        OPPONENT(SPECIES_ESPATHRA) { Ability(ABILITY_OPPORTUNIST); }
+        OPPONENT(SPECIES_GIRAFARIG) { Ability(ABILITY_OPPORTUNIST); }
     } WHEN {
         TURN { MOVE(player, MOVE_SWORDS_DANCE); }
         TURN { MOVE(player, MOVE_SWORDS_DANCE); }

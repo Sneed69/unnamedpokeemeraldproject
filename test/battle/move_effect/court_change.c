@@ -27,7 +27,7 @@ DOUBLE_BATTLE_TEST("Court Change swaps entry hazards used by the opponent")
         MESSAGE("Foe Alakazam used Toxic Spikes!");
         MESSAGE("Abra used Court Change!");
         MESSAGE("Abra swapped the battle effects affecting each side!");
-        MESSAGE("Go! Abra!");
+        SEND_IN_MESSAGE("Abra");
         NONE_OF {
             MESSAGE("Abra is hurt by spikes!");
             MESSAGE("Pointed stones dug into Abra!");
@@ -63,7 +63,7 @@ DOUBLE_BATTLE_TEST("Court Change swaps entry hazards used by the player")
         MESSAGE("Alakazam used Toxic Spikes!");
         MESSAGE("Foe Abra used Court Change!");
         MESSAGE("Foe Abra swapped the battle effects affecting each side!");
-        MESSAGE("Go! Alakazam!");
+        SEND_IN_MESSAGE("Alakazam");
         MESSAGE("Alakazam is hurt by spikes!");
         MESSAGE("Pointed stones dug into Alakazam!");
         MESSAGE("Alakazam was poisoned!");

@@ -50,7 +50,7 @@ SINGLE_BATTLE_TEST("Sunny Day fails if Primordial Sea is active")
 {
     u32 ability;
 
-    PARAMETRIZE { ability = ABILITY_NONE; }
+    PARAMETRIZE { ability = ABILITY_WATER_ABSORB; }
     PARAMETRIZE { ability = ABILITY_PRIMORDIAL_SEA; }
 
     GIVEN {

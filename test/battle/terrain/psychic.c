@@ -1,7 +1,7 @@
 #include "global.h"
 #include "test/battle.h"
 
-SINGLE_BATTLE_TEST("Psychic Terrain protects grounded battlers from priority moves")
+SINGLE_BATTLE_TEST("Psychic Terrain protects battlers from priority moves")
 {
     GIVEN {
         PLAYER(SPECIES_CLAYDOL) { Ability(ABILITY_LEVITATE); }
@@ -10,11 +10,11 @@ SINGLE_BATTLE_TEST("Psychic Terrain protects grounded battlers from priority mov
         TURN { MOVE(player, MOVE_PSYCHIC_TERRAIN); }
         TURN { MOVE(player, MOVE_QUICK_ATTACK); MOVE(opponent, MOVE_QUICK_ATTACK); }
     } SCENE {
-        MESSAGE("Claydol used Psychic Terrain!");
+        MESSAGE("Claydol used Telepathic Aura!");
         MESSAGE("Claydol cannot use Quick Attack!");
         NOT { HP_BAR(opponent); }
-        MESSAGE("Foe Alakazam used Quick Attack!");
-        HP_BAR(player);
+        MESSAGE("Foe Alakazam cannot use Quick Attack!");
+        NOT { HP_BAR(player); }
     }
 }
 
@@ -24,14 +24,14 @@ SINGLE_BATTLE_TEST("Psychic Terrain activates Psychic Seed and Mimicry")
         ASSUME(gItemsInfo[ITEM_PSYCHIC_SEED].holdEffect == HOLD_EFFECT_SEEDS);
         ASSUME(gItemsInfo[ITEM_PSYCHIC_SEED].holdEffectParam == HOLD_EFFECT_PARAM_PSYCHIC_TERRAIN);
         PLAYER(SPECIES_ALAKAZAM) { Item(ITEM_PSYCHIC_SEED); }
-        OPPONENT(SPECIES_STUNFISK_GALARIAN) { Ability(ABILITY_MIMICRY); }
+        OPPONENT(SPECIES_PIKACHU) { Ability(ABILITY_MIMICRY); }
     } WHEN {
         TURN { MOVE(player, MOVE_PSYCHIC_TERRAIN); }
     } SCENE {
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
         MESSAGE("Using Psychic Seed, the Sp. Def of Alakazam rose!");
         ABILITY_POPUP(opponent);
-        MESSAGE("Foe Stunfisk's type changed to Psychic!");
+        MESSAGE("Foe Pikachu's type changed to Psychic!");
     } THEN {
         EXPECT_EQ(gBattleMons[B_POSITION_OPPONENT_LEFT].type1, TYPE_PSYCHIC);
     }
@@ -69,8 +69,8 @@ SINGLE_BATTLE_TEST("Psychic Terrain doesn't block priority moves that target the
         TURN { MOVE(player, MOVE_PSYCHIC_TERRAIN); }
         TURN { MOVE(player, MOVE_RECOVER); }
     } SCENE {
-        MESSAGE("Sableye used Psychic Terrain!");
-        MESSAGE("Sableye used Recover!");
+        MESSAGE("Whimsicott used Telepathic Aura!");
+        MESSAGE("Whimsicott used Recover!");
         HP_BAR(player);
     }
 }
@@ -84,8 +84,8 @@ SINGLE_BATTLE_TEST("Psychic Terrain doesn't block priority moves that target all
         TURN { MOVE(player, MOVE_PSYCHIC_TERRAIN); }
         TURN { MOVE(player, MOVE_HAZE); }
     } SCENE {
-        MESSAGE("Sableye used Psychic Terrain!");
-        MESSAGE("Sableye used Haze!");
+        MESSAGE("Whimsicott used Telepathic Aura!");
+        MESSAGE("Whimsicott used Haze!");
     }
 }
 
@@ -98,8 +98,8 @@ SINGLE_BATTLE_TEST("Psychic Terrain doesn't block priority moves that target all
         TURN { MOVE(player, MOVE_PSYCHIC_TERRAIN); }
         TURN { MOVE(player, MOVE_SPIKES); }
     } SCENE {
-        MESSAGE("Sableye used Psychic Terrain!");
-        MESSAGE("Sableye used Spikes!");
+        MESSAGE("Whimsicott used Telepathic Aura!");
+        MESSAGE("Whimsicott used Spikes!");
     }
 }
 
@@ -114,8 +114,8 @@ DOUBLE_BATTLE_TEST("Psychic Terrain doesn't block priority moves that target all
         TURN { MOVE(playerLeft, MOVE_PSYCHIC_TERRAIN); }
         TURN { MOVE(playerLeft, MOVE_HEAL_PULSE, target: playerRight); }
     } SCENE {
-        MESSAGE("Sableye used Psychic Terrain!");
-        MESSAGE("Sableye used Heal Pulse!");
+        MESSAGE("Whimsicott used Telepathic Aura!");
+        MESSAGE("Whimsicott used Heal Pulse!");
     }
 }
 
@@ -128,8 +128,8 @@ SINGLE_BATTLE_TEST("Psychic Terrain doesn't block priority field moves")
         TURN { MOVE(player, MOVE_PSYCHIC_TERRAIN); }
         TURN { MOVE(player, MOVE_SUNNY_DAY); }
     } SCENE {
-        MESSAGE("Sableye used Psychic Terrain!");
-        MESSAGE("Sableye used Sunny Day!");
+        MESSAGE("Whimsicott used Telepathic Aura!");
+        MESSAGE("Whimsicott used Sunny Day!");
     }
 }
 
@@ -147,7 +147,7 @@ SINGLE_BATTLE_TEST("Psychic Terrain lasts for 5 turns")
     } SCENE {
         MESSAGE("Foe Alakazam used Celebrate!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_PSYCHIC_TERRAIN, player);
-        MESSAGE("The battlefield got weird!");
+        MESSAGE("A telepathic aura envelops the battlefield!");
 
         MESSAGE("Alakazam used Celebrate!");
         MESSAGE("Foe Alakazam used Celebrate!");
@@ -158,6 +158,6 @@ SINGLE_BATTLE_TEST("Psychic Terrain lasts for 5 turns")
         MESSAGE("Alakazam used Celebrate!");
         MESSAGE("Foe Alakazam used Celebrate!");
 
-        MESSAGE("The weirdness disappeared from the battlefield.");
+        MESSAGE("The telepathic aura disappeared.");
     }
 }

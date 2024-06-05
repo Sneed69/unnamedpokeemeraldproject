@@ -39,7 +39,7 @@ SINGLE_BATTLE_TEST("Mirror Herb copies all of Stuff Cheeks' stat boosts")
 {
     GIVEN {
         ASSUME(gItemsInfo[ITEM_LIECHI_BERRY].holdEffect == HOLD_EFFECT_ATTACK_UP);
-        PLAYER(SPECIES_SKWOVET) { Item(ITEM_LIECHI_BERRY); }
+        PLAYER(SPECIES_ZIGZAGOON) { Item(ITEM_LIECHI_BERRY); }
         OPPONENT(SPECIES_ALAKAZAM) { Item(ITEM_MIRROR_HERB); }
     } WHEN {
         TURN { MOVE(player, MOVE_STUFF_CHEEKS); }

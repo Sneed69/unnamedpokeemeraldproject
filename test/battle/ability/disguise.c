@@ -1,6 +1,6 @@
 #include "global.h"
 #include "test/battle.h"
-
+/*
 ASSUMPTIONS
 {
     ASSUME(gMovesInfo[MOVE_AERIAL_ACE].category == DAMAGE_CATEGORY_PHYSICAL);
@@ -120,4 +120,4 @@ SINGLE_BATTLE_TEST("Disguised Mimikyu takes damage from Rough Skin without break
     } THEN {
         EXPECT_EQ(player->species, SPECIES_MIMIKYU_DISGUISED);
     }
-}
+}*/

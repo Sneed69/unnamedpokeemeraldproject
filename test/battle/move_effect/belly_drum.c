@@ -26,8 +26,8 @@ SINGLE_BATTLE_TEST("Belly Drum maximizes the user's Attack stat", s16 damage)
     PARAMETRIZE { raiseAttack = TRUE; }
     GIVEN {
         ASSUME(gMovesInfo[MOVE_TACKLE].category == DAMAGE_CATEGORY_PHYSICAL);
-        PLAYER(SPECIES_ALAKAZAM);
-        OPPONENT(SPECIES_ALAKAZAM);
+        PLAYER(SPECIES_ALAKAZAM) { Attack(200); }
+        OPPONENT(SPECIES_ALAKAZAM) { HP(400); }
     } WHEN {
         if (raiseAttack) TURN { MOVE(player, MOVE_BELLY_DRUM); }
         TURN { MOVE(player, MOVE_TACKLE); }

@@ -17,7 +17,7 @@ SINGLE_BATTLE_TEST("Electromorphosis sets up Charge when hit by any move")
         ASSUME(gMovesInfo[MOVE_THUNDER_SHOCK].power != 0);
         ASSUME(gMovesInfo[MOVE_THUNDER_SHOCK].type == TYPE_ELECTRIC);
 
-        PLAYER(SPECIES_BELLIBOLT) { Ability(ABILITY_ELECTROMORPHOSIS); Speed(10); }
+        PLAYER(SPECIES_PIKACHU) { Ability(ABILITY_ELECTROMORPHOSIS); Speed(10); }
         OPPONENT(SPECIES_ALAKAZAM) {Ability(ABILITY_LIMBER); Speed(5) ;} // Limber, so it doesn't get paralyzed.
     }
     WHEN {
@@ -31,10 +31,10 @@ SINGLE_BATTLE_TEST("Electromorphosis sets up Charge when hit by any move")
         HP_BAR(player);
         ABILITY_POPUP(player, ABILITY_ELECTROMORPHOSIS);
         if (move == MOVE_TACKLE) {
-            MESSAGE("Being hit by Tackle charged Bellibolt with power!");
+            MESSAGE("Being hit by Tackle charged Pikachu with power!");
         }
         else {
-            MESSAGE("Being hit by Gust charged Bellibolt with power!");
+            MESSAGE("Being hit by Gust charged Pikachu with power!");
         }
 
         ANIMATION(ANIM_TYPE_MOVE, MOVE_THUNDER_SHOCK, player);
@@ -44,10 +44,10 @@ SINGLE_BATTLE_TEST("Electromorphosis sets up Charge when hit by any move")
         HP_BAR(player);
         ABILITY_POPUP(player, ABILITY_ELECTROMORPHOSIS);
         if (move == MOVE_TACKLE) {
-            MESSAGE("Being hit by Tackle charged Bellibolt with power!");
+            MESSAGE("Being hit by Tackle charged Pikachu with power!");
         }
         else {
-            MESSAGE("Being hit by Gust charged Bellibolt with power!");
+            MESSAGE("Being hit by Gust charged Pikachu with power!");
         }
     }
     THEN {

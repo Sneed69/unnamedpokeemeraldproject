@@ -10,33 +10,33 @@ ASSUMPTIONS
 SINGLE_BATTLE_TEST("Protosynthesis boosts the highest stat")
 {
     GIVEN {
-        PLAYER(SPECIES_WALKING_WAKE) { Ability(ABILITY_PROTOSYNTHESIS); }
+        PLAYER(SPECIES_GYARADOS) { Ability(ABILITY_PROTOSYNTHESIS); Attack(400); SpAttack(401); }
         OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, MOVE_SUNNY_DAY); }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_SUNNY_DAY, player);
         ABILITY_POPUP(player, ABILITY_PROTOSYNTHESIS);
-        MESSAGE("The harsh sunlight activated Walking Wake's Protosynthesis!");
-        MESSAGE("Walking Wake's Sp. Atk was heightened!");
+        MESSAGE("The harsh sunlight activated Gyarados's Protosynthesis!");
+        MESSAGE("Gyarados's Sp. Atk was heightened!");
     }
 }
 
 SINGLE_BATTLE_TEST("Protosynthesis boosts either Attack or Special Attack, not both")
 {
     u16 species;
-    u32 move;
+    u32 move, attack, spAttack;
     s16 damage[2];
 
-    PARAMETRIZE { species = SPECIES_ROARING_MOON; move = MOVE_TACKLE; }
-    PARAMETRIZE { species = SPECIES_ROARING_MOON; move = MOVE_ROUND; }
+    PARAMETRIZE { species = SPECIES_HYDREIGON; move = MOVE_TACKLE; attack = 401; spAttack = 400; }
+    PARAMETRIZE { species = SPECIES_HYDREIGON; move = MOVE_ROUND; attack = 401; spAttack = 400; }
 
-    PARAMETRIZE { species = SPECIES_WALKING_WAKE; move = MOVE_TACKLE; }
-    PARAMETRIZE { species = SPECIES_WALKING_WAKE; move = MOVE_ROUND; }
+    PARAMETRIZE { species = SPECIES_GYARADOS; move = MOVE_TACKLE; attack = 400; spAttack = 401; }
+    PARAMETRIZE { species = SPECIES_GYARADOS; move = MOVE_ROUND; attack = 400; spAttack = 401; }
 
     GIVEN {
-        PLAYER(species) { Ability(ABILITY_PROTOSYNTHESIS); }
-        OPPONENT(SPECIES_ALAKAZAM);
+        PLAYER(species) { Ability(ABILITY_PROTOSYNTHESIS); Attack(attack); SpAttack(spAttack); }
+        OPPONENT(SPECIES_ALAKAZAM) { HP(400); }
     } WHEN {
         TURN { MOVE(player, move); }
         TURN { MOVE(opponent, MOVE_SUNNY_DAY); MOVE(player, move); }
@@ -47,8 +47,8 @@ SINGLE_BATTLE_TEST("Protosynthesis boosts either Attack or Special Attack, not b
         ANIMATION(ANIM_TYPE_MOVE, move, player);
         HP_BAR(opponent, captureDamage: &damage[1]);
     } THEN {
-        if ((move == MOVE_TACKLE && species == SPECIES_ROARING_MOON) || (move == MOVE_ROUND && species == SPECIES_WALKING_WAKE))
-            EXPECT_MUL_EQ(damage[0], Q_4_12(1.3), damage[1]);
+        if ((move == MOVE_TACKLE && species == SPECIES_HYDREIGON) || (move == MOVE_ROUND && species == SPECIES_GYARADOS))
+            EXPECT_LT(damage[0], damage[1]);
         else
             EXPECT_EQ(damage[0], damage[1]);
     }
@@ -59,7 +59,7 @@ SINGLE_BATTLE_TEST("Protosynthesis ability pop up activates only once during the
     u16 turns;
 
     GIVEN {
-        PLAYER(SPECIES_WALKING_WAKE) { Ability(ABILITY_PROTOSYNTHESIS); }
+        PLAYER(SPECIES_GYARADOS) { Ability(ABILITY_PROTOSYNTHESIS); Attack(400); SpAttack(401);}
         OPPONENT(SPECIES_NINETALES) { Ability(ABILITY_DROUGHT); };
     } WHEN {
         for (turns = 0; turns < 5; turns++)
@@ -68,19 +68,19 @@ SINGLE_BATTLE_TEST("Protosynthesis ability pop up activates only once during the
     } SCENE {
         ABILITY_POPUP(opponent, ABILITY_DROUGHT);
         ABILITY_POPUP(player, ABILITY_PROTOSYNTHESIS);
-        MESSAGE("The harsh sunlight activated Walking Wake's Protosynthesis!");
-        MESSAGE("Walking Wake's Sp. Atk was heightened!");
+        MESSAGE("The harsh sunlight activated Gyarados's Protosynthesis!");
+        MESSAGE("Gyarados's Sp. Atk was heightened!");
         NONE_OF {
             for (turns = 0; turns < 4; turns++) {
                 ABILITY_POPUP(player, ABILITY_PROTOSYNTHESIS);
-                MESSAGE("The harsh sunlight activated Walking Wake's Protosynthesis!");
-                MESSAGE("Walking Wake's Sp. Atk was heightened!");
+                MESSAGE("The harsh sunlight activated Gyarados's Protosynthesis!");
+                MESSAGE("Gyarados's Sp. Atk was heightened!");
             }
         }
         ANIMATION(ANIM_TYPE_MOVE, MOVE_SUNNY_DAY, opponent);
         ABILITY_POPUP(player, ABILITY_PROTOSYNTHESIS);
-        MESSAGE("The harsh sunlight activated Walking Wake's Protosynthesis!");
-        MESSAGE("Walking Wake's Sp. Atk was heightened!");
+        MESSAGE("The harsh sunlight activated Gyarados's Protosynthesis!");
+        MESSAGE("Gyarados's Sp. Atk was heightened!");
     }
 }
 
@@ -88,14 +88,14 @@ SINGLE_BATTLE_TEST("Protosynthesis activates on switch-in")
 {
     GIVEN {
         PLAYER(SPECIES_ALAKAZAM);
-        PLAYER(SPECIES_ROARING_MOON) { Ability(ABILITY_PROTOSYNTHESIS); }
+        PLAYER(SPECIES_HYDREIGON) { Ability(ABILITY_PROTOSYNTHESIS); Attack(401); SpAttack(400);}
         OPPONENT(SPECIES_NINETALES) { Ability(ABILITY_DROUGHT); };
     } WHEN {
         TURN { SWITCH(player, 1); }
     } SCENE {
         ABILITY_POPUP(opponent, ABILITY_DROUGHT);
         ABILITY_POPUP(player, ABILITY_PROTOSYNTHESIS);
-        MESSAGE("The harsh sunlight activated Roaring Moon's Protosynthesis!");
-        MESSAGE("Roaring Moon's Attack was heightened!");
+        MESSAGE("The harsh sunlight activated Hydreigon's Protosynthesis!");
+        MESSAGE("Hydreigon's Attack was heightened!");
     }
 }

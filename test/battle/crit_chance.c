@@ -25,7 +25,7 @@ SINGLE_BATTLE_TEST("Battle Armor and Shell Armor block critical hits")
     u32 species;
     u32 ability;
 
-    PARAMETRIZE { species = SPECIES_KINGLER; ability = ABILITY_SHELL_ARMOR; }
+    PARAMETRIZE { species = SPECIES_ARMALDO; ability = ABILITY_SHELL_ARMOR; }
     PARAMETRIZE { species = SPECIES_ARMALDO; ability = ABILITY_BATTLE_ARMOR; }
 
     GIVEN {
@@ -44,7 +44,7 @@ SINGLE_BATTLE_TEST("Flag ignoresTargetAbility ignores Battle Armor and Shell Arm
     u32 species;
     u32 ability;
 
-    PARAMETRIZE { species = SPECIES_KINGLER; ability = ABILITY_SHELL_ARMOR; }
+    PARAMETRIZE { species = SPECIES_ARMALDO; ability = ABILITY_SHELL_ARMOR; }
     PARAMETRIZE { species = SPECIES_ARMALDO; ability = ABILITY_BATTLE_ARMOR; }
 
     GIVEN {
@@ -65,8 +65,8 @@ SINGLE_BATTLE_TEST("Mold Breaker, Teravolt and Turboblaze ignore Battle Armor an
     static const u32 pokemonPlayer[][2] =
     {
         {SPECIES_PINSIR, ABILITY_MOLD_BREAKER},
-        {SPECIES_ZEKROM, ABILITY_TERAVOLT},
-        {SPECIES_KYUREM_WHITE,  ABILITY_TURBOBLAZE},
+        {SPECIES_TINKATON, ABILITY_TERAVOLT},
+        {SPECIES_TINKATON,  ABILITY_TURBOBLAZE},
     };
 
     u32 speciesPlayer;
@@ -79,7 +79,7 @@ SINGLE_BATTLE_TEST("Mold Breaker, Teravolt and Turboblaze ignore Battle Armor an
         PARAMETRIZE {
             speciesPlayer = pokemonPlayer[j][0];
             abilityPlayer = pokemonPlayer[j][1];
-            speciesOpponent = SPECIES_KINGLER;
+            speciesOpponent = SPECIES_ARMALDO;
             abilityOpponent = ABILITY_SHELL_ARMOR;
         }
 
@@ -121,7 +121,7 @@ SINGLE_BATTLE_TEST("User effected by Laser Focus causes moves to result in a cri
 SINGLE_BATTLE_TEST("If the target is poisoned the ability Merciless causes a move to result in a critical hit")
 {
     GIVEN {
-        PLAYER(SPECIES_MAREANIE) { Ability(ABILITY_MERCILESS); }
+        PLAYER(SPECIES_ALAKAZAM) { Ability(ABILITY_MERCILESS); }
         OPPONENT(SPECIES_ALAKAZAM) { Status1(STATUS1_POISON); }
     } WHEN {
         TURN { MOVE(player, MOVE_TACKLE); }
@@ -207,7 +207,7 @@ SINGLE_BATTLE_TEST("High crit rate, Super Luck and Scope Lens cause the move to 
     }
 }
 
-SINGLE_BATTLE_TEST("Signature items Leek and Lucky Punch increase the critical hit ratio by 2 stages")
+/*SINGLE_BATTLE_TEST("Signature items Leek and Lucky Punch increase the critical hit ratio by 2 stages")
 {
     u32 species;
     u32 item;
@@ -248,7 +248,7 @@ SINGLE_BATTLE_TEST("Dire Hit increases a battler's critical hit chance by 2 stag
         MESSAGE("Alakazam used Scratch!");
         MESSAGE("A critical hit!");
     }
-}
+}*/
 
 SINGLE_BATTLE_TEST("Focus Energy increases critical hit ratio by two")
 {

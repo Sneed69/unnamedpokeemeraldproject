@@ -77,9 +77,9 @@ DOUBLE_BATTLE_TEST("Intimidate doesn't activate on an empty field in a double ba
         ANIMATION(ANIM_TYPE_MOVE, MOVE_EXPLOSION, playerLeft);
         // Everyone faints.
 
-        MESSAGE("Go! Ekans!");
+        SEND_IN_MESSAGE("Ekans");
         MESSAGE("2 sent out Arbok!");
-        MESSAGE("Go! Abra!");
+        SEND_IN_MESSAGE("Abra");
         MESSAGE("2 sent out Abra!");
 
         NONE_OF {
@@ -115,12 +115,12 @@ SINGLE_BATTLE_TEST("Intimidate and Eject Button force the opponent to Attack")
         ANIMATION(ANIM_TYPE_MOVE, MOVE_QUICK_ATTACK, player);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, opponent);
         MESSAGE("Foe Alakazam is switched out with the Eject Button!");
-        MESSAGE("2 sent out Hitmontop!");
+        MESSAGE("2 sent out Salamence!");
         ABILITY_POPUP(opponent, ABILITY_INTIMIDATE);
-        MESSAGE("Foe Hitmontop's Intimidate cuts Alakazam's Attack!");
+        MESSAGE("Foe Salamence's Intimidate cuts Alakazam's Attack!");
         NONE_OF {
             ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, opponent);
-            MESSAGE("Foe Hitmontop used Tackle!");
+            MESSAGE("Foe Salamence used Tackle!");
         }
     }
 }
@@ -147,25 +147,25 @@ DOUBLE_BATTLE_TEST("Intimidate activates on an empty slot")
 
 
     } SCENE {
-        MESSAGE("Alakazam, that's enough! Come back!");
-        MESSAGE("Go! Abra!");
+        SWITCH_OUT_MESSAGE("Alakazam");
+        SEND_IN_MESSAGE("Abra");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_GUNK_SHOT, playerRight);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_SPLASH, opponentRight);
-        MESSAGE("Abra, that's enough! Come back!");
-        MESSAGE("Go! Hitmontop!");
+        SWITCH_OUT_MESSAGE("Abra");
+        SEND_IN_MESSAGE("Salamence");
         ABILITY_POPUP(playerLeft, ABILITY_INTIMIDATE);
         NONE_OF {
-            MESSAGE("Hitmontop's Intimidate cuts Foe Ralts's Attack!");
+            MESSAGE("Salamence's Intimidate cuts Foe Ralts's Attack!");
         }
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponentRight);
-        MESSAGE("Hitmontop's Intimidate cuts Foe Azurill's Attack!");
+        MESSAGE("Salamence's Intimidate cuts Foe Azurill's Attack!");
     }
 }
 
 DOUBLE_BATTLE_TEST("Intimidate activates immediately after the mon was switched in as long as one opposing mon is alive")
 {
     GIVEN {
-        PLAYER(SPECIES_TAPU_KOKO) { Ability(ABILITY_ELECTRIC_SURGE); };
+        PLAYER(SPECIES_ALAKAZAM) { Ability(ABILITY_ELECTRIC_SURGE); };
         PLAYER(SPECIES_ALAKAZAM);
         PLAYER(SPECIES_EKANS) { Ability(ABILITY_INTIMIDATE); Item(ITEM_ELECTRIC_SEED); }
         OPPONENT(SPECIES_ABRA) { HP(1); }
@@ -222,9 +222,9 @@ SINGLE_BATTLE_TEST("Intimidate activates when it's no longer effected by Neutral
     } SCENE {
         ABILITY_POPUP(player, ABILITY_NEUTRALIZING_GAS);
         MESSAGE("Neutralizing Gas filled the area!");
-        MESSAGE("Weezing, that's enough! Come back!");
+        SWITCH_OUT_MESSAGE("Weezing");
         MESSAGE("The effects of Neutralizing Gas wore off!");
         ABILITY_POPUP(opponent, ABILITY_INTIMIDATE);
-        MESSAGE("Go! Alakazam!");
+        SEND_IN_MESSAGE("Alakazam");
     }
 }

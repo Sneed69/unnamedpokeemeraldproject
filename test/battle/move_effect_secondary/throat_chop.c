@@ -27,7 +27,7 @@ SINGLE_BATTLE_TEST("Throat Chop prevents the usage of sound moves")
 SINGLE_BATTLE_TEST("Throat Chop won't work through a substitute")
 {
     GIVEN {
-        PLAYER(SPECIES_INCINEROAR) { Speed(100); };
+        PLAYER(SPECIES_WEAVILE) { Speed(100); };
         OPPONENT(SPECIES_ALAKAZAM) { Speed(50); };
     } WHEN {
         TURN { MOVE(opponent, MOVE_SUBSTITUTE); }

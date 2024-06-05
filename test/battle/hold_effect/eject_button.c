@@ -94,7 +94,7 @@ SINGLE_BATTLE_TEST("Eject Button is not triggered after the mon loses Eject Butt
 {
     GIVEN {
         PLAYER(SPECIES_RAICHU);
-        OPPONENT(SPECIES_ALAKAZAM) { Item(ITEM_EJECT_BUTTON); }
+        OPPONENT(SPECIES_ALAKAZAM) { Item(ITEM_EJECT_BUTTON); HP(400); }
         OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN {
@@ -114,7 +114,7 @@ SINGLE_BATTLE_TEST("Eject Button is not triggered after the mon loses Eject Butt
 SINGLE_BATTLE_TEST("Eject Button is not triggered after given to player by Picketpocket")
 {
     GIVEN {
-        PLAYER(SPECIES_REGIELEKI) { Item(ITEM_EJECT_BUTTON); }
+        PLAYER(SPECIES_RAICHU) { Item(ITEM_EJECT_BUTTON); }
         PLAYER(SPECIES_ALAKAZAM);
         OPPONENT(SPECIES_SNEASEL) { Ability(ABILITY_PICKPOCKET); }
         OPPONENT(SPECIES_ALAKAZAM);
@@ -126,7 +126,7 @@ SINGLE_BATTLE_TEST("Eject Button is not triggered after given to player by Picke
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, player);
         ABILITY_POPUP(opponent, ABILITY_PICKPOCKET);
-        MESSAGE("Foe Sneasel stole Regieleki's Eject Button!");
+        MESSAGE("Foe Sneasel stole Raichu's Eject Button!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, opponent);
     }
 }
@@ -134,7 +134,7 @@ SINGLE_BATTLE_TEST("Eject Button is not triggered after given to player by Picke
 SINGLE_BATTLE_TEST("Eject Button has no chance to activate after Dragon Tail")
 {
     GIVEN {
-        PLAYER(SPECIES_KOMMO_O);
+        PLAYER(SPECIES_DRAGONITE);
         OPPONENT(SPECIES_ALAKAZAM) { Item(ITEM_EJECT_BUTTON); }
         OPPONENT(SPECIES_CHANSEY);
     } WHEN {
@@ -174,7 +174,7 @@ SINGLE_BATTLE_TEST("Eject Button is activated before Emergency Exit")
 {
     GIVEN {
         PLAYER(SPECIES_LATIAS);
-        OPPONENT(SPECIES_GOLISOPOD) { Ability(ABILITY_EMERGENCY_EXIT); Item(ITEM_EJECT_BUTTON); }
+        OPPONENT(SPECIES_MASQUERAIN) { Ability(ABILITY_EMERGENCY_EXIT); Item(ITEM_EJECT_BUTTON); }
         OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN {
@@ -184,7 +184,7 @@ SINGLE_BATTLE_TEST("Eject Button is activated before Emergency Exit")
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_THUNDERBOLT, player);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, opponent);
-        MESSAGE("Foe Golisopod is switched out with the Eject Button!");
+        MESSAGE("Foe Masquerain is switched out with the Eject Button!");
     }
 }
 

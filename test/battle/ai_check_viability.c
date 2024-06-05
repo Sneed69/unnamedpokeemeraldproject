@@ -17,8 +17,8 @@ AI_SINGLE_BATTLE_TEST("AI sees increased base power of Facade")
     GIVEN {
         ASSUME(gMovesInfo[MOVE_FACADE].effect == EFFECT_FACADE);
         AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT);
-        PLAYER(SPECIES_ALAKAZAM) { HP(60); }
-        OPPONENT(SPECIES_ALAKAZAM) { Moves(MOVE_BODY_SLAM, MOVE_FACADE); Status1(status1); }
+        PLAYER(SPECIES_ALAKAZAM) { HP(52); Defense(1); }
+        OPPONENT(SPECIES_ALAKAZAM) { Moves(MOVE_BODY_SLAM, MOVE_FACADE); Status1(status1); Attack(1); }
     } WHEN {
         TURN { EXPECT_MOVE(opponent, expectedMove); }
     } SCENE {
@@ -39,8 +39,8 @@ AI_SINGLE_BATTLE_TEST("AI sees increased base power of Smelling Salt")
         ASSUME(gMovesInfo[MOVE_SMELLING_SALTS].effect == EFFECT_DOUBLE_POWER_ON_ARG_STATUS);
         ASSUME(gMovesInfo[MOVE_SMELLING_SALTS].argument == STATUS1_PARALYSIS);
         AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT);
-        PLAYER(SPECIES_ALAKAZAM) { HP(70); Status1(status1); }
-        OPPONENT(SPECIES_ALAKAZAM) { Moves(MOVE_BODY_SLAM, MOVE_SMELLING_SALTS); }
+        PLAYER(SPECIES_ALAKAZAM) { HP(52); Status1(status1); Defense(1); }
+        OPPONENT(SPECIES_ALAKAZAM) { Moves(MOVE_BODY_SLAM, MOVE_SMELLING_SALTS); Attack(1); }
     } WHEN {
         TURN { EXPECT_MOVE(opponent, expectedMove); }
     } SCENE {
@@ -61,8 +61,8 @@ AI_SINGLE_BATTLE_TEST("AI sees increased base power of Wake Up Slap")
         ASSUME(gMovesInfo[MOVE_WAKE_UP_SLAP].effect == EFFECT_DOUBLE_POWER_ON_ARG_STATUS);
         ASSUME(gMovesInfo[MOVE_WAKE_UP_SLAP].argument == STATUS1_SLEEP);
         AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT);
-        PLAYER(SPECIES_MEGANIUM) { HP(35); Status1(status1); }
-        OPPONENT(SPECIES_ALAKAZAM) { Moves(MOVE_BODY_SLAM, MOVE_WAKE_UP_SLAP); }
+        PLAYER(SPECIES_MEGANIUM) { HP(52); Status1(status1); Defense(1); }
+        OPPONENT(SPECIES_ALAKAZAM) { Moves(MOVE_BODY_SLAM, MOVE_WAKE_UP_SLAP); Attack(1); }
     } WHEN {
         TURN { EXPECT_MOVE(opponent, expectedMove); }
     } SCENE {
@@ -84,8 +84,8 @@ AI_SINGLE_BATTLE_TEST("AI sees increased base power of Grav Apple")
         ASSUME(gMovesInfo[MOVE_GRAV_APPLE].power == gMovesInfo[MOVE_DRUM_BEATING].power);
         ASSUME(MoveHasAdditionalEffect(MOVE_DRUM_BEATING, MOVE_EFFECT_SPD_MINUS_1) == TRUE);
         AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT);
-        PLAYER(SPECIES_ALAKAZAM) { HP(81); Defense(78); Speed(20); }
-        OPPONENT(SPECIES_ALAKAZAM) { Speed(10); Moves(MOVE_DRUM_BEATING, MOVE_GRAV_APPLE); }
+        PLAYER(SPECIES_ALAKAZAM) { HP(73); Defense(1); Speed(20); }
+        OPPONENT(SPECIES_ALAKAZAM) { Speed(10); Attack(1); Moves(MOVE_DRUM_BEATING, MOVE_GRAV_APPLE); }
     } WHEN {
         TURN { MOVE(player, movePlayer); EXPECT_MOVE(opponent, MOVE_DRUM_BEATING); }
         TURN { MOVE(player, MOVE_CELEBRATE); EXPECT_MOVE(opponent, expectedMove); }
@@ -152,16 +152,16 @@ AI_SINGLE_BATTLE_TEST("AI can choose Counter or Mirror Coat if the predicted mov
     u16 playerMove = MOVE_NONE, opponentMove = MOVE_NONE;
 
     PARAMETRIZE { playerMove = MOVE_STRENGTH; opponentMove = MOVE_COUNTER; }
-    PARAMETRIZE { playerMove = MOVE_POWER_GEM; opponentMove = MOVE_MIRROR_COAT; }
+    PARAMETRIZE { playerMove = MOVE_JUDGMENT; opponentMove = MOVE_MIRROR_COAT; }
 
     GIVEN {
         ASSUME(gMovesInfo[MOVE_COUNTER].effect == EFFECT_COUNTER);
         ASSUME(gMovesInfo[MOVE_MIRROR_COAT].effect == EFFECT_MIRROR_COAT);
         ASSUME(gMovesInfo[MOVE_STRENGTH].category == DAMAGE_CATEGORY_PHYSICAL);
-        ASSUME(gMovesInfo[MOVE_POWER_GEM].category == DAMAGE_CATEGORY_SPECIAL);
+        ASSUME(gMovesInfo[MOVE_JUDGMENT].category == DAMAGE_CATEGORY_SPECIAL);
         AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT);
-        PLAYER(SPECIES_ALAKAZAM) { Speed(1); }
-        OPPONENT(SPECIES_ALAKAZAM) { HP(102); Speed(100); Moves(opponentMove, MOVE_STRENGTH); }
+        PLAYER(SPECIES_ALAKAZAM) { Speed(1); HP(300); Attack(70); SpAttack(70); }
+        OPPONENT(SPECIES_ALAKAZAM) { HP(122); Speed(100); Moves(opponentMove, MOVE_STRENGTH); Defense(65); SpDefense(65); }
     } WHEN {
         TURN { MOVE(player, playerMove); EXPECT_MOVE(opponent, MOVE_STRENGTH); }
         TURN { MOVE(player, playerMove); EXPECT_MOVE(opponent, opponentMove); }

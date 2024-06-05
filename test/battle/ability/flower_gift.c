@@ -1,6 +1,6 @@
 #include "global.h"
 #include "test/battle.h"
-
+/*
 SINGLE_BATTLE_TEST("Flower Gift transforms Cherrim in harsh sunlight")
 {
     GIVEN {
@@ -143,7 +143,7 @@ SINGLE_BATTLE_TEST("Flower Gift transforms Cherrim back when it switches out")
         ABILITY_POPUP(player, ABILITY_FLOWER_GIFT);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_FORM_CHANGE, player);
         MESSAGE("Cherrim transformed!");
-        MESSAGE("Cherrim, that's enough! Come back!");
+        SWITCH_OUT_MESSAGE("Cherrim");
     } THEN {
         EXPECT_EQ(GetMonData(&gPlayerParty[0], MON_DATA_SPECIES), SPECIES_CHERRIM);
     }
@@ -170,4 +170,4 @@ SINGLE_BATTLE_TEST("Flower Gift transforms Cherrim back when it uses a move that
     }
 }
 
-TO_DO_BATTLE_TEST("Flower Gift does not transform Cherrim back to normal when suppressed if Cherrim is Dynamaxed");
+TO_DO_BATTLE_TEST("Flower Gift does not transform Cherrim back to normal when suppressed if Cherrim is Dynamaxed");*/

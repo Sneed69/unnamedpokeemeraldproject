@@ -65,7 +65,7 @@ SINGLE_BATTLE_TEST("Knock Off deals additional damage to opponents holding an it
 
     GIVEN {
         PLAYER(SPECIES_ALAKAZAM);
-        OPPONENT(SPECIES_ALAKAZAM) { Item(item); };
+        OPPONENT(SPECIES_TORCHIC) { Item(item); };
     } WHEN {
         TURN { MOVE(player, MOVE_KNOCK_OFF); }
     } SCENE {
@@ -176,7 +176,7 @@ DOUBLE_BATTLE_TEST("Knock Off does not trigger the opposing ally's Symbiosis")
 {
     GIVEN {
         PLAYER(SPECIES_ALAKAZAM) { Item(ITEM_LEFTOVERS); }
-        PLAYER(SPECIES_FLORGES) { Item(ITEM_LEFTOVERS); }
+        PLAYER(SPECIES_CLEFABLE) { Item(ITEM_LEFTOVERS); }
         OPPONENT(SPECIES_ALAKAZAM);
         OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {

@@ -44,13 +44,13 @@ SINGLE_BATTLE_TEST("Psychic Noise heal block effect is blocked by Aroma Veil")
 {
     GIVEN {
         PLAYER(SPECIES_ALAKAZAM);
-        OPPONENT(SPECIES_MILCERY) { Ability(ABILITY_AROMA_VEIL); }
+        OPPONENT(SPECIES_CLEFAIRY) { Ability(ABILITY_AROMA_VEIL); }
     } WHEN {
         TURN { MOVE(player, MOVE_PSYCHIC_NOISE); MOVE(opponent, MOVE_RECOVER); }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_PSYCHIC_NOISE, player);
         ABILITY_POPUP(opponent, ABILITY_AROMA_VEIL);
-        MESSAGE("Foe Milcery is protected by an aromatic veil!");
+        MESSAGE("Foe Clefairy is protected by an aromatic veil!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_RECOVER, opponent);
     }
 }
@@ -61,7 +61,7 @@ DOUBLE_BATTLE_TEST("Psychic Noise heal block effect is blocked by partners Aroma
         PLAYER(SPECIES_ALAKAZAM);
         PLAYER(SPECIES_ALAKAZAM);
         OPPONENT(SPECIES_ALAKAZAM);
-        OPPONENT(SPECIES_MILCERY) { Ability(ABILITY_AROMA_VEIL); }
+        OPPONENT(SPECIES_CLEFAIRY) { Ability(ABILITY_AROMA_VEIL); }
     } WHEN {
         TURN { MOVE(playerLeft, MOVE_PSYCHIC_NOISE, target: opponentLeft); MOVE(opponentLeft, MOVE_RECOVER); }
     } SCENE {

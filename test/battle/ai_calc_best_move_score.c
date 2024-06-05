@@ -54,7 +54,7 @@ AI_SINGLE_BATTLE_TEST("AI will increase speed if it is slower")
     }
 }
 
-AI_SINGLE_BATTLE_TEST("AI will correctly predict what move the opposing mon going to use")
+AI_SINGLE_BATTLE_TEST("AI will stop setting up if its mon will faint")
 {
     u16 move;
 
@@ -62,15 +62,15 @@ AI_SINGLE_BATTLE_TEST("AI will correctly predict what move the opposing mon goin
     PARAMETRIZE { move = MOVE_CALM_MIND; }
 
     GIVEN {
-        ASSUME(gMovesInfo[MOVE_SKY_UPPERCUT].power == 100);
+        ASSUME(gMovesInfo[MOVE_CLOSE_COMBAT].power == 120);
         ASSUME(gMovesInfo[MOVE_HOWL].effect == EFFECT_ATTACK_UP_USER_ALLY);
         ASSUME(gMovesInfo[MOVE_CALM_MIND].effect == EFFECT_CALM_MIND);
         AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT | AI_FLAG_OMNISCIENT);
-        PLAYER(SPECIES_COMBUSKEN) { Speed(15); Moves(MOVE_SKY_UPPERCUT, MOVE_DOUBLE_KICK, MOVE_FLAME_WHEEL, MOVE_CELEBRATE); };
+        PLAYER(SPECIES_COMBUSKEN) { Speed(15); Moves(MOVE_CLOSE_COMBAT, MOVE_DOUBLE_KICK, MOVE_FLAME_WHEEL, MOVE_CELEBRATE); };
         OPPONENT(SPECIES_MILTANK) { Speed(20); Moves(MOVE_CHIP_AWAY, MOVE_SWIFT, move); }
     } WHEN {
         TURN { MOVE(player, MOVE_DOUBLE_KICK); EXPECT_MOVE(opponent, move); }
-        TURN { EXPECT_MOVE(opponent, MOVE_CHIP_AWAY); MOVE(player, MOVE_SKY_UPPERCUT); }
+        TURN { EXPECT_MOVE(opponent, MOVE_CHIP_AWAY); MOVE(player, MOVE_CLOSE_COMBAT); }
     }
 }
 

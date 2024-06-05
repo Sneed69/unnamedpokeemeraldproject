@@ -83,7 +83,7 @@ SINGLE_BATTLE_TEST("Jump Kick's recoil happens after Spiky Shield damage and Pok
         MESSAGE("Alakazam was hurt by Foe Alakazam's Spiky Shield!");
         if (faintOnSpiky){
             MESSAGE("Alakazam fainted!");
-            MESSAGE("Go! Abra!");
+            SEND_IN_MESSAGE("Abra");
             NONE_OF {
                 MESSAGE("Alakazam kept going and crashed!");
                 HP_BAR(player);
@@ -93,7 +93,7 @@ SINGLE_BATTLE_TEST("Jump Kick's recoil happens after Spiky Shield damage and Pok
             HP_BAR(player);
             if (faintOnJumpKick) {
                 MESSAGE("Alakazam fainted!");
-                MESSAGE("Go! Abra!");
+                SEND_IN_MESSAGE("Abra");
             }
         }
     }

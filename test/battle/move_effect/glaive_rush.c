@@ -97,7 +97,7 @@ SINGLE_BATTLE_TEST("Glaive Rush doesn't affect the user if the effect is blocked
     u32 species;
 
     PARAMETRIZE { species = SPECIES_CLEFAIRY; }
-    PARAMETRIZE { species = SPECIES_SHELLOS; } // Closest mon in both Defense and Sp. Defense
+    PARAMETRIZE { species = SPECIES_CHARIZARD; }
 
     GIVEN {
         PLAYER(SPECIES_ALAKAZAM);

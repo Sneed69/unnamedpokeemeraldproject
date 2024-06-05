@@ -8,7 +8,7 @@ SINGLE_BATTLE_TEST("Bad Dreams causes the sleeping enemy Pokemon to lose 1/8 of 
     PARAMETRIZE { status = STATUS1_NONE; }
     PARAMETRIZE { status = STATUS1_SLEEP; }
     GIVEN {
-        PLAYER(SPECIES_DARKRAI);
+        PLAYER(SPECIES_ALAKAZAM) {Ability(ABILITY_BAD_DREAMS);};
         OPPONENT(SPECIES_ALAKAZAM) {Status1(status);}
     } WHEN {
         TURN {;}
@@ -38,7 +38,7 @@ SINGLE_BATTLE_TEST("Bad Dreams causes the sleeping enemy Pokemon to lose 1/8 of 
 DOUBLE_BATTLE_TEST("Bad Dreams does not activate if only the partner Pokemon is sleeping")
 {
     GIVEN {
-        PLAYER(SPECIES_DARKRAI);
+        PLAYER(SPECIES_ALAKAZAM) {Ability(ABILITY_BAD_DREAMS);};
         PLAYER(SPECIES_ALAKAZAM) {Status1(STATUS1_SLEEP);}
         OPPONENT(SPECIES_ALAKAZAM);
         OPPONENT(SPECIES_ALAKAZAM);
@@ -62,7 +62,7 @@ DOUBLE_BATTLE_TEST("Bad Dreams activates for both sleeping pokemon on the player
     GIVEN {
         PLAYER(SPECIES_ALAKAZAM) {Status1(STATUS1_SLEEP);}
         PLAYER(SPECIES_ALAKAZAM) {Status1(STATUS1_SLEEP);}
-        OPPONENT(SPECIES_DARKRAI);
+        OPPONENT(SPECIES_ALAKAZAM) {Ability(ABILITY_BAD_DREAMS);};
         OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN {;}
@@ -87,7 +87,7 @@ DOUBLE_BATTLE_TEST("Bad Dreams faints both sleeping Pokemon on player side")
         PLAYER(SPECIES_ALAKAZAM) {Status1(STATUS1_SLEEP); HP(1);}
         PLAYER(SPECIES_ALAKAZAM) {Status1(STATUS1_SLEEP);}
         PLAYER(SPECIES_ALAKAZAM) {Status1(STATUS1_SLEEP);}
-        OPPONENT(SPECIES_DARKRAI);
+        OPPONENT(SPECIES_ALAKAZAM) {Ability(ABILITY_BAD_DREAMS);};
         OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN {SEND_OUT(playerLeft, 2); SEND_OUT(playerRight, 3);}
@@ -105,7 +105,7 @@ DOUBLE_BATTLE_TEST("Bad Dreams faints both sleeping Pokemon on player side")
 DOUBLE_BATTLE_TEST("Bad Dreams faints both sleeping Pokemon on opponent side")
 {
     GIVEN {
-        PLAYER(SPECIES_DARKRAI);
+        PLAYER(SPECIES_ALAKAZAM) {Ability(ABILITY_BAD_DREAMS);};
         PLAYER(SPECIES_ALAKAZAM);
         OPPONENT(SPECIES_ALAKAZAM) {Status1(STATUS1_SLEEP); HP(1);}
         OPPONENT(SPECIES_ALAKAZAM) {Status1(STATUS1_SLEEP); HP(1);}

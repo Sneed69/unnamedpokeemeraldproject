@@ -46,7 +46,7 @@ SINGLE_BATTLE_TEST("Gem boost is only applied once")
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, player);
         HP_BAR(opponent, captureDamage: &normalHit);
     } THEN {
-        EXPECT_MUL_EQ(normalHit, Q_4_12(1.3), boostedHit);
+        EXPECT_MUL_EQ(normalHit, Q_4_12(1.529), boostedHit);
     }
 }
 

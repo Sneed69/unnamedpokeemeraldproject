@@ -12,8 +12,8 @@ SINGLE_BATTLE_TEST("Guard Spec. sets Mist effect on the battlers side")
         TURN { MOVE(opponent, MOVE_GROWL); }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_MIST, player);
-        MESSAGE("Ally became shrouded in MIST!");
+        MESSAGE("Ally became shrouded in Mist!");
         MESSAGE("Foe Alakazam used Growl!");
-        MESSAGE("Alakazam is protected by MIST!");
+        MESSAGE("Alakazam is protected by Mist!");
     }
 }

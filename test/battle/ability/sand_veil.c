@@ -14,17 +14,22 @@ SINGLE_BATTLE_TEST("Sand Veil prevents damage from sandstorm")
     }
 }
 
-SINGLE_BATTLE_TEST("Sand Veil increases evasion during sandstorm")
+SINGLE_BATTLE_TEST("Sand Veil increases Def during sandstorm", s16 damage)
 {
-    PASSES_RANDOMLY(4, 5, RNG_ACCURACY);
+    u32 ability;
+
+    PARAMETRIZE{ ability = ABILITY_SAND_RUSH; }
+    PARAMETRIZE{ ability = ABILITY_SAND_VEIL; }
+
     GIVEN {
-        ASSUME(gMovesInfo[MOVE_POUND].accuracy == 100);
-        PLAYER(SPECIES_SANDSHREW) { Ability(ABILITY_SAND_VEIL); }
+        PLAYER(SPECIES_SANDSHREW) { Ability(ability); }
         OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(opponent, MOVE_SANDSTORM); }
         TURN { MOVE(opponent, MOVE_POUND); }
     } SCENE {
-        HP_BAR(player);
+        HP_BAR(player, captureDamage: &results[i].damage);
+    } FINALLY {
+        EXPECT_GT(results[0].damage, results[1].damage);
     }
 }

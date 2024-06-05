@@ -12,7 +12,7 @@ SINGLE_BATTLE_TEST("Hail deals 1/16 damage per turn")
     } WHEN {
         TURN {MOVE(player, MOVE_HAIL);}
     } SCENE {
-        MESSAGE("Foe Alakazam is pelted by HAIL!");
+        MESSAGE("Foe Alakazam is pelted by Hail!");
         HP_BAR(opponent, captureDamage: &hailDamage);
    } THEN { EXPECT_EQ(hailDamage, opponent->maxHP / 16); }
 }
@@ -26,27 +26,25 @@ SINGLE_BATTLE_TEST("Hail damage does not affect Ice-type Pokémon")
     } WHEN {
         TURN {MOVE(player, MOVE_HAIL);}
     } SCENE {
-        NOT MESSAGE("Foe Glalie is pelted by HAIL!");
+        NOT MESSAGE("Foe Glalie is pelted by Hail!");
     }
 }
 
 SINGLE_BATTLE_TEST("Hail fails if Desolate Land or Primordial Sea are active")
 {
     u32 species;
-    u32 item;
 
-    PARAMETRIZE { species = SPECIES_ALAKAZAM; item = ITEM_NONE; }
-    PARAMETRIZE { species = SPECIES_GROUDON; item = ITEM_RED_ORB; }
-    PARAMETRIZE { species = SPECIES_KYOGRE; item = ITEM_BLUE_ORB; }
+    PARAMETRIZE { species = SPECIES_ALAKAZAM; }
+    PARAMETRIZE { species = SPECIES_GROUDON; }
+    PARAMETRIZE { species = SPECIES_KYOGRE; }
 
     GIVEN {
-        PLAYER(species) { Item(item); }
+        PLAYER(species);
         OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(opponent, MOVE_HAIL); }
     } SCENE {
-        if (item == ITEM_RED_ORB || item == ITEM_BLUE_ORB) {
-            ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_PRIMAL_REVERSION, player);
+        if (species == SPECIES_GROUDON || species == SPECIES_KYOGRE) {
             NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_HAIL, opponent);
         } else {
             ANIMATION(ANIM_TYPE_MOVE, MOVE_HAIL, opponent);

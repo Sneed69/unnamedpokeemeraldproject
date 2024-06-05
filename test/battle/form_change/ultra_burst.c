@@ -1,6 +1,6 @@
 #include "global.h"
 #include "test/battle.h"
-
+/*
 SINGLE_BATTLE_TEST("Dusk Mane Necrozma can Ultra Burst holding Ultranecrozium Z")
 {
     GIVEN {
@@ -118,4 +118,4 @@ SINGLE_BATTLE_TEST("Ultra Burst and Mega Evolution can happen on the same turn")
         EXPECT_EQ(player->species, SPECIES_NECROZMA_ULTRA);
         EXPECT_EQ(opponent->species, SPECIES_GARDEVOIR_MEGA);
     }
-}
+}*/

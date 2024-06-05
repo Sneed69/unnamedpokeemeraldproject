@@ -92,7 +92,7 @@ SINGLE_BATTLE_TEST("Air Balloon pops before it can be stolen with Magician")
 {
     GIVEN {
         PLAYER(SPECIES_ALAKAZAM) { Item(ITEM_AIR_BALLOON); };
-        OPPONENT(SPECIES_DELPHOX) { Ability(ABILITY_MAGICIAN); };
+        OPPONENT(SPECIES_NINETALES) { Ability(ABILITY_MAGICIAN); };
     } WHEN {
         TURN { MOVE(opponent, MOVE_TACKLE); }
     } SCENE {

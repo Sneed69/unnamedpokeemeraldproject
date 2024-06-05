@@ -14,7 +14,7 @@ SINGLE_BATTLE_TEST("Smelling Salts does not cure paralyzed pokemons behind subst
     PARAMETRIZE { ability = ABILITY_INFILTRATOR; }
     GIVEN {
         PLAYER(SPECIES_CROBAT) { Ability(ability); }
-        OPPONENT(SPECIES_SEISMITOAD) { Status1(STATUS1_PARALYSIS); }
+        OPPONENT(SPECIES_SWAMPERT) { Status1(STATUS1_PARALYSIS); }
     } WHEN {
         TURN { MOVE(opponent, MOVE_SUBSTITUTE); MOVE(player, MOVE_CELEBRATE); }
         TURN { MOVE(opponent, MOVE_CELEBRATE); MOVE(player, MOVE_SMELLING_SALTS); }
@@ -22,17 +22,17 @@ SINGLE_BATTLE_TEST("Smelling Salts does not cure paralyzed pokemons behind subst
         ANIMATION(ANIM_TYPE_MOVE, MOVE_SMELLING_SALTS, player);
         if (ability == ABILITY_INNER_FOCUS)
         {
-            MESSAGE("The Substitute took damage for Foe Seismitoad!");
+            MESSAGE("The Substitute took damage for Foe Swampert!");
             NONE_OF
             {
-                MESSAGE("Foe Seismitoad's Substitute faded!"); // Smelling Salts does 86 damage, the sub has 122 HP, if hitting a sub it shouldn't get boosted damage.
-                MESSAGE("Foe Seismitoad was healed of paralysis!");
+                MESSAGE("Foe Swampert's Substitute faded!"); // Smelling Salts does 86 damage, the sub has 122 HP, if hitting a sub it shouldn't get boosted damage.
+                MESSAGE("Foe Swampert was healed of paralysis!");
                 STATUS_ICON(opponent, none: TRUE);
             }
         }
         else
         {
-            MESSAGE("Foe Seismitoad was healed of paralysis!");
+            MESSAGE("Foe Swampert was healed of paralysis!");
             STATUS_ICON(opponent, none: TRUE);
         }
     }

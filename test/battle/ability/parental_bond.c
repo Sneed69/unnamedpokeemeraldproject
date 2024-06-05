@@ -7,10 +7,10 @@ SINGLE_BATTLE_TEST("Parental Bond converts Tackle into a two-strike move")
         ASSUME(gMovesInfo[MOVE_TACKLE].category != DAMAGE_CATEGORY_STATUS);
         ASSUME(gMovesInfo[MOVE_TACKLE].strikeCount < 2);
         ASSUME(gMovesInfo[MOVE_TACKLE].effect == EFFECT_HIT);
-        PLAYER(SPECIES_MILTANK);
+        PLAYER(SPECIES_MILTANK) { Ability(ABILITY_PARENTAL_BOND); }
         OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
-        TURN { MOVE(player, MOVE_TACKLE, megaEvolve: TRUE); MOVE(opponent, MOVE_CELEBRATE); }
+        TURN { MOVE(player, MOVE_TACKLE); MOVE(opponent, MOVE_CELEBRATE); }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, player);
         HP_BAR(opponent);
@@ -24,10 +24,10 @@ SINGLE_BATTLE_TEST("Parental Bond does not convert a move with three or more str
     GIVEN {
         ASSUME(gMovesInfo[MOVE_TRIPLE_KICK].category != DAMAGE_CATEGORY_STATUS);
         ASSUME(gMovesInfo[MOVE_TRIPLE_KICK].strikeCount == 3);
-        PLAYER(SPECIES_MILTANK);
+        PLAYER(SPECIES_MILTANK) { Ability(ABILITY_PARENTAL_BOND); }
         OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
-        TURN { MOVE(player, MOVE_TRIPLE_KICK, megaEvolve: TRUE); MOVE(opponent, MOVE_CELEBRATE); }
+        TURN { MOVE(player, MOVE_TRIPLE_KICK); MOVE(opponent, MOVE_CELEBRATE); }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TRIPLE_KICK, player);
         HP_BAR(opponent);
@@ -48,10 +48,10 @@ SINGLE_BATTLE_TEST("Parental Bond converts multi-target moves into a two-strike 
         ASSUME(gMovesInfo[MOVE_EARTHQUAKE].target == MOVE_TARGET_FOES_AND_ALLY);
         ASSUME(gMovesInfo[MOVE_ICY_WIND].strikeCount < 2);
         ASSUME(gMovesInfo[MOVE_ICY_WIND].target == MOVE_TARGET_BOTH);
-        PLAYER(SPECIES_MILTANK);
+        PLAYER(SPECIES_MILTANK) { Ability(ABILITY_PARENTAL_BOND); }
         OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
-        TURN { MOVE(player, move, megaEvolve: TRUE); MOVE(opponent, MOVE_CELEBRATE); }
+        TURN { MOVE(player, move); MOVE(opponent, MOVE_CELEBRATE); }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, move, player);
         HP_BAR(opponent);
@@ -66,12 +66,12 @@ DOUBLE_BATTLE_TEST("Parental Bond does not convert multi-target moves into a two
         ASSUME(gMovesInfo[MOVE_EARTHQUAKE].strikeCount < 2);
         ASSUME(gMovesInfo[MOVE_EARTHQUAKE].target == MOVE_TARGET_FOES_AND_ALLY);
         ASSUME(gSpeciesInfo[SPECIES_PIDGEY].types[1] == TYPE_FLYING);
-        PLAYER(SPECIES_MILTANK);
+        PLAYER(SPECIES_MILTANK) { Ability(ABILITY_PARENTAL_BOND); }
         PLAYER(SPECIES_PIDGEY);
         OPPONENT(SPECIES_ALAKAZAM);
         OPPONENT(SPECIES_PIDGEY);
     } WHEN {
-        TURN { MOVE(playerLeft, MOVE_EARTHQUAKE, megaEvolve: TRUE); MOVE(playerRight, MOVE_CELEBRATE); MOVE(opponentLeft, MOVE_CELEBRATE); MOVE(opponentRight, MOVE_CELEBRATE); }
+        TURN { MOVE(playerLeft, MOVE_EARTHQUAKE); MOVE(playerRight, MOVE_CELEBRATE); MOVE(opponentLeft, MOVE_CELEBRATE); MOVE(opponentRight, MOVE_CELEBRATE); }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_EARTHQUAKE, playerLeft);
         HP_BAR(opponentLeft);
@@ -91,10 +91,10 @@ SINGLE_BATTLE_TEST("Parental Bond-converted moves only hit once on Lightning Rod
     GIVEN {
         ASSUME(gMovesInfo[move].strikeCount < 2);
         ASSUME(gMovesInfo[move].type == type);
-        PLAYER(SPECIES_MILTANK);
+        PLAYER(SPECIES_MILTANK) { Ability(ABILITY_PARENTAL_BOND); }
         OPPONENT(species) { Ability(ability); }
     } WHEN {
-        TURN { MOVE(player, move, megaEvolve: TRUE); MOVE(opponent, MOVE_CELEBRATE); }
+        TURN { MOVE(player, move); MOVE(opponent, MOVE_CELEBRATE); }
     } SCENE {
         ABILITY_POPUP(opponent, ability);
         NONE_OF {
@@ -114,10 +114,10 @@ SINGLE_BATTLE_TEST("Parental Bond has no affect on multi hit moves and they stil
         ASSUME(B_MULTI_HIT_CHANCE >= GEN_5);
         ASSUME(gMovesInfo[MOVE_COMET_PUNCH].category != DAMAGE_CATEGORY_STATUS);
         ASSUME(gMovesInfo[MOVE_COMET_PUNCH].effect == EFFECT_MULTI_HIT);
-        PLAYER(SPECIES_MILTANK);
+        PLAYER(SPECIES_MILTANK) { Ability(ABILITY_PARENTAL_BOND); }
         OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
-        TURN { MOVE(player, MOVE_COMET_PUNCH, megaEvolve: TRUE); }
+        TURN { MOVE(player, MOVE_COMET_PUNCH); }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_COMET_PUNCH, player);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_COMET_PUNCH, player);
@@ -135,10 +135,10 @@ SINGLE_BATTLE_TEST("Parental Bond has no affect on multi hit moves and they stil
         ASSUME(B_MULTI_HIT_CHANCE >= GEN_5);
         ASSUME(gMovesInfo[MOVE_COMET_PUNCH].category != DAMAGE_CATEGORY_STATUS);
         ASSUME(gMovesInfo[MOVE_COMET_PUNCH].effect == EFFECT_MULTI_HIT);
-        PLAYER(SPECIES_MILTANK);
+        PLAYER(SPECIES_MILTANK) { Ability(ABILITY_PARENTAL_BOND); }
         OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
-        TURN { MOVE(player, MOVE_COMET_PUNCH, megaEvolve: TRUE); }
+        TURN { MOVE(player, MOVE_COMET_PUNCH); }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_COMET_PUNCH, player);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_COMET_PUNCH, player);
@@ -157,10 +157,10 @@ SINGLE_BATTLE_TEST("Parental Bond has no affect on multi hit moves and they stil
         ASSUME(B_MULTI_HIT_CHANCE >= GEN_5);
         ASSUME(gMovesInfo[MOVE_COMET_PUNCH].category != DAMAGE_CATEGORY_STATUS);
         ASSUME(gMovesInfo[MOVE_COMET_PUNCH].effect == EFFECT_MULTI_HIT);
-        PLAYER(SPECIES_MILTANK);
+        PLAYER(SPECIES_MILTANK) { Ability(ABILITY_PARENTAL_BOND); }
         OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
-        TURN { MOVE(player, MOVE_COMET_PUNCH, megaEvolve: TRUE); }
+        TURN { MOVE(player, MOVE_COMET_PUNCH); }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_COMET_PUNCH, player);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_COMET_PUNCH, player);
@@ -180,10 +180,10 @@ SINGLE_BATTLE_TEST("Parental Bond has no affect on multi hit moves and they stil
         ASSUME(B_MULTI_HIT_CHANCE >= GEN_5);
         ASSUME(gMovesInfo[MOVE_COMET_PUNCH].category != DAMAGE_CATEGORY_STATUS);
         ASSUME(gMovesInfo[MOVE_COMET_PUNCH].effect == EFFECT_MULTI_HIT);
-        PLAYER(SPECIES_MILTANK);
+        PLAYER(SPECIES_MILTANK) { Ability(ABILITY_PARENTAL_BOND); }
         OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
-        TURN { MOVE(player, MOVE_COMET_PUNCH, megaEvolve: TRUE); }
+        TURN { MOVE(player, MOVE_COMET_PUNCH); }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_COMET_PUNCH, player);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_COMET_PUNCH, player);

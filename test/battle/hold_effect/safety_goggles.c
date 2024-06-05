@@ -28,7 +28,7 @@ SINGLE_BATTLE_TEST("Safety Goggles blocks damage from Hail")
     } WHEN {
         TURN { MOVE(player, MOVE_HAIL); }
     } SCENE {
-        NOT MESSAGE("Foe Alakazam is pelted by HAIL!");
+        NOT MESSAGE("Foe Alakazam is pelted by Hail!");
     }
 }
 
