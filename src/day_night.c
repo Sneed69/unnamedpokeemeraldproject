@@ -78,7 +78,12 @@ static void LoadPaletteOverrides(void)
     u32 i, j;
     const u16 *src;
     u16 *dest;
-    s8 hour = gSaveBlock1Ptr->gameTime.hours;
+    s8 hour;
+
+    if (gMapHeader.mapType != MAP_TYPE_UNDERGROUND)
+        hour = gSaveBlock1Ptr->gameTime.hours;
+    else
+        hour = 20;
 
     for (i = 0; i < ARRAY_COUNT(gPaletteOverrides); i++)
     {
@@ -167,7 +172,7 @@ static void TintPaletteForDayNight(u16 offset, u16 size)
 
         if (gMapHeader.mapType == MAP_TYPE_UNDERGROUND)
         {
-            hour = TIME_NIGHT;
+            hour = 20;
             hourPhase = 0;
         }
         else
