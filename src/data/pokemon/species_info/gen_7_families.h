@@ -1,5 +1,5 @@
 #ifdef __INTELLISENSE__
-const struct SpeciesInfo gSpeciesInfoGen7[] =
+static const struct SpeciesInfo gSpeciesInfoGen7[] =
 {
 #endif
 
