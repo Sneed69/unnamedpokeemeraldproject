@@ -113,7 +113,43 @@ void (*const gWeatherPalStateFuncs[])(void) =
 
 // This table specifies which of the color maps should be
 // applied to each of the background and sprite palettes.
-EWRAM_DATA u8 ALIGNED(2) sBasePaletteColorMapTypes[32] = {0};
+static const u8 ALIGNED(2) sBasePaletteColorMapTypes[32] =
+{
+    // background palettes
+    COLOR_MAP_DARK_CONTRAST,
+    COLOR_MAP_DARK_CONTRAST,
+    COLOR_MAP_DARK_CONTRAST,
+    COLOR_MAP_DARK_CONTRAST,
+    COLOR_MAP_DARK_CONTRAST,
+    COLOR_MAP_DARK_CONTRAST,
+    COLOR_MAP_DARK_CONTRAST,
+    COLOR_MAP_DARK_CONTRAST,
+    COLOR_MAP_DARK_CONTRAST,
+    COLOR_MAP_DARK_CONTRAST,
+    COLOR_MAP_DARK_CONTRAST,
+    COLOR_MAP_DARK_CONTRAST,
+    COLOR_MAP_DARK_CONTRAST,
+    COLOR_MAP_DARK_CONTRAST,
+    COLOR_MAP_NONE,
+    COLOR_MAP_NONE,
+    // sprite palettes
+    COLOR_MAP_CONTRAST,
+    COLOR_MAP_DARK_CONTRAST,
+    COLOR_MAP_DARK_CONTRAST,
+    COLOR_MAP_DARK_CONTRAST,
+    COLOR_MAP_DARK_CONTRAST,
+    COLOR_MAP_DARK_CONTRAST,
+    COLOR_MAP_DARK_CONTRAST,
+    COLOR_MAP_DARK_CONTRAST,
+    COLOR_MAP_DARK_CONTRAST,
+    COLOR_MAP_DARK_CONTRAST,
+    COLOR_MAP_DARK_CONTRAST,
+    COLOR_MAP_DARK_CONTRAST,
+    COLOR_MAP_DARK_CONTRAST,
+    COLOR_MAP_DARK_CONTRAST,
+    COLOR_MAP_DARK_CONTRAST,
+    COLOR_MAP_DARK_CONTRAST,
+};
 
 const u16 ALIGNED(4) gFogPalette[] = INCBIN_U16("graphics/weather/fog.gbapal");
 
@@ -160,26 +196,6 @@ void SetNextWeather(u8 weather)
     gWeatherPtr->weatherChangeComplete = FALSE;
     gWeatherPtr->nextWeather = weather;
     gWeatherPtr->finishStep = 0;
-
-    if (gWeatherPtr->nextWeather != gWeatherPtr->currWeather)
-    {
-        #if DYNAMIC_OW_PALS
-            u32 fogPalettes = 0x7FFF0000;   // all but last sprite palette
-            u16 fogIdx = IndexOfSpritePaletteTag(PALTAG_WEATHER);
-            if (fogIdx < 15) {
-                fogPalettes &= ~(1 << fogIdx); // remove fog sprites from blend bits
-            }
-            if (gWeatherPtr->nextWeather == WEATHER_FOG_HORIZONTAL)
-                BlendPalettesGradually(fogPalettes, 12, 3, 8, RGB_WHITEALPHA, 0, 0);  //all but last sprite pal
-            else if (gWeatherPtr->currWeather == WEATHER_FOG_HORIZONTAL)
-                BlendPalettesGradually(fogPalettes, 12, 8, 0, RGB_WHITEALPHA, 0, 0);  //undo fog pal blend
-        #else
-            if (gWeatherPtr->nextWeather == WEATHER_FOG_HORIZONTAL)
-                BlendPalettesGradually(0x3FF0000, 12, 3, 8, RGB_WHITEALPHA, 0, 0);  //blend first 10 sprite palette slots
-            else if (gWeatherPtr->nextWeather != gWeatherPtr->currWeather && gWeatherPtr->currWeather == WEATHER_FOG_HORIZONTAL)
-                BlendPalettesGradually(0x3FF0000, 12, 8, 0, RGB_WHITEALPHA, 0, 0);  //undo fog pal blend
-        #endif
-    }
 }
 
 void SetCurrentAndNextWeather(u8 weather)
@@ -235,6 +251,7 @@ static void Task_WeatherMain(u8 taskId)
 
 static void None_Init(void)
 {
+    Weather_SetBlendCoeffs(8, 12); // Indoor shadows
     gWeatherPtr->targetColorMapIndex = 0;
     gWeatherPtr->colorMapStepDelay = 0;
 }
@@ -264,9 +281,6 @@ static void BuildColorMaps(void)
     u16 colorMapIndex;
     u16 baseBrightness;
     s16 diff;
-
-    for (i = 0; i <= 12; i++)
-        sBasePaletteColorMapTypes[i] = GAMMA_NORMAL;
 
     sPaletteColorMapTypes = sBasePaletteColorMapTypes;
     for (i = 0; i < 2; i++)
@@ -846,10 +860,10 @@ static bool8 UNUSED IsFirstFrameOfWeatherFadeIn(void)
         return FALSE;
 }
 
-void LoadCustomWeatherSpritePalette(const struct SpritePalette *palette)
+void LoadCustomWeatherSpritePalette(const u16 *palette)
 {
-    LoadSpritePaletteDayNight(palette);
-    UpdateSpritePaletteWithWeather(IndexOfSpritePaletteTag(palette->tag));
+    LoadPalette(palette, OBJ_PLTT_ID(gWeatherPtr->weatherPicSpritePalIndex), PLTT_SIZE_4BPP);
+    UpdateSpritePaletteWithWeather(gWeatherPtr->weatherPicSpritePalIndex);
 }
 
 static void LoadDroughtWeatherPalette(u8 *palsIndex, u8 *palsOffset)
@@ -1090,10 +1104,4 @@ void PreservePaletteInWeather(u8 preservedPalIndex)
 void ResetPreservedPalettesInWeather(void)
 {
     sPaletteColorMapTypes = sBasePaletteColorMapTypes;
-}
-
-void UpdatePaletteGammaType(u8 index, u8 gammaType)
-{
-    if (index != 0xFF)
-        sBasePaletteColorMapTypes[index + 16] = gammaType;
 }

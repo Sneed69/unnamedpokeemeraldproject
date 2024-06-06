@@ -12,6 +12,7 @@
 #include "strings.h"
 #include "string_util.h"
 #include "fieldmap.h"
+#include "constants/weather.h"
 
 #define TINT_MORNING Q_8_8(0.7), Q_8_8(0.7), Q_8_8(0.9)
 #define TINT_DAY Q_8_8(1.0), Q_8_8(1.0), Q_8_8(1.0)
@@ -231,7 +232,8 @@ void ProcessImmediateTimeEvents(void)
                 for (paletteIndex = 0; paletteIndex < NUM_PALS_TOTAL; paletteIndex++)
                 {
                     ApplyWeatherColorMapToPal(paletteIndex);
-                    UpdateSpritePaletteWithWeather(paletteIndex);
+                    if (gWeatherPtr->currWeather != WEATHER_FOG_HORIZONTAL) // don't want to weather blend in fog
+                        UpdateSpritePaletteWithWeather(paletteIndex);
                 }
                 #undef paletteIndex
             }
