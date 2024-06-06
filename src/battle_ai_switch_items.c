@@ -247,7 +247,7 @@ static bool32 ShouldSwitchIfWonderGuard(u32 battler, bool32 emitResult)
 
     opposingPosition = BATTLE_OPPOSITE(GetBattlerPosition(battler));
 
-    if (GetBattlerAbility(GetBattlerAtPosition(opposingPosition)) != ABILITY_WONDER_GUARD)
+    if (AI_DATA->abilities[GetBattlerAtPosition(opposingPosition)] != ABILITY_WONDER_GUARD)
         return FALSE;
 
     // Check if Pokémon has a super effective move.
