@@ -185,7 +185,7 @@ Route120_EventScript_StevenBattleKecleon::
 	delay 20
 	msgbox Route120_Text_StevenUsedDevonScope, MSGBOX_DEFAULT
 	closemessage
-	applymovement LOCALID_BRIDGE_KECLEON, Common_Movement_WalkInPlaceFasterRight
+	applymovement LOCALID_BRIDGE_KECLEON, Common_Movement_WalkInPlaceRight
 	waitmovement 0
 	applymovement LOCALID_BRIDGE_KECLEON, Movement_KecleonAppears
 	waitmovement 0
