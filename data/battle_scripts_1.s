@@ -32,6 +32,22 @@ BattleScript_Terastallization::
 	waitmessage B_WAIT_TIME_LONG
 	end3
 
+BattleScript_TeraFormChange::
+	@ TODO: no string prints in S/V, but right now this helps with clarity
+	printstring STRINGID_PKMNSTORINGENERGY
+	handleformchange BS_ATTACKER, 0
+	handleformchange BS_ATTACKER, 1
+	playanimation BS_ATTACKER, B_ANIM_TERA_CHARGE
+	waitanimation
+	applyterastallization
+	playanimation BS_ATTACKER, B_ANIM_TERA_ACTIVATE
+	waitanimation
+	handleformchange BS_ATTACKER, 2
+	printstring STRINGID_PKMNTERASTALLIZEDINTO
+	waitmessage B_WAIT_TIME_LONG
+	switchinabilities BS_ATTACKER
+	end3
+
 BattleScript_LowerAtkSpAtk::
 	jumpifstat BS_EFFECT_BATTLER, CMP_GREATER_THAN, STAT_ATK, MIN_STAT_STAGE, BattleScript_LowerAtkSpAtkDoAnim
 	jumpifstat BS_EFFECT_BATTLER, CMP_EQUAL, STAT_SPATK, MIN_STAT_STAGE, BattleScript_LowerAtkSpAtkEnd
@@ -1843,6 +1859,7 @@ BattleScript_EffectHitSwitchTarget::
 	tryfaintmon BS_TARGET
 	jumpiffainted BS_TARGET, TRUE, BattleScript_MoveEnd
 	jumpifability BS_TARGET, ABILITY_SUCTION_CUPS, BattleScript_AbilityPreventsPhasingOut
+	jumpifability BS_TARGET, ABILITY_GUARD_DOG, BattleScript_MoveEnd
 	jumpifstatus3 BS_TARGET, STATUS3_ROOTED, BattleScript_PrintMonIsRooted
 	jumpiftargetdynamaxed BattleScript_HitSwitchTargetDynamaxed
 	tryhitswitchtarget BattleScript_MoveEnd
@@ -2789,12 +2806,11 @@ BattleScript_EffectHealBlock::
 BattleScript_EffectHitEscape::
 	call BattleScript_EffectHit_Ret
 	jumpifmovehadnoeffect BattleScript_MoveEnd
-	jumpifability BS_TARGET, ABILITY_GUARD_DOG, BattleScript_MoveEnd
 	tryfaintmon BS_TARGET
 	moveendto MOVEEND_ATTACKER_VISIBLE
 	moveendfrom MOVEEND_TARGET_VISIBLE
 	jumpifbattleend BattleScript_HitEscapeEnd
-	jumpifbyte CMP_NOT_EQUAL gBattleOutcome 0, BattleScript_HitEscapeEnd
+	jumpifbyte CMP_NOT_EQUAL, gBattleOutcome, 0, BattleScript_HitEscapeEnd
 	jumpifemergencyexited BS_TARGET, BattleScript_HitEscapeEnd
 	goto BattleScript_MoveSwitch
 BattleScript_HitEscapeEnd:
@@ -6395,9 +6411,9 @@ BattleScript_ToxicSpikesPoisoned::
 	return
 
 BattleScript_StickyWebOnSwitchIn::
-	@savetarget
+	savetarget
 	saveattacker
-	@copybyte gBattlerTarget, sBATTLER
+	copybyte gBattlerTarget, sBATTLER
 	setbyte sSTICKY_WEB_STAT_DROP, 1
 	printstring STRINGID_STICKYWEBSWITCHIN
 	waitmessage B_WAIT_TIME_LONG
@@ -6414,7 +6430,7 @@ BattleScript_StickyWebOnSwitchInPrintStatMsg:
 	printfromtable gStatDownStringIds
 	waitmessage B_WAIT_TIME_LONG
 BattleScript_StickyWebOnSwitchInEnd:
-	@restoretarget
+	restoretarget
 	restoreattacker
 	return
 

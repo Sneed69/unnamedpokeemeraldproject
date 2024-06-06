@@ -841,6 +841,7 @@ struct moveWithPP {
 #define TeraType(teraType) TeraType_(__LINE__, teraType)
 #define Shadow(isShadow) Shadow_(__LINE__, shadow)
 #define Egg(isEgg) Egg_(__LINE__, isEgg)
+#define HiddenPower(type) HiddenPower_(__LINE__, type)
 
 void SetFlagForTest(u32 sourceLine, u16 flagId);
 void ClearFlagAfterTest(void);
@@ -878,6 +879,7 @@ void GigantamaxFactor_(u32 sourceLine, bool32 gigantamaxFactor);
 void TeraType_(u32 sourceLine, u32 teraType);
 void Shadow_(u32 sourceLine, bool32 isShadow);
 void Egg_(u32 sourceLine, bool32 isEgg);
+void HiddenPower_(u32 sourceLine, u32 type);
 
 // Created for easy use of EXPECT_MOVES, so the user can provide 1, 2, 3 or 4 moves for AI which can pass the test.
 struct FourMoves

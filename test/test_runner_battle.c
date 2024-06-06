@@ -1846,6 +1846,12 @@ void Egg_(u32 sourceLine, bool32 isEgg)
     SetMonData(DATA.currentMon, MON_DATA_IS_EGG, &isEgg);
 }
 
+void HiddenPower_(u32 sourceLine, u32 type)
+{
+    INVALID_IF(!DATA.currentMon, "Egg outside of PLAYER/OPPONENT");
+    SetMonData(DATA.currentMon, MON_DATA_HIDDEN_POWER_TYPE, &type);
+}
+
 static const char *const sBattlerIdentifiersSingles[] =
 {
     "player",

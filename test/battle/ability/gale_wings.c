@@ -50,4 +50,37 @@ SINGLE_BATTLE_TEST("Gale Wings only grants priority to Flying-type moves")
     }
 }
 
-TO_DO_BATTLE_TEST("Gale Wings doesn't increase priority of Flying-type Hidden Power, Natural Gift, Judgment or Tera Blast");
+SINGLE_BATTLE_TEST("Gale Wings doesn't increase priority of Flying-type Natural Gift, Judgment, Hidden Power")
+{
+    u32 move;
+    u16 heldItem;
+    PARAMETRIZE { move = MOVE_NATURAL_GIFT; heldItem = ITEM_LUM_BERRY; }
+    PARAMETRIZE { move = MOVE_JUDGMENT; heldItem = ITEM_SKY_PLATE; }
+    PARAMETRIZE { move = MOVE_HIDDEN_POWER; heldItem = ITEM_NONE; }
+    GIVEN {
+        ASSUME(gMovesInfo[MOVE_NATURAL_GIFT].effect == EFFECT_NATURAL_GIFT);
+        ASSUME(gMovesInfo[MOVE_JUDGMENT].effect == EFFECT_CHANGE_TYPE_ON_ITEM);
+        ASSUME(gMovesInfo[MOVE_HIDDEN_POWER].effect == EFFECT_HIDDEN_POWER);
+        ASSUME(gItemsInfo[ITEM_SKY_PLATE].holdEffect == HOLD_EFFECT_PLATE);
+        ASSUME(gItemsInfo[ITEM_SKY_PLATE].secondaryId == TYPE_FLYING);
+        ASSUME(gNaturalGiftTable[ITEM_TO_BERRY(ITEM_LUM_BERRY)].type == TYPE_FLYING);
+        OPPONENT(SPECIES_TALONFLAME) { Ability(ABILITY_GALE_WINGS); Speed(1); Item(heldItem); HiddenPower(TYPE_FLYING); }
+        PLAYER(SPECIES_ALAKAZAM) { Speed(100); };
+    } WHEN {
+        TURN { MOVE(opponent, move); }
+    } SCENE {
+            MESSAGE("Alakazam used Celebrate!");
+        if (move == MOVE_NATURAL_GIFT) {
+            MESSAGE("Foe Talonflame used Natural Gift!");
+        }
+        else if (move == MOVE_JUDGMENT) {
+            MESSAGE("Foe Talonflame used Judgment!");
+        }
+        else if (move == MOVE_HIDDEN_POWER) {
+            MESSAGE("Foe Talonflame used Hidden Power!");
+        }
+        else {
+            MESSAGE("Foe Talonflame used Tera Blast!");
+        }
+    }
+}
