@@ -57,15 +57,34 @@ AI_SINGLE_BATTLE_TEST("AI prefers moves with better accuracy, but only if they b
     abilityAtk = ABILITY_NONE;
     expectedMove2 = MOVE_NONE;
 
-    KNOWN_FAILING;
+    ASSUME(gMovesInfo[MOVE_SWIFT].accuracy == 0);
+    ASSUME(gMovesInfo[MOVE_EGG_BOMB].power == gMovesInfo[MOVE_STRENGTH].power);
+    ASSUME(gMovesInfo[MOVE_MEGA_KICK].power > gMovesInfo[MOVE_STRENGTH].power);
+    ASSUME(gMovesInfo[MOVE_EGG_BOMB].accuracy < gMovesInfo[MOVE_STRENGTH].accuracy);
+    ASSUME(gMovesInfo[MOVE_MEGA_KICK].accuracy < gMovesInfo[MOVE_STRENGTH].accuracy);
+    ASSUME(gMovesInfo[MOVE_TACKLE].accuracy == 100);
+    ASSUME(gMovesInfo[MOVE_GUST].accuracy == 100);
+    ASSUME(gMovesInfo[MOVE_SHOCK_WAVE].accuracy == 0);
+    ASSUME(gMovesInfo[MOVE_THUNDERBOLT].accuracy == 100);
+    ASSUME(gMovesInfo[MOVE_ICY_WIND].accuracy != 100);
+    ASSUME(gMovesInfo[MOVE_EGG_BOMB].category == DAMAGE_CATEGORY_PHYSICAL);
+    ASSUME(gMovesInfo[MOVE_STRENGTH].category == DAMAGE_CATEGORY_PHYSICAL);
+    ASSUME(gMovesInfo[MOVE_TACKLE].category == DAMAGE_CATEGORY_PHYSICAL);
+    ASSUME(gMovesInfo[MOVE_MEGA_KICK].category == DAMAGE_CATEGORY_PHYSICAL);
+    ASSUME(gMovesInfo[MOVE_SWIFT].category == DAMAGE_CATEGORY_SPECIAL);
+    ASSUME(gMovesInfo[MOVE_SHOCK_WAVE].category == DAMAGE_CATEGORY_SPECIAL);
+    ASSUME(gMovesInfo[MOVE_ICY_WIND].category == DAMAGE_CATEGORY_SPECIAL);
+    ASSUME(gMovesInfo[MOVE_THUNDERBOLT].category == DAMAGE_CATEGORY_SPECIAL);
+    ASSUME(gMovesInfo[MOVE_GUST].category == DAMAGE_CATEGORY_SPECIAL);
+
     // Here it's a simple test, both Egg Bomb and Strength deal the same damage, but Strength always hits, whereas Egg Bomb often misses.
-    PARAMETRIZE { move1 = MOVE_EGG_BOMB; move2 = MOVE_STRENGTH; move3 = MOVE_TACKLE; hp = 490; expectedMove = MOVE_STRENGTH; turns = 4; }
-    PARAMETRIZE { move1 = MOVE_EGG_BOMB; move2 = MOVE_STRENGTH; move3 = MOVE_SWIFT; move4 = MOVE_TACKLE; hp = 365; expectedMove = MOVE_STRENGTH; turns = 3; }
-    PARAMETRIZE { move1 = MOVE_EGG_BOMB; move2 = MOVE_STRENGTH; move3 = MOVE_SWIFT; move4 = MOVE_TACKLE; hp = 245; expectedMove = MOVE_STRENGTH; turns = 2; }
-    PARAMETRIZE { move1 = MOVE_EGG_BOMB; move2 = MOVE_STRENGTH; move3 = MOVE_SWIFT; move4 = MOVE_TACKLE; hp = 125; expectedMove = MOVE_STRENGTH; turns = 1; }
+    PARAMETRIZE { move1 = MOVE_EGG_BOMB; move2 = MOVE_STRENGTH; move3 = MOVE_TACKLE; hp = 232; expectedMove = MOVE_STRENGTH; turns = 4; }
+    PARAMETRIZE { move1 = MOVE_EGG_BOMB; move2 = MOVE_STRENGTH; move3 = MOVE_SWIFT; move4 = MOVE_TACKLE; hp = 174; expectedMove = MOVE_STRENGTH; turns = 3; }
+    PARAMETRIZE { move1 = MOVE_EGG_BOMB; move2 = MOVE_STRENGTH; move3 = MOVE_SWIFT; move4 = MOVE_TACKLE; hp = 116; expectedMove = MOVE_STRENGTH; turns = 2; }
+    PARAMETRIZE { move1 = MOVE_EGG_BOMB; move2 = MOVE_STRENGTH; move3 = MOVE_SWIFT; move4 = MOVE_TACKLE; hp = 58; expectedMove = MOVE_STRENGTH; turns = 1; }
     // Mega Kick deals more damage, but can miss more often. Here, AI should choose Mega Kick if it can faint target in less number of turns than Strength. Otherwise, it should use Strength.
-    PARAMETRIZE { move1 = MOVE_MEGA_KICK; move2 = MOVE_STRENGTH; move3 = MOVE_SWIFT; move4 = MOVE_TACKLE; hp = 145; expectedMove = MOVE_MEGA_KICK; turns = 1; }
-    PARAMETRIZE { move1 = MOVE_MEGA_KICK; move2 = MOVE_STRENGTH; move3 = MOVE_SWIFT; move4 = MOVE_TACKLE; hp = 220; expectedMove = MOVE_STRENGTH; turns = 2; }
+    PARAMETRIZE { move1 = MOVE_MEGA_KICK; move2 = MOVE_STRENGTH; move3 = MOVE_SWIFT; move4 = MOVE_TACKLE; hp = 67; expectedMove = MOVE_MEGA_KICK; turns = 1; }
+    PARAMETRIZE { move1 = MOVE_MEGA_KICK; move2 = MOVE_STRENGTH; move3 = MOVE_SWIFT; move4 = MOVE_TACKLE; hp = 81; expectedMove = MOVE_STRENGTH; turns = 2; }
     // Swift always hits and Guts has accuracy of 100%. Hustle lowers accuracy of all physical moves.
     PARAMETRIZE { abilityAtk = ABILITY_HUSTLE; move1 = MOVE_MEGA_KICK; move2 = MOVE_STRENGTH; move3 = MOVE_SWIFT; move4 = MOVE_TACKLE; hp = 5; expectedMove = MOVE_SWIFT; turns = 1; }
     PARAMETRIZE { abilityAtk = ABILITY_HUSTLE; move1 = MOVE_MEGA_KICK; move2 = MOVE_STRENGTH; move3 = MOVE_GUST; move4 = MOVE_TACKLE; hp = 5; expectedMove = MOVE_GUST; turns = 1; }
@@ -79,28 +98,9 @@ AI_SINGLE_BATTLE_TEST("AI prefers moves with better accuracy, but only if they b
 
     GIVEN {
         AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT);
-        PLAYER(SPECIES_ALAKAZAM) { HP(hp); }
+        PLAYER(SPECIES_ALAKAZAM) { HP(hp); Defense(100); }
         PLAYER(SPECIES_ALAKAZAM);
-        ASSUME(gMovesInfo[MOVE_SWIFT].accuracy == 0);
-        ASSUME(gMovesInfo[MOVE_EGG_BOMB].power == gMovesInfo[MOVE_STRENGTH].power);
-        ASSUME(gMovesInfo[MOVE_MEGA_KICK].power > gMovesInfo[MOVE_STRENGTH].power);
-        ASSUME(gMovesInfo[MOVE_EGG_BOMB].accuracy < gMovesInfo[MOVE_STRENGTH].accuracy);
-        ASSUME(gMovesInfo[MOVE_MEGA_KICK].accuracy < gMovesInfo[MOVE_STRENGTH].accuracy);
-        ASSUME(gMovesInfo[MOVE_TACKLE].accuracy == 100);
-        ASSUME(gMovesInfo[MOVE_GUST].accuracy == 100);
-        ASSUME(gMovesInfo[MOVE_SHOCK_WAVE].accuracy == 0);
-        ASSUME(gMovesInfo[MOVE_THUNDERBOLT].accuracy == 100);
-        ASSUME(gMovesInfo[MOVE_ICY_WIND].accuracy != 100);
-        ASSUME(gMovesInfo[MOVE_EGG_BOMB].category == DAMAGE_CATEGORY_PHYSICAL);
-        ASSUME(gMovesInfo[MOVE_STRENGTH].category == DAMAGE_CATEGORY_PHYSICAL);
-        ASSUME(gMovesInfo[MOVE_TACKLE].category == DAMAGE_CATEGORY_PHYSICAL);
-        ASSUME(gMovesInfo[MOVE_MEGA_KICK].category == DAMAGE_CATEGORY_PHYSICAL);
-        ASSUME(gMovesInfo[MOVE_SWIFT].category == DAMAGE_CATEGORY_SPECIAL);
-        ASSUME(gMovesInfo[MOVE_SHOCK_WAVE].category == DAMAGE_CATEGORY_SPECIAL);
-        ASSUME(gMovesInfo[MOVE_ICY_WIND].category == DAMAGE_CATEGORY_SPECIAL);
-        ASSUME(gMovesInfo[MOVE_THUNDERBOLT].category == DAMAGE_CATEGORY_SPECIAL);
-        ASSUME(gMovesInfo[MOVE_GUST].category == DAMAGE_CATEGORY_SPECIAL);
-        OPPONENT(SPECIES_EXPLOUD) { Moves(move1, move2, move3, move4); Ability(abilityAtk); SpAttack(50); } // Low Sp.Atk, so Swift deals less damage than Strength.
+        OPPONENT(SPECIES_EXPLOUD) { Moves(move1, move2, move3, move4); Ability(abilityAtk); SpAttack(50); Attack(100); } // Low Sp.Atk, so Swift deals less damage than Strength.
     } WHEN {
             switch (turns)
             {
