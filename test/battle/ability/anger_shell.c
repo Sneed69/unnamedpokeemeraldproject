@@ -6,6 +6,7 @@ SINGLE_BATTLE_TEST("Anger Shell activates only if the target had more than 50% o
     bool32 activates = FALSE;
     u16 maxHp = 500, hp = 0;
 
+    PARAMETRIZE { hp = 250; activates = FALSE; }
     PARAMETRIZE { hp = 249; activates = FALSE; }
     PARAMETRIZE { hp = 100; activates = FALSE; }
     PARAMETRIZE { hp = 50; activates = FALSE; }
@@ -78,8 +79,7 @@ SINGLE_BATTLE_TEST("Anger Shell activates after all hits from a multi-hit move")
     } WHEN {
         TURN { MOVE(opponent, MOVE_DOUBLE_SLAP); }
     } SCENE {
-        for (j = 0; j < 4; j++)
-        {
+        for (j = 0; j < 4; j++) {
             ANIMATION(ANIM_TYPE_MOVE, MOVE_DOUBLE_SLAP, opponent);
             NOT ABILITY_POPUP(player, ABILITY_ANGER_SHELL);
         }
