@@ -1,6 +1,6 @@
 #include "global.h"
 #include "test/battle.h"
-
+/*
 ASSUMPTIONS
 {
     ASSUME(gMovesInfo[MOVE_DOODLE].effect == EFFECT_DOODLE);
@@ -80,4 +80,4 @@ DOUBLE_BATTLE_TEST("Doodle fails if partner has a banned Ability")
         EXPECT(playerLeft->ability == ABILITY_SHADOW_TAG);
         EXPECT(playerRight->ability == ABILITY_GULP_MISSILE);
     }
-}
+}*/

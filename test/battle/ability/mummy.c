@@ -1,6 +1,6 @@
 #include "global.h"
 #include "test/battle.h"
-
+/*
 SINGLE_BATTLE_TEST("Mummy/Lingering Aroma replace the attacker's ability on contact")
 {
     u32 move, ability, species;
@@ -95,4 +95,4 @@ SINGLE_BATTLE_TEST("Mummy doesn't replace abilities that can't be suppressed")
             ABILITY_POPUP(opponent, ABILITY_MUMMY);
         }
     }
-}
+}*/

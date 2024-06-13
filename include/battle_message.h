@@ -221,7 +221,7 @@ struct BattleMsgData
     u8 hpScale;
     u8 itemEffectBattler;
     u8 moveType;
-    u16 abilities[MAX_BATTLERS_COUNT];
+    u32 abilities[MAX_BATTLERS_COUNT][NUM_ABILITIES];
     u8 textBuffs[3][TEXT_BUFF_ARRAY_COUNT];
 };
 

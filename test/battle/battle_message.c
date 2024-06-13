@@ -10,20 +10,20 @@ SINGLE_BATTLE_TEST("Battle Message: Send-in message depends on foe HP")
     PARAMETRIZE { hp = 39; }
     PARAMETRIZE { hp = 9; }
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET);
-        PLAYER(SPECIES_WYNAUT);
-        OPPONENT(SPECIES_WOBBUFFET) { HP(hp); MaxHP(100); }
+        PLAYER(SPECIES_ALAKAZAM);
+        PLAYER(SPECIES_ABRA);
+        OPPONENT(SPECIES_ALAKAZAM) { HP(hp); MaxHP(100); }
     } WHEN {
         TURN { SWITCH(player, 1);  }
     } SCENE {
         if (hp > 69)
-            MESSAGE("Go! Wynaut!");
+            MESSAGE("Go! Abra!");
         else if (hp > 39)
-            MESSAGE("Do it! Wynaut!");
+            MESSAGE("Do it! Abra!");
         else if (hp > 9)
-            MESSAGE("Go for it, Wynaut!");
+            MESSAGE("Go for it, Abra!");
         else
-            MESSAGE("Your foe's weak! Get 'em, Wynaut!");
+            MESSAGE("Your foe's weak! Get 'em, Abra!");
     }
 }
 

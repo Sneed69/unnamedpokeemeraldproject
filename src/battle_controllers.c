@@ -1094,7 +1094,7 @@ void BtlController_EmitMoveAnimation(u32 battler, u32 bufferId, u16 move, u8 tur
 
 void BtlController_EmitPrintString(u32 battler, u32 bufferId, u16 stringID)
 {
-    s32 i;
+    s32 i, j;
     struct BattleMsgData *stringInfo;
 
     gBattleResources->transferBuffer[0] = CONTROLLER_PRINTSTRING;
@@ -1114,7 +1114,10 @@ void BtlController_EmitPrintString(u32 battler, u32 bufferId, u16 stringID)
     stringInfo->moveType = gMovesInfo[gCurrentMove].type;
 
     for (i = 0; i < MAX_BATTLERS_COUNT; i++)
-        stringInfo->abilities[i] = gBattleMons[i].ability;
+    {
+        for (j = 0; j < NUM_ABILITIES; j++)
+            stringInfo->abilities[i][j] = gBattleMons[i].abilities[j];
+    }
     for (i = 0; i < TEXT_BUFF_ARRAY_COUNT; i++)
     {
         stringInfo->textBuffs[0][i] = gBattleTextBuff1[i];
@@ -1126,7 +1129,7 @@ void BtlController_EmitPrintString(u32 battler, u32 bufferId, u16 stringID)
 
 void BtlController_EmitPrintSelectionString(u32 battler, u32 bufferId, u16 stringID)
 {
-    s32 i;
+    s32 i, j;
     struct BattleMsgData *stringInfo;
 
     gBattleResources->transferBuffer[0] = CONTROLLER_PRINTSTRINGPLAYERONLY;
@@ -1143,7 +1146,10 @@ void BtlController_EmitPrintSelectionString(u32 battler, u32 bufferId, u16 strin
     stringInfo->bakScriptPartyIdx = gBattleStruct->scriptPartyIdx;
 
     for (i = 0; i < MAX_BATTLERS_COUNT; i++)
-        stringInfo->abilities[i] = gBattleMons[i].ability;
+    {
+        for (j = 0; j < NUM_ABILITIES; j++)
+            stringInfo->abilities[i][j] = gBattleMons[i].abilities[j];
+    }
     for (i = 0; i < TEXT_BUFF_ARRAY_COUNT; i++)
     {
         stringInfo->textBuffs[0][i] = gBattleTextBuff1[i];
@@ -1613,7 +1619,7 @@ static u32 GetBattlerMonData(u32 battler, struct Pokemon *party, u32 monId, u8 *
             u32 side = GetBattlerSide(battler);
             u32 partyIndex = gBattlerPartyIndexes[battler];
             if (TestRunner_Battle_GetForcedAbility(side, partyIndex))
-                gBattleMons[battler].ability = gBattleStruct->overwrittenAbilities[battler] = TestRunner_Battle_GetForcedAbility(side, partyIndex);
+                gBattleMons[battler].abilities[0] = gBattleStruct->overwrittenAbilities[battler][0] = TestRunner_Battle_GetForcedAbility(side, partyIndex);
         }
     #endif
         break;

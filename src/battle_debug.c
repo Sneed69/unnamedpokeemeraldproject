@@ -901,13 +901,14 @@ static void PutAiInfoText(struct BattleDebugMenu *data)
     {
         if (GetBattlerSide(i) == B_SIDE_PLAYER && IsBattlerAlive(i))
         {
-            u16 ability = AI_DATA->abilities[i];
+            u32 *abilities = AI_DATA->abilities[i];
             u16 holdEffect = AI_DATA->holdEffects[i];
             u16 item = AI_DATA->items[i];
             u8 x = (i == B_POSITION_PLAYER_LEFT) ? 83 + (i) * 75 : 83 + (i-1) * 75;
-            AddTextPrinterParameterized(data->aiMovesWindowId, FONT_SMALL, gAbilitiesInfo[ability].name, x, 0, 0, NULL);
-            AddTextPrinterParameterized(data->aiMovesWindowId, FONT_SMALL, ItemId_GetName(item), x, 15, 0, NULL);
-            AddTextPrinterParameterized(data->aiMovesWindowId, FONT_SMALL, GetHoldEffectName(holdEffect), x, 30, 0, NULL);
+            AddTextPrinterParameterized(data->aiMovesWindowId, FONT_SMALL, gAbilitiesInfo[abilities[0]].name, x, 0, 0, NULL);
+            AddTextPrinterParameterized(data->aiMovesWindowId, FONT_SMALL, gAbilitiesInfo[abilities[1]].name, x, 15, 0, NULL);
+            AddTextPrinterParameterized(data->aiMovesWindowId, FONT_SMALL, ItemId_GetName(item), x, 30, 0, NULL);
+            AddTextPrinterParameterized(data->aiMovesWindowId, FONT_SMALL, GetHoldEffectName(holdEffect), x, 45, 0, NULL);
         }
     }
 
@@ -925,7 +926,7 @@ static void PutAiPartyText(struct BattleDebugMenu *data)
     count = AI_PARTY->count[GetBattlerSide(data->aiBattlerId)];
     for (i = 0; i < count; i++)
     {
-        if (aiMons[i].wasSentInBattle)
+        /*if (aiMons[i].wasSentInBattle)
         {
             text[0] = CHAR_LV;
             txtPtr = ConvertIntToDecimalStringN(text + 1, aiMons[i].level, STR_CONV_MODE_LEFT_ALIGN, 3);
@@ -936,9 +937,13 @@ static void PutAiPartyText(struct BattleDebugMenu *data)
                 *txtPtr++ = CHAR_FEMALE;
             *txtPtr = EOS;
             AddTextPrinterParameterized5(data->aiMovesWindowId, FONT_SMALL_NARROW, text, i * 41, 0, 0, NULL, 0, 0);
-        }
+        }*/
 
-        txtPtr = StringCopyN(text, gAbilitiesInfo[aiMons[i].ability].name, 7); // The screen is too small to fit the whole string, so we need to drop the last letters.
+        txtPtr = StringCopyN(text, gAbilitiesInfo[aiMons[i].abilities[0]].name, 7); // The screen is too small to fit the whole string, so we need to drop the last letters.
+        *txtPtr = EOS;
+        AddTextPrinterParameterized5(data->aiMovesWindowId, FONT_SMALL_NARROW, text, i * 41, 0, 0, NULL, 0, 0);
+
+        txtPtr = StringCopyN(text, gAbilitiesInfo[aiMons[i].abilities[1]].name, 7); // The screen is too small to fit the whole string, so we need to drop the last letters.
         *txtPtr = EOS;
         AddTextPrinterParameterized5(data->aiMovesWindowId, FONT_SMALL_NARROW, text, i * 41, 15, 0, NULL, 0, 0);
 
@@ -1333,7 +1338,7 @@ static void CreateSecondaryListMenu(struct BattleDebugMenu *data)
     switch (data->currentMainListItemId)
     {
     case LIST_ITEM_ABILITY:
-        itemsCount = 1;
+        itemsCount = 2;
         break;
     case LIST_ITEM_HELD_ITEM:
         itemsCount = 1;
@@ -1466,9 +1471,12 @@ static void PrintSecondaryEntries(struct BattleDebugMenu *data)
         }
         break;
     case LIST_ITEM_ABILITY:
-        PadString(gAbilitiesInfo[gBattleMons[data->battlerId].ability].name, text);
-        printer.currentY = printer.y = sSecondaryListTemplate.upText_Y;
-        AddTextPrinter(&printer, 0, NULL);
+        for (i = 0; i < NUM_ABILITIES; i++)
+        {
+            PadString(gAbilitiesInfo[gBattleMons[data->battlerId].abilities[i]].name, text);
+            printer.currentY = printer.y = (i * yMultiplier) + sSecondaryListTemplate.upText_Y;
+            AddTextPrinter(&printer, 0, NULL);
+        }
         break;
     case LIST_ITEM_HELD_ITEM:
         PadString(ItemId_GetName(gBattleMons[data->battlerId].item), text);
@@ -1798,9 +1806,9 @@ static void SetUpModifyArrows(struct BattleDebugMenu *data)
         data->modifyArrows.minValue = 0;
         data->modifyArrows.maxValue = ABILITIES_COUNT - 1;
         data->modifyArrows.maxDigits = 3;
-        data->modifyArrows.modifiedValPtr = &gBattleMons[data->battlerId].ability;
+        data->modifyArrows.modifiedValPtr = &gBattleMons[data->battlerId].abilities[data->currentSecondaryListItemId];
         data->modifyArrows.typeOfVal = VAL_U16;
-        data->modifyArrows.currValue = gBattleMons[data->battlerId].ability;
+        data->modifyArrows.currValue = gBattleMons[data->battlerId].abilities[data->currentSecondaryListItemId];
         break;
     case LIST_ITEM_MOVES:
         data->modifyArrows.minValue = 0;

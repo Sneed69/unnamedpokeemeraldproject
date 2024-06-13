@@ -944,7 +944,7 @@ void BS_TrySetStatus2(void)
             u8 atkGender = GetGenderFromSpeciesAndPersonality(gBattleMons[gBattlerAttacker].species, gBattleMons[gBattlerAttacker].personality);
             u8 defGender = GetGenderFromSpeciesAndPersonality(gBattleMons[gBattlerTarget].species, gBattleMons[gBattlerTarget].personality);
             if (!(gBattleMons[gBattlerTarget].status2 & STATUS2_INFATUATION)
-                && gBattleMons[gBattlerTarget].ability != ABILITY_OBLIVIOUS
+                && !BattlerHasAbility(gBattlerTarget, ABILITY_OBLIVIOUS)
                 && !IsAbilityOnSide(gBattlerTarget, ABILITY_AROMA_VEIL)
                 && atkGender != defGender
                 && atkGender != MON_GENDERLESS
@@ -997,7 +997,7 @@ void BS_DamageNonTypes(void)
     if (gSideTimers[side].damageNonTypesTimer
         && !IS_BATTLER_OF_TYPE(gBattlerAttacker, gSideTimers[side].damageNonTypesType)
         && IsBattlerAlive(gBattlerAttacker)
-        && GetBattlerAbility(gBattlerAttacker) != ABILITY_MAGIC_GUARD)
+        && !BattlerHasAbility(gBattlerAttacker, ABILITY_MAGIC_GUARD))
     {
         gBattleMoveDamage = GetNonDynamaxMaxHP(gBattlerAttacker) / 6;
         if (gBattleMoveDamage == 0)

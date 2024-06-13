@@ -3012,6 +3012,8 @@ static void BattleStartClearSetData(void)
 
     for (i = 0; i < MAX_BATTLERS_COUNT; i++)
     {
+        int j;
+
         gStatuses3[i] = 0;
         gStatuses4[i] = 0;
         gDisableStructs[i].isFirstTurn = 2;
@@ -3033,7 +3035,8 @@ static void BattleStartClearSetData(void)
         gBattleStruct->lastTakenMoveFrom[i][3] = MOVE_NONE;
         gBattleStruct->AI_monToSwitchIntoId[i] = PARTY_SIZE;
         gBattleStruct->skyDropTargets[i] = 0xFF;
-        gBattleStruct->overwrittenAbilities[i] = ABILITY_NONE;
+        for (j = 0; j < NUM_ABILITIES; j++)
+            gBattleStruct->overwrittenAbilities[i][j] = ABILITY_NONE;
     }
 
     gLastUsedMove = 0;
@@ -3248,7 +3251,8 @@ void SwitchInClearSetData(u32 battler)
     // Reset Dynamax flags.
     UndoDynamax(battler);
 
-    gBattleStruct->overwrittenAbilities[battler] = ABILITY_NONE;
+    for (i = 0; i < NUM_ABILITIES; i++)
+        gBattleStruct->overwrittenAbilities[battler][i] = ABILITY_NONE;
 
     // Clear selected party ID so Revival Blessing doesn't get confused.
     gSelectedMonPartyId = PARTY_SIZE;
@@ -3260,7 +3264,7 @@ void SwitchInClearSetData(u32 battler)
         u32 side = GetBattlerSide(battler);
         u32 partyIndex = gBattlerPartyIndexes[battler];
         if (TestRunner_Battle_GetForcedAbility(side, partyIndex))
-            gBattleMons[i].ability = gBattleStruct->overwrittenAbilities[i] = TestRunner_Battle_GetForcedAbility(side, partyIndex);
+            gBattleMons[i].abilities[0] = gBattleStruct->overwrittenAbilities[i][0] = TestRunner_Battle_GetForcedAbility(side, partyIndex);
     }
     #endif // TESTING
 
@@ -3373,7 +3377,8 @@ const u8* FaintClearSetData(u32 battler)
     Ai_UpdateFaintData(battler);
     TryBattleFormChange(battler, FORM_CHANGE_FAINT);
 
-    gBattleStruct->overwrittenAbilities[battler] = ABILITY_NONE;
+    for (i = 0; i < NUM_ABILITIES; i++)
+        gBattleStruct->overwrittenAbilities[battler][i] = ABILITY_NONE;
 
     // If the fainted mon was involved in a Sky Drop
     if (gBattleStruct->skyDropTargets[battler] != 0xFF)
@@ -3402,7 +3407,7 @@ const u8* FaintClearSetData(u32 battler)
 
                 // If the released mon can be confused, do so.
                 // Don't use CanBeConfused here, since it can cause issues in edge cases.
-                if (!(GetBattlerAbility(otherSkyDropper) == ABILITY_OWN_TEMPO
+                if (!(BattlerHasAbility(otherSkyDropper, ABILITY_OWN_TEMPO)
                     || gBattleMons[otherSkyDropper].status2 & STATUS2_CONFUSION
                     || IsBattlerTerrainAffected(otherSkyDropper, STATUS_FIELD_MISTY_TERRAIN)))
                 {
@@ -3477,7 +3482,8 @@ static void DoBattleIntro(void)
                 gBattleMons[battler].type1 = gSpeciesInfo[gBattleMons[battler].species].types[0];
                 gBattleMons[battler].type2 = gSpeciesInfo[gBattleMons[battler].species].types[1];
                 gBattleMons[battler].type3 = TYPE_MYSTERY;
-                gBattleMons[battler].ability = GetAbilityBySpecies(gBattleMons[battler].species, gBattleMons[battler].abilityNum);
+                gBattleMons[battler].abilities[0] = GetAbilityBySpecies(gBattleMons[battler].species, gBattleMons[battler].abilityNum);
+                gBattleMons[battler].abilities[1] = gSpeciesInfo[gBattleMons[battler].species].innate;
                 gBattleStruct->hpOnSwitchout[GetBattlerSide(battler)] = gBattleMons[battler].hp;
                 gBattleMons[battler].status2 = 0;
                 for (i = 0; i < NUM_BATTLE_STATS; i++)
@@ -3488,7 +3494,7 @@ static void DoBattleIntro(void)
                     u32 side = GetBattlerSide(battler);
                     u32 partyIndex = gBattlerPartyIndexes[battler];
                     if (TestRunner_Battle_GetForcedAbility(side, partyIndex))
-                        gBattleMons[battler].ability = gBattleStruct->overwrittenAbilities[battler] = TestRunner_Battle_GetForcedAbility(side, partyIndex);
+                        gBattleMons[battler].abilities[0] = gBattleStruct->overwrittenAbilities[battler][0] = TestRunner_Battle_GetForcedAbility(side, partyIndex);
                 }
             #endif
             }
@@ -3804,7 +3810,7 @@ static void TryDoEventsBeforeFirstTurn(void)
             u32 side = GetBattlerSide(i);
             u32 partyIndex = gBattlerPartyIndexes[i];
             if (TestRunner_Battle_GetForcedAbility(side, partyIndex))
-                gBattleMons[i].ability = gBattleStruct->overwrittenAbilities[i] = TestRunner_Battle_GetForcedAbility(side, partyIndex);
+                gBattleMons[i].abilities[0] = gBattleStruct->overwrittenAbilities[i][0] = TestRunner_Battle_GetForcedAbility(side, partyIndex);
         }
     }
     #endif // TESTING
@@ -4030,7 +4036,7 @@ void BattleTurnPassed(void)
 
 u8 IsRunningFromBattleImpossible(u32 battler)
 {
-    u32 holdEffect, i;
+    u32 holdEffect, i, whichAbility;
 
     if (gBattleMons[battler].item == ITEM_ENIGMA_BERRY_E_READER)
         holdEffect = gEnigmaBerries[battler].holdEffect;
@@ -4057,13 +4063,13 @@ u8 IsRunningFromBattleImpossible(u32 battler)
         return BATTLE_RUN_SUCCESS;
     if (gBattleTypeFlags & BATTLE_TYPE_LINK)
         return BATTLE_RUN_SUCCESS;
-    if (GetBattlerAbility(battler) == ABILITY_RUN_AWAY)
+    if (BattlerHasAbility(battler, ABILITY_RUN_AWAY))
         return BATTLE_RUN_SUCCESS;
 
-    if ((i = IsAbilityPreventingEscape(battler)))
+    if ((i = IsAbilityPreventingEscape(battler, &whichAbility)))
     {
         gBattleScripting.battler = i - 1;
-        gLastUsedAbility = gBattleMons[i - 1].ability;
+        gLastUsedAbility = whichAbility;
         gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_PREVENTS_ESCAPE;
         return BATTLE_RUN_FAILURE;
     }
@@ -4279,6 +4285,8 @@ static void HandleTurnActionSelectionState(void)
         case STATE_WAIT_ACTION_CHOSEN: // Try to perform an action.
             if (!(gBattleControllerExecFlags & ((gBitTable[battler]) | (0xF << 28) | (gBitTable[battler] << 4) | (gBitTable[battler] << 8) | (gBitTable[battler] << 12))))
             {
+                u32 whichAbility;
+
                 RecordedBattle_SetBattlerAction(battler, gBattleResources->bufferB[battler][1]);
                 gChosenActionByBattler[battler] = gBattleResources->bufferB[battler][1];
 
@@ -4366,9 +4374,9 @@ static void HandleTurnActionSelectionState(void)
                         BtlController_EmitChoosePokemon(battler, BUFFER_A, PARTY_ACTION_CANT_SWITCH, PARTY_SIZE, ABILITY_NONE, gBattleStruct->battlerPartyOrders[battler]);
                     }
                     else if (ItemId_GetHoldEffect(gBattleMons[battler].item) != HOLD_EFFECT_SHED_SHELL
-                      && (i = IsAbilityPreventingEscape(battler)))   // must be last to keep i value integrity
+                      && (i = IsAbilityPreventingEscape(battler, &whichAbility)))   // must be last to keep i value integrity
                     {
-                        BtlController_EmitChoosePokemon(battler, BUFFER_A, ((i - 1) << 4) | PARTY_ACTION_ABILITY_PREVENTS, PARTY_SIZE, gBattleMons[i - 1].ability, gBattleStruct->battlerPartyOrders[battler]);
+                        BtlController_EmitChoosePokemon(battler, BUFFER_A, ((i - 1) << 4) | PARTY_ACTION_ABILITY_PREVENTS, PARTY_SIZE, whichAbility, gBattleStruct->battlerPartyOrders[battler]);
                     }
                     else
                     {
@@ -4773,7 +4781,7 @@ void SwapTurnOrder(u8 id1, u8 id2)
 }
 
 // For AI, so it doesn't 'cheat' by knowing player's ability
-u32 GetBattlerTotalSpeedStatArgs(u32 battler, u32 ability, u32 holdEffect)
+u32 GetBattlerTotalSpeedStatArgs(u32 battler, u32 *abilities, u32 holdEffect)
 {
     u32 speed = gBattleMons[battler].speed;
     u32 highestStat = GetHighestStatId(battler);
@@ -4781,32 +4789,32 @@ u32 GetBattlerTotalSpeedStatArgs(u32 battler, u32 ability, u32 holdEffect)
     // weather abilities
     if (WEATHER_HAS_EFFECT)
     {
-        if (ability == ABILITY_SWIFT_SWIM       && holdEffect != HOLD_EFFECT_UTILITY_UMBRELLA && gBattleWeather & B_WEATHER_RAIN)
+        if (IsAbilityInArray(abilities, ABILITY_SWIFT_SWIM) && holdEffect != HOLD_EFFECT_UTILITY_UMBRELLA && gBattleWeather & B_WEATHER_RAIN)
             speed *= 2;
-        else if (ability == ABILITY_CHLOROPHYLL && holdEffect != HOLD_EFFECT_UTILITY_UMBRELLA && gBattleWeather & B_WEATHER_SUN)
+        else if (IsAbilityInArray(abilities, ABILITY_CHLOROPHYLL) && holdEffect != HOLD_EFFECT_UTILITY_UMBRELLA && gBattleWeather & B_WEATHER_SUN)
             speed *= 2;
-        else if (ability == ABILITY_SAND_RUSH   && gBattleWeather & B_WEATHER_SANDSTORM)
+        else if (IsAbilityInArray(abilities, ABILITY_SAND_RUSH) && gBattleWeather & B_WEATHER_SANDSTORM)
             speed *= 2;
-        else if (ability == ABILITY_SLUSH_RUSH  && (gBattleWeather & (B_WEATHER_HAIL | B_WEATHER_SNOW)))
+        else if (IsAbilityInArray(abilities, ABILITY_SLUSH_RUSH) && (gBattleWeather & (B_WEATHER_HAIL | B_WEATHER_SNOW)))
             speed *= 2;
-        else if (ability == ABILITY_AERODYNAMIC && gBattleWeather & B_WEATHER_WINDY)
+        else if (IsAbilityInArray(abilities, ABILITY_AERODYNAMIC) && gBattleWeather & B_WEATHER_WINDY)
             speed *= 2;
     }
 
     // other abilities
-    if (ability == ABILITY_TOXIC_BOOST && gBattleMons[battler].status1 & STATUS1_PSN_ANY)
+    if (IsAbilityInArray(abilities, ABILITY_TOXIC_BOOST) && gBattleMons[battler].status1 & STATUS1_PSN_ANY)
         speed = (speed * 150) / 100;
-    else if (ability == ABILITY_FLARE_BOOST && gBattleMons[battler].status1 & STATUS1_BURN)
+    if (IsAbilityInArray(abilities, ABILITY_FLARE_BOOST) && gBattleMons[battler].status1 & STATUS1_BURN)
         speed = (speed * 150) / 100;
-    else if (ability == ABILITY_QUICK_FEET && gBattleMons[battler].status1 & STATUS1_ANY)
+    if (IsAbilityInArray(abilities, ABILITY_QUICK_FEET) && gBattleMons[battler].status1 & STATUS1_ANY)
         speed = (speed * 150) / 100;
-    else if (ability == ABILITY_SURGE_SURFER && gFieldStatuses & STATUS_FIELD_ELECTRIC_TERRAIN)
+    if (IsAbilityInArray(abilities, ABILITY_SURGE_SURFER) && gFieldStatuses & STATUS_FIELD_ELECTRIC_TERRAIN)
         speed *= 2;
-    else if (ability == ABILITY_SLOW_START && gDisableStructs[battler].slowStartTimer != 0)
+    if (IsAbilityInArray(abilities, ABILITY_SLOW_START) && gDisableStructs[battler].slowStartTimer != 0)
         speed /= 2;
-    else if (ability == ABILITY_PROTOSYNTHESIS && gBattleWeather & B_WEATHER_SUN && highestStat == STAT_SPEED)
+    if (IsAbilityInArray(abilities, ABILITY_PROTOSYNTHESIS) && gBattleWeather & B_WEATHER_SUN && highestStat == STAT_SPEED)
         speed = (speed * 150) / 100;
-    else if (ability == ABILITY_QUARK_DRIVE && gFieldStatuses & STATUS_FIELD_ELECTRIC_TERRAIN && highestStat == STAT_SPEED)
+    if (IsAbilityInArray(abilities, ABILITY_QUARK_DRIVE) && gFieldStatuses & STATUS_FIELD_ELECTRIC_TERRAIN && highestStat == STAT_SPEED)
         speed = (speed * 150) / 100;
 
     // stat stages
@@ -4827,8 +4835,7 @@ u32 GetBattlerTotalSpeedStatArgs(u32 battler, u32 ability, u32 holdEffect)
     if (gBattleResources->flags->flags[battler] & RESOURCE_FLAG_UNBURDEN)
         speed *= 2;
 
-    // paralysis drop
-    if (gBattleMons[battler].status1 & STATUS1_PARALYSIS && ability != ABILITY_QUICK_FEET)
+    if (gBattleMons[battler].status1 & STATUS1_PARALYSIS && !IsAbilityInArray(abilities, ABILITY_QUICK_FEET))
         speed /= B_PARALYSIS_SPEED >= GEN_7 ? 2 : 4;
 
     if (gSideStatuses[GetBattlerSide(battler)] & SIDE_STATUS_SWAMP)
@@ -4839,9 +4846,10 @@ u32 GetBattlerTotalSpeedStatArgs(u32 battler, u32 ability, u32 holdEffect)
 
 u32 GetBattlerTotalSpeedStat(u32 battler)
 {
-    u32 ability = GetBattlerAbility(battler);
+    u32 abilities[NUM_ABILITIES];
     u32 holdEffect = GetBattlerHoldEffect(battler, TRUE);
-    return GetBattlerTotalSpeedStatArgs(battler, ability, holdEffect);
+    GetBattlerAbilities(battler, abilities);
+    return GetBattlerTotalSpeedStatArgs(battler, abilities, holdEffect);
 }
 
 s8 GetChosenMovePriority(u32 battler)
@@ -4860,7 +4868,7 @@ s8 GetChosenMovePriority(u32 battler)
 s8 GetMovePriority(u32 battler, u16 move)
 {
     s8 priority;
-    u16 ability = GetBattlerAbility(battler);
+    u32 abilities[NUM_ABILITIES];
 
     if (gBattleStruct->zmove.toBeUsed[battler] && gMovesInfo[move].power != 0)
         move = gBattleStruct->zmove.toBeUsed[battler];
@@ -4870,31 +4878,33 @@ s8 GetMovePriority(u32 battler, u16 move)
     // Max Guard check
     if (gBattleStruct->dynamax.usingMaxMove[battler] && gMovesInfo[move].category == DAMAGE_CATEGORY_STATUS)
         return gMovesInfo[MOVE_MAX_GUARD].priority;
+    
+    GetBattlerAbilities(battler, abilities);
 
-    if (ability == ABILITY_GALE_WINGS
+    if (IsAbilityInArray(abilities, ABILITY_GALE_WINGS)
         && (B_GALE_WINGS < GEN_7 || BATTLER_MAX_HP(battler))
         && gMovesInfo[move].type == TYPE_FLYING)
     {
         priority++;
     }
-    else if (ability == ABILITY_PRANKSTER && IS_MOVE_STATUS(move))
+    if (IsAbilityInArray(abilities, ABILITY_PRANKSTER) && IS_MOVE_STATUS(move))
     {
         gProtectStructs[battler].pranksterElevated = 1;
         priority++;
     }
-    else if (ability == ABILITY_MISCHIEVOUS && gFieldStatuses & STATUS_FIELD_MISTY_TERRAIN)
+    if (IsAbilityInArray(abilities, ABILITY_MISCHIEVOUS) && gFieldStatuses & STATUS_FIELD_MISTY_TERRAIN)
     {
         priority++;
     }
-    else if (ability == ABILITY_EXPERT_TRAPPER && gMovesInfo[move].hazard)
+    if (IsAbilityInArray(abilities, ABILITY_EXPERT_TRAPPER) && gMovesInfo[move].hazard)
     {
         priority += 2;
     }
-    else if (gMovesInfo[move].effect == EFFECT_GRASSY_GLIDE && gFieldStatuses & STATUS_FIELD_GRASSY_TERRAIN)
+    if (gMovesInfo[move].effect == EFFECT_GRASSY_GLIDE && gFieldStatuses & STATUS_FIELD_GRASSY_TERRAIN)
     {
         priority++;
     }
-    else if (ability == ABILITY_TRIAGE && IsHealingMove(move))
+    if (IsAbilityInArray(abilities, ABILITY_TRIAGE) && IsHealingMove(move))
         priority += 3;
 
     if (gProtectStructs[battler].quash)
@@ -4904,7 +4914,7 @@ s8 GetMovePriority(u32 battler, u16 move)
 }
 
 // Function for AI with variables provided as arguments to speed the computation time
-s32 GetWhichBattlerFasterArgs(u32 battler1, u32 battler2, bool32 ignoreChosenMoves, u32 ability1, u32 ability2,
+s32 GetWhichBattlerFasterArgs(u32 battler1, u32 battler2, bool32 ignoreChosenMoves, u32 *abilities1, u32 *abilities2,
                               u32 holdEffectBattler1, u32 holdEffectBattler2, u32 speedBattler1, u32 speedBattler2, s32 priority1, s32 priority2)
 {
     u32 strikesFirst = 0;
@@ -4916,8 +4926,8 @@ s32 GetWhichBattlerFasterArgs(u32 battler1, u32 battler2, bool32 ignoreChosenMov
         // Lagging Tail - always last
         bool32 battler1HasQuickEffect = gProtectStructs[battler1].quickDraw || gProtectStructs[battler1].usedCustapBerry;
         bool32 battler2HasQuickEffect = gProtectStructs[battler2].quickDraw || gProtectStructs[battler2].usedCustapBerry;
-        bool32 battler1HasStallingAbility = ability1 == ABILITY_STALL || ability1 == ABILITY_DOPEY || (ability1 == ABILITY_MYCELIUM_MIGHT && IS_MOVE_STATUS(gChosenMoveByBattler[battler1]));
-        bool32 battler2HasStallingAbility = ability2 == ABILITY_STALL || ability2 == ABILITY_DOPEY || (ability2 == ABILITY_MYCELIUM_MIGHT && IS_MOVE_STATUS(gChosenMoveByBattler[battler2]));
+        bool32 battler1HasStallingAbility = CompareAbilities(abilities1, 2, ABILITY_STALL, ABILITY_DOPEY) || (IsAbilityInArray(abilities1, ABILITY_MYCELIUM_MIGHT) && IS_MOVE_STATUS(gChosenMoveByBattler[battler1]));
+        bool32 battler2HasStallingAbility = CompareAbilities(abilities2, 2, ABILITY_STALL, ABILITY_DOPEY) || (IsAbilityInArray(abilities2, ABILITY_MYCELIUM_MIGHT) && IS_MOVE_STATUS(gChosenMoveByBattler[battler2]));
 
         if (battler1HasQuickEffect && !battler2HasQuickEffect)
             strikesFirst = 1;
@@ -4969,12 +4979,12 @@ s32 GetWhichBattlerFasterArgs(u32 battler1, u32 battler2, bool32 ignoreChosenMov
 s32 GetWhichBattlerFaster(u32 battler1, u32 battler2, bool32 ignoreChosenMoves)
 {
     s32 priority1 = 0, priority2 = 0;
-    u32 ability1 = GetBattlerAbility(battler1);
+    u32 abilities1[NUM_ABILITIES];
+    u32 abilities2[NUM_ABILITIES];
     u32 speedBattler1 = GetBattlerTotalSpeedStat(battler1);
     u32 holdEffectBattler1 = GetBattlerHoldEffect(battler1, TRUE);
     u32 speedBattler2 = GetBattlerTotalSpeedStat(battler2);
     u32 holdEffectBattler2 = GetBattlerHoldEffect(battler2, TRUE);
-    u32 ability2 = GetBattlerAbility(battler2);
 
     if (!ignoreChosenMoves)
     {
@@ -4984,7 +4994,10 @@ s32 GetWhichBattlerFaster(u32 battler1, u32 battler2, bool32 ignoreChosenMoves)
             priority2 = GetChosenMovePriority(battler2);
     }
 
-    return GetWhichBattlerFasterArgs(battler1, battler2, ignoreChosenMoves, ability1, ability2,
+    GetBattlerAbilities(battler1, abilities1);
+    GetBattlerAbilities(battler2, abilities2);
+
+    return GetWhichBattlerFasterArgs(battler1, battler2, ignoreChosenMoves, abilities1, abilities2,
                                      holdEffectBattler1, holdEffectBattler2, speedBattler1, speedBattler2, priority1, priority2);
 }
 
@@ -5281,14 +5294,17 @@ static void TryChangeTurnOrder(void)
 
 static void TryChangingTurnOrderEffects(u32 battler1, u32 battler2)
 {
-    u32 ability1 = GetBattlerAbility(battler1);
+    u32 abilities1[NUM_ABILITIES];
+    u32 abilities2[NUM_ABILITIES];
     u32 holdEffectBattler1 = GetBattlerHoldEffect(battler1, TRUE);
     u32 holdEffectBattler2 = GetBattlerHoldEffect(battler2, TRUE);
-    u32 ability2 = GetBattlerAbility(battler2);
+
+    GetBattlerAbilities(battler1, abilities1);
+    GetBattlerAbilities(battler2, abilities2);
 
     // Battler 1
     // Quick Draw
-    if (ability1 == ABILITY_QUICK_DRAW && !IS_MOVE_STATUS(gChosenMoveByBattler[battler1]) && gBattleStruct->quickDrawRandom[battler1])
+    if (IsAbilityInArray(abilities1, ABILITY_QUICK_DRAW) && !IS_MOVE_STATUS(gChosenMoveByBattler[battler1]) && gBattleStruct->quickDrawRandom[battler1])
         gProtectStructs[battler1].quickDraw = TRUE;
     // Quick Claw and Custap Berry
     if (!gProtectStructs[battler1].quickDraw
@@ -5298,7 +5314,7 @@ static void TryChangingTurnOrderEffects(u32 battler1, u32 battler2)
 
     // Battler 2
     // Quick Draw
-    if (ability2 == ABILITY_QUICK_DRAW && !IS_MOVE_STATUS(gChosenMoveByBattler[battler2]) && gBattleStruct->quickDrawRandom[battler2])
+    if (IsAbilityInArray(abilities2, ABILITY_QUICK_DRAW) && !IS_MOVE_STATUS(gChosenMoveByBattler[battler2]) && gBattleStruct->quickDrawRandom[battler2])
         gProtectStructs[battler2].quickDraw = TRUE;
     // Quick Claw and Custap Berry
     if (!gProtectStructs[battler2].quickDraw
@@ -5342,7 +5358,7 @@ static void CheckChangingTurnOrderEffects(void)
                 else if (gProtectStructs[battler].quickDraw)
                 {
                     gBattlerAbility = battler;
-                    gLastUsedAbility = gBattleMons[battler].ability;
+                    gLastUsedAbility = ABILITY_QUICK_DRAW;
                     PREPARE_ABILITY_BUFFER(gBattleTextBuff1, gLastUsedAbility);
                     RecordAbilityBattle(battler, gLastUsedAbility);
                     BattleScriptExecute(BattleScript_QuickDrawActivation);
@@ -5777,9 +5793,9 @@ void RunBattleScriptCommands(void)
         gBattleScriptingCommandsTable[gBattlescriptCurrInstr[0]]();
 }
 
-bool32 TrySetAteType(u32 move, u32 battlerAtk, u32 attackerAbility)
+bool32 TrySetAteType(u32 move, u32 battlerAtk, u32 *attackerAbilities)
 {
-    u32 ateType;
+    u32 ateType, i;
 
     switch (gMovesInfo[move].effect)
     {
@@ -5799,29 +5815,31 @@ bool32 TrySetAteType(u32 move, u32 battlerAtk, u32 attackerAbility)
     }
 
     ateType = TYPE_NONE;
-    switch (attackerAbility)
+    for (i = 0; i < NUM_ABILITIES; i++)
     {
-    case ABILITY_PIXILATE:
-        ateType = TYPE_FAIRY;
-        break;
-    case ABILITY_REFRIGERATE:
-        ateType = TYPE_ICE;
-        break;
-    case ABILITY_AERILATE:
-        ateType = TYPE_FLYING;
-        break;
-    case ABILITY_GALVANIZE:
-        ateType = TYPE_ELECTRIC;
-        break;
-    default:
-        ateType = TYPE_NONE;
-        break;
-    }
-
-    if (ateType != TYPE_NONE)
-    {
-        gBattleStruct->dynamicMoveType = ateType | F_DYNAMIC_TYPE_SET;
-        return TRUE;
+        switch (attackerAbilities[i])
+        {
+        case ABILITY_PIXILATE:
+            ateType = TYPE_FAIRY;
+            break;
+        case ABILITY_REFRIGERATE:
+            ateType = TYPE_ICE;
+            break;
+        case ABILITY_AERILATE:
+            ateType = TYPE_FLYING;
+            break;
+        case ABILITY_GALVANIZE:
+            ateType = TYPE_ELECTRIC;
+            break;
+        default:
+            ateType = TYPE_NONE;
+            break;
+        }
+        if (ateType != TYPE_NONE)
+        {
+            gBattleStruct->dynamicMoveType = ateType | F_DYNAMIC_TYPE_SET;
+            return TRUE;
+        }
     }
 
     return FALSE;
@@ -5829,7 +5847,7 @@ bool32 TrySetAteType(u32 move, u32 battlerAtk, u32 attackerAbility)
 
 void SetTypeBeforeUsingMove(u32 move, u32 battlerAtk)
 {
-    u32 moveType, attackerAbility;
+    u32 moveType, attackerAbilities[NUM_ABILITIES];
     u16 holdEffect = GetBattlerHoldEffect(battlerAtk, TRUE);
 
     if (move == MOVE_STRUGGLE)
@@ -5923,8 +5941,8 @@ void SetTypeBeforeUsingMove(u32 move, u32 battlerAtk)
         gBattleStruct->dynamicMoveType = TYPE_STELLAR | F_DYNAMIC_TYPE_SET;
     }
 
-    attackerAbility = GetBattlerAbility(battlerAtk);
-    if (gMovesInfo[move].type == TYPE_NORMAL && TrySetAteType(move, battlerAtk, attackerAbility))
+    GetBattlerAbilities(battlerAtk, attackerAbilities);
+    if (gMovesInfo[move].type == TYPE_NORMAL && TrySetAteType(move, battlerAtk, attackerAbilities))
     {
         if (!IsDynamaxed(battlerAtk))
             gBattleStruct->ateBoost[battlerAtk] = 1;
@@ -5932,13 +5950,13 @@ void SetTypeBeforeUsingMove(u32 move, u32 battlerAtk)
     else if (gMovesInfo[move].type != TYPE_NORMAL
           && gMovesInfo[move].effect != EFFECT_HIDDEN_POWER
           && gMovesInfo[move].effect != EFFECT_WEATHER_BALL
-          && attackerAbility == ABILITY_NORMALIZE)
+          && IsAbilityInArray(attackerAbilities, ABILITY_NORMALIZE))
     {
         gBattleStruct->dynamicMoveType = TYPE_NORMAL | F_DYNAMIC_TYPE_SET;
         if (!IsDynamaxed(battlerAtk))
             gBattleStruct->ateBoost[battlerAtk] = 1;
     }
-    else if (gMovesInfo[move].soundMove && attackerAbility == ABILITY_LIQUID_VOICE)
+    else if (gMovesInfo[move].soundMove && IsAbilityInArray(attackerAbilities, ABILITY_LIQUID_VOICE))
     {
         gBattleStruct->dynamicMoveType = TYPE_WATER | F_DYNAMIC_TYPE_SET;
     }

@@ -2912,9 +2912,15 @@ u16 GetAbilityBySpecies(u16 species, u8 abilityNum)
 
 u16 GetMonAbility(struct Pokemon *mon)
 {
-    u16 species = GetMonData(mon, MON_DATA_SPECIES, NULL);
+    u32 species = GetMonData(mon, MON_DATA_SPECIES, NULL);
     u8 abilityNum = GetMonData(mon, MON_DATA_ABILITY_NUM, NULL);
     return GetAbilityBySpecies(species, abilityNum);
+}
+
+u16 GetMonInnate(struct Pokemon *mon)
+{
+    u32 species = GetMonData(mon, MON_DATA_SPECIES, NULL);
+    return gSpeciesInfo[species].innate;
 }
 
 void CreateSecretBaseEnemyParty(struct SecretBase *secretBaseRecord)
@@ -3127,7 +3133,8 @@ void PokemonToBattleMon(struct Pokemon *src, struct BattlePokemon *dst, bool8 re
     dst->type1 = gSpeciesInfo[dst->species].types[0];
     dst->type2 = gSpeciesInfo[dst->species].types[1];
     dst->type3 = TYPE_MYSTERY;
-    dst->ability = GetAbilityBySpecies(dst->species, dst->abilityNum);
+    dst->abilities[0] = GetAbilityBySpecies(dst->species, dst->abilityNum);
+    dst->abilities[1] = gSpeciesInfo[dst->species].innate;
     GetMonData(src, MON_DATA_NICKNAME, nickname);
     StringCopy_Nickname(dst->nickname, nickname);
     GetMonData(src, MON_DATA_OT_NAME, dst->otName);

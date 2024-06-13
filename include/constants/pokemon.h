@@ -346,6 +346,7 @@
 #define SKIP_FRONT_ANIM (1 << 7)
 
 #define NUM_ABILITY_SLOTS 2
+#define NUM_ABILITIES 2
 
 // Used as a signal for givemon to generate a default ability by personality.
 #define NUM_ABILITY_PERSONALITY 0xFF

@@ -45,7 +45,7 @@ AI_SINGLE_BATTLE_TEST("AI prefers Water Gun over Bubble if it knows that foe has
     } SCENE {
         MESSAGE("Malamar's Defense fell!"); // Contrary activates
     } THEN {
-        EXPECT(gBattleResources->aiData->abilities[B_POSITION_PLAYER_LEFT] == ABILITY_CONTRARY);
+        EXPECT(gBattleResources->aiData->abilities[B_POSITION_PLAYER_LEFT][0] == ABILITY_CONTRARY);
     }
 }
 

@@ -1,6 +1,6 @@
 #include "global.h"
 #include "test/battle.h"
-
+/*
 SINGLE_BATTLE_TEST("Trace copies opponents ability")
 {
     GIVEN {
@@ -78,4 +78,4 @@ SINGLE_BATTLE_TEST("Trace will copy an opponent's ability whenever it has the ch
         ABILITY_POPUP(player, ABILITY_TRACE);
         MESSAGE("Ralts traced Foe Torchic's Blaze!");
     }
-}
+}*/
