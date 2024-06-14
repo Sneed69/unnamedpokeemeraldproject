@@ -9287,7 +9287,8 @@ static void Cmd_various(void)
     {
         VARIOUS_ARGS();
         gSpecialStatuses[battler].traced = FALSE;
-        gSpecialStatuses[battler].switchInAbilityDone = FALSE;
+        for (i = 0; i < NUM_ABILITIES; i++)
+            gSpecialStatuses[battler].switchInAbilitiesDone[i] = FALSE;
         break;
     }
     case VARIOUS_UPDATE_CHOICE_MOVE_ON_LVL_UP:

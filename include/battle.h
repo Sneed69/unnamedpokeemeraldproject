@@ -211,6 +211,7 @@ struct SpecialStatus
     s32 shellBellDmg;
     s32 physicalDmg;
     s32 specialDmg;
+    bool8 switchInAbilitiesDone[NUM_ABILITIES];
     u8 physicalBattlerId;
     u8 specialBattlerId;
     u8 changedStatsBattlerId; // Battler that was responsible for the latest stat change. Can be self.
@@ -224,7 +225,7 @@ struct SpecialStatus
     // End of byte
     u8 sturdied:1;
     u8 stormDrainRedirected:1;
-    u8 switchInAbilityDone:1;
+    //u8 switchInAbilityDone:1;
     u8 switchInItemDone:1;
     u8 instructedChosenTarget:3;
     u8 berryReduced:1;
