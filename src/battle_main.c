@@ -3264,8 +3264,11 @@ void SwitchInClearSetData(u32 battler)
     {
         u32 side = GetBattlerSide(battler);
         u32 partyIndex = gBattlerPartyIndexes[battler];
-        if (TestRunner_Battle_GetForcedAbility(side, partyIndex))
-            gBattleMons[i].abilities[0] = gBattleStruct->overwrittenAbilities[i][0] = TestRunner_Battle_GetForcedAbility(side, partyIndex);
+        for (i = 0; i < NUM_ABILITIES; i++)
+        {
+            if (TestRunner_Battle_GetForcedAbility(side, partyIndex, i))
+                gBattleMons[i].abilities[i] = gBattleStruct->overwrittenAbilities[i][i] = TestRunner_Battle_GetForcedAbility(side, partyIndex, i);
+        }
     }
     #endif // TESTING
 
@@ -3494,8 +3497,11 @@ static void DoBattleIntro(void)
                 {
                     u32 side = GetBattlerSide(battler);
                     u32 partyIndex = gBattlerPartyIndexes[battler];
-                    if (TestRunner_Battle_GetForcedAbility(side, partyIndex))
-                        gBattleMons[battler].abilities[0] = gBattleStruct->overwrittenAbilities[battler][0] = TestRunner_Battle_GetForcedAbility(side, partyIndex);
+                    for (i = 0; i < NUM_ABILITIES; i++)
+                    {
+                        if (TestRunner_Battle_GetForcedAbility(side, partyIndex, i))
+                            gBattleMons[battler].abilities[i] = gBattleStruct->overwrittenAbilities[battler][i] = TestRunner_Battle_GetForcedAbility(side, partyIndex, i);
+                    }
                 }
             #endif
             }
@@ -3810,8 +3816,11 @@ static void TryDoEventsBeforeFirstTurn(void)
         {
             u32 side = GetBattlerSide(i);
             u32 partyIndex = gBattlerPartyIndexes[i];
-            if (TestRunner_Battle_GetForcedAbility(side, partyIndex))
-                gBattleMons[i].abilities[0] = gBattleStruct->overwrittenAbilities[i][0] = TestRunner_Battle_GetForcedAbility(side, partyIndex);
+            for (j = 0; j < NUM_ABILITIES; j++)
+            {
+            if (TestRunner_Battle_GetForcedAbility(side, partyIndex, j))
+                gBattleMons[i].abilities[j] = gBattleStruct->overwrittenAbilities[i][j] = TestRunner_Battle_GetForcedAbility(side, partyIndex, j);
+            }
         }
     }
     #endif // TESTING

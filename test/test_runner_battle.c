@@ -1651,8 +1651,21 @@ void Ability_(u32 sourceLine, u32 ability)
     // Store forced ability to be set when the battle starts if invalid.
     if (i == NUM_ABILITY_SLOTS)
     {
-        DATA.forcedAbilities[DATA.currentSide][DATA.currentPartyIndex] = ability;
+        DATA.forcedAbilities[DATA.currentSide][DATA.currentPartyIndex][0] = ability;
     }
+}
+
+void Innate_(u32 sourceLine, u32 ability)
+{
+    u32 species;
+
+    INVALID_IF(!DATA.currentMon, "Ability outside of PLAYER/OPPONENT");
+    INVALID_IF(ability >= ABILITIES_COUNT, "Illegal ability id: %d", ability);
+
+    species = GetMonData(DATA.currentMon, MON_DATA_SPECIES);
+    
+    if (gSpeciesInfo[species].innate != ability)
+        DATA.forcedAbilities[DATA.currentSide][DATA.currentPartyIndex][1] = ability;
 }
 
 void Level_(u32 sourceLine, u32 level)
@@ -2683,9 +2696,9 @@ void ValidateFinally(u32 sourceLine)
     INVALID_IF(STATE->parametersCount == 0, "FINALLY without PARAMETRIZE");
 }
 
-u32 TestRunner_Battle_GetForcedAbility(u32 side, u32 partyIndex)
+u32 TestRunner_Battle_GetForcedAbility(u32 side, u32 partyIndex, u32 abilityIndex)
 {
-    return DATA.forcedAbilities[side][partyIndex];
+    return DATA.forcedAbilities[side][partyIndex][abilityIndex];
 }
 
 // TODO: Consider storing the last successful i and searching from i+1

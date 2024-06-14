@@ -6585,8 +6585,11 @@ static void Cmd_switchindataupdate(void)
     {
         u32 side = GetBattlerSide(battler);
         u32 partyIndex = gBattlerPartyIndexes[battler];
-        if (TestRunner_Battle_GetForcedAbility(side, partyIndex))
-            gBattleMons[battler].abilities[0] = gBattleStruct->overwrittenAbilities[battler][0] = TestRunner_Battle_GetForcedAbility(side, partyIndex);
+        for (i = 0; i < NUM_ABILITIES; i++)
+        {
+            if (TestRunner_Battle_GetForcedAbility(side, partyIndex, i))
+                gBattleMons[battler].abilities[i] = gBattleStruct->overwrittenAbilities[battler][i] = TestRunner_Battle_GetForcedAbility(side, partyIndex, i);
+        }
     }
 #endif
 
