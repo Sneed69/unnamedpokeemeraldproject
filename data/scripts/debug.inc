@@ -139,43 +139,35 @@ Debug_EventScript_Text_DefensiveIVs:
 	.string "HP IVs: {STR_VAR_1}, DEF IVs: {STR_VAR_2}, SPDEF IVs: {STR_VAR_3}$"
 
 Debug_EventScript_Script_1::
-	setweather WEATHER_RAIN
-	doweather
+	release
 	end
 
 Debug_EventScript_Script_2::
-	setweather WEATHER_RAIN_THUNDERSTORM
-	doweather
+	release
 	end
 
 Debug_EventScript_Script_3::
-	setweather WEATHER_DOWNPOUR
-	doweather
+	release
 	end
 
 Debug_EventScript_Script_4::
-	setweather WEATHER_SANDSTORM
-	doweather
+	release
 	end
 
 Debug_EventScript_Script_5::
-	setweather WEATHER_SHADE
-	doweather
+	release
 	end
 
 Debug_EventScript_Script_6::
-	setweather WEATHER_DROUGHT
-	doweather
+	release
 	end
 
 Debug_EventScript_Script_7::
-	setweather WEATHER_SNOW
-	doweather
+	release
 	end
 
 Debug_EventScript_Script_8::
-	setweather WEATHER_FOG_HORIZONTAL
-	doweather
+	release
 	end
 
 Debug_CheckSaveBlock::

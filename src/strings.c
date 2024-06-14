@@ -1882,3 +1882,5 @@ const u8 gText_ExpShareOff[] = _("Experience sharing deactivated.{PAUSE_UNTIL_PR
 const u8 gText_BasePointsResetToZero[] = _("{STR_VAR_1}'s base points\nwere all reset to zero!{PAUSE_UNTIL_PRESS}");
 const u8 gText_Fertilize[] = _("FERTILIZE");
 const u8 gText_PlantBerry[] = _("PLANT BERRY");
+const u8 gText_AM[] = _("AM");
+const u8 gText_PM[] = _("PM");
