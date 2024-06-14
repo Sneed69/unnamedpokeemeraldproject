@@ -91,7 +91,7 @@ SINGLE_BATTLE_TEST("Ability Shield protects against Sunsteel Strike")
 
     GIVEN {
         PLAYER(SPECIES_SHEDINJA) { Ability(ABILITY_WONDER_GUARD); Item(item); }
-        OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(opponent, MOVE_SUNSTEEL_STRIKE); }
     } SCENE {

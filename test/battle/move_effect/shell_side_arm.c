@@ -4,7 +4,7 @@
 SINGLE_BATTLE_TEST("Shell Side Arm can be countered if it is physical")
 {
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET) { Moves(MOVE_SHELL_SIDE_ARM); }
+        PLAYER(SPECIES_ALAKAZAM) { Attack(100); SpAttack(100); Moves(MOVE_SHELL_SIDE_ARM); }
         OPPONENT(SPECIES_REGICE) { Defense(100); SpDefense(200); }
     } WHEN {
         TURN { MOVE(player, MOVE_SHELL_SIDE_ARM); MOVE(opponent, MOVE_COUNTER); }
@@ -19,7 +19,7 @@ SINGLE_BATTLE_TEST("Shell Side Arm can be countered if it is physical")
 SINGLE_BATTLE_TEST("Shell Side Arm can be mirror coated if it is special")
 {
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET) { Moves(MOVE_SHELL_SIDE_ARM); }
+        PLAYER(SPECIES_ALAKAZAM) { Attack(100); SpAttack(100); Moves(MOVE_SHELL_SIDE_ARM); }
         OPPONENT(SPECIES_REGIROCK) { Defense(200); SpDefense(100); }
     } WHEN {
         TURN { MOVE(player, MOVE_SHELL_SIDE_ARM); MOVE(opponent, MOVE_MIRROR_COAT); }
@@ -36,8 +36,8 @@ SINGLE_BATTLE_TEST("Shell Side Arm does not change catogory mid-turn")
     s16 damage[3];
 
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET) { Moves(MOVE_SHELL_SIDE_ARM); }
-        OPPONENT(SPECIES_WOBBUFFET) { Defense(100); SpDefense(120); }
+        PLAYER(SPECIES_ALAKAZAM) {  Attack(100); SpAttack(100); Moves(MOVE_SHELL_SIDE_ARM); }
+        OPPONENT(SPECIES_ALAKAZAM) { HP(400); Defense(100); SpDefense(120); }
     } WHEN {
         TURN { MOVE(opponent, MOVE_CELEBRATE); MOVE(player, MOVE_SHELL_SIDE_ARM); }
         TURN { MOVE(opponent, MOVE_LIGHT_SCREEN); MOVE(player, MOVE_SHELL_SIDE_ARM); }
@@ -59,8 +59,8 @@ SINGLE_BATTLE_TEST("Shell Side Arm does not change catogory mid-turn")
 DOUBLE_BATTLE_TEST("Shell Side Arm is choosing it's type for each battler on the field")
 {
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET) { Speed(10); Moves(MOVE_SHELL_SIDE_ARM); }
-        PLAYER(SPECIES_WOBBUFFET) { Speed(20); }
+        PLAYER(SPECIES_ALAKAZAM) { Attack(100); SpAttack(100); Speed(10); Moves(MOVE_SHELL_SIDE_ARM); }
+        PLAYER(SPECIES_ALAKAZAM) { Speed(20); }
         OPPONENT(SPECIES_REGIROCK) { Speed(30); Defense(200); SpDefense(100); }
         OPPONENT(SPECIES_REGICE) { Speed(30); Defense(100); SpDefense(200); }
     } WHEN {
@@ -81,10 +81,10 @@ DOUBLE_BATTLE_TEST("Shell Side Arm is choosing it's type for each battler on the
 DOUBLE_BATTLE_TEST("Shell Side Arm does not change category mid-turn")
 {
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET) { Speed(10); Moves(MOVE_SHELL_SIDE_ARM); }
-        PLAYER(SPECIES_WOBBUFFET) { Speed(20); }
-        OPPONENT(SPECIES_WOBBUFFET) { Speed(30); Defense(200); SpDefense(190); }
-        OPPONENT(SPECIES_WOBBUFFET) { Speed(40); }
+        PLAYER(SPECIES_ALAKAZAM) { Attack(100); SpAttack(100);  Speed(10); Moves(MOVE_SHELL_SIDE_ARM); }
+        PLAYER(SPECIES_ALAKAZAM) { Speed(20); }
+        OPPONENT(SPECIES_ALAKAZAM) { Speed(30); Defense(200); SpDefense(190); }
+        OPPONENT(SPECIES_ALAKAZAM) { Speed(40); }
     } WHEN {
         TURN { MOVE(playerLeft, MOVE_SHELL_SIDE_ARM, target: opponentLeft);
                MOVE(opponentRight, MOVE_LIGHT_SCREEN);

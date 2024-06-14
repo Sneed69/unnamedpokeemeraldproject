@@ -16,7 +16,7 @@ SINGLE_BATTLE_TEST("Berserk activates only if the target had more than 50% of it
     GIVEN {
         ASSUME(gMovesInfo[MOVE_TACKLE].power != 0);
         PLAYER(SPECIES_DRAGONITE) { Ability(ABILITY_BERSERK); MaxHP(maxHp); HP(hp); }
-        OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(opponent, MOVE_TACKLE); }
     } SCENE {
@@ -39,7 +39,7 @@ SINGLE_BATTLE_TEST("Berserk raises Sp.Atk by 1")
     GIVEN {
         ASSUME(gMovesInfo[MOVE_TACKLE].power != 0);
         PLAYER(SPECIES_DRAGONITE) { Ability(ABILITY_BERSERK); MaxHP(maxHp); HP(maxHp / 2 + 1); }
-        OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(opponent, MOVE_TACKLE); }
     } SCENE {

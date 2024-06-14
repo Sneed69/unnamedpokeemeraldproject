@@ -47,7 +47,7 @@ SINGLE_BATTLE_TEST("Clear Body prevents stat stage reduction from moves")
         ASSUME(gMovesInfo[MOVE_SCARY_FACE].effect == EFFECT_SPEED_DOWN_2);
         ASSUME(gMovesInfo[MOVE_SWEET_SCENT].effect == (B_UPDATED_MOVE_DATA >= GEN_6 ? EFFECT_EVASION_DOWN_2 : EFFECT_EVASION_DOWN));
         ASSUME(gMovesInfo[MOVE_SAND_ATTACK].effect == EFFECT_ACCURACY_DOWN);
-        PLAYER(SPECIES_WOBBUFFET)
+        PLAYER(SPECIES_ALAKAZAM)
         OPPONENT(SPECIES_BELDUM) { Ability(ABILITY_CLEAR_BODY); }
     } WHEN {
         TURN { MOVE(player, move); }
@@ -65,8 +65,8 @@ SINGLE_BATTLE_TEST("Clear Body prevents Sticky Web")
 {
     GIVEN {
         ASSUME(gMovesInfo[MOVE_STICKY_WEB].effect == EFFECT_STICKY_WEB);
-        PLAYER(SPECIES_WOBBUFFET)
-        OPPONENT(SPECIES_WOBBUFFET)
+        PLAYER(SPECIES_ALAKAZAM)
+        OPPONENT(SPECIES_ALAKAZAM)
         OPPONENT(SPECIES_BELDUM) { Ability(ABILITY_CLEAR_BODY); }
     } WHEN {
         TURN { MOVE(player, MOVE_STICKY_WEB); }
@@ -83,8 +83,8 @@ SINGLE_BATTLE_TEST("Clear Body prevents Sticky Web")
 SINGLE_BATTLE_TEST("Clear Body doesn't prevent stat stage reduction from moves used by the user")
 {
     GIVEN {
-        ASSUME(MoveHasAdditionalEffectSelf(MOVE_SUPERPOWER, MOVE_EFFECT_ATK_DEF_DOWN) == TRUE);
-        PLAYER(SPECIES_WOBBUFFET)
+        ASSUME(MoveHasAdditionalEffectSelf(MOVE_SUPERPOWER, MOVE_EFFECT_ATK_MINUS_2) == TRUE);
+        PLAYER(SPECIES_ALAKAZAM)
         OPPONENT(SPECIES_BELDUM) { Ability(ABILITY_CLEAR_BODY); }
     } WHEN {
         TURN { MOVE(opponent, MOVE_SUPERPOWER); }
@@ -133,7 +133,7 @@ SINGLE_BATTLE_TEST("Mold Breaker, Teravolt, and Turboblaze ignore Clear Body")
         ASSUME(gMovesInfo[MOVE_SCARY_FACE].effect == EFFECT_SPEED_DOWN_2);
         ASSUME(gMovesInfo[MOVE_SWEET_SCENT].effect == (B_UPDATED_MOVE_DATA >= GEN_6 ? EFFECT_EVASION_DOWN_2 : EFFECT_EVASION_DOWN));
         ASSUME(gMovesInfo[MOVE_SAND_ATTACK].effect == EFFECT_ACCURACY_DOWN);
-        PLAYER(SPECIES_WOBBUFFET) { Ability(ability); }
+        PLAYER(SPECIES_ALAKAZAM) { Ability(ability); }
         OPPONENT(SPECIES_BELDUM) { Ability(ABILITY_CLEAR_BODY); }
     } WHEN {
         TURN { MOVE(player, move); }
@@ -153,18 +153,18 @@ SINGLE_BATTLE_TEST("Clear Body doesn't prevent Speed reduction from Iron Ball")
     PARAMETRIZE{ heldItem = ITEM_IRON_BALL; }
     GIVEN {
         ASSUME(gItemsInfo[ITEM_IRON_BALL].holdEffect == HOLD_EFFECT_IRON_BALL);
-        PLAYER(SPECIES_WOBBUFFET) { Speed(4); }
+        PLAYER(SPECIES_ALAKAZAM) { Speed(4); }
         OPPONENT(SPECIES_BELDUM) { Speed(6); Ability(ABILITY_CLEAR_BODY); Item(heldItem); }
     } WHEN {
         TURN { }
     } SCENE {
         NOT ABILITY_POPUP(opponent, ABILITY_CLEAR_BODY);
         if (heldItem == ITEM_IRON_BALL) {
-            MESSAGE("Wobbuffet used Celebrate!");
+            MESSAGE("Alakazam used Celebrate!");
             MESSAGE("Foe Beldum used Celebrate!");
         } else {
             MESSAGE("Foe Beldum used Celebrate!");
-            MESSAGE("Wobbuffet used Celebrate!");
+            MESSAGE("Alakazam used Celebrate!");
         }
     }
 }
@@ -172,17 +172,17 @@ SINGLE_BATTLE_TEST("Clear Body doesn't prevent Speed reduction from Iron Ball")
 SINGLE_BATTLE_TEST("Clear Body doesn't prevent Speed reduction from paralysis")
 {
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET) { Speed(4); }
+        PLAYER(SPECIES_ALAKAZAM) { Speed(4); }
         OPPONENT(SPECIES_BELDUM) { Speed(6); Ability(ABILITY_CLEAR_BODY); }
     } WHEN {
         TURN { MOVE(player, MOVE_THUNDER_WAVE); }
         TURN { MOVE(player, MOVE_THUNDER_WAVE); }
     } SCENE {
         MESSAGE("Foe Beldum used Celebrate!");
-        MESSAGE("Wobbuffet used Thunder Wave!");
+        MESSAGE("Alakazam used Thunder Wave!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_THUNDER_WAVE, player);
         NOT ABILITY_POPUP(opponent, ABILITY_CLEAR_BODY);
-        MESSAGE("Wobbuffet used Thunder Wave!");
+        MESSAGE("Alakazam used Thunder Wave!");
         ONE_OF {
             MESSAGE("Foe Beldum used Celebrate!");
             MESSAGE("Foe Beldum is paralyzed! It can't move!");
@@ -197,7 +197,7 @@ SINGLE_BATTLE_TEST("Clear Body doesn't prevent Attack reduction from burn", s16 
     PARAMETRIZE{ burned = TRUE; }
     GIVEN {
         ASSUME(gMovesInfo[MOVE_TACKLE].category == DAMAGE_CATEGORY_PHYSICAL);
-        PLAYER(SPECIES_WOBBUFFET)
+        PLAYER(SPECIES_ALAKAZAM)
         OPPONENT(SPECIES_BELDUM) { Ability(ABILITY_CLEAR_BODY); if (burned) Status1(STATUS1_BURN); }
     } WHEN {
         TURN { MOVE(opponent, MOVE_TACKLE); }
@@ -214,14 +214,14 @@ SINGLE_BATTLE_TEST("Clear Body doesn't prevent receiving negative stat changes f
     GIVEN {
         ASSUME(gMovesInfo[MOVE_SCARY_FACE].effect == EFFECT_SPEED_DOWN_2);
         ASSUME(gMovesInfo[MOVE_BATON_PASS].effect == EFFECT_BATON_PASS);
-        PLAYER(SPECIES_WOBBUFFET) { Speed(4); }
-        OPPONENT(SPECIES_WOBBUFFET) { Speed(3); }
+        PLAYER(SPECIES_ALAKAZAM) { Speed(4); }
+        OPPONENT(SPECIES_ALAKAZAM) { Speed(3); }
         OPPONENT(SPECIES_BELDUM) { Speed(6); Ability(ABILITY_CLEAR_BODY); }
     } WHEN {
         TURN { MOVE(player, MOVE_SCARY_FACE); MOVE(opponent, MOVE_BATON_PASS); SEND_OUT(opponent, 1); }
         TURN { MOVE(player, MOVE_SCARY_FACE); }
     } SCENE {
-        MESSAGE("Wobbuffet used Scary Face!");
+        MESSAGE("Alakazam used Scary Face!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_SCARY_FACE, player);
         ABILITY_POPUP(opponent, ABILITY_CLEAR_BODY);
         MESSAGE("Foe Beldum used Celebrate!");
@@ -234,20 +234,20 @@ SINGLE_BATTLE_TEST("Clear Body doesn't prevent Topsy-Turvy")
         ASSUME(gMovesInfo[MOVE_TOPSY_TURVY].effect == EFFECT_TOPSY_TURVY);
         ASSUME(gMovesInfo[MOVE_SCARY_FACE].effect == EFFECT_SPEED_DOWN_2);
         ASSUME(gMovesInfo[MOVE_BATON_PASS].effect == EFFECT_BATON_PASS);
-        PLAYER(SPECIES_WOBBUFFET) { Speed(4); }
-        OPPONENT(SPECIES_WOBBUFFET) { Speed(3); }
+        PLAYER(SPECIES_ALAKAZAM) { Speed(4); }
+        OPPONENT(SPECIES_ALAKAZAM) { Speed(3); }
         OPPONENT(SPECIES_BELDUM) { Speed(6); Ability(ABILITY_CLEAR_BODY); }
     } WHEN {
         TURN { MOVE(player, MOVE_SCARY_FACE); MOVE(opponent, MOVE_BATON_PASS); SEND_OUT(opponent, 1); }
         TURN { MOVE(player, MOVE_TOPSY_TURVY); }
         TURN { MOVE(player, MOVE_SCARY_FACE); }
     } SCENE {
-        MESSAGE("Wobbuffet used Topsy-Turvy!");
+        MESSAGE("Alakazam used Topsy-Turvy!");
         NOT ABILITY_POPUP(opponent, ABILITY_CLEAR_BODY);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TOPSY_TURVY, player);
         MESSAGE("Foe Beldum used Celebrate!");
         MESSAGE("Foe Beldum used Celebrate!");
-        MESSAGE("Wobbuffet used Scary Face!");
+        MESSAGE("Alakazam used Scary Face!");
         NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_SCARY_FACE, player);
         ABILITY_POPUP(opponent, ABILITY_CLEAR_BODY);
     }
@@ -258,7 +258,7 @@ SINGLE_BATTLE_TEST("Clear Body doesn't prevent Spectral Thief from resetting pos
     GIVEN {
         ASSUME(MoveHasAdditionalEffect(MOVE_SPECTRAL_THIEF, MOVE_EFFECT_SPECTRAL_THIEF) == TRUE);
         ASSUME(gMovesInfo[MOVE_AGILITY].effect == EFFECT_SPEED_UP_2);
-        PLAYER(SPECIES_WOBBUFFET) { Speed(4); }
+        PLAYER(SPECIES_ALAKAZAM) { Speed(4); }
         OPPONENT(SPECIES_METANG) { Speed(5); Ability(ABILITY_CLEAR_BODY); }
     } WHEN {
         TURN{ MOVE(opponent, MOVE_AGILITY); }
@@ -267,12 +267,12 @@ SINGLE_BATTLE_TEST("Clear Body doesn't prevent Spectral Thief from resetting pos
     } SCENE {
         MESSAGE("Foe Metang used Agility!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_AGILITY, opponent);
-        MESSAGE("Wobbuffet used Celebrate!");
+        MESSAGE("Alakazam used Celebrate!");
         MESSAGE("Foe Metang used Celebrate!");
-        MESSAGE("Wobbuffet used Spectral Thief!");
+        MESSAGE("Alakazam used Spectral Thief!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_SPECTRAL_THIEF, player);
         NOT ABILITY_POPUP(opponent, ABILITY_CLEAR_BODY);
-        MESSAGE("Wobbuffet used Celebrate!");
+        MESSAGE("Alakazam used Celebrate!");
         MESSAGE("Foe Metang used Celebrate!");
     }
 }

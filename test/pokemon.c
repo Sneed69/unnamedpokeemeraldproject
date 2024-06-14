@@ -346,12 +346,12 @@ TEST("createmon [simple]")
     ZeroPlayerPartyMons();
 
     RUN_OVERWORLD_SCRIPT(
-        createmon 1, 0, SPECIES_WOBBUFFET, 100;
-        createmon 1, 1, SPECIES_WYNAUT, 10;
+        createmon 1, 0, SPECIES_ALAKAZAM, 100;
+        createmon 1, 1, SPECIES_ABRA, 10;
     );
 
-    EXPECT_EQ(GetMonData(&gEnemyParty[0], MON_DATA_SPECIES), SPECIES_WOBBUFFET);
+    EXPECT_EQ(GetMonData(&gEnemyParty[0], MON_DATA_SPECIES), SPECIES_ALAKAZAM);
     EXPECT_EQ(GetMonData(&gEnemyParty[0], MON_DATA_LEVEL), 100);
-    EXPECT_EQ(GetMonData(&gEnemyParty[1], MON_DATA_SPECIES), SPECIES_WYNAUT);
+    EXPECT_EQ(GetMonData(&gEnemyParty[1], MON_DATA_SPECIES), SPECIES_ABRA);
     EXPECT_EQ(GetMonData(&gEnemyParty[1], MON_DATA_LEVEL), 10);
 }

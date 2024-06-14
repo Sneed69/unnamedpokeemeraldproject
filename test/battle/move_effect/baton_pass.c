@@ -10,18 +10,18 @@ ASSUMPTIONS
 SINGLE_BATTLE_TEST("Baton Pass used after Memento works correctly")
 {
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET);
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WYNAUT);
+        PLAYER(SPECIES_ALAKAZAM);
+        PLAYER(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_ABRA);
         OPPONENT(SPECIES_CATERPIE);
     } WHEN {
         TURN { MOVE(player, MOVE_MEMENTO); SEND_OUT(player, 1); MOVE(opponent, MOVE_BATON_PASS); SEND_OUT(opponent, 1); }
     } SCENE {
-        MESSAGE("Wobbuffet used Memento!");
-        MESSAGE("Wobbuffet fainted!");
-        MESSAGE("Foe Wynaut used Baton Pass!");
+        MESSAGE("Alakazam used Memento!");
+        MESSAGE("Alakazam fainted!");
+        MESSAGE("Foe Abra used Baton Pass!");
         MESSAGE("2 sent out Caterpie!");
-        MESSAGE("Go! Wobbuffet!");
+        MESSAGE("Go! Alakazam!");
     }
 }
 

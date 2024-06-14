@@ -540,36 +540,16 @@ AI_SINGLE_BATTLE_TEST("AI will not choose Burn Up if the user lost the Fire typi
     }
 }
 
-AI_SINGLE_BATTLE_TEST("AI will only choose Surf 1/3 times if the opposing mon has Volt Absorb")
+AI_SINGLE_BATTLE_TEST("AI will choose Surf over Thunderbolt if the opposing mon has Volt Absorb")
 {
-    PASSES_RANDOMLY(1, 3, RNG_AI_ABILITY);
     GIVEN {
         ASSUME(gMovesInfo[MOVE_THUNDERBOLT].type == TYPE_ELECTRIC);
-        AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT);
+        AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT | AI_FLAG_OMNISCIENT);
         PLAYER(SPECIES_LANTURN) { Ability(ABILITY_VOLT_ABSORB); };
         OPPONENT(SPECIES_LANTURN) { Moves(MOVE_THUNDERBOLT, MOVE_ICE_BEAM, MOVE_SURF); }
     } WHEN {
         TURN { EXPECT_MOVE(opponent, MOVE_SURF); }
-        TURN { EXPECT_MOVE(opponent, MOVE_SURF); }
     } SCENE {
-        MESSAGE("Foe Lanturn used Surf!");
-        MESSAGE("Foe Lanturn used Surf!");
-    }
-}
-
-AI_SINGLE_BATTLE_TEST("AI will choose Thunderbolt then Surf 2/3 times if the opposing mon has Volt Absorb")
-{
-    PASSES_RANDOMLY(2, 3, RNG_AI_ABILITY);
-    GIVEN {
-        ASSUME(gMovesInfo[MOVE_THUNDERBOLT].type == TYPE_ELECTRIC);
-        AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT);
-        PLAYER(SPECIES_LANTURN) { Ability(ABILITY_VOLT_ABSORB); };
-        OPPONENT(SPECIES_LANTURN) { Moves(MOVE_THUNDERBOLT, MOVE_ICE_BEAM, MOVE_SURF); }
-    } WHEN {
-        TURN { EXPECT_MOVE(opponent, MOVE_THUNDERBOLT); }
-        TURN { EXPECT_MOVE(opponent, MOVE_SURF); }
-    } SCENE {
-        MESSAGE("Foe Lanturn used Thunderbolt!");
         MESSAGE("Foe Lanturn used Surf!");
     }
 }
@@ -708,12 +688,12 @@ AI_SINGLE_BATTLE_TEST("AI calculates guaranteed criticals and detects critical i
     GIVEN {
         ASSUME(gMovesInfo[MOVE_STORM_THROW].alwaysCriticalHit);
         ASSUME(gMovesInfo[MOVE_STORM_THROW].power == 60);
-        ASSUME(gMovesInfo[MOVE_BRICK_BREAK].power == 75);
+        ASSUME(gMovesInfo[MOVE_BRICK_BREAK].power == 80);
         ASSUME(gMovesInfo[MOVE_STORM_THROW].type == gMovesInfo[MOVE_BRICK_BREAK].type);
         ASSUME(gMovesInfo[MOVE_STORM_THROW].category == gMovesInfo[MOVE_BRICK_BREAK].category);
         AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT | AI_FLAG_OMNISCIENT);
         PLAYER(SPECIES_OMASTAR) { Ability(ability); }
-        OPPONENT(SPECIES_WOBBUFFET) { Moves(MOVE_STORM_THROW, MOVE_BRICK_BREAK); }
+        OPPONENT(SPECIES_ALAKAZAM) { Moves(MOVE_STORM_THROW, MOVE_BRICK_BREAK); }
     } WHEN {
         if (ability == ABILITY_SHELL_ARMOR)
             TURN { EXPECT_MOVE(opponent, MOVE_BRICK_BREAK); }
@@ -751,8 +731,8 @@ AI_SINGLE_BATTLE_TEST("AI avoids contact moves against rocky helmet")
         ASSUME(gMovesInfo[MOVE_BRANCH_POKE].type == gMovesInfo[MOVE_LEAFAGE].type);
         ASSUME(gMovesInfo[MOVE_BRANCH_POKE].category == gMovesInfo[MOVE_LEAFAGE].category);
         AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT | AI_FLAG_OMNISCIENT);
-        PLAYER(SPECIES_WOBBUFFET) { Item(item); }
-        OPPONENT(SPECIES_WOBBUFFET) { Moves(MOVE_BRANCH_POKE, MOVE_LEAFAGE); }
+        PLAYER(SPECIES_ALAKAZAM) { Item(item); }
+        OPPONENT(SPECIES_ALAKAZAM) { Moves(MOVE_BRANCH_POKE, MOVE_LEAFAGE); }
     } WHEN {
         if (item == ITEM_ROCKY_HELMET)
             TURN { EXPECT_MOVE(opponent, MOVE_LEAFAGE); }
@@ -770,13 +750,13 @@ AI_SINGLE_BATTLE_TEST("AI uses a guaranteed KO move instead of the move with the
 
     GIVEN {
         ASSUME(gMovesInfo[MOVE_SLASH].criticalHitStage == 1);
-        ASSUME(gMovesInfo[MOVE_SLASH].power == 70);
-        ASSUME(gMovesInfo[MOVE_STRENGTH].power == 80);
+        ASSUME(gMovesInfo[MOVE_SLASH].power == 80);
+        ASSUME(gMovesInfo[MOVE_STRENGTH].power == 100);
         ASSUME(gMovesInfo[MOVE_SLASH].type == gMovesInfo[MOVE_STRENGTH].type);
         ASSUME(gMovesInfo[MOVE_SLASH].category == gMovesInfo[MOVE_STRENGTH].category);
         AI_FLAGS(flags);
-        PLAYER(SPECIES_WOBBUFFET) { HP(225); }
-        OPPONENT(SPECIES_ABSOL) { Ability(ABILITY_SUPER_LUCK); Moves(MOVE_SLASH, MOVE_STRENGTH); }
+        PLAYER(SPECIES_AZUMARILL) { HP(69); Defense(100); }
+        OPPONENT(SPECIES_ABSOL) { Ability(ABILITY_SUPER_LUCK); Moves(MOVE_SLASH, MOVE_STRENGTH); Attack(100); }
     } WHEN {
         TURN { EXPECT_MOVE(opponent, MOVE_SLASH); }
         if (flags & AI_FLAG_TRY_TO_FAINT)
@@ -785,8 +765,8 @@ AI_SINGLE_BATTLE_TEST("AI uses a guaranteed KO move instead of the move with the
             TURN { EXPECT_MOVE(opponent, MOVE_SLASH); }
     } SCENE {
         if (flags & AI_FLAG_TRY_TO_FAINT)
-            MESSAGE("Wobbuffet fainted!");
+            MESSAGE("Azumarill fainted!");
         else
-            NOT MESSAGE("Wobbuffet fainted!");
+            NOT MESSAGE("Azumarill fainted!");
     }
 }
