@@ -8621,7 +8621,7 @@ BattleScript_WanderingSpiritActivates::
 	pause 40
 	copybyte gBattlerAbility, gBattlerAttacker
 	setbyte sFIXED_ABILITY_POPUP, TRUE
-	copyhword sABILITY_OVERWRITE, gLastUsedAbility
+	copyhword sABILITY_OVERWRITE, gLastAbility
 	showabilitypopup BS_ATTACKER
 	pause 60
 	sethword sABILITY_OVERWRITE, 0

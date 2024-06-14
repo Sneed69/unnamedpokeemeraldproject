@@ -1106,7 +1106,7 @@ void BtlController_EmitPrintString(u32 battler, u32 bufferId, u16 stringID)
     stringInfo->currentMove = gCurrentMove;
     stringInfo->originallyUsedMove = gChosenMove;
     stringInfo->lastItem = gLastUsedItem;
-    stringInfo->lastAbility = gLastUsedAbility;
+    stringInfo->lastAbility = gLastAbility;
     stringInfo->scrActive = gBattleScripting.battler;
     stringInfo->bakScriptPartyIdx = gBattleStruct->scriptPartyIdx;
     stringInfo->hpScale = gBattleStruct->hpScale;
@@ -1141,7 +1141,7 @@ void BtlController_EmitPrintSelectionString(u32 battler, u32 bufferId, u16 strin
     stringInfo->currentMove = gCurrentMove;
     stringInfo->originallyUsedMove = gChosenMove;
     stringInfo->lastItem = gLastUsedItem;
-    stringInfo->lastAbility = gLastUsedAbility;
+    stringInfo->lastAbility = gLastAbility;
     stringInfo->scrActive = gBattleScripting.battler;
     stringInfo->bakScriptPartyIdx = gBattleStruct->scriptPartyIdx;
 

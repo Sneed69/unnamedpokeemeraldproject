@@ -667,12 +667,12 @@ AI_DOUBLE_BATTLE_TEST("AI will the see a corresponding absorbing ability on part
         AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT);
         PLAYER(SPECIES_ALAKAZAM);
         PLAYER(SPECIES_ALAKAZAM);
-        OPPONENT(SPECIES_ALAKAZAM) { Moves(MOVE_DISCHARGE, MOVE_TACKLE); }
         OPPONENT(SPECIES_PIKACHU) { HP(1); Ability(ability); Moves(MOVE_CELEBRATE); }
+        OPPONENT(SPECIES_ALAKAZAM) { Moves(MOVE_DISCHARGE, MOVE_TACKLE); }
     } WHEN {
         if (ability == ABILITY_LIGHTNING_ROD)
-            TURN { EXPECT_MOVE(opponentLeft, MOVE_DISCHARGE); }
+            TURN { EXPECT_MOVE(opponentRight, MOVE_DISCHARGE); }
         else
-            TURN { EXPECT_MOVE(opponentLeft, MOVE_TACKLE); }
+            TURN { EXPECT_MOVE(opponentRight, MOVE_TACKLE); }
     }
 }

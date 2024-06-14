@@ -17,7 +17,6 @@ SINGLE_BATTLE_TEST("Keen Eye, Gen9+ Illuminate & Minds Eye prevent accuracy stag
     PARAMETRIZE { species = SPECIES_STARYU; ability = ABILITY_ILLUMINATE; }
     PARAMETRIZE { species = SPECIES_LINOONE; ability = ABILITY_MINDS_EYE; }
 
-    PASSES_RANDOMLY(100, 100, RNG_ACCURACY);
     GIVEN {
         PLAYER(SPECIES_ALAKAZAM);
         OPPONENT(species) { Ability(ability); }

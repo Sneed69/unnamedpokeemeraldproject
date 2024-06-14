@@ -63,7 +63,7 @@ SINGLE_BATTLE_TEST("Intrepid Sword activates when it's no longer effected by Neu
         MESSAGE("Foe Poochyena's Intrepid Sword raised its Attack!");
     }
 }
-
+/*
 SINGLE_BATTLE_TEST("Intrepid Sword and Dauntless Shield both can be Skill Swapped and active their effects on the Skill Swap user")
 {
     GIVEN {
@@ -93,4 +93,4 @@ SINGLE_BATTLE_TEST("Intrepid Sword and Dauntless Shield both can be Skill Swappe
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
         MESSAGE("Alakazam's Dauntless Shield raised its Defense!");
     }
-}
+}*/

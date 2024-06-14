@@ -41,17 +41,17 @@ SINGLE_BATTLE_TEST("Ability Shield protects against Mold Breaker")
     PARAMETRIZE { item = ITEM_NONE; }
 
     GIVEN {
-        PLAYER(SPECIES_SHEDINJA) { Ability(ABILITY_WONDER_GUARD); Item(item); }
+        PLAYER(SPECIES_ABRA) { HP(1); Ability(ABILITY_WONDER_GUARD); Item(item); }
         OPPONENT(SPECIES_TINKATON) { Ability(ABILITY_MOLD_BREAKER); }
     } WHEN {
         TURN { MOVE(opponent, MOVE_GIGATON_HAMMER); }
     } SCENE {
         if (item == ITEM_ABILITY_SHIELD) {
             NONE_OF {
-                MESSAGE("Shedinja fainted!");
+                MESSAGE("Abra fainted!");
             }
         } else {
-            MESSAGE("Shedinja fainted!");
+            MESSAGE("Abra fainted!");
         }
     }
 }
@@ -64,10 +64,10 @@ SINGLE_BATTLE_TEST("Ability Shield protects against Mycelium Might")
     PARAMETRIZE { item = ITEM_NONE; }
 
     GIVEN {
-        PLAYER(SPECIES_VIGOROTH) { Ability(ABILITY_VITAL_SPIRIT); Item(item); }
-        OPPONENT(SPECIES_TOEDSCOOL) { Ability(ABILITY_MYCELIUM_MIGHT); }
+        PLAYER(SPECIES_ABRA) { Ability(ABILITY_VITAL_SPIRIT); Item(item); }
+        OPPONENT(SPECIES_TENTACOOL) { Ability(ABILITY_MYCELIUM_MIGHT); }
     } WHEN {
-        TURN { MOVE(opponent, MOVE_SPORE); MOVE(player, MOVE_SPORE); }
+        TURN { MOVE(opponent, MOVE_SPORE); }
     } SCENE {
         
         if (item == ITEM_ABILITY_SHIELD) {
@@ -90,17 +90,17 @@ SINGLE_BATTLE_TEST("Ability Shield protects against Sunsteel Strike")
     PARAMETRIZE { item = ITEM_NONE; }
 
     GIVEN {
-        PLAYER(SPECIES_SHEDINJA) { Ability(ABILITY_WONDER_GUARD); Item(item); }
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ABRA) { HP(1); Ability(ABILITY_WONDER_GUARD); Item(item); }
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(opponent, MOVE_SUNSTEEL_STRIKE); }
     } SCENE {
         if (item == ITEM_ABILITY_SHIELD) {
             NONE_OF {
-                MESSAGE("Shedinja fainted!");
+                MESSAGE("Abra fainted!");
             }
         } else {
-            MESSAGE("Shedinja fainted!");
+            MESSAGE("Abra fainted!");
         }
     }
 }

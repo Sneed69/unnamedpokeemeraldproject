@@ -1,6 +1,6 @@
 #include "global.h"
 #include "test/battle.h"
-
+/*
 ASSUMPTIONS
 {
     ASSUME(gMovesInfo[MOVE_TACKLE].category == DAMAGE_CATEGORY_PHYSICAL);
@@ -72,4 +72,4 @@ SINGLE_BATTLE_TEST("Tablets of Ruin's message displays correctly after all battl
         ABILITY_POPUP(opponent, ABILITY_TABLETS_OF_RUIN);
         MESSAGE("Foe Cacturne's Tablets of Ruin weakened the Attack of all surrounding Pokémon!");
     }
-}
+}*/

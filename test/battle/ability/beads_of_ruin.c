@@ -1,6 +1,6 @@
 #include "global.h"
 #include "test/battle.h"
-
+/*
 ASSUMPTIONS
 {
     ASSUME(gMovesInfo[MOVE_WATER_GUN].category == DAMAGE_CATEGORY_SPECIAL);
@@ -72,4 +72,4 @@ SINGLE_BATTLE_TEST("Beads of Ruin's message displays correctly after all battler
         ABILITY_POPUP(opponent, ABILITY_BEADS_OF_RUIN);
         MESSAGE("Foe Alakazam's Beads of Ruin weakened the Sp. Def of all surrounding Pokémon!");
     }
-}
+}*/

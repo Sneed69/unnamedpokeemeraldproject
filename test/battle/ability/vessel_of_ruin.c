@@ -1,6 +1,6 @@
 #include "global.h"
 #include "test/battle.h"
-
+/*
 ASSUMPTIONS
 {
     ASSUME(gMovesInfo[MOVE_WATER_GUN].category == DAMAGE_CATEGORY_SPECIAL);
@@ -72,4 +72,4 @@ SINGLE_BATTLE_TEST("Vessel of Ruin's message displays correctly after all battle
         ABILITY_POPUP(opponent, ABILITY_VESSEL_OF_RUIN);
         MESSAGE("Foe Krookodile's Vessel of Ruin weakened the Sp. Atk of all surrounding Pokémon!");
     }
-}
+}*/

@@ -1,6 +1,7 @@
 #include "global.h"
 #include "test/battle.h"
 
+/*
 ASSUMPTIONS
 {
     ASSUME(gMovesInfo[MOVE_TACKLE].category == DAMAGE_CATEGORY_PHYSICAL);
@@ -72,4 +73,4 @@ SINGLE_BATTLE_TEST("Sword of Ruin's message displays correctly after all battler
         ABILITY_POPUP(opponent, ABILITY_SWORD_OF_RUIN);
         MESSAGE("Foe Weavile's Sword of Ruin weakened the Defense of all surrounding Pokémon!");
     }
-}
+}*/

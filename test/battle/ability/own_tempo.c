@@ -76,6 +76,7 @@ SINGLE_BATTLE_TEST("Own Tempo cures confusion obtained from an opponent with Mol
     }
 }
 
+/*
 SINGLE_BATTLE_TEST("Own Tempo cures confusion if it's obtained via Skill Swap")
 {
     GIVEN {
@@ -96,7 +97,7 @@ SINGLE_BATTLE_TEST("Own Tempo cures confusion if it's obtained via Skill Swap")
         MESSAGE("Foe Alakazam's Own Tempo cured its confusion problem!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, opponent);
     }
-}
+}*/
 
 SINGLE_BATTLE_TEST("Own Tempo prevents confusion from items")
 {

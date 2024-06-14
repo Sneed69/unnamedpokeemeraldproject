@@ -2898,16 +2898,16 @@ u16 GetAbilityBySpecies(u16 species, u8 abilityNum)
     int i;
 
     if (abilityNum < NUM_ABILITY_SLOTS)
-        gLastUsedAbility = gSpeciesInfo[species].abilities[abilityNum];
+        gLastAbility = gSpeciesInfo[species].abilities[abilityNum];
     else
-        gLastUsedAbility = ABILITY_NONE;
+        gLastAbility = ABILITY_NONE;
 
-    for (i = 0; i < NUM_ABILITY_SLOTS && gLastUsedAbility == ABILITY_NONE; i++) // look for any non-empty ability
+    for (i = 0; i < NUM_ABILITY_SLOTS && gLastAbility == ABILITY_NONE; i++) // look for any non-empty ability
     {
-        gLastUsedAbility = gSpeciesInfo[species].abilities[i];
+        gLastAbility = gSpeciesInfo[species].abilities[i];
     }
 
-    return gLastUsedAbility;
+    return gLastAbility;
 }
 
 u16 GetMonAbility(struct Pokemon *mon)
@@ -5406,7 +5406,7 @@ void MonRestorePP(struct Pokemon *mon)
 
 void SetMonPreventsSwitchingString(void)
 {
-    gLastUsedAbility = gBattleStruct->abilityPreventingSwitchout;
+    gLastAbility = gBattleStruct->abilityPreventingSwitchout;
 
     gBattleTextBuff1[0] = B_BUFF_PLACEHOLDER_BEGIN;
     gBattleTextBuff1[1] = B_BUFF_MON_NICK_WITH_PREFIX;

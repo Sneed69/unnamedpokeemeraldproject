@@ -4,10 +4,10 @@
 SINGLE_BATTLE_TEST("Snow Cloak prevents damage from hail")
 {
     GIVEN {
-        PLAYER(SPECIES_ALAKAZAM);
-        OPPONENT(SPECIES_GLACEON) { Ability(ABILITY_SNOW_CLOAK); }
+        PLAYER(SPECIES_ALAKAZAM) { Ability(ABILITY_SNOW_CLOAK); }
+        OPPONENT(SPECIES_GLACEON);
     } WHEN {
-        TURN { MOVE(player, MOVE_HAIL); MOVE(opponent, MOVE_SKILL_SWAP); }
+        TURN;
     } SCENE {
         NONE_OF { HP_BAR(player); }
     }

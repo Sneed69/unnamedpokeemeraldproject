@@ -169,7 +169,8 @@ EWRAM_DATA s32 gBattleMoveDamage = 0;
 EWRAM_DATA s32 gHpDealt = 0;
 EWRAM_DATA s32 gBideDmg[MAX_BATTLERS_COUNT] = {0};
 EWRAM_DATA u16 gLastUsedItem = 0;
-EWRAM_DATA u16 gLastUsedAbility = 0;
+EWRAM_DATA u16 gLastAbility = 0;
+EWRAM_DATA u16 gLastUsedAbilities[MAX_BATTLERS_COUNT] = { 0 };
 EWRAM_DATA u8 gBattlerAttacker = 0;
 EWRAM_DATA u8 gBattlerTarget = 0;
 EWRAM_DATA u8 gBattlerFainted = 0;
@@ -4069,7 +4070,7 @@ u8 IsRunningFromBattleImpossible(u32 battler)
     if ((i = IsAbilityPreventingEscape(battler, &whichAbility)))
     {
         gBattleScripting.battler = i - 1;
-        gLastUsedAbility = whichAbility;
+        gLastUsedAbilities[i - 1] = whichAbility;
         gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_PREVENTS_ESCAPE;
         return BATTLE_RUN_FAILURE;
     }
@@ -5358,9 +5359,9 @@ static void CheckChangingTurnOrderEffects(void)
                 else if (gProtectStructs[battler].quickDraw)
                 {
                     gBattlerAbility = battler;
-                    gLastUsedAbility = ABILITY_QUICK_DRAW;
-                    PREPARE_ABILITY_BUFFER(gBattleTextBuff1, gLastUsedAbility);
-                    RecordAbilityBattle(battler, gLastUsedAbility);
+                    gLastUsedAbilities[battler] = ABILITY_QUICK_DRAW;
+                    PREPARE_ABILITY_BUFFER(gBattleTextBuff1, gLastUsedAbilities[battler]);
+                    RecordAbilityBattle(battler, ABILITY_QUICK_DRAW);
                     BattleScriptExecute(BattleScript_QuickDrawActivation);
                 }
                 return;
