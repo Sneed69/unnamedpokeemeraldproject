@@ -1,6 +1,30 @@
 #include "global.h"
 #include "test/battle.h"
 
+ASSUMPTIONS
+{
+    ASSUME(gMovesInfo[MOVE_BATON_PASS].effect == EFFECT_BATON_PASS);
+}
+
+// This softlocked the game before.
+SINGLE_BATTLE_TEST("Baton Pass used after Memento works correctly")
+{
+    GIVEN {
+        PLAYER(SPECIES_ALAKAZAM);
+        PLAYER(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_ABRA);
+        OPPONENT(SPECIES_CATERPIE);
+    } WHEN {
+        TURN { MOVE(player, MOVE_MEMENTO); SEND_OUT(player, 1); MOVE(opponent, MOVE_BATON_PASS); SEND_OUT(opponent, 1); }
+    } SCENE {
+        MESSAGE("Alakazam used Memento!");
+        MESSAGE("Alakazam fainted!");
+        MESSAGE("Foe Abra used Baton Pass!");
+        MESSAGE("2 sent out Caterpie!");
+        MESSAGE("Go! Alakazam!");
+    }
+}
+
 TO_DO_BATTLE_TEST("Baton Pass switches out the user");
 TO_DO_BATTLE_TEST("Baton Pass fails if there's no valid party Pokémon left");
 TO_DO_BATTLE_TEST("Baton Pass passes both positive and negative stat changes");

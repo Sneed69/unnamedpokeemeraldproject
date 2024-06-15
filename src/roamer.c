@@ -163,7 +163,7 @@ void StopAllRoamers(void)
         StopRoamer(i);
 }
 
-static void ClearRoamerLocationHistory(u8 index)
+static void ClearRoamerLocationHistory(u32 index)
 {
     u32 i;
 
@@ -174,7 +174,7 @@ static void ClearRoamerLocationHistory(u8 index)
     }
 }
 
-static void CreateRoamerInternal(u8 index, u16 species, u8 level, bool8 isTerrestrial, bool8 doesNotFlee, bool8 isStalker, u16 respawnMode, u8 nocturnality)
+static void CreateRoamerInternal(u32 index, u16 species, u8 level, bool8 isTerrestrial, bool8 doesNotFlee, bool8 isStalker, u16 respawnMode, u8 nocturnality)
 {
     ClearRoamerLocationHistory(index);
     CreateMon(&gEnemyParty[0], species, level, USE_RANDOM_IVS, FALSE, 0, OT_ID_PLAYER_ID, 0);
@@ -228,7 +228,7 @@ void UpdateLocationHistoryForRoamer(void)
     }
 }
 
-void RoamerMoveToOtherLocationSet(u8 index)
+void RoamerMoveToOtherLocationSet(u32 index)
 {
     u8 mapNum = 0;
     const u8 (*locations)[6];
@@ -274,7 +274,7 @@ void RoamerMoveToOtherLocationSet(u8 index)
     ROAMER(index)->locationMapNum = mapNum;
 }
 
-void RoamerMove(u8 index)
+void RoamerMove(u32 index)
 {
     u8 locSet = 0;
     if ((Random() % 16) == 0 || ROAMER(index)->isStalker)
@@ -321,7 +321,7 @@ void RoamerMove(u8 index)
     }
 }
 
-bool8 IsRoamerAt(u8 index, u8 mapGroup, u8 mapNum)
+bool32 IsRoamerAt(u32 index, u8 mapGroup, u8 mapNum)
 {
     if (ROAMER(index)->active && mapGroup == ROAMER(index)->locationMapGroup && mapNum == ROAMER(index)->locationMapNum)
         return TRUE;
@@ -329,7 +329,7 @@ bool8 IsRoamerAt(u8 index, u8 mapGroup, u8 mapNum)
         return FALSE;
 }
 
-void CreateRoamerMonInstance(u8 index)
+void CreateRoamerMonInstance(u32 index)
 {
 // The roamer's status field is u8, but SetMonData expects status to be u32
     u32 status = ROAMER(index)->status;
@@ -364,7 +364,7 @@ void CreateRoamerMonInstance(u8 index)
     SetMonData(mon, MON_DATA_HP, &hp);
 }
 
-bool8 TryStartRoamerEncounter(bool8 isWaterEncounter)
+bool32 TryStartRoamerEncounter(bool32 isWaterEncounter)
 {
     u32 i;
     for (i = 0; i < ROAMER_COUNT; i++)
@@ -400,13 +400,13 @@ void UpdateRoamerHPStatus(struct Pokemon *mon)
     RoamerMoveToOtherLocationSet(gEncounteredRoamerIndex);
 }
 
-void GetRoamerLocation(u8 index, u8 *mapGroup, u8 *mapNum)
+void GetRoamerLocation(u32 index, u8 *mapGroup, u8 *mapNum)
 {
     *mapGroup = ROAMER(index)->locationMapGroup;
     *mapNum = ROAMER(index)->locationMapNum;
 }
 
-static u8 GetFirstInactiveRoamerIndex()
+static u32 GetFirstInactiveRoamerIndex()
 {
     u32 i;
 
@@ -424,7 +424,7 @@ static u8 GetFirstInactiveRoamerIndex()
     return ROAMER_COUNT;
 }
 
-bool8 TryAddRoamer(u16 species, u8 level, bool8 doesNotFlee, u16 respawnMode)
+bool32 TryAddRoamer(u16 species, u8 level, bool8 doesNotFlee, u16 respawnMode)
 {
     u8 index = GetFirstInactiveRoamerIndex();
     
@@ -438,7 +438,7 @@ bool8 TryAddRoamer(u16 species, u8 level, bool8 doesNotFlee, u16 respawnMode)
     return FALSE;
 }
 
-bool8 TryAddTerrestrialRoamer(u16 species, u8 level, bool8 doesNotFlee, u16 respawnMode)
+bool32 TryAddTerrestrialRoamer(u16 species, u8 level, bool8 doesNotFlee, u16 respawnMode)
 {
     u8 index = GetFirstInactiveRoamerIndex();
     
@@ -451,7 +451,7 @@ bool8 TryAddTerrestrialRoamer(u16 species, u8 level, bool8 doesNotFlee, u16 resp
     return FALSE;
 }
 
-bool8 TryAddStalker(u16 species, u8 level, bool8 doesNotFlee, bool8 isTerrestrial, u16 respawnMode)
+bool32 TryAddStalker(u16 species, u8 level, bool8 doesNotFlee, bool8 isTerrestrial, u16 respawnMode)
 {
     u8 index = GetFirstInactiveRoamerIndex();
     
@@ -464,7 +464,7 @@ bool8 TryAddStalker(u16 species, u8 level, bool8 doesNotFlee, bool8 isTerrestria
     return FALSE;
 }
 
-void StopRoamer(u8 index)
+void StopRoamer(u32 index)
 {
     ROAMER(index)->active = FALSE;
     ROAMER(index)->respawnMode = NO_RESPAWN;
@@ -487,12 +487,12 @@ void MoveAllRoamers(void)
         RoamerMove(i);
 }
 
-bool8 DoesRoamerFlee(void)
+bool32 DoesRoamerFlee(void)
 {
     return !ROAMER(gEncounteredRoamerIndex)->doesNotFlee;
 }
 
-bool8 CanRoamerRespawn(u8 index)
+bool32 CanRoamerRespawn(u32 index)
 {
     return ROAMER(index)->respawnMode != NO_RESPAWN;
 }
@@ -662,7 +662,7 @@ void TryAddDailyRoamer(void)
     u32 eligibleRoamerCount = 0;
     u32 roamerListLength = ARRAY_COUNT(sDailyRoamerList);
     u32 indexList[roamerListLength - 1];
-    u8 availableSlot = GetFirstInactiveRoamerIndex();
+    u32 availableSlot = GetFirstInactiveRoamerIndex();
     
     if (availableSlot == ROAMER_COUNT)
         return;

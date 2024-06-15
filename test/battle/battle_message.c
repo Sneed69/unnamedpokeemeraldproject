@@ -30,19 +30,19 @@ SINGLE_BATTLE_TEST("Battle Message: Send-in message depends on foe HP")
 TO_DO_BATTLE_TEST("Battle Message: Switch-out message changes based on conditions")
 /*{
     GIVEN {
-        PLAYER(SPECIES_WYNAUT);
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ABRA);
+        PLAYER(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { SWITCH(player, 1);  }
     } SCENE {
         if (???)
-            MESSAGE("Wynaut, that's enough! Come back!");
+            MESSAGE("Abra, that's enough! Come back!");
         else if (???)
-            MESSAGE("Wynaut, come back!");
+            MESSAGE("Abra, come back!");
         else if (???)
-            MESSAGE("Wynaut, OK! Come back!");
+            MESSAGE("Abra, OK! Come back!");
         else
-            MESSAGE("Wynaut, good! Come back!");
+            MESSAGE("Abra, good! Come back!");
     }
 }*/
