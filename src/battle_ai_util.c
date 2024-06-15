@@ -132,12 +132,12 @@ void RecordAllMoves(u32 battler)
 
 void RecordAbilityBattle(u32 battlerId, u32 abilityId)
 {
-    struct AiPartyMon aiMon = AI_PARTY->mons[GetBattlerSide(battlerId)][gBattlerPartyIndexes[battlerId]];
+    struct AiPartyMon *aiMon = &AI_PARTY->mons[GetBattlerSide(battlerId)][gBattlerPartyIndexes[battlerId]];
 
-    if (aiMon.abilities[1] != abilityId)
+    if (aiMon->abilities[1] != abilityId)
     {
         BATTLE_HISTORY->abilities[battlerId] = abilityId;
-        aiMon.abilities[0] = abilityId;
+        aiMon->abilities[0] = abilityId;
     }
 }
 
