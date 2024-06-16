@@ -74,7 +74,7 @@ SINGLE_BATTLE_TEST("Future Sight receives STAB from party mon")
     GIVEN {
         PLAYER(SPECIES_RALTS);
         PLAYER(SPECIES_RAICHU);
-        OPPONENT(SPECIES_REGICE);
+        OPPONENT(SPECIES_REGIGIGAS);
     } WHEN {
         TURN { MOVE(player, MOVE_SEED_FLARE, WITH_RNG(RNG_SECONDARY_EFFECT, FALSE)); }
         TURN { MOVE(player, MOVE_FUTURE_SIGHT); }

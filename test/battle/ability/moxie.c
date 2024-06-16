@@ -77,7 +77,7 @@ SINGLE_BATTLE_TEST("Moxie does not trigger when already at maximum Attack stage"
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_BELLY_DRUM, player);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
-        MESSAGE("Salamence cut its own HP and maximized ATTACK!");
+        MESSAGE("Salamence cut its own HP and maximized Attack!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_QUICK_ATTACK, player);
         MESSAGE("Foe Snorunt fainted!");
         NONE_OF {    
