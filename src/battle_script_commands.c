@@ -9680,16 +9680,7 @@ static void Cmd_various(void)
                 gLastUsedAbilities[gBattleScripting.battler] = ABILITY_VICTORY_RUSH;
                 gBattlerAbility = gBattleScripting.battler;
                 gBattleMoveDamage = -gBattleMons[gBattleScripting.battler].maxHP / 5;
-                if (gBattleMons[gBattleScripting.battler].status1 & (STATUS1_POISON | STATUS1_TOXIC_POISON))
-                    StringCopy(gBattleTextBuff1, gStatusConditionString_PoisonJpn);
-                else if (gBattleMons[gBattleScripting.battler].status1 & STATUS1_SLEEP)
-                    StringCopy(gBattleTextBuff1, gStatusConditionString_SleepJpn);
-                else if (gBattleMons[gBattleScripting.battler].status1 & STATUS1_PARALYSIS)
-                    StringCopy(gBattleTextBuff1, gStatusConditionString_ParalysisJpn);
-                else if (gBattleMons[gBattleScripting.battler].status1 & STATUS1_BURN)
-                    StringCopy(gBattleTextBuff1, gStatusConditionString_BurnJpn);
-                else if (gBattleMons[gBattleScripting.battler].status1 & (STATUS1_FREEZE | STATUS1_FROSTBITE))
-                    StringCopy(gBattleTextBuff1, gStatusConditionString_IceJpn);
+                BufferStatus1Text(gBattleMons[gBattleScripting.battler].status1);
                 BattleScriptPushCursor();
                 gBattlescriptCurrInstr = BattleScript_AbilityHealAndCureReturn;
                 return;

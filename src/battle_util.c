@@ -4096,6 +4096,22 @@ static inline bool32 HadMoreThanHalfHpNowDoesnt(u32 battler)
              && gBattleMons[battler].hp <= cutoff);
 }
 
+void BufferStatus1Text(u32 status1)
+{
+    if (status1 & (STATUS1_POISON | STATUS1_TOXIC_POISON))
+        StringCopy(gBattleTextBuff1, gText_Poison);
+    else if (status1 & STATUS1_SLEEP)
+        StringCopy(gBattleTextBuff1, gText_Sleep);
+    else if (status1 & STATUS1_PARALYSIS)
+        StringCopy(gBattleTextBuff1, gText_Paralysis);
+    else if (status1 & STATUS1_BURN)
+        StringCopy(gBattleTextBuff1, gText_Burn);
+    else if (status1 & STATUS1_FREEZE)
+        StringCopy(gBattleTextBuff1, gText_Ice);
+    else if (status1 & STATUS1_FROSTBITE)
+        StringCopy(gBattleTextBuff1, gText_Frostbite);
+}
+
 u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 moveArg)
 {
     u32 effect = 0;
@@ -5086,16 +5102,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
                     gBattleMoveDamage = -gBattleMons[battler].maxHP / 16;
                     if (gBattleMoveDamage == 0)
                         gBattleMoveDamage = -1;
-                    if (gBattleMons[battler].status1 & (STATUS1_POISON | STATUS1_TOXIC_POISON))
-                        StringCopy(gBattleTextBuff1, gStatusConditionString_PoisonJpn);
-                    else if (gBattleMons[battler].status1 & STATUS1_SLEEP)
-                        StringCopy(gBattleTextBuff1, gStatusConditionString_SleepJpn);
-                    else if (gBattleMons[battler].status1 & STATUS1_PARALYSIS)
-                        StringCopy(gBattleTextBuff1, gStatusConditionString_ParalysisJpn);
-                    else if (gBattleMons[battler].status1 & STATUS1_BURN)
-                        StringCopy(gBattleTextBuff1, gStatusConditionString_BurnJpn);
-                    else if (gBattleMons[battler].status1 & (STATUS1_FREEZE | STATUS1_FROSTBITE))
-                        StringCopy(gBattleTextBuff1, gStatusConditionString_IceJpn);
+                    BufferStatus1Text(gBattleMons[battler].status1);
                     effect++;
                 }
                 break;
@@ -5103,16 +5110,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
                 if ((gBattleMons[battler].status1 & STATUS1_ANY) && (Random() % 3) == 0 && !IsBattlerPollutedTerrainAffected(battler))
                 {
                 //ABILITY_HEAL_MON_STATUS:
-                    if (gBattleMons[battler].status1 & (STATUS1_POISON | STATUS1_TOXIC_POISON))
-                        StringCopy(gBattleTextBuff1, gStatusConditionString_PoisonJpn);
-                    if (gBattleMons[battler].status1 & STATUS1_SLEEP)
-                        StringCopy(gBattleTextBuff1, gStatusConditionString_SleepJpn);
-                    if (gBattleMons[battler].status1 & STATUS1_PARALYSIS)
-                        StringCopy(gBattleTextBuff1, gStatusConditionString_ParalysisJpn);
-                    if (gBattleMons[battler].status1 & STATUS1_BURN)
-                        StringCopy(gBattleTextBuff1, gStatusConditionString_BurnJpn);
-                    if (gBattleMons[battler].status1 & (STATUS1_FREEZE | STATUS1_FROSTBITE))
-                        StringCopy(gBattleTextBuff1, gStatusConditionString_IceJpn);
+                    BufferStatus1Text(gBattleMons[battler].status1);
 
                     gBattleMons[battler].status1 = 0;
                     gBattleMons[battler].status2 &= ~STATUS2_NIGHTMARE;

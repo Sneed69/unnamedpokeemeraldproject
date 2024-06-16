@@ -2199,6 +2199,7 @@ const u8 gText_Poison[] = _("poison");
 const u8 gText_Burn[] = _("burn");
 const u8 gText_Paralysis[] = _("paralysis");
 const u8 gText_Ice[] = _("ice");
+const u8 gText_Frostbite[] = _("frostbite");
 const u8 gText_Confusion[] = _("confusion");
 const u8 gText_Love[] = _("love");
 const u8 gText_SpaceAndSpace[] = _(" and ");
