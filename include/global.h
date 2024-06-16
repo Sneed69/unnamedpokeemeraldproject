@@ -600,9 +600,9 @@ struct Roamer
     u16 respawnMode:2; // 4 respawn modes
     u16 daysToRespawn:3; // up to 7 days
     u16 damage; //track damage instead of HP to handle scaling roamers
-    u8 level;
     u16 status:13;
     u16 unused:3;
+    u8 level;
     bool8 active:1; // 1 bit for TRUE or FALSE 
     bool8 isTerrestrial:1;
     bool8 doesNotFlee:1;
