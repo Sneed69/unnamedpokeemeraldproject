@@ -1445,9 +1445,9 @@ const struct Item gItemsInfo[] =
         .price = 6000,
         .holdEffectParam = 0,
         .description = COMPOUND_STRING(
-            "Allows {PKMN} with two\n"
-            "abilities to switch\n"
-            "between them."),
+            "Allows certain\n"
+            "Pokémon to alter\n"
+            "their abilities."),
         .pocket = POCKET_CONSUMABLES,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_AbilityCapsule,
