@@ -157,7 +157,6 @@ static const u8 sText_Stats_FLUCTUATING[] = _("Fluctuating");
 static const u8 sText_Stats_MEDIUM_SLOW[] = _("Medium Slow");
 static const u8 sText_Stats_FAST[] = _("Fast");
 static const u8 sText_Stats_SLOW[] = _("Slow");
-static const u8 sText_Stats_Ability[] = _("Ability:");
 static const u8 sText_Stats_Abilities[] = _("Abilities:");
 static const u8 sText_Stats_EggGroup[] = _("Egg Group:");
 static const u8 sText_Stats_EggGroups[] = _("Egg Groups:");
@@ -374,6 +373,7 @@ struct PokemonStats
     u8  eggCycles;
     u16 expYield;
     u8  friendship;
+    u16 innate;
     u16 ability0;
     u16 ability1;
     u16 abilityHidden;
@@ -4673,6 +4673,7 @@ static void SaveMonDataInStruct(void)
     sPokedexView->sPokemonStats.eggCycles           = gSpeciesInfo[species].eggCycles;
     sPokedexView->sPokemonStats.expYield            = gSpeciesInfo[species].expYield;
     sPokedexView->sPokemonStats.friendship          = gSpeciesInfo[species].friendship;
+    sPokedexView->sPokemonStats.innate              = gSpeciesInfo[species].innate;
     sPokedexView->sPokemonStats.ability0            = GetAbilityBySpecies(species, 0);
     sPokedexView->sPokemonStats.ability1            = GetAbilityBySpecies(species, 1);
     sPokedexView->sPokemonStats.abilityHidden       = GetAbilityBySpecies(species, 2);
@@ -5110,17 +5111,17 @@ static void PrintStatsScreen_Left(u8 taskId)
     u32 base_y_offset = 11;
     u32 base_i = 0;
     u32 base_y = 5;
-    u32 align_x;
-    u8 strEV[25];
+    u32 innate = sPokedexView->sPokemonStats.innate;
     u32 ability0 = sPokedexView->sPokemonStats.ability0;
     u32 ability1 = sPokedexView->sPokemonStats.ability1;
 
     //Abilities
-
+    PrintStatsScreenTextSmall(WIN_STATS_LEFT, sText_Stats_Abilities, base_x, base_y + base_y_offset*base_i);
+    base_i++;
+    PrintStatsScreenTextSmall(WIN_STATS_LEFT, gAbilitiesInfo[innate].name, base_x + 3, base_y + base_y_offset*base_i);
+    base_i++;
     if (ability1 != ABILITY_NONE && ability1 != ability0)
     {
-        PrintStatsScreenTextSmall(WIN_STATS_LEFT, sText_Stats_Abilities, base_x, base_y + base_y_offset*base_i);
-        base_i++;
         PrintStatsScreenTextSmall(WIN_STATS_LEFT, gAbilitiesInfo[ability0].name, base_x + 3, base_y + base_y_offset*base_i);
         base_i++;
         PrintStatsScreenTextSmall(WIN_STATS_LEFT, gAbilitiesInfo[ability1].name, base_x + 3, base_y + base_y_offset*base_i);
@@ -5128,40 +5129,9 @@ static void PrintStatsScreen_Left(u8 taskId)
     }
     else
     {
-        PrintStatsScreenTextSmall(WIN_STATS_LEFT, sText_Stats_Ability, base_x, base_y + base_y_offset*base_i);
-        base_i++;
         PrintStatsScreenTextSmall(WIN_STATS_LEFT, gAbilitiesInfo[ability0].name, base_x + 3, base_y + base_y_offset*base_i);
         base_i++;
     }
-        
-    PrintStatsScreenTextSmall(WIN_STATS_LEFT, sText_Stats_Growthrate, base_x, base_y + base_y_offset*base_i);
-    base_i++;
-    switch (sPokedexView->sPokemonStats.growthRate)
-    {
-    case GROWTH_MEDIUM_FAST:
-        StringCopy(strEV, sText_Stats_MEDIUM_FAST);
-        break;
-    case GROWTH_ERRATIC:
-        StringCopy(strEV, sText_Stats_ERRATIC);
-        break;
-    case GROWTH_FLUCTUATING:
-        StringCopy(strEV, sText_Stats_FLUCTUATING);
-        break;
-    case GROWTH_MEDIUM_SLOW:
-        StringCopy(strEV, sText_Stats_MEDIUM_SLOW);
-        break;
-    case GROWTH_FAST:
-        StringCopy(strEV, sText_Stats_FAST);
-        break;
-    case GROWTH_SLOW:
-        StringCopy(strEV, sText_Stats_SLOW);
-        break;
-    default:
-        break;
-    }
-    align_x = base_x + 3;
-    PrintStatsScreenTextSmall(WIN_STATS_LEFT, strEV, align_x, base_y + base_y_offset*base_i);
-    base_i++;
 
     if (sPokedexView->sPokemonStats.eggGroup1 == sPokedexView->sPokemonStats.eggGroup2)
         PrintStatsScreenTextSmall(WIN_STATS_LEFT, sText_Stats_EggGroup, base_x, base_y + base_y_offset*base_i);
