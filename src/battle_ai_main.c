@@ -1941,7 +1941,7 @@ static s32 AI_CheckBadMove(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
         case EFFECT_LASER_FOCUS:
             if (gStatuses3[battlerAtk] & STATUS3_LASER_FOCUS)
                 ADJUST_SCORE(-10);
-            else if (CompareAbilities(aiData->abilities[battlerDef], 2, ABILITY_SHELL_ARMOR, ABILITY_BATTLE_ARMOR))
+            else if (CompareAbilities(aiData->abilities[battlerDef], 3, ABILITY_SHELL_ARMOR, ABILITY_BATTLE_ARMOR, ABILITY_FLAWLESS_CREATION))
                 ADJUST_SCORE(-8);
             break;
         case EFFECT_SKETCH:

@@ -1911,7 +1911,7 @@ static void Cmd_ppreduce(void)
 s32 CalcCritChanceStageArgs(u32 battlerAtk, u32 battlerDef, u32 move, bool32 recordAbility, u32 *abilitiesAtk, u32 *abilitiesDef, u32 holdEffectAtk)
 {
     s32 critChance = 0;
-    u32 critImmunityAbility = CompareAbilities(abilitiesDef, 2, ABILITY_BATTLE_ARMOR, ABILITY_SHELL_ARMOR);
+    u32 critImmunityAbility = CompareAbilities(abilitiesDef, 3, ABILITY_BATTLE_ARMOR, ABILITY_SHELL_ARMOR, ABILITY_FLAWLESS_CREATION);
 
     if (gSideStatuses[battlerDef] & SIDE_STATUS_LUCKY_CHANT)
     {

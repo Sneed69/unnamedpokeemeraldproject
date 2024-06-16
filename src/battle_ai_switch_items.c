@@ -1488,6 +1488,13 @@ static u32 GetSwitchinRecurringHealing(void)
     } // Intentionally omitting Shell Bell for its inconsistency
 
     // Abilities
+    if (IsAbilityInArray(abilities, ABILITY_FLAWLESS_CREATION))
+    {
+        u32 healing = maxHP / 16;
+        if (healing == 0)
+            healing = 1;
+        recurringHealing += healing;
+    }
     if (poisonHeal && (AI_DATA->switchinCandidate.battleMon.status1 & STATUS1_POISON))
     {
         u32 healing = maxHP / 8;

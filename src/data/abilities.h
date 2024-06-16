@@ -2896,4 +2896,12 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
         .description = COMPOUND_STRING("Contact moves wound their\ntargets, causing extra damage\nat the end of the turn."),
         .aiRating = 7,
     },
+
+    [ABILITY_FLAWLESS_CREATION] =
+    {
+        .name = _("Flawless Creation"),
+        .description = COMPOUND_STRING("Protects against critical hits.\nRestores HP at the end\nof every turn."),
+        .aiRating = 7,
+        .breakable = TRUE,
+    },
 };

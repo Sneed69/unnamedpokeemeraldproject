@@ -4128,6 +4128,8 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
     if (gBattlerAttacker >= gBattlersCount)
         gBattlerAttacker = battler;
 
+    gBattlerAbility = battler;
+
     if (special)
         gLastUsedAbilities[battler] = special;
     else
@@ -5069,6 +5071,16 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
                     effect++;
                 }
                 break;
+            case ABILITY_FLAWLESS_CREATION:
+                if (!BATTLER_MAX_HP(battler) && !(gStatuses3[battler] & STATUS3_HEAL_BLOCK))
+                {
+                    BattleScriptPushCursorAndCallback(BattleScript_RainDishActivates);
+                    gBattleMoveDamage = -GetNonDynamaxMaxHP(battler) / 16;
+                    if (gBattleMoveDamage == 0)
+                        gBattleMoveDamage = -1;
+                    effect++;
+                }
+                break;
             case ABILITY_DRY_SKIN:
                 if (IsBattlerWeatherAffected(battler, B_WEATHER_SUN))
                 {
@@ -5077,6 +5089,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
                     if (gBattleMoveDamage == 0)
                         gBattleMoveDamage = 1;
                     effect++;
+                    break;
                 }
             // Dry Skin works similarly to Rain Dish in Rain
             case ABILITY_RAIN_DISH:
