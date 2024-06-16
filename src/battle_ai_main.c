@@ -264,6 +264,7 @@ static void CopyBattlerDataToAIParty(u32 bPosition, u32 side)
     aiMon->isFainted = FALSE;
     aiMon->wasSentInBattle = TRUE;
     aiMon->switchInCount++;
+    aiMon->abilities[1] = bMon->abilities[1];
 }
 
 void Ai_InitPartyStruct(void)
