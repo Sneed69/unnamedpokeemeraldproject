@@ -9611,7 +9611,7 @@ static inline u32 CalcMoveBasePowerAfterModifiers(u32 move, u32 battlerAtk, u32 
         if (moveType == TYPE_DRAGON)
             modifier = uq4_12_multiply(modifier, UQ_4_12(1.5));
         break;
-    case ABILITY_MASTER_OF_THE_AGES:
+    case ABILITY_MIGHT_OF_THE_AGES:
         if (moveType == TYPE_ROCK || moveType == TYPE_ICE || moveType == TYPE_STEEL)
             modifier = uq4_12_multiply(modifier, UQ_4_12(1.5));
         break;
@@ -10029,12 +10029,12 @@ static inline u32 CalcAttackStat(u32 move, u32 battlerAtk, u32 battlerDef, u32 m
                     RecordAbilityBattle(battlerDef, ABILITY_THICK_FAT);
             }
             break;
-        case ABILITY_MASTER_OF_THE_AGES:
+        case ABILITY_TIMELESS_BEHEMOTH:
             if (moveType == TYPE_ROCK || moveType == TYPE_ICE|| moveType == TYPE_STEEL)
             {
                 modifier = uq4_12_multiply_half_down(modifier, UQ_4_12(0.5));
                 if (updateFlags)
-                    RecordAbilityBattle(battlerDef, ABILITY_MASTER_OF_THE_AGES);
+                    RecordAbilityBattle(battlerDef, ABILITY_TIMELESS_BEHEMOTH);
             }
             break;
         }

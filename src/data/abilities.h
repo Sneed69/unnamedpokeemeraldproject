@@ -2686,12 +2686,11 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
         .breakable = TRUE,
     },
 
-    [ABILITY_MASTER_OF_THE_AGES] =
+    [ABILITY_MIGHT_OF_THE_AGES] =
     {
-        .name = _("Master of the Ages"),
-        .description = COMPOUND_STRING("Boosts damage dealt with and\nhalves damage taken from Ice-,\nRock- and Steel-type moves."),
-        .aiRating = 10,
-        .breakable = TRUE,
+        .name = _("Might of the Ages"),
+        .description = COMPOUND_STRING("Boosts damage dealt with Ice-,\nRock- and Steel-type moves."),
+        .aiRating = 6,
     },
 
     [ABILITY_CONDENSED_ENERGY] =
@@ -2902,6 +2901,14 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
         .name = _("Flawless Creation"),
         .description = COMPOUND_STRING("Protects against critical hits.\nRestores HP at the end\nof every turn."),
         .aiRating = 7,
+        .breakable = TRUE,
+    },
+
+    [ABILITY_TIMELESS_BEHEMOTH] =
+    {
+        .name = _("Timeless Behemoth"),
+        .description = COMPOUND_STRING("Halves damage taken from Ice-,\nRock- and Steel-type moves."),
+        .aiRating = 6,
         .breakable = TRUE,
     },
 };
