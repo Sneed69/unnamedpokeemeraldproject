@@ -9671,20 +9671,6 @@ static void Cmd_various(void)
                 gBattlescriptCurrInstr = BattleScript_ScriptingAbilityStatRaise;
                 return;
             }
-            else if (IsAbilityInArray(battlerAbilities, ABILITY_VICTORY_RUSH)
-                  && IsBattlerAlive(gBattleScripting.battler)
-                  && !NoAliveMonsForEitherParty()
-                  && (!BATTLER_MAX_HP(gBattleScripting.battler)
-                  || gBattleMons[gBattleScripting.battler].status1 & STATUS1_ANY))
-            {
-                gLastUsedAbilities[gBattleScripting.battler] = ABILITY_VICTORY_RUSH;
-                gBattlerAbility = gBattleScripting.battler;
-                gBattleMoveDamage = -gBattleMons[gBattleScripting.battler].maxHP / 5;
-                BufferStatus1Text(gBattleMons[gBattleScripting.battler].status1);
-                BattleScriptPushCursor();
-                gBattlescriptCurrInstr = BattleScript_AbilityHealAndCureReturn;
-                return;
-            }
         }
         gBattleStruct->soulheartBattlerId = 0;
         break;
@@ -16553,6 +16539,34 @@ void BS_HandleUltraBurst(void)
 
     u8 battler = GetBattlerForBattleScript(cmd->battler);
     HandleScriptMegaPrimalBurst(cmd->caseId, battler, HANDLE_TYPE_ULTRA_BURST);
+    gBattlescriptCurrInstr = cmd->nextInstr;
+}
+
+void BS_TryActivateVictoryRush(void)
+{
+    NATIVE_ARGS();
+
+    while (gBattleStruct->soulheartBattlerId < gBattlersCount)
+    {
+        u32 battlerAbilities[NUM_ABILITIES];
+        gBattleScripting.battler = gBattleStruct->soulheartBattlerId++;
+        GetBattlerAbilities(gBattleScripting.battler, battlerAbilities);
+        if (IsAbilityInArray(battlerAbilities, ABILITY_VICTORY_RUSH)
+         && IsBattlerAlive(gBattleScripting.battler)
+         && !NoAliveMonsForEitherParty()
+         && (!BATTLER_MAX_HP(gBattleScripting.battler)
+         || gBattleMons[gBattleScripting.battler].status1 & STATUS1_ANY))
+        {
+            gLastUsedAbilities[gBattleScripting.battler] = ABILITY_VICTORY_RUSH;
+            gBattlerAbility = gBattleScripting.battler;
+            gBattleMoveDamage = -gBattleMons[gBattleScripting.battler].maxHP / 5;
+            BufferStatus1Text(gBattleMons[gBattleScripting.battler].status1);
+            BattleScriptPushCursor();
+            gBattlescriptCurrInstr = BattleScript_AbilityHealAndCureReturn;
+            return;
+        }
+    }
+    gBattleStruct->soulheartBattlerId = 0;
     gBattlescriptCurrInstr = cmd->nextInstr;
 }
 

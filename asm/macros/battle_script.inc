@@ -1508,6 +1508,10 @@
 	.byte \case
 	.endm
 
+	.macro tryactivatevictoryrush
+	callnative BS_TryActivateVictoryRush
+	.endm
+
 	.macro jumpifshelltrap battler:req, jumpInstr:req
 	callnative BS_JumpIfShellTrap
 	.byte \battler
