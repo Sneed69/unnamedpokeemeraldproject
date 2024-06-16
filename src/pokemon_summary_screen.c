@@ -52,6 +52,7 @@
 
 enum {
     PSS_PAGE_INFO,
+    PSS_PAGE_ABILITIES,
     PSS_PAGE_SKILLS,
     PSS_PAGE_BATTLE_MOVES,
     PSS_PAGE_CONTEST_MOVES,
@@ -60,9 +61,10 @@ enum {
 
 // Screen titles (upper left)
 #define PSS_LABEL_WINDOW_POKEMON_INFO_TITLE 0
-#define PSS_LABEL_WINDOW_POKEMON_SKILLS_TITLE 1
-#define PSS_LABEL_WINDOW_BATTLE_MOVES_TITLE 2
-#define PSS_LABEL_WINDOW_CONTEST_MOVES_TITLE 3
+#define PSS_LABEL_WINDOW_POKEMON_ABILITIES_TITLE 1
+#define PSS_LABEL_WINDOW_POKEMON_SKILLS_TITLE 2
+#define PSS_LABEL_WINDOW_BATTLE_MOVES_TITLE 3
+#define PSS_LABEL_WINDOW_CONTEST_MOVES_TITLE 4
 
 // Button control text (upper right)
 #define PSS_LABEL_WINDOW_PROMPT_CANCEL 5
@@ -91,10 +93,13 @@ enum {
 #define PSS_LABEL_WINDOW_PORTRAIT_SPECIES 20 // The lower name
 #define PSS_LABEL_WINDOW_END 21
 
+#define PSS_DATA_WINDOW_ABILITY_TOP 0
+#define PSS_DATA_WINDOW_ABILITY_BOTTOM 1
+
 // Dynamic fields for the Pokémon Info page
 #define PSS_DATA_WINDOW_INFO_ORIGINAL_TRAINER 0
 #define PSS_DATA_WINDOW_INFO_ID 1
-#define PSS_DATA_WINDOW_INFO_ABILITY 2
+#define PSS_DATA_WINDOW_INFO_PROFICIENCIES 2
 #define PSS_DATA_WINDOW_INFO_MEMO 3
 
 // Dynamic fields for the Pokémon Skills page
@@ -261,8 +266,14 @@ static void PrintPageSpecificText(u8);
 static void CreateTextPrinterTask(u8);
 static void PrintInfoPageText(void);
 static void Task_PrintInfoPage(u8);
+static void PrintAbilitiesPageText(void);
+static void Task_PrintAbilitiesPage(u8);
 static void PrintMonOTName(void);
 static void PrintMonOTID(void);
+static void BufferMonProficiencies(void);
+static void PrintMonProficiencies(void);
+static void PrintMonInnateName(void);
+static void PrintMonInnateDescription(void);
 static void PrintMonAbilityName(void);
 static void PrintMonAbilityDescription(void);
 static void BufferMonTrainerMemo(void);
@@ -401,7 +412,7 @@ static const struct WindowTemplate sSummaryTemplate[] =
         .paletteNum = 6,
         .baseBlock = 1,
     },
-    [PSS_LABEL_WINDOW_POKEMON_SKILLS_TITLE] = {
+    [PSS_LABEL_WINDOW_POKEMON_ABILITIES_TITLE] = {
         .bg = 0,
         .tilemapLeft = 0,
         .tilemapTop = 0,
@@ -409,6 +420,15 @@ static const struct WindowTemplate sSummaryTemplate[] =
         .height = 2,
         .paletteNum = 6,
         .baseBlock = 23,
+    },
+    [PSS_LABEL_WINDOW_POKEMON_SKILLS_TITLE] = {
+        .bg = 0,
+        .tilemapLeft = 0,
+        .tilemapTop = 0,
+        .width = 11,
+        .height = 2,
+        .paletteNum = 6,
+        .baseBlock = 45,
     },
     [PSS_LABEL_WINDOW_BATTLE_MOVES_TITLE] = {
         .bg = 0,
@@ -476,7 +496,7 @@ static const struct WindowTemplate sSummaryTemplate[] =
     [PSS_LABEL_WINDOW_POKEMON_INFO_TYPE] = {
         .bg = 0,
         .tilemapLeft = 11,
-        .tilemapTop = 5,
+        .tilemapTop = 6,
         .width = 18,
         .height = 2,
         .paletteNum = 6,
@@ -579,7 +599,7 @@ static const struct WindowTemplate sPageInfoTemplate[] =
     [PSS_DATA_WINDOW_INFO_ORIGINAL_TRAINER] = {
         .bg = 0,
         .tilemapLeft = 11,
-        .tilemapTop = 3,
+        .tilemapTop = 4,
         .width = 11,
         .height = 2,
         .paletteNum = 6,
@@ -588,29 +608,50 @@ static const struct WindowTemplate sPageInfoTemplate[] =
     [PSS_DATA_WINDOW_INFO_ID] = {
         .bg = 0,
         .tilemapLeft = 22,
-        .tilemapTop = 3,
+        .tilemapTop = 4,
         .width = 7,
         .height = 2,
         .paletteNum = 6,
         .baseBlock = 579,
     },
-    [PSS_DATA_WINDOW_INFO_ABILITY] = {
+    [PSS_DATA_WINDOW_INFO_PROFICIENCIES] = {
         .bg = 0,
         .tilemapLeft = 11,
-        .tilemapTop = 8,
+        .tilemapTop = 9,
         .width = 19,
-        .height = 9,
+        .height = 6,
         .paletteNum = 6,
         .baseBlock = 593,
     },
     [PSS_DATA_WINDOW_INFO_MEMO] = {
         .bg = 0,
         .tilemapLeft = 11,
-        .tilemapTop = 15,
+        .tilemapTop = 14,
         .width = 19,
-        .height = 5,
+        .height = 6,
         .paletteNum = 6,
-        .baseBlock = 593 + 19 * 9,
+        .baseBlock = 593 + 19 * 6,
+    },
+};
+static const struct WindowTemplate sPageAbilitiesTemplate[] =
+{
+    [PSS_DATA_WINDOW_ABILITY_TOP] = {
+        .bg = 0,
+        .tilemapLeft = 11,
+        .tilemapTop = 3,
+        .width = 19,
+        .height = 8,
+        .paletteNum = 6,
+        .baseBlock = 557,
+    },
+    [PSS_DATA_WINDOW_ABILITY_BOTTOM] = {
+        .bg = 0,
+        .tilemapLeft = 11,
+        .tilemapTop = 12,
+        .width = 19,
+        .height = 8,
+        .paletteNum = 6,
+        .baseBlock = 557 + 19 * 8,
     },
 };
 static const struct WindowTemplate sPageSkillsTemplate[] =
@@ -707,6 +748,7 @@ static const u8 sButtons_Gfx[][4 * TILE_SIZE_4BPP] = {
 static void (*const sTextPrinterFunctions[])(void) =
 {
     [PSS_PAGE_INFO] = PrintInfoPageText,
+    [PSS_PAGE_ABILITIES] = PrintAbilitiesPageText,
     [PSS_PAGE_SKILLS] = PrintSkillsPageText,
     [PSS_PAGE_BATTLE_MOVES] = PrintBattleMoves,
     [PSS_PAGE_CONTEST_MOVES] = PrintContestMoves
@@ -715,6 +757,7 @@ static void (*const sTextPrinterFunctions[])(void) =
 static void (*const sTextPrinterTasks[])(u8 taskId) =
 {
     [PSS_PAGE_INFO] = Task_PrintInfoPage,
+    [PSS_PAGE_ABILITIES] = Task_PrintAbilitiesPage,
     [PSS_PAGE_SKILLS] = Task_PrintSkillsPage,
     [PSS_PAGE_BATTLE_MOVES] = Task_PrintBattleMoves,
     [PSS_PAGE_CONTEST_MOVES] = Task_PrintContestMoves
@@ -1362,6 +1405,7 @@ static void InitBGs(void)
     ResetBgsAndClearDma3BusyFlags(0);
     InitBgsFromTemplates(0, sBgTemplates, ARRAY_COUNT(sBgTemplates));
     SetBgTilemapBuffer(1, sMonSummaryScreen->bgTilemapBuffers[PSS_PAGE_BATTLE_MOVES][0]);
+    SetBgTilemapBuffer(2, sMonSummaryScreen->bgTilemapBuffers[PSS_PAGE_ABILITIES][0]);
     SetBgTilemapBuffer(2, sMonSummaryScreen->bgTilemapBuffers[PSS_PAGE_SKILLS][0]);
     SetBgTilemapBuffer(3, sMonSummaryScreen->bgTilemapBuffers[PSS_PAGE_INFO][0]);
     ResetAllBgsCoordinates();
@@ -1437,6 +1481,10 @@ static bool8 DecompressGraphics(void)
         sMonSummaryScreen->switchCounter++;
         break;
     case 12:
+        LZDecompressWram(gSummaryPage_Abilities_Tilemap, sMonSummaryScreen->bgTilemapBuffers[PSS_PAGE_ABILITIES][1]);
+        sMonSummaryScreen->switchCounter++;
+        break;
+    case 13:
         LoadCompressedPalette(gMoveTypes_Pal, OBJ_PLTT_ID(13), 3 * PLTT_SIZE_4BPP);
         LoadCompressedSpriteSheet(&gSpriteSheet_CategoryIcons);
         LoadSpritePalette(&gSpritePal_CategoryIcons);
@@ -2847,7 +2895,7 @@ static void PrintNotEggInfo(void)
 static void PrintEggInfo(void)
 {
     GetMonNickname(&sMonSummaryScreen->currentMon, gStringVar1);
-    PrintTextOnWindow(PSS_LABEL_WINDOW_PORTRAIT_NICKNAME, gStringVar1, 0, 0, 0, 1);
+    PrintTextOnWindow(PSS_LABEL_WINDOW_PORTRAIT_NICKNAME, gStringVar1, 0, 1, 0, 1);
     PutWindowTilemap(PSS_LABEL_WINDOW_PORTRAIT_NICKNAME);
     ClearWindowTilemap(PSS_LABEL_WINDOW_PORTRAIT_DEX_NUMBER);
     ClearWindowTilemap(PSS_LABEL_WINDOW_PORTRAIT_SPECIES);
@@ -2887,6 +2935,7 @@ static void PrintPageNamesAndStats(void)
     int statsXPos;
 
     PrintTextOnWindow(PSS_LABEL_WINDOW_POKEMON_INFO_TITLE, gText_PkmnInfo, 2, 1, 0, 1);
+    PrintTextOnWindow(PSS_LABEL_WINDOW_POKEMON_ABILITIES_TITLE, gText_Abilities, 2, 1, 0, 1);
     PrintTextOnWindow(PSS_LABEL_WINDOW_POKEMON_SKILLS_TITLE, gText_PkmnSkills, 2, 1, 0, 1);
     PrintTextOnWindow(PSS_LABEL_WINDOW_BATTLE_MOVES_TITLE, gText_BattleMoves, 2, 1, 0, 1);
     PrintTextOnWindow(PSS_LABEL_WINDOW_CONTEST_MOVES_TITLE, gText_ContestMoves, 2, 1, 0, 1);
@@ -2954,6 +3003,9 @@ static void PutPageWindowTilemaps(u8 page)
             PutWindowTilemap(PSS_LABEL_WINDOW_POKEMON_INFO_RENTAL);
         PutWindowTilemap(PSS_LABEL_WINDOW_POKEMON_INFO_TYPE);
         break;
+    case PSS_PAGE_ABILITIES:
+        PutWindowTilemap(PSS_LABEL_WINDOW_POKEMON_ABILITIES_TITLE);
+        break;
     case PSS_PAGE_SKILLS:
         PutWindowTilemap(PSS_LABEL_WINDOW_POKEMON_SKILLS_TITLE);
         PutWindowTilemap(PSS_LABEL_WINDOW_POKEMON_SKILLS_STATS_LEFT);
@@ -3003,6 +3055,8 @@ static void ClearPageWindowTilemaps(u8 page)
         if (InBattleFactory() || InSlateportBattleTent())
             ClearWindowTilemap(PSS_LABEL_WINDOW_POKEMON_INFO_RENTAL);
         ClearWindowTilemap(PSS_LABEL_WINDOW_POKEMON_INFO_TYPE);
+        break;
+    case PSS_PAGE_ABILITIES:
         break;
     case PSS_PAGE_SKILLS:
         ClearWindowTilemap(PSS_LABEL_WINDOW_POKEMON_SKILLS_STATS_LEFT);
@@ -3093,8 +3147,8 @@ static void PrintInfoPageText(void)
     {
         PrintMonOTName();
         PrintMonOTID();
-        PrintMonAbilityName();
-        PrintMonAbilityDescription();
+        BufferMonProficiencies();
+        PrintMonProficiencies();
         BufferMonTrainerMemo();
         PrintMonTrainerMemo();
     }
@@ -3112,10 +3166,10 @@ static void Task_PrintInfoPage(u8 taskId)
         PrintMonOTID();
         break;
     case 3:
-        PrintMonAbilityName();
+        BufferMonProficiencies();
         break;
     case 4:
-        PrintMonAbilityDescription();
+        PrintMonProficiencies();
         break;
     case 5:
         BufferMonTrainerMemo();
@@ -3124,6 +3178,38 @@ static void Task_PrintInfoPage(u8 taskId)
         PrintMonTrainerMemo();
         break;
     case 7:
+        DestroyTask(taskId);
+        return;
+    }
+    data[0]++;
+}
+
+static void PrintAbilitiesPageText(void)
+{
+    PrintMonAbilityName();
+    PrintMonAbilityDescription();
+    PrintMonInnateName();
+    PrintMonInnateDescription();
+}
+
+static void Task_PrintAbilitiesPage(u8 taskId)
+{
+    s16 *data = gTasks[taskId].data;
+    switch (data[0])
+    {
+    case 1:
+        PrintMonInnateName();
+        break;
+    case 2:
+        PrintMonInnateDescription();
+        break;
+    case 4:
+        PrintMonAbilityName();
+        break;
+    case 3:
+        PrintMonAbilityDescription();
+        break;
+    case 5:
         DestroyTask(taskId);
         return;
     }
@@ -3156,16 +3242,68 @@ static void PrintMonOTID(void)
     }
 }
 
+static void SetProficiencyDynamicPlaceholder(u32 index, u32 proficiency)
+{
+    switch (proficiency)
+    {
+    case STAT_HP:
+        DynamicPlaceholderTextUtil_SetPlaceholderPtr(index, gText_HP3);
+        break;
+    case STAT_ATTACK:
+        DynamicPlaceholderTextUtil_SetPlaceholderPtr(index, gText_Attack);
+        break;
+    case STAT_DEF:
+        DynamicPlaceholderTextUtil_SetPlaceholderPtr(index, gText_Defense);
+        break;
+    case STAT_SPATTACK:
+        DynamicPlaceholderTextUtil_SetPlaceholderPtr(index, gText_SpAtk);
+        break;
+    case STAT_SPDEF:
+        DynamicPlaceholderTextUtil_SetPlaceholderPtr(index, gText_SpDef);
+        break;
+    case STAT_SPEED:
+        DynamicPlaceholderTextUtil_SetPlaceholderPtr(index, gText_Speed);
+        break;
+    }
+}
+
+static const u8 sProficiencyText[] = _("{COLOR 5}{SHADOW 9}Major: {COLOR 1}{SHADOW 2}{DYNAMIC 0}\n{COLOR 12}{SHADOW 11}Minor: {COLOR 1}{SHADOW 2}{DYNAMIC 1}");
+
+static void BufferMonProficiencies(void)
+{
+    DynamicPlaceholderTextUtil_Reset();
+    SetProficiencyDynamicPlaceholder(0, sMonSummaryScreen->summary.majorProficiency);
+    SetProficiencyDynamicPlaceholder(1, sMonSummaryScreen->summary.minorProficiency);
+    DynamicPlaceholderTextUtil_ExpandPlaceholders(gStringVar4, sProficiencyText);
+}
+
+static void PrintMonProficiencies(void)
+{
+    PrintTextOnWindow(AddWindowFromTemplateList(sPageInfoTemplate, PSS_DATA_WINDOW_INFO_PROFICIENCIES), gStringVar4, 0, 1, 0, 0);
+}
+
 static void PrintMonAbilityName(void)
 {
     u16 ability = GetAbilityBySpecies(sMonSummaryScreen->summary.species, sMonSummaryScreen->summary.abilityNum);
-    PrintTextOnWindowWithFont(AddWindowFromTemplateList(sPageInfoTemplate, PSS_DATA_WINDOW_INFO_ABILITY), gAbilitiesInfo[ability].name, 0, 1, 0, 1, FONT_SMALL);
+    PrintTextOnWindowWithFont(AddWindowFromTemplateList(sPageAbilitiesTemplate, PSS_DATA_WINDOW_ABILITY_BOTTOM), gAbilitiesInfo[ability].name, 0, 1, 0, 1, FONT_SMALL);
 }
 
 static void PrintMonAbilityDescription(void)
 {
     u16 ability = GetAbilityBySpecies(sMonSummaryScreen->summary.species, sMonSummaryScreen->summary.abilityNum);
-    PrintTextOnWindowWithFont(AddWindowFromTemplateList(sPageInfoTemplate, PSS_DATA_WINDOW_INFO_ABILITY), gAbilitiesInfo[ability].description, 0, 15, 0, 0, FONT_SMALL);
+    PrintTextOnWindowWithFont(AddWindowFromTemplateList(sPageAbilitiesTemplate, PSS_DATA_WINDOW_ABILITY_BOTTOM), gAbilitiesInfo[ability].description, 0, 15, 0, 0, FONT_SMALL);
+}
+
+static void PrintMonInnateName(void)
+{
+    u16 ability = gSpeciesInfo[sMonSummaryScreen->summary.species].innate;
+    PrintTextOnWindowWithFont(AddWindowFromTemplateList(sPageAbilitiesTemplate, PSS_DATA_WINDOW_ABILITY_TOP), gAbilitiesInfo[ability].name, 0, 1, 0, 1, FONT_SMALL);
+}
+
+static void PrintMonInnateDescription(void)
+{
+    u16 ability = gSpeciesInfo[sMonSummaryScreen->summary.species].innate;
+    PrintTextOnWindowWithFont(AddWindowFromTemplateList(sPageAbilitiesTemplate, PSS_DATA_WINDOW_ABILITY_TOP), gAbilitiesInfo[ability].description, 0, 15, 0, 0, FONT_SMALL);
 }
 
 static void BufferMonTrainerMemo(void)
@@ -3222,7 +3360,7 @@ static void BufferMonTrainerMemo(void)
 
 static void PrintMonTrainerMemo(void)
 {
-    PrintTextOnWindowWithFont(AddWindowFromTemplateList(sPageInfoTemplate, PSS_DATA_WINDOW_INFO_MEMO), gStringVar4, 0, 8, 0, 0, FONT_SMALL);
+    PrintTextOnWindow(AddWindowFromTemplateList(sPageInfoTemplate, PSS_DATA_WINDOW_INFO_MEMO), gStringVar4, 0, 1, 0, 0);
 }
 
 static void BufferNatureString(void)
@@ -3326,7 +3464,7 @@ static void PrintEggState(void)
     else
         text = gText_EggWillTakeALongTime;
 
-    PrintTextOnWindowWithFont(AddWindowFromTemplateList(sPageInfoTemplate, PSS_DATA_WINDOW_INFO_ABILITY), text, 0, 1, 0, 0, FONT_SMALL);
+    PrintTextOnWindow(AddWindowFromTemplateList(sPageInfoTemplate, PSS_DATA_WINDOW_INFO_PROFICIENCIES), text, 0, 1, 0, 0);
 }
 
 static void PrintEggMemo(void)
@@ -3350,7 +3488,7 @@ static void PrintEggMemo(void)
         text = gText_OddEggFoundByCouple;
     }
 
-    PrintTextOnWindowWithFont(AddWindowFromTemplateList(sPageInfoTemplate, PSS_DATA_WINDOW_INFO_MEMO), text, 0, 1, 0, 0, FONT_SMALL);
+    PrintTextOnWindow(AddWindowFromTemplateList(sPageInfoTemplate, PSS_DATA_WINDOW_INFO_MEMO), text, 0, 1, 0, 0);
 }
 
 static void PrintSkillsPageText(void)
@@ -3445,7 +3583,7 @@ static void BufferStat(u8 *dst, u32 statIndex, u32 stat, u32 strId, u32 n)
 {
     static const u8 sTextNeutral[] = _("{COLOR 1}{SHADOW 2}");
     static const u8 sTextMajor[] = _("{COLOR 5}{SHADOW 9}");
-    static const u8 sTextMinor[] = _("{COLOR 1}{SHADOW 9}");
+    static const u8 sTextMinor[] = _("{COLOR 12}{SHADOW 11}");
     u8 *txtPtr;
 
     if (statIndex == sMonSummaryScreen->summary.majorProficiency)
@@ -3892,15 +4030,15 @@ static void SetMonTypeIcons(void)
     struct PokeSummary *summary = &sMonSummaryScreen->summary;
     if (summary->isEgg)
     {
-        SetTypeSpritePosAndPal(TYPE_MYSTERY, 118, 40, SPRITE_ARR_ID_TYPE);
+        SetTypeSpritePosAndPal(TYPE_MYSTERY, 118, 48, SPRITE_ARR_ID_TYPE);
         SetSpriteInvisibility(SPRITE_ARR_ID_TYPE + 1, TRUE);
     }
     else
     {
-        SetTypeSpritePosAndPal(gSpeciesInfo[summary->species].types[0], 118, 40, SPRITE_ARR_ID_TYPE);
+        SetTypeSpritePosAndPal(gSpeciesInfo[summary->species].types[0], 118, 48, SPRITE_ARR_ID_TYPE);
         if (gSpeciesInfo[summary->species].types[0] != gSpeciesInfo[summary->species].types[1])
         {
-            SetTypeSpritePosAndPal(gSpeciesInfo[summary->species].types[1], 151, 40, SPRITE_ARR_ID_TYPE + 1);
+            SetTypeSpritePosAndPal(gSpeciesInfo[summary->species].types[1], 151, 48, SPRITE_ARR_ID_TYPE + 1);
             SetSpriteInvisibility(SPRITE_ARR_ID_TYPE + 1, FALSE);
         }
         else

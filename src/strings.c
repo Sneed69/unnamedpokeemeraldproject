@@ -525,7 +525,8 @@ const u8 gText_EmptyString5[] = _("");
 const u8 gText_Events[] = _("Events"); // Unused
 const u8 gText_Switch[] = _("Switch");
 const u8 gText_PkmnInfo[] = _("Pokémon info");
-const u8 gText_PkmnSkills[] = _("Pokémon skills");
+const u8 gText_PkmnSkills[] = _("Skills");
+const u8 gText_Abilities[] = _("Abilities");
 const u8 gText_BattleMoves[] = _("Battle moves");
 const u8 gText_ContestMoves[] = _("Contest moves");
 const u8 gText_Info[] = _("Info");
@@ -534,36 +535,14 @@ const u8 gText_EggWillTakeSomeTime[] = _("What will hatch from this?\nIt will ta
 const u8 gText_EggWillHatchSoon[] = _("It moves occasionally.\nIt should hatch soon.");
 const u8 gText_EggAboutToHatch[] = _("It's making sounds.\nIt's about to hatch!");
 const u8 gText_HMMovesCantBeForgotten2[] = _("HM moves can't be\nforgotten now.");
-
-const u8 gText_XNatureMetAtYZ[] = _(
-    "{DYNAMIC 0}{DYNAMIC 2}{DYNAMIC 1}{DYNAMIC 5} nature, met in\n"
-    "{DYNAMIC 0}{DYNAMIC 4}{DYNAMIC 1}, at {LV_2}{DYNAMIC 0}{DYNAMIC 3}{DYNAMIC 1}.");
-        
-const u8 gText_XNatureHatchedAtYZ[] = _(
-    "{DYNAMIC 0}{DYNAMIC 2}{DYNAMIC 1}{DYNAMIC 5} nature,\n"
-    "hatched in {DYNAMIC 0}{DYNAMIC 4}{DYNAMIC 1}.");
-
-const u8 gText_XNatureObtainedInTrade[] = _(
-    "{DYNAMIC 0}{DYNAMIC 2}{DYNAMIC 1}{DYNAMIC 5} nature,\n"
-    "obtained in a trade.");
-
-const u8 gText_XNatureFatefulEncounter[] = _(
-    "{DYNAMIC 0}{DYNAMIC 2}{DYNAMIC 1}{DYNAMIC 5} nature,\n"
-    "obtained in a fateful\nencounter at {LV_2}{DYNAMIC 0}{DYNAMIC 3}{DYNAMIC 1}.");
-
-const u8 gText_XNatureProbablyMetAt[] = _(
-    "{DYNAMIC 0}{DYNAMIC 2}{DYNAMIC 1}{DYNAMIC 5} nature, met at {LV_2}{DYNAMIC 0}{DYNAMIC 3}{DYNAMIC 1},\n"
-    "{DYNAMIC 0}{DYNAMIC 4}{DYNAMIC 1}.");
-
+const u8 gText_XNatureMetAtYZ[] = _("{DYNAMIC 0}{DYNAMIC 2}{DYNAMIC 1}{DYNAMIC 5} nature.\nMet at level {DYNAMIC 0}{DYNAMIC 3}{DYNAMIC 1},\n{DYNAMIC 0}{DYNAMIC 4}{DYNAMIC 1}.");
+const u8 gText_XNatureHatchedAtYZ[] = _("{DYNAMIC 0}{DYNAMIC 2}{DYNAMIC 1}{DYNAMIC 5} nature.\nHatched at level {DYNAMIC 0}{DYNAMIC 3}{DYNAMIC 1},\n{DYNAMIC 0}{DYNAMIC 4}{DYNAMIC 1}.");
+const u8 gText_XNatureObtainedInTrade[] = _("{DYNAMIC 0}{DYNAMIC 2}{DYNAMIC 1}{DYNAMIC 5} nature.\nObtained in a trade.");
+const u8 gText_XNatureFatefulEncounter[] = _("{DYNAMIC 0}{DYNAMIC 2}{DYNAMIC 1}{DYNAMIC 5} nature.\nObtained in a fateful\nencounter at level {DYNAMIC 0}{DYNAMIC 3}{DYNAMIC 1}.");
+const u8 gText_XNatureProbablyMetAt[] = _("{DYNAMIC 0}{DYNAMIC 2}{DYNAMIC 1}{DYNAMIC 5} nature.\nProbably met at level {DYNAMIC 0}{DYNAMIC 3}{DYNAMIC 1},\n{DYNAMIC 0}{DYNAMIC 4}{DYNAMIC 1}.");
 const u8 gText_XNature[] = _("{DYNAMIC 0}{DYNAMIC 2}{DYNAMIC 1}{DYNAMIC 5} nature");
-const u8 gText_XNatureMetSomewhereAt[] = _(
-    "{DYNAMIC 0}{DYNAMIC 2}{DYNAMIC 1}{DYNAMIC 5} nature,\n"
-    "met somewhere at {LV_2}{DYNAMIC 0}{DYNAMIC 3}{DYNAMIC 1}.");
-
-const u8 gText_XNatureHatchedSomewhereAt[] = _(
-    "{DYNAMIC 0}{DYNAMIC 2}{DYNAMIC 1}{DYNAMIC 5} nature,\n"
-    "hatched somewhere at {LV_2}{DYNAMIC 0}{DYNAMIC 3}{DYNAMIC 1}.");
-
+const u8 gText_XNatureMetSomewhereAt[] = _("{DYNAMIC 0}{DYNAMIC 2}{DYNAMIC 1}{DYNAMIC 5} nature.\nMet somewhere at level {DYNAMIC 0}{DYNAMIC 3}{DYNAMIC 1}.");
+const u8 gText_XNatureHatchedSomewhereAt[] = _("{DYNAMIC 0}{DYNAMIC 2}{DYNAMIC 1}{DYNAMIC 5} nature.\nHatched somewhere at level {DYNAMIC 0}{DYNAMIC 3}{DYNAMIC 1}.");
 const u8 gText_OddEggFoundByCouple[] = _("An odd Pokémon Egg found\nby the Day Care couple.");
 const u8 gText_PeculiarEggNicePlace[] = _("A peculiar Pokémon Egg\nobtained at the nice place.");
 const u8 gText_PeculiarEggTrade[] = _("A peculiar Pokémon Egg\nobtained in a trade.");
