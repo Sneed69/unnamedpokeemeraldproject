@@ -3285,7 +3285,7 @@ static void PrintMonProficiencies(void)
 static void PrintMonAbilityName(void)
 {
     u16 ability = GetAbilityBySpecies(sMonSummaryScreen->summary.species, sMonSummaryScreen->summary.abilityNum);
-    PrintTextOnWindowWithFont(AddWindowFromTemplateList(sPageAbilitiesTemplate, PSS_DATA_WINDOW_ABILITY_BOTTOM), gAbilitiesInfo[ability].name, 0, 1, 0, 1, FONT_SMALL);
+    PrintTextOnWindow(AddWindowFromTemplateList(sPageAbilitiesTemplate, PSS_DATA_WINDOW_ABILITY_BOTTOM), gAbilitiesInfo[ability].name, 0, 1, 0, 1);
 }
 
 static void PrintMonAbilityDescription(void)
@@ -3297,7 +3297,7 @@ static void PrintMonAbilityDescription(void)
 static void PrintMonInnateName(void)
 {
     u16 ability = gSpeciesInfo[sMonSummaryScreen->summary.species].innate;
-    PrintTextOnWindowWithFont(AddWindowFromTemplateList(sPageAbilitiesTemplate, PSS_DATA_WINDOW_ABILITY_TOP), gAbilitiesInfo[ability].name, 0, 1, 0, 1, FONT_SMALL);
+    PrintTextOnWindow(AddWindowFromTemplateList(sPageAbilitiesTemplate, PSS_DATA_WINDOW_ABILITY_TOP), gAbilitiesInfo[ability].name, 0, 1, 0, 1);
 }
 
 static void PrintMonInnateDescription(void)
