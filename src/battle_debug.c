@@ -169,6 +169,7 @@ static const u8 *GetHoldEffectName(u16 holdEffect);
 // const rom data
 static const u8 sText_HoldEffect[] = _("Hold Effect");
 static const u8 sText_Ability[] = _("Ability");
+static const u8 sText_Ability2[] = _("Innate");
 static const u8 sText_Moves[] = _("Moves");
 static const u8 sText_Stats[] = _("Stats");
 static const u8 sText_StatStages[] = _("Stat Stages");
@@ -879,6 +880,7 @@ static void SwitchToAiPointsView(u8 taskId)
 static const u8 *const sAiInfoItemNames[] =
 {
     sText_Ability,
+    sText_Ability2,
     sText_HeldItem,
     sText_HoldEffect,
 };
