@@ -1279,7 +1279,7 @@ void AI_DecideKnownAbilitiesForTurn(u32 battlerId, u32 *abilities)
 
                 for (j = 0; j < NUM_ABILITY_SLOTS; j++)
                 {
-                if (gSpeciesInfo[gBattleMons[battlerId].species].abilities[i] != ABILITY_NONE)
+                if (gSpeciesInfo[gBattleMons[battlerId].species].abilities[j] != ABILITY_NONE)
                     validAbilities[numValidAbilities++] = gSpeciesInfo[gBattleMons[battlerId].species].abilities[j];                    
                 }
 
