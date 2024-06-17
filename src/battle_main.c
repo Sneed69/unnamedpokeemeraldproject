@@ -245,6 +245,7 @@ EWRAM_DATA u8 gPartyCriticalHits[PARTY_SIZE] = {0};
 EWRAM_DATA static u8 sTriedEvolving = 0;
 EWRAM_DATA u8 gMoveResultEffectinessStrength = 0;
 EWRAM_DATA u8 gCategoryIconSpriteId = 0;
+EWRAM_DATA u16 gCurrentAbility = 0;
 
 void (*gPreBattleCallback1)(void);
 void (*gBattleMainFunc)(void);

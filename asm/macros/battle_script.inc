@@ -2353,6 +2353,10 @@
 	jumpifhalfword CMP_EQUAL, gCurrentMove, \move, \jumpInstr
 	.endm
 
+	.macro jumpifcurrentability ability:req, jumpInstr:req
+	jumpifhalfword CMP_EQUAL, gCurrentAbility, \ability, \jumpInstr
+	.endm
+
 	.macro jumpifnotmove move:req, jumpInstr:req
 	jumpifhalfword CMP_NOT_EQUAL, gCurrentMove, \move, \jumpInstr
 	.endm

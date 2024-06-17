@@ -182,7 +182,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_INTIMIDATE] =
     {
         .name = _("Intimidate"),
-        .description = COMPOUND_STRING("Upon entering a battle,\nlowers the opposing\nPokémon's Attack."),
+        .description = COMPOUND_STRING("Upon entering a battle, instills\nfear in opposing Pokémon,\nlowering their Attack."),
         .aiRating = 7,
     },
 
@@ -2910,5 +2910,19 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
         .description = COMPOUND_STRING("Halves damage taken from Ice-,\nRock- and Steel-type moves."),
         .aiRating = 6,
         .breakable = TRUE,
+    },
+
+    [ABILITY_FRIGHTEN] =
+    {
+        .name = _("Frighten"),
+        .description = COMPOUND_STRING("Upon entering a battle, instills\nfear in opposing Pokémon,\nharshly lowering their Speed."),
+        .aiRating = 7,
+    },
+
+    [ABILITY_APOSEMATISM] =
+    {
+        .name = _("Aposematism"),
+        .description = COMPOUND_STRING("Upon entering a battle, instills\nfear in opposing Pokémon,\nlowering their Sp. Attack."),
+        .aiRating = 7,
     },
 };

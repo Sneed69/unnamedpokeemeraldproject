@@ -1081,6 +1081,7 @@ extern u8 gBattlerSpriteIds[MAX_BATTLERS_COUNT];
 extern u8 gCurrMovePos;
 extern u8 gChosenMovePos;
 extern u16 gCurrentMove;
+extern u16 gCurrentAbility;
 extern u16 gChosenMove;
 extern u16 gCalledMove;
 extern s32 gBattleMoveDamage;

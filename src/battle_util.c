@@ -731,6 +731,7 @@ void HandleAction_ActionFinished(void)
         ExpendTypeStellarBoost(gBattlerAttacker, moveType);
     }
 
+    gCurrentAbility = 0;
     gCurrentMove = 0;
     gBattleMoveDamage = 0;
     gMoveResultFlags = 0;
@@ -4738,11 +4739,13 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
             }
             break;
         case ABILITY_INTIMIDATE:
+        case ABILITY_FRIGHTEN:
+        case ABILITY_APOSEMATISM:
             if (!gSpecialStatuses[battler].switchInAbilitiesDone[k])
             {
+                gCurrentAbility = gLastUsedAbilities[battler];
                 gBattlerAttacker = battler;
                 gSpecialStatuses[battler].switchInAbilitiesDone[k] = TRUE;
-                SET_STATCHANGER(STAT_ATK, 1, TRUE);
                 BattleScriptPushCursorAndCallback(BattleScript_IntimidateActivates);
                 effect++;
             }

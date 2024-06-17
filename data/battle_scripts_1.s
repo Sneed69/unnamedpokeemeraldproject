@@ -7986,7 +7986,10 @@ BattleScript_IntimidateLoop:
 	jumpifability BS_TARGET, ABILITY_GUARD_DOG, BattleScript_IntimidateInReverse
 BattleScript_IntimidateEffect:
 	copybyte sBATTLER, gBattlerAttacker
+	jumpifcurrentability ABILITY_FRIGHTEN, BattleScript_IntimidateFrighten
+	jumpifcurrentability ABILITY_APOSEMATISM, BattleScript_IntimidateAposematism
 	setstatchanger STAT_ATK, 1, TRUE
+BattleScript_IntimidateStatBuffChange:
 	statbuffchange STAT_CHANGE_NOT_PROTECT_AFFECTED | STAT_CHANGE_ALLOW_PTR, BattleScript_IntimidateLoopIncrement
 	setgraphicalstatchangevalues
 	jumpifability BS_TARGET, ABILITY_CONTRARY, BattleScript_IntimidateContrary
@@ -8006,6 +8009,12 @@ BattleScript_IntimidateEnd:
 	restoretarget
 	pause B_WAIT_TIME_MED
 	end3
+BattleScript_IntimidateFrighten:
+	setstatchanger STAT_SPEED, 2, TRUE
+	goto BattleScript_IntimidateStatBuffChange
+BattleScript_IntimidateAposematism:
+	setstatchanger STAT_SPATK, 1, TRUE
+	goto BattleScript_IntimidateStatBuffChange
 
 BattleScript_IntimidatePrevented:
 	copybyte sBATTLER, gBattlerTarget
