@@ -1314,6 +1314,7 @@ BattleScript_EffectLaserFocus::
 	goto BattleScript_MoveEnd
 
 BattleScript_VCreateStatLoss::
+	jumpifability BS_ATTACKER, ABILITY_INNER_FOCUS, BattleScript_InnerFocus
 	jumpifstat BS_ATTACKER, CMP_GREATER_THAN, STAT_DEF, MIN_STAT_STAGE, BattleScript_VCreateStatAnim
 	jumpifstat BS_ATTACKER, CMP_GREATER_THAN, STAT_SPDEF, MIN_STAT_STAGE, BattleScript_VCreateStatAnim
 	jumpifstat BS_ATTACKER, CMP_EQUAL, STAT_SPEED, MIN_STAT_STAGE, BattleScript_VCreateStatLossRet
@@ -4230,6 +4231,16 @@ BattleScript_EffectMinimize::
 .endif
 	goto BattleScript_EffectStatUpAfterAtkCanceler
 
+BattleScript_InnerFocus::
+	call BattleScript_AbilityPopUpAttacker
+	printstring STRINGID_PREVENTSLOWERINGOWNSTATS
+	waitmessage B_WAIT_TIME_LONG
+	return
+
+BattleScript_CurseInnerFocus:
+	call BattleScript_InnerFocus
+	goto BattleScript_CurseTryAttack
+
 BattleScript_EffectCurse::
 	jumpiftype BS_ATTACKER, TYPE_GHOST, BattleScript_GhostCurse
 	attackcanceler
@@ -4243,6 +4254,7 @@ BattleScript_CurseTrySpeed::
 	setbyte sB_ANIM_TURN, 1
 	attackanimation
 	waitanimation
+	jumpifability BS_ATTACKER, ABILITY_INNER_FOCUS, BattleScript_CurseInnerFocus
 	setstatchanger STAT_SPEED, 1, TRUE
 	statbuffchange MOVE_EFFECT_AFFECTS_USER | STAT_CHANGE_ALLOW_PTR, BattleScript_CurseTryAttack
 	printfromtable gStatDownStringIds
@@ -6896,6 +6908,7 @@ BattleScript_PrintMonIsRooted::
 	goto BattleScript_MoveEnd
 
 BattleScript_AtkDefDown::
+	jumpifability BS_ATTACKER, ABILITY_INNER_FOCUS, BattleScript_InnerFocus
 	setbyte sSTAT_ANIM_PLAYED, FALSE
 	playstatchangeanimation BS_ATTACKER, BIT_DEF | BIT_ATK, STAT_CHANGE_CANT_PREVENT | STAT_CHANGE_NEGATIVE | STAT_CHANGE_MULTIPLE_STATS
 	playstatchangeanimation BS_ATTACKER, BIT_ATK, STAT_CHANGE_CANT_PREVENT | STAT_CHANGE_NEGATIVE
@@ -6915,6 +6928,7 @@ BattleScript_AtkDefDownRet:
 	return
 
 BattleScript_DefSpDefDown::
+	jumpifability BS_ATTACKER, ABILITY_INNER_FOCUS, BattleScript_InnerFocus
 	setbyte sSTAT_ANIM_PLAYED, FALSE
 	playstatchangeanimation BS_ATTACKER, BIT_DEF | BIT_SPDEF, STAT_CHANGE_CANT_PREVENT | STAT_CHANGE_NEGATIVE | STAT_CHANGE_MULTIPLE_STATS
 	playstatchangeanimation BS_ATTACKER, BIT_DEF, STAT_CHANGE_CANT_PREVENT | STAT_CHANGE_NEGATIVE
@@ -7705,6 +7719,10 @@ BattleScript_AbilityRaisesDefenderStat::
 	waitmessage B_WAIT_TIME_LONG
 	return
 
+BattleScript_AbilityPopUpAttacker::
+	copybyte gBattlerAbility, gBattlerAttacker
+	call BattleScript_AbilityPopUp
+	return
 BattleScript_AbilityPopUpTarget:
 	copybyte gBattlerAbility, gBattlerTarget
 BattleScript_AbilityPopUp:
@@ -8030,7 +8048,6 @@ BattleScript_UnthreateningLoop:
 	jumpiftargetally BattleScript_UnthreateningLoopIncrement
 	jumpifabsent BS_TARGET, BattleScript_UnthreateningLoopIncrement
 	jumpifstatus2 BS_TARGET, STATUS2_SUBSTITUTE, BattleScript_UnthreateningLoopIncrement
-	jumpifability BS_TARGET, ABILITY_INNER_FOCUS, BattleScript_UnthreateningPrevented
 	jumpifability BS_TARGET, ABILITY_OWN_TEMPO, BattleScript_UnthreateningPrevented
 	jumpifability BS_TARGET, ABILITY_OBLIVIOUS, BattleScript_UnthreateningPrevented
 	jumpifstat BS_TARGET, CMP_GREATER_THAN, STAT_SPDEF, MIN_STAT_STAGE, BattleScript_UnthreateningEffect

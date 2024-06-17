@@ -314,7 +314,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_INNER_FOCUS] =
     {
         .name = _("Inner Focus"),
-        .description = COMPOUND_STRING("Protects against flinching\nand abilities that lower\nstats after switching in."),
+        .description = COMPOUND_STRING("Cannot lower its own stats.\nProtects against flinching and\nabilities that instill fear."),
         .aiRating = 2,
         .breakable = TRUE,
     },

@@ -72,6 +72,7 @@ extern const u8 BattleScript_BideAttack[];
 extern const u8 BattleScript_BideNoEnergyToAttack[];
 extern const u8 BattleScript_RoarSuccessSwitch[];
 extern const u8 BattleScript_RoarSuccessEndBattle[];
+extern const u8 BattleScript_InnerFocus[];
 extern const u8 BattleScript_MistProtected[];
 extern const u8 BattleScript_RageIsBuilding[];
 extern const u8 BattleScript_MoveUsedIsDisabled[];

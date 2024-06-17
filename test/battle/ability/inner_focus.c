@@ -55,3 +55,35 @@ SINGLE_BATTLE_TEST("Inner Focus is ignored by Mold Breaker")
         MESSAGE("Foe Zubat flinched!");
     }
 }
+
+SINGLE_BATTLE_TEST("Inner Focus prevents self stat drops")
+{
+    u32 move;
+
+    PARAMETRIZE { move = MOVE_V_CREATE; }
+    PARAMETRIZE { move = MOVE_CURSE; }
+    PARAMETRIZE { move = MOVE_CLOSE_COMBAT; }
+    PARAMETRIZE { move = MOVE_TOPPLE_PSYCHE; }
+    PARAMETRIZE { move = MOVE_DRACO_METEOR; }
+    PARAMETRIZE { move = MOVE_HAMMER_ARM; }
+    PARAMETRIZE { move = MOVE_SUPERPOWER; }
+
+    GIVEN {
+        OPPONENT(SPECIES_ALAKAZAM) { HP(500); }
+        PLAYER(SPECIES_DRAGONITE) { Ability(ABILITY_INNER_FOCUS); };
+    } WHEN {
+        TURN { MOVE(player, move); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, move, player);
+        ABILITY_POPUP(player, ABILITY_INNER_FOCUS);
+        MESSAGE("Dragonite's Inner Focus prevents lowering its own stats!");
+        NOT ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
+    } THEN {
+        int i;
+
+        for (i = STAT_ATK; i < NUM_STATS; i++)
+        {
+            EXPECT_GE(player->statStages[i], DEFAULT_STAT_STAGE);
+        }
+    }
+}

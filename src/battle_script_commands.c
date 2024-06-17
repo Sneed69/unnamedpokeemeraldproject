@@ -11783,6 +11783,12 @@ static u32 ChangeStatBuffs(s8 statValue, u32 statId, u32 flags, const u8 *BS_ptr
 
     if (statValue <= -1) // Stat decrease.
     {
+        if ((affectsUser && IsAbilityInArray(battlerAbilities, ABILITY_INNER_FOCUS)))
+        {
+            gLastUsedAbilities[battler] = ABILITY_INNER_FOCUS;
+            BattleScriptPush(BattleScript_InnerFocus);
+            return STAT_CHANGE_DIDNT_WORK;
+        }
         if (gSideTimers[GetBattlerSide(battler)].mistTimer
             && !certain && gCurrentMove != MOVE_CURSE
             && !(battler == gBattlerTarget && BattlerHasAbility(gBattlerAttacker, ABILITY_INFILTRATOR)))
