@@ -1189,6 +1189,17 @@ static const u16 sBreloomEggMoveLearnset[] = {
     MOVE_UNAVAILABLE,
 };
 
+static const u16 sNincadaEggMoveLearnset[] = {
+    MOVE_BUG_BITE,
+    MOVE_FINAL_GAMBIT,
+    MOVE_FLAIL,
+    MOVE_NIGHT_SLASH,
+    MOVE_BUG_BUZZ,
+    MOVE_ENDURE,
+    MOVE_FAINT_ATTACK,
+    MOVE_SILVER_WIND,
+};
+
 static const u16 sWhismurEggMoveLearnset[] = {
     MOVE_SNORE,
     MOVE_EXTRASENSORY,

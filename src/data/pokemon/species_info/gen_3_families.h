@@ -3157,7 +3157,7 @@ static const struct SpeciesInfo gSpeciesInfoGen3[] =
         .baseSpeed     = 160,
         .baseSpAttack  = 50,
         .baseSpDefense = 50,
-        .types = MON_TYPES(TYPE_BUG, TYPE_FLYING),
+        .types = MON_TYPES(TYPE_BUG, TYPE_DARK),
         .catchRate = 120,
         .expYield = (P_UPDATED_EXP_YIELDS >= GEN_5) ? 160 : 155,
         .evYield_Speed = 2,
@@ -3212,12 +3212,12 @@ static const struct SpeciesInfo gSpeciesInfoGen3[] =
 
     [SPECIES_SHEDINJA] =
     {
-        .baseHP        = 1,
+        .baseHP        = 80,
         .baseAttack    = 90,
-        .baseDefense   = 45,
+        .baseDefense   = 100,
         .baseSpeed     = 40,
-        .baseSpAttack  = 30,
-        .baseSpDefense = 30,
+        .baseSpAttack  = 90,
+        .baseSpDefense = 100,
         .types = MON_TYPES(TYPE_BUG, TYPE_GHOST),
         .catchRate = 45,
         .expYield = (P_UPDATED_EXP_YIELDS >= GEN_5) ? 83 : 95,

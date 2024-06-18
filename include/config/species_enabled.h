@@ -200,7 +200,7 @@
 #define P_FAMILY_SURSKIT                 P_GEN_3_POKEMON
 #define P_FAMILY_SHROOMISH               P_GEN_3_POKEMON
 #define P_FAMILY_SLAKOTH                 0
-#define P_FAMILY_NINCADA                 0
+#define P_FAMILY_NINCADA                 P_GEN_3_POKEMON
 #define P_FAMILY_WHISMUR                 P_GEN_3_POKEMON
 #define P_FAMILY_MAKUHITA                P_GEN_3_POKEMON
 #define P_FAMILY_NOSEPASS                0
