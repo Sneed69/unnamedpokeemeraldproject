@@ -16,7 +16,9 @@ void AntiSaveStateUpdate(void)
             && !(diff.seconds == 1 && diff.minutes == 0 && diff.hours == 23 && diff.days == -1) // DLST winter
             && !(diff.seconds == 1 && diff.minutes == 0 && diff.hours == 1 && diff.days == 0)) // DLST summer
         {
+            DebugPrintf("%d", gSaveBlock1Ptr->statesLoaded);
             gSaveBlock1Ptr->daysWithoutCheating = 0;
+            gSaveBlock1Ptr->statesLoaded++;
             if (gSaveBlock2Ptr->optionsAntiCheat)
                 DoSoftReset();
         }
