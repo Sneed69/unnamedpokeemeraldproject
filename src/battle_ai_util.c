@@ -1001,6 +1001,8 @@ uq4_12_t AI_GetTypeEffectiveness(u32 move, u32 battlerAtk, u32 battlerDef)
     uq4_12_t typeEffectiveness;
     u32 moveType;
 
+    gBattleStruct->aiCalcInProgress = TRUE;
+
     SaveBattlerData(battlerAtk);
     SaveBattlerData(battlerDef);
 
@@ -1014,6 +1016,8 @@ uq4_12_t AI_GetTypeEffectiveness(u32 move, u32 battlerAtk, u32 battlerDef)
 
     RestoreBattlerData(battlerAtk);
     RestoreBattlerData(battlerDef);
+
+    gBattleStruct->aiCalcInProgress = FALSE;
 
     return typeEffectiveness;
 }
