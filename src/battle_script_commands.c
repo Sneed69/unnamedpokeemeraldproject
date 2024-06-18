@@ -2071,7 +2071,7 @@ static void Cmd_adjustdamage(void)
     {
         gSpecialStatuses[gBattlerTarget].cleanCut = TRUE;
         gBattleStruct->delayedDamage[gBattlerPartyIndexes[gBattlerTarget]][targetSide] += max(1, gBattleMoveDamage / 3);
-        gLastUsedAbilities[gBattlerTarget] = ABILITY_RAZOR_SHARP;
+        gLastUsedAbilities[gBattlerAttacker] = ABILITY_RAZOR_SHARP;
         RecordAbilityBattle(gBattlerAttacker, ABILITY_RAZOR_SHARP);
     }
     if (BattlerHasAbility(gBattlerTarget, ABILITY_DOPEY) && gBattleMoveDamage > 1)
