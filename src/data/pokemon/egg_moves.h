@@ -1243,6 +1243,7 @@ static const u16 sAronEggMoveLearnset[] = {
 };
 
 static const u16 sMedititeEggMoveLearnset[] = {
+    MOVE_FOCUS_PUNCH,
     MOVE_FAKE_OUT,
     MOVE_DYNAMIC_PUNCH,
     MOVE_WATER_PULSE,

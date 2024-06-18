@@ -2,15 +2,15 @@
 #define GUARD_CONSTANTS_TMS_HMS_H
 
 #define FOREACH_TM(F) \
-    F(FOCUS_PUNCH) \
+    F(SEED_BOMB) \
     F(DRACO_METEOR) \
     F(THUNDER_FANG) \
-    F(CALM_MIND) \
+    F(PSYCHO_BOOST) \
     F(ROAR) \
     F(TOXIC) \
     F(SNOWSTORM) \
     F(BULK_UP) \
-    F(SEED_BOMB) \
+    F(CALM_MIND) \
     F(HIDDEN_POWER) \
     F(FLARE) \
     F(TAUNT) \

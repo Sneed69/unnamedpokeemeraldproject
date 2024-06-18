@@ -289,7 +289,8 @@
       "MOVE_MINDSTORM",
       "MOVE_PSYCHIC",
       "MOVE_STRENGTH",
-      "MOVE_FLARE"
+      "MOVE_FLARE",
+      "MOVE_PSYCHO_BOOST"
     ]
   },
   "IGGLYBUFF": {
@@ -541,7 +542,8 @@
     "TMMoves": [],
     "EggMoves": [],
     "TutorMoves": [
-      "MOVE_MINDSTORM"
+      "MOVE_MINDSTORM",
+      "MOVE_PSYCHO_BOOST"
     ]
   },
   "KADABRA": {
@@ -550,7 +552,8 @@
     "TMMoves": [],
     "EggMoves": [],
     "TutorMoves": [
-      "MOVE_MINDSTORM"
+      "MOVE_MINDSTORM",
+      "MOVE_PSYCHO_BOOST"
     ]
   },
   "ALAKAZAM": {
@@ -559,7 +562,8 @@
     "TMMoves": [],
     "EggMoves": [],
     "TutorMoves": [
-      "MOVE_MINDSTORM"
+      "MOVE_MINDSTORM",
+      "MOVE_PSYCHO_BOOST"
     ]
   },
   "TENTACOOL": {
@@ -638,7 +642,8 @@
     "EggMoves": [],
     "TutorMoves": [
       "MOVE_MINDSTORM",
-      "MOVE_GEYSER"
+      "MOVE_GEYSER",
+      "MOVE_PSYCHO_BOOST"
     ]
   },
   "SLOWBRO": {
@@ -648,7 +653,8 @@
     "EggMoves": [],
     "TutorMoves": [
       "MOVE_MINDSTORM",
-      "MOVE_GEYSER"
+      "MOVE_GEYSER",
+      "MOVE_PSYCHO_BOOST"
     ]
   },
   "SLOWKING": {
@@ -658,7 +664,8 @@
     "EggMoves": [],
     "TutorMoves": [
       "MOVE_MINDSTORM",
-      "MOVE_GEYSER"
+      "MOVE_GEYSER",
+      "MOVE_PSYCHO_BOOST"
     ]
   },
   "MAGNEMITE": {
@@ -768,7 +775,8 @@
     "EggMoves": [],
     "TutorMoves": [
       "MOVE_BLOOM",
-      "MOVE_MINDSTORM"
+      "MOVE_MINDSTORM",
+      "MOVE_PSYCHO_BOOST"
     ]
   },
   "EXEGGUTOR": {
@@ -778,7 +786,8 @@
     "EggMoves": [],
     "TutorMoves": [
       "MOVE_BLOOM",
-      "MOVE_MINDSTORM"
+      "MOVE_MINDSTORM",
+      "MOVE_PSYCHO_BOOST"
     ]
   },
   "CUBONE": {
@@ -938,7 +947,8 @@
     "TutorMoves": [
       "MOVE_GEYSER",
       "MOVE_MINDSTORM",
-      "MOVE_ICE_SPINNER"
+      "MOVE_ICE_SPINNER",
+      "MOVE_PSYCHO_BOOST"
     ]
   },
   "STARMIE": {
@@ -949,7 +959,8 @@
     "TutorMoves": [
       "MOVE_GEYSER",
       "MOVE_MINDSTORM",
-      "MOVE_ICE_SPINNER"
+      "MOVE_ICE_SPINNER",
+      "MOVE_PSYCHO_BOOST"
     ]
   },
   "MR_MIME_GALARIAN": {
@@ -997,7 +1008,8 @@
     "TutorMoves": [
       "MOVE_SNOWSTORM",
       "MOVE_HOWLING_GALE",
-      "MOVE_DAZZLING_GLEAM"
+      "MOVE_DAZZLING_GLEAM",
+      "MOVE_PSYCHO_BOOST"
     ]
   },
   "JYNX": {
@@ -1009,7 +1021,8 @@
       "MOVE_SNOWSTORM",
       "MOVE_MINDSTORM",
       "MOVE_HOWLING_GALE",
-      "MOVE_DAZZLING_GLEAM"
+      "MOVE_DAZZLING_GLEAM",
+      "MOVE_PSYCHO_BOOST"
     ]
   },
   "ELEKID": {
@@ -1151,7 +1164,8 @@
     "TMMoves": [],
     "EggMoves": [],
     "TutorMoves": [
-      "MOVE_MINDSTORM"
+      "MOVE_MINDSTORM",
+      "MOVE_PSYCHO_BOOST"
     ]
   },
   "UMBREON": {
@@ -1471,7 +1485,8 @@
     "TutorMoves": [
       "MOVE_HOWLING_GALE",
       "MOVE_TORNADO",
-      "MOVE_MINDSTORM"
+      "MOVE_MINDSTORM",
+      "MOVE_PSYCHO_BOOST"
     ]
   },
   "XATU": {
@@ -1483,7 +1498,8 @@
       "MOVE_STRENGTH",
       "MOVE_HOWLING_GALE",
       "MOVE_TORNADO",
-      "MOVE_MINDSTORM"
+      "MOVE_MINDSTORM",
+      "MOVE_PSYCHO_BOOST"
     ]
   },
   "MAREEP": {
@@ -1697,7 +1713,8 @@
     "EggMoves": [],
     "TutorMoves": [
       "MOVE_PLAY_ROUGH",
-      "MOVE_STARFALL"
+      "MOVE_STARFALL",
+      "MOVE_PSYCHO_BOOST"
     ]
   },
   "GIRAFARIG": {
@@ -1706,7 +1723,8 @@
     "TMMoves": [],
     "EggMoves": [],
     "TutorMoves": [
-      "MOVE_MINDSTORM"
+      "MOVE_MINDSTORM",
+      "MOVE_PSYCHO_BOOST"
     ]
   },
   "FARIGIRAF": {
@@ -1720,7 +1738,8 @@
       "MOVE_IRON_TAIL",
       "MOVE_SIGNAL_BEAM",
       "MOVE_STRENGTH",
-      "MOVE_MINDSTORM"
+      "MOVE_MINDSTORM",
+      "MOVE_PSYCHO_BOOST"
     ]
   },
   "GLIGAR": {
@@ -2075,7 +2094,8 @@
       "MOVE_CALM_MIND",
       "MOVE_MINDSTORM",
       "MOVE_PSYSHOCK",
-      "MOVE_IRON_DEFENSE"
+      "MOVE_IRON_DEFENSE",
+      "MOVE_PSYCHO_BOOST"
     ]
   },
   "SEEDOT": {
@@ -2157,7 +2177,8 @@
     "TMMoves": [],
     "EggMoves": [],
     "TutorMoves": [
-      "MOVE_STARFALL"
+      "MOVE_STARFALL",
+      "MOVE_PSYCHO_BOOST"
     ]
   },
   "KIRLIA": {
@@ -2166,7 +2187,8 @@
     "TMMoves": [],
     "EggMoves": [],
     "TutorMoves": [
-      "MOVE_STARFALL"
+      "MOVE_STARFALL",
+      "MOVE_PSYCHO_BOOST"
     ]
   },
   "GARDEVOIR": {
@@ -2176,7 +2198,8 @@
     "EggMoves": [],
     "TutorMoves": [
       "MOVE_MINDSTORM",
-      "MOVE_STARFALL"
+      "MOVE_STARFALL",
+      "MOVE_PSYCHO_BOOST"
     ]
   },
   "GALLADE": {
@@ -2185,7 +2208,8 @@
     "TMMoves": [],
     "EggMoves": [],
     "TutorMoves": [
-      "MOVE_STARFALL"
+      "MOVE_STARFALL",
+      "MOVE_PSYCHO_BOOST"
     ]
   },
   "SHROOMISH": {
@@ -2336,7 +2360,8 @@
     "TutorMoves": [
       "MOVE_DAZZLING_GLEAM",
       "MOVE_HEX",
-      "MOVE_MINDSTORM"
+      "MOVE_MINDSTORM",
+      "MOVE_PSYCHO_BOOST"
     ]
   },
   "MEDICHAM": {
@@ -2347,7 +2372,8 @@
     "TutorMoves": [
       "MOVE_DAZZLING_GLEAM",
       "MOVE_HEX",
-      "MOVE_MINDSTORM"
+      "MOVE_MINDSTORM",
+      "MOVE_PSYCHO_BOOST"
     ]
   },
   "ELECTRIKE": {
@@ -2469,7 +2495,8 @@
     "TMMoves": [],
     "EggMoves": [],
     "TutorMoves": [
-      "MOVE_MINDSTORM"
+      "MOVE_MINDSTORM",
+      "MOVE_PSYCHO_BOOST"
     ]
   },
   "GRUMPIG": {
@@ -2480,7 +2507,8 @@
     "TutorMoves": [
       "MOVE_STRENGTH",
       "MOVE_SUPERPOWER",
-      "MOVE_MINDSTORM"
+      "MOVE_MINDSTORM",
+      "MOVE_PSYCHO_BOOST"
     ]
   },
   "TRAPINCH": {
@@ -2556,7 +2584,8 @@
       "MOVE_LANDSLIDE",
       "MOVE_MINDSTORM",
       "MOVE_DUST_DEVIL",
-      "MOVE_ICE_SPINNER"
+      "MOVE_ICE_SPINNER",
+      "MOVE_PSYCHO_BOOST"
     ]
   },
   "SOLROCK": {
@@ -2569,7 +2598,8 @@
       "MOVE_MINDSTORM",
       "MOVE_SOLAR_BLADE",
       "MOVE_FLARE",
-      "MOVE_DUST_DEVIL"
+      "MOVE_DUST_DEVIL",
+      "MOVE_PSYCHO_BOOST"
     ]
   },
   "BARBOACH": {
@@ -2619,7 +2649,8 @@
       "MOVE_LANDSLIDE",
       "MOVE_MINDSTORM",
       "MOVE_DUST_DEVIL",
-      "MOVE_ICE_SPINNER"
+      "MOVE_ICE_SPINNER",
+      "MOVE_PSYCHO_BOOST"
     ]
   },
   "CLAYDOL": {
@@ -2631,7 +2662,8 @@
       "MOVE_LANDSLIDE",
       "MOVE_MINDSTORM",
       "MOVE_DUST_DEVIL",
-      "MOVE_ICE_SPINNER"
+      "MOVE_ICE_SPINNER",
+      "MOVE_PSYCHO_BOOST"
     ]
   },
   "LILEEP": {
@@ -2871,7 +2903,8 @@
     "TMMoves": [],
     "EggMoves": [],
     "TutorMoves": [
-      "MOVE_MINDSTORM"
+      "MOVE_MINDSTORM",
+      "MOVE_PSYCHO_BOOST"
     ]
   },
   "METAGROSS": {
@@ -2880,7 +2913,8 @@
     "TMMoves": [],
     "EggMoves": [],
     "TutorMoves": [
-      "MOVE_MINDSTORM"
+      "MOVE_MINDSTORM",
+      "MOVE_PSYCHO_BOOST"
     ]
   },
   "REGIROCK": {
@@ -2921,7 +2955,8 @@
     "TutorMoves": [
       "MOVE_STRENGTH",
       "MOVE_SKY_ATTACK",
-      "MOVE_MINDSTORM"
+      "MOVE_MINDSTORM",
+      "MOVE_PSYCHO_BOOST"
     ]
   },
   "LATIOS": {
@@ -2932,7 +2967,8 @@
     "TutorMoves": [
       "MOVE_STRENGTH",
       "MOVE_SKY_ATTACK",
-      "MOVE_MINDSTORM"
+      "MOVE_MINDSTORM",
+      "MOVE_PSYCHO_BOOST"
     ]
   },
   "KYOGRE": {
@@ -3137,7 +3173,8 @@
     "TMMoves": [],
     "EggMoves": [],
     "TutorMoves": [
-      "MOVE_MINDSTORM"
+      "MOVE_MINDSTORM",
+      "MOVE_PSYCHO_BOOST"
     ]
   },
   "BRONZONG": {
@@ -3147,7 +3184,8 @@
     "EggMoves": [],
     "TutorMoves": [
       "MOVE_MINDSTORM",
-      "MOVE_HEAL_BELL"
+      "MOVE_HEAL_BELL",
+      "MOVE_PSYCHO_BOOST"
     ]
   },
   "GIBLE": {
@@ -3717,7 +3755,8 @@
     "EggMoves": [],
     "TutorMoves": [
       "MOVE_FLIP_TURN",
-      "MOVE_MINDSTORM"
+      "MOVE_MINDSTORM",
+      "MOVE_PSYCHO_BOOST"
     ]
   },
   "MALAMAR": {
@@ -3727,7 +3766,8 @@
     "EggMoves": [],
     "TutorMoves": [
       "MOVE_FLIP_TURN",
-      "MOVE_MINDSTORM"
+      "MOVE_MINDSTORM",
+      "MOVE_PSYCHO_BOOST"
     ]
   },
   "BINACLE": {
@@ -4755,6 +4795,15 @@
     "EggMoves": [],
     "TutorMoves": [
       "MOVE_DUST_DEVIL"
+    ]
+  },
+  "LUCARIO": {
+    "LevelMoves": [],
+    "PreEvoMoves": [],
+    "TMMoves": [],
+    "EggMoves": [],
+    "TutorMoves": [
+      "MOVE_PSYCHO_BOOST"
     ]
   }
 }

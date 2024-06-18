@@ -9903,13 +9903,13 @@ const struct Item gItemsInfo[] =
         .pocket = POCKET_TM_HM,                          \
         .type = ITEM_USE_PARTY_MENU,                     \
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,         \
-        .iconPic = gItemIcon_TM,                      \
+        .iconPic = gItemIcon_TM,                         \
     }
 
-    TM_ITEM(01, MOVE_FOCUS_PUNCH, 3000,
-            "Powerful, but makes\n"
-            "the user flinch if\n"
-            "hit by the foe."),
+    TM_ITEM(01, MOVE_SEED_BOMB, 12000,
+            "Shoots a barrage of\n"
+            "seeds to strike\n"
+            "the foe."),
 
     TM_ITEM(02, MOVE_DRACO_METEOR, 0,
             "Enables full-power\n"
@@ -9921,10 +9921,10 @@ const struct Item gItemsInfo[] =
             "may cause paralysis\n"
             "or flinching."),
 
-    TM_ITEM(04, MOVE_CALM_MIND, 3000,
-            "Raises Sp. Atk and\n"
-            "Sp. Def by focusing\n"
-            "the mind."),
+    TM_ITEM(04, MOVE_PSYCHO_BOOST, 3000,
+            "Enables full-power\n"
+            "attack, but sharply\n"
+            "lowers Sp. Atk."),
 
     TM_ITEM(05, MOVE_ROAR, 1000,
             "A savage roar that\n"
@@ -9946,10 +9946,10 @@ const struct Item gItemsInfo[] =
             "to boost both\n"
             "Attack & Defense."),
 
-    TM_ITEM(09, MOVE_SEED_BOMB, 12000,
-            "Shoots a barrage of\n"
-            "seeds to strike\n"
-            "the foe."),
+    TM_ITEM(09, MOVE_CALM_MIND, 3000,
+            "Raises Sp. Atk and\n"
+            "Sp. Def by focusing\n"
+            "the mind."),
 
     TM_ITEM(10, MOVE_HIDDEN_POWER, 3000,
             "The attack power\n"
