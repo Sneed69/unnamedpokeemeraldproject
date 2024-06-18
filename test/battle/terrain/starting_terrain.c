@@ -17,8 +17,8 @@ SINGLE_BATTLE_TEST("B_VAR_STARTING_STATUS starts a chosen terrain at the beginni
     VarSet(B_VAR_STARTING_STATUS_TIMER, 0);
 
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         // More than 5 turns
         TURN { ; }
@@ -67,8 +67,8 @@ SINGLE_BATTLE_TEST("Terrain started after the one which started the battle lasts
     VarSet(B_VAR_STARTING_STATUS_TIMER, 0);
 
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET) { Ability(viaMove == TRUE ? ABILITY_SHADOW_TAG : ABILITY_GRASSY_SURGE); }
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ALAKAZAM) { Ability(viaMove == TRUE ? ABILITY_SHADOW_TAG : ABILITY_GRASSY_SURGE); }
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         // More than 5 turns
         TURN { MOVE(player, viaMove == TRUE ? MOVE_GRASSY_TERRAIN : MOVE_CELEBRATE); }
@@ -84,7 +84,7 @@ SINGLE_BATTLE_TEST("Terrain started after the one which started the battle lasts
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_RESTORE_BG);
         // Player uses Grassy Terrain
         if (viaMove) {
-            MESSAGE("Wobbuffet used GrssyTerrain!");
+            MESSAGE("Alakazam used GrssyTerrain!");
             ANIMATION(ANIM_TYPE_MOVE, MOVE_GRASSY_TERRAIN, player);
             MESSAGE("Grass grew to cover the battlefield!");
         } else {
@@ -94,14 +94,14 @@ SINGLE_BATTLE_TEST("Terrain started after the one which started the battle lasts
         }
 
         // 5 turns
-        MESSAGE("Wobbuffet used Celebrate!");
-        MESSAGE("Foe Wobbuffet used Celebrate!");
+        MESSAGE("Alakazam used Celebrate!");
+        MESSAGE("Foe Alakazam used Celebrate!");
 
-        MESSAGE("Wobbuffet used Celebrate!");
-        MESSAGE("Foe Wobbuffet used Celebrate!");
+        MESSAGE("Alakazam used Celebrate!");
+        MESSAGE("Foe Alakazam used Celebrate!");
 
-        MESSAGE("Wobbuffet used Celebrate!");
-        MESSAGE("Foe Wobbuffet used Celebrate!");
+        MESSAGE("Alakazam used Celebrate!");
+        MESSAGE("Foe Alakazam used Celebrate!");
 
         MESSAGE("The grass disappeared from the battlefield.");
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_RESTORE_BG);

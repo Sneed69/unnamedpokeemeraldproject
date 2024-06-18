@@ -804,7 +804,7 @@ SINGLE_BATTLE_TEST("(TERA) Pokemon with Tera forms change upon Terastallizing")
     PARAMETRIZE { species = SPECIES_TERAPAGOS_TERASTAL;       targetSpecies = SPECIES_TERAPAGOS_STELLAR; }
     GIVEN {
         PLAYER(species);
-        OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(player, MOVE_CELEBRATE, tera: TRUE); }
     } THEN {

@@ -28,7 +28,7 @@ DOUBLE_BATTLE_TEST("Tera Starstorm targets both opponents in a double battle if 
         ASSUME(gMovesInfo[MOVE_TERA_STARSTORM].target == MOVE_TARGET_SELECTED);
         PLAYER(SPECIES_TERAPAGOS_STELLAR);
         PLAYER(SPECIES_WYNAUT);
-        OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_ALAKAZAM);
         OPPONENT(SPECIES_WYNAUT);
     } WHEN {
         TURN { MOVE(playerLeft, MOVE_TERA_STARSTORM, target:opponentLeft); }
@@ -48,7 +48,7 @@ SINGLE_BATTLE_TEST("Tera Starstorm becomes a physical move if the user is Terapa
     GIVEN {
         ASSUME(gMovesInfo[MOVE_TERA_STARSTORM].category == DAMAGE_CATEGORY_SPECIAL);
         PLAYER(SPECIES_TERAPAGOS_STELLAR) { Attack(100); SpAttack(50); }
-        OPPONENT(SPECIES_WOBBUFFET) { Defense(200); SpDefense(200); }
+        OPPONENT(SPECIES_ALAKAZAM) { Defense(200); SpDefense(200); }
     } WHEN {
         TURN { MOVE(player, MOVE_TERA_STARSTORM, tera: tera); }
     } SCENE {
