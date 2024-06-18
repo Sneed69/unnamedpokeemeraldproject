@@ -5979,6 +5979,9 @@ void SetTypeBeforeUsingMove(u32 move, u32 battlerAtk)
         gBattleStruct->dynamicMoveType = TYPE_DARK | F_DYNAMIC_TYPE_SET;
     }
 
+    if (gSpecialStatuses[battlerAtk].shadowTechniques)
+        gBattleStruct->dynamicMoveType = TYPE_DARK | F_DYNAMIC_TYPE_SET;
+
     GET_MOVE_TYPE(move, moveType);
     if ((gFieldStatuses & STATUS_FIELD_ION_DELUGE && moveType == TYPE_NORMAL)
         || gStatuses4[battlerAtk] & STATUS4_ELECTRIFIED)

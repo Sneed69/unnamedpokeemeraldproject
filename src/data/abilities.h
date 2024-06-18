@@ -2925,4 +2925,11 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
         .description = COMPOUND_STRING("Upon entering a battle, instills\nfear in opposing Pokémon,\nlowering their Sp. Attack."),
         .aiRating = 7,
     },
+
+    [ABILITY_SHADOW_TECHNIQUES] =
+    {
+        .name = _("Shadow Techniques"),
+        .description = COMPOUND_STRING("After using an attacking move,\nrepeats it with half power,\nchanging its type to Dark."),
+        .aiRating = 9,
+    },
 };

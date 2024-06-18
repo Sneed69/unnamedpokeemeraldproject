@@ -1104,6 +1104,15 @@ static const u8 sTerrainToType[BATTLE_TERRAIN_COUNT] =
     [BATTLE_TERRAIN_PLAIN]            = (B_CAMOUFLAGE_TYPES >= GEN_4 ? TYPE_GROUND : TYPE_NORMAL),
 };
 
+bool32 UsingRepeatedMove(u32 battler)
+{
+    if (gSpecialStatuses[battler].dancerUsedMove)
+        return TRUE;
+    if (gSpecialStatuses[battler].shadowTechniques)
+        return TRUE;
+    return FALSE;
+}
+
 static bool32 NoTargetPresent(u8 battler, u32 move)
 {
     if (!IsBattlerAlive(gBattlerTarget))
@@ -3604,7 +3613,7 @@ void SetMoveEffect(bool32 primary, bool32 certain)
                 break;
             case MOVE_EFFECT_THRASH:
                 // Petal Dance doesn't lock mons that copy the move with Dancer
-                if (gSpecialStatuses[gEffectBattler].dancerUsedMove)
+                if (UsingRepeatedMove(gEffectBattler))
                 {
                     gBattlescriptCurrInstr++;
                 }
@@ -5914,7 +5923,7 @@ static void Cmd_moveend(void)
                 SWAP(gBattlerAttacker, gBattlerTarget, temp);
                 gHitMarker &= ~HITMARKER_SWAP_ATTACKER_TARGET;
             }
-            if (!gSpecialStatuses[gBattlerAttacker].dancerUsedMove)
+            if (!UsingRepeatedMove(gBattlerAttacker))
             {
                 gDisableStructs[gBattlerAttacker].usedMoves |= gBitTable[gCurrMovePos];
                 gBattleStruct->lastMoveTarget[gBattlerAttacker] = gBattlerTarget;
@@ -5933,7 +5942,7 @@ static void Cmd_moveend(void)
             {
                 if (gHitMarker & HITMARKER_OBEYS)
                 {
-                    if (!gSpecialStatuses[gBattlerAttacker].dancerUsedMove)
+                    if (!UsingRepeatedMove(gBattlerAttacker))
                     {
                         gLastMoves[gBattlerAttacker] = gChosenMove;
                         RecordKnownMove(gBattlerAttacker, gChosenMove);
