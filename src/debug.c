@@ -3215,12 +3215,16 @@ static void DebugAction_Give_Pokemon_SelectId(u8 taskId)
         if (JOY_NEW(DPAD_UP))
         {
             gTasks[taskId].tInput += sPowersOfTen[gTasks[taskId].tDigit];
+            while (!IsSpeciesEnabled(gTasks[taskId].tInput))
+                gTasks[taskId].tInput++;
             if (gTasks[taskId].tInput >= NUM_SPECIES)
                 gTasks[taskId].tInput = NUM_SPECIES - 1;
         }
         if (JOY_NEW(DPAD_DOWN))
         {
             gTasks[taskId].tInput -= sPowersOfTen[gTasks[taskId].tDigit];
+            while (!IsSpeciesEnabled(gTasks[taskId].tInput))
+                gTasks[taskId].tInput--;
             if (gTasks[taskId].tInput < 1)
                 gTasks[taskId].tInput = 1;
         }
