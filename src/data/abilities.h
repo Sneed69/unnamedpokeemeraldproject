@@ -2932,4 +2932,11 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
         .description = COMPOUND_STRING("After using an attacking move,\nrepeats it with half power,\nchanging its type to Dark."),
         .aiRating = 9,
     },
+
+    [ABILITY_HALO] =
+    {
+        .name = _("Halo"),
+        .description = COMPOUND_STRING("Once per battle, nullifies\nthe first incoming attack\nthat isn't super effective."),
+        .aiRating = 9,
+    },
 };

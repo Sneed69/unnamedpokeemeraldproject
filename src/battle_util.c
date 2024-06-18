@@ -11010,6 +11010,7 @@ static void UpdateMoveResultFlags(uq4_12_t modifier)
 static inline uq4_12_t CalcTypeEffectivenessMultiplierInternal(u32 move, u32 moveType, u32 battlerAtk, u32 battlerDef, bool32 recordAbilities, uq4_12_t modifier, u32 *defAbilities)
 {
     u32 illusionSpecies;
+    u32 defSide = GetBattlerSide(battlerDef);
 
     MulByTypeEffectiveness(&modifier, move, moveType, battlerDef, GetBattlerType(battlerDef, 0, FALSE), battlerAtk, recordAbilities);
     if (GetBattlerType(battlerDef, 1, FALSE) != GetBattlerType(battlerDef, 0, FALSE))
@@ -11053,6 +11054,28 @@ static inline uq4_12_t CalcTypeEffectivenessMultiplierInternal(u32 move, u32 mov
         modifier = UQ_4_12(1.0);
     }
 
+    if (IsAbilityInArray(defAbilities, ABILITY_HALO) && !gBattleStruct->haloUsed[battlerDef][defSide]
+     && modifier <= UQ_4_12(1.0) && modifier > UQ_4_12(0.0) && gMovesInfo[move].power)
+    {
+        if (!gBattleStruct->aiCalcInProgress)
+        {
+            modifier = UQ_4_12(0.0);
+            gBattleStruct->haloUsed[battlerDef][defSide] = TRUE;
+        }
+        else
+        {
+            modifier = UQ_4_12(0.5);
+        }
+        if (recordAbilities)
+        {
+            gLastUsedAbilities[battlerDef] = ABILITY_HALO;
+            gMoveResultFlags |= MOVE_RESULT_MISSED;
+            gLastLandedMoves[battlerDef] = 0;
+            gBattleCommunication[MISS_TYPE] = B_MSG_AVOIDED_DMG;
+            RecordAbilityBattle(battlerDef, ABILITY_HALO);
+        }
+    }
+
     if (IsAbilityInArray(defAbilities, ABILITY_WONDER_GUARD) && modifier <= UQ_4_12(1.0) && gMovesInfo[move].power)
     {
         modifier = UQ_4_12(0.0);
@@ -11068,7 +11091,7 @@ static inline uq4_12_t CalcTypeEffectivenessMultiplierInternal(u32 move, u32 mov
     //if (IsAbilityInArray(defAbilities, ABILITY_TELEPATHY) && battlerDef == BATTLE_PARTNER(battlerAtk) && gMovesInfo[move].power)
 
     // Signal for the trainer slide-in system.
-    if (GetBattlerSide(battlerDef) != B_SIDE_PLAYER && modifier && gBattleStruct->trainerSlideFirstSTABMoveMsgState != 2)
+    if (defSide != B_SIDE_PLAYER && modifier && gBattleStruct->trainerSlideFirstSTABMoveMsgState != 2)
         gBattleStruct->trainerSlideFirstSTABMoveMsgState = 1;
 
     return modifier;

@@ -3116,6 +3116,8 @@ static void BattleStartClearSetData(void)
         
         gBattleStruct->nineLivesUsed[i][B_SIDE_PLAYER] = FALSE;
         gBattleStruct->nineLivesUsed[i][B_SIDE_OPPONENT] = FALSE;
+        gBattleStruct->haloUsed[i][B_SIDE_PLAYER] = FALSE;
+        gBattleStruct->haloUsed[i][B_SIDE_OPPONENT] = FALSE;
         gBattleStruct->delayedDamage[i][B_SIDE_PLAYER] = 0;
         gBattleStruct->delayedDamage[i][B_SIDE_OPPONENT] = 0;
     }

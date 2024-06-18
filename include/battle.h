@@ -794,6 +794,7 @@ struct BattleStruct
     u8 skyDropTargets[MAX_BATTLERS_COUNT]; // For Sky Drop, to account for if multiple Pokemon use Sky Drop in a double battle.
     u16 droppedItem;
     bool8 nineLivesUsed[PARTY_SIZE][NUM_BATTLE_SIDES];
+    bool8 haloUsed[PARTY_SIZE][NUM_BATTLE_SIDES];
     s16 delayedDamage[PARTY_SIZE][NUM_BATTLE_SIDES];
     // When using a move which hits multiple opponents which is then bounced by a target, we need to make sure, the move hits both opponents, the one with bounce, and the one without.
     u8 attackerBeforeBounce:2;
