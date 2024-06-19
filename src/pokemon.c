@@ -1198,18 +1198,21 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, 
     }
     else
     {
+        u32 rolls = 1 + min(gSaveBlock1Ptr->daysWithoutCheating, 15);
         bool32 hasShinyVariant = gSpeciesInfo[species].shinyPalette2 != NULL;
         u32 odds = hasShinyVariant ? SHINY_ODDS / 4 : SHINY_ODDS;
-        u32 totalRolls = 1 + min(gSaveBlock1Ptr->daysWithoutCheating, 15);
+
+        if (otIdType == OT_ID_PLAYER_ID_EGG)
+            odds /= 4;
         if (CheckBagHasItem(ITEM_SHINY_CHARM, 1))
-            totalRolls += I_SHINY_CHARM_ADDITIONAL_ROLLS;
+            rolls += I_SHINY_CHARM_ADDITIONAL_ROLLS;
         if (LURE_STEP_COUNT != 0)
-            totalRolls += 1;
+            rolls += 1;
         if (IsCurrentEncounterFishing())
-            totalRolls += CalculateChainFishingShinyRolls();
+            rolls += CalculateChainFishingShinyRolls();
 
         isShiny = 0;
-        for (; totalRolls > 0 && !isShiny; totalRolls--)
+        while (rolls-- > 0 && !isShiny)
         {
             if (!RandomUniform(RNG_SHININESS, 0, odds - 1))
                 isShiny = hasShinyVariant ? RandomWeighted(RNG_SHININESS, 0, 3, 1) : 1;
