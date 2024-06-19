@@ -139,7 +139,8 @@ struct BoxPokemon
     u32 move4:11;
     u32 toughRibbon:3;
     u32 artistRibbon:1;
-    u32 unused6:6;
+    u32 isBadEgg:1;
+    u32 unused5:5;
 
     u32 species:11; // 2047 species
     u32 experience:21;
@@ -147,8 +148,7 @@ struct BoxPokemon
     u32 metLevel:7;
     u32 heldItem:10; // 1023 items.
     u32 pokeball:5; // 31 balls
-    u32 isShiny:1;
-    u32 isBadEgg:1;
+    u32 isShiny:2;
     u32 hasSpecies:1;
     u32 isEgg:1;
     u32 markings:4;
@@ -314,7 +314,9 @@ struct SpeciesInfo /*0xC4*/
  /* 0x58 */ const u32 *palette;
  /* 0x5C */ const u32 *paletteFemale;
  /* 0x60 */ const u32 *shinyPalette;
+ /* 0x60 */ const u32 *shinyPalette2;
  /* 0x64 */ const u32 *shinyPaletteFemale;
+ /* 0x64 */ const u32 *shinyPaletteFemale2;
  /* 0x68 */ const u8 *iconSprite;
  /* 0x6C */ const u8 *iconSpriteFemale;
 #if P_FOOTPRINTS

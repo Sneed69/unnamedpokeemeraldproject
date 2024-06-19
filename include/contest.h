@@ -107,8 +107,8 @@ struct ContestPokemon
     u8 sheen;
     u8 highestRank;
     bool8 gameCleared;
-    u8 isShiny:1;
-    u8 unused1:7;
+    u8 isShiny:2;
+    u8 unused1:6;
     u8 unused2[9];
     u32 personality;
     u32 otId;
@@ -127,8 +127,8 @@ struct ContestMoveAnimData
     u16 species;
     u16 targetSpecies;
     bool8 hasTargetAnim:1;
-    u8 isShiny:1;
-    u8 targetIsShiny:1;
+    u8 isShiny:2;
+    u8 targetIsShiny:2;
     u8 contestant;
     u32 personality;
     u32 otId;

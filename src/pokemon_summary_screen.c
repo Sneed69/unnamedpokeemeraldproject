@@ -147,8 +147,8 @@ static EWRAM_DATA struct PokemonSummaryScreenData
         u16 species; // 0x0
         u16 species2; // 0x2
         u8 isEgg:1; // 0x4
-        u8 isShiny:1;
-        u8 padding:6;
+        u8 isShiny:2;
+        u8 padding:5;
         u8 level; // 0x5
         u8 ribbonCount; // 0x6
         u8 ailment; // 0x7
@@ -2863,6 +2863,11 @@ static void PrintNotEggInfo(void)
         {
             PrintTextOnWindow(PSS_LABEL_WINDOW_PORTRAIT_DEX_NUMBER, gStringVar1, 0, 1, 0, 1);
             SetMonPicBackgroundPalette(FALSE);
+        }
+        else if (IsMonShiny(mon) == 2)
+        {
+            PrintTextOnWindow(PSS_LABEL_WINDOW_PORTRAIT_DEX_NUMBER, gStringVar1, 0, 1, 0, 2);
+            SetMonPicBackgroundPalette(TRUE);
         }
         else
         {

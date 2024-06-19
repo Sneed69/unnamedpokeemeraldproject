@@ -1188,17 +1188,19 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, 
     }
     SetBoxMonData(boxMon, MON_DATA_OT_ID, &value);
 
-    if (P_FLAG_FORCE_NO_SHINY != 0 && FlagGet(P_FLAG_FORCE_NO_SHINY))
+    if ((P_FLAG_FORCE_NO_SHINY != 0 && FlagGet(P_FLAG_FORCE_NO_SHINY)) || otIdType == OT_ID_RANDOM_NO_SHINY)
     {
-        isShiny = FALSE;
+        isShiny = 0;
     }
     else if (P_FLAG_FORCE_SHINY != 0 && FlagGet(P_FLAG_FORCE_SHINY))
     {
-        isShiny = TRUE;
+        isShiny = 1;
     }
     else
     {
-        u32 totalRolls = 1 + gSaveBlock1Ptr->daysWithoutCheating;
+        bool32 hasShinyVariant = gSpeciesInfo[species].shinyPalette2 != NULL;
+        u32 odds = hasShinyVariant ? SHINY_ODDS / 4 : SHINY_ODDS;
+        u32 totalRolls = 1 + min(gSaveBlock1Ptr->daysWithoutCheating, 15);
         if (CheckBagHasItem(ITEM_SHINY_CHARM, 1))
             totalRolls += I_SHINY_CHARM_ADDITIONAL_ROLLS;
         if (LURE_STEP_COUNT != 0)
@@ -1206,11 +1208,11 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, 
         if (IsCurrentEncounterFishing())
             totalRolls += CalculateChainFishingShinyRolls();
 
-        isShiny = FALSE;
+        isShiny = 0;
         for (; totalRolls > 0 && !isShiny; totalRolls--)
         {
-            if (!RandomUniform(RNG_SHININESS, 0, SHINY_ODDS - 1))
-                isShiny = TRUE;
+            if (!RandomUniform(RNG_SHININESS, 0, odds - 1))
+                isShiny = hasShinyVariant ? RandomWeighted(RNG_SHININESS, 0, 3, 1) : 1;
         };
     }
     SetBoxMonData(boxMon, MON_DATA_IS_SHINY, &isShiny);
@@ -5319,10 +5321,21 @@ const u32 *GetMonSpritePalFromSpecies(u16 species, bool32 isShiny, bool32 isFema
 {
     species = SanitizeSpeciesId(species);
 
-    if (isShiny)
+    if (isShiny == 1)
     {
         if (gSpeciesInfo[species].shinyPaletteFemale != NULL && isFemale)
             return gSpeciesInfo[species].shinyPaletteFemale;
+        else if (gSpeciesInfo[species].shinyPalette != NULL)
+            return gSpeciesInfo[species].shinyPalette;
+        else
+            return gSpeciesInfo[SPECIES_NONE].shinyPalette;
+    }
+    if (isShiny == 2)
+    {
+        if (gSpeciesInfo[species].shinyPaletteFemale2 != NULL && isFemale)
+            return gSpeciesInfo[species].shinyPaletteFemale2;
+        else if (gSpeciesInfo[species].shinyPalette2 != NULL)
+            return gSpeciesInfo[species].shinyPalette2;
         else if (gSpeciesInfo[species].shinyPalette != NULL)
             return gSpeciesInfo[species].shinyPalette;
         else

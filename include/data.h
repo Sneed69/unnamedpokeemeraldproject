@@ -64,11 +64,11 @@ struct TrainerMon
     u8 lvl;
     u8 ball;
     u8 nature:5;
-    bool8 gender:2;
-    bool8 isShiny:1;
-    u8 hiddenPowerType:5;
     u8 majorProficiency:3;
     u8 minorProficiency:3;
+    u8 hiddenPowerType:5;
+    bool8 isShiny:2;
+    bool8 gender:2;
 };
 
 #define TRAINER_PARTY(partyArray) partyArray, .partySize = ARRAY_COUNT(partyArray)
