@@ -9248,6 +9248,7 @@ const u32 gObjectEventPic_Substitute[] = INCBIN_COMP("graphics/pokemon/question_
     const u32 gMonPalette_Kyogre[] = INCBIN_U32("graphics/pokemon/kyogre/normal.gbapal.lz");
     const u32 gMonBackPic_Kyogre[] = INCBIN_U32("graphics/pokemon/kyogre/back.4bpp.lz");
     const u32 gMonShinyPalette_Kyogre[] = INCBIN_U32("graphics/pokemon/kyogre/shiny.gbapal.lz");
+    const u32 gMonShinyPalette_Kyogre2[] = INCBIN_U32("graphics/pokemon/kyogre/shiny2.gbapal.lz");
     const u8 gMonIcon_Kyogre[] = INCBIN_U8("graphics/pokemon/kyogre/icon.4bpp");
 #if P_FOOTPRINTS
     const u8 gMonFootprint_Kyogre[] = INCBIN_U8("graphics/pokemon/kyogre/footprint.1bpp");
@@ -9281,6 +9282,7 @@ const u32 gObjectEventPic_Substitute[] = INCBIN_COMP("graphics/pokemon/question_
     const u32 gMonPalette_Groudon[] = INCBIN_U32("graphics/pokemon/groudon/normal.gbapal.lz");
     const u32 gMonBackPic_Groudon[] = INCBIN_U32("graphics/pokemon/groudon/back.4bpp.lz");
     const u32 gMonShinyPalette_Groudon[] = INCBIN_U32("graphics/pokemon/groudon/shiny.gbapal.lz");
+    const u32 gMonShinyPalette_Groudon2[] = INCBIN_U32("graphics/pokemon/groudon/shiny2.gbapal.lz");
     const u8 gMonIcon_Groudon[] = INCBIN_U8("graphics/pokemon/groudon/icon.4bpp");
 #if P_FOOTPRINTS
     const u8 gMonFootprint_Groudon[] = INCBIN_U8("graphics/pokemon/groudon/footprint.1bpp");
@@ -9314,6 +9316,7 @@ const u32 gObjectEventPic_Substitute[] = INCBIN_COMP("graphics/pokemon/question_
     const u32 gMonPalette_Rayquaza[] = INCBIN_U32("graphics/pokemon/rayquaza/normal.gbapal.lz");
     const u32 gMonBackPic_Rayquaza[] = INCBIN_U32("graphics/pokemon/rayquaza/back.4bpp.lz");
     const u32 gMonShinyPalette_Rayquaza[] = INCBIN_U32("graphics/pokemon/rayquaza/shiny.gbapal.lz");
+    const u32 gMonShinyPalette_Rayquaza2[] = INCBIN_U32("graphics/pokemon/rayquaza/shiny2.gbapal.lz");
     const u8 gMonIcon_Rayquaza[] = INCBIN_U8("graphics/pokemon/rayquaza/icon.4bpp");
 #if P_FOOTPRINTS
     const u8 gMonFootprint_Rayquaza[] = INCBIN_U8("graphics/pokemon/rayquaza/footprint.1bpp");

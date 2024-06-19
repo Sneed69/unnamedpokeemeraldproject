@@ -10536,6 +10536,7 @@ static const struct SpeciesInfo gSpeciesInfoGen3[] =
         .backAnimId = BACK_ANIM_SHAKE_GLOW_BLUE,
         .palette = gMonPalette_Kyogre,
         .shinyPalette = gMonShinyPalette_Kyogre,
+        .shinyPalette2 = gMonShinyPalette_Kyogre2,
         .iconSprite = gMonIcon_Kyogre,
         .iconPalIndex = 2,
         FOOTPRINT(Kyogre)
@@ -10666,6 +10667,7 @@ static const struct SpeciesInfo gSpeciesInfoGen3[] =
         .backAnimId = BACK_ANIM_SHAKE_GLOW_RED,
         .palette = gMonPalette_Groudon,
         .shinyPalette = gMonShinyPalette_Groudon,
+        .shinyPalette2 = gMonShinyPalette_Groudon2,
         .iconSprite = gMonIcon_Groudon,
         .iconPalIndex = 0,
         FOOTPRINT(Groudon)
@@ -10800,6 +10802,7 @@ static const struct SpeciesInfo gSpeciesInfoGen3[] =
         .backAnimId = BACK_ANIM_GROW_STUTTER,
         .palette = gMonPalette_Rayquaza,
         .shinyPalette = gMonShinyPalette_Rayquaza,
+        .shinyPalette2 = gMonShinyPalette_Rayquaza2,
         .iconSprite = gMonIcon_Rayquaza,
         .iconPalIndex = 1,
         FOOTPRINT(Rayquaza)
