@@ -8447,6 +8447,7 @@ static const struct SpeciesInfo gSpeciesInfoGen1[] =
         .backAnimId = BACK_ANIM_SHAKE_GLOW_RED,
         .palette = gMonPalette_Ponyta,
         .shinyPalette = gMonShinyPalette_Ponyta,
+        .shinyPalette2 = gMonShinyPalette_Ponyta2,
         .iconSprite = gMonIcon_Ponyta,
         .iconPalIndex = 3,
         FOOTPRINT(Ponyta)

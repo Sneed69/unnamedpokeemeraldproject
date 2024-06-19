@@ -1482,7 +1482,10 @@ static void HandleInput_PokemonSpriteVisualizer(u8 taskId)
 
     if (JOY_NEW(START_BUTTON))
     {
-        data->isShiny = !data->isShiny;
+        if (gSpeciesInfo[data->currentmonId].shinyPalette2 == NULL || data->isShiny == 2)
+            data->isShiny = !data->isShiny;
+        else
+            data->isShiny++;
 
         if(data->isShiny)
             PlaySE(SE_SHINY);
@@ -1518,6 +1521,7 @@ static void HandleInput_PokemonSpriteVisualizer(u8 taskId)
         {
             if (TryMoveDigit(&data->modifyArrows, FALSE))
             {
+                data->isShiny = 0;
                 data->isFemale = FALSE;
                 PrintDigitChars(data);
                 UpdateBattlerValue(data);
@@ -1534,6 +1538,7 @@ static void HandleInput_PokemonSpriteVisualizer(u8 taskId)
         {
             if (TryMoveDigit(&data->modifyArrows, TRUE))
             {
+                data->isShiny = 0;
                 data->isFemale = FALSE;
                 PrintDigitChars(data);
                 UpdateBattlerValue(data);

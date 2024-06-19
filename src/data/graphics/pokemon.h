@@ -2051,6 +2051,7 @@ const u32 gObjectEventPic_Substitute[] = INCBIN_COMP("graphics/pokemon/question_
     const u32 gMonPalette_Ponyta[] = INCBIN_U32("graphics/pokemon/ponyta/normal.gbapal.lz");
     const u32 gMonBackPic_Ponyta[] = INCBIN_U32("graphics/pokemon/ponyta/back.4bpp.lz");
     const u32 gMonShinyPalette_Ponyta[] = INCBIN_U32("graphics/pokemon/ponyta/shiny.gbapal.lz");
+    const u32 gMonShinyPalette_Ponyta2[] = INCBIN_U32("graphics/pokemon/ponyta/shiny2.gbapal.lz");
     const u8 gMonIcon_Ponyta[] = INCBIN_U8("graphics/pokemon/ponyta/icon.4bpp");
 #if P_FOOTPRINTS
     const u8 gMonFootprint_Ponyta[] = INCBIN_U8("graphics/pokemon/ponyta/footprint.1bpp");
