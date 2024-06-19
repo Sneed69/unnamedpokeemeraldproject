@@ -990,7 +990,6 @@ struct SaveBlock1
     /*0x234*/ u8 playerPartyCount;
               u8 daysWithoutCheating;
               u16 statesLoaded;
-    /*0x235*/ //u8 padding2[1];
     /*0x238*/ struct Pokemon playerParty[PARTY_SIZE];
     /*0x490*/ u32 money;
     /*0x494*/ u16 coins;

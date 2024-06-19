@@ -56,7 +56,7 @@ static void UpdatePerDay(struct Time *localTime)
         SetRandomLotteryNumber(daysSince);
         UpdateRoamerRespawns(daysSince);
         TryAddDailyRoamer();
-        if (gSaveBlock1Ptr->daysWithoutCheating < 30);
+        if (gSaveBlock1Ptr->daysWithoutCheating < 0xFF);
             gSaveBlock1Ptr->daysWithoutCheating++;
         *days = localTime->days;
     }
