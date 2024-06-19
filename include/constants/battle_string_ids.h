@@ -750,8 +750,9 @@
 #define STRINGID_DOPEYREDUCEDDAMAGE                   748
 #define STRINGID_ATKWOUNDEDWITHABILITY                749
 #define STRINGID_PREVENTSLOWERINGOWNSTATS             750
+#define STRINGID_PKMNBADLYPOISONEDBY                  751
 
-#define BATTLESTRINGS_COUNT                           751
+#define BATTLESTRINGS_COUNT                           752
 
 // This is the string id that gBattleStringsTable starts with.
 // String ids before this (e.g. STRINGID_INTROMSG) are not in the table,

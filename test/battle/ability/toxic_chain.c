@@ -14,7 +14,7 @@ SINGLE_BATTLE_TEST("Toxic Chain inflicts bad poison when attacking")
     } SCENE {
         ABILITY_POPUP(player, ABILITY_TOXIC_CHAIN);
         ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_PSN, opponent);
-        MESSAGE("Foe Alakazam is badly poisoned!");
+        MESSAGE("Foe Alakazam was badly poisoned by Skuntank's Toxic Chain!");
         STATUS_ICON(opponent, badPoison: TRUE);
     } THEN {
         EXPECT(opponent->status1 & STATUS1_TOXIC_POISON);
@@ -35,13 +35,13 @@ SINGLE_BATTLE_TEST("Toxic Chain inflicts bad poison on any hit of a multi-hit mo
     } SCENE {
         ABILITY_POPUP(player, ABILITY_TOXIC_CHAIN);
         ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_PSN, opponent);
-        MESSAGE("Foe Alakazam is badly poisoned!");
+        MESSAGE("Foe Alakazam was badly poisoned by Skuntank's Toxic Chain!");
         STATUS_ICON(opponent, badPoison: TRUE);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, opponent);
         STATUS_ICON(opponent, badPoison: FALSE);
         ABILITY_POPUP(player, ABILITY_TOXIC_CHAIN);
         ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_PSN, opponent);
-        MESSAGE("Foe Alakazam is badly poisoned!");
+        MESSAGE("Foe Alakazam was badly poisoned by Skuntank's Toxic Chain!");
         STATUS_ICON(opponent, badPoison: TRUE);
     } THEN {
         EXPECT(opponent->status1 & STATUS1_TOXIC_POISON);
@@ -64,12 +64,12 @@ DOUBLE_BATTLE_TEST("Toxic Chain can inflict bad poison on both foes")
         HP_BAR(opponentLeft);
         ABILITY_POPUP(playerLeft, ABILITY_TOXIC_CHAIN);
         ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_PSN, opponentLeft);
-        MESSAGE("Foe Alakazam is badly poisoned!");
+        MESSAGE("Foe Alakazam was badly poisoned by Skuntank's Toxic Chain!");
         STATUS_ICON(opponentLeft, badPoison: TRUE);
         HP_BAR(opponentRight);
         ABILITY_POPUP(playerLeft, ABILITY_TOXIC_CHAIN);
         ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_PSN, opponentRight);
-        MESSAGE("Foe Abra is badly poisoned!");
+        MESSAGE("Foe Abra was badly poisoned by Skuntank's Toxic Chain!");
         STATUS_ICON(opponentRight, badPoison: TRUE);
     } THEN {
         EXPECT(opponentLeft->status1 & STATUS1_TOXIC_POISON);
@@ -97,7 +97,7 @@ SINGLE_BATTLE_TEST("Toxic Chain makes Lum/Pecha Berry trigger before being knock
     } SCENE {
         ABILITY_POPUP(player, ABILITY_TOXIC_CHAIN);
         ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_PSN, opponent);
-        MESSAGE("Foe Alakazam is badly poisoned!");
+        MESSAGE("Foe Alakazam was badly poisoned by Skuntank's Toxic Chain!");
         STATUS_ICON(opponent, badPoison: TRUE);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, opponent);
         STATUS_ICON(opponent, badPoison: FALSE);
