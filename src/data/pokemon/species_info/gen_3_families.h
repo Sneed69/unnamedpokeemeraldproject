@@ -301,6 +301,7 @@ static const struct SpeciesInfo gSpeciesInfoGen3[] =
         .backAnimId = BACK_ANIM_CONCAVE_ARC_SMALL,
         .palette = gMonPalette_Torchic,
         .shinyPalette = gMonShinyPalette_Torchic,
+        .shinyPalette2 = gMonShinyPalette_Torchic2,
         .iconSprite = gMonIcon_Torchic,
         .iconPalIndex = 0,
         FOOTPRINT(Torchic)
@@ -368,6 +369,7 @@ static const struct SpeciesInfo gSpeciesInfoGen3[] =
         .backAnimId = BACK_ANIM_CONCAVE_ARC_LARGE,
         .palette = gMonPalette_Combusken,
         .shinyPalette = gMonShinyPalette_Combusken,
+        .shinyPalette2 = gMonShinyPalette_Combusken2,
         .iconSprite = gMonIcon_Combusken,
         .iconPalIndex = 0,
         FOOTPRINT(Combusken)
@@ -440,6 +442,7 @@ static const struct SpeciesInfo gSpeciesInfoGen3[] =
         .backAnimId = BACK_ANIM_SHAKE_GLOW_RED,
         .palette = gMonPalette_Blaziken,
         .shinyPalette = gMonShinyPalette_Blaziken,
+        .shinyPalette2 = gMonShinyPalette_Blaziken2,
         .iconSprite = gMonIcon_Blaziken,
         .iconPalIndex = 0,
         FOOTPRINT(Blaziken)
