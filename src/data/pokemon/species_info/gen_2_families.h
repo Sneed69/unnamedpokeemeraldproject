@@ -1932,6 +1932,7 @@ static const struct SpeciesInfo gSpeciesInfoGen2[] =
         .backAnimId = BACK_ANIM_CONCAVE_ARC_LARGE,
         .palette = gMonPalette_Azurill,
         .shinyPalette = gMonShinyPalette_Azurill,
+        .shinyPalette2 = gMonShinyPalette_Azurill2,
         .iconSprite = gMonIcon_Azurill,
         .iconPalIndex = 0,
         FOOTPRINT(Azurill)
@@ -1999,6 +2000,7 @@ static const struct SpeciesInfo gSpeciesInfoGen2[] =
         .backAnimId = BACK_ANIM_CONCAVE_ARC_SMALL,
         .palette = gMonPalette_Marill,
         .shinyPalette = gMonShinyPalette_Marill,
+        .shinyPalette2 = gMonShinyPalette_Marill2,
         .iconSprite = gMonIcon_Marill,
         .iconPalIndex = 0,
         FOOTPRINT(Marill)
@@ -2072,6 +2074,7 @@ static const struct SpeciesInfo gSpeciesInfoGen2[] =
         .backAnimId = BACK_ANIM_DIP_RIGHT_SIDE,
         .palette = gMonPalette_Azumarill,
         .shinyPalette = gMonShinyPalette_Azumarill,
+        .shinyPalette2 = gMonShinyPalette_Azumarill2,
         .iconSprite = gMonIcon_Azumarill,
         .iconPalIndex = 0,
         FOOTPRINT(Azumarill)
