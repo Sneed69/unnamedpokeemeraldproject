@@ -21,14 +21,16 @@ SINGLE_BATTLE_TEST("Custap Berry allows the holder to move first in its priority
     }
 }
 
-SINGLE_BATTLE_TEST("Custap Berry allows the holder to move first in its priority bracket when HP is below 1/2. If the holder has Gluttony")
+SINGLE_BATTLE_TEST("Custap Berry allows the holder to move first in its priority bracket at full HP if the holder has Gluttony")
 {
     GIVEN {
-        PLAYER(SPECIES_SNORLAX) { Speed(1); MaxHP(160); HP(80); Ability(ABILITY_GLUTTONY); Item(ITEM_CUSTAP_BERRY); }
+        PLAYER(SPECIES_SNORLAX) { Speed(1); Ability(ABILITY_GLUTTONY); Item(ITEM_CUSTAP_BERRY); }
         OPPONENT(SPECIES_ALAKAZAM) { Speed(2); }
     } WHEN {
         TURN { MOVE(player, MOVE_TACKLE); }
     } SCENE {
+        ABILITY_POPUP(player, ABILITY_GLUTTONY);
+        MESSAGE("Snorlax gives in to its Gluttony!");
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, player);
         MESSAGE("Snorlax can act faster, thanks to Custap Berry!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, player);

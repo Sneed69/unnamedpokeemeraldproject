@@ -34,15 +34,16 @@ SINGLE_BATTLE_TEST("Lansat Berry raises the holder's critical-hit-ratio by two s
     }
 }
 
-SINGLE_BATTLE_TEST("Lansat Berry raises the holder's critical-hit-ratio by two stages when HP drops to 1/2 or below")
+SINGLE_BATTLE_TEST("Lansat Berry raises the holder's critical-hit-ratio by two stages at full HP with Gluttony")
 {
     GIVEN {
-        PLAYER(SPECIES_SNORLAX) { MaxHP(100); HP(100); Ability(ABILITY_GLUTTONY); Item(ITEM_LANSAT_BERRY); }
+        PLAYER(SPECIES_SNORLAX) { Ability(ABILITY_GLUTTONY); Item(ITEM_LANSAT_BERRY); }
         OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
-        TURN { MOVE(opponent, MOVE_DRAGON_RAGE); }
+        TURN;
     } SCENE {
-        ANIMATION(ANIM_TYPE_MOVE, MOVE_DRAGON_RAGE, opponent);
+        ABILITY_POPUP(player, ABILITY_GLUTTONY);
+        MESSAGE("Snorlax gives in to its Gluttony!");
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, player);
         MESSAGE("Snorlax used Lansat Berry to get pumped!");
     }

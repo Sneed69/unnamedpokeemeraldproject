@@ -16594,6 +16594,21 @@ void BS_TryActivateVictoryRush(void)
     gBattlescriptCurrInstr = cmd->nextInstr;
 }
 
+void BS_CallIfCurrentAbility(void)
+{
+    NATIVE_ARGS(u16 ability, const u8 *instr);
+
+    if (gCurrentAbility == cmd->ability)
+    {
+        BattleScriptPush(cmd->nextInstr);
+        gBattlescriptCurrInstr = cmd->instr;
+    }
+    else
+    {
+        gBattlescriptCurrInstr = cmd->nextInstr;
+    }
+}
+
 void BS_JumpIfShellTrap(void)
 {
     NATIVE_ARGS(u8 battler, const u8 *jumpInstr);

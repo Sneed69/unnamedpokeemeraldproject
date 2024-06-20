@@ -37,15 +37,16 @@ SINGLE_BATTLE_TEST("Petaya Berry raises the holder's Sp. Atk by one stage when H
     }
 }
 
-SINGLE_BATTLE_TEST("Petaya Berry raises Sp. Atk by one stage when HP drops to 1/2 or below if holder has Gluttony")
+SINGLE_BATTLE_TEST("Petaya Berry raises Sp. Atk by one stage at full HP if holder has Gluttony")
 {
     GIVEN {
-        PLAYER(SPECIES_SNORLAX) { MaxHP(100); HP(100); Ability(ABILITY_GLUTTONY); Item(ITEM_PETAYA_BERRY); }
+        PLAYER(SPECIES_SNORLAX) { Ability(ABILITY_GLUTTONY); Item(ITEM_PETAYA_BERRY); }
         OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
-        TURN { MOVE(opponent, MOVE_DRAGON_RAGE); }
+        TURN;
     } SCENE {
-        ANIMATION(ANIM_TYPE_MOVE, MOVE_DRAGON_RAGE, opponent);
+        ABILITY_POPUP(player, ABILITY_GLUTTONY);
+        MESSAGE("Snorlax gives in to its Gluttony!");
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, player);
         MESSAGE("Using Petaya Berry, the Sp. Atk of Snorlax rose!");
     } THEN {

@@ -7029,9 +7029,42 @@ bool32 HasEnoughHpToEatBerry(u32 battler, u32 hpFraction, u32 itemId)
     if (gBattleMons[battler].hp <= gBattleMons[battler].maxHP / hpFraction)
         return TRUE;
 
-    if (hpFraction <= 4 && BattlerHasAbility(battler, ABILITY_GLUTTONY) && isBerry
-         && gBattleMons[battler].hp <= gBattleMons[battler].maxHP / 2)
+    if (BattlerHasAbility(battler, ABILITY_GLUTTONY) && isBerry)
     {
+        switch (ItemId_GetHoldEffect(itemId))
+        {
+        case HOLD_EFFECT_RESTORE_HP:
+            if (gBattleMons[battler].maxHP - gBattleMons[battler].hp < ItemId_GetHoldEffectParam(itemId))
+                return FALSE;
+            break;
+        case HOLD_EFFECT_RESTORE_PCT_HP:
+            if (GetHealthPercentage(battler) > 100 - ItemId_GetHoldEffectParam(itemId))
+                return FALSE;
+            break;
+        case HOLD_EFFECT_CONFUSE_SPICY:
+        case HOLD_EFFECT_CONFUSE_DRY:
+        case HOLD_EFFECT_CONFUSE_BITTER:
+        case HOLD_EFFECT_CONFUSE_SWEET:
+        case HOLD_EFFECT_CONFUSE_SOUR:
+            if (gBattleMons[battler].hp * ItemId_GetHoldEffectParam(itemId) < gBattleMons[battler].maxHP)
+                return FALSE;
+            break;
+        case HOLD_EFFECT_ATTACK_UP:
+        case HOLD_EFFECT_DEFENSE_UP:
+        case HOLD_EFFECT_SPEED_UP:
+        case HOLD_EFFECT_SP_ATTACK_UP:
+        case HOLD_EFFECT_SP_DEFENSE_UP:
+        case HOLD_EFFECT_CRITICAL_UP:
+        case HOLD_EFFECT_RANDOM_STAT_UP:
+        case HOLD_EFFECT_CUSTAP_BERRY:
+        case HOLD_EFFECT_MICLE_BERRY:
+            break;
+        default:
+            return FALSE;
+        }
+
+        gBattleScripting.battler = gBattlerAbility = battler;
+        gCurrentAbility = gLastUsedAbilities[battler] = ABILITY_GLUTTONY;
         RecordAbilityBattle(battler, ABILITY_GLUTTONY);
         return TRUE;
     }

@@ -34,15 +34,16 @@ SINGLE_BATTLE_TEST("Micle Berry raises the holder's accuracy by 1.2 when HP drop
     }
 }
 
-SINGLE_BATTLE_TEST("Micle Berry raises the holder's accuracy by 1.2 when HP drops to 1/2 or below")
+SINGLE_BATTLE_TEST("Micle Berry raises the holder's accuracy by 1.2 at full HP with Gluttony")
 {
     GIVEN {
-        PLAYER(SPECIES_SNORLAX) { MaxHP(100); HP(100); Ability(ABILITY_GLUTTONY); Item(ITEM_MICLE_BERRY); }
+        PLAYER(SPECIES_SNORLAX) { Ability(ABILITY_GLUTTONY); Item(ITEM_MICLE_BERRY); }
         OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
-        TURN { MOVE(opponent, MOVE_DRAGON_RAGE); }
+        TURN;
     } SCENE {
-        ANIMATION(ANIM_TYPE_MOVE, MOVE_DRAGON_RAGE, opponent);
+        ABILITY_POPUP(player, ABILITY_GLUTTONY);
+        MESSAGE("Snorlax gives in to its Gluttony!");
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, player);
         MESSAGE("Snorlax boosted the accuracy of its next move using Micle Berry!");
     }

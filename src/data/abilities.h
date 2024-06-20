@@ -633,7 +633,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_GLUTTONY] =
     {
         .name = _("Gluttony"),
-        .description = COMPOUND_STRING("When holding a Berry to be eaten\nwhen at low HP, it will instead\neat it when HP drops below half."),
+        .description = COMPOUND_STRING("Eats held berries as soon\nas it can take advantage\nof their full benefits."),
         .aiRating = 3,
     },
 

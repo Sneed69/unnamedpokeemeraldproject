@@ -37,15 +37,16 @@ SINGLE_BATTLE_TEST("Apicot Berry raises the holder's Sp. Def by one stage when H
     }
 }
 
-SINGLE_BATTLE_TEST("Apicot Berry raises Sp. Def by one stage when HP drops to 1/2 or below if holder has Gluttony")
+SINGLE_BATTLE_TEST("Apicot Berry raises Sp. Def by one stage at full HP if holder has Gluttony")
 {
     GIVEN {
-        PLAYER(SPECIES_SNORLAX) { MaxHP(100); HP(100); Ability(ABILITY_GLUTTONY); Item(ITEM_APICOT_BERRY); }
+        PLAYER(SPECIES_SNORLAX) { Ability(ABILITY_GLUTTONY); Item(ITEM_APICOT_BERRY); }
         OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
-        TURN { MOVE(opponent, MOVE_DRAGON_RAGE); }
+        TURN;
     } SCENE {
-        ANIMATION(ANIM_TYPE_MOVE, MOVE_DRAGON_RAGE, opponent);
+        ABILITY_POPUP(player, ABILITY_GLUTTONY);
+        MESSAGE("Snorlax gives in to its Gluttony!");
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, player);
         MESSAGE("Using Apicot Berry, the Sp. Def of Snorlax rose!");
     } THEN {

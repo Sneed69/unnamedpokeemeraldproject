@@ -627,6 +627,7 @@ static const u8 sText_TargetAbilityRaisedStat[] = _("{B_DEF_NAME_WITH_PREFIX}'s 
 static const u8 sText_TargetAbilityLoweredStat[] = _("{B_DEF_NAME_WITH_PREFIX}'s {B_DEF_ABILITY}\nlowered its {B_BUFF1}!");
 static const u8 sText_AttackerAbilityRaisedStat[] = _("{B_ATK_NAME_WITH_PREFIX}'s {B_ATK_ABILITY}\nraised its {B_BUFF1}!");
 static const u8 sText_ScriptingAbilityRaisedStat[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX}'s {B_SCR_ACTIVE_ABILITY}\nraised its {B_BUFF1}!");
+static const u8 sText_GluttonyKicksIn[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX} gives in\nto its {B_SCR_ACTIVE_ABILITY}!");
 static const u8 sText_AuroraVeilEnds[] = _("{B_DEF_NAME_WITH_PREFIX}'s {B_DEF_ABILITY}\nwore off!");
 static const u8 sText_PollutedTerrainEnds[] = _("The noxious aura disappeared.");
 static const u8 sText_ElectricTerrainEnds[] = _("The electrifying aura disappeared.");
@@ -1629,6 +1630,7 @@ const u8 *const gBattleStringsTable[BATTLESTRINGS_COUNT] =
     [STRINGIDDELAYEDDAMAGE - BATTLESTRINGS_TABLE_START] = sText_DelayedDamageApplies,
     [STRINGID_DOPEYREDUCEDDAMAGE - BATTLESTRINGS_TABLE_START] = sText_DefDelayedDmgWithAbility,
     [STRINGID_ATKWOUNDEDWITHABILITY - BATTLESTRINGS_TABLE_START] = sText_DefWasWoundedByAtkAbility,
+    [STRINGID_GLUTTONYKICKSIN - BATTLESTRINGS_TABLE_START] = sText_GluttonyKicksIn,
 };
 
 const u16 gTrainerUsedItemStringIds[] =

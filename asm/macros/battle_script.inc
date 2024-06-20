@@ -2548,3 +2548,9 @@
 	.byte \battler
 	.4byte \jumpInstr
 	.endm
+
+	.macro callifcurrentability ability:req, instr:req
+	callnative BS_CallIfCurrentAbility
+	.2byte \ability
+	.4byte \instr
+	.endm

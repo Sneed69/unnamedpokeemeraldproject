@@ -9209,6 +9209,7 @@ BattleScript_WhiteHerbRet::
 	return
 
 BattleScript_ItemHealHP_RemoveItemRet::
+	callifcurrentability ABILITY_GLUTTONY, BattleScriptGluttony
 	jumpifability BS_SCRIPTING, ABILITY_RIPEN, BattleScript_ItemHealHP_RemoveItemRet_AbilityPopUp
 	goto BattleScript_ItemHealHP_RemoveItemRet_Anim
 BattleScript_ItemHealHP_RemoveItemRet_AbilityPopUp:
@@ -9224,6 +9225,7 @@ BattleScript_ItemHealHP_RemoveItemRet_Anim:
 	return
 
 BattleScript_ItemHealHP_RemoveItemEnd2::
+	callifcurrentability ABILITY_GLUTTONY, BattleScriptGluttony
 	jumpifability BS_ATTACKER, ABILITY_RIPEN, BattleScript_ItemHealHP_RemoveItemEnd2_AbilityPopUp
 	goto BattleScript_ItemHealHP_RemoveItemEnd2_Anim
 BattleScript_ItemHealHP_RemoveItemEnd2_AbilityPopUp:
@@ -9344,6 +9346,7 @@ BattleScript_HangedOnMsgRet:
 	return
 
 BattleScript_BerryConfuseHealEnd2::
+	callifcurrentability ABILITY_GLUTTONY, BattleScriptGluttony
 	jumpifability BS_SCRIPTING, ABILITY_RIPEN, BattleScript_BerryConfuseHealEnd2_AbilityPopup
 	goto BattleScript_BerryConfuseHealEnd2_Anim
 BattleScript_BerryConfuseHealEnd2_AbilityPopup:
@@ -9362,6 +9365,7 @@ BattleScript_BerryConfuseHealEnd2_Anim:
 	end2
 
 BattleScript_BerryConfuseHealRet::
+	callifcurrentability ABILITY_GLUTTONY, BattleScriptGluttony
 	jumpifability BS_SCRIPTING, ABILITY_RIPEN, BattleScript_BerryConfuseHealRet_AbilityPopup
 	goto BattleScript_BerryConfuseHealRet_Anim
 BattleScript_BerryConfuseHealRet_AbilityPopup:
@@ -9379,7 +9383,14 @@ BattleScript_BerryConfuseHealRet_Anim:
 	removeitem BS_TARGET
 	return
 
+BattleScriptGluttony:
+	call BattleScript_AbilityPopUp
+	printstring STRINGID_GLUTTONYKICKSIN
+	waitmessage B_WAIT_TIME_MED
+	return
+
 BattleScript_BerryStatRaiseEnd2::
+	callifcurrentability ABILITY_GLUTTONY, BattleScriptGluttony
 	jumpifability BS_ATTACKER, ABILITY_RIPEN, BattleScript_BerryStatRaiseEnd2_AbilityPopup
 	goto BattleScript_BerryStatRaiseEnd2_Anim
 BattleScript_BerryStatRaiseEnd2_AbilityPopup:
@@ -9395,6 +9406,7 @@ BattleScript_BerryStatRaiseEnd2_End::
 	end2
 
 BattleScript_BerryStatRaiseRet::
+	callifcurrentability ABILITY_GLUTTONY, BattleScriptGluttony
 	jumpifability BS_SCRIPTING, ABILITY_RIPEN, BattleScript_BerryStatRaiseRet_AbilityPopup
 	goto BattleScript_BerryStatRaiseRet_Anim
 BattleScript_BerryStatRaiseRet_AbilityPopup:
@@ -9410,6 +9422,7 @@ BattleScript_BerryStatRaiseRet_End:
 	return
 
 BattleScript_BerryFocusEnergyRet::
+	callifcurrentability ABILITY_GLUTTONY, BattleScriptGluttony
 	playanimation BS_SCRIPTING, B_ANIM_HELD_ITEM_EFFECT
 	printstring STRINGID_PKMNUSEDXTOGETPUMPED
 	waitmessage B_WAIT_TIME_LONG
@@ -9647,6 +9660,7 @@ BattleScript_QuickDrawActivation::
 
 BattleScript_CustapBerryActivation::
 	flushtextbox
+	callifcurrentability ABILITY_GLUTTONY, BattleScriptGluttony
 	playanimation BS_ATTACKER, B_ANIM_HELD_ITEM_EFFECT
 	waitanimation
 	printstring STRINGID_CANACTFASTERTHANKSTO
@@ -9655,6 +9669,7 @@ BattleScript_CustapBerryActivation::
 	end2
 
 BattleScript_MicleBerryActivateEnd2::
+	callifcurrentability ABILITY_GLUTTONY, BattleScriptGluttony
 	jumpifability BS_ATTACKER, ABILITY_RIPEN, BattleScript_MicleBerryActivateEnd2_Ripen
 	goto BattleScript_MicleBerryActivateEnd2_Anim
 BattleScript_MicleBerryActivateEnd2_Ripen:
@@ -9667,6 +9682,7 @@ BattleScript_MicleBerryActivateEnd2_Anim:
 	end2
 
 BattleScript_MicleBerryActivateRet::
+	callifcurrentability ABILITY_GLUTTONY, BattleScriptGluttony
 	jumpifability BS_SCRIPTING, ABILITY_RIPEN, BattleScript_MicleBerryActivateRet_Ripen
 	goto BattleScript_MicleBerryActivateRet_Anim
 BattleScript_MicleBerryActivateRet_Ripen:
