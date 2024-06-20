@@ -1544,7 +1544,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_BERSERK] =
     {
         .name = _("Berserk"),
-        .description = COMPOUND_STRING("Boosts Special Attack after\ntaking hits that cause HP\nto drop to half or less."),
+        .description = COMPOUND_STRING("Raises the highest attacking stat\nafter taking a hit that causes HP\nto drop to half or below."),
         .aiRating = 5,
     },
 

@@ -1,7 +1,7 @@
 #include "global.h"
 #include "test/battle.h"
 
-SINGLE_BATTLE_TEST("Berserk activates only if the target had more than 50% of its hp")
+SINGLE_BATTLE_TEST("Berserk (ability) activates only if the target had more than 50% of its hp")
 {
     bool32 activates = FALSE;
     u16 maxHp = 500, hp = 0;
@@ -28,17 +28,21 @@ SINGLE_BATTLE_TEST("Berserk activates only if the target had more than 50% of it
         }
     } THEN {
         if (activates) {
-            EXPECT_EQ(player->statStages[STAT_SPATK], DEFAULT_STAT_STAGE + 1);
+            EXPECT_EQ(player->statStages[STAT_ATK], DEFAULT_STAT_STAGE + 1);
         }
     }
 }
 
-SINGLE_BATTLE_TEST("Berserk raises Sp.Atk by 1")
+SINGLE_BATTLE_TEST("Berserk (ability) raises Atk or Sp.Atk by 1")
 {
     u16 maxHp = 500;
+    u32 attack, spatk;
+    
+    PARAMETRIZE { attack = 2; spatk = 1; }
+    PARAMETRIZE { attack = 1; spatk = 2; }
     GIVEN {
         ASSUME(gMovesInfo[MOVE_TACKLE].power != 0);
-        PLAYER(SPECIES_DRAGONITE) { Ability(ABILITY_BERSERK); MaxHP(maxHp); HP(maxHp / 2 + 1); }
+        PLAYER(SPECIES_DRAGONITE) { Ability(ABILITY_BERSERK); MaxHP(maxHp); HP(maxHp / 2 + 1); Attack(attack); SpAttack(spatk); }
         OPPONENT(SPECIES_ALAKAZAM);
     } WHEN {
         TURN { MOVE(opponent, MOVE_TACKLE); }
@@ -46,13 +50,21 @@ SINGLE_BATTLE_TEST("Berserk raises Sp.Atk by 1")
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, opponent);
         ABILITY_POPUP(player, ABILITY_BERSERK);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
-        MESSAGE("Dragonite's Sp. Atk rose!");
     } THEN {
-        EXPECT_EQ(player->statStages[STAT_SPATK], DEFAULT_STAT_STAGE + 1);
+        if (attack > spatk)
+        {
+            EXPECT_EQ(player->statStages[STAT_ATTACK], DEFAULT_STAT_STAGE + 1);
+            EXPECT_EQ(player->statStages[STAT_SPATK], DEFAULT_STAT_STAGE);
+        }
+        else
+        {
+            EXPECT_EQ(player->statStages[STAT_SPATK], DEFAULT_STAT_STAGE + 1);
+            EXPECT_EQ(player->statStages[STAT_ATTACK], DEFAULT_STAT_STAGE);
+        }
     }
 }
 
-SINGLE_BATTLE_TEST("Berserk activates after all hits from a multi-hit move")
+SINGLE_BATTLE_TEST("Berserk (ability) activates after all hits from a multi-hit move")
 {
     u32 j;
     u16 maxHp = 500;
@@ -70,6 +82,6 @@ SINGLE_BATTLE_TEST("Berserk activates after all hits from a multi-hit move")
         ANIMATION(ANIM_TYPE_MOVE, MOVE_DOUBLE_SLAP, opponent);
         ABILITY_POPUP(player, ABILITY_BERSERK);
     } THEN {
-        EXPECT_EQ(player->statStages[STAT_SPATK], DEFAULT_STAT_STAGE + 1);
+        EXPECT_EQ(player->statStages[STAT_ATK], DEFAULT_STAT_STAGE + 1);
     }
 }
