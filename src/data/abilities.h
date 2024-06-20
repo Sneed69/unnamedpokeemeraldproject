@@ -1931,7 +1931,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
 
     [ABILITY_PUNK_ROCK] =
     {
-        .name = _("Punk Rock"),
+        .name = _("Cacophony"),
         .description = COMPOUND_STRING("Halves damage taken from\nand boosts damage dealt\nwith sound-based moves."),
         .aiRating = 2,
         .breakable = TRUE,
