@@ -3890,6 +3890,7 @@ static void AnimGuardRing(struct Sprite *sprite)
 void AnimTask_IsFuryCutterHitRight(u8 taskId)
 {
     gBattleAnimArgs[ARG_RET_ID] = gAnimDisableStructPtr->furyCutterCounter & 1;
+    gBattleAnimArgs[ARG_RET_ID] ^= gSpecialStatuses[gBattlerAttacker].shadowTechniques;
     DestroyAnimVisualTask(taskId);
 }
 

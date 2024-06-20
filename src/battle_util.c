@@ -6137,29 +6137,6 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
             gLastUsedAbilities[battler] = battlerAbilities[k];
         switch (gLastUsedAbilities[battler])
         {
-        case ABILITY_SHADOW_TECHNIQUES:
-            if (IsBattlerAlive(battler)
-             && IsBattlerAlive(gBattlerTarget)
-             && gMultiHitCounter == 0
-             && gMovesInfo[gCurrentMove].category != DAMAGE_CATEGORY_STATUS
-             && !(gBattleMons[battler].status1 & STATUS1_SLEEP)
-             && !WasUnableToUseMove(battler)
-             && !gSpecialStatuses[battler].shadowTechniques
-             && gBattlerAttacker != gBattlerTarget)
-            {
-                SetAtkCancellerForCalledMove();
-                gSpecialStatuses[battler].shadowTechniques = TRUE;
-                gBattleStruct->dynamicMoveType = TYPE_DARK | F_DYNAMIC_TYPE_SET;
-                gBattleStruct->atkCancellerTracker = 0;
-                gBattlerAbility = battler;
-                gCalledMove = gCurrentMove;
-                gMoveResultFlags = 0;
-                gHitMarker &= ~HITMARKER_NO_ATTACKSTRING;
-                gHitMarker &= ~HITMARKER_ATTACKSTRING_PRINTED;
-                BattleScriptExecute(BattleScript_DancerActivates);
-                effect++;
-            }
-            break;
         case ABILITY_SOUL_SIPHON:
             if (gSpecialStatuses[gBattlerAttacker].damagedMons  // Need to have done damage
                 && gBattlerAttacker != gBattlerTarget

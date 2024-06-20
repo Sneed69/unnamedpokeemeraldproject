@@ -6325,6 +6325,29 @@ static void Cmd_moveend(void)
             }
             gBattleScripting.moveendState++;
             break;
+        case MOVEEND_SHADOW_TECHNIQUES:
+            if (BattlerHasAbility(gBattlerAttacker, ABILITY_SHADOW_TECHNIQUES)
+             && IsBattlerAlive(gBattlerAttacker) && IsBattlerAlive(gBattlerTarget)
+             && gMovesInfo[gCurrentMove].category != DAMAGE_CATEGORY_STATUS
+             && !(gBattleMons[gBattlerAttacker].status1 & STATUS1_SLEEP)
+             && !WasUnableToUseMove(gBattlerAttacker)
+             && !gSpecialStatuses[gBattlerAttacker].shadowTechniques)
+            {
+                SetAtkCancellerForCalledMove();
+                gSpecialStatuses[gBattlerAttacker].shadowTechniques = TRUE;
+                gBattleStruct->dynamicMoveType = TYPE_DARK | F_DYNAMIC_TYPE_SET;
+                gBattleStruct->atkCancellerTracker = 0;
+                gBattlerAbility = gBattlerAttacker;
+                gCalledMove = gCurrentMove;
+                gMoveResultFlags = 0;
+                gHitMarker &= ~HITMARKER_NO_ATTACKSTRING;
+                gHitMarker &= ~HITMARKER_ATTACKSTRING_PRINTED;
+                BattleScriptExecute(BattleScript_DancerActivates);
+                BattleScriptPushCursor();
+                effect = TRUE;
+            }
+            gBattleScripting.moveendState++;
+            break;
         case MOVEEND_DANCER: // Special case because it's so annoying
             if (gMovesInfo[gCurrentMove].danceMove)
             {
@@ -13591,7 +13614,8 @@ static void Cmd_handlefurycutter(void)
     }
     else
     {
-        if (gDisableStructs[gBattlerAttacker].furyCutterCounter != 5
+        if (gDisableStructs[gBattlerAttacker].furyCutterCounter < 3
+            && !gSpecialStatuses[gBattlerAttacker].shadowTechniques
             && gSpecialStatuses[gBattlerAttacker].parentalBondState != PARENTAL_BOND_1ST_HIT) // Don't increment counter on first hit
             gDisableStructs[gBattlerAttacker].furyCutterCounter++;
 
