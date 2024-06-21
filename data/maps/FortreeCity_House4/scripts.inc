@@ -9,7 +9,7 @@ FortreeCity_House4_EventScript_Woman::
 
 FortreeCity_House4_EventScript_Boy::
 	lockall
-	goto_if_set FLAG_RECEIVED_MENTAL_HERB, FortreeCity_House4_EventScript_ReceivedMentalHerb
+	goto_if_set FLAG_RECEIVED_POWER_HERB, FortreeCity_House4_EventScript_ReceivedMentalHerb
 	goto_if_set FLAG_WINGULL_DELIVERED_MAIL, FortreeCity_House4_EventScript_WingullReturned
 	goto_if_set FLAG_WINGULL_SENT_ON_ERRAND, FortreeCity_House4_EventScript_WingullOnErrand
 	msgbox FortreeCity_House4_Text_GoBirdPokemon, MSGBOX_DEFAULT
@@ -33,9 +33,9 @@ FortreeCity_House4_EventScript_WingullReturned::
 	applymovement VAR_LAST_TALKED, Common_Movement_FacePlayer
 	waitmovement 0
 	msgbox FortreeCity_House4_Text_WelcomeWingullTakeMentalHerb, MSGBOX_DEFAULT
-	giveitem ITEM_MENTAL_HERB
+	giveitem ITEM_POWER_HERB
 	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull
-	setflag FLAG_RECEIVED_MENTAL_HERB
+	setflag FLAG_RECEIVED_POWER_HERB
 	releaseall
 	end
 
@@ -83,7 +83,7 @@ FortreeCity_House4_Text_WelcomeWingullTakeMentalHerb:
 	.string "Welcome back, Wingull!\p"
 	.string "Huh? What is this?\n"
 	.string "What is it holding?\p"
-	.string "A Mental Herb?\n"
+	.string "A Power Herb?\n"
 	.string "It must have picked it up somewhere.\p"
 	.string "But I'm not a Trainer, so you can\n"
 	.string "have it.$"

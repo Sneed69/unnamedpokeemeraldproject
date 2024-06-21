@@ -22,11 +22,11 @@ Route104_OnTransition:
 Route104_EventScript_ShowOrHideWhiteHerbFlorist::
 	goto_if_unset FLAG_MET_PRETTY_PETAL_SHOP_OWNER, Route104_EventScript_HideWhiteHerbFlorist
 	goto_if_unset FLAG_BADGE03_GET, Route104_EventScript_HideWhiteHerbFlorist
-	clearflag FLAG_HIDE_ROUTE_104_WHITE_HERB_FLORIST
+	clearflag FLAG_HIDE_ROUTE_104_MENTAL_HERB_FLORIST
 	return
 
 Route104_EventScript_HideWhiteHerbFlorist::
-	setflag FLAG_HIDE_ROUTE_104_WHITE_HERB_FLORIST
+	setflag FLAG_HIDE_ROUTE_104_MENTAL_HERB_FLORIST
 	return
 
 Route104_EventScript_ExpertF::
@@ -49,11 +49,11 @@ Route104_EventScript_ReceivedBerry::
 Route104_EventScript_WhiteHerbFlorist::
 	lock
 	faceplayer
-	goto_if_set FLAG_RECEIVED_WHITE_HERB, Route104_EventScript_ReceivedWhiteHerb
+	goto_if_set FLAG_RECEIVED_MENTAL_HERB, Route104_EventScript_ReceivedWhiteHerb
 	msgbox Route104_Text_DontNeedThisTakeIt, MSGBOX_DEFAULT
-	giveitem ITEM_WHITE_HERB
+	giveitem ITEM_MENTAL_HERB
 	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull
-	setflag FLAG_RECEIVED_WHITE_HERB
+	setflag FLAG_RECEIVED_MENTAL_HERB
 	release
 	end
 
@@ -816,7 +816,7 @@ Route104_Text_DontNeedThisTakeIt:
 	.string "saplings recently.\p"
 	.string "It made me so happy, I went overboard\n"
 	.string "shopping.\p"
-	.string "I don't need this White Herb anymore.\n"
+	.string "I don't need this Mental Herb anymore.\n"
 	.string "Would you take it, please?$"
 
 Route104_Text_FlowerShopSellingSaplings:

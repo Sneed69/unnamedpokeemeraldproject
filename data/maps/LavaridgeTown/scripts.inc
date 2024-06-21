@@ -416,6 +416,5 @@ LavaridgeTown_Text_GymSign:
 	.string "“One with a fiery passion that burns!”$"
 
 LavaridgeTown_Text_HerbShopSign:
-	.string "Pokémon Herb Shop\n"
-	.string "“Bitter taste--better cure!”$"
+	.string "Pokémon Berry Shop$"
 
