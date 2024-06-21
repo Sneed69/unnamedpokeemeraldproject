@@ -2877,7 +2877,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_MOMENTUM] =
     {
         .name = _("Momentum"),
-        .description = COMPOUND_STRING("After entering a battle,\ngains half of Speed as\nAttack on its first turn."),
+        .description = COMPOUND_STRING("Gains half of Speed as Attack\nduring its first turn in battle."),
         .aiRating = 5,
     },
 
@@ -2938,5 +2938,13 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
         .name = _("Halo"),
         .description = COMPOUND_STRING("Once per battle, nullifies\nthe first incoming attack\nthat isn't super effective."),
         .aiRating = 9,
+        .breakable = TRUE,
+    },
+
+    [ABILITY_EMPATH] =
+    {
+        .name = _("Empath"),
+        .description = COMPOUND_STRING("Boosts special move power\nbut causes them to deal\nheavy recoil damage."),
+        .aiRating = 7,
     },
 };

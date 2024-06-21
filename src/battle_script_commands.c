@@ -5615,16 +5615,6 @@ static void Cmd_moveend(void)
                 gBattleScripting.moveendState++;
                 break;
             }
-            else if (gMovesInfo[gCurrentMove].recoil > 0
-                  && !(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
-                  && IsBattlerAlive(gBattlerAttacker)
-                  && gBattleScripting.savedDmg != 0) // Some checks may be redundant alongside this one
-            {
-                gBattleMoveDamage = max(1, gBattleScripting.savedDmg * max(1, gMovesInfo[gCurrentMove].recoil) / 100);
-                BattleScriptPushCursor();
-                gBattlescriptCurrInstr = BattleScript_MoveEffectRecoil;
-                effect = TRUE;
-            }
             else if (gMovesInfo[gCurrentMove].effect == EFFECT_EXPLOSION && !IsAbilityOnField(ABILITY_DAMP))
             {
                 gBattleMoveDamage = 0;
@@ -5643,12 +5633,36 @@ static void Cmd_moveend(void)
                 gBattlescriptCurrInstr = BattleScript_MaxHp50Recoil;
                 effect = TRUE;
             }
+            else if (BattlerHasAbility(gBattlerAttacker, ABILITY_EMPATH)
+                 && IS_MOVE_SPECIAL(gCurrentMove)
+                 && gMovesInfo[gCurrentMove].recoil < 33
+                 && !(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+                 && IsBattlerAlive(gBattlerAttacker)
+                 && gBattleScripting.savedDmg != 0)
+            {
+                gLastUsedAbilities[gBattlerAttacker] = ABILITY_EMPATH;
+                gBattlerAbility = gBattlerAttacker;
+                gBattleMoveDamage = max(1, gBattleScripting.savedDmg * 33 / 100);
+                BattleScriptPushCursor();
+                gBattlescriptCurrInstr = BattleScript_MoveEffectRecoilAbilityPopup;
+                effect = TRUE;
+            }
+            else if (gMovesInfo[gCurrentMove].recoil > 0
+                  && !(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+                  && IsBattlerAlive(gBattlerAttacker)
+                  && gBattleScripting.savedDmg != 0) // Some checks may be redundant alongside this one
+            {
+                gBattleMoveDamage = max(1, gBattleScripting.savedDmg * max(1, gMovesInfo[gCurrentMove].recoil) / 100);
+                BattleScriptPushCursor();
+                gBattlescriptCurrInstr = BattleScript_MoveEffectRecoil;
+                effect = TRUE;
+            }
             else if (BattlerHasAbility(gBattlerAttacker, ABILITY_POWER_GLIDE)
-                    && gBattleWeather & B_WEATHER_WINDY
-                    && IsMoveMakingContact(gCurrentMove, gBattlerAttacker)
-                    && !(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
-                    && IsBattlerAlive(gBattlerAttacker)
-                    && gBattleScripting.savedDmg != 0)
+                 && gBattleWeather & B_WEATHER_WINDY
+                 && IsMoveMakingContact(gCurrentMove, gBattlerAttacker)
+                 && !(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+                 && IsBattlerAlive(gBattlerAttacker)
+                 && gBattleScripting.savedDmg != 0)
             {
                 gLastUsedAbilities[gBattlerAttacker] = ABILITY_POWER_GLIDE;
                 gBattlerAbility = gBattlerAttacker;
