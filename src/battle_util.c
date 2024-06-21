@@ -9926,6 +9926,7 @@ static inline u32 CalcAttackStat(u32 move, u32 battlerAtk, u32 battlerDef, u32 m
     u32 atkStat;
     uq4_12_t modifier;
     u16 atkBaseSpeciesId;
+    u32 defSide = GetBattlerSide(battlerDef);
     bool32 usesOwnAttackStat = FALSE;
 
     atkBaseSpeciesId = GET_BASE_SPECIES_ID(gBattleMons[battlerAtk].species);
@@ -10128,6 +10129,14 @@ static inline u32 CalcAttackStat(u32 move, u32 battlerAtk, u32 battlerDef, u32 m
                 modifier = uq4_12_multiply_half_down(modifier, UQ_4_12(0.5));
                 if (updateFlags)
                     RecordAbilityBattle(battlerDef, ABILITY_TIMELESS_BEHEMOTH);
+            }
+            break;
+        case ABILITY_AVENGER:
+            if (gSideTimers[defSide].retaliateTimer > 0)
+            {
+                modifier = uq4_12_multiply_half_down(modifier, UQ_4_12(0.5));
+                if (updateFlags)
+                    RecordAbilityBattle(battlerDef, ABILITY_AVENGER);
             }
             break;
         }

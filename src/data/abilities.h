@@ -2947,4 +2947,12 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
         .description = COMPOUND_STRING("Boosts special move power\nbut causes them to deal\nheavy recoil damage."),
         .aiRating = 7,
     },
+
+    [ABILITY_AVENGER] =
+    {
+        .name = _("Avenger"),
+        .description = COMPOUND_STRING("Halves incoming damage\nif an ally fainted during\nthe previous turn."),
+        .aiRating = 7,
+        .breakable = TRUE,
+    },
 };
