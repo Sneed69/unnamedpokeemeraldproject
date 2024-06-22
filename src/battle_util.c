@@ -6689,7 +6689,8 @@ void GetBattlerAbilities(u32 battler, u32 *abilities)
     if (neutralisingGas)
         goto SUPPRESSION_CHECKS_END;
 
-    if (gBattlerByTurnOrder[gCurrentTurnActionNumber] == gBattlerAttacker
+    if (battler != gBattlerAttacker
+     && gBattlerByTurnOrder[gCurrentTurnActionNumber] == gBattlerAttacker
      && gActionsByTurnOrder[gBattlerByTurnOrder[gBattlerAttacker]] == B_ACTION_USE_MOVE
      && gCurrentTurnActionNumber < gBattlersCount)
     {
