@@ -2968,4 +2968,11 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
         .aiRating = 5,
         .breakable = TRUE,
     },
+
+    [ABILITY_VERSATILE] =
+    {
+        .name = _("Versatile"),
+        .description = COMPOUND_STRING("Physical and special moves\nuse the highest stat between\nAttack and Sp. Attack."),
+        .aiRating = 5,
+    },
 };

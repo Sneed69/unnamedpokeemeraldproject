@@ -9972,7 +9972,8 @@ static inline u32 CalcAttackStat(u32 move, u32 battlerAtk, u32 battlerDef, u32 m
                 atkStage = gBattleMons[battlerAtk].statStages[STAT_SPDEF];
         }
     }
-    else if (gMovesInfo[move].effect == EFFECT_ABSORB && IsAbilityInArray(atkAbilities, ABILITY_BLOODSUCKER))
+    else if (IsAbilityInArray(atkAbilities, ABILITY_VERSATILE)
+          || (gMovesInfo[move].effect == EFFECT_ABSORB && IsAbilityInArray(atkAbilities, ABILITY_BLOODSUCKER)))
     {
         if (IsBattlerSpecialAtkHigher(battlerAtk))
         {
@@ -10011,7 +10012,7 @@ static inline u32 CalcAttackStat(u32 move, u32 battlerAtk, u32 battlerDef, u32 m
     atkStat *= gStatStageRatios[atkStage][0];
     atkStat /= gStatStageRatios[atkStage][1];
 
-    if (IsAbilityInArray(atkAbilities, ABILITY_MOMENTUM) && gDisableStructs[battlerAtk].isFirstTurn && usesOwnAttackStat)
+    if (usesOwnAttackStat && IsAbilityInArray(atkAbilities, ABILITY_MOMENTUM) && gDisableStructs[battlerAtk].isFirstTurn)
     {
         u32 speedStage = gBattleMons[battlerAtk].statStages[STAT_SPEED];
         if (isCrit && speedStage < DEFAULT_STAT_STAGE)
@@ -12514,18 +12515,18 @@ void RemoveBattlerType(u32 battler, u8 type)
 
 static uq4_12_t GetBlazeMult(u32 maxHP, u32 hp)
 {
-        uq4_12_t mult;
+    uq4_12_t mult;
 
-        if (hp <= (maxHP / 3))
-            mult = UQ_4_12(1.5);
-        else
-        {
-            mult = uq4_12_divide(UQ_4_12(maxHP - hp), UQ_4_12(maxHP));
-            mult = uq4_12_multiply(mult, UQ_4_12(0.75));
-            mult = uq4_12_add(mult, UQ_4_12(1));
-        }
+    if (hp <= (maxHP / 3))
+        mult = UQ_4_12(1.5);
+    else
+    {
+        mult = uq4_12_divide(UQ_4_12(maxHP - hp), UQ_4_12(maxHP));
+        mult = uq4_12_multiply(mult, UQ_4_12(0.75));
+        mult = uq4_12_add(mult, UQ_4_12(1));
+    }
 
-        return mult;
+    return mult;
 }
 
 void SetShellSideArmCategory(void)
