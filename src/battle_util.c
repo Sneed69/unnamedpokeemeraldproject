@@ -10966,7 +10966,7 @@ static inline void MulByTypeEffectiveness(uq4_12_t *modifier, u32 move, u32 move
             RecordAbilityBattle(battlerAtk, ABILITY_IONIZATION);
     }
 
-    if ((defType == TYPE_STEEL || defType == TYPE_ROCK) && IsAbilityInArray(abilitiesAtk, ABILITY_TURBOBLAZE) && mod == UQ_4_12(0.5))
+    if ((defType == TYPE_STEEL || defType == TYPE_ROCK) && IsAbilityInArray(abilitiesAtk, ABILITY_HEAVY_IMPACT) && mod == UQ_4_12(0.5))
     {
         mod = UQ_4_12(1.0);
         if (recordAbilities)

@@ -1235,15 +1235,15 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
 
     [ABILITY_TURBOBLAZE] =
     {
-        .name = _("Mold Destroyer"),
-        .description = COMPOUND_STRING("Moves ignore all abilities and\nany resistances granted by\nthe Rock and Steel types."),
-        .aiRating = 10,
+        .name = _("Turboblaze"),
+        .description = COMPOUND_STRING("Moves are unaffected by\ntheir target's abilities."),
+        .aiRating = 7,
     },
 
     [ABILITY_TERAVOLT] =
     {
         .name = _("Teravolt"),
-        .description = COMPOUND_STRING("Moves hit through abilities."),
+        .description = COMPOUND_STRING("Moves are unaffected by\ntheir target's abilities."),
         .aiRating = 7,
     },
 
@@ -2954,5 +2954,12 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
         .description = COMPOUND_STRING("Halves incoming damage\nif an ally fainted during\nthe previous turn."),
         .aiRating = 7,
         .breakable = TRUE,
+    },
+
+    [ABILITY_HEAVY_IMPACT] =
+    {
+        .name = _("Heavy Impact"),
+        .description = COMPOUND_STRING("Moves ignore the resistances\nof the Rock and Steel types."),
+        .aiRating = 6,
     },
 };

@@ -66,8 +66,8 @@ SINGLE_BATTLE_TEST("Keen Eye, Gen9+ Illuminate & Minds Eye are ignored by Mold B
     u32 j;
     static const u16 moldBreakerAbilities[][2] = {
         {SPECIES_PINSIR,   ABILITY_MOLD_BREAKER},
-        {SPECIES_TINKATON, ABILITY_TURBOBLAZE},
-        {SPECIES_TINKATON,   ABILITY_TERAVOLT},
+        {SPECIES_PINSIR,   ABILITY_TURBOBLAZE},
+        {SPECIES_PINSIR,   ABILITY_TERAVOLT},
     };
 
     for (j = 0; j < ARRAY_COUNT(moldBreakerAbilities); j++) {
