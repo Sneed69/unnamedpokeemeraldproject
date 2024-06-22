@@ -14851,17 +14851,6 @@ static void Cmd_switchoutabilities(void)
     int i;
     u32 abilities[NUM_ABILITIES];
 
-    for (i = 0; i < NUM_ABILITIES; i++)
-    {
-        if (gBattleMons[battler].abilities[i] == ABILITY_NEUTRALIZING_GAS)
-        {
-            gBattleMons[battler].abilities[i] = ABILITY_NONE;
-            BattleScriptPush(gBattlescriptCurrInstr);
-            gBattlescriptCurrInstr = BattleScript_NeutralizingGasExits;
-            return;
-        }
-    }
-
     GetBattlerAbilities(battler, abilities);
 
     for (i = 0; i < NUM_ABILITIES; i++)
@@ -14869,6 +14858,7 @@ static void Cmd_switchoutabilities(void)
         switch (abilities[i])
         {
         case ABILITY_NATURAL_CURE:
+            gBattleMons[battler].abilities[i] = ABILITY_NONE;
             if (IsBattlerPollutedTerrainAffected(battler))
                 break;
             gBattleMons[battler].status1 = 0;
@@ -14877,8 +14867,9 @@ static void Cmd_switchoutabilities(void)
                                          sizeof(gBattleMons[battler].status1),
                                          &gBattleMons[battler].status1);
             MarkBattlerForControllerExec(battler);
-            break;
+            return;
         case ABILITY_REGENERATOR:
+            gBattleMons[battler].abilities[i] = ABILITY_NONE;
             if (IsBattlerPollutedTerrainAffected(battler))
                 gBattleMoveDamage = GetNonDynamaxMaxHP(gBattlerAttacker) / 6;
             else
@@ -14891,11 +14882,22 @@ static void Cmd_switchoutabilities(void)
                                          sizeof(gBattleMoveDamage),
                                          &gBattleMoveDamage);
             MarkBattlerForControllerExec(battler);
-            break;
+            return;
         }
-
-        gBattlescriptCurrInstr = cmd->nextInstr;
     }
+
+    for (i = 0; i < NUM_ABILITIES; i++)
+    {
+        if (gBattleMons[battler].abilities[i] == ABILITY_NEUTRALIZING_GAS)
+        {
+            gBattleMons[battler].abilities[i] = ABILITY_NONE;
+            BattleScriptPush(gBattlescriptCurrInstr);
+            gBattlescriptCurrInstr = BattleScript_NeutralizingGasExits;
+            return;
+        }
+    }
+
+    gBattlescriptCurrInstr = cmd->nextInstr;
 }
 
 static void Cmd_jumpifhasnohp(void)

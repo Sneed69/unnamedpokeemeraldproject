@@ -2043,7 +2043,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     #else
         .name = _("NeutrlzngGas"),
     #endif
-        .description = COMPOUND_STRING("Nullifies the effects of all\nother Abilities on the field."),
+        .description = COMPOUND_STRING("Nullifies the effects of other\nPokémon's abilities."),
         .aiRating = 5,
         .cantBeCopied = TRUE,
         .cantBeSwapped = TRUE,

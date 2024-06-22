@@ -12080,11 +12080,8 @@ static const struct SpeciesInfo gSpeciesInfoGen1[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_AMORPHOUS),
-    #if P_UPDATED_ABILITIES >= GEN_8
-        .abilities = { ABILITY_LEVITATE, ABILITY_NEUTRALIZING_GAS },
-    #else
-        .abilities = { ABILITY_LEVITATE, ABILITY_NONE },
-    #endif
+        .abilities = { ABILITY_NEUTRALIZING_GAS, ABILITY_NONE },
+        .innate = ABILITY_LEVITATE,
         .bodyColor = BODY_COLOR_PURPLE,
         .speciesName = _("Koffing"),
         .cryId = CRY_KOFFING,
@@ -12149,11 +12146,8 @@ static const struct SpeciesInfo gSpeciesInfoGen1[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_AMORPHOUS),
-    #if P_UPDATED_ABILITIES >= GEN_8
-        .abilities = { ABILITY_LEVITATE, ABILITY_NEUTRALIZING_GAS },
-    #else
-        .abilities = { ABILITY_LEVITATE, ABILITY_NONE },
-    #endif
+        .abilities = { ABILITY_NEUTRALIZING_GAS, ABILITY_NONE },
+        .innate = ABILITY_LEVITATE,
         .bodyColor = BODY_COLOR_PURPLE,
         .noFlip = TRUE,
         .speciesName = _("Weezing"),
@@ -13270,7 +13264,8 @@ static const struct SpeciesInfo gSpeciesInfoGen1[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_WATER_3),
-        .abilities = { ABILITY_ILLUMINATE, ABILITY_NATURAL_CURE },
+        .abilities = { ABILITY_REGENERATOR, ABILITY_PROTEAN },
+        .innate = ABILITY_NATURAL_CURE,
         .bodyColor = BODY_COLOR_BROWN,
         .noFlip = TRUE,
         .speciesName = _("Staryu"),
@@ -13335,7 +13330,8 @@ static const struct SpeciesInfo gSpeciesInfoGen1[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_WATER_3),
-        .abilities = { ABILITY_ILLUMINATE, ABILITY_NATURAL_CURE },
+        .abilities = { ABILITY_REGENERATOR, ABILITY_PROTEAN },
+        .innate = ABILITY_NATURAL_CURE,
         .bodyColor = BODY_COLOR_PURPLE,
         .speciesName = _("Starmie"),
         .cryId = CRY_STARMIE,
