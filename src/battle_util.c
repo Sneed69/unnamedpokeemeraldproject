@@ -4035,6 +4035,7 @@ static void ForewarnChooseMove(u32 battler)
     gBattlerTarget = data[bestId].battler;
     if (gDisableStructs[gBattlerTarget].disabledMove == MOVE_NONE
      && gBattleStruct->choicedMove[gBattlerTarget] != data[bestId].moveId
+     && !BattlerHasAbility(gBattlerTarget, ABILITY_OWN_TEMPO)
      && !IsAbilityOnSide(gBattlerTarget, ABILITY_AROMA_VEIL))
     {
         gDisableStructs[gBattlerTarget].disabledMove = data[bestId].moveId;
@@ -5659,6 +5660,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
              && TARGET_TURN_DAMAGED
              && gDisableStructs[gBattlerAttacker].disabledMove == MOVE_NONE
              && IsBattlerAlive(gBattlerAttacker)
+             && !BattlerHasAbility(gBattlerAttacker, ABILITY_OWN_TEMPO)
              && !IsAbilityOnSide(gBattlerAttacker, ABILITY_AROMA_VEIL)
              && gBattleMons[gBattlerAttacker].pp[gChosenMovePos] != 0
              && !IsDynamaxed(gBattlerAttacker) // TODO: Max Moves don't make contact, useless?
@@ -6299,6 +6301,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
 
           for (k = 0; k < NUM_ABILITIES; k++)
           {
+            gLastUsedAbilities[battler] = abilities[k];
             switch (abilities[k])
             {
             case ABILITY_IMMUNITY:
@@ -6314,6 +6317,10 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
                 {
                     StringCopy(gBattleTextBuff1, gStatusConditionString_ConfusionJpn);
                     effect = 2;
+                }
+                else if (gDisableStructs[battler].tauntTimer != 0)
+                {
+                    effect = 4;
                 }
                 break;
             case ABILITY_LIMBER:

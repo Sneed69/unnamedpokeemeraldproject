@@ -164,10 +164,8 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
 
     [ABILITY_OWN_TEMPO] =
     {
-        .name = _("Own Tempo"),
-        .description = COMPOUND_STRING("Protects against confusion\nand abilities that lower\nstats after switching in."),
-        //.description = COMPOUND_STRING("Protects against encore, taunt,\ntorment, confusion, disable and\nstat lowering switch-in abilities."),
-        .aiRating = 3,
+        .name = _("Own Tempo"),.description = COMPOUND_STRING("Protects against encore, taunt,\ntorment, confusion, disable and\nstat lowering switch-in abilities."),
+        .aiRating = 6,
         .breakable = TRUE,
     },
 

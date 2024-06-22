@@ -881,6 +881,17 @@ static s32 AI_CheckBadMove(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
                 if (IsAromaVeilProtectedMove(move))
                     RETURN_SCORE_MINUS(10);
                 break;
+            case ABILITY_OWN_TEMPO:
+                switch (moveEffect)
+                {
+                case EFFECT_CONFUSE:
+                case EFFECT_DISABLE:
+                case EFFECT_TAUNT:
+                case EFFECT_ENCORE:
+                case EFFECT_TORMENT:
+                    RETURN_SCORE_MINUS(10);
+                }
+                break;
             case ABILITY_SWEET_VEIL:
                 if (moveEffect == EFFECT_SLEEP || moveEffect == EFFECT_YAWN)
                     RETURN_SCORE_MINUS(10);

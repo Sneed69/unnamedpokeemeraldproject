@@ -113,3 +113,21 @@ SINGLE_BATTLE_TEST("Own Tempo prevents confusion from items")
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, opponent);
     }
 }
+
+SINGLE_BATTLE_TEST("Own Tempo prevents Taunt")
+{
+    GIVEN {
+        ASSUME(gMovesInfo[MOVE_TAUNT].effect == EFFECT_TAUNT);
+        PLAYER(SPECIES_SLOWPOKE) { Ability(ABILITY_OWN_TEMPO); }
+        OPPONENT(SPECIES_ALAKAZAM);
+    } WHEN {
+        TURN { MOVE(opponent, MOVE_TAUNT); }
+        TURN { MOVE(player, MOVE_SPORE); }
+    } SCENE {
+        ABILITY_POPUP(player, ABILITY_OWN_TEMPO);
+        NONE_OF { ANIMATION(ANIM_TYPE_MOVE, MOVE_TAUNT, opponent); }
+        MESSAGE("It doesn't affect Slowpoke…");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_SPORE, player);
+        ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_SLP, opponent);
+    }
+}
