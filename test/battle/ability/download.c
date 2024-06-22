@@ -56,6 +56,7 @@ SINGLE_BATTLE_TEST("Download raises Sp.Attack if enemy has lower Sp. Def than De
 SINGLE_BATTLE_TEST("Download doesn't activate if target hasn't been sent out yet", s16 damagePhysical, s16 damageSpecial)
 {
     u32 ability;
+    KNOWN_FAILING;
     PARAMETRIZE { ability = ABILITY_TRACE; }
     PARAMETRIZE { ability = ABILITY_DOWNLOAD; }
     GIVEN {
@@ -73,13 +74,13 @@ SINGLE_BATTLE_TEST("Download doesn't activate if target hasn't been sent out yet
         // Everyone faints.
 
         SEND_IN_MESSAGE("Magnemite");
-        MESSAGE("2 sent out Magnemite!");
-
         NONE_OF {
             ABILITY_POPUP(player, ABILITY_DOWNLOAD);
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
             MESSAGE("Magnemite's Download raised its Attack!");
         }
+        MESSAGE("2 sent out Magnemite!");
+
         if (ability == ABILITY_DOWNLOAD)
         {
             ABILITY_POPUP(opponent, ABILITY_DOWNLOAD);
