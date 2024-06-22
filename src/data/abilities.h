@@ -2962,4 +2962,12 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
         .description = COMPOUND_STRING("Moves ignore the resistances\nof the Rock and Steel types."),
         .aiRating = 6,
     },
+
+    [ABILITY_STONE_CARAPACE] =
+    {
+        .name = _("Stone Carapace"),
+        .description = COMPOUND_STRING("Halves damage taken\nfrom Normal-, Flying-\nand Fire- type moves."),
+        .aiRating = 5,
+        .breakable = TRUE,
+    },
 };
