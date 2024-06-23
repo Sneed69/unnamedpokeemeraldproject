@@ -10144,6 +10144,14 @@ static inline u32 CalcAttackStat(u32 move, u32 battlerAtk, u32 battlerDef, u32 m
                     RecordAbilityBattle(battlerDef, ABILITY_THICK_FAT);
             }
             break;
+        case ABILITY_WATER_VEIL:
+            if (moveType == TYPE_FIRE || moveType == TYPE_GROUND)
+            {
+                modifier = uq4_12_multiply_half_down(modifier, UQ_4_12(0.5));
+                if (updateFlags)
+                    RecordAbilityBattle(battlerDef, ABILITY_WATER_VEIL);
+            }
+            break;
         case ABILITY_STONE_CARAPACE:
             if (moveType == TYPE_FIRE || moveType == TYPE_NORMAL || moveType == TYPE_FLYING)
             {
