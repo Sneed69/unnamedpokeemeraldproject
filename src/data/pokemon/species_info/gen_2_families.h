@@ -1891,11 +1891,7 @@ static const struct SpeciesInfo gSpeciesInfoGen2[] =
         .baseSpeed     = 20,
         .baseSpAttack  = 20,
         .baseSpDefense = 40,
-    #if P_UPDATED_TYPES >= GEN_6
-        .types = MON_TYPES(TYPE_NORMAL, TYPE_FAIRY),
-    #else
-        .types = MON_TYPES(TYPE_NORMAL),
-    #endif
+        .types = MON_TYPES(TYPE_FAIRY),
         .catchRate = 150,
         .expYield = (P_UPDATED_EXP_YIELDS >= GEN_5) ? 38 : 33,
         .evYield_HP = 1,
@@ -1904,7 +1900,8 @@ static const struct SpeciesInfo gSpeciesInfoGen2[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_NO_EGGS_DISCOVERED),
-        .abilities = { ABILITY_THICK_FAT, ABILITY_HUGE_POWER },
+        .abilities = { ABILITY_SAP_SIPPER, ABILITY_BOUNCY },
+        .innate = ABILITY_HUGE_POWER,
         .bodyColor = BODY_COLOR_BLUE,
         .speciesName = _("Azurill"),
         .cryId = CRY_AZURILL,
@@ -1957,13 +1954,9 @@ static const struct SpeciesInfo gSpeciesInfoGen2[] =
         .baseAttack    = 20,
         .baseDefense   = 50,
         .baseSpeed     = 40,
-        .baseSpAttack  = 20,
+        .baseSpAttack  = 66,
         .baseSpDefense = 50,
-    #if P_UPDATED_TYPES >= GEN_6
-        .types = MON_TYPES(TYPE_WATER, TYPE_FAIRY),
-    #else
-        .types = MON_TYPES(TYPE_WATER),
-    #endif
+        .types = MON_TYPES(TYPE_FAIRY, TYPE_WATER),
         .catchRate = 190,
         .expYield = (P_UPDATED_EXP_YIELDS >= GEN_5) ? 88 : 58,
         .evYield_HP = 2,
@@ -1972,7 +1965,8 @@ static const struct SpeciesInfo gSpeciesInfoGen2[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_WATER_1, EGG_GROUP_FAIRY),
-        .abilities = { ABILITY_THICK_FAT, ABILITY_HUGE_POWER },
+        .abilities = { ABILITY_SAP_SIPPER, ABILITY_BOUNCY },
+        .innate = ABILITY_HUGE_POWER,
         .bodyColor = BODY_COLOR_BLUE,
         .speciesName = _("Marill"),
         .cryId = CRY_MARILL,
@@ -2023,13 +2017,9 @@ static const struct SpeciesInfo gSpeciesInfoGen2[] =
         .baseAttack    = 50,
         .baseDefense   = 80,
         .baseSpeed     = 50,
-        .baseSpAttack  = P_UPDATED_STATS >= GEN_6 ? 60 : 50,
+        .baseSpAttack  = 96,
         .baseSpDefense = 80,
-    #if P_UPDATED_TYPES >= GEN_6
-        .types = MON_TYPES(TYPE_WATER, TYPE_FAIRY),
-    #else
-        .types = MON_TYPES(TYPE_WATER),
-    #endif
+        .types = MON_TYPES(TYPE_FAIRY, TYPE_WATER),
         .catchRate = 75,
     #if P_UPDATED_EXP_YIELDS >= GEN_8
         .expYield = 210,
@@ -2046,7 +2036,8 @@ static const struct SpeciesInfo gSpeciesInfoGen2[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_WATER_1, EGG_GROUP_FAIRY),
-        .abilities = { ABILITY_THICK_FAT, ABILITY_HUGE_POWER },
+        .abilities = { ABILITY_SAP_SIPPER, ABILITY_BOUNCY },
+        .innate = ABILITY_HUGE_POWER,
         .bodyColor = BODY_COLOR_BLUE,
         .speciesName = _("Azumarill"),
         .cryId = CRY_AZUMARILL,

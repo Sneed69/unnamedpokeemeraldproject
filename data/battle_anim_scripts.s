@@ -85,6 +85,7 @@ gBattleAnims_General::
 	.4byte General_Fog                      @ B_ANIM_FOG_CONTINUES
 	.4byte General_TeraCharge               @ B_ANIM_TERA_CHARGE
 	.4byte General_TeraActivate             @ B_ANIM_TERA_ACTIVATE
+	.4byte General_Bouncy	                @ B_ANIM_BOUNCY
 
 	.align 2
 gBattleAnims_Special::
@@ -23522,6 +23523,15 @@ BounceUnleash:
 	clearmonbg ANIM_DEF_PARTNER
 	blendoff
 	goto BounceEnd
+
+General_Bouncy:
+	loadspritegfx ANIM_TAG_ROUND_SHADOW
+	playsewithpan SE_M_TELEPORT, SOUND_PAN_ATTACKER
+	createsprite gBounceBallShrinkSpriteTemplate, ANIM_ATTACKER, 2, 0, 0
+	waitforvisualfinish
+	createvisualtask AnimTask_SetInvisible, 1, ANIM_TARGET, TRUE
+	waitforvisualfinish
+	end
 
 Move_KARATE_CHOP::
 	loadspritegfx ANIM_TAG_HANDS_AND_FEET

@@ -3531,6 +3531,7 @@ BattleScript_EffectRecoilIfMiss::
 	goto BattleScript_HitFromAtkString
 BattleScript_MoveMissedDoDamage::
 	jumpifability BS_ATTACKER, ABILITY_MAGIC_GUARD, BattleScript_PrintMoveMissed
+	jumpifability BS_ATTACKER, ABILITY_BOUNCY, BattleScript_PrintMoveMissed
 	attackstring
 	ppreduce
 	pause B_WAIT_TIME_LONG
@@ -7680,6 +7681,7 @@ BattleScript_MoveEffectRecoilAbilityPopup::
 	jumpifmove MOVE_STRUGGLE, BattleScript_DoRecoil
 	jumpifability BS_ATTACKER, ABILITY_ROCK_HEAD, BattleScript_RecoilEnd
 	jumpifability BS_ATTACKER, ABILITY_MAGIC_GUARD, BattleScript_RecoilEnd
+	jumpifability BS_ATTACKER, ABILITY_BOUNCY, BattleScript_RecoilEnd
 	call BattleScript_AbilityPopUp
 	goto BattleScript_DoRecoil
 
@@ -7687,6 +7689,7 @@ BattleScript_MoveEffectRecoil::
 	jumpifmove MOVE_STRUGGLE, BattleScript_DoRecoil
 	jumpifability BS_ATTACKER, ABILITY_ROCK_HEAD, BattleScript_RecoilEnd
 	jumpifability BS_ATTACKER, ABILITY_MAGIC_GUARD, BattleScript_RecoilEnd
+	jumpifability BS_ATTACKER, ABILITY_BOUNCY, BattleScript_RecoilEnd
 BattleScript_DoRecoil::
 	orword gHitMarker, HITMARKER_IGNORE_SUBSTITUTE | HITMARKER_PASSIVE_DAMAGE | HITMARKER_IGNORE_DISGUISE
 	healthbarupdate BS_ATTACKER
@@ -7805,7 +7808,8 @@ BattleScript_EmergencyExit::
 	call BattleScript_AbilityPopUp
 	pause B_WAIT_TIME_LONG
 BattleScript_EmergencyExitNoPopUp::
-	playanimation BS_TARGET, B_ANIM_SLIDE_OFFSCREEN
+	playanimation BS_TARGET, B_ANIM_BOUNCY
+	flushtextbox
 	waitanimation
 	openpartyscreen BS_TARGET, BattleScript_EmergencyExitRet
 	switchoutabilities BS_TARGET

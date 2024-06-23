@@ -2975,4 +2975,11 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
         .description = COMPOUND_STRING("Physical and special moves\nuse the highest stat between\nAttack and Sp. Attack."),
         .aiRating = 5,
     },
+
+    [ABILITY_BOUNCY] =
+    {
+        .name = _("Bouncy"),
+        .description = COMPOUND_STRING("Switches out after successfully\nusing a contact move.\nProtects from recoil damage."),
+        .aiRating = 9,
+    },
 };

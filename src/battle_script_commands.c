@@ -6416,7 +6416,7 @@ static void Cmd_moveend(void)
             {
                 if (gBattleResources->flags->flags[i] & RESOURCE_FLAG_EMERGENCY_EXIT)
                 {
-                    gLastUsedAbilities[i] = BattlerHasAnyOfAbilities(i, 2, ABILITY_WIMP_OUT, ABILITY_EMERGENCY_EXIT);
+                    gLastUsedAbilities[i] = BattlerHasAnyOfAbilities(i, 3, ABILITY_WIMP_OUT, ABILITY_EMERGENCY_EXIT, ABILITY_BOUNCY);
                     gBattleResources->flags->flags[i] &= ~RESOURCE_FLAG_EMERGENCY_EXIT;
                     gSpecialStatuses[i].emergencyExited = TRUE;
                     gBattlerTarget = gBattlerAbility = i;
@@ -6427,13 +6427,6 @@ static void Cmd_moveend(void)
                             gBattlescriptCurrInstr = BattleScript_EmergencyExit;
                         else
                             gBattlescriptCurrInstr = BattleScript_EmergencyExitNoPopUp;
-                    }
-                    else
-                    {
-                        if (B_ABILITY_POP_UP == TRUE)
-                            gBattlescriptCurrInstr = BattleScript_EmergencyExitWild;
-                        else
-                            gBattlescriptCurrInstr = BattleScript_EmergencyExitWildNoPopUp;
                     }
                     return;
                 }

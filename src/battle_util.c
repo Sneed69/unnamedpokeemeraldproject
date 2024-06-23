@@ -6139,6 +6139,20 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
             gLastUsedAbilities[battler] = battlerAbilities[k];
         switch (gLastUsedAbilities[battler])
         {
+        case ABILITY_BOUNCY:
+            if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+             && TARGET_TURN_DAMAGED
+             && IsMoveMakingContact(move, gBattlerAttacker)
+             && IsBattlerAlive(battler)
+             && (gMultiHitCounter == 0 || gMultiHitCounter == 1)
+             && (CanBattlerSwitch(battler))
+             && !(gBattleTypeFlags & BATTLE_TYPE_ARENA)
+             && CountUsablePartyMons(battler) > 0)
+            {
+                gBattleResources->flags->flags[battler] |= RESOURCE_FLAG_EMERGENCY_EXIT;
+                effect++;
+            }
+            break;
         case ABILITY_SOUL_SIPHON:
             if (gSpecialStatuses[gBattlerAttacker].damagedMons  // Need to have done damage
                 && gBattlerAttacker != gBattlerTarget
@@ -7343,7 +7357,8 @@ static u8 ItemHealHp(u32 battler, u32 itemId, bool32 end2, bool32 percentHeal)
             gBattlescriptCurrInstr = BattleScript_ItemHealHP_RemoveItemRet;
         }
         if (gBattleResources->flags->flags[battler] & RESOURCE_FLAG_EMERGENCY_EXIT
-         && GetNonDynamaxHP(battler) >= GetNonDynamaxMaxHP(battler)  / 2)
+         && GetNonDynamaxHP(battler) >= GetNonDynamaxMaxHP(battler)  / 2
+         && !BattlerHasAbility(battler, ABILITY_BOUNCY))
             gBattleResources->flags->flags[battler] &= ~RESOURCE_FLAG_EMERGENCY_EXIT;
 
         return ITEM_HP_CHANGE;
