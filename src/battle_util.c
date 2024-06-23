@@ -6140,6 +6140,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
             if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
              && TARGET_TURN_DAMAGED
              && IsMoveMakingContact(move, gBattlerAttacker)
+             && gMovesInfo[move].effect != EFFECT_HIT_ESCAPE
              && IsBattlerAlive(battler)
              && (gMultiHitCounter == 0 || gMultiHitCounter == 1)
              && (CanBattlerSwitch(battler))
