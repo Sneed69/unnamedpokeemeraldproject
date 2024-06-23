@@ -106,7 +106,7 @@ DOUBLE_BATTLE_TEST("Switch-in abilities trigger in Speed Order after post-KO swi
         OPPONENT(SPECIES_ALAKAZAM) { HP(1); Speed(1); }
         OPPONENT(SPECIES_ALAKAZAM) { HP(1); Speed(1); }
         OPPONENT(SPECIES_WEEZING) { Speed(spdOpponent1); Ability(ABILITY_MISTY_SURGE); }
-        OPPONENT(SPECIES_VULPIX_ALOLAN) { Speed(spdOpponent2); Ability(ABILITY_SNOW_WARNING); }
+        OPPONENT(SPECIES_VULPIX) { Speed(spdOpponent2); Ability(ABILITY_SNOW_WARNING); }
     } WHEN {
         TURN { MOVE(playerLeft, MOVE_EXPLOSION); SEND_OUT(playerLeft, 2); SEND_OUT(opponentLeft, 2); SEND_OUT(playerRight, 3); SEND_OUT(opponentRight, 3); }
         TURN { ; }

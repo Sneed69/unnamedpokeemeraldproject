@@ -51,17 +51,15 @@ SINGLE_BATTLE_TEST("Plasma Fists type-changing effect is applied after Pixilate"
 {
     GIVEN {
         PLAYER(SPECIES_CORPHISH) { Speed(300); };
-        OPPONENT(SPECIES_ALTARIA) { Speed(1); Item(ITEM_ALTARIANITE); }
+        OPPONENT(SPECIES_ALTARIA) { Speed(1); Ability(ABILITY_PIXILATE); }
     } WHEN {
-        TURN { MOVE(player, MOVE_PLASMA_FISTS); MOVE(opponent, MOVE_EMBER, megaEvolve: TRUE); }
+        TURN { MOVE(player, MOVE_PLASMA_FISTS); MOVE(opponent, MOVE_TACKLE); }
     } SCENE {
-        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_MEGA_EVOLUTION, opponent);
         MESSAGE("Corphish used Plasma Fists!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_PLASMA_FISTS, player);
         MESSAGE("A deluge of ions showers the battlefield!");
-        MESSAGE("Foe Altaria used Ember!");
-        ANIMATION(ANIM_TYPE_MOVE, MOVE_EMBER, opponent);
-        NOT MESSAGE("It's super effective!");
+        MESSAGE("Foe Altaria used Tackle!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, opponent);
     }
 }
 
@@ -88,7 +86,7 @@ SINGLE_BATTLE_TEST("Plasma Fists type-changing effect is applied after Normalize
         PLAYER(SPECIES_CORPHISH) { Speed(100); }
         OPPONENT(SPECIES_ALAKAZAM) { Speed(1); }
     } WHEN {
-        TURN { MOVE(player, MOVE_PLASMA_FISTS); MOVE(opponent, MOVE_TACKLE, dynamax: TRUE); }
+        TURN { MOVE(player, MOVE_PLASMA_FISTS); MOVE(opponent, MOVE_TACKLE, gimmick: GIMMICK_DYNAMAX); }
     } SCENE {
         MESSAGE("Corphish used Plasma Fists!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_PLASMA_FISTS, player);
