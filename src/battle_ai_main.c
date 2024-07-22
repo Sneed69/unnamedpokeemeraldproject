@@ -368,7 +368,7 @@ static u32 Ai_SetMoveAccuracy(struct AiLogicData *aiData, u32 battlerAtk, u32 ba
 {
     u32 accuracy;
     u32 *abilitiesAtk = aiData->abilities[battlerAtk];
-    u32 *abilitiesDef = aiData->abilities[battlerAtk];
+    u32 *abilitiesDef = aiData->abilities[battlerDef];
     if (IsAbilityInArray(abilitiesAtk, ABILITY_NO_GUARD) || IsAbilityInArray(abilitiesDef, ABILITY_NO_GUARD) || gMovesInfo[move].accuracy == 0) // Moves with accuracy 0 or no guard ability always hit.
         accuracy = 100;
     else
